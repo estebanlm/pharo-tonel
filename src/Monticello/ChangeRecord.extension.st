@@ -1,12 +1,7 @@
-Extension {
-	#name : #ChangeRecord
-}
+Extension { #name : #ChangeRecord }
 
-{
-	#category : #'*Monticello',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>asMCMethodDefinition [
+{ #category : #'*Monticello' }
+ChangeRecord >> asMCMethodDefinition [
 	"Creates a MCMethodDefinition from the receiver when this was created for a method (type=#method)"
 	
 	self type == #method ifFalse: [ ^nil ]. "This case shouldn't happen"

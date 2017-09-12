@@ -4,38 +4,25 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestCollectionsNative,
 	#superclass : #PackageManifest,
-	#category : #Collections-Native,
-	#timestamp : '<historical>'
+	#category : #Collections-Native
 }
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-ManifestCollectionsNative class>>dependencies [
+{ #category : #meta-data }
+ManifestCollectionsNative class >> dependencies [
 	^ #(#'Collections-Abstract' #Kernel #'Collections-Strings')
 ]
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-ManifestCollectionsNative class>>description [
+{ #category : #meta-data }
+ManifestCollectionsNative class >> description [
 	^ 'Arrays of native types: byte, word, float and integer'
 ]
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-ManifestCollectionsNative class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestCollectionsNative class >> manuallyResolvedDependencies [
 	^ #(#'Collections-Streams')
 ]
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-ManifestCollectionsNative class>>packageName [
+{ #category : #meta-data }
+ManifestCollectionsNative class >> packageName [
 	^ #'Collections-Native'
 ]

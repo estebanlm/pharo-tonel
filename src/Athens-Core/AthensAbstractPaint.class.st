@@ -8,14 +8,10 @@ See other implementors of #asAthensPaintOn:, such as Color and Form.
 Class {
 	#name : #AthensAbstractPaint,
 	#superclass : #Object,
-	#category : #Athens-Core-Paints,
-	#timestamp : 'FernandoOlivero 3/9/2012 14:03'
+	#category : #Athens-Core-Paints
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAbstractPaint>>asAthensPaintOn: aCanvas	 [
+{ #category : #converting }
+AthensAbstractPaint >> asAthensPaintOn: aCanvas [	
 	^ self
 ]

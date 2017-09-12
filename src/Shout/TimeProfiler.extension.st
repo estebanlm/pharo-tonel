@@ -1,12 +1,7 @@
-Extension {
-	#name : #TimeProfiler
-}
+Extension { #name : #TimeProfiler }
 
-{
-	#category : #'*Shout-Styling',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TimeProfiler>>shoutAboutToStyle: aPluggableShoutMorphOrView  [
+{ #category : #'*Shout-Styling' }
+TimeProfiler >> shoutAboutToStyle: aPluggableShoutMorphOrView [ 
 	self selectedNode
 		ifNotNil: [ :currNode | 
 			aPluggableShoutMorphOrView getTextSelector = #selectedMethodCode

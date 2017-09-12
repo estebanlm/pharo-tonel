@@ -12,39 +12,26 @@ Class {
 	#classVars : [
 		'RecursiveSelfRule'
 	],
-	#category : #Refactoring-Critics,
-	#timestamp : '<historical>'
+	#category : #Refactoring-Critics
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule class>>checksMethod [
+{ #category : #testing }
+RBTransformationRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule class>>cleanUp [
+{ #category : #cleanup }
+RBTransformationRule class >> cleanUp [
 	RecursiveSelfRule := nil.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule class>>initialize [
+{ #category : #initialization }
+RBTransformationRule class >> initialize [
 	self initializeRecursiveSelfRule
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule class>>initializeRecursiveSelfRule [
+{ #category : #initialization }
+RBTransformationRule class >> initializeRecursiveSelfRule [
 	RecursiveSelfRule := RBParseTreeSearcher new.
 	RecursiveSelfRule 
 		matchesAnyMethodOf: #(
@@ -54,37 +41,25 @@ RBTransformationRule class>>initializeRecursiveSelfRule [
 	^ RecursiveSelfRule
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule class>>isVisible [
+{ #category : #testing }
+RBTransformationRule class >> isVisible [
 	^ self name ~= #RBTransformationRule
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule class>>recursiveSelfRule [
+{ #category : #accessing }
+RBTransformationRule class >> recursiveSelfRule [
 	^ RecursiveSelfRule ifNil: [ self initializeRecursiveSelfRule ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBTransformationRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'TransformationRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule>>basicCheck: aMethod  [
+{ #category : #running }
+RBTransformationRule >> basicCheck: aMethod [ 
 	aMethod isFromTrait
 		ifTrue: [ ^ false ].
 	(self rewriteRule canMatchMethod: aMethod) 
@@ -96,98 +71,65 @@ RBTransformationRule>>basicCheck: aMethod  [
 			initialAnswer: false) not ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule>>builder [
+{ #category : #accessing }
+RBTransformationRule >> builder [
 	^ builder
 		ifNil: [ 
 			self resetResult.
 			builder ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule>>changes [
+{ #category : #accessing }
+RBTransformationRule >> changes [
 	^ self builder changes
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule>>checkMethod: aMethod  [
+{ #category : #running }
+RBTransformationRule >> checkMethod: aMethod [ 
 	(self basicCheck: aMethod) ifTrue: [
 		self builder compile: rewriteRule tree newSource in: class classified: aMethod protocol ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule>>hasConflicts [
+{ #category : #testing }
+RBTransformationRule >> hasConflicts [
 	^ true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule>>initialize [
+{ #category : #initialization }
+RBTransformationRule >> initialize [
 	super initialize.
 	rewriteRule := RBParseTreeRewriter new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule>>isEmpty [
+{ #category : #testing }
+RBTransformationRule >> isEmpty [
 	^ self builder changes isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule>>isTransformationRule [
+{ #category : #testing }
+RBTransformationRule >> isTransformationRule [
 
 	^ true 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule>>name [
+{ #category : #accessing }
+RBTransformationRule >> name [
 
 	^ 'Code Rewriting'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule>>problemCount [
+{ #category : #accessing }
+RBTransformationRule >> problemCount [
 	^ self builder problemCount
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule>>resetResult [
+{ #category : #running }
+RBTransformationRule >> resetResult [
 	builder := RBRefactoryChangeManager changeFactory compositeRefactoryChangeNamed: self name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule>>result [
+{ #category : #accessing }
+RBTransformationRule >> result [
 	| environment |
 	environment := RBParseTreeEnvironment new.
 	environment matcher: self rewriteRule.
@@ -198,19 +140,13 @@ RBTransformationRule>>result [
 	^ environment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule>>rewriteRule [
+{ #category : #accessing }
+RBTransformationRule >> rewriteRule [
 	^ rewriteRule
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTransformationRule>>rewriteRule: aRule [
+{ #category : #accessing }
+RBTransformationRule >> rewriteRule: aRule [
 
 	rewriteRule := aRule
 ]

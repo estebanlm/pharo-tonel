@@ -16,23 +16,16 @@ Class {
 	#instVars : [
 		'myCanvas'
 	],
-	#category : #Graphics-Canvas,
-	#timestamp : 'LaurentLaffont 2/23/2011 20:17'
+	#category : #Graphics-Canvas
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas class>>on: aCanvas [
+{ #category : #'instance creation' }
+ColorMappingCanvas class >> on: aCanvas [
 	^self new on: aCanvas
 ]
 
-{
-	#category : #drawing-support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>clipBy: aRectangle during: aBlock [
+{ #category : #drawing-support }
+ColorMappingCanvas >> clipBy: aRectangle during: aBlock [
 	"Set a clipping rectangle active only during the execution of aBlock.
 	Note: In the future we may want to have more general clip shapes - not just rectangles"
 	| oldCanvas |
@@ -43,27 +36,18 @@ ColorMappingCanvas>>clipBy: aRectangle during: aBlock [
 	myCanvas := oldCanvas
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>clipRect [
+{ #category : #accessing }
+ColorMappingCanvas >> clipRect [
 	^myCanvas clipRect
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>depth [
+{ #category : #accessing }
+ColorMappingCanvas >> depth [
 	^myCanvas depth
 ]
 
-{
-	#category : #drawing-polygons,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>drawPolygon: vertices color: aColor borderWidth: bw borderColor: bc [
+{ #category : #drawing-polygons }
+ColorMappingCanvas >> drawPolygon: vertices color: aColor borderWidth: bw borderColor: bc [
 	"Draw the given polygon."
 	^myCanvas
 		drawPolygon: vertices
@@ -72,11 +56,8 @@ ColorMappingCanvas>>drawPolygon: vertices color: aColor borderWidth: bw borderCo
 		borderColor: (self mapColor: bc)
 ]
 
-{
-	#category : #drawing-text,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>drawString: s from: firstIndex to: lastIndex in: boundsRect font: fontOrNil color: c [
+{ #category : #drawing-text }
+ColorMappingCanvas >> drawString: s from: firstIndex to: lastIndex in: boundsRect font: fontOrNil color: c [
 	"Draw the given string in the given font and color clipped to the given rectangle. If the font is nil, the default font is used."
 	myCanvas
 		drawString: s from: firstIndex to: lastIndex 
@@ -85,11 +66,8 @@ ColorMappingCanvas>>drawString: s from: firstIndex to: lastIndex in: boundsRect 
 		color: (self mapColor: c)
 ]
 
-{
-	#category : #drawing-text,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>drawString: s from: firstIndex to: lastIndex in: boundsRect font: fontOrNil color: c underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc [
+{ #category : #drawing-text }
+ColorMappingCanvas >> drawString: s from: firstIndex to: lastIndex in: boundsRect font: fontOrNil color: c underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc [
 	"Draw the given string in the given font and color clipped to the given rectangle. If the font is nil, the default font is used."
 	myCanvas
 		drawString: s 
@@ -104,19 +82,13 @@ ColorMappingCanvas>>drawString: s from: firstIndex to: lastIndex in: boundsRect 
 		strikethroughColor: (self mapColor: sc)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>extent [
+{ #category : #accessing }
+ColorMappingCanvas >> extent [
 	^myCanvas extent
 ]
 
-{
-	#category : #drawing-ovals,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>fillOval: r color: c borderWidth: borderWidth borderColor: borderColor [
+{ #category : #drawing-ovals }
+ColorMappingCanvas >> fillOval: r color: c borderWidth: borderWidth borderColor: borderColor [
 	"Fill the given oval."
 	myCanvas
 		fillOval: r
@@ -125,27 +97,18 @@ ColorMappingCanvas>>fillOval: r color: c borderWidth: borderWidth borderColor: b
 		borderColor: (self mapColor: borderColor)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>flush [
+{ #category : #initialization }
+ColorMappingCanvas >> flush [
 	myCanvas flush.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>form [
+{ #category : #accessing }
+ColorMappingCanvas >> form [
 	^myCanvas form
 ]
 
-{
-	#category : #drawing-rectangles,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth borderColor: borderColor [
+{ #category : #drawing-rectangles }
+ColorMappingCanvas >> frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth borderColor: borderColor [
 	"Draw the rectangle using the given attributes"
 	myCanvas
 		frameAndFillRectangle: r
@@ -154,11 +117,8 @@ ColorMappingCanvas>>frameAndFillRectangle: r fillColor: fillColor borderWidth: b
 		borderColor: (self mapColor: borderColor)
 ]
 
-{
-	#category : #drawing-rectangles,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth topLeftColor: topLeftColor bottomRightColor: bottomRightColor [
+{ #category : #drawing-rectangles }
+ColorMappingCanvas >> frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth topLeftColor: topLeftColor bottomRightColor: bottomRightColor [
 	"Draw the rectangle using the given attributes"
 	myCanvas
 		frameAndFillRectangle: r 
@@ -168,28 +128,19 @@ ColorMappingCanvas>>frameAndFillRectangle: r fillColor: fillColor borderWidth: b
 		bottomRightColor: (self mapColor: bottomRightColor)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>image: aForm at: aPoint sourceRect: sourceRect rule: rule [
+{ #category : #private }
+ColorMappingCanvas >> image: aForm at: aPoint sourceRect: sourceRect rule: rule [
 	"Draw the given form. For the 'paint' combination rule use stenciling otherwise simply fill the source rectangle."
 	^myCanvas image: aForm at: aPoint sourceRect: sourceRect rule: rule.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>isShadowDrawing [
+{ #category : #testing }
+ColorMappingCanvas >> isShadowDrawing [
 	^myCanvas isShadowDrawing
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>line: pt1 to: pt2 width: w color: c [
+{ #category : #drawing }
+ColorMappingCanvas >> line: pt1 to: pt2 width: w color: c [
 	"Draw a line using the given width and color"
 	myCanvas
 		line: pt1
@@ -198,35 +149,23 @@ ColorMappingCanvas>>line: pt1 to: pt2 width: w color: c [
 		color: (self mapColor: c).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>mapColor: aColor [
+{ #category : #private }
+ColorMappingCanvas >> mapColor: aColor [
 	^aColor
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>on: aCanvas [
+{ #category : #initialization }
+ColorMappingCanvas >> on: aCanvas [
 	myCanvas := aCanvas.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>origin [
+{ #category : #accessing }
+ColorMappingCanvas >> origin [
 	^myCanvas origin
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>paragraph: paragraph bounds: bounds color: c [
+{ #category : #drawing }
+ColorMappingCanvas >> paragraph: paragraph bounds: bounds color: c [
 	"Draw the given paragraph"
 	myCanvas
 		paragraph: paragraph
@@ -234,11 +173,8 @@ ColorMappingCanvas>>paragraph: paragraph bounds: bounds color: c [
 		color: (self mapColor: c)
 ]
 
-{
-	#category : #drawing-support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>preserveStateDuring: aBlock [
+{ #category : #drawing-support }
+ColorMappingCanvas >> preserveStateDuring: aBlock [
 	"Preserve the full canvas state during the execution of aBlock"
 	| oldCanvas result |
 	oldCanvas := myCanvas.
@@ -249,30 +185,21 @@ ColorMappingCanvas>>preserveStateDuring: aBlock [
 	^result
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>reset [
+{ #category : #initialization }
+ColorMappingCanvas >> reset [
 	myCanvas reset.
 ]
 
-{
-	#category : #drawing-images,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>stencil: aForm at: aPoint color: aColor [
+{ #category : #drawing-images }
+ColorMappingCanvas >> stencil: aForm at: aPoint color: aColor [
 	myCanvas
 		stencil: aForm
 		at: aPoint
 		color: (self mapColor: aColor)
 ]
 
-{
-	#category : #drawing-images,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>stencil: aForm at: aPoint sourceRect: aRect color: aColor [
+{ #category : #drawing-images }
+ColorMappingCanvas >> stencil: aForm at: aPoint sourceRect: aRect color: aColor [
 	myCanvas
 		stencil: aForm
 		at: aPoint
@@ -280,11 +207,8 @@ ColorMappingCanvas>>stencil: aForm at: aPoint sourceRect: aRect color: aColor [
 		color: (self mapColor: aColor)
 ]
 
-{
-	#category : #drawing-support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>transformBy: aDisplayTransform clippingTo: aClipRect during: aBlock	 smoothing: cellSize [
+{ #category : #drawing-support }
+ColorMappingCanvas >> transformBy: aDisplayTransform clippingTo: aClipRect during: aBlock	 smoothing: cellSize [
 
 	"Transform the receiver by the given display transformation during the execution of aBlock. The given clip rectangle defines the *global* (e.g., outer) rectangle against which the receiver should clip (which would be equivalent to 'self clipRect: aClipRect; transformBy: aDisplayTransform')."
 	| oldCanvas |
@@ -298,11 +222,8 @@ ColorMappingCanvas>>transformBy: aDisplayTransform clippingTo: aClipRect during:
 	myCanvas := oldCanvas.
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>translateBy: delta clippingTo: aRectangle during: aBlock [
+{ #category : #other }
+ColorMappingCanvas >> translateBy: delta clippingTo: aRectangle during: aBlock [
 	"Set a translation and clipping rectangle only during the execution of aBlock."
 	| oldCanvas |
 	oldCanvas := myCanvas.
@@ -312,11 +233,8 @@ ColorMappingCanvas>>translateBy: delta clippingTo: aRectangle during: aBlock [
 	myCanvas := oldCanvas.
 ]
 
-{
-	#category : #drawing-support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>translateBy: delta during: aBlock [
+{ #category : #drawing-support }
+ColorMappingCanvas >> translateBy: delta during: aBlock [
 	"Set a translation only during the execution of aBlock."
 	| oldCanvas |
 	oldCanvas := myCanvas.
@@ -326,11 +244,8 @@ ColorMappingCanvas>>translateBy: delta during: aBlock [
 	myCanvas := oldCanvas.
 ]
 
-{
-	#category : #drawing-support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ColorMappingCanvas>>translateTo: newOrigin clippingTo: aRectangle during: aBlock [
+{ #category : #drawing-support }
+ColorMappingCanvas >> translateTo: newOrigin clippingTo: aRectangle during: aBlock [
 	"Set a new origin and clipping rectangle only during the execution of aBlock."
 	| oldCanvas |
 	oldCanvas := myCanvas.

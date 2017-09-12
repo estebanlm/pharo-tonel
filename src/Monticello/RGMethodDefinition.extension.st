@@ -1,12 +1,7 @@
-Extension {
-	#name : #RGMethodDefinition
-}
+Extension { #name : #RGMethodDefinition }
 
-{
-	#category : #'*Monticello',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>asMCMethodDefinition [
+{ #category : #'*Monticello' }
+RGMethodDefinition >> asMCMethodDefinition [
    "Creates a MCMethodDefinition from the receiver"
 	| cached |
 	cached := MCMethodDefinition cachedDefinitions
@@ -24,11 +19,8 @@ RGMethodDefinition>>asMCMethodDefinition [
 	^ cached
 ]
 
-{
-	#category : #'*Monticello',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>asMCMethodDefinitionFromActiveDefinition [
+{ #category : #'*Monticello' }
+RGMethodDefinition >> asMCMethodDefinitionFromActiveDefinition [
 	"Creates a MCMethodDefinition from a source file assuming the current method isActive."
 
 	| compiledMethod methodClass|
@@ -44,11 +36,8 @@ RGMethodDefinition>>asMCMethodDefinitionFromActiveDefinition [
 		source: compiledMethod sourceCode
 ]
 
-{
-	#category : #'*Monticello',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>basicAsMCMethodDefinition [
+{ #category : #'*Monticello' }
+RGMethodDefinition >> basicAsMCMethodDefinition [
    "Creates a MCMethodDefinition from the receiver"
    
 	^ self isActive 

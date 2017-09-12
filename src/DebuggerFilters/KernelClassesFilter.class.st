@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'kernelClasses'
 	],
-	#category : #DebuggerFilters,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:30'
+	#category : #DebuggerFilters
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-KernelClassesFilter>>initialize [
+{ #category : #initialization }
+KernelClassesFilter >> initialize [
 	
 	super initialize.
 	kernelClasses := self kernelClassesToExclude asOrderedCollection.
@@ -25,11 +21,8 @@ KernelClassesFilter>>initialize [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-KernelClassesFilter>>kernelClassesToExclude [
+{ #category : #private }
+KernelClassesFilter >> kernelClassesToExclude [
 	^ {Boolean.
 	True.
 	False.
@@ -52,10 +45,7 @@ KernelClassesFilter>>kernelClassesToExclude [
 	MessageSend}
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-KernelClassesFilter>>shouldDisplay: aContext [
+{ #category : #testing }
+KernelClassesFilter >> shouldDisplay: aContext [
 	^ (kernelClasses includes: aContext receiver class) not
 ]

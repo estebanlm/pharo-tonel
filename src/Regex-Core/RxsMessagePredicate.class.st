@@ -13,56 +13,40 @@ Class {
 		'selector',
 		'negated'
 	],
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:14'
+	#category : #Regex-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsMessagePredicate>>dispatchTo: aBuilder [
+{ #category : #accessing }
+RxsMessagePredicate >> dispatchTo: aBuilder [
 	"Inform the matcher of the kind of the node, and it
 	will do whatever it has to."
 
 	^aBuilder syntaxMessagePredicate: self
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsMessagePredicate>>initializeSelector: aSelector [
+{ #category : #initialize-release }
+RxsMessagePredicate >> initializeSelector: aSelector [
 	"The selector must be a one-argument message understood by Character."
 
 	selector := aSelector
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsMessagePredicate>>initializeSelector: aSelector negated: aBoolean [
+{ #category : #initialize-release }
+RxsMessagePredicate >> initializeSelector: aSelector negated: aBoolean [
 	"The selector must be a one-argument message understood by Character."
 
 	selector := aSelector.
 	negated := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsMessagePredicate>>negated [
+{ #category : #accessing }
+RxsMessagePredicate >> negated [
 
 	^negated
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsMessagePredicate>>selector [
+{ #category : #accessing }
+RxsMessagePredicate >> selector [
 
 	^selector
 ]

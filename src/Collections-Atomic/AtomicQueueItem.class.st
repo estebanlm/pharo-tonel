@@ -9,33 +9,23 @@ Class {
 		'next',
 		'object'
 	],
-	#category : #Collections-Atomic,
-	#timestamp : 'Igor.Stasenko 10/16/2010 02:29'
+	#category : #Collections-Atomic
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-AtomicQueueItem>>initialize [
+{ #category : #initialization }
+AtomicQueueItem >> initialize [
 	"make circular"
 	super initialize.
 	next := self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-AtomicQueueItem>>isCircular [
+{ #category : #accessing }
+AtomicQueueItem >> isCircular [
 	^ next == self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-AtomicQueueItem>>makeCircular [
+{ #category : #accessing }
+AtomicQueueItem >> makeCircular [
 	"Make a receiver circular, i.e. point to itself,
 	answer the old value of next variable. 
 	Note, this operation should be atomic"
@@ -49,41 +39,29 @@ AtomicQueueItem>>makeCircular [
 	^ temp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-AtomicQueueItem>>next [
+{ #category : #accessing }
+AtomicQueueItem >> next [
 	"Answer the value of next"
 
 	^ next
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-AtomicQueueItem>>next: anObject [
+{ #category : #accessing }
+AtomicQueueItem >> next: anObject [
 	"Set the value of next"
 
 	next := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-AtomicQueueItem>>object [
+{ #category : #accessing }
+AtomicQueueItem >> object [
 	"Answer the value of object"
 
 	^ object
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-AtomicQueueItem>>object: anObject [
+{ #category : #accessing }
+AtomicQueueItem >> object: anObject [
 	"Set the value of object"
 
 	object := anObject

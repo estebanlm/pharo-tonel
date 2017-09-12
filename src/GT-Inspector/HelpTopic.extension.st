@@ -1,11 +1,6 @@
-Extension {
-	#name : #HelpTopic
-}
+Extension { #name : #HelpTopic }
 
-{
-	#category : #'*GT-Inspector',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-HelpTopic>>gtDisplayOn: stream [
+{ #category : #'*GT-Inspector' }
+HelpTopic >> gtDisplayOn: stream [
 	^ stream nextPutAll: self title
 ]

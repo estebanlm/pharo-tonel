@@ -8,15 +8,11 @@ See parent class comment for more info.
 Class {
 	#name : #DelayMillisecondScheduler,
 	#superclass : #DelayScheduler,
-	#category : #Kernel-Processes,
-	#timestamp : 'BenComan 3/3/2015 23:34'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #snapshotting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayMillisecondScheduler>>adjust: aDelay resumptionTimeOldBase: oldBaseTime newBase: newBaseTime [
+{ #category : #snapshotting }
+DelayMillisecondScheduler >> adjust: aDelay resumptionTimeOldBase: oldBaseTime newBase: newBaseTime [
 	"Used to adjust resumption times after a snapshot or clock roll-over."
 
 	aDelay schedulerResumptionTime: newBaseTime + ( aDelay schedulerResumptionTime - oldBaseTime).
@@ -29,11 +25,8 @@ DelayMillisecondScheduler>>adjust: aDelay resumptionTimeOldBase: oldBaseTime new
 	
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayMillisecondScheduler>>handleTimerEvent: millisecondNowTick [
+{ #category : #'timer process' }
+DelayMillisecondScheduler >> handleTimerEvent: millisecondNowTick [
 	"Handle a timer event; which can be either:
 		- a schedule request (ScheduledDelay notNil)
 		- an unschedule request (FinishedDelay notNil)
@@ -76,29 +69,20 @@ DelayMillisecondScheduler>>handleTimerEvent: millisecondNowTick [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayMillisecondScheduler>>millisecondsUntilResumptionTime: millisecondResumptionTime [
+{ #category : #printing }
+DelayMillisecondScheduler >> millisecondsUntilResumptionTime: millisecondResumptionTime [
 	^ millisecondResumptionTime - Time millisecondClockValue
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayMillisecondScheduler>>primSignal: aSemaphore atMilliseconds: aSmallInteger [
+{ #category : #primitives }
+DelayMillisecondScheduler >> primSignal: aSemaphore atMilliseconds: aSmallInteger [
 	"Signal the semaphore when the millisecond clock reaches the value of the second argument. Fail if the first argument is neither a Semaphore nor nil. Essential. See Object documentation whatIsAPrimitive."
 	<primitive: 136>
 	^self primitiveFailed
 ]
 
-{
-	#category : #snapshotting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayMillisecondScheduler>>restoreResumptionTimes [
+{ #category : #snapshotting }
+DelayMillisecondScheduler >> restoreResumptionTimes [
 	"Private! Restore the resumption times of all scheduled Delays after a snapshot or clock roll-over. This method should be called only while the AccessProtect semaphore is held."
 
 	| newBaseTime |
@@ -110,11 +94,8 @@ DelayMillisecondScheduler>>restoreResumptionTimes [
 
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayMillisecondScheduler>>runTimerEventLoop [
+{ #category : #'timer process' }
+DelayMillisecondScheduler >> runTimerEventLoop [
 	| millisecondNowTick millisecondNextTick   |
 	"Run the timer event loop."
 	[ runTimerEventLoop ] whileTrue: [ 
@@ -140,11 +121,8 @@ DelayMillisecondScheduler>>runTimerEventLoop [
 
 ]
 
-{
-	#category : #snapshotting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayMillisecondScheduler>>saveResumptionTimes [
+{ #category : #snapshotting }
+DelayMillisecondScheduler >> saveResumptionTimes [
 	"Private! Record the resumption times of all Delays relative to a base time of zero. This is done prior to snapshotting or adjusting the resumption times after a clock roll-over. This method should be called only while the AccessProtect semaphore is held."
 
 	| oldBaseTime |
@@ -160,11 +138,8 @@ DelayMillisecondScheduler>>saveResumptionTimes [
 
 ]
 
-{
-	#category : #'low priority processes',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayMillisecondScheduler>>schedule: aDelay [
+{ #category : #'low priority processes' }
+DelayMillisecondScheduler >> schedule: aDelay [
 	aDelay schedulerBeingWaitedOn ifTrue: [^self error: 'This Delay has already been scheduled.'].
 	accessProtect critical: [
 		scheduledDelay := aDelay.
@@ -173,11 +148,8 @@ DelayMillisecondScheduler>>schedule: aDelay [
 	
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayMillisecondScheduler>>scheduleDelay: aDelay [
+{ #category : #'timer process' }
+DelayMillisecondScheduler >> scheduleDelay: aDelay [
 	"Private. Schedule this Delay."
 	
 	aDelay schedulerBeingWaitedOn: true.
@@ -192,11 +164,8 @@ DelayMillisecondScheduler>>scheduleDelay: aDelay [
 
 ]
 
-{
-	#category : #snapshotting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayMillisecondScheduler>>shutDown [
+{ #category : #snapshotting }
+DelayMillisecondScheduler >> shutDown [
 	"Suspend the active delay, if any, before snapshotting. It will be reactived when the snapshot is resumed."
 	"Details: This prevents a timer interrupt from waking up the active delay in the midst snapshoting, since the active delay will be restarted when resuming the snapshot and we don't want to process the delay twice."
 	accessProtect consumeAllSignals.
@@ -206,11 +175,8 @@ DelayMillisecondScheduler>>shutDown [
 
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayMillisecondScheduler>>startTimerEventLoop [
+{ #category : #'timer process' }
+DelayMillisecondScheduler >> startTimerEventLoop [
 	"Start the timer event loop"
 	"Delay restartTimerEventLoop"
 	
@@ -232,11 +198,8 @@ DelayMillisecondScheduler>>startTimerEventLoop [
 
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayMillisecondScheduler>>stopTimerEventLoop [
+{ #category : #'timer process' }
+DelayMillisecondScheduler >> stopTimerEventLoop [
 	"Stop the timer event loop"
 	|  suspendedDelayToClear |
 	
@@ -255,11 +218,8 @@ DelayMillisecondScheduler>>stopTimerEventLoop [
 
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayMillisecondScheduler>>unscheduleDelay: aDelay [
+{ #category : #'timer process' }
+DelayMillisecondScheduler >> unscheduleDelay: aDelay [
 	"Private. Unschedule this Delay."
 	aDelay schedulerBeingWaitedOn 
 		ifFalse:[ ^self ].

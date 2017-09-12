@@ -4,15 +4,11 @@ We subclass panel morph to improve performance of pane color adaptation and redu
 Class {
 	#name : #GLMPanelMorph,
 	#superclass : #PanelMorph,
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : 'AliakseiSyrel 2/9/2017 14:41'
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPanelMorph>>adoptPaneColor: paneColor [
+{ #category : #'change reporting' }
+GLMPanelMorph >> adoptPaneColor: paneColor [
 	"Change our color too."
 
 	self assureExtension.
@@ -24,11 +20,8 @@ GLMPanelMorph>>adoptPaneColor: paneColor [
 	self submorphsDo: [ :m | m adoptPaneColor: paneColor ]
 ]
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPanelMorph>>changed [
+{ #category : #'change reporting' }
+GLMPanelMorph >> changed [
 	"Report that the area occupied by this morph should be redrawn.
 	Fixed to include submorphs outside the outerBounds."
 
@@ -40,11 +33,8 @@ GLMPanelMorph>>changed [
 		ifNotNil: [ self invalidRect: fullBounds ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPanelMorph>>extent: aPoint [
+{ #category : #accessing }
+GLMPanelMorph >> extent: aPoint [
 	| newExtent |	
 	newExtent := aPoint rounded.
 	(bounds extent closeTo: newExtent)

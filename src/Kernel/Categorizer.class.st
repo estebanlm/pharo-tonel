@@ -40,44 +40,31 @@ Class {
 		'Default',
 		'NullCategory'
 	],
-	#category : #Kernel-Classes,
-	#timestamp : 'StephaneDucasse 5/9/2010 20:11'
+	#category : #Kernel-Classes
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer class>>allCategory [
+{ #category : #'class initialization' }
+Categorizer class >> allCategory [
 	"Return a symbol that represents the virtual all methods category."
 
 	^#'-- all --'
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer class>>default [
+{ #category : #'class initialization' }
+Categorizer class >> default [ 
 	^ Default
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer class>>defaultList: aSortedCollection [
+{ #category : #'instance creation' }
+Categorizer class >> defaultList: aSortedCollection [ 
 	"Answer an instance of me with initial elements from the argument, 
 	aSortedCollection."
 
 	^self new setDefaultList: aSortedCollection
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer class>>documentation [
+{ #category : #documentation }
+Categorizer class >> documentation [
 	"Instances consist of an Array of category names (categoryArray), each of 
 	which refers to an Array of elements (elementArray). This association is 
 	made through an Array of stop indices (categoryStops), each of which is 
@@ -90,48 +77,33 @@ Categorizer class>>documentation [
 	same as elements size." 
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer class>>initialize [
+{ #category : #'class initialization' }
+Categorizer class >> initialize [
 	"	self  initialize	"
 	
 	Default := 'as yet unclassified' asSymbol.
 	NullCategory := 'no messages' asSymbol.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer class>>nullCategory [
+{ #category : #'class initialization' }
+Categorizer class >> nullCategory [
 	^ NullCategory
 ]
 
-{
-	#category : #housekeeping,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer class>>sortAllCategories [
+{ #category : #housekeeping }
+Categorizer class >> sortAllCategories [
 
 	self allSubInstances
 		do: [:x | x sortCategories]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>addCategory: newCategory [
+{ #category : #operations }
+Categorizer >> addCategory: newCategory [
 	^ self addCategory: newCategory before: nil 
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>addCategory: catString before: nextCategory [
+{ #category : #operations }
+Categorizer >> addCategory: catString before: nextCategory [
 	"Add a new category named heading.
 	If default category exists and is empty, remove it.
 	If nextCategory is nil, then add the new one at the end,
@@ -158,29 +130,20 @@ Categorizer>>addCategory: catString before: nextCategory [
 		ifTrue: [self removeCategory: Default]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>allMethodSelectors [
+{ #category : #accessing }
+Categorizer >> allMethodSelectors [
 	"give a list of all method selectors."
 
 	^ elementArray sorted
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>assertInvariant [
+{ #category : #private }
+Categorizer >> assertInvariant [
 	[elementArray size = categoryStops last] assert
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>basicRemoveElement: element [
+{ #category : #private }
+Categorizer >> basicRemoveElement: element [ 
 	"Remove the selector, element, from all categories."
 	| categoryIndex elementIndex nextStop newElements |
 	categoryIndex := 1.
@@ -206,11 +169,8 @@ Categorizer>>basicRemoveElement: element [
 	self assertInvariant.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>categories [
+{ #category : #accessing }
+Categorizer >> categories [
 	"Answer an Array of categories (names)."
 	categoryArray ifNil: [^ nil].
 	(categoryArray size = 1 
@@ -219,11 +179,8 @@ Categorizer>>categories [
 	^categoryArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>categories: anArray [
+{ #category : #accessing }
+Categorizer >> categories: anArray [
 	"Reorder my categories to be in order of the argument, anArray. If the 
 	resulting organization does not include all elements, then give an error."
 
@@ -255,11 +212,8 @@ Categorizer>>categories: anArray [
 	elementArray := newElements
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>categoryOfElement: element [
+{ #category : #queries }
+Categorizer >> categoryOfElement: element [ 
 	"Answer the category associated with the argument, element."
 
 	| index |
@@ -269,11 +223,8 @@ Categorizer>>categoryOfElement: element [
 		ifFalse: [ categoryArray at: index ]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>changeFromCategorySpecs: categorySpecs [
+{ #category : #operations }
+Categorizer >> changeFromCategorySpecs: categorySpecs [
 	"Tokens is an array of categorySpecs as scanned from a browser 'reorganize' pane, or built up by some other process, such as a scan of an environment."
 
 	| newCategories newStops temp cc currentStop oldElements newElements |
@@ -321,19 +272,13 @@ Categorizer>>changeFromCategorySpecs: categorySpecs [
 	oldElements do: [ :pair | self classify: pair last under: pair first ]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>classify: element under: heading [
+{ #category : #operations }
+Categorizer >> classify: element under: heading [ 
 	self classify: element under: heading suppressIfDefault: true
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>classify: element under: heading suppressIfDefault: aBoolean [
+{ #category : #operations }
+Categorizer >> classify: element under: heading suppressIfDefault: aBoolean [
 	"Store the argument, element, in the category named heading.   If aBoolean is true, then invoke special logic such that the classification is NOT done if the new heading is the Default and the element already had a non-Default classification -- useful for filein"
 
 	| catName catIndex elemIndex realHeading |
@@ -372,21 +317,15 @@ Categorizer>>classify: element under: heading suppressIfDefault: aBoolean [
 	self assertInvariant.
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>classifyAll: aCollection under: heading [
+{ #category : #operations }
+Categorizer >> classifyAll: aCollection under: heading [
 
 	aCollection do:
 		[:element | self classify: element under: heading]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>elementCategoryDict [
+{ #category : #private }
+Categorizer >> elementCategoryDict [
 	| dict firstIndex lastIndex |
 	elementArray ifNil: [^ nil].
 	dict := Dictionary new: elementArray size.
@@ -399,32 +338,23 @@ Categorizer>>elementCategoryDict [
 	^ dict.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>firstIndexOfCategoryNumber: anInteger [
+{ #category : #private }
+Categorizer >> firstIndexOfCategoryNumber: anInteger [
 	anInteger < 1 ifTrue: [^ nil].
 	^ (anInteger > 1
 			ifTrue: [(categoryStops at: anInteger - 1) + 1]
 			ifFalse: [1]).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>isEmptyCategoryNamed: categoryName [
+{ #category : #testing }
+Categorizer >> isEmptyCategoryNamed: categoryName [
 	| i |
 	i := categoryArray indexOf: categoryName ifAbsent: [^false].
 	^self isEmptyCategoryNumber: i
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>isEmptyCategoryNumber: anInteger [
+{ #category : #testing }
+Categorizer >> isEmptyCategoryNumber: anInteger [
 
 	| firstIndex lastIndex |
 	(anInteger < 1 or: [anInteger > categoryStops size])
@@ -434,20 +364,14 @@ Categorizer>>isEmptyCategoryNumber: anInteger [
 	^ firstIndex > lastIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>lastIndexOfCategoryNumber: anInteger [
+{ #category : #private }
+Categorizer >> lastIndexOfCategoryNumber: anInteger [
 	anInteger > categoryStops size ifTrue: [^ nil].
 	^ categoryStops at: anInteger
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>listAtCategoryNamed: categoryName [
+{ #category : #queries }
+Categorizer >> listAtCategoryNamed: categoryName [
 	"Answer the array of elements associated with the name, categoryName."
 
 	| i |
@@ -455,11 +379,8 @@ Categorizer>>listAtCategoryNamed: categoryName [
 	^self listAtCategoryNumber: i
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>listAtCategoryNumber: anInteger [
+{ #category : #private }
+Categorizer >> listAtCategoryNumber: anInteger [ 
 	"Answer the array of elements stored at the position indexed by anInteger.  Answer nil if anInteger is larger than the number of categories."
 
 	| firstIndex lastIndex |
@@ -470,20 +391,14 @@ Categorizer>>listAtCategoryNumber: anInteger [
 	^elementArray copyFrom: firstIndex to: lastIndex
 ]
 
-{
-	#category : #'queries - protocol',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>listAtProtocolNamed: categoryName [
+{ #category : #'queries - protocol' }
+Categorizer >> listAtProtocolNamed: categoryName [
 	"when the receiver is used to sort methods, it is nicer to use the right vocabulary."
 	^ self listAtCategoryNamed: categoryName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>numberOfCategoryOfElement: element [
+{ #category : #private }
+Categorizer >> numberOfCategoryOfElement: element [ 
 	"Answer the index of the category with which the argument, element, is 
 	associated."
 
@@ -500,21 +415,15 @@ Categorizer>>numberOfCategoryOfElement: element [
 	^0
 ]
 
-{
-	#category : #'queries - protocol',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>protocolOfElement: element [
+{ #category : #'queries - protocol' }
+Categorizer >> protocolOfElement: element [
 	"when the receiver is used to sort methods, it is nicer to use the right vocabulary."
 	
 	^ self categoryOfElement: element 
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>removeCategory: cat [
+{ #category : #operations }
+Categorizer >> removeCategory: cat [ 
 	"Remove the category named, cat. Create an error notificiation if the 
 	category has any elements in it."
 
@@ -535,19 +444,13 @@ Categorizer>>removeCategory: cat [
 
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>removeElement: element [
+{ #category : #operations }
+Categorizer >> removeElement: element [ 
 	^ self basicRemoveElement: element
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>removeEmptyCategories [
+{ #category : #operations }
+Categorizer >> removeEmptyCategories [
 	"Remove empty categories."
 
 	| categoryIndex currentStop keptCategories keptStops |
@@ -570,11 +473,8 @@ Categorizer>>removeEmptyCategories [
 	"ClassOrganizer allInstancesDo: [:co | co removeEmptyCategories]."
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>renameCategory: oldCatString toBe: newCatString [
+{ #category : #operations }
+Categorizer >> renameCategory: oldCatString toBe: newCatString [
 	"Rename a category. No action if new name already exists, or if old name does not exist."
 	| index oldCategory newCategory |
 	oldCategory := oldCatString asSymbol.
@@ -587,22 +487,16 @@ Categorizer>>renameCategory: oldCatString toBe: newCatString [
 	categoryArray at: index put: newCategory
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>setDefaultList: aSortedCollection [
+{ #category : #private }
+Categorizer >> setDefaultList: aSortedCollection [
 
 	categoryArray := Array with: Default.
 	categoryStops := Array with: aSortedCollection size.
 	elementArray := aSortedCollection asArray
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Categorizer>>sortCategories [
+{ #category : #operations }
+Categorizer >> sortCategories [
 	| privateCategories publicCategories newCategories |
 	privateCategories := self categories
 		select: [ :one | (one findString: 'private' startingAt: 1 caseSensitive: false) = 1 ].

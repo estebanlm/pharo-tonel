@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMBrickBorder,
 	#superclass : #Object,
@@ -14,35 +11,25 @@ Class {
 		'Right',
 		'Top'
 	],
-	#category : #Glamour-Morphic-Brick-Utils,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Utils
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder class>>initialize [
+{ #category : #'class initialization' }
+GLMBrickBorder class >> initialize [
 	Top := 1.
 	Right := 2.
 	Bottom := 3.
 	Left := 4
 ]
 
-{
-	#category : #color,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>color [
+{ #category : #color }
+GLMBrickBorder >> color [
 
 	^ color ifNil: [ color := Array braceWith: Color transparent with: Color transparent with: Color transparent with: Color transparent ]
 ]
 
-{
-	#category : #color,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>color: colors [
+{ #category : #color }
+GLMBrickBorder >> color: colors [
 	"The colors property may have from one to four values:
 	
 	color: { Color red . Color blue . Color green . Color yellow }
@@ -86,83 +73,56 @@ GLMBrickBorder>>color: colors [
 	ifFalse: [ ^ self color: { colors } ].
 ]
 
-{
-	#category : #color,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>colorBottom [
+{ #category : #color }
+GLMBrickBorder >> colorBottom [
 
 	^ self color at: Bottom
 ]
 
-{
-	#category : #color,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>colorBottom: aColor [
+{ #category : #color }
+GLMBrickBorder >> colorBottom: aColor [
 
 	self color at: Bottom put: aColor
 ]
 
-{
-	#category : #color,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>colorLeft [
+{ #category : #color }
+GLMBrickBorder >> colorLeft [
 
 	^ self color at: Left
 ]
 
-{
-	#category : #color,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>colorLeft: aColor [
+{ #category : #color }
+GLMBrickBorder >> colorLeft: aColor [
 	"aColor may be any object, it will be called with brickValue: aBrick"
 	self color at: Left put: aColor
 ]
 
-{
-	#category : #color,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>colorRight [
+{ #category : #color }
+GLMBrickBorder >> colorRight [
 
 	^ self color at: Right
 ]
 
-{
-	#category : #color,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>colorRight: aColor [
+{ #category : #color }
+GLMBrickBorder >> colorRight: aColor [
 
 	self color at: Right put: aColor
 ]
 
-{
-	#category : #color,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>colorTop [
+{ #category : #color }
+GLMBrickBorder >> colorTop [
 
 	^ self color at: Top
 ]
 
-{
-	#category : #color,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>colorTop: aColor [
+{ #category : #color }
+GLMBrickBorder >> colorTop: aColor [
 
 	self color at: Top put: aColor
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>renderBorderOf: aBrick on: aCanvas [
+{ #category : #rendering }
+GLMBrickBorder >> renderBorderOf: aBrick on: aCanvas [
 	|canvas widthLeft widthRight widthTop widthBottom colorLeft colorRight colorTop colorBottom|
 	
 	canvas := aCanvas.
@@ -194,20 +154,14 @@ GLMBrickBorder>>renderBorderOf: aBrick on: aCanvas [
 		color: colorLeft.
 ]
 
-{
-	#category : #width,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>width [
+{ #category : #width }
+GLMBrickBorder >> width [
 
 	^ width ifNil: [ width := Array braceWith: 0 with: 0 with: 0 with: 0 ]
 ]
 
-{
-	#category : #width,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>width: widths [
+{ #category : #width }
+GLMBrickBorder >> width: widths [
 	"The widths property can have from one to four values:
 	
 	width: #(25 50 75 100)
@@ -251,74 +205,50 @@ GLMBrickBorder>>width: widths [
 	ifFalse: [ ^ self width: {widths} ]
 ]
 
-{
-	#category : #width,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>widthBottom [
+{ #category : #width }
+GLMBrickBorder >> widthBottom [
 
 	^ self width at: Bottom
 ]
 
-{
-	#category : #width,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>widthBottom: anInteger [
+{ #category : #width }
+GLMBrickBorder >> widthBottom: anInteger [
 
 	self width at: Bottom put: anInteger
 ]
 
-{
-	#category : #width,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>widthLeft [
+{ #category : #width }
+GLMBrickBorder >> widthLeft [
 
 	^ self width at: Left
 ]
 
-{
-	#category : #width,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>widthLeft: anInteger [
+{ #category : #width }
+GLMBrickBorder >> widthLeft: anInteger [
 
 	self width at: Left put: anInteger
 ]
 
-{
-	#category : #width,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>widthRight [
+{ #category : #width }
+GLMBrickBorder >> widthRight [
 
 	^ self width at: Right
 ]
 
-{
-	#category : #width,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>widthRight: anInteger [
+{ #category : #width }
+GLMBrickBorder >> widthRight: anInteger [
 
 	self width at: Right put: anInteger
 ]
 
-{
-	#category : #width,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>widthTop [
+{ #category : #width }
+GLMBrickBorder >> widthTop [
 
 	^ self width at: Top
 ]
 
-{
-	#category : #width,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBorder>>widthTop: anInteger [
+{ #category : #width }
+GLMBrickBorder >> widthTop: anInteger [
 
 	self width at: Top put: anInteger
 ]

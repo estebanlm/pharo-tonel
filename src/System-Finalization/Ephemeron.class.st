@@ -37,15 +37,11 @@ Class {
 	#instVars : [
 		'container'
 	],
-	#category : #System-Finalization,
-	#timestamp : 'GuillermoPolito 5/30/2016 10:05'
+	#category : #System-Finalization
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Ephemeron class>>key: key value: value container: aContainer [
+{ #category : #'instance creation' }
+Ephemeron class >> key: key value: value container: aContainer [
 
 	^ self new
 		key: key;
@@ -54,20 +50,14 @@ Ephemeron class>>key: key value: value container: aContainer [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Ephemeron>>container: anEphemeronContainer [
+{ #category : #accessing }
+Ephemeron >> container: anEphemeronContainer [
 
 	container := anEphemeronContainer
 ]
 
-{
-	#category : #mourning,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Ephemeron>>mourn [
+{ #category : #mourning }
+Ephemeron >> mourn [
 	"The key is only referenced by myself.
 	Finalize the key and remove myself from my container.
 	

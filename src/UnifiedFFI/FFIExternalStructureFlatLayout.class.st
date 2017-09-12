@@ -11,15 +11,11 @@ Class {
 		'integerRegisterCount',
 		'floatRegisterCount'
 	],
-	#category : #UnifiedFFI,
-	#timestamp : 'RonieSalgado 2/14/2017 01:33'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>addField: registerClass size: fieldSize alignment: fieldAlignment [
+{ #category : #building }
+FFIExternalStructureFlatLayout >> addField: registerClass size: fieldSize alignment: fieldAlignment [
 	self alignTo: fieldSize.
 	fields add: (FFIExternalStructureFlatLayoutField new
 			registerClass: registerClass;
@@ -31,44 +27,29 @@ FFIExternalStructureFlatLayout>>addField: registerClass size: fieldSize alignmen
 	size := size + fieldSize.
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>addMemoryFieldSize: fieldSize alignment: fieldAlignment. [
+{ #category : #building }
+FFIExternalStructureFlatLayout >> addMemoryFieldSize: fieldSize alignment: fieldAlignment. [
 	self addField: #memory size: fieldSize alignment: fieldAlignment
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>alignTo: anAlignment [
+{ #category : #building }
+FFIExternalStructureFlatLayout >> alignTo: anAlignment [
 	size := size alignedTo: anAlignment.
 	alignment := alignment max: anAlignment.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>alignment [
+{ #category : #accessing }
+FFIExternalStructureFlatLayout >> alignment [
 	^ alignment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>alignment: anObject [
+{ #category : #accessing }
+FFIExternalStructureFlatLayout >> alignment: anObject [
 	alignment := anObject
 ]
 
-{
-	#category : #'system v abi',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>combineSysVAMD64RegisterClass: leftClass with: rightClass [
+{ #category : #'system v abi' }
+FFIExternalStructureFlatLayout >> combineSysVAMD64RegisterClass: leftClass with: rightClass [
 	"AMD64 SystemV eightbyte classification reduction"
 	
 	"Same class."
@@ -90,54 +71,36 @@ FFIExternalStructureFlatLayout>>combineSysVAMD64RegisterClass: leftClass with: r
 	^ #float
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>countRegisters [
+{ #category : #building }
+FFIExternalStructureFlatLayout >> countRegisters [
 	fields do: [ :field |
 		field registerClass == #integer ifTrue: [ integerRegisterCount := integerRegisterCount + 1 ].
 		field registerClass == #float ifTrue: [ floatRegisterCount := floatRegisterCount + 1 ].
 	]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>fields [
+{ #category : #accessing }
+FFIExternalStructureFlatLayout >> fields [
 	^ fields
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>fields: anObject [
+{ #category : #accessing }
+FFIExternalStructureFlatLayout >> fields: anObject [
 	fields := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>floatRegisterCount [
+{ #category : #accessing }
+FFIExternalStructureFlatLayout >> floatRegisterCount [
 	^ floatRegisterCount
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>floatRegisterCount: anObject [
+{ #category : #accessing }
+FFIExternalStructureFlatLayout >> floatRegisterCount: anObject [
 	^ floatRegisterCount := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>initialize [
+{ #category : #initialization }
+FFIExternalStructureFlatLayout >> initialize [
 	super initialize.
 	fields := OrderedCollection new.
 	size := 0.
@@ -146,35 +109,23 @@ FFIExternalStructureFlatLayout>>initialize [
 	floatRegisterCount := 0.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>integerRegisterCount [
+{ #category : #accessing }
+FFIExternalStructureFlatLayout >> integerRegisterCount [
 	^ integerRegisterCount
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>integerRegisterCount: anObject [
+{ #category : #accessing }
+FFIExternalStructureFlatLayout >> integerRegisterCount: anObject [
 	integerRegisterCount := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>isPassedInMemory [
+{ #category : #testing }
+FFIExternalStructureFlatLayout >> isPassedInMemory [
 	^ fields size = 1 and: [ fields first registerClass == #memory ]
 ]
 
-{
-	#category : #'system v abi',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>reduce: sourceFields inGroupsOfSize: groupSize with: aBlock [
+{ #category : #'system v abi' }
+FFIExternalStructureFlatLayout >> reduce: sourceFields inGroupsOfSize: groupSize with: aBlock [
 	| reduced nextGroupOffset |
 	reduced := nil.
 	nextGroupOffset := groupSize.
@@ -201,27 +152,18 @@ FFIExternalStructureFlatLayout>>reduce: sourceFields inGroupsOfSize: groupSize w
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>size [
+{ #category : #accessing }
+FFIExternalStructureFlatLayout >> size [
 	^ size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>size: anObject [
+{ #category : #accessing }
+FFIExternalStructureFlatLayout >> size: anObject [
 	size := anObject
 ]
 
-{
-	#category : #'system v abi',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayout>>sysVAMD64PostProcess [
+{ #category : #'system v abi' }
+FFIExternalStructureFlatLayout >> sysVAMD64PostProcess [
 	| result |
 	result := self class new.
 	result

@@ -1,12 +1,7 @@
-Extension {
-	#name : #Exception
-}
+Extension { #name : #Exception }
 
-{
-	#category : #'*Polymorph-Widgets-Themes',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Exception class>>systemIconName [
+{ #category : #'*Polymorph-Widgets-Themes' }
+Exception class >> systemIconName [
 
 	^ #exceptionIcon
 ]

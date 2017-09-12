@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #HashTableSizesTest,
 	#superclass : #TestCase,
-	#category : #Collections-Tests-Unordered,
-	#timestamp : ''
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HashTableSizesTest>>testAtLeast [
+{ #category : #tests }
+HashTableSizesTest >> testAtLeast [
 	-1000 to: 1000 do: [ :limit | 
 		| size |
 		"#atLeast: should answer the next known good prime not less than i, or

@@ -9,34 +9,24 @@ Class {
 	#instVars : [
 		'selectors'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 14:06'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveMethodRefactoring class>>model: aRBSmalltalk removeMethods: selectorCollection from: aClass  [
+{ #category : #'instance creation' }
+RBRemoveMethodRefactoring class >> model: aRBSmalltalk removeMethods: selectorCollection from: aClass [ 
 	^(self new)
 		model: aRBSmalltalk;
 		removeMethods: selectorCollection from: aClass;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveMethodRefactoring class>>removeMethods: selectorCollection from: aClass [
+{ #category : #'instance creation' }
+RBRemoveMethodRefactoring class >> removeMethods: selectorCollection from: aClass [
 	^self new removeMethods: selectorCollection from: aClass
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveMethodRefactoring>>checkBrowseAllOccurences: anCollectionOfOccurrences [
+{ #category : #preconditions }
+RBRemoveMethodRefactoring >> checkBrowseAllOccurences: anCollectionOfOccurrences [
 	| methods callers |
 	methods := anCollectionOfOccurrences collect: [ :c | c key ] as: Set.
 	callers := anCollectionOfOccurrences collect: [ :v | v value ].
@@ -61,32 +51,23 @@ RBRemoveMethodRefactoring>>checkBrowseAllOccurences: anCollectionOfOccurrences [
 					self openBrowserOn: env ] ]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveMethodRefactoring>>checkBrowseOccurrenceOf: selector in: aRBMethod [
+{ #category : #preconditions }
+RBRemoveMethodRefactoring >> checkBrowseOccurrenceOf: selector in: aRBMethod [
 	self
 		refactoringError:
 			('Possible call to <2s> in <1p><n>Browse references?' expandMacrosWith: aRBMethod modelClass with: selector)
 		with: [ self openBrowserOn: (RBBrowserEnvironment new referencesTo: selector) ]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveMethodRefactoring>>checkBrowseOccurrences: anCollectionOfOccurrences [
+{ #category : #preconditions }
+RBRemoveMethodRefactoring >> checkBrowseOccurrences: anCollectionOfOccurrences [
 	anCollectionOfOccurrences size = 1
 		ifTrue: [ ^ self checkBrowseOccurrenceOf: anCollectionOfOccurrences first key in: anCollectionOfOccurrences first value ]
 		ifFalse: [ ^ self checkBrowseAllOccurences: anCollectionOfOccurrences ]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveMethodRefactoring>>checkReferencesToAnyOf: aSelectorCollection [
+{ #category : #preconditions }
+RBRemoveMethodRefactoring >> checkReferencesToAnyOf: aSelectorCollection [
 	| occurrences |
 	occurrences := OrderedCollection new.
 	aSelectorCollection
@@ -100,11 +81,8 @@ RBRemoveMethodRefactoring>>checkReferencesToAnyOf: aSelectorCollection [
 	^ self checkBrowseOccurrences: occurrences
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveMethodRefactoring>>checkReferencesToSuperSendsToAnyOf: superMessages  [
+{ #category : #preconditions }
+RBRemoveMethodRefactoring >> checkReferencesToSuperSendsToAnyOf: superMessages [ 
 	[superMessages isEmpty] whileFalse: 
 			[self 
 				refactoringWarning: ('Although <1s> is equivalent to a superclass method,<n>it contains a super send so it might modify behavior.' 
@@ -112,11 +90,8 @@ RBRemoveMethodRefactoring>>checkReferencesToSuperSendsToAnyOf: superMessages  [
 			superMessages remove: superMessages first]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveMethodRefactoring>>checkSuperMethods [
+{ #category : #preconditions }
+RBRemoveMethodRefactoring >> checkSuperMethods [
 	| superMessages nonSupers |
 	nonSupers := OrderedCollection new.
 	superMessages := OrderedCollection new.
@@ -132,11 +107,8 @@ RBRemoveMethodRefactoring>>checkSuperMethods [
 	self checkReferencesToSuperSendsToAnyOf: superMessages
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveMethodRefactoring>>justSendsSuper: aSelector  [
+{ #category : #preconditions }
+RBRemoveMethodRefactoring >> justSendsSuper: aSelector [ 
 	| matcher parseTree superclass |
 	matcher := RBParseTreeSearcher justSendsSuper.
 	parseTree := class parseTreeFor: aSelector.
@@ -159,11 +131,8 @@ RBRemoveMethodRefactoring>>justSendsSuper: aSelector  [
 		ifNone: [nil]) isNil
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveMethodRefactoring>>preconditions [
+{ #category : #preconditions }
+RBRemoveMethodRefactoring >> preconditions [
 	^(selectors inject: RBCondition empty
 		into: [:cond :each | cond & (RBCondition definesSelector: each in: class)]) 
 			& (RBCondition withBlock: 
@@ -171,20 +140,14 @@ RBRemoveMethodRefactoring>>preconditions [
 						true])
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveMethodRefactoring>>removeMethods: selectorCollection from: aClass  [
+{ #category : #initialize-release }
+RBRemoveMethodRefactoring >> removeMethods: selectorCollection from: aClass [ 
 	class := self classObjectFor: aClass.
 	selectors := selectorCollection
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveMethodRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBRemoveMethodRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream nextPutAll: ' removeMethods: '.
@@ -194,11 +157,8 @@ RBRemoveMethodRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveMethodRefactoring>>superclassEquivalentlyDefines: aSelector  [
+{ #category : #preconditions }
+RBRemoveMethodRefactoring >> superclassEquivalentlyDefines: aSelector [ 
 	| superTree myTree |
 	class superclass isNil ifTrue: [^false].
 	superTree := class superclass parseTreeFor: aSelector.
@@ -207,10 +167,7 @@ RBRemoveMethodRefactoring>>superclassEquivalentlyDefines: aSelector  [
 	^superTree equalTo: myTree exceptForVariables: #()
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveMethodRefactoring>>transform [
+{ #category : #transforming }
+RBRemoveMethodRefactoring >> transform [
 	selectors do: [:each | class removeMethod: each]
 ]

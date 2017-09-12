@@ -4,15 +4,11 @@ A shared pool represents a set of bindings which are accessible to all classes w
 Class {
 	#name : #SharedPool,
 	#superclass : #Object,
-	#category : #Kernel-Classes,
-	#timestamp : '<historical>'
+	#category : #Kernel-Classes
 }
 
-{
-	#category : #'name lookup',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SharedPool class>>bindingOf: varName [
+{ #category : #'name lookup' }
+SharedPool class >> bindingOf: varName [
 	"Answer the binding of some variable resolved in the scope of the receiver"
 	| aSymbol binding |
 	aSymbol := varName asSymbol.
@@ -31,28 +27,19 @@ SharedPool class>>bindingOf: varName [
 	^nil
 ]
 
-{
-	#category : #'name lookup',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SharedPool class>>bindingsDo: aBlock [
+{ #category : #'name lookup' }
+SharedPool class >> bindingsDo: aBlock [
 	^self classPool bindingsDo: aBlock
 ]
 
-{
-	#category : #'name lookup',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SharedPool class>>classBindingOf: varName [
+{ #category : #'name lookup' }
+SharedPool class >> classBindingOf: varName [
 	"For initialization messages grant the regular scope"
 	^super bindingOf: varName
 ]
 
-{
-	#category : #'name lookup',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SharedPool class>>hasBindingThatBeginsWith: aString [
+{ #category : #'name lookup' }
+SharedPool class >> hasBindingThatBeginsWith: aString [
 	"Answer true if the receiver has a binding that begins with aString, false otherwise"
 
 	"First look in classVar dictionary."
@@ -63,11 +50,8 @@ SharedPool class>>hasBindingThatBeginsWith: aString [
 	^false
 ]
 
-{
-	#category : #'name lookup',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SharedPool class>>includesKey: aName [
+{ #category : #'name lookup' }
+SharedPool class >> includesKey: aName [
 	"does this pool include aName"
 	^(self bindingOf: aName) notNil
 ]

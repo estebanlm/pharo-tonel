@@ -1,12 +1,7 @@
-Extension {
-	#name : #WorldState
-}
+Extension { #name : #WorldState }
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-WorldState>>addAlarm: aSelector withArguments: argArray for: aTarget at: scheduledTime [
+{ #category : #'*Morphic-Base' }
+WorldState >> addAlarm: aSelector withArguments: argArray for: aTarget at: scheduledTime [
 	"Add a new alarm with the given set of parameters"
 	self alarms add: 
 		(MorphicAlarm 
@@ -16,11 +11,8 @@ WorldState>>addAlarm: aSelector withArguments: argArray for: aTarget at: schedul
 			arguments: argArray).
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-WorldState class>>debugOn: aBuilder [
+{ #category : #'*Morphic-Base' }
+WorldState class >> debugOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #Debugging)
 		order: 3.5;
@@ -36,11 +28,8 @@ WorldState class>>debugOn: aBuilder [
 				action: [ ExecutionCounter resetAll ] ]
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-WorldState>>menuBuilder [
+{ #category : #'*Morphic-Base' }
+WorldState >> menuBuilder [
 	^ menuBuilder ifNil: [
 		menuBuilder := (PragmaMenuBuilder pragmaKeyword: self discoveredMenuPragmaKeyword model: self)
 				menuSpec;
@@ -48,11 +37,8 @@ WorldState>>menuBuilder [
 	]
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-WorldState class>>startMessageTally [
+{ #category : #'*Morphic-Base' }
+WorldState class >> startMessageTally [
 	(self confirm: 'MessageTally will start now,
 and stop when the cursor goes
 to the top of the screen' translated) 
@@ -60,11 +46,8 @@ to the top of the screen' translated)
 					whileTrue: [World doOneCycle]]]
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-WorldState>>startStepping: aMorph at: scheduledTime selector: aSelector arguments: args stepTime: stepTime [
+{ #category : #'*Morphic-Base' }
+WorldState >> startStepping: aMorph at: scheduledTime selector: aSelector arguments: args stepTime: stepTime [
 	"Add the given morph to the step list. Do nothing if it is already being stepped."
 
 	self stopStepping: aMorph selector: aSelector.
@@ -78,11 +61,8 @@ WorldState>>startStepping: aMorph at: scheduledTime selector: aSelector argument
 			arguments: args)
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-WorldState class>>startThenBrowseMessageTally [
+{ #category : #'*Morphic-Base' }
+WorldState class >> startThenBrowseMessageTally [
 	"Tally only the UI process"
 	
 	(self confirm: 'MessageTally the UI process until the
@@ -92,11 +72,8 @@ mouse pointer goes to the top of the screen')
 						whileTrue: [World doOneCycle]]]
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-WorldState class>>systemOn: aBuilder [
+{ #category : #'*Morphic-Base' }
+WorldState class >> systemOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #System)
 		order: 3.0;
@@ -123,11 +100,8 @@ WorldState class>>systemOn: aBuilder [
 				action: [ World restoreMorphicDisplay ] ]
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-WorldState class>>windowsOn: aBuilder [
+{ #category : #'*Morphic-Base' }
+WorldState class >> windowsOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #Windows)
 		order: 4.0;

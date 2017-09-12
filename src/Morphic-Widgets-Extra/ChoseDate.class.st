@@ -8,53 +8,37 @@ Class {
 		'date',
 		'calendar'
 	],
-	#category : #Morphic-Widgets-Extra,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Extra
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ChoseDate class>>of: aDate from: aCalendarChooserMorph [
+{ #category : #'instance creation' }
+ChoseDate class >> of: aDate from: aCalendarChooserMorph [
 
 	^ self new
 		date: aDate;
 		calendar: aCalendarChooserMorph.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ChoseDate>>calendar [
+{ #category : #accessing }
+ChoseDate >> calendar [
 
 	^ calendar.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ChoseDate>>calendar: aCalendarChooserMorph  [
+{ #category : #private }
+ChoseDate >> calendar: aCalendarChooserMorph [ 
 
 	calendar := aCalendarChooserMorph.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ChoseDate>>date [
+{ #category : #accessing }
+ChoseDate >> date [
 
 	^ date.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ChoseDate>>date: aDate  [
+{ #category : #private }
+ChoseDate >> date: aDate [ 
 
 	date := aDate.
 ]

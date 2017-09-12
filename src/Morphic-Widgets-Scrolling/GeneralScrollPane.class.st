@@ -9,15 +9,11 @@ Class {
 		'hScrollbar',
 		'vScrollbar'
 	],
-	#category : #Morphic-Widgets-Scrolling,
-	#timestamp : 'gvc 5/18/2007 13:01'
+	#category : #Morphic-Widgets-Scrolling
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+GeneralScrollPane >> adoptPaneColor: paneColor [
 	"Adopt the given pane color."
 	
 	super adoptPaneColor: paneColor.
@@ -25,42 +21,30 @@ GeneralScrollPane>>adoptPaneColor: paneColor [
 	self vScrollbar adoptPaneColor: paneColor
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>changeScrollerTableLayout [
+{ #category : #scrollbars }
+GeneralScrollPane >> changeScrollerTableLayout [
 	"Change the scroller's layout policy to a table layout."
 
 	self scroller changeTableLayout
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>defaultColor [
+{ #category : #initialize }
+GeneralScrollPane >> defaultColor [
 	"Answer the default color/fill style for the receiver."
 	
 	^ Color transparent
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>defaultScrollTarget [
+{ #category : #scrollbars }
+GeneralScrollPane >> defaultScrollTarget [
 	"Answer a new default scroll target."
 
 	^ Morph new
 		extent: 200@150
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>doLayoutIn: layoutBounds  [
+{ #category : #layout }
+GeneralScrollPane >> doLayoutIn: layoutBounds [ 
 	"Compute a new layout based on the given layout bounds."
 
 	|scrollbarChange|
@@ -73,11 +57,8 @@ GeneralScrollPane>>doLayoutIn: layoutBounds  [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>extent: newExtent [
+{ #category : #geometry }
+GeneralScrollPane >> extent: newExtent [
 	"Update the receiver's extent. Hide/show the scrollbars and resize the scroller
 	as neccessary."
 	
@@ -90,11 +71,8 @@ GeneralScrollPane>>extent: newExtent [
 	scrollbarChange ifFalse: [self resizeScroller] "if there is a scrollbar change then done already"
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>fitScrollTarget [
+{ #category : #scrollbars }
+GeneralScrollPane >> fitScrollTarget [
 	"If the scroller is bigger than the scroll target then
 	resize the scroll target to fill the scroller."
 	
@@ -107,11 +85,8 @@ GeneralScrollPane>>fitScrollTarget [
 		ifTrue: [self scrollTarget height: self scroller height + extra]
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>hHideScrollbar [
+{ #category : #scrollbars }
+GeneralScrollPane >> hHideScrollbar [
 	"Hide the horizontal scrollbar."
 	
 	self hScrollbarShowing ifFalse: [^self].
@@ -120,11 +95,8 @@ GeneralScrollPane>>hHideScrollbar [
 	self resizeScroller
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>hPageDelta [
+{ #category : #scrollbars }
+GeneralScrollPane >> hPageDelta [
 	"Answer the horizontal page delta."
 	
 	|pd tw sw|
@@ -135,11 +107,8 @@ GeneralScrollPane>>hPageDelta [
 	^pd
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>hResizeScrollbar [
+{ #category : #scrollbars }
+GeneralScrollPane >> hResizeScrollbar [
 	"Resize the horizontal scrollbar to fit the receiver."
 	
 	|b|
@@ -150,41 +119,29 @@ GeneralScrollPane>>hResizeScrollbar [
 	self hScrollbar bounds: b
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>hScrollbar [
+{ #category : #accessing }
+GeneralScrollPane >> hScrollbar [
 	"Answer the value of hScrollbar"
 
 	^ hScrollbar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>hScrollbar: anObject [
+{ #category : #accessing }
+GeneralScrollPane >> hScrollbar: anObject [
 	"Set the value of hScrollbar"
 
 	hScrollbar := anObject
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>hScrollbarInterval [
+{ #category : #scrollbars }
+GeneralScrollPane >> hScrollbarInterval [
 	"Answer the computed size of the thumb of the horizontal scrollbar."
 	
 	^self scrollBounds width asFloat / self scrollTarget width min: 1.0.
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>hScrollbarNeeded [
+{ #category : #scrollbars }
+GeneralScrollPane >> hScrollbarNeeded [
 	"Return whether the horizontal scrollbar is needed."
 	
 	self hScrollbar showsAlways ifTrue: [^true].
@@ -195,55 +152,40 @@ GeneralScrollPane>>hScrollbarNeeded [
 		self innerBounds width
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>hScrollbarShowAlways [
+{ #category : #scrollbars }
+GeneralScrollPane >> hScrollbarShowAlways [
 	"Set the horizontal scrollbar to always show."
 	
 	self hScrollbar showAlways.
 	self updateScrollbars
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>hScrollbarShowNever [
+{ #category : #scrollbars }
+GeneralScrollPane >> hScrollbarShowNever [
 	"Set the horizontal scrollbar to never show."
 	
 	self hScrollbar showNever.
 	self updateScrollbars
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>hScrollbarShowWhenNeeded [
+{ #category : #scrollbars }
+GeneralScrollPane >> hScrollbarShowWhenNeeded [
 	"Set the horizontal scrollbar to show if needed."
 	
 	self hScrollbar showWhenNeeded.
 	self updateScrollbars
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>hScrollbarShowing [
+{ #category : #scrollbars }
+GeneralScrollPane >> hScrollbarShowing [
 	"Answer whether the horizontal scrollbar is showing."
 	
 	^self hScrollbar owner notNil
 	
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>hScrollbarValue [
+{ #category : #scrollbars }
+GeneralScrollPane >> hScrollbarValue [
 	"Answer the computed horizontal scrollbar value."
 	
 	|tw sw v|
@@ -254,11 +196,8 @@ GeneralScrollPane>>hScrollbarValue [
 	^v
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>hScrollbarValue: scrollValue [
+{ #category : #scrollbars }
+GeneralScrollPane >> hScrollbarValue: scrollValue [
 	"Set the offset of the scroller to match the 0.0-1.0 scroll value."
 	
 	|r|
@@ -267,11 +206,8 @@ GeneralScrollPane>>hScrollbarValue: scrollValue [
 		offset: (r * scrollValue) rounded @ self scroller offset y
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>hSetScrollDelta [
+{ #category : #geometry }
+GeneralScrollPane >> hSetScrollDelta [
 	"Set the horizontal scrollbar delta, value and interval, based on the current scroll bounds and offset."
 	
 	|pd|
@@ -283,11 +219,8 @@ GeneralScrollPane>>hSetScrollDelta [
 		setValue: self hScrollbarValue
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>hShowScrollbar [
+{ #category : #scrollbars }
+GeneralScrollPane >> hShowScrollbar [
 	"Show the horizontal scrollbar."
 	
 	self hResizeScrollbar.
@@ -297,11 +230,8 @@ GeneralScrollPane>>hShowScrollbar [
 	self resizeScroller
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>hUpdateScrollbar [
+{ #category : #scrollbars }
+GeneralScrollPane >> hUpdateScrollbar [
 	"Update the visibility and dimensions of the horizontal scrollbar as needed."
 	
 	self hScrollbarNeeded
@@ -311,31 +241,22 @@ GeneralScrollPane>>hUpdateScrollbar [
 		ifFalse: [self hHideScrollbar]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>handlesKeyboard: evt [
+{ #category : #'event handling' }
+GeneralScrollPane >> handlesKeyboard: evt [
 	"Yes for page up/down."
 	
 	^true
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>handlesMouseWheel: evt [
+{ #category : #events-processing }
+GeneralScrollPane >> handlesMouseWheel: evt [
 	"Do I want to receive mouseWheel events?." 
 
 	^true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>initialize [
+{ #category : #initialization }
+GeneralScrollPane >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -349,11 +270,8 @@ GeneralScrollPane>>initialize [
 		resizeScroller
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>keyStroke: evt [
+{ #category : #'event handling' }
+GeneralScrollPane >> keyStroke: evt [
 	"If pane is not empty, pass the event to the last submorph,
 	assuming it is the most appropriate recipient (!)"
 
@@ -361,11 +279,8 @@ GeneralScrollPane>>keyStroke: evt [
 	self scrollTarget keyStroke: evt
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>minHeight [
+{ #category : #layout }
+GeneralScrollPane >> minHeight [
 	"Fit the width of the scroll target if vResizing is shrinkWrap."
 	
 	^self vResizing = #shrinkWrap
@@ -373,11 +288,8 @@ GeneralScrollPane>>minHeight [
 		ifFalse: [super minHeight]
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>minWidth [
+{ #category : #layout }
+GeneralScrollPane >> minWidth [
 	"Fit the width of the scroll target if hResizing is shrinkWrap."
 	
 	^self hResizing = #shrinkWrap
@@ -385,11 +297,8 @@ GeneralScrollPane>>minWidth [
 		ifFalse: [super minWidth]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>mouseWheel: event  [
+{ #category : #'event handling' }
+GeneralScrollPane >> mouseWheel: event [ 
 	"Handle a mouseWheel event."
 	
 	(self scrollTarget handlesMouseWheel: event)
@@ -401,11 +310,8 @@ GeneralScrollPane>>mouseWheel: event  [
 	event isRight  ifTrue: [ ^ hScrollbar scrollRight: 3 ].
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>newHScrollbar [
+{ #category : #'instance creation' }
+GeneralScrollPane >> newHScrollbar [
 	"Answer a new horizontal scrollbar."
 
 	^GeneralScrollBar new
@@ -413,22 +319,16 @@ GeneralScrollPane>>newHScrollbar [
 		setValueSelector: #hScrollbarValue:
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>newScroller [
+{ #category : #'instance creation' }
+GeneralScrollPane >> newScroller [
 	"Answer a new scroller."
 
 	^TransformWithLayoutMorph new
 		color: Color transparent
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>newVScrollbar [
+{ #category : #'instance creation' }
+GeneralScrollPane >> newVScrollbar [
 	"Answer a new vertical scrollbar."
 
 	^GeneralScrollBar new
@@ -436,32 +336,23 @@ GeneralScrollPane>>newVScrollbar [
 		setValueSelector: #vScrollbarValue:
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>resizeScroller [
+{ #category : #geometry }
+GeneralScrollPane >> resizeScroller [
 	"Resize the scroller to fit the scroll bounds."
 	
 	self scroller bounds: self scrollBounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>scrollBarThickness [
+{ #category : #accessing }
+GeneralScrollPane >> scrollBarThickness [
 	"Answer the width or height of a scrollbar as appropriate to
 	its orientation."
 	
 	^self theme scrollbarThickness
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>scrollBounds [
+{ #category : #scrollbars }
+GeneralScrollPane >> scrollBounds [
 	"Return the visible scroll area taking into account whether
 	the scrollbars need to be shown."
 	
@@ -472,11 +363,8 @@ GeneralScrollPane>>scrollBounds [
 	^b
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>scrollByKeyboard: event  [
+{ #category : #'event handling' }
+GeneralScrollPane >> scrollByKeyboard: event [ 
 	"If event is ctrl+up/down then scroll and answer true."
 	
 	|sb|
@@ -492,21 +380,15 @@ GeneralScrollPane>>scrollByKeyboard: event  [
 	^false
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>scrollTarget [
+{ #category : #scrollbars }
+GeneralScrollPane >> scrollTarget [
 	"Answer the morph that is scrolled."
 	
 	^self scroller submorphs first
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>scrollTarget: aMorph [
+{ #category : #scrollbars }
+GeneralScrollPane >> scrollTarget: aMorph [
 	"Set the morph that is scrolled."
 	
 	self scroller
@@ -515,11 +397,8 @@ GeneralScrollPane>>scrollTarget: aMorph [
 	self updateScrollbars
 ]
 
-{
-	#category : #'client list accessing',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>scrollToShow: aRectangle [
+{ #category : #'client list accessing' }
+GeneralScrollPane >> scrollToShow: aRectangle [
 	"Scroll to include as much of aRectangle as possible, where aRectangle is in the scroller's local space."
 	
 	|offset|
@@ -536,42 +415,30 @@ GeneralScrollPane>>scrollToShow: aRectangle [
 		self setScrollDeltas]
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>scrollbarThickness [
+{ #category : #defaults }
+GeneralScrollPane >> scrollbarThickness [
 	"Answer the width or height of a scrollbar as appropriate to
 	its orientation."
 	
 	^ self theme scrollbarThickness
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>scroller [
+{ #category : #accessing }
+GeneralScrollPane >> scroller [
 	"Answer the value of scroller"
 
 	^ scroller
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>scroller: anObject [
+{ #category : #accessing }
+GeneralScrollPane >> scroller: anObject [
 	"Set the value of scroller"
 
 	scroller := anObject
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>setScrollDeltas [
+{ #category : #geometry }
+GeneralScrollPane >> setScrollDeltas [
 	"Set the ScrollBar deltas, value and interval, based on the current scroll pane size, offset and range."
 	
 	self
@@ -579,11 +446,8 @@ GeneralScrollPane>>setScrollDeltas [
 		vSetScrollDelta
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>updateScrollbars [
+{ #category : #updating }
+GeneralScrollPane >> updateScrollbars [
 	"Update the visibility, dimensions and values of the scrollbars as needed."
 	
 	self
@@ -592,11 +456,8 @@ GeneralScrollPane>>updateScrollbars [
 		setScrollDeltas
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vHideScrollbar [
+{ #category : #scrollbars }
+GeneralScrollPane >> vHideScrollbar [
 	"Hide the vertical scrollbar."
 	
 	self vScrollbarShowing ifFalse: [^self].
@@ -605,22 +466,16 @@ GeneralScrollPane>>vHideScrollbar [
 	self resizeScroller
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vLeftoverScrollRange [
+{ #category : #geometry }
+GeneralScrollPane >> vLeftoverScrollRange [
 	"Return the entire scrolling range minus the currently viewed area."
 	
 	^self scrollTarget height - self scrollBounds height max: 0
 
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vPageDelta [
+{ #category : #scrollbars }
+GeneralScrollPane >> vPageDelta [
 	"Answer the vertical page delta."
 	
 	|pd tw sw|
@@ -631,11 +486,8 @@ GeneralScrollPane>>vPageDelta [
 	^pd
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vResizeScrollbar [
+{ #category : #scrollbars }
+GeneralScrollPane >> vResizeScrollbar [
 	"Resize the vertical scrollbar to fit the receiver."
 	
 	|b|
@@ -646,41 +498,29 @@ GeneralScrollPane>>vResizeScrollbar [
 	self vScrollbar bounds: b
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vScrollbar [
+{ #category : #accessing }
+GeneralScrollPane >> vScrollbar [
 	"Answer the value of vScrollbar"
 
 	^ vScrollbar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vScrollbar: anObject [
+{ #category : #accessing }
+GeneralScrollPane >> vScrollbar: anObject [
 	"Set the value of vScrollbar"
 
 	vScrollbar := anObject
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vScrollbarInterval [
+{ #category : #scrollbars }
+GeneralScrollPane >> vScrollbarInterval [
 	"Answer the computed size of the thumb of the vertical scrollbar."
 	
 	^self scrollBounds height asFloat / self scrollTarget height min: 1.0.
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vScrollbarNeeded [
+{ #category : #scrollbars }
+GeneralScrollPane >> vScrollbarNeeded [
 	"Return whether the vertical scrollbar is needed."
 	
 	self vScrollbar showsAlways ifTrue: [^true].
@@ -691,55 +531,40 @@ GeneralScrollPane>>vScrollbarNeeded [
 		self innerBounds height
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vScrollbarShowAlways [
+{ #category : #scrollbars }
+GeneralScrollPane >> vScrollbarShowAlways [
 	"Set the vertical scrollbar to always show."
 	
 	self vScrollbar showAlways.
 	self updateScrollbars
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vScrollbarShowNever [
+{ #category : #scrollbars }
+GeneralScrollPane >> vScrollbarShowNever [
 	"Set the vertical scrollbar to never show."
 	
 	self vScrollbar showNever.
 	self updateScrollbars
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vScrollbarShowWhenNeeded [
+{ #category : #scrollbars }
+GeneralScrollPane >> vScrollbarShowWhenNeeded [
 	"Set the vertical scrollbar to show if needed."
 	
 	self vScrollbar showWhenNeeded.
 	self updateScrollbars
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vScrollbarShowing [
+{ #category : #scrollbars }
+GeneralScrollPane >> vScrollbarShowing [
 	"Answer whether the vertical scrollbar is showing."
 	
 	^self vScrollbar owner notNil
 	
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vScrollbarValue [
+{ #category : #scrollbars }
+GeneralScrollPane >> vScrollbarValue [
 	"Answer the computed vertical scrollbar value."
 	
 	|tw sw v|
@@ -750,11 +575,8 @@ GeneralScrollPane>>vScrollbarValue [
 	^v
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vScrollbarValue: scrollValue [
+{ #category : #scrollbars }
+GeneralScrollPane >> vScrollbarValue: scrollValue [
 	"Set the offset of the scroller to match the 0.0-1.0 scroll value."
 	
 	|r|
@@ -763,11 +585,8 @@ GeneralScrollPane>>vScrollbarValue: scrollValue [
 		offset: self scroller offset x @ (r * scrollValue) rounded
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vSetScrollDelta [
+{ #category : #geometry }
+GeneralScrollPane >> vSetScrollDelta [
 	"Set the vertical scrollbar delta, value and interval, based on the current scroll bounds and offset."
 	
 	|pd|
@@ -779,11 +598,8 @@ GeneralScrollPane>>vSetScrollDelta [
 		setValue: self vScrollbarValue
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vShowScrollbar [
+{ #category : #scrollbars }
+GeneralScrollPane >> vShowScrollbar [
 	"Show the vertical scrollbar."
 	
 	self vResizeScrollbar.
@@ -793,11 +609,8 @@ GeneralScrollPane>>vShowScrollbar [
 	self resizeScroller
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-GeneralScrollPane>>vUpdateScrollbar [
+{ #category : #scrollbars }
+GeneralScrollPane >> vUpdateScrollbar [
 	"Update the visibility and dimensions of the vertical scrollbar as needed."
 	
 	self vScrollbarNeeded

@@ -14,105 +14,71 @@ Class {
 	#classInstVars : [
 		'definitions'
 	],
-	#category : #Komitter-Models,
-	#timestamp : 'StephaneDucasse 11/24/2015 18:57'
+	#category : #Komitter-Models
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitDefinition class>>definition: definition [
+{ #category : #'instance creation' }
+KomitDefinition class >> definition: definition [
 
 	^ self new
 		definition: definition;
 		yourself
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitDefinition class>>initialize [
+{ #category : #'class initialization' }
+KomitDefinition class >> initialize [
 
 	definitions := Dictionary new
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitDefinition>><= aKomitObject  [
+{ #category : #comparing }
+KomitDefinition >> <= aKomitObject [ 
 
 	^ self definition <= aKomitObject definition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitDefinition>>definition [
+{ #category : #accessing }
+KomitDefinition >> definition [
 	^ definition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitDefinition>>definition: anObject [
+{ #category : #accessing }
+KomitDefinition >> definition: anObject [
 	
 	definition := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitDefinition>>isCommitable [
+{ #category : #testing }
+KomitDefinition >> isCommitable [
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitDefinition>>isDefinition [
+{ #category : #testing }
+KomitDefinition >> isDefinition [
 
 	^ true
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitDefinition>>koDestinationText [
+{ #category : #'*Komitter-UI' }
+KomitDefinition >> koDestinationText [
 	
 	^ self operation koDestinationText
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitDefinition>>koSourceText [
+{ #category : #'*Komitter-UI' }
+KomitDefinition >> koSourceText [
 
 	^ self operation koSourceText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitDefinition>>operation [
+{ #category : #accessing }
+KomitDefinition >> operation [
 	^ operation
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitDefinition>>operation: anOperation [
+{ #category : #protocol }
+KomitDefinition >> operation: anOperation [
  
 	operation := anOperation
 ]

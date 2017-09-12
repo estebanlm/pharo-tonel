@@ -8,15 +8,11 @@ Class {
 		'center',
 		'radius'
 	],
-	#category : #Athens-Balloon,
-	#timestamp : '<historical>'
+	#category : #Athens-Balloon
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonRadialGradient>>athensFillPath: aPath on: anAthensCanvas [
+{ #category : #rendering }
+AthensBalloonRadialGradient >> athensFillPath: aPath on: anAthensCanvas [
 	"This is a terminal method in rendering dispatch scheme
 	canvas->shape->paint. See AthensCanvas>>fillShape: "
 	
@@ -31,11 +27,8 @@ AthensBalloonRadialGradient>>athensFillPath: aPath on: anAthensCanvas [
 
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonRadialGradient>>athensFillRectangle: aRect on: anAthensCanvas [
+{ #category : #rendering }
+AthensBalloonRadialGradient >> athensFillRectangle: aRect on: anAthensCanvas [
 	"This is a terminal method in rendering dispatch scheme
 	canvas->shape->paint. See AthensCanvas>>fillShape: "
 	
@@ -51,38 +44,26 @@ AthensBalloonRadialGradient>>athensFillRectangle: aRect on: anAthensCanvas [
 		fillRectangle: aRect
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonRadialGradient>>center [
+{ #category : #accessing }
+AthensBalloonRadialGradient >> center [
 
 	^ center
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonRadialGradient>>center: anObject [
+{ #category : #accessing }
+AthensBalloonRadialGradient >> center: anObject [
 
 	center := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonRadialGradient>>radius [
+{ #category : #accessing }
+AthensBalloonRadialGradient >> radius [
 
 	^ radius
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonRadialGradient>>radius: anObject [
+{ #category : #accessing }
+AthensBalloonRadialGradient >> radius: anObject [
 
 	radius := anObject
 ]

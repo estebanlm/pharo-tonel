@@ -8,60 +8,41 @@ I'm a composite brick that provides an api of creating different kind of scripta
 Class {
 	#name : #GLMCompositeBrick,
 	#superclass : #GLMBrick,
-	#category : #Glamour-Morphic-Brick-Widgets-Phlow,
-	#timestamp : 'AliakseiSyrel 1/30/2015 10:13'
+	#category : #Glamour-Morphic-Brick-Widgets-Phlow
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositeBrick class>>exampleListClassMethodsOpen [
+{ #category : #examples }
+GLMCompositeBrick class >> exampleListClassMethodsOpen [
 	
 	self gtExampleListClassMethods openInBrickWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositeBrick class>>exampleListOpen [
+{ #category : #examples }
+GLMCompositeBrick class >> exampleListOpen [
 	
 	self gtExampleList openInBrickWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositeBrick class>>exampleListWithCustomItemsOpen [
+{ #category : #examples }
+GLMCompositeBrick class >> exampleListWithCustomItemsOpen [
 	
 	self gtExampleListWithCustomItems openInBrickWindowLabeled: 'Phlow list with custom item'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositeBrick class>>examplePharoMethodOpen [
+{ #category : #examples }
+GLMCompositeBrick class >> examplePharoMethodOpen [
 	
 	self gtExamplePharoMethod openInBrickWindowLabeled: 'Phlow Pharo method'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositeBrick class>>exampleTableOpen [
+{ #category : #examples }
+GLMCompositeBrick class >> exampleTableOpen [
 
 	self gtExampleTable openInBrickWindowLabeled: 'Phlowr table'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositeBrick class>>gtExampleList [
+{ #category : #examples }
+GLMCompositeBrick class >> gtExampleList [
 	<gtExample>
 	<label: 'Phlow simple list'>
 
@@ -76,11 +57,8 @@ GLMCompositeBrick class>>gtExampleList [
 				entity: (1 to: 100) ]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositeBrick class>>gtExampleListClassMethods [
+{ #category : #examples }
+GLMCompositeBrick class >> gtExampleListClassMethods [
 	<gtExample>
 	<label: 'Phlow list displaying all methods of an object '>
 
@@ -96,11 +74,8 @@ GLMCompositeBrick class>>gtExampleListClassMethods [
 			entity: Object methods ]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositeBrick class>>gtExampleListWithCustomItems [
+{ #category : #examples }
+GLMCompositeBrick class >> gtExampleListWithCustomItems [
 	<gtExample>
 	<label: 'Phlow list with custom items'>
 
@@ -116,11 +91,8 @@ GLMCompositeBrick class>>gtExampleListWithCustomItems [
 				entity: (1 to: 100) ]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositeBrick class>>gtExamplePharoMethod [
+{ #category : #examples }
+GLMCompositeBrick class >> gtExamplePharoMethod [
 	<gtExample>
 	<label: 'Phlow Pharo method'>
 
@@ -135,11 +107,8 @@ GLMCompositeBrick class>>gtExamplePharoMethod [
 				entity: Morph>>#bounds ]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositeBrick class>>gtExampleTable [
+{ #category : #examples }
+GLMCompositeBrick class >> gtExampleTable [
 	<gtExample>
 	<label: 'Phlowr table'>
 	
@@ -159,57 +128,38 @@ GLMCompositeBrick class>>gtExampleTable [
 				entity: Morph new ]
 ]
 
-{
-	#category : #phlow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositeBrick>>custom: aBrick [
+{ #category : #phlow }
+GLMCompositeBrick >> custom: aBrick [
 	self flag: 'for now we only allow one subbrick in the composite.
 	We have to revisit this implementation after the composite will allow for multiple subbricks'.
 	self hasSubbricks ifFalse: [ self addBrickBack: aBrick ].
 	^ aBrick
 ]
 
-{
-	#category : #phlow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositeBrick>>list [
+{ #category : #phlow }
+GLMCompositeBrick >> list [
 
 	^ self custom: GLMPhlowListBrick new
 ]
 
-{
-	#category : #phlow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositeBrick>>pharoMethod [
+{ #category : #phlow }
+GLMCompositeBrick >> pharoMethod [
 
 	^ self custom: GLMPhlowPharoMethodBrick new
 ]
 
-{
-	#category : #phlow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositeBrick>>table [
+{ #category : #phlow }
+GLMCompositeBrick >> table [
 
 	^ self custom: GLMPhlowTableBrick new
 ]
 
-{
-	#category : #phlow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositeBrick>>text [
+{ #category : #phlow }
+GLMCompositeBrick >> text [
 
 	^ self custom: GLMPhlowTextBrick new
 ]
 
-{
-	#category : #phlow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositeBrick>>tree [
-
+{ #category : #phlow }
+GLMCompositeBrick >> tree [
 ]

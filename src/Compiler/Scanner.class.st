@@ -18,34 +18,24 @@ Class {
 	#classVars : [
 		'DoItCharacter'
 	],
-	#category : #Compiler-Kernel,
-	#timestamp : '<historical>'
+	#category : #Compiler-Kernel
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner class>>initialize [
+{ #category : #'class initialization' }
+Scanner class >> initialize [
 	"The unicode ending with FFFE or FFFF are non characters and can be used by applications if they wish.
 	We use last legal unicode 16r10FFFF to encode the end of source stream"
 	DoItCharacter := Character value: 16r10FFFF
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner class>>new [
+{ #category : #'instance creation' }
+Scanner class >> new [
 
 	^self basicNew initScanner
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>advance [
+{ #category : #'expression types' }
+Scanner >> advance [
 
 	| prevToken |
 	prevToken := token.
@@ -53,32 +43,23 @@ Scanner>>advance [
 	^prevToken
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>ambiguousSelector: aString inRange: anInterval [
+{ #category : #'error handling' }
+Scanner >> ambiguousSelector: aString inRange: anInterval [
 	"Warning: this methods breaks backward compatibility: $- is now part of literal argument.."
 	
 	token := aString asSymbol.
 	^self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>initScanner [
+{ #category : #initialization }
+Scanner >> initScanner [
 
 	buffer := (String new: 40) writeStream.
 	typeTable := String typeTable
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>initScannerForTokenization [
+{ #category : #initialize-release }
+Scanner >> initScannerForTokenization [
 	"Use a version of typeTable that doesn't raise xIllegal when enocuntering an :="
 	| underscoreIndex |
 	underscoreIndex := typeTable indexOf: #xUnderscore ifAbsent: [^self].
@@ -86,40 +67,28 @@ Scanner>>initScannerForTokenization [
 	typeTable at: underscoreIndex put: #xUnderscoreForTokenization
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>notify: string  [
+{ #category : #'error handling' }
+Scanner >> notify: string [ 
 	"Refer to the comment in Object|notify:." 
 	self error: string
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>notify: string at: posiiton [
+{ #category : #'error handling' }
+Scanner >> notify: string at: posiiton [
 	"Parser compatible message"
 	 
 	^self notify: string 
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>offEnd: aString  [
+{ #category : #'error handling' }
+Scanner >> offEnd: aString [ 
 	"Parser overrides this"
 
 	^self notify: aString
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>scan: inputStream  [
+{ #category : #initialization }
+Scanner >> scan: inputStream [ 
 	"Bind the input stream, fill the character buffers and first token buffer."
 
 	source := inputStream.
@@ -128,11 +97,8 @@ Scanner>>scan: inputStream  [
 	self scanToken
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>scanAllTokenPositionsInto: aBlock [
+{ #category : #'expression types' }
+Scanner >> scanAllTokenPositionsInto: aBlock [
 	"Evaluate aBlock with the start and end positions of all separate non-white-space tokens, including comments."
 
 	| lastMark |
@@ -181,11 +147,8 @@ Scanner>>scanAllTokenPositionsInto: aBlock [
 		self scanToken ] repeat
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>scanLitByte [
+{ #category : #'expression types' }
+Scanner >> scanLitByte [
 	| stream |
 	stream := (ByteArray new: 16) writeStream.
 	[ tokenType = #rightBracket or: [ tokenType = #doIt ] ] whileFalse: [
@@ -198,11 +161,8 @@ Scanner>>scanLitByte [
 	token := stream contents
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>scanLitVec [
+{ #category : #'expression types' }
+Scanner >> scanLitVec [
 	| s |
 	s := (Array new: 16) writeStream.
 	[tokenType == #rightParenthesis or: [tokenType == #doIt]] whileFalse:
@@ -226,11 +186,8 @@ Scanner>>scanLitVec [
 	token := s contents
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>scanLitWord [
+{ #category : #'expression types' }
+Scanner >> scanLitWord [
 	"Accumulate keywords and asSymbol the result."
 
 	| t |
@@ -242,11 +199,8 @@ Scanner>>scanLitWord [
 	token := token asSymbol
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>scanStringStruct [
+{ #category : #'expression types' }
+Scanner >> scanStringStruct [
 
 	| s |
 	s := (Array new: 16) writeStream.
@@ -263,11 +217,8 @@ Scanner>>scanStringStruct [
 	token := s contents
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>scanToken [
+{ #category : #'expression types' }
+Scanner >> scanToken [
 
 	[(tokenType := self typeTableAt: hereChar) == #xDelimiter]
 		whileTrue: [self step].  "Skip delimiters fast, there almost always is one."
@@ -282,11 +233,8 @@ Scanner>>scanToken [
 	^token
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>scanTokens: textOrString  [
+{ #category : #'public access' }
+Scanner >> scanTokens: textOrString [ 
 	"Answer an Array that has been tokenized as though the input text, 
 	textOrString, had appeared between the array delimitors #( and ) in a 
 	Smalltalk literal expression."
@@ -298,11 +246,8 @@ Scanner>>scanTokens: textOrString  [
 	"Scanner new scanTokens: 'identifier keyword: 8r31 ''string'' .'"
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>step [
+{ #category : #'expression types' }
+Scanner >> step [
 
 	| c |
 	c := hereChar.
@@ -313,11 +258,8 @@ Scanner>>step [
 	^c
 ]
 
-{
-	#category : #'multi-character scans',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>typeTableAt: aCharacter [
+{ #category : #'multi-character scans' }
+Scanner >> typeTableAt: aCharacter [
 	^typeTable
 		at: aCharacter charCode
 		ifAbsent:
@@ -326,11 +268,8 @@ Scanner>>typeTableAt: aCharacter [
 				ifFalse: [#xLetter]]
 ]
 
-{
-	#category : #'multi-character scans',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>xBinary [
+{ #category : #'multi-character scans' }
+Scanner >> xBinary [
 
 	| startOfToken |
 	tokenType := #binary.
@@ -344,11 +283,8 @@ Scanner>>xBinary [
 	token := token asSymbol
 ]
 
-{
-	#category : #'multi-character scans',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>xColon [
+{ #category : #'multi-character scans' }
+Scanner >> xColon [
 	"Allow := for assignment"
 	
 	aheadChar == $= ifTrue:
@@ -361,21 +297,15 @@ Scanner>>xColon [
 	^ token := self step asSymbol
 ]
 
-{
-	#category : #'multi-character scans',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>xDelimiter [
+{ #category : #'multi-character scans' }
+Scanner >> xDelimiter [
 	"Ignore blanks, etc."
 
 	self scanToken
 ]
 
-{
-	#category : #'multi-character scans',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>xDigit [
+{ #category : #'multi-character scans' }
+Scanner >> xDigit [
 	"Form a number."
 
 	tokenType := #number.
@@ -388,11 +318,8 @@ Scanner>>xDigit [
 	self step; step
 ]
 
-{
-	#category : #'multi-character scans',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>xDollar [
+{ #category : #'multi-character scans' }
+Scanner >> xDollar [
 	"Form a Character literal."
 
 	aheadChar == DoItCharacter
@@ -404,11 +331,8 @@ Scanner>>xDollar [
 	tokenType := #number
 ]
 
-{
-	#category : #'multi-character scans',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>xDoubleQuote [
+{ #category : #'multi-character scans' }
+Scanner >> xDoubleQuote [
 	"Collect a comment."
 	| aStream |
 
@@ -426,20 +350,14 @@ Scanner>>xDoubleQuote [
 	self scanToken
 ]
 
-{
-	#category : #'multi-character scans',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>xIllegal [
+{ #category : #'multi-character scans' }
+Scanner >> xIllegal [
 	"An illegal character was encountered"
 	self notify: 'Illegal character (char code ' , hereChar charCode , ' ' , hereChar charCode storeStringHex , ')' at: mark
 ]
 
-{
-	#category : #'multi-character scans',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>xLetter [
+{ #category : #'multi-character scans' }
+Scanner >> xLetter [
 	"Form a word or keyword."
 
 	| type |
@@ -463,11 +381,8 @@ Scanner>>xLetter [
 	token := buffer contents
 ]
 
-{
-	#category : #'multi-character scans',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>xLitQuote [
+{ #category : #'multi-character scans' }
+Scanner >> xLitQuote [
 	"Symbols and vectors: #(1 (4 5) 2 3) #ifTrue:ifFalse: #'abc'."
 	| start |
 	start := mark.
@@ -504,11 +419,8 @@ Scanner>>xLitQuote [
 	"
 ]
 
-{
-	#category : #'multi-character scans',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>xSingleQuote [
+{ #category : #'multi-character scans' }
+Scanner >> xSingleQuote [
 	"String."
 
 	self step.
@@ -526,19 +438,13 @@ Scanner>>xSingleQuote [
 	tokenType := #string
 ]
 
-{
-	#category : #'multi-character scans',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>xUnderscore [
+{ #category : #'multi-character scans' }
+Scanner >> xUnderscore [
 	^ self xIllegal
 ]
 
-{
-	#category : #'multi-character scans',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Scanner>>xUnderscoreForTokenization [
+{ #category : #'multi-character scans' }
+Scanner >> xUnderscoreForTokenization [
 	self step.
 	tokenType := #leftArrow.
 	^token := #'_'

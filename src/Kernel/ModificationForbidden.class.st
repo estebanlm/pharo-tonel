@@ -17,15 +17,11 @@ Class {
 		'newValue',
 		'retrySelector'
 	],
-	#category : #Kernel-Exceptions,
-	#timestamp : 'ClementBera 1/27/2017 13:48'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ModificationForbidden class>>for: anObject atIndex: fieldIndex with: newValue [
+{ #category : #'instance creation' }
+ModificationForbidden class >> for: anObject atIndex: fieldIndex with: newValue [
 
 	^self new 
 		object: anObject;
@@ -34,11 +30,8 @@ ModificationForbidden class>>for: anObject atIndex: fieldIndex with: newValue [
 		retrySelector: #at:put:
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ModificationForbidden class>>for: anObject atInstVar: fieldIndex with: newValue [
+{ #category : #'instance creation' }
+ModificationForbidden class >> for: anObject atInstVar: fieldIndex with: newValue [
 
 	^self new 
 		object: anObject;
@@ -47,112 +40,73 @@ ModificationForbidden class>>for: anObject atInstVar: fieldIndex with: newValue 
 		retrySelector: #instVarAt:put:
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ModificationForbidden>>fieldIndex [
+{ #category : #accessing }
+ModificationForbidden >> fieldIndex [
 	^ fieldIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ModificationForbidden>>fieldIndex: anObject [
+{ #category : #accessing }
+ModificationForbidden >> fieldIndex: anObject [
 	fieldIndex := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ModificationForbidden>>isResumable [
+{ #category : #testing }
+ModificationForbidden >> isResumable [
 	"Determine whether an exception is resumable."
 
 	^true
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ModificationForbidden>>messageText [
+{ #category : #printing }
+ModificationForbidden >> messageText [
 	"Overwritten to initialiaze the message text to a standard text if it has not yet been set"
 	
 	^ messageText ifNil: [ messageText := self standardMessageText ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ModificationForbidden>>newValue [
+{ #category : #accessing }
+ModificationForbidden >> newValue [
 	^ newValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ModificationForbidden>>newValue: anObject [
+{ #category : #accessing }
+ModificationForbidden >> newValue: anObject [
 	newValue := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ModificationForbidden>>object [
+{ #category : #accessing }
+ModificationForbidden >> object [
 	^ object
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ModificationForbidden>>object: anObject [
+{ #category : #accessing }
+ModificationForbidden >> object: anObject [
 	object := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ModificationForbidden>>printObject: obj on: s [
+{ #category : #printing }
+ModificationForbidden >> printObject: obj on: s [
 	[obj printOn: s] on: Exception do: [ :ex | s << '<cannot print object>' ]
 ]
 
-{
-	#category : #retrying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ModificationForbidden>>retryModification [
+{ #category : #retrying }
+ModificationForbidden >> retryModification [
 	object perform: retrySelector with: fieldIndex with: newValue.
 	self resume: newValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ModificationForbidden>>retrySelector [
+{ #category : #accessing }
+ModificationForbidden >> retrySelector [
 	^ retrySelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ModificationForbidden>>retrySelector: anObject [
+{ #category : #accessing }
+ModificationForbidden >> retrySelector: anObject [
 	retrySelector := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ModificationForbidden>>standardMessageText [
+{ #category : #printing }
+ModificationForbidden >> standardMessageText [
 	^ String streamContents: [ :s |
 		s << ' '.
 		self printObject: object on: s. 

@@ -14,35 +14,25 @@ Class {
 	#instVars : [
 		'tab'
 	],
-	#category : #Morphic-Widgets-Tabs-States,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Tabs-States
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabState class>>tab: tab [
+{ #category : #'instance creation' }
+TabState class >> tab: tab [
 
 	^ self new
 		tab: tab;
 		yourself
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabState>>backgroundColor [
+{ #category : #protocol }
+TabState >> backgroundColor [
 	
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabState>>buildBorderVertices [
+{ #category : #protocol }
+TabState >> buildBorderVertices [
 	| borderVertices |
 	
 	borderVertices := OrderedCollection new.
@@ -55,82 +45,55 @@ TabState>>buildBorderVertices [
 	^ borderVertices
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabState>>buildVerticesFrom: borderVertices [
+{ #category : #protocol }
+TabState >> buildVerticesFrom: borderVertices [
 
 	^ borderVertices
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabState>>enabled [
+{ #category : #protocol }
+TabState >> enabled [
 
 	^ false
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabState>>isEnabledMatchingTheState: aBoolean [
+{ #category : #protocol }
+TabState >> isEnabledMatchingTheState: aBoolean [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabState>>isSelectedMatchingTheState: aBoolean [
+{ #category : #protocol }
+TabState >> isSelectedMatchingTheState: aBoolean [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabState>>newStateForEnabled: aBoolean [
+{ #category : #protocol }
+TabState >> newStateForEnabled: aBoolean [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabState>>newStateForSelected: aBoolean [
+{ #category : #protocol }
+TabState >> newStateForSelected: aBoolean [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabState>>selected [
+{ #category : #protocol }
+TabState >> selected [
 
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabState>>tab [
+{ #category : #accessing }
+TabState >> tab [
 	^ tab
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabState>>tab: anObject [
+{ #category : #accessing }
+TabState >> tab: anObject [
 	
 	tab := anObject
 ]

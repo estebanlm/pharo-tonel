@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZipExtensionTests,
 	#superclass : #TestCase,
-	#category : #Compression-Tests-Streams,
-	#timestamp : ''
+	#category : #Compression-Tests-Streams
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipExtensionTests>>testZipped [
+{ #category : #tests }
+ZipExtensionTests >> testZipped [
 	| compressed |
 	
 	compressed := 'hello' zipped.

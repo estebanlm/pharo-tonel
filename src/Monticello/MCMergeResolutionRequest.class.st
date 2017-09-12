@@ -7,57 +7,38 @@ Class {
 	#instVars : [
 		'merger'
 	],
-	#category : #Monticello-Versioning,
-	#timestamp : 'TorstenBergmann 2/5/2014 13:51'
+	#category : #Monticello-Versioning
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMergeResolutionRequest>>autoMerge [
+{ #category : #actions }
+MCMergeResolutionRequest >> autoMerge [
 	"If there are not conflicts, merge, otherwise delegate to the UI"
 	self hasConflicts
 		ifTrue: [ self resolve ]
 		ifFalse: [ self merge ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMergeResolutionRequest>>hasConflicts [
+{ #category : #testing }
+MCMergeResolutionRequest >> hasConflicts [
 	^ self merger hasConflicts
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMergeResolutionRequest>>merge [
+{ #category : #actions }
+MCMergeResolutionRequest >> merge [
 	self resume: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMergeResolutionRequest>>merger [
+{ #category : #accessing }
+MCMergeResolutionRequest >> merger [
 	^ merger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMergeResolutionRequest>>merger: aMerger [
+{ #category : #accessing }
+MCMergeResolutionRequest >> merger: aMerger [
 	merger := aMerger
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMergeResolutionRequest>>resolve [
+{ #category : #actions }
+MCMergeResolutionRequest >> resolve [
 	self pass
 ]

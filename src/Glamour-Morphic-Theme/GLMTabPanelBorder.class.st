@@ -4,15 +4,11 @@ Specialized border for TabGroup. Does not draw border beneath the selectd tab an
 Class {
 	#name : #GLMTabPanelBorder,
 	#superclass : #TabPanelBorder,
-	#category : #Glamour-Morphic-Theme,
-	#timestamp : '<historical>'
+	#category : #Glamour-Morphic-Theme
 }
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabPanelBorder>>frameRectangle: aRectangle on: aCanvas [
+{ #category : #drawing }
+GLMTabPanelBorder >> frameRectangle: aRectangle on: aCanvas [
 	"Draw the border taking the currently selected tab into account.
 	Only works for top-positioned tabs for the moment."
 	

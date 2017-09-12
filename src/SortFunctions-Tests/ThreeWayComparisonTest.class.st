@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ThreeWayComparisonTest,
 	#superclass : #TestCase,
-	#category : #SortFunctions-Tests,
-	#timestamp : ''
+	#category : #SortFunctions-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ThreeWayComparisonTest>>testFloats [
+{ #category : #tests }
+ThreeWayComparisonTest >> testFloats [
 
 	| a b c d |
 	a := 13.1.
@@ -26,21 +19,15 @@ ThreeWayComparisonTest>>testFloats [
 	self assert: (d threeWayCompareTo: a) equals: -1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ThreeWayComparisonTest>>testIntegers [
+{ #category : #tests }
+ThreeWayComparisonTest >> testIntegers [
 	self assert: (42 threeWayCompareTo: 42) equals: 0.
 	self assert: (1 threeWayCompareTo: 42) equals: -1.
 	self assert: (100 threeWayCompareTo: 42) equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ThreeWayComparisonTest>>testStrings [
+{ #category : #tests }
+ThreeWayComparisonTest >> testStrings [
 
 	| a b c d |
 	a := 'xc'.

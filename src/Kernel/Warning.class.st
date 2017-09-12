@@ -4,15 +4,11 @@ A Warning is a Notification which by default should be brought to the attention 
 Class {
 	#name : #Warning,
 	#superclass : #Notification,
-	#category : #Kernel-Exceptions,
-	#timestamp : '<historical>'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #exceptionDescription,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Warning>>defaultAction [
+{ #category : #exceptionDescription }
+Warning >> defaultAction [
 	
 	UIManager default warningDefaultAction: self
 ]

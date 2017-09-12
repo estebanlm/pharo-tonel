@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #IRPrinterTest,
 	#superclass : #TestCase,
-	#category : #OpalCompiler-Tests-IR,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-IR
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testDup [
+{ #category : #testing }
+IRPrinterTest >> testDup [
 	| ir |
 	ir := IRBuilderTest new testDup.
 	self assert: ir longPrintString = '
@@ -24,11 +17,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testInstVar [
+{ #category : #testing }
+IRPrinterTest >> testInstVar [
 	| ir |
 	ir := IRBuilderTest new testInstVar.
 	self assert: ir longPrintString = 
@@ -41,11 +31,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testJumpAheadTo [
+{ #category : #testing }
+IRPrinterTest >> testJumpAheadTo [
 	| ir |
 	ir := IRBuilderTest new testJumpAheadTo.
 	self assert: ir longPrintString =  '
@@ -60,11 +47,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testJumpAheadToIf [
+{ #category : #testing }
+IRPrinterTest >> testJumpAheadToIf [
 	| ir |
 	ir := IRBuilderTest new testJumpAheadToIf.
 	self assert: ir longPrintString =  '
@@ -81,11 +65,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testJumpBackTo [
+{ #category : #testing }
+IRPrinterTest >> testJumpBackTo [
 	| ir |
 	ir := IRBuilderTest new testJumpBackTo.
 	self assert: ir longPrintString =  '
@@ -106,11 +87,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testLiteralArray [
+{ #category : #testing }
+IRPrinterTest >> testLiteralArray [
 	| ir |
 	ir := IRBuilderTest new testLiteralArray.  
 	self assert: ir longPrintString =  '
@@ -119,11 +97,8 @@ returnLiteral: #(#test 4 #you)
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testLiteralVariableClass [
+{ #category : #testing }
+IRPrinterTest >> testLiteralVariableClass [
 	| ir |
 	ir := IRBuilderTest new testLiteralVariableClass.
 	self assert: ir longPrintString =  '
@@ -133,11 +108,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testPopTop [
+{ #category : #testing }
+IRPrinterTest >> testPopTop [
 	| ir |
 	ir := IRBuilderTest new testPopTop.
 	self assert: ir longPrintString =  '
@@ -149,11 +121,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testPushClosureCopyNoCopied [
+{ #category : #testing }
+IRPrinterTest >> testPushClosureCopyNoCopied [
 	| ir |
 	ir := IRBuilderTest new testPushClosureCopyNoCopied.
 	self assert: ir longPrintString =  '
@@ -173,11 +142,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testPushConsArray [
+{ #category : #testing }
+IRPrinterTest >> testPushConsArray [
 	| ir |
 	ir := IRBuilderTest new testPushConsArray.
 	self assert: ir longPrintString =  '
@@ -188,11 +154,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testPushNewArray [
+{ #category : #testing }
+IRPrinterTest >> testPushNewArray [
 	| ir |
 	ir := IRBuilderTest new testPushNewArray.
 	self assert: ir longPrintString  =  '
@@ -202,11 +165,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testPushSelf [
+{ #category : #testing }
+IRPrinterTest >> testPushSelf [
 	| ir |
 	ir := IRBuilderTest new testPushSelf.
 	self assert: ir longPrintString =  '
@@ -217,11 +177,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testPushTempArgument [
+{ #category : #testing }
+IRPrinterTest >> testPushTempArgument [
 	| ir |
 	ir := IRBuilderTest new testPushTempArgument.
 	self assert: ir longPrintString = '
@@ -233,11 +190,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testPushTempTemp [
+{ #category : #testing }
+IRPrinterTest >> testPushTempTemp [
 	| ir |
 	ir := IRBuilderTest new testPushTempTemp.
 	self assert: ir longPrintString =  '
@@ -247,11 +201,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testPushThisContext [
+{ #category : #testing }
+IRPrinterTest >> testPushThisContext [
 	| ir |
 	ir := IRBuilderTest new testPushThisContext.
 	self assert: ir longPrintString =  '
@@ -262,11 +213,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testRemoteTemp [
+{ #category : #testing }
+IRPrinterTest >> testRemoteTemp [
 	| ir |
 	ir := IRBuilderTest new testRemoteTemp.
 	self assert: ir longPrintString equals: '
@@ -290,11 +238,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testRemoteTempNested [
+{ #category : #testing }
+IRPrinterTest >> testRemoteTempNested [
 	| ir |
 	ir := IRBuilderTest new testRemoteTempNested.
 	self assert: ir longPrintString =   '
@@ -327,11 +272,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testReturnTop [
+{ #category : #testing }
+IRPrinterTest >> testReturnTop [
 	| ir |
 	ir := IRBuilderTest new testReturnTop.
 	self assert: ir longPrintString =  '
@@ -340,11 +282,8 @@ returnLiteral: false
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testSendSuper [
+{ #category : #testing }
+IRPrinterTest >> testSendSuper [
 	| ir |
 	ir := IRBuilderTest new testSendSuper.
 	self assert: ir longPrintString =  '
@@ -355,11 +294,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testStoreIntoVariable [
+{ #category : #testing }
+IRPrinterTest >> testStoreIntoVariable [
 	| ir |
 	ir := IRBuilderTest new testStoreIntoVariable.
 	self assert: ir longPrintString =  '
@@ -370,11 +306,8 @@ returnTop
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRPrinterTest>>testStoreTemp [
+{ #category : #testing }
+IRPrinterTest >> testStoreTemp [
 	| ir |
 	ir := IRBuilderTest new testStoreTemp.
 	self assert: ir longPrintString = '

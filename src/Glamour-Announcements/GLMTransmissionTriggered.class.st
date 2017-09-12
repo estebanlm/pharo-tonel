@@ -7,6 +7,5 @@ Class {
 	#instVars : [
 		'transmission'
 	],
-	#category : #Glamour-Announcements,
-	#timestamp : '<historical>'
+	#category : #Glamour-Announcements
 }

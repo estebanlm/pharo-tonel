@@ -1,12 +1,7 @@
-Extension {
-	#name : #TClassDescription
-}
+Extension { #name : #TClassDescription }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TClassDescription>>gtInspectorUsersIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+TClassDescription >> gtInspectorUsersIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	composite list 	
 		title: 'Users';

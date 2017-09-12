@@ -19,15 +19,11 @@ Class {
 		'scheduledDelayIsNil',
 		'finishedDelayIsNil'
 	],
-	#category : #Kernel-Processes,
-	#timestamp : 'BenComan 3/25/2015 22:17'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayExperimentalSemaphoreScheduler>>handleTimerEvent: microsecondNowTick [
+{ #category : #'timer process' }
+DelayExperimentalSemaphoreScheduler >> handleTimerEvent: microsecondNowTick [
 	"Handle a timer event; which can be either:
 		- a schedule request (ScheduledDelay notNil)
 		- an unschedule request (FinishedDelay notNil)
@@ -66,21 +62,15 @@ DelayExperimentalSemaphoreScheduler>>handleTimerEvent: microsecondNowTick [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayExperimentalSemaphoreScheduler>>initialize [
+{ #category : #initialization }
+DelayExperimentalSemaphoreScheduler >> initialize [
 	super initialize.
 	scheduledDelayIsNil := Semaphore new.
 	finishedDelayIsNil := Semaphore new.
 ]
 
-{
-	#category : #'low priority processes',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayExperimentalSemaphoreScheduler>>schedule: aDelay [
+{ #category : #'low priority processes' }
+DelayExperimentalSemaphoreScheduler >> schedule: aDelay [
 
 	aDelay schedulerBeingWaitedOn ifTrue: [^self error: 'This Delay has already been scheduled.'].
 
@@ -99,11 +89,8 @@ DelayExperimentalSemaphoreScheduler>>schedule: aDelay [
 
 ]
 
-{
-	#category : #'low priority processes',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayExperimentalSemaphoreScheduler>>unschedule: aDelay [
+{ #category : #'low priority processes' }
+DelayExperimentalSemaphoreScheduler >> unschedule: aDelay [
 	finishedDelay == nil ifFalse: [ finishedDelayIsNil wait ].  
 
 	"It is assumed that bytecode inlining and the system's co-operative multitasking 

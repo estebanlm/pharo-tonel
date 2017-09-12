@@ -1,63 +1,44 @@
-"
-
-"
 Class {
 	#name : #ClassVariableTest,
 	#superclass : #TestCase,
 	#classVars : [
 		'TestVariable'
 	],
-	#category : #Slot-Tests,
-	#timestamp : ''
+	#category : #Slot-Tests
 }
 
-{
-	#category : #'tests  - properties',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ClassVariableTest>>testIsReadInMethod [
+{ #category : #'tests  - properties' }
+ClassVariableTest >> testIsReadInMethod [
 
 	DefaultTimeLimit printString. "reading class variable".
 	
 	self assert: ((TestCase classVariableNamed: #DefaultTimeLimit) isReadIn: self class >> testSelector)
 ]
 
-{
-	#category : #'tests  - properties',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ClassVariableTest>>testIsWrittenInMethod [
+{ #category : #'tests  - properties' }
+ClassVariableTest >> testIsWrittenInMethod [
 
 	DefaultTimeLimit := DefaultTimeLimit. "writing class variable".
 	
 	self assert: ((TestCase classVariableNamed: #DefaultTimeLimit) isWrittenIn: self class >> testSelector)
 ]
 
-{
-	#category : #'tests  - properties',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ClassVariableTest>>testNotReadInMethod [
+{ #category : #'tests  - properties' }
+ClassVariableTest >> testNotReadInMethod [
 
 	self deny: ((TestCase classVariableNamed: #DefaultTimeLimit) isReadIn: self class >> testSelector)
 ]
 
-{
-	#category : #'tests  - properties',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ClassVariableTest>>testNotWrittenInMethodWhenItIsOnlyRead [
+{ #category : #'tests  - properties' }
+ClassVariableTest >> testNotWrittenInMethodWhenItIsOnlyRead [
 
 	DefaultTimeLimit printString. "reading class variable".
 	
 	self deny: ((TestCase classVariableNamed: #DefaultTimeLimit) isWrittenIn: self class >> testSelector)
 ]
 
-{
-	#category : #'tests  - properties',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ClassVariableTest>>testPropertyAtPut [
+{ #category : #'tests  - properties' }
+ClassVariableTest >> testPropertyAtPut [
 
 	| testValue classVariable |
 	
@@ -79,11 +60,8 @@ ClassVariableTest>>testPropertyAtPut [
 	self assert: classVariable properties isNil.
 ]
 
-{
-	#category : #'tests  - properties',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ClassVariableTest>>testRemoveProperty [
+{ #category : #'tests  - properties' }
+ClassVariableTest >> testRemoveProperty [
 	| classVariable |
 	classVariable := self class classVariableNamed: #TestVariable.
 

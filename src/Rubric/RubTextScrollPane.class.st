@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'drawFocusBorder'
 	],
-	#category : #Rubric-Editing-Widgets,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:44'
+	#category : #Rubric-Editing-Widgets
 }
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>aboutToBeGrabbedBy: aHand [
+{ #category : #dropping/grabbing }
+RubTextScrollPane >> aboutToBeGrabbedBy: aHand [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+RubTextScrollPane >> adoptPaneColor: paneColor [
 	"Adopt the given pane color."
 	
 	super adoptPaneColor: paneColor.
@@ -31,11 +24,8 @@ RubTextScrollPane>>adoptPaneColor: paneColor [
 	self vScrollbar adoptPaneColor: paneColor darker
 ]
 
-{
-	#category : #'text area protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>appendText: stringOrText [
+{ #category : #'text area protocol' }
+RubTextScrollPane >> appendText: stringOrText [
 	"Accept new text contents with line breaks only as in the text.
 	Fit my width and height to the result."
 	self textArea appendText: stringOrText.
@@ -43,72 +33,48 @@ RubTextScrollPane>>appendText: stringOrText [
 
 ]
 
-{
-	#category : #'text area protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>beNotWrapped [
+{ #category : #'text area protocol' }
+RubTextScrollPane >> beNotWrapped [
 	self handleWrappingPolicyChange: [ self textArea beNotWrapped]
 ]
 
-{
-	#category : #'text area protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>beWrapped [
+{ #category : #'text area protocol' }
+RubTextScrollPane >> beWrapped [
 	self handleWrappingPolicyChange: [ self textArea beWrapped ]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>currentHScrollBarThickness [
+{ #category : #geometry }
+RubTextScrollPane >> currentHScrollBarThickness [
 	^ self hScrollbarNeeded
 		ifTrue: [ self scrollBarThickness ]
 		ifFalse: [ 0 ]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>currentVScrollBarThickness [
+{ #category : #geometry }
+RubTextScrollPane >> currentVScrollBarThickness [
 	^ self vScrollbarNeeded
 		ifTrue: [ self scrollBarThickness ]
 		ifFalse: [ 0 ]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>defaultScrollTarget [
+{ #category : #initialize }
+RubTextScrollPane >> defaultScrollTarget [
 	^ RubEditingArea new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>drawFocusBorder [
+{ #category : #accessing }
+RubTextScrollPane >> drawFocusBorder [
 	^ drawFocusBorder ifNil: [ drawFocusBorder := true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>drawFocusBorder: aBoolean [
+{ #category : #accessing }
+RubTextScrollPane >> drawFocusBorder: aBoolean [
 	drawFocusBorder := aBoolean.
 	self changed
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>drawSubmorphsOn: aCanvas  [
+{ #category : #drawing }
+RubTextScrollPane >> drawSubmorphsOn: aCanvas [ 
 	"Draw the focus here since we are using inset bounds
 	for the focus rectangle."
 
@@ -120,11 +86,8 @@ RubTextScrollPane>>drawSubmorphsOn: aCanvas  [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>drawSubmorphsOnAthensCanvas: anAthensCanvas [
+{ #category : #drawing }
+RubTextScrollPane >> drawSubmorphsOnAthensCanvas: anAthensCanvas [
 	"Draw the focus here since we are using inset bounds
 	for the focus rectangle."
 
@@ -136,11 +99,8 @@ RubTextScrollPane>>drawSubmorphsOnAthensCanvas: anAthensCanvas [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>extent: newExtent [
+{ #category : #geometry }
+RubTextScrollPane >> extent: newExtent [
 	"Update the receiver's extent. Hide/show the scrollbars and resize the scroller
 	as necessary."
 
@@ -158,11 +118,8 @@ RubTextScrollPane>>extent: newExtent [
 		ifTrue: [ self updateScrollbars ]
 ]
 
-{
-	#category : #'scrollbar managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>fitScrollTarget [
+{ #category : #'scrollbar managing' }
+RubTextScrollPane >> fitScrollTarget [
 	"if the scroller extent is different that the textArea 
 	extent, then, if the textArea is wrapped, then resize 
 	the textArea width accordingly
@@ -174,11 +131,8 @@ RubTextScrollPane>>fitScrollTarget [
 	self fitScrollTargetWidth 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>fitScrollTargetWidth [
+{ #category : #geometry }
+RubTextScrollPane >> fitScrollTargetWidth [
 	"if the scroller extent is different that the textArea 
 	extent, then, if the textArea is wrapped, then resize 
 	the textArea width accordingly
@@ -188,47 +142,32 @@ RubTextScrollPane>>fitScrollTargetWidth [
 		ifFalse: [ self textArea width: self scrollBounds width ]
 ]
 
-{
-	#category : #'scrollbar managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>hLeftoverScrollRange [
+{ #category : #'scrollbar managing' }
+RubTextScrollPane >> hLeftoverScrollRange [
 	"Return the entire scrolling range minus the currently viewed area."
 	^self textArea width  - self scrollBounds width max: 0
 ]
 
-{
-	#category : #'scrollbar managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>hScrollbarNeeded [
+{ #category : #'scrollbar managing' }
+RubTextScrollPane >> hScrollbarNeeded [
 	"Return whether the horizontal scrollbar is needed."
 	self wrapped ifTrue: [  ^ false ].
 	^ super hScrollbarNeeded
 ]
 
-{
-	#category : #'scrollbar managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>hScrollbarValue: scrollValue [
+{ #category : #'scrollbar managing' }
+RubTextScrollPane >> hScrollbarValue: scrollValue [
 	self announcer announce: (RubHorizontalScrolled scrollValue: scrollValue).
 	self handleScrollerOffsetChange: [ super hScrollbarValue: scrollValue ]
 ]
 
-{
-	#category : #'scrollbar managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>hScrollbarValueWithoutAnnouncement: scrollValue [
+{ #category : #'scrollbar managing' }
+RubTextScrollPane >> hScrollbarValueWithoutAnnouncement: scrollValue [
 	self handleScrollerOffsetChange: [ super hScrollbarValue: scrollValue ]
 ]
 
-{
-	#category : #'scrollbar managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>handleScrollerOffsetChange: aBlock [
+{ #category : #'scrollbar managing' }
+RubTextScrollPane >> handleScrollerOffsetChange: aBlock [
 	| prevOffset ret |
 	prevOffset := self offset.
 	ret := aBlock value.
@@ -237,11 +176,8 @@ RubTextScrollPane>>handleScrollerOffsetChange: aBlock [
 	^ ret
 ]
 
-{
-	#category : #'text area protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>handleWrappingPolicyChange: aBlock [
+{ #category : #'text area protocol' }
+RubTextScrollPane >> handleWrappingPolicyChange: aBlock [
 	aBlock value.
 	self wrapped
 		ifTrue: [ 
@@ -249,67 +185,46 @@ RubTextScrollPane>>handleWrappingPolicyChange: aBlock [
 			self updateScrollbars ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>hasKeyboardFocus [
+{ #category : #accessing }
+RubTextScrollPane >> hasKeyboardFocus [
 	"Answer whether the receiver has keyboard focus."
 
 	^ super hasKeyboardFocus or: [(self textArea ifNil: [^false]) hasKeyboardFocus]
 ]
 
-{
-	#category : #'text area protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>hasTextArea [
+{ #category : #'text area protocol' }
+RubTextScrollPane >> hasTextArea [
 	^ self scroller submorphs notEmpty
 ]
 
-{
-	#category : #'scrollbar managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>hideOrShowScrollBar  [
+{ #category : #'scrollbar managing' }
+RubTextScrollPane >> hideOrShowScrollBar [ 
 	self updateScrollbars
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>initialize [
+{ #category : #initialize }
+RubTextScrollPane >> initialize [
 	super initialize.
 	self scroller extent: self textArea extent.
 	self wrapped ifTrue: [ self fitScrollTarget  ].
 	drawFocusBorder := true
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>isRenderer [
+{ #category : #classification }
+RubTextScrollPane >> isRenderer [
 	^ false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>mouseDown: anEvent  [
+{ #category : #'event handling' }
+RubTextScrollPane >> mouseDown: anEvent [ 
 	scroller hasSubmorphs 
 		ifTrue: [ self textArea mouseDown: (anEvent transformedBy: (scroller transformFrom: self)) ].
 	self eventHandler
 		ifNotNil: [ self eventHandler mouseDown: anEvent fromMorph: self ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>mouseMove: anEvent  [
+{ #category : #'event handling' }
+RubTextScrollPane >> mouseMove: anEvent [ 
 
 	scroller hasSubmorphs 
 		ifTrue: [ self textArea mouseMove: (anEvent transformedBy: (scroller transformFrom: self)) ].
@@ -317,11 +232,8 @@ RubTextScrollPane>>mouseMove: anEvent  [
 		ifNotNil: [ self eventHandler mouseMove: anEvent fromMorph: self ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>newHScrollbar [
+{ #category : #accessing }
+RubTextScrollPane >> newHScrollbar [
 	"Answer a new horizontal scrollbar."
 
 	^RubScrollBar new
@@ -329,11 +241,8 @@ RubTextScrollPane>>newHScrollbar [
 		setValueSelector: #hScrollbarValue:
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>newVScrollbar [
+{ #category : #accessing }
+RubTextScrollPane >> newVScrollbar [
 	"Answer a new vertical scrollbar."
 
 	^RubScrollBar new
@@ -341,27 +250,18 @@ RubTextScrollPane>>newVScrollbar [
 		setValueSelector: #vScrollbarValue:
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>offset [
+{ #category : #private }
+RubTextScrollPane >> offset [
 	^ scroller offset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>paragraph [
+{ #category : #accessing }
+RubTextScrollPane >> paragraph [
 	^ self textArea paragraph 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>position: aPoint [
+{ #category : #geometry }
+RubTextScrollPane >> position: aPoint [
 	"Update the receiver's extent. Hide/show the scrollbars and resize the scroller
 	as neccessary."
 	| previousBounds |
@@ -371,22 +271,16 @@ RubTextScrollPane>>position: aPoint [
 	super position: aPoint
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>registerTextArea [
+{ #category : #initialize }
+RubTextScrollPane >> registerTextArea [
 	self hasTextArea
 		ifTrue: [
 			self textArea scrollPane: self.
 			self updateScrollbars ]
 ]
 
-{
-	#category : #'scrollbar managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>scrollBy: delta [
+{ #category : #'scrollbar managing' }
+RubTextScrollPane >> scrollBy: delta [
 	self
 		handleScrollerOffsetChange: [ 
 			| newYoffset newXoffset |
@@ -397,11 +291,8 @@ RubTextScrollPane>>scrollBy: delta [
 			self updateScrollbars ]
 ]
 
-{
-	#category : #'scrollbar managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>scrollByKeyboard: event [
+{ #category : #'scrollbar managing' }
+RubTextScrollPane >> scrollByKeyboard: event [
 	"If event is ctrl+up/down then scroll and answer true"
 
 	| ret sb |
@@ -424,21 +315,15 @@ RubTextScrollPane>>scrollByKeyboard: event [
 	^ ret
 ]
 
-{
-	#category : #'text area protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>scrollSelectionIntoView [
+{ #category : #'text area protocol' }
+RubTextScrollPane >> scrollSelectionIntoView [
 	"Scroll my text into view if necessary and return true, else return false"
 	self scrollSelectionIntoView: nil.
 
 ]
 
-{
-	#category : #'text area protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>scrollSelectionIntoView: event [
+{ #category : #'text area protocol' }
+RubTextScrollPane >> scrollSelectionIntoView: event [
 	"Scroll my text into view if necessary and return true, else return false"
 
 	| selRects delta selRect rectToTest transform cpHere editor bnds |
@@ -477,57 +362,39 @@ RubTextScrollPane>>scrollSelectionIntoView: event [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>scrollTarget: aTextArea [
+{ #category : #accessing }
+RubTextScrollPane >> scrollTarget: aTextArea [
 	self unregisterTextArea.
 	super scrollTarget: aTextArea.
 	self registerTextArea 
 ]
 
-{
-	#category : #'scrollbar managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>scrollToBeginningOfLine [
+{ #category : #'scrollbar managing' }
+RubTextScrollPane >> scrollToBeginningOfLine [
 	self hScrollbarValue: 0;
 	updateScrollbars
 ]
 
-{
-	#category : #'scrollbar managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>scrollToBeginningOfText [
+{ #category : #'scrollbar managing' }
+RubTextScrollPane >> scrollToBeginningOfText [
 	self vScrollbarValue: 0;
 	updateScrollbars
 ]
 
-{
-	#category : #'scrollbar managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>scrollToEndOfLine [
+{ #category : #'scrollbar managing' }
+RubTextScrollPane >> scrollToEndOfLine [
 	self hScrollbarValue: 1;
 	updateScrollbars
 ]
 
-{
-	#category : #'scrollbar managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>scrollToEndOfText [
+{ #category : #'scrollbar managing' }
+RubTextScrollPane >> scrollToEndOfText [
 	self vScrollbarValue: 1;
 	updateScrollbars
 ]
 
-{
-	#category : #'text area protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>scrollWhenMouseMove: anEvent pivotPoint: aPivot [
+{ #category : #'text area protocol' }
+RubTextScrollPane >> scrollWhenMouseMove: anEvent pivotPoint: aPivot [
 	| worldTransform viewBounds gap |
 	worldTransform := self transformFrom: self world.
 	(self scrollSelectionIntoView: anEvent)
@@ -548,19 +415,13 @@ RubTextScrollPane>>scrollWhenMouseMove: anEvent pivotPoint: aPivot [
 					self textArea mouseMove: anEvent ] ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>selectionChanged [
+{ #category : #'event handling' }
+RubTextScrollPane >> selectionChanged [
 	self owner ifNotNil: [ :o | o selectionChanged ]
 ]
 
-{
-	#category : #'text area protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>setTextWith: stringOrText [
+{ #category : #'text area protocol' }
+RubTextScrollPane >> setTextWith: stringOrText [
 	"Set the initial text contents with line breaks only as in the text.
 	Fit my width and height to the result."
 	self textArea width: self scroller width.
@@ -569,56 +430,38 @@ RubTextScrollPane>>setTextWith: stringOrText [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>textArea [
+{ #category : #accessing }
+RubTextScrollPane >> textArea [
 	^ self scrollTarget
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>textAreaExtentChanged [
+{ #category : #'event handling' }
+RubTextScrollPane >> textAreaExtentChanged [
 	self fitScrollTarget.
 	self owner ifNotNil: [ :o | o textAreaExtentChanged ]
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>textChanged [
+{ #category : #'event handling' }
+RubTextScrollPane >> textChanged [
 
 	self owner ifNotNil: [ :o | o textChanged ]
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>topRendererOrSelf [
+{ #category : #structure }
+RubTextScrollPane >> topRendererOrSelf [
 	^ owner ifNil: [ super topRendererOrSelf ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>unplug [
+{ #category : #private }
+RubTextScrollPane >> unplug [
 	self hasTextArea
 		ifTrue: [ self textArea unplug ].
 	super unplug
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>unregisterTextArea [
+{ #category : #initialize }
+RubTextScrollPane >> unregisterTextArea [
 	self hasTextArea
 		ifTrue: [ 
 			self textArea scrollPane: nil.
@@ -626,21 +469,15 @@ RubTextScrollPane>>unregisterTextArea [
 			self textArea unplug ]
 ]
 
-{
-	#category : #'scrollbar managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>updateScrollbars [
+{ #category : #'scrollbar managing' }
+RubTextScrollPane >> updateScrollbars [
 	super updateScrollbars.
 	self wrapped
 		ifTrue: [ self fitScrollTargetWidth ]
 ]
 
-{
-	#category : #'text area protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>updateTextWith: stringOrText [
+{ #category : #'text area protocol' }
+RubTextScrollPane >> updateTextWith: stringOrText [
 	"Accept new text contents with line breaks only as in the text.
 	Fit my width and height to the result."
 	self textArea width: self scroller width.
@@ -649,35 +486,23 @@ RubTextScrollPane>>updateTextWith: stringOrText [
 
 ]
 
-{
-	#category : #'scrollbar managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>vScrollbarValue: scrollValue [
+{ #category : #'scrollbar managing' }
+RubTextScrollPane >> vScrollbarValue: scrollValue [
 	self announcer announce: (RubVerticalScrolled scrollValue: scrollValue).
 	self handleScrollerOffsetChange: [ super vScrollbarValue: scrollValue ]
 ]
 
-{
-	#category : #'scrollbar managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>vScrollbarValueWithoutAnnouncement: scrollValue [
+{ #category : #'scrollbar managing' }
+RubTextScrollPane >> vScrollbarValueWithoutAnnouncement: scrollValue [
 	self handleScrollerOffsetChange: [ super vScrollbarValue: scrollValue ]
 ]
 
-{
-	#category : #'text area protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>wrapped [
+{ #category : #'text area protocol' }
+RubTextScrollPane >> wrapped [
 	^ self textArea wrapped
 ]
 
-{
-	#category : #'text area protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextScrollPane>>wrapped: aBoolean [
+{ #category : #'text area protocol' }
+RubTextScrollPane >> wrapped: aBoolean [
 	self handleWrappingPolicyChange: [ self textArea wrapped: aBoolean ]
 ]

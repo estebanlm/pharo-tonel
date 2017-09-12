@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #DiffMapMorph,
 	#superclass : #BorderedMorph,
 	#instVars : [
 		'mappings'
 	],
-	#category : #Tool-Diff,
-	#timestamp : ''
+	#category : #Tool-Diff
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMapMorph>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+DiffMapMorph >> adoptPaneColor: paneColor [
 	"Change our border color too."
 	
 	|c|
@@ -29,20 +22,14 @@ DiffMapMorph>>adoptPaneColor: paneColor [
 	self borderStyle baseColor: paneColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMapMorph>>defaultColor [
+{ #category : #accessing }
+DiffMapMorph >> defaultColor [
 	"Answer the default color for the receiver."
 	^ self theme diffMapColor
 ]
 
-{
-	#category : #nil,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMapMorph>>drawOn: aCanvas [
+{ #category : #nil }
+DiffMapMorph >> drawOn: aCanvas [
 	"Draw the indicators for the mappings."
 	
 	|b f|
@@ -57,11 +44,8 @@ DiffMapMorph>>drawOn: aCanvas [
 			j drawMapOn: c in: b scale: f]]
 ]
 
-{
-	#category : #nil,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMapMorph>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #nil }
+DiffMapMorph >> drawOnAthensCanvas: anAthensCanvas [
 	"Draw the indicators for the mappings."
 	
 	|b f|
@@ -76,11 +60,8 @@ DiffMapMorph>>drawOnAthensCanvas: anAthensCanvas [
 			j drawMapOn: c in: b scale: f]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMapMorph>>extent: newExtent [
+{ #category : #accessing }
+DiffMapMorph >> extent: newExtent [
 	"Update the gradient."
 	
 	super extent: newExtent.
@@ -88,32 +69,23 @@ DiffMapMorph>>extent: newExtent [
 		ifTrue: [self fillStyle direction: 0@self height]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMapMorph>>gradientRampForColor: c [
+{ #category : #accessing }
+DiffMapMorph >> gradientRampForColor: c [
 	"Answer the background gradient ramp to use."
 	
 	^{0.0->c darker duller. 0.1-> c lighter.
 		0.9->c twiceLighter. 1.0->c darker}
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMapMorph>>handlesMouseDown: anEvent [
+{ #category : #'as yet unclassified' }
+DiffMapMorph >> handlesMouseDown: anEvent [
 	"Answer true to report mouse down activity."
 	
 	^true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMapMorph>>initialize [
+{ #category : #initialization }
+DiffMapMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -121,43 +93,31 @@ DiffMapMorph>>initialize [
 		mappings: #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMapMorph>>mappings [
+{ #category : #accessing }
+DiffMapMorph >> mappings [
 	"Answer the value of mappings"
 
 	^ mappings
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMapMorph>>mappings: anObject [
+{ #category : #accessing }
+DiffMapMorph >> mappings: anObject [
 	"Set the value of mappings"
 
 	mappings := anObject.
 	self changed
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMapMorph>>mappingsHeight [
+{ #category : #'as yet unclassified' }
+DiffMapMorph >> mappingsHeight [
 	"Answer the maximum y of all the mappings."
 	
 	self mappings ifEmpty: [^0].
 	^self mappings last dst range last 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMapMorph>>mouseDown: event [
+{ #category : #'as yet unclassified' }
+DiffMapMorph >> mouseDown: event [
 	"Trigger a 0..1 range based on location."
 	
 	|b|

@@ -5,15 +5,11 @@ SUnit tests for MultiByteFileStream
 Class {
 	#name : #MultiByteFileStreamTest,
 	#superclass : #TestCase,
-	#category : #Multilingual-Tests-TextConversion,
-	#timestamp : 'TorstenBergmann 2/5/2014 10:18'
+	#category : #Multilingual-Tests-TextConversion
 }
 
-{
-	#category : #support,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>chunkString [
+{ #category : #support }
+MultiByteFileStreamTest >> chunkString [
   "A chunk larger than buffer (currently 2048), but not long enough to fill it completely again. Therefore, buffer should contain some elements at end that are not part of the real buffer"
   | smallChunk chunkString |
   chunkString := 
@@ -24,36 +20,24 @@ MultiByteFileStreamTest>>chunkString [
   ^chunkString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>fileOutTestClass [
+{ #category : #accessing }
+MultiByteFileStreamTest >> fileOutTestClass [
 	^ MultiByteFileStreamFileOutTestClass 
 ]
 
-{
-	#category : #support,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>lineEndTestFile [
+{ #category : #support }
+MultiByteFileStreamTest >> lineEndTestFile [
 	^'lineEndTesting.txt'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>tearDown [
+{ #category : #testing }
+MultiByteFileStreamTest >> tearDown [
 	'foobug6933' asFileReference ensureDelete.
 	self lineEndTestFile asFileReference ensureDelete.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>testBasicChunk [
+{ #category : #testing }
+MultiByteFileStreamTest >> testBasicChunk [
 	 | internalStream chunkKey |
 	internalStream := ChunkReadStream on: self chunkString readStream.
 	chunkKey := OrderedCollection new.
@@ -73,11 +57,8 @@ MultiByteFileStreamTest>>testBasicChunk [
 		f exists ifTrue: [ f delete ]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>testBinaryUpTo [
+{ #category : #testing }
+MultiByteFileStreamTest >> testBinaryUpTo [
 	"This is a non regression test for bug http://bugs.squeak.org/view.php?id=6933"
 	"self run: #testBinaryUpTo"
 	
@@ -98,11 +79,8 @@ MultiByteFileStreamTest>>testBinaryUpTo [
     
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>testFileOutNonAscii [
+{ #category : #testing }
+MultiByteFileStreamTest >> testFileOutNonAscii [
 	"My test class, class side, contains a method with non-ascii characters, 
 	fileOut used to fail due to #backChunk problems"
 	
@@ -110,11 +88,8 @@ MultiByteFileStreamTest>>testFileOutNonAscii [
 	self fileOutTestClass fileOut
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>testLineEndingsWith: anEncodingName [
+{ #category : #testing }
+MultiByteFileStreamTest >> testLineEndingsWith: anEncodingName [
 	 | byteMap |
 	"Make a map of different endings, and the expected byte pattern when three cr's are added using it"
 	byteMap := Dictionary new.
@@ -135,11 +110,8 @@ MultiByteFileStreamTest>>testLineEndingsWith: anEncodingName [
 			self assert: bytes equals: (byteMap at: lineEnding)]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>testNext [
+{ #category : #testing }
+MultiByteFileStreamTest >> testNext [
 	| testString filename  |
 	testString := 'éèàôüößäóñíá'.
 	filename := 'test-file-' , 99 atRandom printString , '.txt'.
@@ -159,11 +131,8 @@ MultiByteFileStreamTest>>testNext [
 	ensure: [ filename asFileReference ensureDelete ] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>testNextMatchAll [
+{ #category : #testing }
+MultiByteFileStreamTest >> testNextMatchAll [
 	| testString filename  |
 	testString := 'é è à ô ü ö ß ä ó ñ í á'.
 	filename := 'test-file-' , 99 atRandom printString , '.txt'.
@@ -181,11 +150,8 @@ MultiByteFileStreamTest>>testNextMatchAll [
 	ensure: [ filename asFileReference ensureDelete ] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>testNextPut [
+{ #category : #testing }
+MultiByteFileStreamTest >> testNextPut [
 	| filename  |
 	filename := 'test-file-' , 99 atRandom printString , '.txt'.
 	MultiByteFileStream 
@@ -205,11 +171,8 @@ MultiByteFileStreamTest>>testNextPut [
 	ensure: [ filename asFileReference ensureDelete ] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>testNextPutAll [
+{ #category : #testing }
+MultiByteFileStreamTest >> testNextPutAll [
 	| testString filename  |
 	testString := '123abcd'.
 	filename := 'test-file-' , 99 atRandom printString , '.txt'.
@@ -228,11 +191,8 @@ MultiByteFileStreamTest>>testNextPutAll [
 	ensure: [ filename asFileReference ensureDelete ] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>testNextPutAllStartingAt [
+{ #category : #testing }
+MultiByteFileStreamTest >> testNextPutAllStartingAt [
 	| testString filename  |
 	testString := 'éèàôüößäóñíá'.
 	filename := 'test-file-' , 99 atRandom printString , '.txt'.
@@ -250,11 +210,8 @@ MultiByteFileStreamTest>>testNextPutAllStartingAt [
 	ensure: [ filename asFileReference ensureDelete ] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>testPeek [
+{ #category : #testing }
+MultiByteFileStreamTest >> testPeek [
 	| testString filename  |
 	testString := 'é è à ô ü ö ß ä ó ñ í á'.
 	filename := 'test-file-' , 99 atRandom printString , '.txt'.
@@ -275,11 +232,8 @@ MultiByteFileStreamTest>>testPeek [
 	ensure: [ filename asFileReference ensureDelete ] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>testPeekFor [
+{ #category : #testing }
+MultiByteFileStreamTest >> testPeekFor [
 	| testString filename  |
 	testString := 'éèàôüößäóñíá'.
 	filename := 'test-file-' , 99 atRandom printString , '.txt'.
@@ -300,11 +254,8 @@ MultiByteFileStreamTest>>testPeekFor [
 	ensure: [ filename asFileReference ensureDelete ] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>testReadIntoStartingAtCount [
+{ #category : #testing }
+MultiByteFileStreamTest >> testReadIntoStartingAtCount [
 	| testString filename buffer |
 	testString := 'élève en Français'.
 	filename := 'test-file-' , 99 atRandom printString , '.txt'.
@@ -323,11 +274,8 @@ MultiByteFileStreamTest>>testReadIntoStartingAtCount [
 		ensure: [ filename asFileReference ensureDelete ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>testReset [
+{ #category : #testing }
+MultiByteFileStreamTest >> testReset [
 	| testString filename  |
 	testString := 'éèàôüößäóñíá'.
 	filename := 'test-file-' , 99 atRandom printString , '.txt'.
@@ -348,11 +296,8 @@ MultiByteFileStreamTest>>testReset [
 	ensure: [ filename asFileReference ensureDelete ] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>testUpToAnyOfDo [
+{ #category : #testing }
+MultiByteFileStreamTest >> testUpToAnyOfDo [
 	| testString filename  str1 ch1 ch2|
 	testString := 'élève en Français'.
 	filename := 'test-file-' , 99 atRandom printString , '.txt'.
@@ -373,11 +318,8 @@ MultiByteFileStreamTest>>testUpToAnyOfDo [
 		] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>testUpToEnd [
+{ #category : #testing }
+MultiByteFileStreamTest >> testUpToEnd [
 	| testString filename  |
 	testString := 'élève en Français'.
 	filename := 'test-file-' , 99 atRandom printString , '.txt'.
@@ -398,11 +340,8 @@ MultiByteFileStreamTest>>testUpToEnd [
 		] 
 ]
 
-{
-	#category : #support,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamTest>>writeChunkToFile [
+{ #category : #support }
+MultiByteFileStreamTest >> writeChunkToFile [
 	(File openAndTruncateForWriteFileNamed: 'chunkTest.txt') 
 		nextPutAll: self chunkString;
 		close

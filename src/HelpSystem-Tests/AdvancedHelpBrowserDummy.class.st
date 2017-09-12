@@ -15,46 +15,30 @@ Class {
 		'rootTopic',
 		'isOpen'
 	],
-	#category : #HelpSystem-Tests-Core-UI,
-	#timestamp : 'tbn 5/3/2010 19:30'
+	#category : #HelpSystem-Tests-Core-UI
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-AdvancedHelpBrowserDummy>>initialize [
+{ #category : #initialization }
+AdvancedHelpBrowserDummy >> initialize [
 	isOpen := false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-AdvancedHelpBrowserDummy>>isOpen [
+{ #category : #testing }
+AdvancedHelpBrowserDummy >> isOpen [
 	^isOpen
 ]
 
-{
-	#category : #mocking,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-AdvancedHelpBrowserDummy>>open [
+{ #category : #mocking }
+AdvancedHelpBrowserDummy >> open [
 	isOpen := true
 ]
 
-{
-	#category : #mocking,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-AdvancedHelpBrowserDummy>>rootTopic [
+{ #category : #mocking }
+AdvancedHelpBrowserDummy >> rootTopic [
 	^rootTopic
 ]
 
-{
-	#category : #mocking,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-AdvancedHelpBrowserDummy>>rootTopic: aTopic [
+{ #category : #mocking }
+AdvancedHelpBrowserDummy >> rootTopic: aTopic [
 	rootTopic := aTopic
 ]

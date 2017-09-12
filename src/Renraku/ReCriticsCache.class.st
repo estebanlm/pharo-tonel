@@ -4,15 +4,11 @@ Same as CriticsCache but with tweaks for Renraku model
 Class {
 	#name : #ReCriticsCache,
 	#superclass : #CriticsCache,
-	#category : #Renraku-CriticBrowser,
-	#timestamp : 'YuriyTymchuk 7/7/2016 19:08'
+	#category : #Renraku-CriticBrowser
 }
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReCriticsCache>>initCache [
+{ #category : #initialize-release }
+ReCriticsCache >> initCache [
 
 
 	checker rule do: [ :rule | 
@@ -26,11 +22,8 @@ ReCriticsCache>>initCache [
 	]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReCriticsCache>>logFalsePositiveInManifest [
+{ #category : #private }
+ReCriticsCache >> logFalsePositiveInManifest [
 	| removeFp addFp |
 	falsePositives
 		keysAndValuesDo: [ :rule :criticss | 
@@ -46,11 +39,8 @@ ReCriticsCache>>logFalsePositiveInManifest [
 						ifFalse: [ self addAllCriticToFalsePositive: value forRule: rule on: manifestBuilder ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReCriticsCache>>logToDosInManifest [
+{ #category : #private }
+ReCriticsCache >> logToDosInManifest [
 	| removeFp addFp |
 	toDos
 		keysAndValuesDo: [ :rule :criticss | 

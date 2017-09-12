@@ -29,42 +29,29 @@ Class {
 		'dest',
 		'endPoint'
 	],
-	#category : #Athens-Core-Paths,
-	#timestamp : 'IgorStasenko 5/1/2011 23:14'
+	#category : #Athens-Core-Paths
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathConverter class>>dest: aDest [
+{ #category : #'instance creation' }
+AthensPathConverter class >> dest: aDest [
 
 	^ self new dest: aDest
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathConverter class>>source: aSource dest: aDest [
+{ #category : #'instance creation' }
+AthensPathConverter class >> source: aSource dest: aDest [
 	" answer a converted path from source to dest, using my instance as a converter"
 	
 	^ self new source: aSource dest: aDest
 ]
 
-{
-	#category : #'converting path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathConverter>>close: aPoint  [
+{ #category : #'converting path commands' }
+AthensPathConverter >> close: aPoint [ 
 	^ dest close: aPoint
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathConverter>>convert: aSourcePath [
+{ #category : #actions }
+AthensPathConverter >> convert: aSourcePath [
 	
 	" iterate over segments and do conversion "
 	
@@ -81,53 +68,35 @@ AthensPathConverter>>convert: aSourcePath [
 	^ dest finish
 ]
 
-{
-	#category : #'converting path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathConverter>>curveVia: pt1 to: pt2 [
+{ #category : #'converting path commands' }
+AthensPathConverter >> curveVia: pt1 to: pt2 [
 
 	^ dest curveVia: pt1 to: pt2
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathConverter>>dest: anObject [
+{ #category : #accessing }
+AthensPathConverter >> dest: anObject [
 	dest := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathConverter>>finish [
+{ #category : #actions }
+AthensPathConverter >> finish [
 	^ dest finish
 ]
 
-{
-	#category : #'converting path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathConverter>>lineTo: aPoint  [
+{ #category : #'converting path commands' }
+AthensPathConverter >> lineTo: aPoint [ 
 	^ dest lineTo: aPoint
 ]
 
-{
-	#category : #'converting path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathConverter>>moveTo: aPoint  [
+{ #category : #'converting path commands' }
+AthensPathConverter >> moveTo: aPoint [ 
 	^ dest moveTo: aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathConverter>>source: aSource dest: aDest [
+{ #category : #accessing }
+AthensPathConverter >> source: aSource dest: aDest [
 
 	sourcePath := aSource.
 	dest := aDest

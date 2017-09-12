@@ -6,26 +6,19 @@ The method #methodWithCascades is not called, it is just a ""test data"" method 
 Class {
 	#name : #RBSplitCascadeRefactoringTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : 'NicolaiHess 5/21/2016 23:35'
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #data,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBSplitCascadeRefactoringTest>>methodWithCascades [
+{ #category : #data }
+RBSplitCascadeRefactoringTest >> methodWithCascades [
 	| a |
 	a := Object new initialize; asString.
 	^ a
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBSplitCascadeRefactoringTest>>testSplitCascadeRefactoring [
+{ #category : #tests }
+RBSplitCascadeRefactoringTest >> testSplitCascadeRefactoring [
 	| refactoring |
 	refactoring := RBSplitCascadeRefactoring split: (self 
 				convertInterval: (54 to: 55)

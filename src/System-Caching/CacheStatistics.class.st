@@ -9,31 +9,21 @@ Class {
 		'hits',
 		'misses'
 	],
-	#category : #System-Caching,
-	#timestamp : '<historical>'
+	#category : #System-Caching
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheStatistics>>addHit [
+{ #category : #accessing }
+CacheStatistics >> addHit [
 	hits := hits + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheStatistics>>addMiss [
+{ #category : #accessing }
+CacheStatistics >> addMiss [
 	misses := misses + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheStatistics>>hitRatio [
+{ #category : #accessing }
+CacheStatistics >> hitRatio [
 	"Return the ratio of hits against total calls I received.
 	This will be a number between 0 and 1.
 	When I am empty, return 0."
@@ -44,35 +34,23 @@ CacheStatistics>>hitRatio [
 	^ hits / total
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheStatistics>>hits [
+{ #category : #accessing }
+CacheStatistics >> hits [
 	^ hits
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheStatistics>>initialize [
+{ #category : #initialize }
+CacheStatistics >> initialize [
 	super initialize.
 	hits := misses := 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheStatistics>>misses [
+{ #category : #accessing }
+CacheStatistics >> misses [
 	^ misses
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheStatistics>>reset [
+{ #category : #initialize }
+CacheStatistics >> reset [
 	hits := misses := 0
 ]

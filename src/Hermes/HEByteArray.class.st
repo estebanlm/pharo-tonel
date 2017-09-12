@@ -1,41 +1,25 @@
-"
-
-"
 Class {
 	#name : #HEByteArray,
 	#superclass : #HEExportedLiteral,
-	#category : #Hermes-Model,
-	#timestamp : ''
+	#category : #Hermes-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEByteArray class>>tag [
+{ #category : #accessing }
+HEByteArray class >> tag [
 	^ 15
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEByteArray>>asLiteralIn: env [
+{ #category : #converting }
+HEByteArray >> asLiteralIn: env [
 	^ value
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEByteArray>>doReadFrom: aReader [
+{ #category : #reading }
+HEByteArray >> doReadFrom: aReader [
 	value := aReader readByteArray.
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEByteArray>>doWriteInto: aWriter [
+{ #category : #writing }
+HEByteArray >> doWriteInto: aWriter [
 	aWriter writeByteArray: value.
 ]

@@ -10,15 +10,11 @@ Class {
 		'displayBlock',
 		'icon'
 	],
-	#category : #Spec-Core-Widgets-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Widgets-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListItem class>>named: label do: aBlock [
+{ #category : #'instance creation' }
+DropListItem class >> named: label do: aBlock [
 
 	^ self new
 		action: aBlock;
@@ -27,11 +23,8 @@ DropListItem class>>named: label do: aBlock [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListItem class>>on: anObject do: aBlock [
+{ #category : #'instance creation' }
+DropListItem class >> on: anObject do: aBlock [
 
 	^ self new
 		action: aBlock;
@@ -39,65 +32,44 @@ DropListItem class>>on: anObject do: aBlock [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListItem>>= another [
+{ #category : #accessing }
+DropListItem >> = another [
 
 	self species = another species ifFalse: [ ^ false ].
 	^ self label = another label and: [ self actionHolder = another actionHolder ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListItem>>action: aBlock [
+{ #category : #protocol }
+DropListItem >> action: aBlock [
 
 	actionHolder value: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListItem>>actionHolder [
+{ #category : #accessing }
+DropListItem >> actionHolder [
 	
 	^ actionHolder
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListItem>>display: aBlock [
+{ #category : #protocol }
+DropListItem >> display: aBlock [
 	"aBlock - 1 optional argument, which is the underlying item; returns the string to be displayed"
 
 	displayBlock := aBlock.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListItem>>icon [
+{ #category : #accessing }
+DropListItem >> icon [
 	^ icon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListItem>>icon: anObject [
+{ #category : #accessing }
+DropListItem >> icon: anObject [
 	icon := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListItem>>initialize [
+{ #category : #initialization }
+DropListItem >> initialize [
 
 	super initialize.
 
@@ -106,48 +78,33 @@ DropListItem>>initialize [
 	icon := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListItem>>label [
+{ #category : #accessing }
+DropListItem >> label [
 	
 	^ displayBlock cull: model.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListItem>>label: anObject [
+{ #category : #accessing }
+DropListItem >> label: anObject [
 	"For compatibility with old raw-string usage. Send #display: instead"
 	
 	displayBlock := [ anObject ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListItem>>model [
+{ #category : #accessing }
+DropListItem >> model [
 
 	^ model.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListItem>>model: anObject [
+{ #category : #private }
+DropListItem >> model: anObject [
 
 	model := anObject.
 ]
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListItem>>value [
+{ #category : #execution }
+DropListItem >> value [
 	"This way, I am polymorphic with nil"
 
 	actionHolder value cull: self label cull: self

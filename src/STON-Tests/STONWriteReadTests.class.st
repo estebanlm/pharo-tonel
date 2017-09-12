@@ -4,36 +4,26 @@ STONWriteReadTests test serialization followed by materialization.
 Class {
 	#name : #STONWriteReadTests,
 	#superclass : #TestCase,
-	#category : #STON-Tests,
-	#timestamp : '<historical>'
+	#category : #STON-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>materialize: string [
+{ #category : #private }
+STONWriteReadTests >> materialize: string [
 	^ STON reader 
 		on: string readStream;
 		next
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>serialize: anObject [
+{ #category : #private }
+STONWriteReadTests >> serialize: anObject [
 	^ String streamContents: [ :stream |
 		STON writer 
 			on: stream;
 			nextPut: anObject ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>serializeAndMaterialize: object [
+{ #category : #private }
+STONWriteReadTests >> serializeAndMaterialize: object [
 	| serialization materialization |
 	serialization := self serialize: object.
 	materialization := self materialize: serialization.
@@ -41,11 +31,8 @@ STONWriteReadTests>>serializeAndMaterialize: object [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>serializeAndMaterializeJsonMode: object [
+{ #category : #private }
+STONWriteReadTests >> serializeAndMaterializeJsonMode: object [
 	| serialization materialization |
 	serialization := self serializeJson: object.
 	materialization := self materialize: serialization.
@@ -53,22 +40,16 @@ STONWriteReadTests>>serializeAndMaterializeJsonMode: object [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>serializeJson: anObject [
+{ #category : #private }
+STONWriteReadTests >> serializeJson: anObject [
 	^ String streamContents: [ :stream |
 		STON jsonWriter 
 			on: stream;
 			nextPut: anObject ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testAssociations [
+{ #category : #tests }
+STONWriteReadTests >> testAssociations [
 	| associations |
 	associations := OrderedCollection new.
 	1 to: 10 do: [ :each |
@@ -76,21 +57,15 @@ STONWriteReadTests>>testAssociations [
 	self serializeAndMaterialize: associations
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testCharacters [
+{ #category : #tests }
+STONWriteReadTests >> testCharacters [
 	| characters |
 	characters := STON listClass withAll: ($a to: $z), ($A to: $Z).
 	self serializeAndMaterialize: characters
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testClasses [
+{ #category : #tests }
+STONWriteReadTests >> testClasses [
 	| classes |
 	classes := STON listClass withAll: { Point. Integer. Object }.
 	self serializeAndMaterialize: classes.
@@ -100,11 +75,8 @@ STONWriteReadTests>>testClasses [
 	self serializeAndMaterialize: classes.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testCollections [
+{ #category : #tests }
+STONWriteReadTests >> testCollections [
 	| collections |
 	collections := STON listClass withAll: {
 		#(1 2 3).
@@ -120,11 +92,8 @@ STONWriteReadTests>>testCollections [
 	self serializeAndMaterialize: collections
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testCustomAssociations [
+{ #category : #tests }
+STONWriteReadTests >> testCustomAssociations [
 	| associations |
 	associations := OrderedCollection new.
 	associations add: #foo->100.
@@ -132,11 +101,8 @@ STONWriteReadTests>>testCustomAssociations [
 	self serializeAndMaterialize: associations
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testDatesAndTimes [
+{ #category : #tests }
+STONWriteReadTests >> testDatesAndTimes [
 	| datesAndTimes |
 	datesAndTimes := STON listClass withAll: { 
 		Time now. 
@@ -146,11 +112,8 @@ STONWriteReadTests>>testDatesAndTimes [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testDomainObject [
+{ #category : #tests }
+STONWriteReadTests >> testDomainObject [
 	| object objects |
 	object := STONTestDomainObject dummy.
 	self serializeAndMaterialize: object.
@@ -164,11 +127,8 @@ STONWriteReadTests>>testDomainObject [
 	self serializeAndMaterialize: objects.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testEmpty [
+{ #category : #tests }
+STONWriteReadTests >> testEmpty [
 	| empty |
 	empty := STON listClass new.
 	self serializeAndMaterialize: empty.
@@ -176,11 +136,8 @@ STONWriteReadTests>>testEmpty [
 	self serializeAndMaterialize: empty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testFileSystemSupport [
+{ #category : #tests }
+STONWriteReadTests >> testFileSystemSupport [
 	| fileReferences fileLocators |
 	fileReferences := STON listClass withAll: { 
 		FileLocator image asFileReference.
@@ -194,11 +151,8 @@ STONWriteReadTests>>testFileSystemSupport [
 	self serializeAndMaterialize: fileLocators.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testFloats [
+{ #category : #tests }
+STONWriteReadTests >> testFloats [
 	| floats serialization materialization |
 	floats := STON listClass withAll: ((-10 to: 10) collect: [ :each | each * Float pi ]).
 	serialization := self serialize: floats.
@@ -210,11 +164,8 @@ STONWriteReadTests>>testFloats [
 		self assert: (float closeTo: (materialization at: index)) ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testIntervals [
+{ #category : #tests }
+STONWriteReadTests >> testIntervals [
 	| intervals |
 	intervals := STON listClass withAll: { 
 		1 to: 10.
@@ -223,11 +174,8 @@ STONWriteReadTests>>testIntervals [
 	self serializeAndMaterialize: intervals
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testJsonMode [
+{ #category : #tests }
+STONWriteReadTests >> testJsonMode [
 	| object |
 	object := STON listClass withAll: {
 		Float pi.
@@ -244,11 +192,8 @@ STONWriteReadTests>>testJsonMode [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testOrderedDictionary [
+{ #category : #tests }
+STONWriteReadTests >> testOrderedDictionary [
 	"OrderedDictionary is special because it does not inherit from Dictionary.
 	It might also not exist in some dialects, where this test could be skipped."
 	
@@ -265,21 +210,15 @@ STONWriteReadTests>>testOrderedDictionary [
 	self serializeAndMaterialize: dictionaries
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testPrimitives [
+{ #category : #tests }
+STONWriteReadTests >> testPrimitives [
 	| primitives |
 	primitives := STON listClass withAll: { true. false. nil }.
 	self serializeAndMaterialize: primitives
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testSmallDictionary [
+{ #category : #tests }
+STONWriteReadTests >> testSmallDictionary [
 	"SmallDictionary is special because it does not inherit from Dictionary.
 	It might also not exist in some dialects, where this test could be skipped."
 	
@@ -292,21 +231,15 @@ STONWriteReadTests>>testSmallDictionary [
 	self serializeAndMaterialize: dictionaries
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testSmallIntegers [
+{ #category : #tests }
+STONWriteReadTests >> testSmallIntegers [
 	| integers |
 	integers := STON listClass withAll: (-10 to: 10).
 	self serializeAndMaterialize: integers
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testSpecialCharacters [
+{ #category : #tests }
+STONWriteReadTests >> testSpecialCharacters [
 	| primitives |
 	primitives := STON listClass withAll: { 
 		String withAll: { Character tab. Character lf. Character cr }.
@@ -317,11 +250,8 @@ STONWriteReadTests>>testSpecialCharacters [
 	self serializeAndMaterialize: primitives
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testStrings [
+{ #category : #tests }
+STONWriteReadTests >> testStrings [
 	| strings |
 	strings := Collection allSubclasses 
 		collect: [ :each | each name asString ].
@@ -333,11 +263,8 @@ STONWriteReadTests>>testStrings [
 	self serializeAndMaterialize: strings.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testSymbols [
+{ #category : #tests }
+STONWriteReadTests >> testSymbols [
 	| symbols |
 	self serializeAndMaterialize: #( #bytes #'' ).
 	symbols := Collection allSubclasses collect: [ :each | each name ].
@@ -345,11 +272,8 @@ STONWriteReadTests>>testSymbols [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testTextAndRunArray [
+{ #category : #tests }
+STONWriteReadTests >> testTextAndRunArray [
 	| texts |
 	texts := { 
 		'Text!' asText. 
@@ -358,11 +282,8 @@ STONWriteReadTests>>testTextAndRunArray [
 	self serializeAndMaterialize: texts
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testUUIDs [
+{ #category : #tests }
+STONWriteReadTests >> testUUIDs [
 	| uuids |
 	uuids := STON listClass withAll: { 
 		UUID new.
@@ -371,11 +292,8 @@ STONWriteReadTests>>testUUIDs [
 	self serializeAndMaterialize: uuids
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testUser [
+{ #category : #tests }
+STONWriteReadTests >> testUser [
 	| user users |
 	user := STONTestUser dummy.
 	self serializeAndMaterialize: user.
@@ -389,11 +307,8 @@ STONWriteReadTests>>testUser [
 	self serializeAndMaterialize: users.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteReadTests>>testUser2 [
+{ #category : #tests }
+STONWriteReadTests >> testUser2 [
 	| user users |
 	user := STONTestUser2 dummy.
 	self serializeAndMaterialize: user.

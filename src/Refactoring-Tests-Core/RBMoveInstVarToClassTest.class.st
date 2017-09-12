@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBMoveInstVarToClassTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBMoveInstVarToClassTest>>testMoveInstVarToClassAlreadyDefined [
+{ #category : #'failure tests' }
+RBMoveInstVarToClassTest >> testMoveInstVarToClassAlreadyDefined [
 	self
 		shouldFail:
 			(RBMoveInstVarToClassRefactoring

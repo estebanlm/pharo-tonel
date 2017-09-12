@@ -9,69 +9,47 @@ Class {
 		'drawingProcess',
 		'window'
 	],
-	#category : #OSWindow-SDL2-Examples-Examples,
-	#timestamp : 'MerwanOuddane 8/15/2015 10:56'
+	#category : #OSWindow-SDL2-Examples-Examples
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensExample>>createDrawingProcess [
+{ #category : #'instance creation' }
+SDL2AthensExample >> createDrawingProcess [
 	^ [ 
 	[ 
 	(Delay forMilliseconds: 1000 / self maxFPS) wait.
 	self redrawAndUpdateSurface ] repeat ] fork
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensExample>>createEventHandler [
+{ #category : #factory }
+SDL2AthensExample >> createEventHandler [
 	"You should override this method with your own event handler"
 	^ OSWindowAthensExampleEventHandler new 
 		athensExample: self
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensExample>>defaultExtent [
+{ #category : #'morphic ui' }
+SDL2AthensExample >> defaultExtent [
 	^ 500@500
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensExample>>destroy [
+{ #category : #'morphic ui' }
+SDL2AthensExample >> destroy [
 	"This function must be called when the window is closed"
 	drawingProcess terminate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensExample>>initializeFromSurface. [
+{ #category : #accessing }
+SDL2AthensExample >> initializeFromSurface. [
 	"Here we put all the things that needs the surface to be initialized."
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensExample>>maxFPS [
+{ #category : #'instance creation' }
+SDL2AthensExample >> maxFPS [
 	^ 60
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensExample>>open [
+{ #category : #'instance creation' }
+SDL2AthensExample >> open [
 	| attrs |
 	attrs := OSWindowAttributes new.
 	attrs 
@@ -90,28 +68,19 @@ SDL2AthensExample>>open [
 	drawingProcess := self createDrawingProcess
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensExample>>redraw [
+{ #category : #drawing }
+SDL2AthensExample >> redraw [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensExample>>redrawAndUpdateSurface [
+{ #category : #updating }
+SDL2AthensExample >> redrawAndUpdateSurface [
 	self redraw.
 	self updateSurface
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensExample>>updateSurface [
+{ #category : #updating }
+SDL2AthensExample >> updateSurface [
 	renderer
 		updateAll;
 		present

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloCoreIssue125TestCase,
 	#superclass : #TestCase,
-	#category : #Metacello-TestsCore-Configs,
-	#timestamp : ''
+	#category : #Metacello-TestsCore-Configs
 }
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreIssue125TestCase>>baseline200: spec [
+{ #category : #baselines }
+MetacelloCoreIssue125TestCase >> baseline200: spec [
     <version: '2.0-baseline'>
     spec
         for: #'common'
@@ -35,11 +28,8 @@ MetacelloCoreIssue125TestCase>>baseline200: spec [
             spec group: 'Core' with: #('Example Project') ]
 ]
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreIssue125TestCase>>baseline300: spec [
+{ #category : #baselines }
+MetacelloCoreIssue125TestCase >> baseline300: spec [
     <version: '3.0-baseline' imports: #('2.0-baseline')>
     spec
         for: #(#'attribute1' #'attribute2')
@@ -58,20 +48,14 @@ MetacelloCoreIssue125TestCase>>baseline300: spec [
             spec group: 'Core' with: #('Extra Project') ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreIssue125TestCase>>project [
+{ #category : #accessing }
+MetacelloCoreIssue125TestCase >> project [
 
 	^self projectWith: #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreIssue125TestCase>>projectWith: projectAttributes [
+{ #category : #accessing }
+MetacelloCoreIssue125TestCase >> projectWith: projectAttributes [
     | project |
     "Construct Metacello project"
     project := MetacelloProject new.
@@ -80,11 +64,8 @@ MetacelloCoreIssue125TestCase>>projectWith: projectAttributes [
     ^ project
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreIssue125TestCase>>testForDoListAtrribute1Active [
+{ #category : #tests }
+MetacelloCoreIssue125TestCase >> testForDoListAtrribute1Active [
   "https://github.com/dalehenrich/metacello-work/issues/125"
 
   | project version expected actual |
@@ -115,11 +96,8 @@ spec
   self assert: expected = actual
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreIssue125TestCase>>testForDoListAtrribute2Active [
+{ #category : #tests }
+MetacelloCoreIssue125TestCase >> testForDoListAtrribute2Active [
   "https://github.com/dalehenrich/metacello-work/issues/125"
 
   | project version expected actual |
@@ -150,11 +128,8 @@ spec
   self assert: expected = actual
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreIssue125TestCase>>testForDoListAttribute1Atrribute2Active [
+{ #category : #tests }
+MetacelloCoreIssue125TestCase >> testForDoListAttribute1Atrribute2Active [
   "https://github.com/dalehenrich/metacello-work/issues/125"
 
   | project version expected actual |
@@ -193,11 +168,8 @@ spec
   self assert: expected = actual
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreIssue125TestCase>>testForDoListNotActive [
+{ #category : #tests }
+MetacelloCoreIssue125TestCase >> testForDoListNotActive [
   "https://github.com/dalehenrich/metacello-work/issues/125"
 
   | project version expected actual |

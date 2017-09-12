@@ -8,23 +8,16 @@ Class {
 	#instVars : [
 		'state'
 	],
-	#category : #Slot-Examples,
-	#timestamp : 'MarcusDenker 3/4/2015 18:00'
+	#category : #Slot-Examples
 }
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ExampleClassVariable>>read [
+{ #category : #meta-object-protocol }
+ExampleClassVariable >> read [
 	^state
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ExampleClassVariable>>write:	 anObject [
+{ #category : #meta-object-protocol }
+ExampleClassVariable >> write:	 anObject [
 	state := anObject
 	 
 ]

@@ -8,15 +8,11 @@ ProtoObject has no instance variables, nor should any be added.
 Class {
 	#name : #ProtoObject,
 	#superclass : #nil,
-	#category : #Kernel-Objects,
-	#timestamp : '<historical>'
+	#category : #Kernel-Objects
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>== anObject [
+{ #category : #comparing }
+ProtoObject >> == anObject [ 
 	"Primitive. Answer whether the receiver and the argument are the same 
 	object (have the same object pointer). Do not redefine the message == in 
 	any other class! Essential. No Lookup. Do not override in any subclass. 
@@ -26,11 +22,8 @@ ProtoObject>>== anObject [
 	self primitiveFailed
 ]
 
-{
-	#category : #'reflective operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>basicIdentityHash [
+{ #category : #'reflective operations' }
+ProtoObject >> basicIdentityHash [
 	"Answer a SmallInteger whose value is related to the receiver's identity.
 	This method must not be overridden, except by SmallInteger.
 	Primitive. Fails if the receiver is a SmallInteger. Essential.
@@ -42,11 +35,8 @@ ProtoObject>>basicIdentityHash [
 	self primitiveFailed
 ]
 
-{
-	#category : #'reflective operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>become: otherObject [
+{ #category : #'reflective operations' }
+ProtoObject >> become: otherObject [ 
 	"Primitive. Swap the object pointers of the receiver and the argument.
 	All variables in the entire system that used to point to the 
 	receiver now point to the argument, and vice-versa.
@@ -57,11 +47,8 @@ ProtoObject>>become: otherObject [
 			(Array with: otherObject)
 ]
 
-{
-	#category : #'reflective operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>cannotInterpret: aMessage [
+{ #category : #'reflective operations' }
+ProtoObject >> cannotInterpret: aMessage [ 
 	 "Handle the fact that there was an attempt to send the given message to the receiver but a null methodDictionary was encountered while looking up the message selector.  Hopefully this is the result of encountering a stub for a swapped out class which induces this exception on purpose."
 
 "If this is the result of encountering a swap-out stub, then simulating the lookup in Smalltalk should suffice to install the class properly, and the message may be resent."
@@ -77,11 +64,8 @@ ProtoObject>>cannotInterpret: aMessage [
 	^ aMessage sentTo: self
 ]
 
-{
-	#category : #'class membership',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>class [
+{ #category : #'class membership' }
+ProtoObject >> class [
 	"Primitive. Answer the object which is the receiver's class. Essential. See 
 	Object documentation whatIsAPrimitive."
 
@@ -89,11 +73,8 @@ ProtoObject>>class [
 	self primitiveFailed
 ]
 
-{
-	#category : #debugging,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>doOnlyOnce: aBlock [
+{ #category : #debugging }
+ProtoObject >> doOnlyOnce: aBlock [
 	"If the 'one-shot' mechanism is armed, evaluate aBlock once and disarm the one-shot mechanism.  To rearm the mechanism, evaluate  'self rearmOneShot' manually."
 
 	(self class environment at: #OneShotArmed ifAbsent: [ true ])
@@ -102,11 +83,8 @@ ProtoObject>>doOnlyOnce: aBlock [
 			aBlock value ]
 ]
 
-{
-	#category : #'reflective operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>doesNotUnderstand: aMessage [
+{ #category : #'reflective operations' }
+ProtoObject >> doesNotUnderstand: aMessage [
 
 	^ MessageNotUnderstood new 
 		message: aMessage;
@@ -114,30 +92,21 @@ ProtoObject>>doesNotUnderstand: aMessage [
 		signal
 ]
 
-{
-	#category : #executing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>executeMethod: compiledMethod [
+{ #category : #executing }
+ProtoObject >> executeMethod: compiledMethod [
 	^ self withArgs: #( ) executeMethod: compiledMethod
 ]
 
-{
-	#category : #flagging,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>flag: aSymbol [
+{ #category : #flagging }
+ProtoObject >> flag: aSymbol [
 
 	"Send this message, with a relevant symbol as argument, to flag a message for subsequent retrieval.  For example, you might put the following line in a number of messages:
 	self flag: #returnHereUrgently
 	Then, to retrieve all such messages, browse all senders of #returnHereUrgently."
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>identityHash [
+{ #category : #comparing }
+ProtoObject >> identityHash [
 	"Answer a SmallInteger whose value is related to the receiver's identity.
 	 This method must not be overridden, except by SmallInteger.  As of
 	 2014, the 32-bit Spur VM has 22 bits of hash and 31-bit SmallIntegers
@@ -148,59 +117,41 @@ ProtoObject>>identityHash [
 	^self basicIdentityHash bitShift: 8
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>ifNil: nilBlock [
+{ #category : #testing }
+ProtoObject >> ifNil: nilBlock [
 	"Return self, or evaluate the block if I'm == nil (q.v.)"
 
 	^ self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>ifNil: nilBlock ifNotNil: ifNotNilBlock [
+{ #category : #testing }
+ProtoObject >> ifNil: nilBlock ifNotNil: ifNotNilBlock [
 	"Evaluate the block, unless I'm == nil (q.v.)"
 
 	^ ifNotNilBlock cull: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>ifNotNil: ifNotNilBlock [
+{ #category : #testing }
+ProtoObject >> ifNotNil: ifNotNilBlock [
 	"Evaluate the block, unless I'm == nil (q.v.)"
 
 	^ ifNotNilBlock cull: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>ifNotNil: ifNotNilBlock ifNil: nilBlock [
+{ #category : #testing }
+ProtoObject >> ifNotNil: ifNotNilBlock ifNil: nilBlock [ 
 	"If I got here, I am not nil, so evaluate the block ifNotNilBlock"
 
 	^ ifNotNilBlock cull: self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>initialize [
+{ #category : #initialization }
+ProtoObject >> initialize [
 	"Subclasses should redefine this method to perform initializations on instance creation" 
 ]
 
-{
-	#category : #introspection,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>instVarsInclude: anObject [
+{ #category : #introspection }
+ProtoObject >> instVarsInclude: anObject [
 "Answers true if anObject is among my named or indexed instance variables, and false otherwise"
 
 	<primitive: 132>
@@ -211,21 +162,15 @@ ProtoObject>>instVarsInclude: anObject [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>isNil [
+{ #category : #testing }
+ProtoObject >> isNil [
 	"Coerces nil to true and everything else to false."
 
 	^false
 ]
 
-{
-	#category : #'memory scanning',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>nextInstance [
+{ #category : #'memory scanning' }
+ProtoObject >> nextInstance [
 	"Primitive. Answer the next instance after the receiver in the 
 	enumeration of all instances of this class. Fails if all instances have been 
 	enumerated. Essential. See Object documentation whatIsAPrimitive."
@@ -234,11 +179,8 @@ ProtoObject>>nextInstance [
 	^nil
 ]
 
-{
-	#category : #'memory scanning',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>nextObject [
+{ #category : #'memory scanning' }
+ProtoObject >> nextObject [
 	"Primitive. Answer the next object after the receiver in the 
 	enumeration of all objects. Return 0 when all objects have been 
 	enumerated."
@@ -247,19 +189,13 @@ ProtoObject>>nextObject [
 	self primitiveFailed.
 ]
 
-{
-	#category : #'pointing to',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>pointersTo [
+{ #category : #'pointing to' }
+ProtoObject >> pointersTo [
 	^self pointersToExcept: #()
 ]
 
-{
-	#category : #'pointing to',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>pointersToExcept: objectsToExclude [
+{ #category : #'pointing to' }
+ProtoObject >> pointersToExcept: objectsToExclude [
 	"Find all objects in the system that hold a pointer to me, excluding those listed"
 	| c pointers object objectsToAlwaysExclude |
 	Smalltalk garbageCollect.
@@ -280,11 +216,8 @@ ProtoObject>>pointersToExcept: objectsToExclude [
 				or: [objectsToExclude identityIncludes: ea ]] ]) asArray
 ]
 
-{
-	#category : #'pointing to',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>pointsTo: anObject [
+{ #category : #'pointing to' }
+ProtoObject >> pointsTo: anObject [
 	"Answers true if I hold a reference to anObject, or false otherwise
 	an object points to a class via the header either directly or indirectly 
 	via the compact classes array"
@@ -292,11 +225,8 @@ ProtoObject>>pointsTo: anObject [
 	^ (self instVarsInclude: anObject) or: [ ^self class == anObject]
 ]
 
-{
-	#category : #debugging,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>rearmOneShot [
+{ #category : #debugging }
+ProtoObject >> rearmOneShot [
 	"Call this manually to arm the one-shot mechanism; use the mechanism in code by calling
 		self doOnlyOnce: <a block>"
 
@@ -306,11 +236,8 @@ ProtoObject>>rearmOneShot [
 
 ]
 
-{
-	#category : #'apply primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>tryPrimitive: primIndex withArgs: argumentArray [
+{ #category : #'apply primitives' }
+ProtoObject >> tryPrimitive: primIndex withArgs: argumentArray [
 	"This method is a template that the Smalltalk simulator uses to 
 	execute primitives. See Object documentation whatIsAPrimitive."
 
@@ -318,22 +245,16 @@ ProtoObject>>tryPrimitive: primIndex withArgs: argumentArray [
 	^ Context primitiveFailTokenFor: code
 ]
 
-{
-	#category : #executing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>withArgs: argArray executeMethod: compiledMethod [
+{ #category : #executing }
+ProtoObject >> withArgs: argArray executeMethod: compiledMethod [
 	"Execute compiledMethod against the receiver and args in argArray"
 
 	<primitive: 188>
 	self primitiveFailed
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProtoObject>>~~ anObject [
+{ #category : #comparing }
+ProtoObject >> ~~ anObject [
 	"Primitive. Answer whether the receiver and the argument are different objects
 	(do not have the same object pointer). Do not redefine the message ~~ in 
 	any other class! Optional (Assuming == is essential). No Lookup. Do not override in any subclass. 

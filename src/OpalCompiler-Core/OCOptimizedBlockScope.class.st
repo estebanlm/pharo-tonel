@@ -10,50 +10,34 @@ Class {
 	#instVars : [
 		'isInlinedLoop'
 	],
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCOptimizedBlockScope>>initialize [
+{ #category : #initialization }
+OCOptimizedBlockScope >> initialize [
 	super initialize.
 	isInlinedLoop := false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCOptimizedBlockScope>>isInsideOptimizedLoop [
+{ #category : #testing }
+OCOptimizedBlockScope >> isInsideOptimizedLoop [
 	^ isInlinedLoop
 		ifTrue: [true]
 		ifFalse: [self outerScope isInsideOptimizedLoop]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCOptimizedBlockScope>>isOptimizedBlockScope [
+{ #category : #testing }
+OCOptimizedBlockScope >> isOptimizedBlockScope [
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCOptimizedBlockScope>>markInlinedLoop [
+{ #category : #private }
+OCOptimizedBlockScope >> markInlinedLoop [
 	isInlinedLoop := true
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCOptimizedBlockScope>>nextLexicalContextOf: aContext [
+{ #category : #lookup }
+OCOptimizedBlockScope >> nextLexicalContextOf: aContext [
 
 	"Returns the next context to lookup a variable name from within this Scope.
 	A method should continue looking up a variable from the outerContext.
@@ -62,11 +46,8 @@ OCOptimizedBlockScope>>nextLexicalContextOf: aContext [
 	^ aContext
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCOptimizedBlockScope>>nextOuterScopeContextOf: aContext [
+{ #category : #lookup }
+OCOptimizedBlockScope >> nextOuterScopeContextOf: aContext [
 
 	"Returns the next context to lookup a variable name from within outer scope.
 	
@@ -74,10 +55,7 @@ OCOptimizedBlockScope>>nextOuterScopeContextOf: aContext [
 	^ aContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCOptimizedBlockScope>>outerNotOptimizedScope [
+{ #category : #accessing }
+OCOptimizedBlockScope >> outerNotOptimizedScope [
 	^self outerScope outerNotOptimizedScope
 ]

@@ -28,15 +28,11 @@ Class {
 	#name : #MethodDictionary,
 	#superclass : #Dictionary,
 	#type : #variable,
-	#category : #Kernel-Methods,
-	#timestamp : 'StephaneDucasse 11/24/2015 21:01'
+	#category : #Kernel-Methods
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary class>>compactAllInstances [
+{ #category : #initialization }
+MethodDictionary class >> compactAllInstances [
 
 	| instancesToExchange newInstances |
 	instancesToExchange := Array streamContents: [ :oldStream |
@@ -52,61 +48,43 @@ MethodDictionary class>>compactAllInstances [
 	instancesToExchange elementsForwardIdentityTo: newInstances
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary class>>new [
+{ #category : #'instance creation' }
+MethodDictionary class >> new [
 	"Create a new instance with 32 slots, which can hold at most 24 methods before growing is necessary."
 	
 	^self newForCapacity: 32
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary class>>new: numberOfElements [
+{ #category : #'instance creation' }
+MethodDictionary class >> new: numberOfElements [
 	"Create an instance large enough to hold numberOfElements methods without growing."
 	
 	^self newForCapacity: (self sizeFor: numberOfElements)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary class>>newForCapacity: capacity [
+{ #category : #'instance creation' }
+MethodDictionary class >> newForCapacity: capacity [
 	"Create an instance with the given capacity which must be a power of two."
 	
 	^(self basicNew: capacity) initialize: capacity
 
 ]
 
-{
-	#category : #sizing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary class>>sizeFor: numberOfElements [
+{ #category : #sizing }
+MethodDictionary class >> sizeFor: numberOfElements [
     "Return the minimum capacity of a dictionary that can hold numberOfElements elements. At least 25% of the array must be empty and the return value must be a nonnegative power of 2. Notice that the max: 1 is because a MethodDictionaries can never be entirely empty, as the #grow method requires it not to be (since it does self basicSize * 2)"
 
 	^(numberOfElements * 4 // 3 max: 1) asLargerPowerOfTwo 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>add: anAssociation [
+{ #category : #accessing }
+MethodDictionary >> add: anAssociation [
 
 	^ self at: anAssociation key put: anAssociation value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>associationAt: key ifAbsent: aBlock [
+{ #category : #accessing }
+MethodDictionary >> associationAt: key ifAbsent: aBlock [
       "Answer the association with the given key.
        If key is not found, return the result of evaluating aBlock."
 
@@ -115,11 +93,8 @@ MethodDictionary>>associationAt: key ifAbsent: aBlock [
                ifNotNil: [ :value | key -> value ]
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>associationsDo: aBlock [
+{ #category : #enumeration }
+MethodDictionary >> associationsDo: aBlock [ 
 
 	tally = 0 ifTrue: [^ self].
 	1 to: self basicSize do:
@@ -127,11 +102,8 @@ MethodDictionary>>associationsDo: aBlock [
 			[ :key | aBlock value: (Association key: key value: (array at: i))]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>at: key ifAbsent: aBlock [
+{ #category : #accessing }
+MethodDictionary >> at: key ifAbsent: aBlock [
 
 	| index |
 	index := self findElementOrNil: key.
@@ -139,21 +111,15 @@ MethodDictionary>>at: key ifAbsent: aBlock [
 	^ array at: index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>at: key ifPresent: aBlock [
+{ #category : #accessing }
+MethodDictionary >> at: key ifPresent: aBlock [
 
 	^(array at: (self findElementOrNil: key))
 		ifNotNil: [ :value | aBlock cull: value ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>at: key put: value [
+{ #category : #accessing }
+MethodDictionary >> at: key put: value [
 	"Set the value at key to be value."
 	| index |
 	index := self findElementOrNil: key.
@@ -167,11 +133,8 @@ MethodDictionary>>at: key put: value [
 	^ value
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>compact [
+{ #category : #private }
+MethodDictionary >> compact [
 	"Make sure that I have the highest possible load factor (between 37.5% and 75%)."
 	
 	| newInstance |
@@ -181,11 +144,8 @@ MethodDictionary>>compact [
 		ifFalse: [ self becomeForward: newInstance ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>compactWithoutBecome [
+{ #category : #private }
+MethodDictionary >> compactWithoutBecome [
 	"Return a copy of self which has the highest possible load factor (between 37.5% and 75%)."
 	
 	| newInstance |
@@ -196,11 +156,8 @@ MethodDictionary>>compactWithoutBecome [
 	^newInstance
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>fixCollisionsFrom: start [
+{ #category : #private }
+MethodDictionary >> fixCollisionsFrom: start [
 	"The element at start has been removed and replaced by nil.
 	This method moves forward from there, relocating any entries
 	that had been placed below due to collisions with this one."
@@ -213,11 +170,8 @@ MethodDictionary>>fixCollisionsFrom: start [
 			self swap: index with: newIndex ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>grow [
+{ #category : #private }
+MethodDictionary >> grow [ 
 	| newSelf |
 	newSelf := self species newForCapacity: self basicSize * 2.
 	1 to: self basicSize do:
@@ -225,11 +179,8 @@ MethodDictionary>>grow [
 	self becomeForward: newSelf
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>isHealthy [
+{ #category : #testing }
+MethodDictionary >> isHealthy [
 	"Test that selector hashes match their positions stored in dictionary,
 	answer true if everything ok, false otherwise
 	
@@ -244,11 +195,8 @@ MethodDictionary>>isHealthy [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>keyAtIdentityValue: value ifAbsent: exceptionBlock [
+{ #category : #accessing }
+MethodDictionary >> keyAtIdentityValue: value ifAbsent: exceptionBlock [
 	"Answer the key whose value equals the argument, value. If there is
 	none, answer the result of evaluating exceptionBlock."
 	1 to: self basicSize do:
@@ -259,11 +207,8 @@ MethodDictionary>>keyAtIdentityValue: value ifAbsent: exceptionBlock [
 	^ exceptionBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>keyAtValue: value ifAbsent: exceptionBlock [
+{ #category : #accessing }
+MethodDictionary >> keyAtValue: value ifAbsent: exceptionBlock [
 	"Answer the key whose value equals the argument, value. If there is
 	none, answer the result of evaluating exceptionBlock."
 	1 to: self basicSize do:
@@ -274,11 +219,8 @@ MethodDictionary>>keyAtValue: value ifAbsent: exceptionBlock [
 	^ exceptionBlock value
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>keysAndValuesDo: aBlock [
+{ #category : #enumeration }
+MethodDictionary >> keysAndValuesDo: aBlock [ 
 	"Enumerate the receiver with all the keys and values passed to the block"
 	tally = 0 ifTrue: [^ self].
 	1 to: self basicSize do:
@@ -287,29 +229,20 @@ MethodDictionary>>keysAndValuesDo: aBlock [
 		]
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>keysDo: aBlock [
+{ #category : #enumeration }
+MethodDictionary >> keysDo: aBlock [ 
 	tally = 0 ifTrue: [^ self].
 	1 to: self basicSize do:
 		[:i | (self basicAt: i) ifNotNil: [ :key | aBlock value: key]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>postCopy [
+{ #category : #private }
+MethodDictionary >> postCopy [
 	array := array copy
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>rehash [
+{ #category : #private }
+MethodDictionary >> rehash [ 
 
 	| newInstance |
 	newInstance := self species newForCapacity: self basicSize.
@@ -319,11 +252,8 @@ MethodDictionary>>rehash [
 	self copyFrom: newInstance
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>removeAll [
+{ #category : #removing }
+MethodDictionary >> removeAll [
 	"Remove all elements from this collection. Preserve the capacity"
 	
 	| newSelf |
@@ -332,11 +262,8 @@ MethodDictionary>>removeAll [
 	self copyFrom: newSelf
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>removeDangerouslyKey: key ifAbsent: aBlock [
+{ #category : #private }
+MethodDictionary >> removeDangerouslyKey: key ifAbsent: aBlock [
 	"This is not really dangerous.  But if normal removal
 	were done WHILE a MethodDict were being used, the
 	system might crash.  So instead we make a copy, then do
@@ -354,11 +281,8 @@ MethodDictionary>>removeDangerouslyKey: key ifAbsent: aBlock [
 	^ element
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>removeKey: key ifAbsent: errorBlock [
+{ #category : #removing }
+MethodDictionary >> removeKey: key ifAbsent: errorBlock [ 
 	"The interpreter might be using this MethodDictionary while
 	this method is running! Therefore we perform the removal
 	in a copy, and then atomically copy that copy"
@@ -371,11 +295,8 @@ MethodDictionary>>removeKey: key ifAbsent: errorBlock [
 	^ removedValue
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>scanFor: anObject [
+{ #category : #private }
+MethodDictionary >> scanFor: anObject [
 	"Scan the key array for the first slot containing either a nil (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or zero if no slot is found. This method will be overridden in various subclasses that have different interpretations for matching elements."
 	| element start finish |
 	finish := array size.
@@ -394,11 +315,8 @@ MethodDictionary>>scanFor: anObject [
 	^ 0  "No match AND no empty slot"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>swap: oneIndex with: otherIndex [
+{ #category : #private }
+MethodDictionary >> swap: oneIndex with: otherIndex [
 
 	| element |
 	element := self basicAt: oneIndex.
@@ -408,11 +326,8 @@ MethodDictionary>>swap: oneIndex with: otherIndex [
 
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MethodDictionary>>valuesDo: aBlock [
+{ #category : #enumeration }
+MethodDictionary >> valuesDo: aBlock [ 
 	tally = 0 ifTrue: [^ self].
 	1 to: self basicSize do:
 		[:i | (array at: i) ifNotNil: [ :value | aBlock value: value]]

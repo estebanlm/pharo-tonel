@@ -5,15 +5,11 @@ My children define different pushing strategies for the valid types or argument 
 Class {
 	#name : #FFIFunctionArgument,
 	#superclass : #Object,
-	#category : #UnifiedFFI,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #'private emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionArgument>>addUnpack: aBuilder fromArity: arity [
+{ #category : #'private emitting code' }
+FFIFunctionArgument >> addUnpack: aBuilder fromArity: arity [
 	aBuilder
 		pushTemp: self rolledPointerTempName;
 		pushLiteral: arity;
@@ -22,36 +18,24 @@ FFIFunctionArgument>>addUnpack: aBuilder fromArity: arity [
 		popTop
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionArgument>>emitArgument: aBuilder context: aContext [
+{ #category : #'emitting code' }
+FFIFunctionArgument >> emitArgument: aBuilder context: aContext [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionArgument>>emitArgument: aBuilder context: aContext objectClass: objectClass instVarName: aName [
+{ #category : #'emitting code' }
+FFIFunctionArgument >> emitArgument: aBuilder context: aContext objectClass: objectClass instVarName: aName [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'private emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionArgument>>emitArgumentVariableAccesingPart: aBuilder context: aContext objectClass: objectClass instVarName: aName [
+{ #category : #'private emitting code' }
+FFIFunctionArgument >> emitArgumentVariableAccesingPart: aBuilder context: aContext objectClass: objectClass instVarName: aName [
 	"Emit access to calling variable (changes depending on the type)."
 	self subclassResponsibility
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionArgument>>emitHandleArityUnpack: aBuilder type: aType context: aContext objectClass: objectClass instVarName: aName [
+{ #category : #'emitting code' }
+FFIFunctionArgument >> emitHandleArityUnpack: aBuilder type: aType context: aContext objectClass: objectClass instVarName: aName [
 	"This a special kind of arity-unpacking, that works with FFIConstantHandleType"
 
 	aType needsArityUnpacking ifFalse: [ ^ self ].
@@ -73,11 +57,8 @@ FFIFunctionArgument>>emitHandleArityUnpack: aBuilder type: aType context: aConte
 	aBuilder popTop.
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionArgument>>emitPointerArityPack: aBuilder context: aContext arity: arity [
+{ #category : #'emitting code' }
+FFIFunctionArgument >> emitPointerArityPack: aBuilder context: aContext arity: arity [
 	"I take into account complex arities (like **, ***). 
 	 I'm called right after argument marshaling which means it is already in top of the stack"
 	^ self 
@@ -87,11 +68,8 @@ FFIFunctionArgument>>emitPointerArityPack: aBuilder context: aContext arity: ari
 		selector: #packToArity:
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionArgument>>emitPointerArityPack: aBuilder context: aContext arity: arity selector: aSelector [
+{ #category : #'emitting code' }
+FFIFunctionArgument >> emitPointerArityPack: aBuilder context: aContext arity: arity selector: aSelector [
 	"I take into account complex arities (like **, ***). 
 	 I'm called right after argument marshaling which means it is already in top of the stack"
 	| ptrName |
@@ -103,29 +81,20 @@ FFIFunctionArgument>>emitPointerArityPack: aBuilder context: aContext arity: ari
 		storeTemp: ptrName
 ]
 
-{
-	#category : #'private emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionArgument>>emitPointerArityUnpack: aBuilder context: aContext arity: arity [
+{ #category : #'private emitting code' }
+FFIFunctionArgument >> emitPointerArityUnpack: aBuilder context: aContext arity: arity [
 	self emitArgument: aBuilder context: aContext.
 	self addUnpack: aBuilder fromArity: arity
 ]
 
-{
-	#category : #'private emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionArgument>>emitPointerArityUnpack: aBuilder context: aContext objectClass: objectClass instVarName: aName arity: arity [
+{ #category : #'private emitting code' }
+FFIFunctionArgument >> emitPointerArityUnpack: aBuilder context: aContext objectClass: objectClass instVarName: aName arity: arity [
 	self emitArgument: aBuilder context: aContext objectClass: objectClass instVarName: aName.
 	self addUnpack: aBuilder fromArity: arity
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionArgument>>emitPointerArityUnpack: aBuilder type: aType context: aContext [
+{ #category : #'emitting code' }
+FFIFunctionArgument >> emitPointerArityUnpack: aBuilder type: aType context: aContext [
 	aType needsArityUnpacking ifFalse: [ ^ self ].
 	self 
 		emitPointerArityUnpack: aBuilder 
@@ -133,11 +102,8 @@ FFIFunctionArgument>>emitPointerArityUnpack: aBuilder type: aType context: aCont
 		arity: aType pointerArity
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionArgument>>emitPointerArityUnpack: aBuilder type: aType context: aContext objectClass: objectClass instVarName: aName [
+{ #category : #'emitting code' }
+FFIFunctionArgument >> emitPointerArityUnpack: aBuilder type: aType context: aContext objectClass: objectClass instVarName: aName [
 	aType needsArityUnpacking ifFalse: [ ^ self ].
 	self 
 		emitPointerArityUnpack: aBuilder 
@@ -147,18 +113,12 @@ FFIFunctionArgument>>emitPointerArityUnpack: aBuilder type: aType context: aCont
 		arity: aType pointerArity
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionArgument>>rolledPointerTempName [
+{ #category : #private }
+FFIFunctionArgument >> rolledPointerTempName [
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionArgument>>rolledPointerTempNameFor: aString [
+{ #category : #private }
+FFIFunctionArgument >> rolledPointerTempNameFor: aString [
 	^ ('_ptr_', aString) asSymbol
 ]

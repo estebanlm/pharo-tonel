@@ -7,26 +7,19 @@ Class {
 	#instVars : [
 		'classFactory'
 	],
-	#category : #Versionner-Tests-Core-DependenciesModel,
-	#timestamp : 'ChristopheDemarey 2/21/2014 14:00'
+	#category : #Versionner-Tests-Core-DependenciesModel
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerToolBoxTest>>testProjectSpecFromRequiredProject [
+{ #category : #tests }
+VersionnerToolBoxTest >> testProjectSpecFromRequiredProject [
 	| spec |
 	
 	spec := VersionnerToolBox projectSpecFromRequiredProject: self versionnerTestXMLWriter.
 	self assert: spec asString equals: self versionnerTestXMLWriterSpec
 ]
 
-{
-	#category : #'test data',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerToolBoxTest>>versionnerTestXMLWriter [
+{ #category : #'test data' }
+VersionnerToolBoxTest >> versionnerTestXMLWriter [
 	^ MTDependantProject new
 		name: 'VersionnerTestXMLWriter';
 		configurationClass: ConfigurationOfVersionnerTestXMLWriter;
@@ -34,11 +27,8 @@ VersionnerToolBoxTest>>versionnerTestXMLWriter [
 		yourself.
 ]
 
-{
-	#category : #'expected results',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerToolBoxTest>>versionnerTestXMLWriterSpec [
+{ #category : #'expected results' }
+VersionnerToolBoxTest >> versionnerTestXMLWriterSpec [
 	^ 'spec 
 	name: ''aProjectAlias'';
 	projectReference: [

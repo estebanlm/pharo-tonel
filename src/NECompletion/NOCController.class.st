@@ -6,22 +6,15 @@ I can resolve the queried sequences and retrieve a list of answers according to 
 Class {
 	#name : #NOCController,
 	#superclass : #NECController,
-	#category : #NECompletion-OCompletion,
-	#timestamp : '<historical>'
+	#category : #NECompletion-OCompletion
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCController>>contextClass [
+{ #category : #private }
+NOCController >> contextClass [
 	^NOCContext
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCController>>menuMorphClass [
+{ #category : #private }
+NOCController >> menuMorphClass [
 	^ NOCMenuMorph
 ]

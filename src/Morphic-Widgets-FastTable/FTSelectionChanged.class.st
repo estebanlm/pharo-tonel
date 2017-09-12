@@ -30,49 +30,33 @@ Class {
 		'oldSelectedRowIndexes',
 		'newSelectedRowIndexes'
 	],
-	#category : #Morphic-Widgets-FastTable-Announcement,
-	#timestamp : 'CyrilFerlicot 11/17/2015 12:40'
+	#category : #Morphic-Widgets-FastTable-Announcement
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSelectionChanged class>>from: oldArray to: newArray [
+{ #category : #'instance creation' }
+FTSelectionChanged class >> from: oldArray to: newArray [ 
 	^ self new 
 		oldSelectedRowIndexes: oldArray;
 		newSelectedRowIndexes: newArray;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSelectionChanged>>newSelectedRowIndexes [
+{ #category : #accessing }
+FTSelectionChanged >> newSelectedRowIndexes [
 	^ newSelectedRowIndexes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSelectionChanged>>newSelectedRowIndexes: anObject [
+{ #category : #accessing }
+FTSelectionChanged >> newSelectedRowIndexes: anObject [
 	newSelectedRowIndexes := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSelectionChanged>>oldSelectedRowIndexes [
+{ #category : #accessing }
+FTSelectionChanged >> oldSelectedRowIndexes [
 	^ oldSelectedRowIndexes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSelectionChanged>>oldSelectedRowIndexes: anObject [
+{ #category : #accessing }
+FTSelectionChanged >> oldSelectedRowIndexes: anObject [
 	oldSelectedRowIndexes := anObject
 ]

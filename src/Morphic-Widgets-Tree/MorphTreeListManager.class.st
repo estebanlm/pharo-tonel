@@ -25,15 +25,11 @@ Class {
 		'removeOnlyLastSelected',
 		'doubleClickSelector'
 	],
-	#category : #Morphic-Widgets-Tree,
-	#timestamp : 'TorstenBergmann 9/5/2014 15:30'
+	#category : #Morphic-Widgets-Tree
 }
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>addAllToSelection: aCollection [
+{ #category : #'selection change' }
+MorphTreeListManager >> addAllToSelection: aCollection [
 | selHolder |
 	self searchedElement: nil.
 	aCollection do: [:m | m 
@@ -46,11 +42,8 @@ MorphTreeListManager>>addAllToSelection: aCollection [
 
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>addToSelection: aMorph [
+{ #category : #'selection change' }
+MorphTreeListManager >> addToSelection: aMorph [
 	aMorph selected ifTrue: [^false].
 	self searchedElement: nil.
 	aMorph highlight.
@@ -58,11 +51,8 @@ MorphTreeListManager>>addToSelection: aMorph [
 	^ true
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>addToSelection: aMorph clickedTheCheckBox: checkBox [
+{ #category : #'selection change' }
+MorphTreeListManager >> addToSelection: aMorph clickedTheCheckBox: checkBox [
 	aMorph selected ifTrue: [^false].
 	self searchedElement: nil.
 	checkBox ifFalse: [ aMorph highlight ].
@@ -70,19 +60,13 @@ MorphTreeListManager>>addToSelection: aMorph clickedTheCheckBox: checkBox [
 	^ true
 ]
 
-{
-	#category : #'client list accessing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>allNodeMorphs [
+{ #category : #'client list accessing' }
+MorphTreeListManager >> allNodeMorphs [
 	^ client allNodeMorphs
 ]
 
-{
-	#category : #'keyboard managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>arrowEvent: event key: aChar  [
+{ #category : #'keyboard managing' }
+MorphTreeListManager >> arrowEvent: event key: aChar [ 
 	"Handle a keyboard navigation character. Answer true if handled, false
 	if not."
 	| newIndex targetMorph targetIndex multi |
@@ -148,11 +132,8 @@ MorphTreeListManager>>arrowEvent: event key: aChar  [
 	^ false
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>autoAction [
+{ #category : #'selection change' }
+MorphTreeListManager >> autoAction [
 	^ firstClickedMorph
 		ifNotNil: [
 			firstClickedMorph selected
@@ -161,29 +142,20 @@ MorphTreeListManager>>autoAction [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>autoDeselection [
+{ #category : #accessing }
+MorphTreeListManager >> autoDeselection [
 	^ autoDeselection
 		ifNil: [autoDeselection := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>autoDeselection: aBoolean [
+{ #category : #accessing }
+MorphTreeListManager >> autoDeselection: aBoolean [
 
 	autoDeselection := aBoolean
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>autoMultiSelect: aTargetMorph [
+{ #category : #'selection change' }
+MorphTreeListManager >> autoMultiSelect: aTargetMorph [
 	autoTargetMorph := aTargetMorph.
 	self autoAction
 		ifNotNil: [:act |
@@ -198,28 +170,19 @@ MorphTreeListManager>>autoMultiSelect: aTargetMorph [
 			self scrollToShow: aTargetMorph bounds]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>autoMultiSelection [
+{ #category : #accessing }
+MorphTreeListManager >> autoMultiSelection [
 	^ autoMultiSelection ifNil: [autoMultiSelection := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>autoMultiSelection: aBoolean [
+{ #category : #accessing }
+MorphTreeListManager >> autoMultiSelection: aBoolean [
 	autoMultiSelection := aBoolean.
 	aBoolean ifTrue: [self multipleSelection: true]
 ]
 
-{
-	#category : #'keyboard managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>basicKeyPressed: aChar [
+{ #category : #'keyboard managing' }
+MorphTreeListManager >> basicKeyPressed: aChar [
     | nextSelection oldSelection milliSeconds slowKeyStroke nextSelectionNodeMorph |
    
     (aChar == Character space and: [ lastClickedMorph notNil ])
@@ -275,11 +238,8 @@ MorphTreeListManager>>basicKeyPressed: aChar [
     self selectionChanged
 ]
 
-{
-	#category : #'mouse managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>clicked: event inTheCheckboxOf: aTargetMorph [
+{ #category : #'mouse managing' }
+MorphTreeListManager >> clicked: event inTheCheckboxOf: aTargetMorph [
 	| position |
 
 	aTargetMorph ifNil: [ ^ false ].
@@ -287,45 +247,30 @@ MorphTreeListManager>>clicked: event inTheCheckboxOf: aTargetMorph [
 	^ self isCheckList and: [ (aTargetMorph checkClickableZone translateBy: 2 @ 0) containsPoint: position ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>client: aMorphList [
+{ #category : #accessing }
+MorphTreeListManager >> client: aMorphList [
 	client := aMorphList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>columnDropUnabled [
+{ #category : #accessing }
+MorphTreeListManager >> columnDropUnabled [
 
 	^ columnDropUnabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>columnDropUnabled: aBoolean [
+{ #category : #accessing }
+MorphTreeListManager >> columnDropUnabled: aBoolean [
 
 	columnDropUnabled := aBoolean
 ]
 
-{
-	#category : #'client list accessing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>commandOrCrontrolKeyPressed: anEvent [
+{ #category : #'client list accessing' }
+MorphTreeListManager >> commandOrCrontrolKeyPressed: anEvent [
 	^ client commandOrCrontrolKeyPressed: anEvent
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>deselectAll [
+{ #category : #'selection change' }
+MorphTreeListManager >> deselectAll [
 	| selHolder |
 	self allNodeMorphs isEmpty
 		ifTrue: [^ self].
@@ -337,68 +282,47 @@ MorphTreeListManager>>deselectAll [
 
 ]
 
-{
-	#category : #'mouse managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>doubleClick: anEvent on: aMorph [
+{ #category : #'mouse managing' }
+MorphTreeListManager >> doubleClick: anEvent on: aMorph [
 	self doubleClickSelector  ifNil: [^false].
 	client model perform: self doubleClickSelector withEnoughArguments: { anEvent. aMorph }.
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>doubleClickSelector [
+{ #category : #accessing }
+MorphTreeListManager >> doubleClickSelector [
 
 	^ doubleClickSelector 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>doubleClickSelector: aSelector [
+{ #category : #accessing }
+MorphTreeListManager >> doubleClickSelector: aSelector [
 
 	doubleClickSelector := aSelector
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>emptySelection  [
+{ #category : #'selection change' }
+MorphTreeListManager >> emptySelection [ 
 	self selectedMorphList do: [:n | n unhighlight; setSelectedSilently: false].
 	self selectedMorphList removeAll.
 	self selectionChanged
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>firstClickedMorph [
+{ #category : #accessing }
+MorphTreeListManager >> firstClickedMorph [
 
 	^ firstClickedMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>firstClickedMorph: aNodeMorph [
+{ #category : #accessing }
+MorphTreeListManager >> firstClickedMorph: aNodeMorph [
 
 	firstClickedMorph := aNodeMorph
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>from: aNodeMorph to: anotherNodeMorph do: action [
+{ #category : #'selection change' }
+MorphTreeListManager >> from: aNodeMorph to: anotherNodeMorph do: action [
 	| idx1 idx2 |
 	idx1 := ((self getSelectionIndexOf: aNodeMorph) min: self allNodeMorphs size) max: 1.
 	idx2 := ((self getSelectionIndexOf: anotherNodeMorph) min: self allNodeMorphs size) max: 1.
@@ -406,19 +330,13 @@ MorphTreeListManager>>from: aNodeMorph to: anotherNodeMorph do: action [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>getSelectionIndexOf: aMorph [
+{ #category : #accessing }
+MorphTreeListManager >> getSelectionIndexOf: aMorph [
 	^ aMorph ifNil: [0] ifNotNil: [aMorph index]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>initialize [
+{ #category : #initialization }
+MorphTreeListManager >> initialize [
 	super initialize.
 	lastKeystrokeTime := 0.
 	lastKeystrokes := ''.
@@ -426,43 +344,28 @@ MorphTreeListManager>>initialize [
 	removeOnlyLastSelected := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>isCheckList [
+{ #category : #accessing }
+MorphTreeListManager >> isCheckList [
 	^ isCheckList ifNil: [isCheckList := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>isCheckList: aBoolean [
+{ #category : #accessing }
+MorphTreeListManager >> isCheckList: aBoolean [
 	isCheckList := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>isMultiple	 [
+{ #category : #accessing }
+MorphTreeListManager >> isMultiple [	
 	^ multipleSelection ifNil: [ multipleSelection := false ]
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>isSelectionUpdateFromView [
+{ #category : #'selection change' }
+MorphTreeListManager >> isSelectionUpdateFromView [
 	^ isSelectionUpdateFromView ifNil: [isSelectionUpdateFromView := false] 
 ]
 
-{
-	#category : #'keyboard managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>keyStroke: anEvent [
+{ #category : #'keyboard managing' }
+MorphTreeListManager >> keyStroke: anEvent [
 	| char args |
 
 	char := anEvent keyValue asCharacter. 
@@ -499,111 +402,75 @@ MorphTreeListManager>>keyStroke: anEvent [
 						with: self]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>keystrokeActionSelector [
+{ #category : #accessing }
+MorphTreeListManager >> keystrokeActionSelector [
 
 	^ keystrokeActionSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>keystrokeActionSelector: aSelectorOrBlock [
+{ #category : #accessing }
+MorphTreeListManager >> keystrokeActionSelector: aSelectorOrBlock [
 
 	keystrokeActionSelector := aSelectorOrBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>lastClickedMorph [
+{ #category : #accessing }
+MorphTreeListManager >> lastClickedMorph [
 
 	^ lastClickedMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>lastClickedMorph: aNodeMorph [
+{ #category : #accessing }
+MorphTreeListManager >> lastClickedMorph: aNodeMorph [
 
 	lastClickedMorph ifNotNil: [ lastClickedMorph complexContents lastClicked: false ].
 	lastClickedMorph := aNodeMorph.
 	aNodeMorph ifNotNil: [ aNodeMorph complexContents lastClicked: true ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>lastKeystrokeTime [
+{ #category : #accessing }
+MorphTreeListManager >> lastKeystrokeTime [
 
 	^ lastKeystrokeTime
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>lastKeystrokeTime: anObject [
+{ #category : #accessing }
+MorphTreeListManager >> lastKeystrokeTime: anObject [
 
 	lastKeystrokeTime := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>lastKeystrokes [
+{ #category : #accessing }
+MorphTreeListManager >> lastKeystrokes [
 
 	^ lastKeystrokes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>lastKeystrokes: anObject [
+{ #category : #accessing }
+MorphTreeListManager >> lastKeystrokes: anObject [
 
 	lastKeystrokes := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>lastSelection [
+{ #category : #accessing }
+MorphTreeListManager >> lastSelection [
 
 	^ lastSelection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>lastSelection: anObject [
+{ #category : #accessing }
+MorphTreeListManager >> lastSelection: anObject [
 
 	lastSelection := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>listModel [
+{ #category : #accessing }
+MorphTreeListManager >> listModel [
 	^ client model
 ]
 
-{
-	#category : #'mouse managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>mouseDown: event on: aTargetMorph [
+{ #category : #'mouse managing' }
+MorphTreeListManager >> mouseDown: event on: aTargetMorph [
 	"Changed to take keybaord focus."
 	| clickedTheCheckbox |
 	
@@ -638,11 +505,8 @@ MorphTreeListManager>>mouseDown: event on: aTargetMorph [
 	aTargetMorph mouseDown: event
 ]
 
-{
-	#category : #'mouse managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>mouseMove: evt on: aTargetMorph [
+{ #category : #'mouse managing' }
+MorphTreeListManager >> mouseMove: evt on: aTargetMorph [
 
 	(aTargetMorph isNil or: [aTargetMorph highlightedForMouseDown not])
 		ifTrue: [self allNodeMorphs do: [:m |
@@ -654,11 +518,8 @@ MorphTreeListManager>>mouseMove: evt on: aTargetMorph [
 						self selectionChanged]]]
 ]
 
-{
-	#category : #'mouse managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>mouseUp: event on: aNodeMorph  [
+{ #category : #'mouse managing' }
+MorphTreeListManager >> mouseUp: event on: aNodeMorph [ 
 	| path cmdOrCtrl clickedTheCheckbox |
 	"No change if model is locked" 
 	
@@ -683,29 +544,20 @@ MorphTreeListManager>>mouseUp: event on: aNodeMorph  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>multipleSelection [
+{ #category : #accessing }
+MorphTreeListManager >> multipleSelection [
 
 	^ multipleSelection ifNil: [multipleSelection := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>multipleSelection: anObject [
+{ #category : #accessing }
+MorphTreeListManager >> multipleSelection: anObject [
 
 	multipleSelection := anObject
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>newSelectionHolderWithNodePath: aNodePath  [
+{ #category : #'selection change' }
+MorphTreeListManager >> newSelectionHolderWithNodePath: aNodePath [ 
 	^ self isMultiple
 		ifTrue: [MorphTreeMorphMultipleSelection new
 				selectedNodePathList: (self selectedMorphList
@@ -713,11 +565,8 @@ MorphTreeListManager>>newSelectionHolderWithNodePath: aNodePath  [
 		ifFalse: [MorphTreeMorphSingleSelection new selectedNodePath: aNodePath]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>nodeMorphsWithAllNodeItems: aNodeItemList [
+{ #category : #accessing }
+MorphTreeListManager >> nodeMorphsWithAllNodeItems: aNodeItemList [
 	| result |
 
 	result := OrderedCollection new.
@@ -732,11 +581,8 @@ MorphTreeListManager>>nodeMorphsWithAllNodeItems: aNodeItemList [
 	^ result flattened
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>noteRemovalOfAll: aMorphList [
+{ #category : #'selection change' }
+MorphTreeListManager >> noteRemovalOfAll: aMorphList [
 	"When noting the removal of items, do not change their model status: the model will be in charge of it (i.e. either updates from the model or expand/collapse things)."
 
 	aMorphList
@@ -746,37 +592,25 @@ MorphTreeListManager>>noteRemovalOfAll: aMorphList [
 				ifTrue: [ lastClickedMorph := nil ] ]
 ]
 
-{
-	#category : #'client list accessing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>numSelectionsInView [
+{ #category : #'client list accessing' }
+MorphTreeListManager >> numSelectionsInView [
 	^ client numSelectionsInView
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>potentialDropMorph [
+{ #category : #accessing }
+MorphTreeListManager >> potentialDropMorph [
 
 	^ potentialDropMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>potentialDropMorph: anObject [
+{ #category : #accessing }
+MorphTreeListManager >> potentialDropMorph: anObject [
 
 	potentialDropMorph := anObject
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>removeFromSelection: aMorph [
+{ #category : #'selection change' }
+MorphTreeListManager >> removeFromSelection: aMorph [
 	aMorph selected ifFalse: [^false].
 	aMorph selected: false.
 	aMorph unhighlight.
@@ -787,46 +621,31 @@ MorphTreeListManager>>removeFromSelection: aMorph [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>removeOnlyLastSelected: aBoolean [
+{ #category : #accessing }
+MorphTreeListManager >> removeOnlyLastSelected: aBoolean [
 
 	removeOnlyLastSelected := aBoolean
 ]
 
-{
-	#category : #'client list accessing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>scrollToShow: aRectangle [
+{ #category : #'client list accessing' }
+MorphTreeListManager >> scrollToShow: aRectangle [
 	client scrollToShow: aRectangle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>searchedElement [
+{ #category : #accessing }
+MorphTreeListManager >> searchedElement [
 
 	^ searchedElement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>searchedElement: anObject [
+{ #category : #accessing }
+MorphTreeListManager >> searchedElement: anObject [
 
 	searchedElement := anObject
 ]
 
-{
-	#category : #'selection accessing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>secondSelection: anItem [
+{ #category : #'selection accessing' }
+MorphTreeListManager >> secondSelection: anItem [
 
  	| nodeMorph |
 	nodeMorph := self allNodeMorphs detect: [ :e | e complexContents item == anItem ].
@@ -834,11 +653,8 @@ MorphTreeListManager>>secondSelection: anItem [
 	client changed.
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>selectAll [
+{ #category : #'selection change' }
+MorphTreeListManager >> selectAll [
 	self allNodeMorphs isEmpty
 		ifTrue: [^ self].
 	self isMultiple
@@ -846,11 +662,8 @@ MorphTreeListManager>>selectAll [
 	self addAllToSelection: self allNodeMorphs
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>selectMoreAtBottom [
+{ #category : #'selection change' }
+MorphTreeListManager >> selectMoreAtBottom [
 	| last |
 	autoTargetMorph ifNil: [^self].
 	last := autoTargetMorph index.
@@ -860,11 +673,8 @@ MorphTreeListManager>>selectMoreAtBottom [
 			self selectionChanged]
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>selectMoreAtTop [
+{ #category : #'selection change' }
+MorphTreeListManager >> selectMoreAtTop [
 	| first |
 	autoTargetMorph ifNil: [^self].
 	first := autoTargetMorph index.
@@ -874,11 +684,8 @@ MorphTreeListManager>>selectMoreAtTop [
 			self selectionChanged]
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>selectMorph: aNodeMorph multiple: withMultipleSelection  [
+{ #category : #'selection change' }
+MorphTreeListManager >> selectMorph: aNodeMorph multiple: withMultipleSelection [ 
 	| path mult |
 	self lastClickedMorph: aNodeMorph.
 	aNodeMorph isNil
@@ -907,11 +714,8 @@ MorphTreeListManager>>selectMorph: aNodeMorph multiple: withMultipleSelection  [
 	^ path
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>selectMorph: aNodeMorph multiple: withMultipleSelection clickedTheCheckBox: checkBox [
+{ #category : #'selection change' }
+MorphTreeListManager >> selectMorph: aNodeMorph multiple: withMultipleSelection clickedTheCheckBox: checkBox [
 	| path mult |
 	
 	checkBox ifFalse: [ self lastClickedMorph: aNodeMorph ].
@@ -941,19 +745,13 @@ MorphTreeListManager>>selectMorph: aNodeMorph multiple: withMultipleSelection cl
 	^ path
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>selectOnlyLastHighlighted [
+{ #category : #accessing }
+MorphTreeListManager >> selectOnlyLastHighlighted [
 	^ removeOnlyLastSelected
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>selectSearchedElement [
+{ #category : #private }
+MorphTreeListManager >> selectSearchedElement [
 
 	self searchedElement 
 		ifNotNil: [ :selectedMorph | 
@@ -961,11 +759,8 @@ MorphTreeListManager>>selectSearchedElement [
 			self searchedElement: nil ]
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>selectedItems: aNodeItemCollection [
+{ #category : #'selection change' }
+MorphTreeListManager >> selectedItems: aNodeItemCollection [
 
 	self listModel okToDiscardEdits ifFalse: [^ self].
 	self emptySelection.
@@ -977,39 +772,27 @@ MorphTreeListManager>>selectedItems: aNodeItemCollection [
 						ifNotEmpty: [self selectedMorphList last]]
 ]
 
-{
-	#category : #'selection accessing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>selectedMorph [
+{ #category : #'selection accessing' }
+MorphTreeListManager >> selectedMorph [
 	^ self selectedMorphList
 		ifNotEmpty: [ :l | l last]
  		ifEmpty: []
 
 ]
 
-{
-	#category : #'selection accessing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>selectedMorphList [
+{ #category : #'selection accessing' }
+MorphTreeListManager >> selectedMorphList [
 	^ selectedMorphList ifNil: [selectedMorphList := LinkedList new]
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>selectionChanged [
+{ #category : #'selection change' }
+MorphTreeListManager >> selectionChanged [
 	client selectionChanged
 
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>selectionUpdateFromViewWhile: aBlock [
+{ #category : #'selection change' }
+MorphTreeListManager >> selectionUpdateFromViewWhile: aBlock [
 	| prev |
 	prev := self isSelectionUpdateFromView.
 	isSelectionUpdateFromView := true.
@@ -1017,11 +800,8 @@ MorphTreeListManager>>selectionUpdateFromViewWhile: aBlock [
 
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>setSelectedMorph: aMorph [
+{ #category : #'selection change' }
+MorphTreeListManager >> setSelectedMorph: aMorph [
 	| path |
 	path := aMorph ifNotNil: [ aMorph path collect: [ :m | m complexContents ] ].
 	self lastClickedMorph: aMorph.
@@ -1032,11 +812,8 @@ MorphTreeListManager>>setSelectedMorph: aMorph [
 			self listModel selection: (self newSelectionHolderWithNodePath: path) ]
 ]
 
-{
-	#category : #'keyboard managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>setSelectionIndexFromKeyboard: index multiSelection: multiSelect event: anEvent [
+{ #category : #'keyboard managing' }
+MorphTreeListManager >> setSelectionIndexFromKeyboard: index multiSelection: multiSelect event: anEvent [
 	"Called internally to select the index-th item."
 	| targetMorph |
 	index ifNil: [^ self].
@@ -1061,11 +838,8 @@ MorphTreeListManager>>setSelectionIndexFromKeyboard: index multiSelection: multi
 
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>shiftSelectMorph: aNodeMorph  [
+{ #category : #'selection change' }
+MorphTreeListManager >> shiftSelectMorph: aNodeMorph [ 
 	| m |
 	m := aNodeMorph ifNil: [self allNodeMorphs last].
 	self emptySelection.
@@ -1078,11 +852,8 @@ MorphTreeListManager>>shiftSelectMorph: aNodeMorph  [
 	^ m path collect: [:p | p complexContents]
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>silentlySetSelectedMorph: aMorph [
+{ #category : #'selection change' }
+MorphTreeListManager >> silentlySetSelectedMorph: aMorph [
 	| path |
 	
 	path := aMorph ifNotNil: [ aMorph path collect: [ :m | m complexContents ] ].
@@ -1094,22 +865,16 @@ MorphTreeListManager>>silentlySetSelectedMorph: aMorph [
 			self listModel selection: (self newSelectionHolderWithNodePath: path) ]
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>toggleExpandedState: aMorph [
+{ #category : #'selection change' }
+MorphTreeListManager >> toggleExpandedState: aMorph [
 	aMorph toggleExpandedState.
 	client innerWidgetChanged
 
 
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>updateLastClickedMorph [
+{ #category : #'selection change' }
+MorphTreeListManager >> updateLastClickedMorph [
 	"When the contents have been updated, ensure that lastClickedMorph refer to a correct morph."
 
 	lastClickedMorph
@@ -1121,11 +886,8 @@ MorphTreeListManager>>updateLastClickedMorph [
 						ifTrue: [ lastClickedMorph := each ] ] ]
 ]
 
-{
-	#category : #'selection change',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeListManager>>updateSelectionFromModel [
+{ #category : #'selection change' }
+MorphTreeListManager >> updateSelectionFromModel [
 	(self listModel selection) 
 		ifNotNil: [:selHolder | 	
 				self isSelectionUpdateFromView

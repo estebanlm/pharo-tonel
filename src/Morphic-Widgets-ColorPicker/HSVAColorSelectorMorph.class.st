@@ -8,87 +8,62 @@ Class {
 		'hsvMorph',
 		'aMorph'
 	],
-	#category : #Morphic-Widgets-ColorPicker,
-	#timestamp : 'gvc 5/18/2007 12:55'
+	#category : #Morphic-Widgets-ColorPicker
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVAColorSelectorMorph>>aMorph [
+{ #category : #accessing }
+HSVAColorSelectorMorph >> aMorph [
 	"Answer the value of aMorph"
 
 	^ aMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVAColorSelectorMorph>>aMorph: anObject [
+{ #category : #accessing }
+HSVAColorSelectorMorph >> aMorph: anObject [
 	"Set the value of aMorph"
 
 	aMorph := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVAColorSelectorMorph>>alphaSelected: aFloat [
+{ #category : #accessing }
+HSVAColorSelectorMorph >> alphaSelected: aFloat [
 	"The alpha has changed."
 
 	self triggerSelectedColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVAColorSelectorMorph>>colorSelected: aColor [
+{ #category : #accessing }
+HSVAColorSelectorMorph >> colorSelected: aColor [
 	"A color has been selected. Set the base color for the alpha channel."
 
 	self aMorph color: aColor.
 	self triggerSelectedColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVAColorSelectorMorph>>defaultColor [
+{ #category : #accessing }
+HSVAColorSelectorMorph >> defaultColor [
 	"Answer the default color/fill style for the receiver."
 	
 	^Color transparent
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVAColorSelectorMorph>>hsvMorph [
+{ #category : #accessing }
+HSVAColorSelectorMorph >> hsvMorph [
 	"Answer the value of hsvMorph"
 
 	^ hsvMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVAColorSelectorMorph>>hsvMorph: anObject [
+{ #category : #accessing }
+HSVAColorSelectorMorph >> hsvMorph: anObject [
 	"Set the value of hsvMorph"
 
 	hsvMorph := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVAColorSelectorMorph>>initialize [
+{ #category : #initialization }
+HSVAColorSelectorMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -103,11 +78,8 @@ HSVAColorSelectorMorph>>initialize [
 	self aMorph color: self hsvMorph selectedColor
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVAColorSelectorMorph>>newAColorMorph [
+{ #category : #operations }
+HSVAColorSelectorMorph >> newAColorMorph [
 	"Answer a new alpha color morph."
 
 	^AColorSelectorMorph new
@@ -118,11 +90,8 @@ HSVAColorSelectorMorph>>newAColorMorph [
 		extent: 24@24
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVAColorSelectorMorph>>newHSVColorMorph [
+{ #category : #operations }
+HSVAColorSelectorMorph >> newHSVColorMorph [
 	"Answer a new hue/saturation/volume color morph."
 
 	^HSVColorSelectorMorph new
@@ -131,32 +100,23 @@ HSVAColorSelectorMorph>>newHSVColorMorph [
 		when: #colorSelected send: #colorSelected: to: self
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVAColorSelectorMorph>>selectedColor [
+{ #category : #operations }
+HSVAColorSelectorMorph >> selectedColor [
 	"Answer the selected color."
 
 	^self hsvMorph selectedColor alpha: self aMorph value
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVAColorSelectorMorph>>selectedColor: aColor [
+{ #category : #operations }
+HSVAColorSelectorMorph >> selectedColor: aColor [
 	"Set the hue and sv components."
 
 	self aMorph value: aColor alpha.
 	self hsvMorph selectedColor: aColor asNontranslucentColor
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVAColorSelectorMorph>>triggerSelectedColor [
+{ #category : #operations }
+HSVAColorSelectorMorph >> triggerSelectedColor [
 	"Trigger the event for the selected colour"
 
 	self triggerEvent: #selectedColor with: self selectedColor

@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #MetacelloGroupSpec,
 	#superclass : #MetacelloAbstractPackageSpec,
-	#category : #Metacello-Core-Specs,
-	#timestamp : ''
+	#category : #Metacello-Core-Specs
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGroupSpec>>answers: aListOfPairs [
+{ #category : #accessing }
+MetacelloGroupSpec >> answers: aListOfPairs [
 
 	self shouldNotImplement
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGroupSpec>>configMethodCascadeOn: aStream member: aMember last: lastCascade indent: indent [
+{ #category : #printing }
+MetacelloGroupSpec >> configMethodCascadeOn: aStream member: aMember last: lastCascade indent: indent [
 
 	aMember methodUpdateSelector == #remove:
 		ifTrue: [ aStream nextPutAll: 'removeGroup: ', self name printString. ]
@@ -37,11 +27,8 @@ MetacelloGroupSpec>>configMethodCascadeOn: aStream member: aMember last: lastCas
 		ifFalse: [ aStream nextPut: $;; cr ].
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGroupSpec>>configMethodOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloGroupSpec >> configMethodOn: aStream indent: indent [
 
 	aStream 
 		tab: indent;
@@ -52,45 +39,30 @@ MetacelloGroupSpec>>configMethodOn: aStream indent: indent [
 	aStream nextPut: $.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGroupSpec>>includeSpecNamesForPackageOrdering: aVersionSpec [
+{ #category : #private }
+MetacelloGroupSpec >> includeSpecNamesForPackageOrdering: aVersionSpec [
   ^ #()
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGroupSpec>>projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
+{ #category : #visiting }
+MetacelloGroupSpec >> projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
 
 	groupBlock value: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGroupSpec>>requiredSpecsForPackageOrdering: aVersionSpec [
+{ #category : #private }
+MetacelloGroupSpec >> requiredSpecsForPackageOrdering: aVersionSpec [
   ^ #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGroupSpec>>requires: aCollection [
+{ #category : #accessing }
+MetacelloGroupSpec >> requires: aCollection [
 
 	self shouldNotImplement
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGroupSpec>>requiresSpecsForPackageOrdering: aVersionSpec [
+{ #category : #private }
+MetacelloGroupSpec >> requiresSpecsForPackageOrdering: aVersionSpec [
   "expand the names in the group to a package or project"
 
   | packageOrProjectSpecs |
@@ -108,11 +80,8 @@ MetacelloGroupSpec>>requiresSpecsForPackageOrdering: aVersionSpec [
   ^ packageOrProjectSpecs
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGroupSpec>>resolveSpecsForPackageOrdering: aVersionSpec [
+{ #category : #private }
+MetacelloGroupSpec >> resolveSpecsForPackageOrdering: aVersionSpec [
   "expand the names in the group to a package or project"
 
   | packageOrProjectSpecs |

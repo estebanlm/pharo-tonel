@@ -31,15 +31,11 @@ Class {
 		'dragThreshold',
 		'localStamp'
 	],
-	#category : #Morphic-Base-ProgressBar,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-ProgressBar
 }
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MouseClickState>>checkTimeoutFrom: aHand [
+{ #category : #'event handling' }
+MouseClickState >> checkTimeoutFrom: aHand [
 	
 	localStamp ifNil: [ localStamp := Time millisecondClockValue. ^ self ].
 	
@@ -60,20 +56,14 @@ MouseClickState>>checkTimeoutFrom: aHand [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MouseClickState>>click [
+{ #category : #'event handling' }
+MouseClickState >> click [
 
 	clickSelector ifNotNil: [clickClient perform: clickSelector with: firstClickDown]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MouseClickState>>client: aMorph click: aClickSelector dblClick: aDblClickSelector dblClickTime: timeOut dblClickTimeout: aDblClickTimeoutSelector drag: aDragSelector threshold: aNumber event: firstClickEvent [
+{ #category : #initialize }
+MouseClickState >> client: aMorph click: aClickSelector dblClick: aDblClickSelector dblClickTime: timeOut dblClickTimeout: aDblClickTimeoutSelector drag: aDragSelector threshold: aNumber event: firstClickEvent [
 	clickClient := aMorph.
 	clickSelector := aClickSelector.
 	dblClickSelector := aDblClickSelector.
@@ -87,39 +77,27 @@ MouseClickState>>client: aMorph click: aClickSelector dblClick: aDblClickSelecto
 	localStamp := Time millisecondClockValue. 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MouseClickState>>doubleClick [
+{ #category : #'event handling' }
+MouseClickState >> doubleClick [
 
 	dblClickSelector ifNotNil: [clickClient perform: dblClickSelector with: firstClickDown]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MouseClickState>>doubleClickTimeout [
+{ #category : #'event handling' }
+MouseClickState >> doubleClickTimeout [
 
 	dblClickTimeoutSelector ifNotNil: [
 		clickClient perform: dblClickTimeoutSelector with: firstClickDown]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MouseClickState>>drag: event [
+{ #category : #'event handling' }
+MouseClickState >> drag: event [
 
 	dragSelector ifNotNil: [clickClient perform: dragSelector with: event]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MouseClickState>>handleEvent: evt from: aHand [
+{ #category : #'event handling' }
+MouseClickState >> handleEvent: evt from: aHand [
 	"Process the given mouse event to detect a click, double-click, or drag.
 	Return true if the event should be processed by the sender, false if it shouldn't.
 	NOTE: This method heavily relies on getting *all* mouse button events."
@@ -202,11 +180,8 @@ MouseClickState>>handleEvent: evt from: aHand [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MouseClickState>>printOn: aStream [
+{ #category : #printing }
+MouseClickState >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut: $[; print: clickState; nextPut: $]
 

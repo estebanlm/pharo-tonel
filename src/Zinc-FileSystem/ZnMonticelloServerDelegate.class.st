@@ -16,31 +16,21 @@ Class {
 	#instVars : [
 		'directory'
 	],
-	#category : #Zinc-FileSystem,
-	#timestamp : '<historical>'
+	#category : #Zinc-FileSystem
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ZnMonticelloServerDelegate>>directory [
+{ #category : #accessing }
+ZnMonticelloServerDelegate >> directory [
 	^ directory 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ZnMonticelloServerDelegate>>directory: object [
+{ #category : #accessing }
+ZnMonticelloServerDelegate >> directory: object [
 	directory := object asFileReference
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ZnMonticelloServerDelegate>>handleGetMczEntry: request [
+{ #category : #private }
+ZnMonticelloServerDelegate >> handleGetMczEntry: request [
 	| name file stream entity |
 	name := request uri firstPathSegment.
 	file := self directory / name.
@@ -54,19 +44,13 @@ ZnMonticelloServerDelegate>>handleGetMczEntry: request [
 		ifFalse: [ ZnResponse notFound: request uri ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ZnMonticelloServerDelegate>>handleListMczEntries: request [
+{ #category : #private }
+ZnMonticelloServerDelegate >> handleListMczEntries: request [
 	^ ZnResponse ok: (ZnEntity html: self repositoryListing)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ZnMonticelloServerDelegate>>handlePutMczEntry: request [
+{ #category : #private }
+ZnMonticelloServerDelegate >> handlePutMczEntry: request [
 	| name file |
 	name := request uri firstPathSegment.
 	file := self directory / name.
@@ -79,11 +63,8 @@ ZnMonticelloServerDelegate>>handlePutMczEntry: request [
 		ifFalse: [ ZnResponse badRequest: request ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ZnMonticelloServerDelegate>>handleRequest: request [
+{ #category : #public }
+ZnMonticelloServerDelegate >> handleRequest: request [
 	(request method = #GET)
 		ifTrue: [
 			^ request uri isSlash
@@ -94,31 +75,22 @@ ZnMonticelloServerDelegate>>handleRequest: request [
 		ifFalse: [ ZnResponse badRequest: request ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ZnMonticelloServerDelegate>>isValidMczName: string [
+{ #category : #private }
+ZnMonticelloServerDelegate >> isValidMczName: string [
 	^ string isString 
 		and: [ string isEmpty not
 			and: [ (string endsWith: '.mcz')
 				and: [ (string includes: $/) not ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ZnMonticelloServerDelegate>>mczEntries [
+{ #category : #accessing }
+ZnMonticelloServerDelegate >> mczEntries [
 	^ (self directory fileNames select: [ :each | each endsWith: '.mcz' ])
 		asSortedCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ZnMonticelloServerDelegate>>repositoryListing [
+{ #category : #private }
+ZnMonticelloServerDelegate >> repositoryListing [
 	^ ZnHtmlOutputStream streamContents: [ :html |
 		html page: 'Monticello Repository' do: [
 			html tag: #ul do: [ 
@@ -130,11 +102,8 @@ ZnMonticelloServerDelegate>>repositoryListing [
 							with: each ] ] ] ] ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ZnMonticelloServerDelegate>>value: request [
+{ #category : #public }
+ZnMonticelloServerDelegate >> value: request [
 	"I implement the generic #value: message as equivalent to #handleRequest:"
 	
 	^ self handleRequest: request

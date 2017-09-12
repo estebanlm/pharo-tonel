@@ -4,80 +4,55 @@ I represent a change in the method dictionary of a class or a trait.
 Class {
 	#name : #EpMethodChange,
 	#superclass : #EpCodeChange,
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 14:48'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodChange>>behaviorAffectedName [
+{ #category : #accessing }
+EpMethodChange >> behaviorAffectedName [
 
 	^ self methodAffected className
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodChange>>doesOverride: aCodeChange [
+{ #category : #testing }
+EpMethodChange >> doesOverride: aCodeChange [
 
 	^ aCodeChange isEpMethodChange and: [
 		aCodeChange behaviorAffectedName = self behaviorAffectedName and: [ 
 		aCodeChange methodAffectedSelector = self methodAffectedSelector ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodChange>>isEpMethodChange [
+{ #category : #testing }
+EpMethodChange >> isEpMethodChange [
 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodChange>>methodAffected [
+{ #category : #accessing }
+EpMethodChange >> methodAffected [
 	
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodChange>>methodAffectedProtocol [
+{ #category : #accessing }
+EpMethodChange >> methodAffectedProtocol [
 
 	^ self methodAffected protocol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodChange>>methodAffectedSelector [
+{ #category : #accessing }
+EpMethodChange >> methodAffectedSelector [
 
 	^ self methodAffected selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodChange>>methodAffectedSourceCode [
+{ #category : #accessing }
+EpMethodChange >> methodAffectedSourceCode [
 
 	^ self methodAffected sourceCode
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodChange>>printOn: aStream [
+{ #category : #printing }
+EpMethodChange >> printOn: aStream [
 
 	super printOn: aStream.
 

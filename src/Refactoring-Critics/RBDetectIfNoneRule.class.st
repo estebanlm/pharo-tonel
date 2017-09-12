@@ -15,33 +15,23 @@ collection anySatisfy: [ :each | .... ])
 Class {
 	#name : #RBDetectIfNoneRule,
 	#superclass : #RBTransformationRule,
-	#category : #Refactoring-Critics-TransformationRules,
-	#timestamp : 'YuriyTymchuk 5/23/2016 14:38'
+	#category : #Refactoring-Critics-TransformationRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDetectIfNoneRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBDetectIfNoneRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'DetectIfNoneRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDetectIfNoneRule>>group [
+{ #category : #accessing }
+RBDetectIfNoneRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDetectIfNoneRule>>initialize [
+{ #category : #initialization }
+RBDetectIfNoneRule >> initialize [
 	super initialize.
 	self rewriteRule
 		replace: '``@collection contains: [:`each | | `@temps | ``@.Statements]'
@@ -66,18 +56,12 @@ RBDetectIfNoneRule>>initialize [
 		with: '``@collection anySatisfy: [:`each | | `@temps | ``@.Statements]'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDetectIfNoneRule>>name [
+{ #category : #accessing }
+RBDetectIfNoneRule >> name [
 	^ '#detect:ifNone: or #contains: -> #anySatisfy:'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDetectIfNoneRule>>rationale  [
+{ #category : #accessing }
+RBDetectIfNoneRule >> rationale [ 
 	^ 'Replaces detect:ifNone: and contains: by anySatisfy:'
 ]

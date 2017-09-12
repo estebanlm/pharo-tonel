@@ -80,51 +80,35 @@ Class {
 		'width',
 		'miterLimit'
 	],
-	#category : #Athens-Core-Paints,
-	#timestamp : '<historical>'
+	#category : #Athens-Core-Paints
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrokePaint>>asStrokePaintOn: aCanvas [
+{ #category : #converting }
+AthensStrokePaint >> asStrokePaintOn: aCanvas [
 	"receiver is stroke paint already"
 	^ self
 ]
 
-{
-	#category : #'setting cap styles',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrokePaint>>capButt [
+{ #category : #'setting cap styles' }
+AthensStrokePaint >> capButt [
 	"Set this paint to use butt cap style"
 	self subclassResponsibility
 ]
 
-{
-	#category : #'setting cap styles',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrokePaint>>capRound [
+{ #category : #'setting cap styles' }
+AthensStrokePaint >> capRound [
 	"Set this paint to use round cap style"
 	self subclassResponsibility
 ]
 
-{
-	#category : #'setting cap styles',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrokePaint>>capSquare [
+{ #category : #'setting cap styles' }
+AthensStrokePaint >> capSquare [
 	"Set this paint to use square cap style"
 	self subclassResponsibility
 ]
 
-{
-	#category : #'setting dashes',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrokePaint>>dashes: anAlternateCollectionOfLenghts offset: anOffset [
+{ #category : #'setting dashes' }
+AthensStrokePaint >> dashes: anAlternateCollectionOfLenghts offset: anOffset [
 	
 	'self dashes: #( "fill" 20  "gap" 10 "fill" 35 "gap" 30) offset: 0. '.
 	
@@ -133,64 +117,43 @@ AthensStrokePaint>>dashes: anAlternateCollectionOfLenghts offset: anOffset [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrokePaint>>fillPaint: anObject [
+{ #category : #accessing }
+AthensStrokePaint >> fillPaint: anObject [
 
 	fillPaint := anObject
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrokePaint>>initialize [
+{ #category : #initialize-release }
+AthensStrokePaint >> initialize [
 	self setDefaults.
 ]
 
-{
-	#category : #'setting join styles',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrokePaint>>joinBevel [
+{ #category : #'setting join styles' }
+AthensStrokePaint >> joinBevel [
 	"Set receiver to use bevel join style"
 	self subclassResponsibility
 ]
 
-{
-	#category : #'setting join styles',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrokePaint>>joinMiter [
+{ #category : #'setting join styles' }
+AthensStrokePaint >> joinMiter [
 	"Set receiver to use miter join style"
 	self subclassResponsibility
 ]
 
-{
-	#category : #'setting join styles',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrokePaint>>joinRound [
+{ #category : #'setting join styles' }
+AthensStrokePaint >> joinRound [
 	"Set receiver to use round join style"
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrokePaint>>miterLimit: anObject [
+{ #category : #accessing }
+AthensStrokePaint >> miterLimit: anObject [
 
 	miterLimit := anObject
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrokePaint>>setDefaults [
+{ #category : #initialize-release }
+AthensStrokePaint >> setDefaults [
 
 	"Set the default values for strokes"
 	width := 1.
@@ -203,19 +166,13 @@ AthensStrokePaint>>setDefaults [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrokePaint>>width [
+{ #category : #accessing }
+AthensStrokePaint >> width [
 	^ width
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrokePaint>>width: anObject [
+{ #category : #accessing }
+AthensStrokePaint >> width: anObject [
 	"set the stroke width"
 	width := anObject
 ]

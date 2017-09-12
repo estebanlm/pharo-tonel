@@ -1,12 +1,7 @@
-Extension {
-	#name : #GTSpotterContextChanged
-}
+Extension { #name : #GTSpotterContextChanged }
 
-{
-	#category : #'*gt-spotter-eventrecorder',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterContextChanged>>asRecorderEvent [
+{ #category : #'*gt-spotter-eventrecorder' }
+GTSpotterContextChanged >> asRecorderEvent [
 
 	^ GTSpotterRecorderContextChangedEvent fromAnnouncement: self
 ]

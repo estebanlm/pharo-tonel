@@ -8,38 +8,25 @@ I send these event back to my handler:
 Class {
 	#name : #OSTouchThreeFingersScrollDetector,
 	#superclass : #OSTouchScrollDetector,
-	#category : #OSWindow-Core-Gestures,
-	#timestamp : 'MerwanOuddane 7/22/2015 16:20'
+	#category : #OSWindow-Core-Gestures
 }
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchThreeFingersScrollDetector>>eventClassBeginGesture [
+{ #category : #abstract }
+OSTouchThreeFingersScrollDetector >> eventClassBeginGesture [
 	^ OSTouchThreeFingersScrollBeginEvent
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchThreeFingersScrollDetector>>eventClassEndGesture [
+{ #category : #abstract }
+OSTouchThreeFingersScrollDetector >> eventClassEndGesture [
 	^ OSTouchThreeFingersScrollEndEvent
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchThreeFingersScrollDetector>>eventClassMoveGesture [
+{ #category : #abstract }
+OSTouchThreeFingersScrollDetector >> eventClassMoveGesture [
 	^ OSTouchThreeFingersScrollMoveEvent
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchThreeFingersScrollDetector>>necessaryFingers [
+{ #category : #preconditions }
+OSTouchThreeFingersScrollDetector >> necessaryFingers [
 	^ 3
 ]

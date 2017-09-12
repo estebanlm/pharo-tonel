@@ -11,33 +11,23 @@ Class {
 	#pools : [
 		'ChronologyConstants'
 	],
-	#category : #Kernel-Chronology,
-	#timestamp : 'marcus.denker 6/5/2009 11:27'
+	#category : #Kernel-Chronology
 }
 
-{
-	#category : #'instance creation simple',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration class>>days: aNumber [
+{ #category : #'instance creation simple' }
+Duration class >> days: aNumber [
 
 	^ self seconds: aNumber * SecondsInDay nanoSeconds: 0
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration class>>days: days hours: hours minutes: minutes seconds: seconds [
+{ #category : #'instance creation' }
+Duration class >> days: days hours: hours minutes: minutes seconds: seconds [
 
 	^ self days: days hours: hours minutes: minutes seconds: seconds nanoSeconds: 0
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration class>>days: days hours: hours minutes: minutes seconds: seconds nanoSeconds: nanos [
+{ #category : #'instance creation' }
+Duration class >> days: days hours: hours minutes: minutes seconds: seconds nanoSeconds: nanos [	
 
  	^ self seconds: ((days * SecondsInDay) 
 						+ (hours * SecondsInHour)
@@ -47,71 +37,50 @@ Duration class>>days: days hours: hours minutes: minutes seconds: seconds nanoSe
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration class>>days: days seconds: seconds [
+{ #category : #'instance creation' }
+Duration class >> days: days seconds: seconds [
 
 	^ self basicNew seconds: days * SecondsInDay + seconds nanoSeconds: 0
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration class>>fromString: aString [
+{ #category : #'instance creation' }
+Duration class >> fromString: aString [
 
 	^ self readFrom: aString readStream
 
 ]
 
-{
-	#category : #'instance creation simple',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration class>>hours: aNumber [
+{ #category : #'instance creation simple' }
+Duration class >> hours: aNumber [
 
 	^ self seconds: aNumber * SecondsInHour nanoSeconds: 0
 ]
 
-{
-	#category : #'instance creation simple',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration class>>milliSeconds: milliCount [
+{ #category : #'instance creation simple' }
+Duration class >> milliSeconds: milliCount [
      
 	^ self
 		seconds: (milliCount quo: 1000)
 		nanoSeconds: (milliCount rem: 1000) * NanosInMillisecond
 ]
 
-{
-	#category : #'instance creation simple',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration class>>minutes: aNumber [
+{ #category : #'instance creation simple' }
+Duration class >> minutes: aNumber [
 
 	^ self seconds: aNumber * SecondsInMinute nanoSeconds: 0
 ]
 
-{
-	#category : #'instance creation simple',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration class>>month: aMonth [
+{ #category : #'instance creation simple' }
+Duration class >> month: aMonth [
 	"aMonth is an Integer or a String"
 	
 	^ (Month month: aMonth) duration
 
 ]
 
-{
-	#category : #'instance creation simple',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration class>>nanoSeconds: nanos [
+{ #category : #'instance creation simple' }
+Duration class >> nanoSeconds: nanos [
 	"This method is slow. If you have nanos less than 10^6 you should use #seconds:nanoSeconds: instead."
 
 	| quo |
@@ -121,11 +90,8 @@ Duration class>>nanoSeconds: nanos [
 		nanoSeconds: nanos - (quo * NanosInSecond)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration class>>readFrom: aStream [
+{ #category : #'instance creation' }
+Duration class >> readFrom: aStream [
 	"Formatted as per ANSI 5.8.2.16: [-]D:HH:MM:SS[.S]"
 
 	| sign days hours minutes seconds nanos nanosBuffer |
@@ -147,91 +113,64 @@ Duration class>>readFrom: aStream [
 		nanoSeconds: (nanosBuffer asInteger sign: sign)
 ]
 
-{
-	#category : #'instance creation simple',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration class>>seconds: seconds [
+{ #category : #'instance creation simple' }
+Duration class >> seconds: seconds [
 
 	^ self seconds: seconds nanoSeconds: 0
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration class>>seconds: seconds nanoSeconds: nanos [
+{ #category : #'instance creation' }
+Duration class >> seconds: seconds nanoSeconds: nanos [
 	^ self basicNew
 		seconds: seconds truncated
 		nanoSeconds: seconds fractionPart * NanosInSecond + nanos
 ]
 
-{
-	#category : #'instance creation simple',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration class>>weeks: aNumber [
+{ #category : #'instance creation simple' }
+Duration class >> weeks: aNumber [
 
 	^ self days: (aNumber * 7) seconds: 0
 
 ]
 
-{
-	#category : #'instance creation simple',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration class>>years: aNumber [
+{ #category : #'instance creation simple' }
+Duration class >> years: aNumber [
 
 	^ self days: (aNumber * 365) seconds: 0
 
 ]
 
-{
-	#category : #'instance creation simple',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration class>>zero [
+{ #category : #'instance creation simple' }
+Duration class >> zero [
 
 	^ self basicNew seconds: 0 nanoSeconds: 0
 
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>* operand [
+{ #category : #arithmetic }
+Duration >> * operand [
 	"operand is a Number"
 	^ self class nanoSeconds: ( (self asNanoSeconds * operand) asInteger)
 
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>+ operand [
+{ #category : #arithmetic }
+Duration >> + operand [
   	"operand is a Duration"
 	^ self class nanoSeconds: (self asNanoSeconds + operand asNanoSeconds)
  
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>- operand [
+{ #category : #arithmetic }
+Duration >> - operand [
 	"operand is a Duration"
 	^ self + operand negated
  
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>/ operand [
+{ #category : #arithmetic }
+Duration >> / operand [
  	"operand is a Duration or a Number"
  
  	^ operand isNumber
@@ -241,11 +180,8 @@ Duration>>/ operand [
  
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>// operand [
+{ #category : #operations }
+Duration >> // operand [
  
  	"operand is a Duration or a Number"
  
@@ -256,21 +192,15 @@ Duration>>// operand [
  
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>< comparand [
+{ #category : #arithmetic }
+Duration >> < comparand [
  
  	^ self asNanoSeconds < comparand asNanoSeconds
  
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>= comparand [
+{ #category : #arithmetic }
+Duration >> = comparand [ 
  	"Answer whether the argument is a <Duration> representing the same 
  	period of time as the receiver."
  
@@ -282,11 +212,8 @@ Duration>>= comparand [
  				ifFalse: [false] ]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>\\ operand [
+{ #category : #operations }
+Duration >> \\ operand [
  
  	"modulo. Remainder defined in terms of //. Answer a Duration with the 
  	same sign as aDuration. operand is a Duration or a Number."
@@ -297,139 +224,97 @@ Duration>>\\ operand [
  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>abs [
+{ #category : #accessing }
+Duration >> abs [
  
  	^ self class seconds: seconds abs nanoSeconds: nanos abs
  
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>asDays [
+{ #category : #converting }
+Duration >> asDays [
  	"Answer the number of days in the receiver."
  	^ self asHours / 24
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>asDelay [
+{ #category : #converting }
+Duration >> asDelay [
  
  	^ Delay forDuration: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>asDuration [
+{ #category : #converting }
+Duration >> asDuration [
  
  	^ self
  
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>asHours [
+{ #category : #converting }
+Duration >> asHours [
  	"Answer the number of hours in the receiver."
  	^ self asMinutes / 60.0
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>asMicroseconds [
+{ #category : #converting }
+Duration >> asMicroseconds [
  
  
  	^ ((seconds * NanosInSecond) + nanos) // (10 raisedToInteger: 3)
  
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>asMilliSeconds [
+{ #category : #converting }
+Duration >> asMilliSeconds [
  
  
  	^ ((seconds * NanosInSecond) + nanos) // (10 raisedToInteger: 6)
  
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>asMinutes [
+{ #category : #converting }
+Duration >> asMinutes [
  	"Answer the number of minutes in the receiver."
  	^ self asNanoSeconds  / 60000000000.0
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>asNanoSeconds [
+{ #category : #converting }
+Duration >> asNanoSeconds [
  
  	^ (seconds * NanosInSecond) + nanos
  
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>asSeconds [
+{ #category : #converting }
+Duration >> asSeconds [
  	"Answer the number of seconds in the receiver."
  	^ seconds
  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>days [
+{ #category : #accessing }
+Duration >> days [
  	"Answer a number that represents the number of complete days in the receiver"
 	^ seconds quo: SecondsInDay
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>hash [
+{ #category : #accessing }
+Duration >> hash [
 	^seconds bitXor: nanos
  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>hours [
+{ #category : #accessing }
+Duration >> hours [
  	"Answer a number that represents the number of complete hours in the receiver, after the number of complete days has been removed."
  
  	^ (seconds rem: SecondsInDay) quo: SecondsInHour
  
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>humanReadablePrintString [
+{ #category : #printing }
+Duration >> humanReadablePrintString [
 	"Return a String with a human readable representation of me"
 
 	"99999 atRandom seconds humanReadablePrintString"
@@ -440,84 +325,60 @@ Duration>>humanReadablePrintString [
 		self printHumanReadableOn: out ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>initialize [
+{ #category : #initialization }
+Duration >> initialize [
 	super initialize.
 	self seconds: 0 nanoSeconds: 0.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>isZero [
+{ #category : #testing }
+Duration >> isZero [
 
 	^ seconds = 0 and: [ nanos = 0 ]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>minutes [
+{ #category : #accessing }
+Duration >> minutes [
   	"Answer a number that represents the number of complete minutes in the receiver, after the number of complete hours has been removed."
  	^ (seconds rem: SecondsInHour) quo: SecondsInMinute
  
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>nanoSeconds [
+{ #category : #converting }
+Duration >> nanoSeconds [
  
  
  	^ nanos
  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>negated [
+{ #category : #accessing }
+Duration >> negated [
  
  	^ self class seconds: seconds negated nanoSeconds: nanos negated
  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>negative [
+{ #category : #accessing }
+Duration >> negative [
  
  
  	^ self positive not
  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>positive [
+{ #category : #accessing }
+Duration >> positive [
  
  
  	^ seconds = 0 ifTrue: [ nanos positive ] ifFalse: [ seconds positive ]
  
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>printHumanReadableOn: stream [
+{ #category : #printing }
+Duration >> printHumanReadableOn: stream [
 	| outputWritten count |
 	outputWritten := false.
 	self negative 
@@ -541,11 +402,8 @@ Duration>>printHumanReadableOn: stream [
 	outputWritten ifFalse: [ stream << '0 seconds' ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>printOn: aStream [
+{ #category : #printing }
+Duration >> printOn: aStream [
 	"Format as per ANSI 5.8.2.16: [-]D:HH:MM:SS[.S]" 	| d h m s n |
 	d := self days abs.
 	h := self hours abs.
@@ -569,11 +427,8 @@ Duration>>printOn: aStream [
 
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>roundTo: aDuration [
+{ #category : #operations }
+Duration >> roundTo: aDuration [
  	"e.g. if the receiver is 5 minutes, 37 seconds, and aDuration is 2 minutes, answer 6 minutes."
  
  	^ self class nanoSeconds: (self asNanoSeconds roundTo: aDuration asNanoSeconds)
@@ -581,11 +436,8 @@ Duration>>roundTo: aDuration [
  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>seconds [
+{ #category : #accessing }
+Duration >> seconds [
  	"Answer a number that represents the number of complete seconds in the receiver, after the number of complete minutes has been removed."
 	
 	"1002003004 nanoSeconds seconds"
@@ -593,11 +445,8 @@ Duration>>seconds [
  	^ (seconds rem: SecondsInMinute)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>seconds: secondCount nanoSeconds: nanoCount [
+{ #category : #private }
+Duration >> seconds: secondCount nanoSeconds: nanoCount [ 
 	"Private - only used by Duration class"
 
 	seconds := secondCount.
@@ -612,11 +461,8 @@ Duration>>seconds: secondCount nanoSeconds: nanoCount [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>storeOn: aStream [
+{ #category : #private }
+Duration >> storeOn: aStream [
  
  	aStream
  		nextPut: $(;
@@ -629,11 +475,8 @@ Duration>>storeOn: aStream [
  
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>ticks [
+{ #category : #private }
+Duration >> ticks [
 	"Answer an array {days. seconds. nanoSeconds}. Used by DateAndTime and Time."
 
 	| days |
@@ -644,11 +487,8 @@ Duration>>ticks [
 		with: nanos
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>totalSeconds [
+{ #category : #accessing }
+Duration >> totalSeconds [
 	"Return the total number of seconds in me.
 	If I have zero nano seconds, the result is equivalent to #seconds. 
 	If I have nanoseconds, the result will contain fractional seconds."
@@ -660,11 +500,8 @@ Duration>>totalSeconds [
 		ifFalse: [ self asNanoSeconds / 1e9 ]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>truncateTo: aDuration [
+{ #category : #operations }
+Duration >> truncateTo: aDuration [
  	"e.g. if the receiver is 5 minutes, 37 seconds, and aDuration is 2 minutes, answer 4 minutes."
  
  	^ self class
@@ -673,20 +510,14 @@ Duration>>truncateTo: aDuration [
  
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>wait [
+{ #category : #operations }
+Duration >> wait [
 
 	self asDelay wait
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>wholeMicroseconds [
+{ #category : #accessing }
+Duration >> wholeMicroseconds [
 	"Answer the number of whole microseconds in me after whole seconds and milliseconds are removed"
 	
 	"1002003004 nanoSeconds wholeMicroseconds"
@@ -694,11 +525,8 @@ Duration>>wholeMicroseconds [
 	^ (nanos rem: 1e6) quo: 1e3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>wholeMilliseconds [
+{ #category : #accessing }
+Duration >> wholeMilliseconds [
 	"Answer the number of whole milliseconds in me after whole seconds are removed"
 
 	"1002003004 nanoSeconds wholeMilliseconds"
@@ -706,11 +534,8 @@ Duration>>wholeMilliseconds [
 	^ nanos quo: 1e6
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Duration>>wholeNanoseconds [
+{ #category : #accessing }
+Duration >> wholeNanoseconds [
 	"Answer the number of whole nanoseconds in me after whole seconds, milli & microseconds are removed"
 
 	"1002003004 nanoSeconds wholeNanoseconds"

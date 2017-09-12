@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #DAPackageDependencyTest,
 	#superclass : #TestCase,
@@ -10,26 +7,19 @@ Class {
 		'packageA',
 		'packageB'
 	],
-	#category : #Tool-DependencyAnalyser-Test,
-	#timestamp : ''
+	#category : #Tool-DependencyAnalyser-Test
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageDependencyTest>>inheritanceDependency: aClass [
+{ #category : #running }
+DAPackageDependencyTest >> inheritanceDependency: aClass [
 	^ (DAInheritanceDependency from: packageA to: packageB)
 		theClass: aClass;
 		superclass: nil;
 		yourself
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageDependencyTest>>referenceDependency: aClass [
+{ #category : #running }
+DAPackageDependencyTest >> referenceDependency: aClass [
 	^ (DAReferenceDependency from: packageA to: packageB)
 		theClass: aClass;
 		selector: nil;
@@ -38,11 +28,8 @@ DAPackageDependencyTest>>referenceDependency: aClass [
 		yourself
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageDependencyTest>>setUp [
+{ #category : #running }
+DAPackageDependencyTest >> setUp [
 	| source target |
 	source := DAPackage on: (RPackageSet named:'Kernel').
 	target := DAPackage on: (RPackageSet named:'Collections-Abstract').
@@ -52,11 +39,8 @@ DAPackageDependencyTest>>setUp [
 	packageB := DAPackage on: (RPackageSet named:'B').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageDependencyTest>>testContainsOnlyExtensionDependency [
+{ #category : #tests }
+DAPackageDependencyTest >> testContainsOnlyExtensionDependency [
 	| aCompositeDependency |
 	aCompositeDependency := DACompositeDependency
 		from: (packageA)
@@ -77,11 +61,8 @@ DAPackageDependencyTest>>testContainsOnlyExtensionDependency [
 		
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageDependencyTest>>testDependenciesFrom [
+{ #category : #tests }
+DAPackageDependencyTest >> testDependenciesFrom [
 	| aCompositeDependency |
 	aCompositeDependency := DACompositeDependency from: packageA to: packageB.
 		aCompositeDependency
@@ -92,11 +73,8 @@ DAPackageDependencyTest>>testDependenciesFrom [
 	self assert: ((aCompositeDependency referenceDependenciesFrom: String) size = 2).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageDependencyTest>>testDependenciesSize [
+{ #category : #tests }
+DAPackageDependencyTest >> testDependenciesSize [
 	| aCompositeDependency |
 	aCompositeDependency := DACompositeDependency from: packageA to: packageB.
 	aCompositeDependency
@@ -107,11 +85,8 @@ DAPackageDependencyTest>>testDependenciesSize [
 	self assert: aCompositeDependency extensionDependenciesSize = 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageDependencyTest>>testDependenciesWithoutExtensionDependency [
+{ #category : #tests }
+DAPackageDependencyTest >> testDependenciesWithoutExtensionDependency [
 	| aCompositeDependency |
 	aCompositeDependency := DACompositeDependency
 		from: (packageA)
@@ -127,19 +102,13 @@ DAPackageDependencyTest>>testDependenciesWithoutExtensionDependency [
 		
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageDependencyTest>>testEquals [
+{ #category : #tests }
+DAPackageDependencyTest >> testEquals [
 	self assert: (aPackageDependency = aPackageDependency)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageDependencyTest>>testExtensionDependencies [
+{ #category : #tests }
+DAPackageDependencyTest >> testExtensionDependencies [
 	| aCompositeDependency |
 	aCompositeDependency := DACompositeDependency
 		from: (packageA)
@@ -152,27 +121,18 @@ DAPackageDependencyTest>>testExtensionDependencies [
 	self assert: (aCompositeDependency extensionDependencies allSatisfy: [ :each | each isExtensionDependency ]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageDependencyTest>>testIsExternal [
+{ #category : #tests }
+DAPackageDependencyTest >> testIsExternal [
 	self assert: (aPackageDependency isExternal)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageDependencyTest>>testIsInternal [
+{ #category : #tests }
+DAPackageDependencyTest >> testIsInternal [
 	self assert: (anInternalPackageDependency isInternal)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageDependencyTest>>testReferenceDependencies [
+{ #category : #tests }
+DAPackageDependencyTest >> testReferenceDependencies [
 	| aCompositeDependency |
 	aCompositeDependency := DACompositeDependency from: packageA to: packageB.
 	aCompositeDependency
@@ -183,11 +143,8 @@ DAPackageDependencyTest>>testReferenceDependencies [
 	self assert: (aCompositeDependency referenceDependencies size = 2).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageDependencyTest>>testReferenceDependenciesFrom [
+{ #category : #tests }
+DAPackageDependencyTest >> testReferenceDependenciesFrom [
 	| aCompositeDependency |
 	aCompositeDependency := DACompositeDependency from: packageA to: packageB.
 		aCompositeDependency

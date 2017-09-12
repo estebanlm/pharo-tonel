@@ -1,25 +1,15 @@
-"
-
-"
 Class {
 	#name : #GTMockSpotterStep,
 	#superclass : #GTSpotterStep,
-	#category : #GT-Tests-Spotter-Scripting-Mocks,
-	#timestamp : ''
+	#category : #GT-Tests-Spotter-Scripting-Mocks
 }
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTMockSpotterStep>>defaultStream [
+{ #category : #accessing-defaults }
+GTMockSpotterStep >> defaultStream [
 	^ GTMockSpotterStream new
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTMockSpotterStep>>defaultTask [
+{ #category : #accessing-defaults }
+GTMockSpotterStep >> defaultTask [
 	^ GTMockSpotterTask new
 ]

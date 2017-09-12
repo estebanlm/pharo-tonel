@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #GTSpotterDropDownMorph,
 	#superclass : #GLMPagerBrick,
 	#instVars : [
 		'spotterModel'
 	],
-	#category : #GT-Spotter-UI,
-	#timestamp : ''
+	#category : #GT-Spotter-UI
 }
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDropDownMorph>>buildPane: aStepModel [
+{ #category : #building }
+GTSpotterDropDownMorph >> buildPane: aStepModel [
 	|pane|
 	
 	pane := GTSpotterResultsBrick new stepModel: aStepModel.
@@ -23,39 +16,27 @@ GTSpotterDropDownMorph>>buildPane: aStepModel [
 	^ pane
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDropDownMorph>>initialize [
+{ #category : #initialization }
+GTSpotterDropDownMorph >> initialize [
 	super initialize.
 	
 	self showScrollBarWhenNeeded: false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDropDownMorph>>onStepAdded: ann [
+{ #category : #'event handling' }
+GTSpotterDropDownMorph >> onStepAdded: ann [
 	"as soon as step added we need to push it"
 
 	self pushPane: (self buildPane: ann stepModel)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDropDownMorph>>spotterModel [
+{ #category : #accessing }
+GTSpotterDropDownMorph >> spotterModel [
 	^ spotterModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDropDownMorph>>spotterModel: aModel  [
+{ #category : #accessing }
+GTSpotterDropDownMorph >> spotterModel: aModel [ 
 	spotterModel := aModel.
 	
 	spotterModel steps do: [ :each | self pushPane: (self buildPane: each) ].

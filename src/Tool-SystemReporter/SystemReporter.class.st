@@ -21,24 +21,17 @@ Class {
 		'sourceTextModel',
 		'spaceAnalysisResult'
 	],
-	#category : #Tool-SystemReporter,
-	#timestamp : 'laza 1/18/2011 12:04'
+	#category : #Tool-SystemReporter
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter class>>open [
+{ #category : #'instance creation' }
+SystemReporter class >> open [
 
 	^ self new open
 ]
 
-{
-	#category : #'system menu',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter class>>systemReporterMenuOn: aBuilder  [
+{ #category : #'system menu' }
+SystemReporter class >> systemReporterMenuOn: aBuilder [ 
 	"I build a menu"
 	<worldMenu>
 	(aBuilder item: #'System Reporter')
@@ -47,19 +40,13 @@ SystemReporter class>>systemReporterMenuOn: aBuilder  [
 		help: 'If you have a bug, use this tool to provide information about your system'.
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>add: category method: aSymbol [
+{ #category : #operations }
+SystemReporter >> add: category method: aSymbol [
 	^self categoryList add: (self categories add: category -> aSymbol) key
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>addAll: aWindow [
+{ #category : #display }
+SystemReporter >> addAll: aWindow [
 
 	aWindow
 		addMorph: self buildInformationList
@@ -70,11 +57,8 @@ SystemReporter>>addAll: aWindow [
 		fullFrame: self reportFrame.
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>buildInformationList [
+{ #category : #'items creation' }
+SystemReporter >> buildInformationList [
 
 	^ PluggableListMorph
 		on: self
@@ -87,11 +71,8 @@ SystemReporter>>buildInformationList [
 		keystroke: nil
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>buildInformationText [
+{ #category : #'items creation' }
+SystemReporter >> buildInformationText [
 
 	| scrolledText |
 	scrolledText := self sourceTextModel newScrolledText
@@ -102,55 +83,37 @@ SystemReporter>>buildInformationText [
 	^ scrolledText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>categories [
+{ #category : #accessing }
+SystemReporter >> categories [
 	^ categories ifNil: [categories := IdentityDictionary new]
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>categoriesFrame [
+{ #category : #display }
+SystemReporter >> categoriesFrame [
 	^ LayoutFrame new rightFraction: 0.25
 		
 ]
 
-{
-	#category : #accessing-categories,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>categoryAt: anIndex [
+{ #category : #accessing-categories }
+SystemReporter >> categoryAt: anIndex [
 	^ categoriesSelected includes: (self categoryList at: anIndex ifAbsent: [ ^ false ]).
 ]
 
-{
-	#category : #accessing-categories,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>categoryAt: anInteger put: aBoolean [
+{ #category : #accessing-categories }
+SystemReporter >> categoryAt: anInteger put: aBoolean [
 	categoriesSelected := categoriesSelected
 		perform: (aBoolean ifTrue: [ #copyWith: ] ifFalse: [ #copyWithout: ])
 		with: (self categoryList at: anInteger ifAbsent: [ ^ self ]).
 	self updateReport
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>categoryList [
+{ #category : #accessing }
+SystemReporter >> categoryList [
 	^ categoryList ifNil: [categoryList := OrderedCollection new]
 ]
 
-{
-	#category : #accessing-categories,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>categoryMenu: aMenu [
+{ #category : #accessing-categories }
+SystemReporter >> categoryMenu: aMenu [
 	^ aMenu
 		addTitle: 'Categories';
 		add: 'Select all' selector: #selectAllCategories;
@@ -160,45 +123,30 @@ SystemReporter>>categoryMenu: aMenu [
 		yourself
 ]
 
-{
-	#category : #accessing-categories,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>categorySelected [
+{ #category : #accessing-categories }
+SystemReporter >> categorySelected [
 	^ 0
 ]
 
-{
-	#category : #accessing-categories,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>categorySelected: anInteger [
+{ #category : #accessing-categories }
+SystemReporter >> categorySelected: anInteger [
 
 	self changed: #categorySelected.
 ]
 
-{
-	#category : #accessing-report,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>copyReportToClipboard [
+{ #category : #accessing-report }
+SystemReporter >> copyReportToClipboard [
 	Clipboard clipboardText: self reportText.
 	UIManager default inform: 'Copied Report to Clipboard'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>enumerate: aBlock on: aStream [
+{ #category : #private }
+SystemReporter >> enumerate: aBlock on: aStream [
 	self enumerate: aBlock startAt: 0 on: aStream
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>enumerate: aBlock startAt: first on: aStream [
+{ #category : #private }
+SystemReporter >> enumerate: aBlock startAt: first on: aStream [
 	"Utilitymethod to enumerate Options or Parameters from first to 1000"
 
 	| idx value |
@@ -221,38 +169,26 @@ SystemReporter>>enumerate: aBlock startAt: first on: aStream [
 				cr ]
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>extent [
+{ #category : #accessing-ui }
+SystemReporter >> extent [
 	^ 640 @ 480
 ]
 
-{
-	#category : #printing-report,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>header: aString on: aStream [
+{ #category : #printing-report }
+SystemReporter >> header: aString on: aStream [
 	aStream withAttribute: TextEmphasis bold do: [	
 		aStream nextPutAll: aString; cr.
 		aString size timesRepeat: [aStream nextPut: $-].
 		aStream cr]
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>initialExtent [
+{ #category : #accessing-ui }
+SystemReporter >> initialExtent [
 	^ 640 @ 480
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>initialize [
+{ #category : #initialization }
+SystemReporter >> initialize [
 	super initialize.
 	self
 		add: #Image method: #reportImage;
@@ -282,19 +218,13 @@ SystemReporter>>initialize [
 	self updateReport
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>label [
+{ #category : #accessing-ui }
+SystemReporter >> label [
 	^ 'System Reporter' 
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>open [
+{ #category : #display }
+SystemReporter >> open [
 	"self new open"
 	
 	| window |
@@ -305,29 +235,20 @@ SystemReporter>>open [
 	^ window			
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>refresh [
+{ #category : #operations }
+SystemReporter >> refresh [
 	self updateReport
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportFrame [
+{ #category : #display }
+SystemReporter >> reportFrame [
 	^ LayoutFrame new leftFraction: 0.25
 
 
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportImage: aStream [
+{ #category : #reporting }
+SystemReporter >> reportImage: aStream [
 	self header: 'Image' on: aStream.
 	aStream 
 		nextPutAll: Smalltalk image imagePath; cr;
@@ -337,20 +258,14 @@ SystemReporter>>reportImage: aStream [
 
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportImageParameters: aStream [
+{ #category : #reporting }
+SystemReporter >> reportImageParameters: aStream [
 	self header: 'Image Commandline Parameters' on: aStream.
 	self enumerate: [:idx | Smalltalk image argumentAt: idx] on: aStream.
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportLinuxOSDetails: aStream [
+{ #category : #reporting }
+SystemReporter >> reportLinuxOSDetails: aStream [
 	self header: 'Operating System Details' on: aStream.
 	#(
 		'/etc/issue'
@@ -360,22 +275,16 @@ SystemReporter>>reportLinuxOSDetails: aStream [
 		self writeContentsSafelyFromFile: path on: aStream]
 ]
 
-{
-	#category : #accessing-report,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportMenu: aMenu [
+{ #category : #accessing-report }
+SystemReporter >> reportMenu: aMenu [
 	^ aMenu
 		addTitle: 'Report' ;
 		add: 'Copy to Clipboard' selector: #copyReportToClipboard;
 		yourself
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportModules: aStream [
+{ #category : #reporting }
+SystemReporter >> reportModules: aStream [
 	self header: 'Loaded VM Modules' on: aStream.
 	Smalltalk vm listLoadedModules asSortedCollection do: [:each | aStream nextPutAll: each; cr].
 	aStream cr.
@@ -385,11 +294,8 @@ SystemReporter>>reportModules: aStream [
 
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportOS: aStream [
+{ #category : #reporting }
+SystemReporter >> reportOS: aStream [
 	self header: 'Operating System/Hardware' on: aStream.
 	aStream
 		nextPutAll: Smalltalk os platformName; space;
@@ -398,11 +304,8 @@ SystemReporter>>reportOS: aStream [
 
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportOSEnvironment: aStream [
+{ #category : #reporting }
+SystemReporter >> reportOSEnvironment: aStream [
 	| env |
 	self header: 'Operating System Environment' on: aStream.
 	env := [Smalltalk os environment] on: Error do: [^self].
@@ -411,30 +314,21 @@ SystemReporter>>reportOSEnvironment: aStream [
 	
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportRepositories: aStream [
+{ #category : #reporting }
+SystemReporter >> reportRepositories: aStream [
 	self header: 'Monticello Repositories' on: aStream.
 	MCRepositoryGroup default repositories do: [:each | aStream nextPutAll: each description; cr]
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportSources: aStream [
+{ #category : #reporting }
+SystemReporter >> reportSources: aStream [
 	self header: 'Image Sources' on: aStream.
 	aStream nextPutAll: SourceFiles class printString; cr.
 	aStream nextPutAll: SourceFiles reportString.
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportSpaceAnalysis: aStream [
+{ #category : #reporting }
+SystemReporter >> reportSpaceAnalysis: aStream [
 
 	spaceAnalysisResult ifNil: [
 		(UIManager default
@@ -450,22 +344,16 @@ SystemReporter>>reportSpaceAnalysis: aStream [
 	aStream nextPutAll: spaceAnalysisResult; cr
 ]
 
-{
-	#category : #accessing-report,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportText [
+{ #category : #accessing-report }
+SystemReporter >> reportText [
 
 	^ (report isNil or: [categoriesSelected isEmpty])
 		ifTrue: ['-- Choose any category on the left --']
 		ifFalse: [report]
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportVM: aStream [
+{ #category : #reporting }
+SystemReporter >> reportVM: aStream [
 	self header: 'Virtual Machine' on: aStream.
 	aStream
 		nextPutAll: Smalltalk vm vmFileName;
@@ -516,20 +404,14 @@ SystemReporter>>reportVM: aStream [
 			 ]
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportVMOptions: aStream [
+{ #category : #reporting }
+SystemReporter >> reportVMOptions: aStream [
 	self header: 'Virtual Machine Commandline Options' on: aStream.
 	self enumerate: [:idx | Smalltalk vm optionAt: idx] startAt: 1 on: aStream
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportVMParameters: aStream [
+{ #category : #reporting }
+SystemReporter >> reportVMParameters: aStream [
 	| vmParameters |
 	self header: 'Virtual Machine Parameters' on: aStream.
 	vmParameters := Smalltalk vm getParameters.
@@ -613,48 +495,33 @@ SystemReporter>>reportVMParameters: aStream [
 			cr]
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportVMStats: aStream [
+{ #category : #reporting }
+SystemReporter >> reportVMStats: aStream [
 	self header: 'Virtual Machine Statistics' on: aStream.
 	aStream
 		nextPutAll: Smalltalk vm statisticsReport
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportWin32GFXDetails: aStream [
+{ #category : #reporting }
+SystemReporter >> reportWin32GFXDetails: aStream [
 	self header: 'Graphics Hardware Details' on: aStream.
 	aStream nextPutAll: (Smalltalk vm getSystemAttribute: 10003)
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportWin32HardwareDetails: aStream [
+{ #category : #reporting }
+SystemReporter >> reportWin32HardwareDetails: aStream [
 	self header: 'Hardware Details' on: aStream.
 	aStream nextPutAll: (Smalltalk vm getSystemAttribute: 10001)
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportWin32OSDetails: aStream [
+{ #category : #reporting }
+SystemReporter >> reportWin32OSDetails: aStream [
 	self header: 'Operating System Details' on: aStream.
 	aStream nextPutAll: (Smalltalk vm getSystemAttribute: 10002)
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportWin32VMConfig: aStream [
+{ #category : #reporting }
+SystemReporter >> reportWin32VMConfig: aStream [
 	| exePath iniPath |
 	self header: 'VM Configuration' on: aStream.
 	exePath := Smalltalk vm vmFileName.
@@ -664,51 +531,36 @@ SystemReporter>>reportWin32VMConfig: aStream [
 
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>reportWorkingCopies: aStream [
+{ #category : #reporting }
+SystemReporter >> reportWorkingCopies: aStream [
 	| list |
 	self header: 'Monticello Working Copies' on: aStream.
 	list := MCWorkingCopy allManagers asSortedCollection: [:a :b | a packageName <= b packageName]  .
 	list do: [:each | aStream nextPutAll: each description; cr]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>selectAllCategories [
+{ #category : #operations }
+SystemReporter >> selectAllCategories [
 	categoriesSelected addAll: categoryList.
 	self changed: #categorySelected.
 	self updateReport
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>selectNoCategories [
+{ #category : #operations }
+SystemReporter >> selectNoCategories [
 	categoriesSelected removeAll.
 	self changed: #categorySelected.
 	self updateReport
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>sourceTextModel [
+{ #category : #accessing }
+SystemReporter >> sourceTextModel [
 	^ sourceTextModel ifNil: [ sourceTextModel := RubScrolledTextModel new interactionModel: self ].
 	
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>updateReport [
+{ #category : #updating }
+SystemReporter >> updateReport [
 	self sourceTextModel setText: (Text streamContents: [:stream | 
 						self categoryList do: [:each |
 							(categoriesSelected includes: each) ifTrue: [
@@ -717,11 +569,8 @@ SystemReporter>>updateReport [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SystemReporter>>writeContentsSafelyFromFile: osPath on: aStream [
+{ #category : #private }
+SystemReporter >> writeContentsSafelyFromFile: osPath [ on: aStream
 	aStream nextPutAll:
 		([
 			(FileStream readOnlyFileNamed: osPath) upToEnd

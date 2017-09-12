@@ -11,39 +11,26 @@ Class {
 		'Finds',
 		'Replacements'
 	],
-	#category : #Rubric-Editing-FindReplaceService,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:31'
+	#category : #Rubric-Editing-FindReplaceService
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow class>>finds [
+{ #category : #accessing }
+RubFindReplaceDialogWindow class >> finds [
 	^ Finds ifNil: [Finds := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow class>>maxPreviousListSize [
+{ #category : #accessing }
+RubFindReplaceDialogWindow class >> maxPreviousListSize [
 	^ 15
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow class>>replacements [
+{ #category : #accessing }
+RubFindReplaceDialogWindow class >> replacements [
 	^ Replacements ifNil: [Replacements := OrderedCollection new]
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>buildWindowMenu [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> buildWindowMenu [
 	"Build and answer the window menu."
 
 	| aMenu |
@@ -61,37 +48,25 @@ RubFindReplaceDialogWindow>>buildWindowMenu [
 	^ aMenu
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>cancel [
+{ #category : #action }
+RubFindReplaceDialogWindow >> cancel [
 	self model findText: ''.
 	super cancel 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>caseSensitive [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> caseSensitive [
 	^ self model ifNil: [false] ifNotNil: [:m | m caseSensitive] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>caseSensitive: aBoolean [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> caseSensitive: aBoolean [
 	self model caseSensitive: aBoolean.
 
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>defaultButton [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> defaultButton [
 	"Answer the default button."
 	^self
 		findDeepSubmorphThat: [:m |
@@ -99,19 +74,13 @@ RubFindReplaceDialogWindow>>defaultButton [
 		ifAbsent: [] 
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>defaultFocusMorph [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> defaultFocusMorph [
 	^ self findTextFieldMorph textMorph
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>delete [
+{ #category : #action }
+RubFindReplaceDialogWindow >> delete [
 	| m |
 	m := model.
 	[ super delete ]
@@ -120,53 +89,35 @@ RubFindReplaceDialogWindow>>delete [
 			model textArea ifNotNil: [ :ta | ta takeKeyboardFocus ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>entireWordsOnly [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> entireWordsOnly [
 	^ self model ifNil: [false] ifNotNil: [:m | m entireWordsOnly] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>entireWordsOnly: aBoolean [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> entireWordsOnly: aBoolean [
 	self model entireWordsOnly: aBoolean.
 
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>extent: anExtent [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> extent: anExtent [
 	^ super extent: anExtent x @ self initialExtent y
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>find [
+{ #category : #action }
+RubFindReplaceDialogWindow >> find [
 	self newFinding.
 	^ self model find
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>findEnabled [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> findEnabled [
 	^ self findString isEmptyOrNil not 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>findPolicyChanged [
+{ #category : #updating }
+RubFindReplaceDialogWindow >> findPolicyChanged [
 	self changed: #findText.
 	self changed: #caseSensitive.
 	self changed: #isRegex.
@@ -180,97 +131,64 @@ RubFindReplaceDialogWindow>>findPolicyChanged [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>findString [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> findString [
 	^ self model ifNil: ['' asText] ifNotNil: [:m | m findString]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>findText [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> findText [
 	^ self model ifNil: ['' asText] ifNotNil: [:m | m findText]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>findText: aStringOrText [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> findText: aStringOrText [
 	^ self model findText: aStringOrText.
 
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>findTextFieldMorph [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> findTextFieldMorph [
 	^ findTextField
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>initialExtent  [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> initialExtent [ 
 	^ 400 @ super initialExtent y
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>isRegex [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> isRegex [
 	^ self model ifNil: [false] ifNotNil: [:m | m isRegex] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>isRegex: aBoolean [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> isRegex: aBoolean [
 	self model isRegex: aBoolean.
 
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>isResizeable [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> isResizeable [
 	"Answer whether we are not we can be resized."
 
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>maxPreviousListSize [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> maxPreviousListSize [
 	^ self class maxPreviousListSize
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>newButtons [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> newButtons [
 	"Answer new buttons as appropriate."
 
 	^{self newFindButton isDefault: true. self newReplaceButton. self newReplaceAllButton. self newCancelButton}
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>newContentMorph [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> newContentMorph [
 	^(self newColumn: {	
 			(self newGroupbox: nil for: 
 				(self newColumn: {
@@ -294,11 +212,8 @@ RubFindReplaceDialogWindow>>newContentMorph [
 
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>newFindButton [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> newFindButton [
 	^(self theme
 			newButtonIn: self
 			for: self
@@ -312,11 +227,8 @@ RubFindReplaceDialogWindow>>newFindButton [
 		vResizing: #rigid
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>newFindTextEntryMorph [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> newFindTextEntryMorph [
 	| entryCompletion pt |
 	entryCompletion := EntryCompletion new
 				dataSourceBlock: [:currText | self prevFinds ];
@@ -343,11 +255,8 @@ RubFindReplaceDialogWindow>>newFindTextEntryMorph [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>newFinding [
+{ #category : #updating }
+RubFindReplaceDialogWindow >> newFinding [
 	| t |
 	(t := self findText asString) ifEmpty: [^ self ].
 	(self prevFinds includes: t)
@@ -356,11 +265,8 @@ RubFindReplaceDialogWindow>>newFinding [
 		ifTrue: [self prevFinds removeLast]
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>newReplaceAllButton [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> newReplaceAllButton [
 	^ (self theme
 		newButtonIn: self
 		for: self
@@ -373,11 +279,8 @@ RubFindReplaceDialogWindow>>newReplaceAllButton [
 		 vResizing: #rigid
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>newReplaceButton [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> newReplaceButton [
 	^ (self theme
 		newButtonIn: self
 		for: self
@@ -390,11 +293,8 @@ RubFindReplaceDialogWindow>>newReplaceButton [
 		 vResizing: #rigid
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>newReplaceTextEntryMorph [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> newReplaceTextEntryMorph [
 	| entryCompletion pt |
 	entryCompletion := EntryCompletion new
 				dataSourceBlock: [:currText | self prevReplacements ];
@@ -421,11 +321,8 @@ RubFindReplaceDialogWindow>>newReplaceTextEntryMorph [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>newReplacement [
+{ #category : #updating }
+RubFindReplaceDialogWindow >> newReplacement [
 	| t |
 	(t := self replaceText asString) ifEmpty: [^ self ].
 	(self prevReplacements includes: t)
@@ -434,146 +331,98 @@ RubFindReplaceDialogWindow>>newReplacement [
 		ifTrue: [self prevReplacements removeLast]
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>open [
+{ #category : #action }
+RubFindReplaceDialogWindow >> open [
 	self openAsIsIn: World.
 	self extent: self extent.
 	self activate
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>prevFinds [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> prevFinds [
 	^ self class finds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>prevReplacements [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> prevReplacements [
 	^ self class replacements
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>regexError [
+{ #category : #updating }
+RubFindReplaceDialogWindow >> regexError [
 	self findTextFieldMorph textColor: Color  red
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>replace [
+{ #category : #action }
+RubFindReplaceDialogWindow >> replace [
 	self newReplacement.
 	self model replace.
 	self find
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>replaceAll [
+{ #category : #action }
+RubFindReplaceDialogWindow >> replaceAll [
 	self model replaceAll
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>replaceAllEnabled [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> replaceAllEnabled [
 	^ self textView notNil
 		and: [self findText notEmpty]
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>replaceEnabled [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> replaceEnabled [
 	^ self textView notNil
 		and: [self findText notEmpty]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>replaceText [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> replaceText [
 	^ self model ifNil: [ '' asText] ifNotNil: [:m | m replaceText]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>replaceText: aStringOrText [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> replaceText: aStringOrText [
 	self model replaceText: aStringOrText asString.
 	^ true
 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>searchBackwards [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> searchBackwards [
 	^ self model ifNil: [false] ifNotNil: [:m | m searchBackwards]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>searchBackwards: aBoolean [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> searchBackwards: aBoolean [
 	self searchBackwards = aBoolean
 		ifFalse: [ 
 			self model searchBackwards: aBoolean.
 			self findPolicyChanged ]
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>taskbarButtonFor: aTaskBar [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> taskbarButtonFor: aTaskBar [
 	"No taskbar button because always on top"
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>textView [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> textView [
 	^ self model ifNotNil: [ :m | m textArea ]
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>title [
+{ #category : #user-interface }
+RubFindReplaceDialogWindow >> title [
 	^ 'Find & Replace' translated.
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>update: aSymbol [
+{ #category : #updating }
+RubFindReplaceDialogWindow >> update: aSymbol [
 	self textView ifNotNil: [
 		aSymbol = #regexError
 				ifTrue: [self regexError].
@@ -584,19 +433,13 @@ RubFindReplaceDialogWindow>>update: aSymbol [
 	super update: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>wrapAround [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> wrapAround [
 	^ self model ifNil: [true] ifNotNil: [:m | m wrapAround] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceDialogWindow>>wrapAround: aBoolean [
+{ #category : #accessing }
+RubFindReplaceDialogWindow >> wrapAround: aBoolean [
 	self model wrapAround: aBoolean.
 
 ]

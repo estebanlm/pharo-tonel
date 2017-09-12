@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMPhlowBrick,
 	#superclass : #GLMBrick,
@@ -8,44 +5,31 @@ Class {
 		'entity',
 		'titleBrick'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-Phlow,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Widgets-Phlow
 }
 
-{
-	#category : #phlow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowBrick>>display: aBlockOrSymbol [
+{ #category : #phlow }
+GLMPhlowBrick >> display: aBlockOrSymbol [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #phlow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowBrick>>entity [
+{ #category : #phlow }
+GLMPhlowBrick >> entity [
 
 	^ entity
 ]
 
-{
-	#category : #phlow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowBrick>>entity: anObject [
+{ #category : #phlow }
+GLMPhlowBrick >> entity: anObject [
 
 	entity := anObject.
 	self setTitle: (self titleLogic phlowValue: self entity)
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowBrick>>initialize [
+{ #category : #initialization }
+GLMPhlowBrick >> initialize [
 	super initialize.
 		
 	self
@@ -55,30 +39,21 @@ GLMPhlowBrick>>initialize [
 		vSpaceFill
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowBrick>>newTitleBrick [
+{ #category : #'instance creation' }
+GLMPhlowBrick >> newTitleBrick [
 
 	^ GLMLabelBrick new
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowBrick>>onThemerChanged [
+{ #category : #brick-properties-events }
+GLMPhlowBrick >> onThemerChanged [
 	super onThemerChanged.
 	
 	self titleBrick textColor: self themer textLightColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowBrick>>setTitle: aString [
+{ #category : #accessing }
+GLMPhlowBrick >> setTitle: aString [
 
 	self titleBrick text: aString.
 	
@@ -88,28 +63,19 @@ GLMPhlowBrick>>setTitle: aString [
 			ifTrue: [ 0 ])
 ]
 
-{
-	#category : #phlow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowBrick>>title: anObject [
+{ #category : #phlow }
+GLMPhlowBrick >> title: anObject [
 	
 	self setProperty: #phlowTitle toValue: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowBrick>>titleBrick [
+{ #category : #accessing }
+GLMPhlowBrick >> titleBrick [
 	^ titleBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowBrick>>titleBrick: aBrick [
+{ #category : #accessing }
+GLMPhlowBrick >> titleBrick: aBrick [
 
 	titleBrick := aBrick
 		textPosition: #center;
@@ -118,11 +84,8 @@ GLMPhlowBrick>>titleBrick: aBrick [
 	self addBrickBack: titleBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowBrick>>titleLogic [
+{ #category : #accessing }
+GLMPhlowBrick >> titleLogic [
 
 	^ self valueOfProperty: #phlowTitle ifAbsent: [ '' ]
 ]

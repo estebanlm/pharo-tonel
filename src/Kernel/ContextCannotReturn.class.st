@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'target'
 	],
-	#category : #Kernel-Exceptions,
-	#timestamp : 'MarcusDenker 5/30/2016 11:11'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #signalling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ContextCannotReturn class>>result: anObject to: aContext [
+{ #category : #signalling }
+ContextCannotReturn class >> result: anObject to: aContext [
 
 	^self new 
 		result: anObject;
@@ -23,18 +19,12 @@ ContextCannotReturn class>>result: anObject to: aContext [
 		signal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ContextCannotReturn>>target [
+{ #category : #accessing }
+ContextCannotReturn >> target [
 	^ target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ContextCannotReturn>>target: anObject [
+{ #category : #accessing }
+ContextCannotReturn >> target: anObject [
 	target := anObject
 ]

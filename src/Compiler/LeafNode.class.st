@@ -36,33 +36,23 @@ Class {
 		'code',
 		'index'
 	],
-	#category : #Compiler-ParseNodes,
-	#timestamp : '<historical>'
+	#category : #Compiler-ParseNodes
 }
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LeafNode>>analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools "<Dictionary>" [
+{ #category : #'code generation (closures)' }
+LeafNode >> analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools [ "<Dictionary>"
 	"This is a no-op except in TempVariableNode"
 	^self
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LeafNode>>code [
+{ #category : #'code generation' }
+LeafNode >> code [
 
 	^ code
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LeafNode>>code: argIndex type: type [
+{ #category : #private }
+LeafNode >> code: argIndex type: type [
 
 	argIndex ifNil: [^type negated].
 	(CodeLimits at: type) > argIndex 
@@ -70,106 +60,73 @@ LeafNode>>code: argIndex type: type [
 	^type * 256 + argIndex
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LeafNode>>emitCodeForEffect: stack encoder: encoder [
+{ #category : #'code generation' }
+LeafNode >> emitCodeForEffect: stack encoder: encoder [
 
 	^self
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LeafNode>>emitCodeForLoad: stack encoder: encoder [
+{ #category : #'code generation' }
+LeafNode >> emitCodeForLoad: stack encoder: encoder [
 	"Default is to do nothing.
 	 Subclasses may need to override."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LeafNode>>key [
+{ #category : #accessing }
+LeafNode >> key [
 
 	^key
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LeafNode>>key: object code: byte [
+{ #category : #initialize-release }
+LeafNode >> key: object code: byte [
 
 	key := object.
 	code := byte
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LeafNode>>key: object index: i type: type [
+{ #category : #initialize-release }
+LeafNode >> key: object index: i type: type [
 
 	key := object.
 	code := (self code: i type: type).
 	index := i
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LeafNode>>name: ignored key: object code: byte [
+{ #category : #initialize-release }
+LeafNode >> name: ignored key: object code: byte [
 
 	key := object.
 	code := byte
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LeafNode>>reserve: encoder  [
+{ #category : #'code generation' }
+LeafNode >> reserve: encoder [ 
 	"If this is a yet unused literal of type -code, reserve it."
 
 	code < 0 ifTrue: [code := self code: (index := encoder litIndex: key) type: 0 - code]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LeafNode>>sizeCodeForEffect: encoder [
+{ #category : #'code generation' }
+LeafNode >> sizeCodeForEffect: encoder [
 
 	^0
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LeafNode>>sizeCodeForLoad: encoder [
+{ #category : #'code generation' }
+LeafNode >> sizeCodeForLoad: encoder [
 	"Default is to do nothing.
 	 Subclasses may need to override."
 	^0
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LeafNode>>sizeCodeForValue: encoder [
+{ #category : #'code generation' }
+LeafNode >> sizeCodeForValue: encoder [
 	self subclassResponsibility
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LeafNode>>veryDeepFixupWith: deepCopier [
+{ #category : #copying }
+LeafNode >> veryDeepFixupWith: deepCopier [
 	"If fields were weakly copied, fix them here.  If they were in the tree being copied, fix them up, otherwise point to the originals!!"
 
 super veryDeepFixupWith: deepCopier.
@@ -177,11 +134,8 @@ key := (deepCopier references at: key ifAbsent: [key]).
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LeafNode>>veryDeepInner: deepCopier [
+{ #category : #copying }
+LeafNode >> veryDeepInner: deepCopier [
 	"Copy all of my instance variables.  Some need to be not copied at all, but shared.  	Warning!!  Every instance variable defined in this class must be handled.  We must also implement veryDeepFixupWith:.  See DeepCopier class comment."
 
 super veryDeepInner: deepCopier.

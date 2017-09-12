@@ -4,52 +4,36 @@ I represent the morph which shows the current selection
 Class {
 	#name : #RubPrimarySelectionMorph,
 	#superclass : #RubPlainSegmentMorph,
-	#category : #Rubric-Editing-Core,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:15'
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPrimarySelectionMorph>>defaultBorderColor [
+{ #category : #initialization }
+RubPrimarySelectionMorph >> defaultBorderColor [
 	^ Color orange
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPrimarySelectionMorph>>defaultColor [
+{ #category : #initialization }
+RubPrimarySelectionMorph >> defaultColor [
 	^ self theme selectionColor
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPrimarySelectionMorph>>initialize [
+{ #category : #initialization }
+RubPrimarySelectionMorph >> initialize [
 	super initialize.
 	self beExtendable
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPrimarySelectionMorph>>readWriteView [
+{ #category : #ui }
+RubPrimarySelectionMorph >> readWriteView [
 	| view |
 	view  := super readWriteView.
 	^ view
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPrimarySelectionMorph>>registerTextArea  [
+{ #category : #'event handling' }
+RubPrimarySelectionMorph >> registerTextArea [ 
 	super registerTextArea.
 	
 	textArea announcer 
@@ -59,37 +43,25 @@ RubPrimarySelectionMorph>>registerTextArea  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPrimarySelectionMorph>>selectionColor [
+{ #category : #accessing }
+RubPrimarySelectionMorph >> selectionColor [
 	^ self textArea hasFocus
 		ifTrue: [ self theme selectionColor ]
 		ifFalse: [ self theme lessConspicuousColorFrom: (self theme unfocusedSelectionColor) ]
 ]
 
-{
-	#category : #protocol-events,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPrimarySelectionMorph>>whenTextAreaGotFocus: anAnnouncement  [
+{ #category : #protocol-events }
+RubPrimarySelectionMorph >> whenTextAreaGotFocus: anAnnouncement [ 
 	self color: self selectionColor 
 ]
 
-{
-	#category : #protocol-events,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPrimarySelectionMorph>>whenTextAreaLostFocus: anAnnouncement  [
+{ #category : #protocol-events }
+RubPrimarySelectionMorph >> whenTextAreaLostFocus: anAnnouncement [ 
 	self color: self selectionColor 
 ]
 
-{
-	#category : #protocol-events,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPrimarySelectionMorph>>whenTextAreaSelectionChanged: anAnnouncement  [
+{ #category : #protocol-events }
+RubPrimarySelectionMorph >> whenTextAreaSelectionChanged: anAnnouncement [ 
 	firstIndex := self textArea markIndex min: self textArea pointIndex.
 	lastIndex := self textArea pointIndex max: self textArea markIndex.
 	self computeVertices.

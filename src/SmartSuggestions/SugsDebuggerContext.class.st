@@ -4,32 +4,22 @@ I know how to talk with a debugger and extract the information needed for the su
 Class {
 	#name : #SugsDebuggerContext,
 	#superclass : #SugsAbstractContext,
-	#category : #SmartSuggestions-Menu,
-	#timestamp : '<historical>'
+	#category : #SmartSuggestions-Menu
 }
 
-{
-	#category : #refactoring,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsDebuggerContext>>selectedClass [
+{ #category : #refactoring }
+SugsDebuggerContext >> selectedClass [
 	^model selectedClass
 ]
 
-{
-	#category : #refactoring,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsDebuggerContext>>selectedMethod [
+{ #category : #refactoring }
+SugsDebuggerContext >> selectedMethod [
 
 	^model selectedContext method
 	
 ]
 
-{
-	#category : #refactoring,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsDebuggerContext>>sourceTextArea [
+{ #category : #refactoring }
+SugsDebuggerContext >> sourceTextArea [
 	^ model dependents at: 3 
 ]

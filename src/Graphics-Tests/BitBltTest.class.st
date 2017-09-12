@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #BitBltTest,
 	#superclass : #ClassTestCase,
-	#category : #Graphics-Tests-Primitives,
-	#timestamp : ''
+	#category : #Graphics-Tests-Primitives
 }
 
-{
-	#category : #bugs,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BitBltTest>>testAlphaCompositing [
+{ #category : #bugs }
+BitBltTest >> testAlphaCompositing [
 	"self run: #testAlphaCompositing"
 
 	| bb f1 f2 mixColor result eps |
@@ -35,11 +28,8 @@ BitBltTest>>testAlphaCompositing [
 	].
 ]
 
-{
-	#category : #bugs,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BitBltTest>>testAlphaCompositing2 [
+{ #category : #bugs }
+BitBltTest >> testAlphaCompositing2 [
 	"self run: #testAlphaCompositing2"
 
 	| bb f1 f2 mixColor result eps |
@@ -61,11 +51,8 @@ BitBltTest>>testAlphaCompositing2 [
 	].
 ]
 
-{
-	#category : #bugs,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BitBltTest>>testAlphaCompositing2Simulated [
+{ #category : #bugs }
+BitBltTest >> testAlphaCompositing2Simulated [
 	"self run: #testAlphaCompositing2Simulated"
 
 	Smalltalk globals
@@ -88,11 +75,8 @@ BitBltTest>>testAlphaCompositing2Simulated [
 				self assert: result alpha = mixColor alpha ] ]
 ]
 
-{
-	#category : #bugs,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BitBltTest>>testAlphaCompositingSimulated [
+{ #category : #bugs }
+BitBltTest >> testAlphaCompositingSimulated [
 	"self run: #testAlphaCompositingSimulated"
 
 	Smalltalk globals
@@ -116,11 +100,8 @@ BitBltTest>>testAlphaCompositingSimulated [
 				self assert: result alpha = 1.0 ] ]
 ]
 
-{
-	#category : #bugs,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BitBltTest>>testPeekerUnhibernateBug [
+{ #category : #bugs }
+BitBltTest >> testPeekerUnhibernateBug [
 	"self run: #testPeekerUnhibernateBug"
 
 	| bitBlt |
@@ -129,11 +110,8 @@ BitBltTest>>testPeekerUnhibernateBug [
 	bitBlt pixelAt: 1 @ 1
 ]
 
-{
-	#category : #bugs,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BitBltTest>>testPokerUnhibernateBug [
+{ #category : #bugs }
+BitBltTest >> testPokerUnhibernateBug [
 	"self run: #testPokerUnhibernateBug"
 
 	| bitBlt |

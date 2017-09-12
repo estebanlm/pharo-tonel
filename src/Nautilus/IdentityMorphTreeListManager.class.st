@@ -5,15 +5,11 @@ An IdentityMorphTreeListManager is a MorphTreeListManager which always check for
 Class {
 	#name : #IdentityMorphTreeListManager,
 	#superclass : #MorphTreeListManager,
-	#category : #Nautilus-MorphTreeWidget-Extension,
-	#timestamp : '<historical>'
+	#category : #Nautilus-MorphTreeWidget-Extension
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IdentityMorphTreeListManager>>nodeMorphsWithAllNodeItems: aNodeItemList [
+{ #category : #accessing }
+IdentityMorphTreeListManager >> nodeMorphsWithAllNodeItems: aNodeItemList [
 
 	^ self allNodeMorphs select: [:m | aNodeItemList identityIncludes: m complexContents withoutListWrapper]
 ]

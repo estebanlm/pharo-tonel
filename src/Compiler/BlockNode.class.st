@@ -21,57 +21,38 @@ Class {
 		'closureCreationNode',
 		'startOfLastStatement'
 	],
-	#category : #Compiler-ParseNodes,
-	#timestamp : '<historical>'
+	#category : #Compiler-ParseNodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode class>>statements: statements returns: returns [
+{ #category : #'instance creation' }
+BlockNode class >> statements: statements returns: returns [
 	^ self new statements: statements returns: returns
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode class>>withJust: aNode [
+{ #category : #'instance creation' }
+BlockNode class >> withJust: aNode [
 	^ self new statements: (Array with: aNode) returns: false
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>accept: aVisitor [
+{ #category : #visiting }
+BlockNode >> accept: aVisitor [
 	^aVisitor visitBlockNode: self
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>actualScope [
+{ #category : #'code generation (closures)' }
+BlockNode >> actualScope [
 	"Answer the actual scope for the receiver.  If this is an unoptimized block then it is its
 	 actual scope, but if this is an optimized block then the actual scope is some outer block."
 	^actualScopeIfOptimized ifNil: [self]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>addArgument: aTempVariableNode [
+{ #category : #accessing }
+BlockNode >> addArgument: aTempVariableNode [
 	temporaries := temporaries copyWith: aTempVariableNode
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>addHoistedTemps: additionalTemporaries "<SequenceableCollection>" [
+{ #category : #'code generation (closures)' }
+BlockNode >> addHoistedTemps: additionalTemporaries [ "<SequenceableCollection>"
 	additionalTemporaries do:
 		[:temp|
 		temp definingScope ifNil:
@@ -84,11 +65,8 @@ BlockNode>>addHoistedTemps: additionalTemporaries "<SequenceableCollection>" [
 							ifFalse: [temporaries, additionalTemporaries]]
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>addRemoteTemp: aTempVariableNode rootNode: rootNode "<MethodNode>" [
+{ #category : #'code generation (closures)' }
+BlockNode >> addRemoteTemp: aTempVariableNode rootNode: rootNode [ "<MethodNode>"
 	"Add aTempVariableNode to my actualScope's sequence of
 	 remote temps.  If I am an optimized block then the actual
 	 scope is my actualScopeIfOptimized, otherwise it is myself."
@@ -111,22 +89,16 @@ BlockNode>>addRemoteTemp: aTempVariableNode rootNode: rootNode "<MethodNode>" [
 	^remoteTempNode
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>addTempNode: aTempVariableNode [
+{ #category : #'code generation (closures)' }
+BlockNode >> addTempNode: aTempVariableNode [
 	"Utilities for when we want to add some temporaries."
 	
 	self makeTemporariesRemovable.
 	^temporaries add: aTempVariableNode
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>analyseArguments: methodArguments temporaries: methodTemporaries rootNode: rootNode "<MethodNode>" "^<Sequence of: <TempVarNade>>" [
+{ #category : #'code generation (closures)' }
+BlockNode >> analyseArguments: methodArguments temporaries: methodTemporaries rootNode: rootNode [ "<MethodNode>" "^<Sequence of: <TempVarNade>>"
 	"Top level entry-point for analysing temps within the hierarchy of blocks in the receiver's method.
 	 Answer the (possibly modified) sequence of temp vars.
 	 Need to hoist temps out of macro-optimized blocks into their actual blocks.
@@ -190,11 +162,8 @@ BlockNode>>analyseArguments: methodArguments temporaries: methodTemporaries root
 	^temporaries asArray
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools "<Dictionary>" [
+{ #category : #'code generation (closures)' }
+BlockNode >> analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools [ "<Dictionary>"
 	| effectiveScope blockStart |
 	effectiveScope := optimized
 						ifTrue: [actualScopeIfOptimized := scopeBlock]
@@ -235,29 +204,20 @@ BlockNode>>analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<Met
 			[temp name: temp definingScope remoteTempNodeName]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>arguments [
+{ #category : #accessing }
+BlockNode >> arguments [
 	^arguments ifNil: [#()]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>arguments: argNodes  [
+{ #category : #accessing }
+BlockNode >> arguments: argNodes [ 
 	"Decompile."
 
 	arguments := argNodes
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>arguments: argNodes statements: statementsCollection returns: returnBool from: encoder [
+{ #category : #initialize-release }
+BlockNode >> arguments: argNodes statements: statementsCollection returns: returnBool from: encoder [
 	"Compile."
 
 	arguments := argNodes.
@@ -270,27 +230,18 @@ BlockNode>>arguments: argNodes statements: statementsCollection returns: returnB
 	returns := returnBool
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>block [
+{ #category : #accessing }
+BlockNode >> block [
 	^ self
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>blockExtent "^<Interval>" [
+{ #category : #'code generation (closures)' }
+BlockNode >> blockExtent [ "^<Interval>"
 	^blockExtent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>closureCreationNode [
+{ #category : #accessing }
+BlockNode >> closureCreationNode [
 	closureCreationNode ifNil:
 		[closureCreationNode := LeafNode new
 									key: #closureCreationNode
@@ -298,31 +249,22 @@ BlockNode>>closureCreationNode [
 	^closureCreationNode
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>code [
+{ #category : #'code generation' }
+BlockNode >> code [
 
 	^statements first code
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>computeCopiedValues: rootNode [
+{ #category : #'code generation (closures)' }
+BlockNode >> computeCopiedValues: rootNode [
 	| referencedValues |
 	referencedValues := rootNode referencedValuesWithinBlockExtent: blockExtent.
 	^(referencedValues reject: [:temp| temp isDefinedWithinBlockExtent: blockExtent])
 		asArray sort: ParseNode tempSortBlock
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>constructClosureCreationNode: encoder [
+{ #category : #'code generation (closures)' }
+BlockNode >> constructClosureCreationNode: encoder [
 	copiedValues := self computeCopiedValues: encoder rootNode.
 	encoder supportsClosureOpcodes ifTrue:
 		[^self closureCreationNode].
@@ -339,31 +281,22 @@ BlockNode>>constructClosureCreationNode: encoder [
 		from: encoder
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>decompileString  [
+{ #category : #printing }
+BlockNode >> decompileString [ 
 	"Answer a string description of the parse tree whose root is the receiver."
 
 	^ self printString
 
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>deoptimize [
+{ #category : #'code generation (closures)' }
+BlockNode >> deoptimize [
 	optimized := false.
 	optimizedMessageNode := nil
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>emitCodeExceptLast: stack encoder: encoder [
+{ #category : #'code generation' }
+BlockNode >> emitCodeExceptLast: stack encoder: encoder [
 	| position nextToLast |
 	position := stack position.
 	nextToLast := statements size - 1.
@@ -374,11 +307,8 @@ BlockNode>>emitCodeExceptLast: stack encoder: encoder [
 		[stack position = position] assert].
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>emitCodeForEvaluatedClosureValue: stack encoder: encoder [
+{ #category : #'code generation (closures)' }
+BlockNode >> emitCodeForEvaluatedClosureValue: stack encoder: encoder [
 	| position |
 	position := stack position.
 	stack position: arguments size + copiedValues size.
@@ -393,11 +323,8 @@ BlockNode>>emitCodeForEvaluatedClosureValue: stack encoder: encoder [
 	stack position: position
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>emitCodeForEvaluatedEffect: stack encoder: encoder [
+{ #category : #'code generation' }
+BlockNode >> emitCodeForEvaluatedEffect: stack encoder: encoder [
 	| position |
 	position := stack position.
 	self returns
@@ -410,11 +337,8 @@ BlockNode>>emitCodeForEvaluatedEffect: stack encoder: encoder [
 	[stack position = position] assert
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>emitCodeForEvaluatedValue: stack encoder: encoder [
+{ #category : #'code generation' }
+BlockNode >> emitCodeForEvaluatedValue: stack encoder: encoder [
 	| position |
 	position := stack position.
 	self emitCodeExceptLast: stack encoder: encoder.
@@ -422,11 +346,8 @@ BlockNode>>emitCodeForEvaluatedValue: stack encoder: encoder [
 	[stack position - 1 = position] assert
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>emitCodeForValue: stack encoder: encoder [
+{ #category : #'code generation (closures)' }
+BlockNode >> emitCodeForValue: stack encoder: encoder [
 	"if not supportsClosureOpcodes closureCreationSupportNode is the
 	 node for thisContext closureCopy: numArgs [ copiedValues: { values } ]"
 	encoder supportsClosureOpcodes
@@ -448,19 +369,13 @@ BlockNode>>emitCodeForValue: stack encoder: encoder [
 	self emitCodeForEvaluatedClosureValue: stack encoder: encoder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>firstArgument [
+{ #category : #accessing }
+BlockNode >> firstArgument [
 	^ arguments first
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>ifHasRemoteTempNodeEnsureInitializationStatementExists: rootNode [
+{ #category : #'code generation (closures)' }
+BlockNode >> ifHasRemoteTempNodeEnsureInitializationStatementExists: rootNode [
 	"If a remoteTempNode has been added ensure a statement exists to initialize it."
 	remoteTempNode ~~ nil ifTrue:
 		[(statements notEmpty
@@ -476,38 +391,26 @@ BlockNode>>ifHasRemoteTempNodeEnsureInitializationStatementExists: rootNode [
 				[statements addFirst: (remoteTempNode nodeToInitialize: rootNode encoder)]].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>isBlockNode [
+{ #category : #testing }
+BlockNode >> isBlockNode [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>isComplex [
+{ #category : #testing }
+BlockNode >> isComplex [
 
 	^statements size > 1 or: [statements size = 1 and: [statements first isComplex]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>isJust: node [
+{ #category : #testing }
+BlockNode >> isJust: node [
 
 	returns ifTrue: [^false].
 	^statements size = 1 and: [statements first == node]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>isJustCaseError [
+{ #category : #testing }
+BlockNode >> isJustCaseError [
 
 	^ statements size = 1 and:
 		[statements first
@@ -516,50 +419,35 @@ BlockNode>>isJustCaseError [
 			arguments: nil]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>isQuick [
+{ #category : #testing }
+BlockNode >> isQuick [
 	^ statements size = 1
 		and: [statements first isVariableReference
 				or: [statements first isSpecialConstant]]
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>makeTemporariesRemovable [
+{ #category : #'code generation (closures)' }
+BlockNode >> makeTemporariesRemovable [
 	"Utilities for when we want to remove some temporaries."
 	
 	temporaries isArray ifTrue:
 		[temporaries := temporaries asOrderedCollection].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>nArgsSlot [
+{ #category : #accessing }
+BlockNode >> nArgsSlot [
 	"Private for the Encoder to use in bindArg"
 	^nArgsNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>nArgsSlot: anInteger [
+{ #category : #accessing }
+BlockNode >> nArgsSlot: anInteger [
 	"Private for the Encoder to use in bindArg"
 	nArgsNode := anInteger
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>nilReadBeforeWrittenTemps [
+{ #category : #'code generation (closures)' }
+BlockNode >> nilReadBeforeWrittenTemps [
 	| visitor readBeforeWritten |
 	self accept: (visitor := OptimizedBlockLocalTempReadBeforeWrittenVisitor new).
 	readBeforeWritten := visitor readBeforeWritten.
@@ -570,28 +458,19 @@ BlockNode>>nilReadBeforeWrittenTemps [
 			[statements addFirst: (AssignmentNode new variable: temp value: NodeNil)]]
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>noteOptimized [
+{ #category : #'code generation (closures)' }
+BlockNode >> noteOptimized [
 	optimized := true
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>noteOptimizedIn: anOptimizedMessageNode [
+{ #category : #'code generation (closures)' }
+BlockNode >> noteOptimizedIn: anOptimizedMessageNode [
 	optimized := true.
 	optimizedMessageNode := anOptimizedMessageNode
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>noteSourceRangeStart: start end: end encoder: encoder [
+{ #category : #initialize-release }
+BlockNode >> noteSourceRangeStart: start end: end encoder: encoder [
 	"Note two source ranges for this node.  One is for the debugger
 	 and is of the last expression, the result of the block.  One is for
 	 source analysis and is for the entire block."
@@ -609,28 +488,19 @@ BlockNode>>noteSourceRangeStart: start end: end encoder: encoder [
 				forNode: self]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>numberOfArguments [
+{ #category : #accessing }
+BlockNode >> numberOfArguments [
 
 	^arguments size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>optimized [
+{ #category : #accessing }
+BlockNode >> optimized [
 	^optimized
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>optimizedBlockHoistTempsInto: scopeBlock "<BlockNode>" [
+{ #category : #'code generation (closures)' }
+BlockNode >> optimizedBlockHoistTempsInto: scopeBlock [ "<BlockNode>"
 	"This is a No-op for all nodes except non-optimized BlockNodes."
 	"Let's assume the special > 0 guard in MessageNode>>analyseTempsWithin:forValue:encoder: is correct.
 	 Then we can simply hoist our temps up."
@@ -643,11 +513,8 @@ BlockNode>>optimizedBlockHoistTempsInto: scopeBlock "<BlockNode>" [
 		temporaries := #()]
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>postNumberingProcessTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" [
+{ #category : #'code generation (closures)' }
+BlockNode >> postNumberingProcessTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode [ "<MethodNode>"
 	"A temp can be local (and copied) if it is not written to after it is captured.
 	 A temp cannot be local if it is written to remotely.
 	 Need to enumerate a copy of the temporaries because any temps becoming remote
@@ -671,11 +538,8 @@ BlockNode>>postNumberingProcessTempsWithin: scopeBlock "<BlockNode>" rootNode: r
 		addLocalsToPool: temporaries
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>printArgumentsOn: aStream indent: level [
+{ #category : #printing }
+BlockNode >> printArgumentsOn: aStream indent: level [
 	arguments size = 0 ifTrue: [^ self].
 	arguments do:
 		[:arg | aStream nextPut: $:;  nextPutAll: arg key;  space].
@@ -685,11 +549,8 @@ BlockNode>>printArgumentsOn: aStream indent: level [
 		[aStream crtab: level]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>printOn: aStream indent: level [
+{ #category : #printing }
+BlockNode >> printOn: aStream indent: level [
 
 	"statements size <= 1 ifFalse: [aStream crtab: level]."
 	aStream nextPut: $[.
@@ -703,11 +564,8 @@ BlockNode>>printOn: aStream indent: level [
 	aStream nextPut: $]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>printStatementsOn: aStream indent: levelOrZero [
+{ #category : #printing }
+BlockNode >> printStatementsOn: aStream indent: levelOrZero [
 	| len shown thisStatement level |
 	level := 1 max: levelOrZero.
 	comment == nil
@@ -738,11 +596,8 @@ BlockNode>>printStatementsOn: aStream indent: levelOrZero [
 				i < shown ifTrue: [aStream crtab: level]]]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>printTemporaries: tempSequence on: aStream doPrior: aBlock [
+{ #category : #printing }
+BlockNode >> printTemporaries: tempSequence on: aStream doPrior: aBlock [
 	"Print any in-scope temporaries.  If there are any evaluate aBlock
 	 prior to printing.  Answer whether any temporaries were printed."
 	| tempStream seen |
@@ -776,11 +631,8 @@ BlockNode>>printTemporaries: tempSequence on: aStream doPrior: aBlock [
 	^true
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>reindexingLocalsDo: aBlock encoder: encoderOrNil [
+{ #category : #'code generation (closures)' }
+BlockNode >> reindexingLocalsDo: aBlock encoder: encoderOrNil [
 	"Evaluate aBlock wih arguments, temporaries and copiedValues reindexed for
 	 their positions within the receiver's block, restoring the correct indices afterwards.
 	 If encoder is not nil remember the temps for this block's extent."
@@ -803,11 +655,8 @@ BlockNode>>reindexingLocalsDo: aBlock encoder: encoderOrNil [
 	^result
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>remoteTempNodeName [
+{ #category : #'code generation (closures)' }
+BlockNode >> remoteTempNodeName [
 	"Answer a useful name for a RemoteTempVectorNode in the receiver."
 	| prefix scope extent |
 	prefix := actualScopeIfOptimized ifNil: ['<'] ifNotNil: [ '<...'].
@@ -825,11 +674,8 @@ BlockNode>>remoteTempNodeName [
 					ifFalse: [extent last printString]), '>']
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>removeTempNode: aTempVariableNode ifAbsent: aBlock [
+{ #category : #'code generation (closures)' }
+BlockNode >> removeTempNode: aTempVariableNode ifAbsent: aBlock [
 	"Utilities for when we want to remove some temporaries."
 	
 	self makeTemporariesRemovable.
@@ -837,11 +683,8 @@ BlockNode>>removeTempNode: aTempVariableNode ifAbsent: aBlock [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>returnLast [
+{ #category : #accessing }
+BlockNode >> returnLast [
 
 	self returns
 		ifFalse: 
@@ -849,11 +692,8 @@ BlockNode>>returnLast [
 			statements at: statements size put: statements last asReturnNode]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>returnNilIfNoOther [
+{ #category : #accessing }
+BlockNode >> returnNilIfNoOther [
 
 	self returns
 		ifFalse: 
@@ -861,11 +701,8 @@ BlockNode>>returnNilIfNoOther [
 			self returnLast]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>returnSelfIfNoOther: encoder [
+{ #category : #accessing }
+BlockNode >> returnSelfIfNoOther: encoder [
 
 	self returns ifTrue:[^self].
 	statements last == NodeSelf ifFalse: [
@@ -875,20 +712,14 @@ BlockNode>>returnSelfIfNoOther: encoder [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>returns [
+{ #category : #testing }
+BlockNode >> returns [
 
 	^returns or: [statements last isReturningIf]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>sizeCodeExceptLast: encoder [
+{ #category : #'code generation' }
+BlockNode >> sizeCodeExceptLast: encoder [
 	| codeSize |
 	codeSize := 0.
 	1 to: statements size - 1 do: 
@@ -898,11 +729,8 @@ BlockNode>>sizeCodeExceptLast: encoder [
 	^codeSize
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>sizeCodeForEvaluatedClosureValue: encoder [
+{ #category : #'code generation (closures)' }
+BlockNode >> sizeCodeForEvaluatedClosureValue: encoder [
 	"The closure value primitives push the arguments and the copied values.
 	 The compiler guarantees that any copied values come before all local temps.
 	 So on closure activation we only need to push nils for the remaining temporaries."
@@ -913,11 +741,8 @@ BlockNode>>sizeCodeForEvaluatedClosureValue: encoder [
 	+ (self returns ifTrue: [0] ifFalse: [encoder sizeReturnTopToCaller])
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>sizeCodeForEvaluatedEffect: encoder [
+{ #category : #'code generation' }
+BlockNode >> sizeCodeForEvaluatedEffect: encoder [
 
 	^self returns
 		ifTrue: [self sizeCodeForEvaluatedValue: encoder]
@@ -925,21 +750,15 @@ BlockNode>>sizeCodeForEvaluatedEffect: encoder [
 				+ (statements last sizeCodeForEffect: encoder)]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>sizeCodeForEvaluatedValue: encoder [
+{ #category : #'code generation' }
+BlockNode >> sizeCodeForEvaluatedValue: encoder [
 
 	^(self sizeCodeExceptLast: encoder)
 		+ (statements last sizeCodeForBlockValue: encoder)
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>sizeCodeForValue: encoder [
+{ #category : #'code generation (closures)' }
+BlockNode >> sizeCodeForValue: encoder [
 	"Compute the size for the creation of the block and its code."
 	"If we have the closure bytecodes constructClosureCreationNode: will note
 	 the copied values in the copiedValues inst var and answer #pushCopiedValues."
@@ -958,46 +777,31 @@ BlockNode>>sizeCodeForValue: encoder [
 			 + size]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>startOfLastStatement [
+{ #category : #accessing }
+BlockNode >> startOfLastStatement [
 	^startOfLastStatement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>startOfLastStatement: anInteger [
+{ #category : #accessing }
+BlockNode >> startOfLastStatement: anInteger [
 	"Note the source index of the start of the last full statement.  The
 	 last full statement is the value answered by a block and hence the
 	 expression the debugger should display as the value of the block."
 	startOfLastStatement := anInteger
 ]
 
-{
-	#category : #'equation translation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>statements [
+{ #category : #'equation translation' }
+BlockNode >> statements [
 	^statements
 ]
 
-{
-	#category : #'equation translation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>statements: val [
+{ #category : #'equation translation' }
+BlockNode >> statements: val [
 	statements := val
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>statements: statementsCollection returns: returnBool  [
+{ #category : #initialize-release }
+BlockNode >> statements: statementsCollection returns: returnBool [ 
 	"Decompile."
 
 	| returnLast |
@@ -1019,18 +823,12 @@ BlockNode>>statements: statementsCollection returns: returnBool  [
 	returnLast ifTrue: [self returnLast]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>temporaries [
+{ #category : #accessing }
+BlockNode >> temporaries [
 	^temporaries ifNil: [#()]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BlockNode>>temporaries: aCollection [
+{ #category : #accessing }
+BlockNode >> temporaries: aCollection [
 	temporaries := aCollection
 ]

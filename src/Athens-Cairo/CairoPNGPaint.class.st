@@ -13,26 +13,19 @@ Class {
 	#pools : [
 		'AthensCairoDefs'
 	],
-	#category : #Athens-Cairo-Paints,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Paints
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoPNGPaint class>>fileNamed: aFileName [
+{ #category : #'as yet unclassified' }
+CairoPNGPaint class >> fileNamed: aFileName [
 	| image|
 	image := self new.
 	image initializeOnFileNamed: aFileName.
 	^ image
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoPNGPaint>>asAthensPaintOn: anAthensCanvas [
+{ #category : #converting }
+CairoPNGPaint >> asAthensPaintOn: anAthensCanvas [
 
 	| surface |
 
@@ -50,10 +43,7 @@ CairoPNGPaint>>asAthensPaintOn: anAthensCanvas [
  
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoPNGPaint>>initializeOnFileNamed: aFileName [
+{ #category : #initialize-release }
+CairoPNGPaint >> initializeOnFileNamed: aFileName [
 	fileName := aFileName.
 ]

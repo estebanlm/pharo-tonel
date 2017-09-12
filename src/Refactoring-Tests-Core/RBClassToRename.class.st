@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RBClassToRename,
 	#superclass : #Model,
@@ -12,22 +9,15 @@ Class {
 	#classInstVars : [
 		'notUsed'
 	],
-	#category : #Refactoring-Tests-Core-Data,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core-Data
 }
 
-{
-	#category : #performing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBClassToRename>>method1 [
+{ #category : #performing }
+RBClassToRename >> method1 [
 	^self method2
 ]
 
-{
-	#category : #performing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBClassToRename>>method2 [
+{ #category : #performing }
+RBClassToRename >> method2 [
 	^self method1
 ]

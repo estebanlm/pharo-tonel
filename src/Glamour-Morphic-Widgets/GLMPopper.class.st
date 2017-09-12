@@ -13,15 +13,11 @@ Class {
 	#instVars : [
 		'textMorph'
 	],
-	#category : #Glamour-Morphic-Widgets-Popper,
-	#timestamp : 'AndreiChis 10/1/2014 13:03'
+	#category : #Glamour-Morphic-Widgets-Popper
 }
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopper class>>installAlarm: aSelector for: anObject [
+{ #category : #utils }
+GLMPopper class >> installAlarm: aSelector for: anObject [
 
 	World
 		addAlarm: aSelector
@@ -30,11 +26,8 @@ GLMPopper class>>installAlarm: aSelector for: anObject [
 		at: Time millisecondClockValue + 50.
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopper class>>installAlarm: aSelector for: anObject withArguments: anArray [
+{ #category : #utils }
+GLMPopper class >> installAlarm: aSelector for: anObject withArguments: anArray [
 
 	World
 		addAlarm: aSelector
@@ -43,11 +36,8 @@ GLMPopper class>>installAlarm: aSelector for: anObject withArguments: anArray [
 		at: Time millisecondClockValue + 50.
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopper class>>installAlarmFor: aBlock [
+{ #category : #utils }
+GLMPopper class >> installAlarmFor: aBlock [
 	<deprecated: 'Please use installAlarm: for: instead.
 		Installing alarm for a block without existing references is not the best practice as it can be garbage collected and alarm will never be launched.'>
 	World
@@ -57,11 +47,8 @@ GLMPopper class>>installAlarmFor: aBlock [
 		at: Time millisecondClockValue + 50.
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopper>>computeOriginFor: aMorph [
+{ #category : #public }
+GLMPopper >> computeOriginFor: aMorph [
 	| desiredTop desiredLeft |
 
 	aMorph textArea scrollSelectionIntoView: nil.
@@ -71,11 +58,8 @@ GLMPopper>>computeOriginFor: aMorph [
 	^ desiredLeft @ desiredTop
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopper>>initialize [
+{ #category : #initialization }
+GLMPopper >> initialize [
 	super initialize.
 	self changeProportionalLayout.
 	self
@@ -83,11 +67,8 @@ GLMPopper>>initialize [
 		color: Color transparent
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopper>>originMorphFor: aMorph [
+{ #category : #public }
+GLMPopper >> originMorphFor: aMorph [
 
 	(aMorph textArea hasSelection not and: [ 
 		aMorph textArea hasHighlightSegment ]) ifTrue: [ 
@@ -95,11 +76,8 @@ GLMPopper>>originMorphFor: aMorph [
 	^ aMorph textArea cursor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopper>>updateWithString: string from: aMorph [
+{ #category : #private }
+GLMPopper >> updateWithString: string from: aMorph [
 	textMorph textArea
 		updateTextWith: string;
 		takeKeyboardFocus;
@@ -122,11 +100,8 @@ GLMPopper>>updateWithString: string from: aMorph [
 			Do not attempt to give the focus back to the original morph" ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopper>>withString: string from: aMorph [
+{ #category : #private }
+GLMPopper >> withString: string from: aMorph [
 	| top width left stringMorph height desiredOrigin |
 	desiredOrigin := self computeOriginFor: aMorph.
 	stringMorph := RubEditingArea new 

@@ -6,15 +6,11 @@ This package is unloadeable.
 Class {
 	#name : #MCOldDataStreamExtensions,
 	#superclass : #Object,
-	#category : #Monticello-OldDataStreamCompatibility,
-	#timestamp : 'PabloTesone 8/20/2015 11:52'
+	#category : #Monticello-OldDataStreamCompatibility
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCOldDataStreamExtensions class>>initialize [
+{ #category : #'class initialization' }
+MCOldDataStreamExtensions class >> initialize [
 	MCDataStream registerReaderSelector: #readStringOld atIndex: 5.
 	MCDataStream registerClass: ByteArray atIndex: 7  usingReadSelector: #readByteArray usingWriteSelector: #writeByteArray:.
 	MCDataStream registerReaderSelector: #readReference atIndex: 10.

@@ -5,15 +5,11 @@ A DockingBarMenuLineMorph is specialized version of its superclass for DockingBa
 Class {
 	#name : #DockingBarMenuLineMorph,
 	#superclass : #MenuLineMorph,
-	#category : #Morphic-Widgets-Extra,
-	#timestamp : 'StephaneDucasse 9/28/2014 15:16'
+	#category : #Morphic-Widgets-Extra
 }
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuLineMorph>>minHeight [
+{ #category : #layout }
+DockingBarMenuLineMorph >> minHeight [
 	"Answer the receiver's minHeight"
 	
 	^owner isVertical
@@ -22,11 +18,8 @@ DockingBarMenuLineMorph>>minHeight [
 	
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuLineMorph>>minWidth [
+{ #category : #layout }
+DockingBarMenuLineMorph >> minWidth [
 	"Answer the receiver's minWidth"
 
 	^ owner isVertical
@@ -34,31 +27,22 @@ DockingBarMenuLineMorph>>minWidth [
 		ifFalse: [ self theme menuBorderWidth ]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuLineMorph>>noteNewOwner: aMorph  [
+{ #category : #submorphs-accessing }
+DockingBarMenuLineMorph >> noteNewOwner: aMorph [ 
 	"I have just been added as a submorph of aMorph"
 	super noteNewOwner: aMorph.
 	self updateLayoutInDockingBar
 ]
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuLineMorph>>ownerChanged [
+{ #category : #'change reporting' }
+DockingBarMenuLineMorph >> ownerChanged [
 	"The receiver's owner, some kind of a pasteup, has changed its layout."
 	super ownerChanged.
 	self updateLayoutInDockingBar
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuLineMorph>>updateLayoutInDockingBar [
+{ #category : #private }
+DockingBarMenuLineMorph >> updateLayoutInDockingBar [
 
 	owner isVertical
 		ifFalse: [

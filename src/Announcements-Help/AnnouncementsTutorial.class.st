@@ -5,31 +5,21 @@ This is a custom help book providing a tutorial for the announcements framework.
 Class {
 	#name : #AnnouncementsTutorial,
 	#superclass : #AnnouncementsHelp,
-	#category : #Announcements-Help,
-	#timestamp : 'Tbn 11/12/2010 11:17'
+	#category : #Announcements-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnouncementsTutorial class>>bookName [
+{ #category : #accessing }
+AnnouncementsTutorial class >> bookName [
 	^'Tutorial'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnouncementsTutorial class>>pages [
+{ #category : #accessing }
+AnnouncementsTutorial class >> pages [
 	^#(step1 step2 step3)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnouncementsTutorial class>>step1 [
+{ #category : #pages }
+AnnouncementsTutorial class >> step1 [
 	"This method was automatically generated. Edit it using:"
 	"AnnouncementsTutorial edit: #step1"
 	^HelpTopic
@@ -52,11 +42,8 @@ If required you can add instance variables to hold data that should be transferr
 	   category: ''MyGame-Core''!' readStream nextChunkText
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnouncementsTutorial class>>step2 [
+{ #category : #pages }
+AnnouncementsTutorial class >> step2 [
 	"This method was automatically generated. Edit it using:"
 	"AnnouncementsTutorial edit: #step2"
 	^HelpTopic
@@ -88,11 +75,8 @@ So anytime an interesting announcement is made we want to inform the two consume
 Note that the subscribers are decoupled from the original announcement publisher. They dont have to know each other. Decoupling is the key thing here ... subscribers can register for particular events/announcements and remain anonymous to the original publisher. !' readStream nextChunkText
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnouncementsTutorial class>>step3 [
+{ #category : #pages }
+AnnouncementsTutorial class >> step3 [
 	"This method was automatically generated. Edit it using:"
 	"AnnouncementsTutorial edit: #step3"
 	^HelpTopic

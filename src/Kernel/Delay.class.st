@@ -26,33 +26,23 @@ Class {
 	#classVars : [
 		'Scheduler'
 	],
-	#category : #Kernel-Processes,
-	#timestamp : 'BenComan 3/19/2015 23:00'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay class>>anyActive [
+{ #category : #testing }
+Delay class >> anyActive [
 	"Return true if there is any delay currently active"
 		^Scheduler anyActive
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay class>>delaySchedulerClass [
+{ #category : #settings }
+Delay class >> delaySchedulerClass [
 	^Scheduler class
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay class>>delaySchedulerClass: aSchedulerClass [
+{ #category : #settings }
+Delay class >> delaySchedulerClass: aSchedulerClass [ 
 	| newScheduler |
 	self delaySchedulerClass = aSchedulerClass ifTrue:[ ^self ].
 	newScheduler := aSchedulerClass new.
@@ -66,42 +56,30 @@ Delay class>>delaySchedulerClass: aSchedulerClass [
 	
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay class>>forDuration: aDuration [
+{ #category : #'instance creation' }
+Delay class >> forDuration: aDuration [
  	"Return a new Delay for the given duration."
  	^ self forMilliseconds: aDuration asMilliSeconds
  
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay class>>forMilliseconds: aNumber [
+{ #category : #'instance creation' }
+Delay class >> forMilliseconds: aNumber [
 	"Return a new Delay for the given number of milliseconds. Sending 'wait' to this Delay will cause the sender's process to be suspended for approximately that length of time."
 
 	^ self new setDelay: aNumber forSemaphore: Semaphore new
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay class>>forSeconds: aNumber [
+{ #category : #'instance creation' }
+Delay class >> forSeconds: aNumber [
 	"Return a new Delay for the given number of Seconds"
 	^ self forMilliseconds: aNumber * 1000
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay class>>initialize [
+{ #category : #initialize-release }
+Delay class >> initialize [
 	"Delay initialize"
 	Scheduler ifNotNil: [ Scheduler stopTimerEventLoop ].
 	Scheduler := DelaySpinScheduler new.
@@ -112,11 +90,8 @@ Delay class>>initialize [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay class>>nextWakeUpTime [
+{ #category : #testing }
+Delay class >> nextWakeUpTime [
 
 	^ Scheduler nextWakeUpTime.
 
@@ -124,50 +99,35 @@ Delay class>>nextWakeUpTime [
 
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay class>>restartTimerEventLoop [
+{ #category : #'timer process' }
+Delay class >> restartTimerEventLoop [
 	self stopTimerEventLoop.
 	self startTimerEventLoop.
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay class>>schedulingProcess [
+{ #category : #'timer process' }
+Delay class >> schedulingProcess [
 
 	^ Scheduler schedulingProcess.
 
 ]
 
-{
-	#category : #snapshotting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay class>>shutDown [
+{ #category : #snapshotting }
+Delay class >> shutDown [
 
 	Scheduler shutDown.
 
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay class>>startTimerEventLoop [
+{ #category : #'timer process' }
+Delay class >> startTimerEventLoop [
 
 	Scheduler startTimerEventLoop.
 
 ]
 
-{
-	#category : #snapshotting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay class>>startUp [
+{ #category : #snapshotting }
+Delay class >> startUp [
 	"Restart active delay, if any, when resuming a snapshot."
 
 	Scheduler startUp.
@@ -175,21 +135,15 @@ Delay class>>startUp [
 
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay class>>stopTimerEventLoop [
+{ #category : #'timer process' }
+Delay class >> stopTimerEventLoop [
 
 	^ Scheduler stopTimerEventLoop.
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay class>>systemSettingOn: aBuilder [
+{ #category : #settings }
+Delay class >> systemSettingOn: aBuilder [
 	<systemsettings>
 	
 	(aBuilder pickOne: #delaySchedulerClass)
@@ -202,11 +156,8 @@ Delay class>>systemSettingOn: aBuilder [
 	
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay class>>timeoutSemaphore: aSemaphore afterMSecs: anInteger [
+{ #category : #'instance creation' }
+Delay class >> timeoutSemaphore: aSemaphore afterMSecs: anInteger [
 	"Create and schedule a Delay to signal the given semaphore when the given number of milliseconds has elapsed. Return the scheduled Delay. The timeout can be cancelled by sending 'unschedule' to this Delay."
 	"Details: This mechanism is used to provide a timeout when waiting for an external event, such as arrival of data over a network connection, to signal a semaphore. The timeout ensures that the semaphore will be signalled within a reasonable period of time even if the event fails to occur. Typically, the waiting process cancels the timeout request when awoken, then determines if the awaited event has actually occurred."
 
@@ -214,48 +165,33 @@ Delay class>>timeoutSemaphore: aSemaphore afterMSecs: anInteger [
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay>>delaySemaphore [
+{ #category : #public }
+Delay >> delaySemaphore [
 
 	^ delaySemaphore
 ]
 
-{
-	#category : #delaying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay>>isExpired [
+{ #category : #delaying }
+Delay >> isExpired [
 
 	^delaySemaphore isSignaled.
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay>>millisecondDelayDuration [
+{ #category : #public }
+Delay >> millisecondDelayDuration [
 	^millisecondDelayDuration
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay>>millisecondsToGo [
+{ #category : #printing }
+Delay >> millisecondsToGo [
 	"The milli/micro second semantics of /schedulerResumptionTime/ vary with which 
 	scheduler set the value, so ask it to interpret."
 	^ scheduler millisecondsUntilResumptionTime: schedulerResumptionTime
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay>>printOn: aStream [
+{ #category : #printing }
+Delay >> printOn: aStream [
 	super printOn: aStream.
 	aStream
 		nextPutAll: '(';
@@ -270,22 +206,16 @@ Delay>>printOn: aStream [
 	aStream nextPutAll: ')'.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay>>schedule [
+{ #category : #private }
+Delay >> schedule [
 	"Schedule this delay."
 	
 	Scheduler schedule: self.
 
 ]
 
-{
-	#category : #'private - scheduler',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay>>scheduler: aDelayScheduler resumptionTime: milliOrMicroResumptionTime [
+{ #category : #'private - scheduler' }
+Delay >> scheduler: aDelayScheduler resumptionTime: milliOrMicroResumptionTime [
 	"The milli/micro semantics of schedulerResumptionTime varies depending on which 
 	scheduler is running, so we record it such that later printOn: can interpret it
 	using #millisecondsToGo"
@@ -293,20 +223,14 @@ Delay>>scheduler: aDelayScheduler resumptionTime: milliOrMicroResumptionTime [
 	schedulerResumptionTime := milliOrMicroResumptionTime.
 ]
 
-{
-	#category : #'private - scheduler',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay>>schedulerBeingWaitedOn [
+{ #category : #'private - scheduler' }
+Delay >> schedulerBeingWaitedOn [
 	"Answer whether this delay is currently scheduled, e.g., being waited on"
 	^beingWaitedOn
 ]
 
-{
-	#category : #'private - scheduler',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay>>schedulerBeingWaitedOn: aBoolean [
+{ #category : #'private - scheduler' }
+Delay >> schedulerBeingWaitedOn: aBoolean [
 	"Indicate whether this delay is currently scheduled, i.e. being waited on"
 	
 	beingWaitedOn := aBoolean
@@ -317,11 +241,8 @@ Delay>>schedulerBeingWaitedOn: aBoolean [
 
 ]
 
-{
-	#category : #'private - scheduler',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay>>schedulerResumptionTime [
+{ #category : #'private - scheduler' }
+Delay >> schedulerResumptionTime [
 	"Answer the value of the system clock at which the receiver's suspended Process will resume.
 	The semantics of whether this is a millisecond or microsecond value depends on which scheduler is in use."
 	
@@ -329,11 +250,8 @@ Delay>>schedulerResumptionTime [
 
 ]
 
-{
-	#category : #'private - scheduler',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay>>schedulerResumptionTime: anInteger [
+{ #category : #'private - scheduler' }
+Delay >> schedulerResumptionTime: anInteger [
 	"Private! Should only be called by a subclass of DelayScheduler.
 	Set the value of the system's clock at which the receiver's suspended Process will resumed.  The clock semantics depends on the scheduler used e.g. millisecond/microsecond."
 	
@@ -342,11 +260,8 @@ Delay>>schedulerResumptionTime: anInteger [
 
 ]
 
-{
-	#category : #'private - scheduler',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay>>schedulerSignalWaitingProcess [
+{ #category : #'private - scheduler' }
+Delay >> schedulerSignalWaitingProcess [
 	"The delay time has elapsed; signal the waiting process."
 
 	beingWaitedOn := false.
@@ -356,21 +271,15 @@ Delay>>schedulerSignalWaitingProcess [
 		DelayScheduler>>handleEventTimer."
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay>>setDelay: milliseconds [
+{ #category : #private }
+Delay >> setDelay: milliseconds [
 	"Private! Initialize this delay to signal the given semaphore after the given number of milliseconds."
 
 	millisecondDelayDuration := milliseconds asInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay>>setDelay: milliseconds forSemaphore: aSemaphore [
+{ #category : #private }
+Delay >> setDelay: milliseconds forSemaphore: aSemaphore [
 	"Private! Initialize this delay to signal the given semaphore after the given number of milliseconds."
 
 	millisecondDelayDuration := milliseconds asInteger.
@@ -379,20 +288,14 @@ Delay>>setDelay: milliseconds forSemaphore: aSemaphore [
 	beingWaitedOn := false.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay>>unschedule [
+{ #category : #private }
+Delay >> unschedule [
 	Scheduler unschedule: self.
 
 ]
 
-{
-	#category : #delaying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Delay>>wait [
+{ #category : #delaying }
+Delay >> wait [
 	"Schedule this Delay, then wait on its semaphore. The current process will be suspended for the amount of time specified when this Delay was created."
 
 	self schedule.

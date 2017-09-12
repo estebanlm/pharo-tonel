@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicPresentationToolbarModel,
 	#superclass : #Object,
@@ -8,38 +5,25 @@ Class {
 		'renderer',
 		'presentation'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphicPresentationToolbarModel>>presentation [
+{ #category : #accessing }
+GLMMorphicPresentationToolbarModel >> presentation [
 	^ presentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphicPresentationToolbarModel>>presentation: anObject [
+{ #category : #accessing }
+GLMMorphicPresentationToolbarModel >> presentation: anObject [
 	presentation := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphicPresentationToolbarModel>>renderer [
+{ #category : #accessing }
+GLMMorphicPresentationToolbarModel >> renderer [
 	^ renderer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphicPresentationToolbarModel>>renderer: anObject [
+{ #category : #accessing }
+GLMMorphicPresentationToolbarModel >> renderer: anObject [
 	renderer := anObject
 ]

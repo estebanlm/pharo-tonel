@@ -4,30 +4,20 @@ If you want to extract code in a new method I'm your guy
 Class {
 	#name : #SugsExtractMethod,
 	#superclass : #SugsSuggestion,
-	#category : #SmartSuggestions-Suggestion,
-	#timestamp : '<historical>'
+	#category : #SmartSuggestions-Suggestion
 }
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsExtractMethod>>execute [
+{ #category : #execution }
+SugsExtractMethod >> execute [
 	(NautilusRefactoring model: context) extractToMethodTextSelection
 ]
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsExtractMethod>>isValidForContext [
+{ #category : #execution }
+SugsExtractMethod >> isValidForContext [
 	^ context hasMoreSentences
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsExtractMethod>>label [
+{ #category : #accessing }
+SugsExtractMethod >> label [
 	^'Extract method' translated
 ]

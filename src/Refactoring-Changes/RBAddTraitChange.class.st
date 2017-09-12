@@ -9,23 +9,16 @@ Class {
 	#instVars : [
 		'category'
 	],
-	#category : #Refactoring-Changes,
-	#timestamp : 'NicolaiHess 9/9/2016 20:36'
+	#category : #Refactoring-Changes
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddTraitChange class>>definitionPatterns [
+{ #category : #private }
+RBAddTraitChange class >> definitionPatterns [
 	^ #('Trait named: `#traitName uses: `@traitComposition category: `#category')
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddTraitChange>>asUndoOperation [
+{ #category : #converting }
+RBAddTraitChange >> asUndoOperation [
 	| trait |
 	trait := Smalltalk globals
 		at: self changeClassName
@@ -35,27 +28,18 @@ RBAddTraitChange>>asUndoOperation [
 		ifFalse: [ RBRefactoryChangeManager changeFactory removeClassNamed: self changeClassName ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddTraitChange>>category [
+{ #category : #accessing }
+RBAddTraitChange >> category [
 	^ category
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddTraitChange>>definitionClass [
+{ #category : #private }
+RBAddTraitChange >> definitionClass [
 	^ Trait
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddTraitChange>>fillOutDefinition: aDictionary [
+{ #category : #initialization }
+RBAddTraitChange >> fillOutDefinition: aDictionary [
 	className := (aDictionary at: '`#traitName') asSymbol.
 	category := (aDictionary at: '`#category' ifAbsent: [ #Unclassified ]) asSymbol
 ]

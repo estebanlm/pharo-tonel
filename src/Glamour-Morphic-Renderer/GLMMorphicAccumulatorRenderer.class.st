@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicAccumulatorRenderer,
 	#superclass : #GLMMorphicBrowserRenderer,
 	#instVars : [
 		'tabs'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicAccumulatorRenderer>>actOnPaneAdded: ann  [
+{ #category : #rendering }
+GLMMorphicAccumulatorRenderer >> actOnPaneAdded: ann [ 
 	tabs 
 		addLazyPage: (GLMMorphicPaneWithoutTitleRenderer new render: ann pane) 
 		label: (self titleOrIconOf: ann pane presentations in: tabs)
@@ -24,19 +17,13 @@ GLMMorphicAccumulatorRenderer>>actOnPaneAdded: ann  [
 	tabs selectedPageIndex: tabs pages size
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicAccumulatorRenderer>>actOnPaneSelected: anAnnouncement [
+{ #category : #rendering }
+GLMMorphicAccumulatorRenderer >> actOnPaneSelected: anAnnouncement [
 	tabs selectedPageIndex: anAnnouncement position
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicAccumulatorRenderer>>removePage: aPage [
+{ #category : #private }
+GLMMorphicAccumulatorRenderer >> removePage: aPage [
 	| removedPageIndex |
 	removedPageIndex := self pages indexOf: aPage.
 	self announcer suspendAllWhile: [ super removePage: aPage ].
@@ -50,11 +37,8 @@ GLMMorphicAccumulatorRenderer>>removePage: aPage [
 		ifTrue: [ self contentMorph removeAllMorphs ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicAccumulatorRenderer>>render: aBrowser [
+{ #category : #rendering }
+GLMMorphicAccumulatorRenderer >> render: aBrowser [
 	aBrowser panes isEmpty
 		ifTrue: [ ^ GLMMorphic emptyMorph ].
 	tabs := LazyTabGroupMorph new.

@@ -9,24 +9,17 @@ Class {
 	#instVars : [
 		'menu'
 	],
-	#category : #SUnit-UITesting,
-	#timestamp : 'SeanDeNigris 2/20/2014 08:47'
+	#category : #SUnit-UITesting
 }
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-MenuCapturingMorph>>menu [
+{ #category : #menu }
+MenuCapturingMorph >> menu [
 
 	^ menu.
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-MenuCapturingMorph>>step [
+{ #category : #'stepping and presenter' }
+MenuCapturingMorph >> step [
 
 	menu := World submorphs detect: [ :m | m isKindOf: MenuMorph ] ifNone: [ menu ].
 	menu isNil ifFalse: [ 

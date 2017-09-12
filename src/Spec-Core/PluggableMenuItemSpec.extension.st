@@ -1,21 +1,13 @@
-Extension {
-	#name : #PluggableMenuItemSpec
-}
+Extension { #name : #PluggableMenuItemSpec }
 
-{
-	#category : #'*Spec-Core',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PluggableMenuItemSpec>>addToMenuGroupModel: aMenuGroupModel [
+{ #category : #'*Spec-Core' }
+PluggableMenuItemSpec >> addToMenuGroupModel: aMenuGroupModel [
 
 	aMenuGroupModel addItem: [ :item | item fromSpec: self ]
 ]
 
-{
-	#category : #'*Spec-Core',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PluggableMenuItemSpec>>addToMenuItemModel: aMenuItemModel [
+{ #category : #'*Spec-Core' }
+PluggableMenuItemSpec >> addToMenuItemModel: aMenuItemModel [
 	| en newSubMenu |
 	en := self enabledBlock ifNil: [ self enabled ].
 	newSubMenu := self subMenu

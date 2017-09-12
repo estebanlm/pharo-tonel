@@ -1,19 +1,11 @@
-Extension {
-	#name : #RBMessageNode
-}
+Extension { #name : #RBMessageNode }
 
-{
-	#category : #'*SmartSuggestions',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-RBMessageNode>>specialCommands [
+{ #category : #'*SmartSuggestions' }
+RBMessageNode >> specialCommands [
 	^ SugsSuggestionFactory commandsForMessage
 ]
 
-{
-	#category : #'*SmartSuggestions',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-RBMessageNode>>sugsMenuLabel [
+{ #category : #'*SmartSuggestions' }
+RBMessageNode >> sugsMenuLabel [
 	^ self selector
 ]

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterTriangleRenderer,
 	#superclass : #GLMBrickRenderer,
@@ -9,85 +6,57 @@ Class {
 		'border',
 		'borderColor'
 	],
-	#category : #GT-Spotter-Renderer,
-	#timestamp : ''
+	#category : #GT-Spotter-Renderer
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterTriangleRenderer>>border [
+{ #category : #accessing }
+GTSpotterTriangleRenderer >> border [
 	^ border
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterTriangleRenderer>>border: anInteger [
+{ #category : #accessing }
+GTSpotterTriangleRenderer >> border: anInteger [
 	border := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterTriangleRenderer>>borderColor [
+{ #category : #accessing }
+GTSpotterTriangleRenderer >> borderColor [
 	^ borderColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterTriangleRenderer>>borderColor: aColor [
+{ #category : #accessing }
+GTSpotterTriangleRenderer >> borderColor: aColor [
 	borderColor := aColor
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterTriangleRenderer>>findTriangleEdgeLength: anInteger [
+{ #category : #'mathematical functions' }
+GTSpotterTriangleRenderer >> findTriangleEdgeLength: anInteger [
 
 	^ 2 / 3 * (3 sqrt) * anInteger
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterTriangleRenderer>>initialize [
+{ #category : #initialization }
+GTSpotterTriangleRenderer >> initialize [
 	super initialize.
 	
 	border := 0.
 	borderColor := Color transparent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterTriangleRenderer>>orientation [
+{ #category : #accessing }
+GTSpotterTriangleRenderer >> orientation [
 	^ orientation ifNil: [ #bottom ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterTriangleRenderer>>orientation: aSymbol [
+{ #category : #accessing }
+GTSpotterTriangleRenderer >> orientation: aSymbol [
 	"can be #right #bottom #left #top"
 
 	orientation := aSymbol
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterTriangleRenderer>>render: aBrick on: aCanvas [
+{ #category : #rendering }
+GTSpotterTriangleRenderer >> render: aBrick on: aCanvas [
 	
 	self orientation = #right ifTrue: [ self renderRightTriangle: aBrick on: aCanvas ].
 	self orientation = #bottom ifTrue: [ self renderBottomTriangle: aBrick on: aCanvas ].
@@ -95,11 +64,8 @@ GTSpotterTriangleRenderer>>render: aBrick on: aCanvas [
 	self orientation = #top ifTrue: [ self renderTopTriangle: aBrick on: aCanvas ].
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterTriangleRenderer>>renderBottomTriangle: aBrick on: aCanvas [
+{ #category : #rendering }
+GTSpotterTriangleRenderer >> renderBottomTriangle: aBrick on: aCanvas [
 	|a b c width height|
 	
 	width := aBrick brickBounds width.
@@ -114,11 +80,8 @@ GTSpotterTriangleRenderer>>renderBottomTriangle: aBrick on: aCanvas [
 	
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterTriangleRenderer>>renderLeftTriangle: aBrick on: aCanvas [
+{ #category : #rendering }
+GTSpotterTriangleRenderer >> renderLeftTriangle: aBrick on: aCanvas [
 	|a b c width height|
 	
 	width := aBrick brickBounds width.
@@ -131,11 +94,8 @@ GTSpotterTriangleRenderer>>renderLeftTriangle: aBrick on: aCanvas [
 	self renderTriangle: aBrick on: aCanvas with: { a asIntegerPoint . b asIntegerPoint . c asIntegerPoint}
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterTriangleRenderer>>renderRightTriangle: aBrick on: aCanvas [
+{ #category : #rendering }
+GTSpotterTriangleRenderer >> renderRightTriangle: aBrick on: aCanvas [
 	|a b c width height gap|
 	
 	gap := aBrick themer spotterThemer previewArrowGapHack.
@@ -157,11 +117,8 @@ GTSpotterTriangleRenderer>>renderRightTriangle: aBrick on: aCanvas [
 		]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterTriangleRenderer>>renderTopTriangle: aBrick on: aCanvas [
+{ #category : #rendering }
+GTSpotterTriangleRenderer >> renderTopTriangle: aBrick on: aCanvas [
 	|a b c width height|
 	
 	width := aBrick brickBounds width.
@@ -174,20 +131,14 @@ GTSpotterTriangleRenderer>>renderTopTriangle: aBrick on: aCanvas [
 	self renderTriangle: aBrick on: aCanvas with: { a asIntegerPoint . b asIntegerPoint . c asIntegerPoint}
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterTriangleRenderer>>renderTriangle: aBrick on: aCanvas with: aCollection [
+{ #category : #rendering }
+GTSpotterTriangleRenderer >> renderTriangle: aBrick on: aCanvas with: aCollection [
 
 	self renderTriangle: aBrick on: aCanvas with: aCollection color: (aBrick currentColor ifNil: [ aBrick color ])
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterTriangleRenderer>>renderTriangle: aBrick on: aCanvas with: aCollection color: aColor [
+{ #category : #rendering }
+GTSpotterTriangleRenderer >> renderTriangle: aBrick on: aCanvas with: aCollection color: aColor [
 
 	aCanvas drawPolygon: aCollection color: aColor borderWidth: 0 borderColor: Color transparent
 ]

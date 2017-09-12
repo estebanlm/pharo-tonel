@@ -10,100 +10,66 @@ Class {
 		'modificationTime',
 		'basename'
 	],
-	#category : #FileSystem-Memory,
-	#timestamp : '<historical>'
+	#category : #FileSystem-Memory
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemEntry class>>named: aFileName [
+{ #category : #'as yet unclassified' }
+MemoryFileSystemEntry class >> named: aFileName [
 	^ self new
 		basename: aFileName;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemEntry>>basename [
+{ #category : #accessing }
+MemoryFileSystemEntry >> basename [
 	^ basename
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemEntry>>basename: aString [
+{ #category : #accessing }
+MemoryFileSystemEntry >> basename: aString [
 	basename := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemEntry>>creationTime [
+{ #category : #accessing }
+MemoryFileSystemEntry >> creationTime [
 	
 	^ creationTime
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemEntry>>fileSize [
+{ #category : #accessing }
+MemoryFileSystemEntry >> fileSize [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemEntry>>initialize  [
+{ #category : #initialization }
+MemoryFileSystemEntry >> initialize [ 
 	creationTime := modificationTime := DateAndTime now.
 	super initialize
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemEntry>>isDirectory [
+{ #category : #testing }
+MemoryFileSystemEntry >> isDirectory [
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemEntry>>isFile [
+{ #category : #testing }
+MemoryFileSystemEntry >> isFile [
 	^ self isDirectory not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemEntry>>modificationTime [
+{ #category : #accessing }
+MemoryFileSystemEntry >> modificationTime [
 	
 	^ modificationTime
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemEntry>>modificationTime: anObject [
+{ #category : #accessing }
+MemoryFileSystemEntry >> modificationTime: anObject [
 	
 	modificationTime := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemEntry>>modified [
+{ #category : #private }
+MemoryFileSystemEntry >> modified [
 	modificationTime := DateAndTime now.
 ]

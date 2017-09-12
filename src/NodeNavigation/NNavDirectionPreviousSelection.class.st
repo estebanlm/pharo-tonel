@@ -4,15 +4,11 @@ I know how to go to the previous selection in the text
 Class {
 	#name : #NNavDirectionPreviousSelection,
 	#superclass : #NNavDirection,
-	#category : #NodeNavigation-Core,
-	#timestamp : '<historical>'
+	#category : #NodeNavigation-Core
 }
 
-{
-	#category : #builder,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionPreviousSelection class>>buildShortcut: aBuilder [
+{ #category : #builder }
+NNavDirectionPreviousSelection class >> buildShortcut: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #previousSelection)
@@ -22,10 +18,7 @@ NNavDirectionPreviousSelection class>>buildShortcut: aBuilder [
 		description: 'Select the previous selected scope'
 ]
 
-{
-	#category : #'stand out',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionPreviousSelection class>>findSelectionFor: navigationContext [
+{ #category : #'stand out' }
+NNavDirectionPreviousSelection class >> findSelectionFor: navigationContext [
 	^ navigationContext lastSelection 
 ]

@@ -8,24 +8,17 @@ Class {
 	#instVars : [
 		'recentTools'
 	],
-	#category : #Tool-Base,
-	#timestamp : 'NicolaiHess 12/18/2014 09:15'
+	#category : #Tool-Base
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools class>>initialize [
+{ #category : #initialization }
+PharoCommonTools class >> initialize [
 	SessionManager default
 		registerToolClassNamed: self name
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools class>>settingsOn: aBuilder [
+{ #category : #settings }
+PharoCommonTools class >> settingsOn: aBuilder [
 	<systemsettings>
 	Smalltalk tools class == self
 		ifFalse: [ ^ self ].
@@ -89,332 +82,215 @@ PharoCommonTools class>>settingsOn: aBuilder [
 						domainValues: Smalltalk tools recentChangeSorterTools]
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools class>>shutDown: aboutToQuit [
+{ #category : #'system startup' }
+PharoCommonTools class >> shutDown: aboutToQuit [
 	self allInstancesDo: #cleanUp
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>basicInspector [
+{ #category : #'registry access' }
+PharoCommonTools >> basicInspector [
 
 	^ self toolNamed: #basicInspector
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>browser [
+{ #category : #'registry access' }
+PharoCommonTools >> browser [
 
 	^ self toolNamed: #browser
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>browserTool [
+{ #category : #tools }
+PharoCommonTools >> browserTool [
 	^ self browser
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>browserTool: aTool [
+{ #category : #tools }
+PharoCommonTools >> browserTool: aTool [
 	^ self register: aTool as: #browser
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>changeList [
+{ #category : #'registry access' }
+PharoCommonTools >> changeList [
 
 	^ self toolNamed: #changeList
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>changeSorter [
+{ #category : #'registry access' }
+PharoCommonTools >> changeSorter [
 
 	^ self toolNamed: #changeSorter
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>changeSorterTool [
+{ #category : #tools }
+PharoCommonTools >> changeSorterTool [
 	^ self changeSorter
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>changeSorterTool: aTool [
+{ #category : #tools }
+PharoCommonTools >> changeSorterTool: aTool [
 	^ self register: aTool as: #changeSorter
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>cleanUp [
+{ #category : #cleanup }
+PharoCommonTools >> cleanUp [
 	recentTools keysAndValuesDo:[:name :toolSet|
 		toolSet copy do:[:tool | tool isObsolete ifTrue:[ toolSet remove: tool]]]
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>codeCompletion [
+{ #category : #'registry access' }
+PharoCommonTools >> codeCompletion [
 
 	^ self toolNamed: #codeCompletion
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>debugger [
+{ #category : #'registry access' }
+PharoCommonTools >> debugger [
 
 	^ self toolNamed: #debugger
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>debuggerTool [
+{ #category : #tools }
+PharoCommonTools >> debuggerTool [
 	^ self debugger
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>debuggerTool: aTool [
+{ #category : #tools }
+PharoCommonTools >> debuggerTool: aTool [
 	^ self register: aTool as: #debugger
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>debuggers [
+{ #category : #'registry access' }
+PharoCommonTools >> debuggers [
 
 	^ self toolNamed: #debuggers
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>fileList [
+{ #category : #'registry access' }
+PharoCommonTools >> fileList [
 
 	^ self toolNamed: #fileList
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>fileListTool [
+{ #category : #tools }
+PharoCommonTools >> fileListTool [
 	^ self fileList
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>fileListTool: aTool [
+{ #category : #tools }
+PharoCommonTools >> fileListTool: aTool [
 	^ self register: aTool as: #fileList
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>finder [
+{ #category : #'registry access' }
+PharoCommonTools >> finder [
 
 	^ self toolNamed: #finder
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>initialize [
+{ #category : #initialization }
+PharoCommonTools >> initialize [
 	recentTools := Dictionary new.
 	super initialize.
 	
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>inspector [
+{ #category : #'registry access' }
+PharoCommonTools >> inspector [
 
 	^ self toolNamed: #inspector
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>inspectorTool [
+{ #category : #tools }
+PharoCommonTools >> inspectorTool [
 	^ self inspector
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>inspectorTool: aTool [
+{ #category : #tools }
+PharoCommonTools >> inspectorTool: aTool [
 	^ self register: aTool as: #inspector
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>messageList [
+{ #category : #'registry access' }
+PharoCommonTools >> messageList [
 
 	^ self toolNamed: #messageList
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>messageListTool [
+{ #category : #tools }
+PharoCommonTools >> messageListTool [
 	^ self messageList
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>messageListTool: aTool [
+{ #category : #tools }
+PharoCommonTools >> messageListTool: aTool [
 	^ self register: aTool as: #messageList
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>monticelloBrowser [
+{ #category : #'registry access' }
+PharoCommonTools >> monticelloBrowser [
 
 	^ self toolNamed: #monticelloBrowser
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>pointerExplorer [
+{ #category : #'registry access' }
+PharoCommonTools >> pointerExplorer [
 
 	^ self toolNamed: #pointerExplorer
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>processBrowser [
+{ #category : #'registry access' }
+PharoCommonTools >> processBrowser [
 
 	^ self toolNamed: #processBrowser
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>recentBrowserTools [
+{ #category : #registration }
+PharoCommonTools >> recentBrowserTools [
 	^ self recentToolsFor: #browser
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>recentChangeSorterTools [
+{ #category : #registration }
+PharoCommonTools >> recentChangeSorterTools [
 	^ self recentToolsFor: #changeSorter
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>recentDebuggerTools [
+{ #category : #registration }
+PharoCommonTools >> recentDebuggerTools [
 	^ self recentToolsFor: #debugger
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>recentFileListTools [
+{ #category : #registration }
+PharoCommonTools >> recentFileListTools [
 	^ self recentToolsFor: #fileList
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>recentInspectorTools [
+{ #category : #registration }
+PharoCommonTools >> recentInspectorTools [
 	^ self recentToolsFor: #inspector
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>recentMessageListTools [
+{ #category : #registration }
+PharoCommonTools >> recentMessageListTools [
 	^ self recentToolsFor: #messageList
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>recentToolsFor: aName [
+{ #category : #registration }
+PharoCommonTools >> recentToolsFor: aName [
 	^ (recentTools at: aName ifAbsent: [ {} ]) reject: [ :tool | tool isObsolete ]
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>recentVersionBrowserTools [
+{ #category : #registration }
+PharoCommonTools >> recentVersionBrowserTools [
 	^ self recentToolsFor: #versionBrowser
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>recentWorkspaceTools [
+{ #category : #registration }
+PharoCommonTools >> recentWorkspaceTools [
 	^ self recentToolsFor: #workspace
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>register: anTool as: aNameSelector [
+{ #category : #registration }
+PharoCommonTools >> register: anTool as: aNameSelector [
 	| usedToolSet |
 	anTool ifNil:[ ^ self].
 	super register: anTool as: aNameSelector.
@@ -422,38 +298,26 @@ PharoCommonTools>>register: anTool as: aNameSelector [
 	usedToolSet add: anTool
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>syntaxErrorDebugger [
+{ #category : #'registry access' }
+PharoCommonTools >> syntaxErrorDebugger [
 
 	^ self toolNamed: #syntaxErrorDebugger
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>testRunner [
+{ #category : #'registry access' }
+PharoCommonTools >> testRunner [
 
 	^ self toolNamed: #testRunner
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>timeProfiler [
+{ #category : #'registry access' }
+PharoCommonTools >> timeProfiler [
 
 	^ self toolNamed: #timeProfiler
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>toolNamed: aSymbol [
+{ #category : #private }
+PharoCommonTools >> toolNamed: aSymbol [
 
 	tools at: aSymbol ifPresent: [ :tool | ^ tool ].
 	
@@ -468,52 +332,34 @@ PharoCommonTools>>toolNamed: aSymbol [
 	self error: 'No tool named: "' , aSymbol , '" present in the registry'.
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>versionBrowser [
+{ #category : #'registry access' }
+PharoCommonTools >> versionBrowser [
 
 	^ self toolNamed: #versionBrowser
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>versionBrowserTool [
+{ #category : #tools }
+PharoCommonTools >> versionBrowserTool [
 	^ self versionBrowser
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>versionBrowserTool: aTool [
+{ #category : #tools }
+PharoCommonTools >> versionBrowserTool: aTool [
 	^ self register: aTool as: #versionBrowser
 ]
 
-{
-	#category : #'registry access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>workspace [
+{ #category : #'registry access' }
+PharoCommonTools >> workspace [
 
 	^ self toolNamed: #workspace
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>workspaceTool [
+{ #category : #tools }
+PharoCommonTools >> workspaceTool [
 	^ self workspace
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoCommonTools>>workspaceTool: aTool [
+{ #category : #tools }
+PharoCommonTools >> workspaceTool: aTool [
 	^ self register: aTool as: #workspace
 ]

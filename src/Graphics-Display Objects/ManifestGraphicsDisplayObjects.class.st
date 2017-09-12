@@ -4,14 +4,10 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestGraphicsDisplayObjects,
 	#superclass : #PackageManifest,
-	#category : #'Graphics-Display Objects',
-	#timestamp : '<historical>'
+	#category : #'Graphics-Display Objects'
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ManifestGraphicsDisplayObjects class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestGraphicsDisplayObjects class >> manuallyResolvedDependencies [
 	^ #(#'Graphics-Canvas' #'Polymorph-Widgets' #'Graphics-Files' #Traits #'Collections-Streams')
 ]

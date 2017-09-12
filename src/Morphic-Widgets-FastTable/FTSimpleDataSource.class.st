@@ -9,23 +9,16 @@ Class {
 	#instVars : [
 		'elements'
 	],
-	#category : #Morphic-Widgets-FastTable-DataSource,
-	#timestamp : 'EstebanLorenzano 5/12/2015 13:50'
+	#category : #Morphic-Widgets-FastTable-DataSource
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSimpleDataSource class>>elements: aCollection [
+{ #category : #'instance creation' }
+FTSimpleDataSource class >> elements: aCollection [
 	^ self new elements: aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSimpleDataSource>>cellColumn: column row: rowIndex [
+{ #category : #accessing }
+FTSimpleDataSource >> cellColumn: column row: rowIndex [ 
 	^ FTCellMorph new
 		addMorphBack: (self elementAt: rowIndex) asMorph;
 		yourself
@@ -33,35 +26,23 @@ FTSimpleDataSource>>cellColumn: column row: rowIndex [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSimpleDataSource>>elementAt: index [
+{ #category : #accessing }
+FTSimpleDataSource >> elementAt: index [
 	^ self elements at: index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSimpleDataSource>>elements [
+{ #category : #accessing }
+FTSimpleDataSource >> elements [
 	^ elements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSimpleDataSource>>elements: anObject [
+{ #category : #accessing }
+FTSimpleDataSource >> elements: anObject [
 	elements := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSimpleDataSource>>headerColumn: column [
+{ #category : #accessing }
+FTSimpleDataSource >> headerColumn: column [
 	column id ifNil: [ ^ nil ]. 
 	^ FTCellMorph new 
 		listCentering: #center;
@@ -69,32 +50,23 @@ FTSimpleDataSource>>headerColumn: column [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSimpleDataSource>>newDataSourceMatching: aFTFilter [
+{ #category : #accessing }
+FTSimpleDataSource >> newDataSourceMatching: aFTFilter [
 	| newElements |
 	newElements := Array withAll: (elements select: [ :each | 
 		aFTFilter matches: (self toString: each) ]).
 	^ self class new elements: newElements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSimpleDataSource>>numberOfRows [
+{ #category : #accessing }
+FTSimpleDataSource >> numberOfRows [ 
 	^ self elements 
 		ifNotNil: [ self elements size ]
 		ifNil: [ 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSimpleDataSource>>searchText: aString [
+{ #category : #accessing }
+FTSimpleDataSource >> searchText: aString [
 	| result |
 	aString isEmptyOrNil ifTrue: [ ^ #() ].
 	result := OrderedCollection new.

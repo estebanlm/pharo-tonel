@@ -5,31 +5,21 @@ I'm characterized by the color of the font that will be printed.
 Class {
 	#name : #VTermOutputFont,
 	#superclass : #VTermOutputStyleElement,
-	#category : #System-CommandLine,
-	#timestamp : 'ValentinRyckewaert 8/9/2016 11:19'
+	#category : #System-CommandLine
 }
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputFont>>= aFont [
+{ #category : #styling }
+VTermOutputFont >> = aFont [
 
 	^self color isVTermDefaultColor and: [ aFont color isVTermDefaultColor ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputFont>>hash [
+{ #category : #accessing }
+VTermOutputFont >> hash [
 	^ self color hash
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputFont>>setInDriver: aVTermOutputDriver [
+{ #category : #styling }
+VTermOutputFont >> setInDriver: aVTermOutputDriver [
 	aVTermOutputDriver setFontColor: color.
 ]

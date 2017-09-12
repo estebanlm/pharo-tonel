@@ -14,75 +14,50 @@ Class {
 		'searchTree',
 		'owner'
 	],
-	#category : #AST-Core-Matching,
-	#timestamp : 'md 8/9/2005 14:55'
+	#category : #AST-Core-Matching
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRule class>>methodSearch: aString  [
+{ #category : #'instance creation' }
+RBParseTreeRule class >> methodSearch: aString [ 
 	^(self new)
 		methodSearchString: aString;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRule class>>search: aString  [
+{ #category : #'instance creation' }
+RBParseTreeRule class >> search: aString [ 
 	^(self new)
 		searchString: aString;
 		yourself
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRule>>canMatch: aProgramNode  [
+{ #category : #matching }
+RBParseTreeRule >> canMatch: aProgramNode [ 
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRule>>context [
+{ #category : #private }
+RBParseTreeRule >> context [
 	^owner context
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRule>>foundMatchFor: aProgramNode [
+{ #category : #matching }
+RBParseTreeRule >> foundMatchFor: aProgramNode [
 	^aProgramNode
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRule>>methodSearchString: aString  [
+{ #category : #initialize-release }
+RBParseTreeRule >> methodSearchString: aString [ 
 	searchTree := RBParser parseRewriteMethod: aString
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRule>>owner: aParseTreeSearcher [
+{ #category : #initialize-release }
+RBParseTreeRule >> owner: aParseTreeSearcher [
 	owner := aParseTreeSearcher
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRule>>performOn: aProgramNode  [
+{ #category : #matching }
+RBParseTreeRule >> performOn: aProgramNode [ 
 	self context empty.
 	^((searchTree match: aProgramNode inContext: self context) 
 		and: [self canMatch: aProgramNode]) 
@@ -94,18 +69,12 @@ RBParseTreeRule>>performOn: aProgramNode  [
 		
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRule>>searchString: aString  [
+{ #category : #initialize-release }
+RBParseTreeRule >> searchString: aString [ 
 	searchTree := RBParser parseRewriteExpression: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRule>>sentMessages [
+{ #category : #accessing }
+RBParseTreeRule >> sentMessages [
 	^searchTree sentMessages
 ]

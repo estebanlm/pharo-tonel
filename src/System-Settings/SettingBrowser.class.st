@@ -189,15 +189,11 @@ Class {
 		'searchedTextList',
 		'regexpSearch'
 	],
-	#category : #System-Settings-Browser,
-	#timestamp : '<historical>'
+	#category : #System-Settings-Browser
 }
 
-{
-	#category : #'private helpers',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser class>>allSettingsState [
+{ #category : #'private helpers' }
+SettingBrowser class >> allSettingsState [
 	"
 	Workspace openContents: self allSettingsState label: 'Current Setting assignments' 
 	"
@@ -207,11 +203,8 @@ SettingBrowser class>>allSettingsState [
 	^ String streamContents: [:s | declList do: [:d | d settingStoreOn: s] ]
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser class>>browse: aCollectionOfKeywords [
+{ #category : #opening }
+SettingBrowser class >> browse: aCollectionOfKeywords [
 	"open a SettingBrowser view which is able to browse all settings 
 	that are declared with a pragma keyword which is at least
 	one of the string contained in aCollectionOfKeywords
@@ -224,38 +217,26 @@ SettingBrowser class>>browse: aCollectionOfKeywords [
 	(self forKeywords: aCollectionOfKeywords) open
 ]
 
-{
-	#category : #'private helpers',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser class>>currentNodeList [
+{ #category : #'private helpers' }
+SettingBrowser class >> currentNodeList [
 	^ (SettingTree new  acceptableKeywords: self settingsKeywords) nodeList
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser class>>forKeywords: aCollectionOfKeywords [
+{ #category : #opening }
+SettingBrowser class >> forKeywords: aCollectionOfKeywords [
 	"create a new SettingBrowser initialized with a set of pragma keywords"
 	^ self new acceptableKeywords: aCollectionOfKeywords
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser class>>initialExtent [
+{ #category : #accessing }
+SettingBrowser class >> initialExtent [
 	"Initial extent of the SettingBrowser window"
 	^ 900@600
 		
 ]
 
-{
-	#category : #'world menu',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser class>>menuCommandOn: aBuilder [
+{ #category : #'world menu' }
+SettingBrowser class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #Settings)
 		parent: #System;
@@ -267,135 +248,90 @@ SettingBrowser class>>menuCommandOn: aBuilder [
 			'Opens a SystemSettingBrowser which allows you to alter many system settings'
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser class>>open [
+{ #category : #opening }
+SettingBrowser class >> open [
 	"Open a SettingBrowser view"
 	^ self new open
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser class>>refreshAllSettingBrowsers [
+{ #category : #updating }
+SettingBrowser class >> refreshAllSettingBrowsers [
 	self allSubInstances do: [:sb | sb updateList]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser class>>regexpSearch [
+{ #category : #accessing }
+SettingBrowser class >> regexpSearch [
 	"Is the regexp filtering used"
 	^ regexpSearch ifNil: [regexpSearch := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser class>>regexpSearch: aBoolean [
+{ #category : #accessing }
+SettingBrowser class >> regexpSearch: aBoolean [
 	"Set to true if the regexp filtering is to be used"
 
 	regexpSearch := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser class>>searchedTextList [
+{ #category : #accessing }
+SettingBrowser class >> searchedTextList [
 	"Keep a list of previously entered filtering tokens"
 	^ searchedTextList ifNil: [searchedTextList := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser class>>settingsKeywords  [
+{ #category : #accessing }
+SettingBrowser class >> settingsKeywords [ 
 	^ ((PragmaCollector new filter: [:prg | prg keyword = #settingPragmaProcessor]) reset) collect: [:p | p method selector].
 
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser class>>taskbarIconName [
+{ #category : #icons }
+SettingBrowser class >> taskbarIconName [
 	^#smallConfigurationIcon
 ]
 
-{
-	#category : #'private helpers',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser class>>viewAllSettings [
+{ #category : #'private helpers' }
+SettingBrowser class >> viewAllSettings [
 	"self viewAllSettings"
 	Smalltalk tools workspace openContents: self allSettingsState label: 'Current Setting assignments' 
 
 ]
 
-{
-	#category : #'help system',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser class>>wikiStyleHelp [
+{ #category : #'help system' }
+SettingBrowser class >> wikiStyleHelp [
 	<wikiStyleHelp: #'The setting browser'>
 	^ self comment
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>about [
+{ #category : #menu }
+SettingBrowser >> about [
 	self inform: 'Here you can browse, query and change all system settings' translated
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>acceptableKeywords: aCollectionOfRegExps  [
+{ #category : #accessing }
+SettingBrowser >> acceptableKeywords: aCollectionOfRegExps [ 
 	self treeHolder acceptableKeywords: aCollectionOfRegExps 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>addToSearchedTextList: aString [
+{ #category : #accessing }
+SettingBrowser >> addToSearchedTextList: aString [
 	(self searchedTextList includes: aString) 
 		ifFalse: [self searchedTextList size > 5 ifTrue: [self searchedTextList removeFirst].
 		self searchedTextList add: aString]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>addToStatus: aText  [
+{ #category : #accessing }
+SettingBrowser >> addToStatus: aText [ 
 	self status nextPutAll: aText.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>allPackagesWithSettings [
+{ #category : #accessing }
+SettingBrowser >> allPackagesWithSettings [
 	^( self treeHolder nodeList collect: [:n | n receiverPackage]) asSet
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>applyFilters [
+{ #category : #updating }
+SettingBrowser >> applyFilters [
 	roots := nil.
 	self searchedText
 		ifNotEmpty: [self updateAccordingTo: self textFilter].
@@ -408,11 +344,8 @@ SettingBrowser>>applyFilters [
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>buildWindowIn: aWindow  [
+{ #category : #'user interface' }
+SettingBrowser >> buildWindowIn: aWindow [ 
 	| statusView toolBar treeMorph toolBarY gap packageListView statusViewHeight |
 	treeMorph := self treeMorphIn: aWindow.
 	statusView := self statusViewIn: aWindow.
@@ -442,11 +375,8 @@ SettingBrowser>>buildWindowIn: aWindow  [
 	^ aWindow
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>changePackageSet: aSet [
+{ #category : #updating }
+SettingBrowser >> changePackageSet: aSet [
 	"
 	This method allow for restricting the settings displayed in the browser. 
 	Opening a setting browser display all the setting. 
@@ -458,21 +388,15 @@ SettingBrowser>>changePackageSet: aSet [
 	^ true
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>changeSearchedText: aString  [
+{ #category : #updating }
+SettingBrowser >> changeSearchedText: aString [ 
 	self searchedText: aString.
 	self applyFilters.
 	^ true 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>choosePackagesIn: aWindow  [
+{ #category : #'user interface' }
+SettingBrowser >> choosePackagesIn: aWindow [ 
 	"Method called when one presses the 'Choose packages' buttong.
 	This button restrict the set of setting to be considered. By selecting one or more packages, only the setting of these packages are displayed."
 	| result list |
@@ -485,28 +409,19 @@ SettingBrowser>>choosePackagesIn: aWindow  [
 	result ifNotNil: [self changePackageSet: result]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>closePathFrom: aSetting [
+{ #category : #updating }
+SettingBrowser >> closePathFrom: aSetting [
 	(self settingNodeOfDeclaration: aSetting)
 		ifNotNil: [ :node | self requestView: (MorphTreeChangeRequest collapseNodePath: (node path collect: [ :n | n withoutListWrapper ])) ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>doubleClick [
+{ #category : #menu }
+SettingBrowser >> doubleClick [
 	self selectedNode ifNotNil: [:node | node browseDeclaration]
 ]
 
-{
-	#category : #export,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>exportAllSettings: actions by: groupSize withBasename: aString [
+{ #category : #export }
+SettingBrowser >> exportAllSettings: actions by: groupSize withBasename: aString [
 	"Export all settings in files. No more than groupSize settings will be exported to the same file. If there are more than groupSize settings, settings will be exported in multiple files (named aString%d.st, with %d a number increasing from 1 to (actions size / groupSize)."
 	| index |
 	index := 1.
@@ -520,11 +435,8 @@ SettingBrowser>>exportAllSettings: actions by: groupSize withBasename: aString [
 		toFileNamed: aString , index printString , '.st'
 ]
 
-{
-	#category : #export,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>exportSettings [
+{ #category : #export }
+SettingBrowser >> exportSettings [
 	| title nodes actions   |
 	
 	nodes := self treeHolder nodeList.
@@ -542,29 +454,20 @@ SettingBrowser>>exportSettings [
 	self exportAllSettings: actions by: 50 withBasename: 'exported_settings'.
 ]
 
-{
-	#category : #export,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>exportSettings: aCollection toFileNamed: filename [
+{ #category : #export }
+SettingBrowser >> exportSettings: aCollection toFileNamed: filename [
 	StartupPreferencesLoader default addAtStartupInPreferenceVersionFolder: aCollection named: filename
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>getDescription [
+{ #category : #accessing }
+SettingBrowser >> getDescription [
 	^ (self selectedNode)
 		ifNil: [self status contents ifEmpty: ['Hit return in text fields to accept the input' translated]]
 		ifNotNil: [:sel | (Text string: sel item label attribute: TextEmphasis bold), String cr, sel item description]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>getViewedPackageNames [
+{ #category : #'user interface' }
+SettingBrowser >> getViewedPackageNames [
 	^ Text
 		streamContents: [:s | self viewedPackages
 				ifEmpty: [s nextPutAll: 'All packages' translated]
@@ -577,21 +480,15 @@ SettingBrowser>>getViewedPackageNames [
 									s nextPut: Character space]]]]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>helpDeclaringAndManagingSettings [
+{ #category : #'user interface' }
+SettingBrowser >> helpDeclaringAndManagingSettings [
 	"Open up a workspace with explanatory info in it about the Setting Browser"
 	UIManager default edit: 'To be documented here later' label: 'Declaring and managing settings' translated. 
 	
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>helpMenuIn: aWindow [
+{ #category : #'user interface' }
+SettingBrowser >> helpMenuIn: aWindow [
 	| helpMenu |
 	helpMenu := aWindow newMenu.
 	helpMenu
@@ -608,27 +505,18 @@ SettingBrowser>>helpMenuIn: aWindow [
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>initialExtent [
+{ #category : #'user interface' }
+SettingBrowser >> initialExtent [
 	^ self class initialExtent
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>isRendered [
+{ #category : #'user interface' }
+SettingBrowser >> isRendered [
 	^ self dependents anySatisfy: [ :dependent | dependent isSystemWindow and: [ dependent owner isNotNil ] ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>keyStroke: anEvent from: aTreeMorph [
+{ #category : #menu }
+SettingBrowser >> keyStroke: anEvent from: aTreeMorph [
 	| c |
 	c := anEvent keyCharacter.
 	c = $a
@@ -645,20 +533,14 @@ SettingBrowser>>keyStroke: anEvent from: aTreeMorph [
 						ifTrue: [^ self menuEmptyList: current]]]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>loadSettings [
+{ #category : #menu }
+SettingBrowser >> loadSettings [
 	self treeHolder updateSettingNodes.
 	self inform: 'Settings has been updated from the disk.'
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>menu: menu shifted: b  [
+{ #category : #menu }
+SettingBrowser >> menu: menu shifted: b [ 
 	"Set up the menu to apply to the receiver's, 
 	honoring the #shifted boolean"
 	menu
@@ -700,40 +582,28 @@ SettingBrowser>>menu: menu shifted: b  [
 	^ menu
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>menuEmptyList: aTreeNode [
+{ #category : #menu }
+SettingBrowser >> menuEmptyList: aTreeNode [
 	| v |
 	(v := aTreeNode settingDeclaration) hasEditableList 
 		ifTrue: [v emptyList. self updateList]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>menuSetToDefault: aTreeNode [
+{ #category : #menu }
+SettingBrowser >> menuSetToDefault: aTreeNode [
 	| v |
 	(v := aTreeNode settingDeclaration) hasDefault
 		ifTrue: [(self confirm: 'Set to default value ?' translated)
 				ifTrue: [v setToDefault. self updateList]]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>newTreeHolder [
+{ #category : #'user interface' }
+SettingBrowser >> newTreeHolder [
 	^ SettingTree new  acceptableKeywords: self settingsKeywords
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>open [
+{ #category : #'user interface' }
+SettingBrowser >> open [
 	
 	Cursor wait
 		showWhile: [ | window |window := StandardWindow new model: self.
@@ -745,20 +615,14 @@ SettingBrowser>>open [
 			^ window]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>openPathFrom: aSetting [
+{ #category : #updating }
+SettingBrowser >> openPathFrom: aSetting [
 	(self settingNodeOfDeclaration: aSetting) ifNotNil: [:node |
 		self expandNodePath: node path]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>packageListViewIn: aWindow [
+{ #category : #'user interface' }
+SettingBrowser >> packageListViewIn: aWindow [
 	^ aWindow
 				newTextEditorFor: self
 				getText: #getViewedPackageNames
@@ -766,36 +630,24 @@ SettingBrowser>>packageListViewIn: aWindow [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>pragmaErrorOccured: aPragmaError [
+{ #category : #accessing }
+SettingBrowser >> pragmaErrorOccured: aPragmaError [
 	self setDescription: aPragmaError message, String cr
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>regexpSearch [
+{ #category : #accessing }
+SettingBrowser >> regexpSearch [
 	^ self class regexpSearch
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>regexpSearch: aBoolean [
+{ #category : #accessing }
+SettingBrowser >> regexpSearch: aBoolean [
 	self class regexpSearch: aBoolean.
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>release [
+{ #category : #initialize-release }
+SettingBrowser >> release [
 	treeHolder release.
 	treeHolder := nil.
 	roots := nil.
@@ -805,76 +657,52 @@ SettingBrowser>>release [
 	super release.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>rootNodes [
+{ #category : #accessing }
+SettingBrowser >> rootNodes [
 	^ roots ifNil: [roots := self treeHolder settingTreeRoots]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>searchedText [
+{ #category : #accessing }
+SettingBrowser >> searchedText [
 	^ searchedText ifNil: [searchedText := '']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>searchedText: aString [
+{ #category : #accessing }
+SettingBrowser >> searchedText: aString [
 	searchedText := aString.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>searchedTextList [
+{ #category : #accessing }
+SettingBrowser >> searchedTextList [
 	^ self class searchedTextList
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>selection: aSelectionHolder [
+{ #category : #updating }
+SettingBrowser >> selection: aSelectionHolder [
 	super selection: aSelectionHolder.
 	self setDescription: ''.
 	self changed: #getDescription
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>setAllToDefault [
+{ #category : #menu }
+SettingBrowser >> setAllToDefault [
 	(self confirm: 'Set all to default value?' translated) ifTrue: [
 		self treeHolder nodeList do: [:node | node item hasDefault ifTrue: [node item setToDefault]].
 		self updateList]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>setDescription: aText  [
+{ #category : #accessing }
+SettingBrowser >> setDescription: aText [ 
 	self status reset.
 	self addToStatus: aText.
 	self changed: #getDescription
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>setViewedPackageNames: aText  [
+{ #category : #'user interface' }
+SettingBrowser >> setViewedPackageNames: aText [ 
 	| allViewed |
 	allViewed := Set new.
 	aText asString substrings
@@ -887,19 +715,13 @@ SettingBrowser>>setViewedPackageNames: aText  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>settingNodeOfDeclaration: aSettingDeclaration [
+{ #category : #accessing }
+SettingBrowser >> settingNodeOfDeclaration: aSettingDeclaration [
 	^ self treeHolder deeplyDetect: [:n | n settingDeclaration = aSettingDeclaration]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>settingValueChanged: aSetting  [
+{ #category : #updating }
+SettingBrowser >> settingValueChanged: aSetting [ 
 	aSetting realValue = true
 		ifTrue: [self openPathFrom: aSetting].
 	aSetting realValue = false
@@ -910,27 +732,18 @@ SettingBrowser>>settingValueChanged: aSetting  [
 	aSetting changed: #content 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>settingsKeywords  [
+{ #category : #'user interface' }
+SettingBrowser >> settingsKeywords [ 
 	^ self class settingsKeywords
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>status [
+{ #category : #accessing }
+SettingBrowser >> status [
 	^ status ifNil: [status := String new writeStream]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>statusViewIn: aMorph [
+{ #category : #'user interface' }
+SettingBrowser >> statusViewIn: aMorph [
 	| statusView |
 	statusView := aMorph
 				newTextEditorFor: self
@@ -940,30 +753,21 @@ SettingBrowser>>statusViewIn: aMorph [
  
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>storeSettings [
+{ #category : #menu }
+SettingBrowser >> storeSettings [
 	self treeHolder storeSettingNodes.
 	self inform: 'Settings has been stored on the disk.'
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>textFilter [
+{ #category : #updating }
+SettingBrowser >> textFilter [
 	^ self regexpSearch
 		ifFalse: [SettingTokenFilter new token: self searchedText]
 		ifTrue: [SettingRegexpFilter new regexp: self searchedText] 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>toolBarIn: aMorph  [
+{ #category : #'user interface' }
+SettingBrowser >> toolBarIn: aMorph [ 
 	| toolBar |
 	toolBar := aMorph newToolbar: {
 	aMorph
@@ -1024,30 +828,21 @@ SettingBrowser>>toolBarIn: aMorph  [
 	^ toolBar
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>treeChanged: anAnnounce [
+{ #category : #updating }
+SettingBrowser >> treeChanged: anAnnounce [
 	roots := nil.
 	self selection: nil.
 	self updateList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>treeHolder [
+{ #category : #accessing }
+SettingBrowser >> treeHolder [
 	^ treeHolder
 		ifNil: [treeHolder := self newTreeHolder whenChangedSend: #treeChanged: to: self; yourself]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>treeMorphIn: aMorph  [
+{ #category : #'user interface' }
+SettingBrowser >> treeMorphIn: aMorph [ 
 	| treeMorph |
 	treeMorph := (self treeMorphClass on: self)
 		getMenuSelector: #menu:shifted:;
@@ -1064,11 +859,8 @@ SettingBrowser>>treeMorphIn: aMorph  [
 	^ treeMorph buildContents
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>updateAccordingTo: aFilter [
+{ #category : #updating }
+SettingBrowser >> updateAccordingTo: aFilter [
 	self selection: nil.
 	self setDescription: ''.
 	roots := nil.
@@ -1083,11 +875,8 @@ SettingBrowser>>updateAccordingTo: aFilter [
 	self expandAll
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>updateList [
+{ #category : #updating }
+SettingBrowser >> updateList [
 	self isRendered ifTrue: [
 		self treeHolder updateList.
 		self changed: #getDescription.
@@ -1096,21 +885,15 @@ SettingBrowser>>updateList [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>updateStatusWith: aMessage [
+{ #category : #updating }
+SettingBrowser >> updateStatusWith: aMessage [
 	self addToStatus: aMessage.
 	self addToStatus: Character cr.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>viewedLabelOfSetting: aSettingDeclaration  [
+{ #category : #accessing }
+SettingBrowser >> viewedLabelOfSetting: aSettingDeclaration [ 
 	| node |
 	node := self settingNodeOfDeclaration: aSettingDeclaration.
 	^ node 
@@ -1120,27 +903,18 @@ SettingBrowser>>viewedLabelOfSetting: aSettingDeclaration  [
 				ifFalse: [aSettingDeclaration label]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>viewedPackages [
+{ #category : #accessing }
+SettingBrowser >> viewedPackages [
 	^ viewedPackages
 		ifNil: [viewedPackages := Set new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>viewedPackages: aCollectionOfPackagesOrNil [
+{ #category : #accessing }
+SettingBrowser >> viewedPackages: aCollectionOfPackagesOrNil [
 	viewedPackages := aCollectionOfPackagesOrNil
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingBrowser>>windowTitle [
+{ #category : #'user interface' }
+SettingBrowser >> windowTitle [
 	^ 'Settings Browser'
 ]

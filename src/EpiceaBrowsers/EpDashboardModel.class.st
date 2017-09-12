@@ -14,15 +14,11 @@ Class {
 		'openSettingsButtonModel',
 		'currentSessionInfoModel'
 	],
-	#category : #EpiceaBrowsers-UI-Dashboard,
-	#timestamp : 'MartinDias 3/30/2017 20:54'
+	#category : #EpiceaBrowsers-UI-Dashboard
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel class>>open [
+{ #category : #'instance creation' }
+EpDashboardModel class >> open [
 
 	^ self new
 		refresh;
@@ -30,11 +26,8 @@ EpDashboardModel class>>open [
 		yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel class>>spec [
+{ #category : #specs }
+EpDashboardModel class >> spec [
 	<spec: #default>
 
 	^SpecLayout composed newColumn: [:column |
@@ -51,38 +44,26 @@ EpDashboardModel class>>spec [
 		]
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel class>>taskbarIconName [
+{ #category : #icons }
+EpDashboardModel class >> taskbarIconName [
 
 	^ #config
 
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel class>>title [
+{ #category : #specs }
+EpDashboardModel class >> title [
 
 	^ 'Epicea - Dashboard'
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>createLogButtonModel [
+{ #category : #'accessing widgets' }
+EpDashboardModel >> createLogButtonModel [
 	^ createLogButtonModel
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>createNewSessionLog [
+{ #category : #actions }
+EpDashboardModel >> createNewSessionLog [
 	
 	| fileNameOrNil sessionStore |
 	sessionStore := self monitor sessionStore.
@@ -100,36 +81,24 @@ EpDashboardModel>>createNewSessionLog [
 			self refresh ]
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>currentSessionInfoModel [
+{ #category : #'accessing widgets' }
+EpDashboardModel >> currentSessionInfoModel [
 	^ currentSessionInfoModel
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>enableMonitorButtonModel [
+{ #category : #'accessing widgets' }
+EpDashboardModel >> enableMonitorButtonModel [
 	^ enableMonitorButtonModel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>initialExtent  [
+{ #category : #initialization }
+EpDashboardModel >> initialExtent [ 
 
 	^ 450 @ 200
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>initializeCreateLogButtonModel [
+{ #category : #initialization }
+EpDashboardModel >> initializeCreateLogButtonModel [
 
 	createLogButtonModel
 		icon: (self iconNamed: #addIcon);
@@ -138,12 +107,8 @@ EpDashboardModel>>initializeCreateLogButtonModel [
 		action: [ self createNewSessionLog ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>"protocol: initialization"
-initializeEnableMonitorButtonModel [
+{ #category : #initialization }
+EpDashboardModel >> initializeEnableMonitorButtonModel [
 
 	enableMonitorButtonModel
 		help: 'Enable/disable the Epicea Monitor. When enabled, it logs code changes (and some IDE events such as MC load/save and refactorings) performed in this Pharo session.';
@@ -153,11 +118,8 @@ initializeEnableMonitorButtonModel [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>initializeOpenSettingsButtonModel [
+{ #category : #initialization }
+EpDashboardModel >> initializeOpenSettingsButtonModel [
 
 	openSettingsButtonModel
 		help: 'Open Epicea''s system settings';
@@ -166,11 +128,8 @@ EpDashboardModel>>initializeOpenSettingsButtonModel [
 		action: [ self openSettingsBrowser ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>initializePresenter  [
+{ #category : #initialization }
+EpDashboardModel >> initializePresenter [ 
 	super initializePresenter.
 	
 	self initializeCreateLogButtonModel.
@@ -181,12 +140,8 @@ EpDashboardModel>>initializePresenter  [
 	self initializeRefreshEnableMonitorButtonModelOnMonitorUpdate.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>"protocol: initialization"
-initializeRefreshEnableMonitorButtonModelOnMonitorUpdate [
+{ #category : #initialization }
+EpDashboardModel >> initializeRefreshEnableMonitorButtonModelOnMonitorUpdate [
 
 	| monitorAnnouncer |
 	monitorAnnouncer := self monitor announcer.
@@ -202,11 +157,8 @@ initializeRefreshEnableMonitorButtonModelOnMonitorUpdate [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>initializeWidgets [
+{ #category : #initialization }
+EpDashboardModel >> initializeWidgets [
 
 	self instantiateModels: {
 		#currentSessionInfoModel -> #TextModel.
@@ -216,30 +168,21 @@ EpDashboardModel>>initializeWidgets [
 		}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>monitor [
+{ #category : #accessing }
+EpDashboardModel >> monitor [
 	
 	^ monitor ifNil: [ EpMonitor current ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>monitor: anEpMonitor [
+{ #category : #accessing }
+EpDashboardModel >> monitor: anEpMonitor [
 
 	monitor := anEpMonitor.
 	self refreshEnableMonitorButtonModel.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>openSettingsBrowser [
+{ #category : #actions }
+EpDashboardModel >> openSettingsBrowser [
 	"Inspired on Glamour's code"
 
 	| settingsBrowser settingsWindow |
@@ -251,30 +194,21 @@ EpDashboardModel>>openSettingsBrowser [
 	settingsBrowser expandAll.
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>openSettingsButtonModel [
+{ #category : #'accessing widgets' }
+EpDashboardModel >> openSettingsButtonModel [
 
 	^ openSettingsButtonModel
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>refresh [
+{ #category : #refreshing }
+EpDashboardModel >> refresh [
 
 	self refreshEnableMonitorButtonModel.
 	self refreshCurrentSessionInfoModel.
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>refreshCurrentSessionInfoModel [
+{ #category : #refreshing }
+EpDashboardModel >> refreshCurrentSessionInfoModel [
 
 	| sessionStore text |
 	sessionStore := self monitor sessionStore.
@@ -291,11 +225,8 @@ EpDashboardModel>>refreshCurrentSessionInfoModel [
 	currentSessionInfoModel enabled: false; text: text.
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpDashboardModel>>refreshEnableMonitorButtonModel [
+{ #category : #refreshing }
+EpDashboardModel >> refreshEnableMonitorButtonModel [
 		
 	| theState theIconSelector |
 	self monitor isEnabled 

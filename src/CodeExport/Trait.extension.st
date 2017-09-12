@@ -1,12 +1,7 @@
-Extension {
-	#name : #Trait
-}
+Extension { #name : #Trait }
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Trait>>fileOut [
+{ #category : #'*CodeExport' }
+Trait >> fileOut [
 	"Create a file whose name is the name of the receiver with '.st' as the 
 	extension, and file a description of the receiver onto it."
 	
@@ -23,29 +18,20 @@ Trait>>fileOut [
 	FileStream writeSourceCodeFrom: internalStream baseName: self name isSt: true
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Trait>>fileOutInitializerOn: aStream [
+{ #category : #'*CodeExport' }
+Trait >> fileOutInitializerOn: aStream [
 	^self class fileOutInitializerOn: aStream
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Trait>>fileOutOn: aFileStream [
+{ #category : #'*CodeExport' }
+Trait >> fileOutOn: aFileStream [
 	"File a description of the receiver on aFileStream."
 
 	^ self fileOutOn: aFileStream initializing: true
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Trait>>fileOutOn: aFileStream initializing: aBool [
+{ #category : #'*CodeExport' }
+Trait >> fileOutOn: aFileStream initializing: aBool [
 	"File a description of the receiver on aFileStream"
 
 	self crTrace: name.
@@ -55,11 +41,8 @@ Trait>>fileOutOn: aFileStream initializing: aBool [
 		self classTrait fileOutOn: aFileStream ]
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Trait>>fileOutPool: aPool onFileStream: aFileStream  [
+{ #category : #'*CodeExport' }
+Trait >> fileOutPool: aPool onFileStream: aFileStream [ 
 	| aPoolName |
 	(aPool  isKindOf: SharedPool class) ifTrue:[^self notify: 'we do not fileout SharedPool type shared pools for now'].
 	aPoolName := self environment keyAtIdentityValue: aPool.
@@ -78,11 +61,8 @@ Trait>>fileOutPool: aPool onFileStream: aFileStream  [
 	aFileStream cr
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Trait>>fileOutSharedPoolsOn: aFileStream [
+{ #category : #'*CodeExport' }
+Trait >> fileOutSharedPoolsOn: aFileStream [
 	"file out the shared pools of this class after prompting the user about each pool"
 	| poolsToFileOut |
 	poolsToFileOut := self sharedPools select: 
@@ -91,20 +71,14 @@ Trait>>fileOutSharedPoolsOn: aFileStream [
 	
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Trait>>shouldFileOutPool: aPoolName [
+{ #category : #'*CodeExport' }
+Trait >> shouldFileOutPool: aPoolName [
 	"respond with true if the user wants to file out aPoolName"
 	^self confirm: ('FileOut the sharedPool ', aPoolName, '?')
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Trait>>shouldFileOutPools [
+{ #category : #'*CodeExport' }
+Trait >> shouldFileOutPools [
 	"respond with true if the user wants to file out the shared pools"
 	^self confirm: 'FileOut selected sharedPools?'
 ]

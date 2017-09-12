@@ -7,73 +7,48 @@ Class {
 	#instVars : [
 		'name'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'tg 12/19/2009 00:15'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPort>>copyAccordingToPaneMapping: newPanesMapping inNewBrowser: anotherBrowser [
+{ #category : #copying }
+GLMPort >> copyAccordingToPaneMapping: newPanesMapping inNewBrowser: anotherBrowser [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPort>>hasPane [
+{ #category : #testing }
+GLMPort >> hasPane [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPort>>isEntityPort [
+{ #category : #testing }
+GLMPort >> isEntityPort [
 	^ self name = #entity
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPort>>isSelectionPort [
+{ #category : #testing }
+GLMPort >> isSelectionPort [
 	^ self name = #selection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPort>>name  [
+{ #category : #accessing }
+GLMPort >> name [ 
 	 
 	^name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPort>>name: aSymbol  [
+{ #category : #accessing }
+GLMPort >> name: aSymbol [ 
 	 
 	name := aSymbol
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPort>>notingPresentationChangeDo: aBlock [
+{ #category : #validation }
+GLMPort >> notingPresentationChangeDo: aBlock [
 	aBlock value
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPort>>printOn: aStream  [
+{ #category : #printing }
+GLMPort >> printOn: aStream [ 
 	super printOn: aStream.
 	aStream 
 		nextPut: Character space;
@@ -85,72 +60,48 @@ GLMPort>>printOn: aStream  [
 		nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPort>>receive: aTransmission  [
+{ #category : #accessing }
+GLMPort >> receive: aTransmission [ 
 	self receive: aTransmission in: GLMTransmissionContext new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPort>>receive: aTransmission in: aContext  [
+{ #category : #accessing }
+GLMPort >> receive: aTransmission in: aContext [ 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPort>>silentValue: anObject [
+{ #category : #accessing }
+GLMPort >> silentValue: anObject [
 	"This is meant to be used internally"
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPort>>transientValue: anObject  [
+{ #category : #accessing }
+GLMPort >> transientValue: anObject [ 
 	| previousValue |
 	previousValue := self value. 
 	self value: anObject.
 	self silentValue: previousValue
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPort>>validate: anObject  [
+{ #category : #validation }
+GLMPort >> validate: anObject [ 
 
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPort>>value  [
+{ #category : #accessing }
+GLMPort >> value [ 
 	 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPort>>value: anObject  [
+{ #category : #accessing }
+GLMPort >> value: anObject [ 
 	self value: anObject in: GLMTransmissionContext new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPort>>value: anObject in: aContext [
+{ #category : #accessing }
+GLMPort >> value: anObject in: aContext [
 	self subclassResponsibility
 ]

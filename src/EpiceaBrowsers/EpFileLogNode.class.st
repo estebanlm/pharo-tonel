@@ -9,15 +9,11 @@ Class {
 		'directoryEntry',
 		'log'
 	],
-	#category : #EpiceaBrowsers-UI-Graph,
-	#timestamp : 'MartinDias 1/20/2017 13:24'
+	#category : #EpiceaBrowsers-UI-Graph
 }
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpFileLogNode class>>fromAllLogsIn: directory [
+{ #category : #convenience }
+EpFileLogNode class >> fromAllLogsIn: directory [
 	
 	| nodes |
 	nodes := directory entries 
@@ -27,22 +23,16 @@ EpFileLogNode class>>fromAllLogsIn: directory [
 	^ nodes
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpFileLogNode class>>withEntry: aDirectoryEntry [
+{ #category : #'instance creation' }
+EpFileLogNode class >> withEntry: aDirectoryEntry [
 
 	^ self basicNew 
 		initializeWithEntry: aDirectoryEntry;
 		yourself 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpFileLogNode>>asMorph [
+{ #category : #converting }
+EpFileLogNode >> asMorph [
 
 	| morphFactory |
 	morphFactory := EpMorphFactory default.
@@ -54,60 +44,42 @@ EpFileLogNode>>asMorph [
 	}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpFileLogNode>>fileReference [
+{ #category : #accessing }
+EpFileLogNode >> fileReference [
 
 	^ directoryEntry asFileReference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpFileLogNode>>globalName [
+{ #category : #accessing }
+EpFileLogNode >> globalName [
 
 	^ globalName ifNil: [
 		globalName := OmFileStore globalNameFrom: directoryEntry ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpFileLogNode>>initializeWithEntry: aDirectoryEntry [
+{ #category : #initialization }
+EpFileLogNode >> initializeWithEntry: aDirectoryEntry [
 
 	directoryEntry := aDirectoryEntry.
 
 	self initialize.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpFileLogNode>>log [
+{ #category : #accessing }
+EpFileLogNode >> log [
 
 	^ log ifNil: [ 
 		log := EpLog newWithStore: self ombuStore ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpFileLogNode>>modificationTime [
+{ #category : #accessing }
+EpFileLogNode >> modificationTime [
 
 	^ directoryEntry modificationTime
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpFileLogNode>>ombuStore [
+{ #category : #private }
+EpFileLogNode >> ombuStore [
 
 	^ OmStoreFactory current fromFile: self fileReference
 ]

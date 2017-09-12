@@ -4,32 +4,22 @@ A GLMExplicitBrowser is a browser that allows the user to explicitly define the 
 Class {
 	#name : #GLMExplicitBrowser,
 	#superclass : #GLMBrowser,
-	#category : #Glamour-Core,
-	#timestamp : 'TudorGirba 2/4/2011 17:50'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExplicitBrowser>>addNewPane [
+{ #category : #accessing }
+GLMExplicitBrowser >> addNewPane [
 	
 	^self addNewPaneNamed: 'undefined'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExplicitBrowser>>addNewPaneNamed: aString [
+{ #category : #accessing }
+GLMExplicitBrowser >> addNewPaneNamed: aString [
 	^ self addPane: (GLMPane named: aString in: self)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExplicitBrowser>>custom: aPresentation  [
+{ #category : #scripting }
+GLMExplicitBrowser >> custom: aPresentation [ 
 	"this message sets a custom presentation to the current Transmission. 
 	it is to be used within the using: block. 
 	this message is particularly useful when you want to set a browser as a presentation" 
@@ -38,11 +28,8 @@ GLMExplicitBrowser>>custom: aPresentation  [
 	^ aPresentation
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExplicitBrowser>>from: anOriginPortReference  [
+{ #category : #scripting }
+GLMExplicitBrowser >> from: anOriginPortReference [ 
 	"send this message after showOn: to specify an origin for the Transmission. 
 	you can cascade several from: to specify additional origins" 
 	 
@@ -50,27 +37,18 @@ GLMExplicitBrowser>>from: anOriginPortReference  [
 		addActiveOrigin: (self resolveOriginPort: anOriginPortReference)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExplicitBrowser>>fromOutside: aPortName [
+{ #category : #scripting }
+GLMExplicitBrowser >> fromOutside: aPortName [
 	 ^ self fromOutsidePort: aPortName
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExplicitBrowser>>fromOutsidePort: aPortName [
+{ #category : #scripting }
+GLMExplicitBrowser >> fromOutsidePort: aPortName [
 	 ^ self from: #outer->aPortName
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExplicitBrowser>>innerPortEvent: aPortEvent [
+{ #category : #events }
+GLMExplicitBrowser >> innerPortEvent: aPortEvent [
 	| wantedTransmissions |
 	aPortEvent hasChanged
 		ifFalse: [ ^ self ].
@@ -79,28 +57,19 @@ GLMExplicitBrowser>>innerPortEvent: aPortEvent [
 	wantedTransmissions do: [ :each | each transmitIn: aPortEvent transmissionContext copy ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExplicitBrowser>>lastTransmission [
+{ #category : #accessing }
+GLMExplicitBrowser >> lastTransmission [
 	^ self transmissions last
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExplicitBrowser>>paneNamed: aSymbol  [
+{ #category : #accessing }
+GLMExplicitBrowser >> paneNamed: aSymbol [ 
 	 
 	^self panes detect: [:each | each name = aSymbol]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExplicitBrowser>>passivelyFrom: anOriginPortReference  [
+{ #category : #scripting }
+GLMExplicitBrowser >> passivelyFrom: anOriginPortReference [ 
 	"passivelyForm: is similar to from: only the origin will be a passive one. 
 	in other words, a change in the origin port will not initiate a Transmission" 
 	 
@@ -108,11 +77,8 @@ GLMExplicitBrowser>>passivelyFrom: anOriginPortReference  [
 		addPassiveOrigin: (self resolveOriginPort: anOriginPortReference)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExplicitBrowser>>sendTo: aDesinationPortReference from: anOriginPortReference  [
+{ #category : #scripting }
+GLMExplicitBrowser >> sendTo: aDesinationPortReference from: anOriginPortReference [ 
 	"this message links two port references with a transmission that holds no presentation" 
 	 
 	self transmissions 
@@ -123,11 +89,8 @@ GLMExplicitBrowser>>sendTo: aDesinationPortReference from: anOriginPortReference
 				yourself)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExplicitBrowser>>sendTo: aDesinationPortReference from: anOriginPortReference with: aBlock  [
+{ #category : #scripting }
+GLMExplicitBrowser >> sendTo: aDesinationPortReference from: anOriginPortReference with: aBlock [ 
 	"this message links two port references with a transmission that holds no presentation" 
 	 
 	self transmissions 
@@ -139,11 +102,8 @@ GLMExplicitBrowser>>sendTo: aDesinationPortReference from: anOriginPortReference
 				yourself)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExplicitBrowser>>sendTo: aDesinationPortReference fromOutside: anOriginPortName  [
+{ #category : #scripting }
+GLMExplicitBrowser >> sendTo: aDesinationPortReference fromOutside: anOriginPortName [ 
 	"this is a shortcut method for propagating inside an outer port name to an inner port reference" 
 	 
 	self 
@@ -151,11 +111,8 @@ GLMExplicitBrowser>>sendTo: aDesinationPortReference fromOutside: anOriginPortNa
 		from: #outer -> anOriginPortName
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExplicitBrowser>>sendToOutside: aPortName from: anOriginPortReference  [
+{ #category : #scripting }
+GLMExplicitBrowser >> sendToOutside: aPortName from: anOriginPortReference [ 
 	"this is a shortcut method for exposing an inner port reference as an outer port name" 
 	 
 	self 
@@ -163,11 +120,8 @@ GLMExplicitBrowser>>sendToOutside: aPortName from: anOriginPortReference  [
 		from: anOriginPortReference
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExplicitBrowser>>showOn: aDestinationPane  [
+{ #category : #scripting }
+GLMExplicitBrowser >> showOn: aDestinationPane [ 
 	"send this message when at the beginning of specifying a Transmission" 
 	 
 	self addTransmission: (
@@ -177,10 +131,7 @@ GLMExplicitBrowser>>showOn: aDestinationPane  [
 			yourself)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExplicitBrowser>>updateContextWith: aPane  [
+{ #category : #accessing }
+GLMExplicitBrowser >> updateContextWith: aPane [ 
 
 ]

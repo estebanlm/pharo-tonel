@@ -22,15 +22,11 @@ Class {
 	#classInstVars : [
 		'current'
 	],
-	#category : #EmbeddedFreeType,
-	#timestamp : 'JurajKubelka 8/23/2014 15:01'
+	#category : #EmbeddedFreeType
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontInstaller class>>current [
+{ #category : #accessing }
+EmbeddedFreeTypeFontInstaller class >> current [
 	current ifNil: [ 
 		current := self new 
 			provider: FreeTypeFontProvider current; 
@@ -39,31 +35,22 @@ EmbeddedFreeTypeFontInstaller class>>current [
 	^ current.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontInstaller class>>initialize [
+{ #category : #'class initialization' }
+EmbeddedFreeTypeFontInstaller class >> initialize [
 	super initialize.
 	self resetCurrent.
 	self current.
 ]
 
-{
-	#category : #'extra fonts registration',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontInstaller class>>registerFont: aClassWithFont [
+{ #category : #'extra fonts registration' }
+EmbeddedFreeTypeFontInstaller class >> registerFont: aClassWithFont [
 	"Do nothing if freetype is disabled currently"
 	FreeTypeSystemSettings loadFt2Library 
 		ifTrue: [  aClassWithFont installFontsIn: self current ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontInstaller class>>resetCurrent [
+{ #category : #accessing }
+EmbeddedFreeTypeFontInstaller class >> resetCurrent [
 	| tmpCurrent |
 	current ifNil: [ ^ self ].
 	tmpCurrent := current.
@@ -71,19 +58,13 @@ EmbeddedFreeTypeFontInstaller class>>resetCurrent [
 	FreeTypeFontProvider current removeFontInstaller: tmpCurrent.
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontInstaller>>addFirstFileInfo: aFreeTypeEmbeddedFileInfo index: anInteger  [
+{ #category : #adding }
+EmbeddedFreeTypeFontInstaller >> addFirstFileInfo: aFreeTypeEmbeddedFileInfo index: anInteger [ 
 	provider addFirstFileInfo: aFreeTypeEmbeddedFileInfo index: anInteger 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontInstaller>>addFromFileContents: bytes baseName:  originalFileBaseName [
+{ #category : #accessing }
+EmbeddedFreeTypeFontInstaller >> addFromFileContents: bytes baseName:  originalFileBaseName [
 	| i face numFaces info externalMem cachedInfo cachedNumFaces |
 
 	i:= 0.
@@ -131,21 +112,15 @@ EmbeddedFreeTypeFontInstaller>>addFromFileContents: bytes baseName:  originalFil
 	i < numFaces "note, we use < rather than <= , because i is zero based"] whileTrue:[].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontInstaller>>cacheEmbeddedFileInfo: aFreeTypeEmbeddedFileInfo index: i [
+{ #category : #accessing }
+EmbeddedFreeTypeFontInstaller >> cacheEmbeddedFileInfo: aFreeTypeEmbeddedFileInfo index: i [
 
 	(embeddedFileInfoCache at:{aFreeTypeEmbeddedFileInfo fileSize. i} ifAbsentPut:[ Set new ])
 		add: aFreeTypeEmbeddedFileInfo
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontInstaller>>embedFilesInDirectory: aDirectory [
+{ #category : #accessing }
+EmbeddedFreeTypeFontInstaller >> embedFilesInDirectory: aDirectory [
 	"embed all the files in aDirectory
 	EmbeddedFreeTypeFontInstaller new 
 		provider: FreeTypeFontProvider current;
@@ -166,48 +141,33 @@ EmbeddedFreeTypeFontInstaller>>embedFilesInDirectory: aDirectory [
 	LogicalFont allInstances do:[:logFont | logFont clearRealFont]
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontInstaller>>failedToOpen: face index: index [
+{ #category : #'error handling' }
+EmbeddedFreeTypeFontInstaller >> failedToOpen: face index: index [
 	face destroyHandle.
 	"Transcript cr; show: 'Failed : ', path asString, '[', i asString,']'."
 	"remove all cache entries for path with index >= i"
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontInstaller>>initialize [
+{ #category : #initialization }
+EmbeddedFreeTypeFontInstaller >> initialize [
 	super initialize.
 	embeddedFileInfoCache := Dictionary new: 10. "keyed by file size" 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontInstaller>>installAllFontsIn: aProvider [
+{ #category : #accessing }
+EmbeddedFreeTypeFontInstaller >> installAllFontsIn: aProvider [
 	self provider: aProvider.
 	EmbeddedFreeTypeFontFontDescription installAllFontsIn: self.	
 	embeddedFileInfoCache valuesDo: [ :eachSet | eachSet do: [ :each | provider addFileInfo: each ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontInstaller>>provider: aProvider [
+{ #category : #accessing }
+EmbeddedFreeTypeFontInstaller >> provider: aProvider [
 	provider := aProvider
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontInstaller>>validEmbeddedCachedInfoFor: bytes index: i [
+{ #category : #accessing }
+EmbeddedFreeTypeFontInstaller >> validEmbeddedCachedInfoFor: bytes index: i [
 	"answer info from cache if the bytes are the same as the cached info, otherwise answer nil"
 	| cacheEntry fileSize |
 

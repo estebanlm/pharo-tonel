@@ -10,79 +10,51 @@ Class {
 		'fileReference',
 		'interactive'
 	],
-	#category : #CodeImport,
-	#timestamp : '<historical>'
+	#category : #CodeImport
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileCompilerRequestor>>contents [
+{ #category : #accessing }
+FileCompilerRequestor >> contents [
 	^ contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileCompilerRequestor>>contents: anObject [
+{ #category : #accessing }
+FileCompilerRequestor >> contents: anObject [
 	contents := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileCompilerRequestor>>failBlock [
+{ #category : #accessing }
+FileCompilerRequestor >> failBlock [
 	^ [ :exception | exception pass ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileCompilerRequestor>>fileReference [
+{ #category : #accessing }
+FileCompilerRequestor >> fileReference [
 	^ fileReference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileCompilerRequestor>>fileReference: anObject [
+{ #category : #accessing }
+FileCompilerRequestor >> fileReference: anObject [
 	fileReference := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileCompilerRequestor>>initialize [
+{ #category : #initialization }
+FileCompilerRequestor >> initialize [
 	interactive := false.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileCompilerRequestor>>interactive [
+{ #category : #testing }
+FileCompilerRequestor >> interactive [
 	^ interactive
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileCompilerRequestor>>interactive: aBoolean [
+{ #category : #accessing }
+FileCompilerRequestor >> interactive: aBoolean [
 	interactive := aBoolean
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileCompilerRequestor>>notify: message at: location in: code [
+{ #category : #'interactive error protocol' }
+FileCompilerRequestor >> notify: message at: location in: code [
 	| newSource |
 	self flag: #hack.
 	"Should use the new OPalWarnings directly instead of recreating a SyntaxErrorNotification"
@@ -97,11 +69,8 @@ FileCompilerRequestor>>notify: message at: location in: code [
 	ReparseAfterSourceEditing signalWithNewSource: newSource
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileCompilerRequestor>>text [
+{ #category : #accessing }
+FileCompilerRequestor >> text [
 	"compatibility method for the method installer"
 	^ self contents
 ]

@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicValidatorRenderer,
 	#superclass : #GLMMorphicBrowserRenderer,
 	#instVars : [
 		'container'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicValidatorRenderer>>render: aBrowser [
+{ #category : #rendering }
+GLMMorphicValidatorRenderer >> render: aBrowser [
 	| tmpButtons |
 	tmpButtons := OrderedCollection new.
 	aBrowser panes isEmpty
@@ -47,11 +40,8 @@ GLMMorphicValidatorRenderer>>render: aBrowser [
 	^ container
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicValidatorRenderer>>render: aBrowser from: aGLMRenderer [
+{ #category : #rendering }
+GLMMorphicValidatorRenderer >> render: aBrowser from: aGLMRenderer [
 
 	self renderer: aGLMRenderer.
 	^ self render: aBrowser

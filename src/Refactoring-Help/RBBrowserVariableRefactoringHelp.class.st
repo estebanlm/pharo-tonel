@@ -4,15 +4,11 @@ This is the chapter of the refactoring help book about the class / instance vari
 Class {
 	#name : #RBBrowserVariableRefactoringHelp,
 	#superclass : #RBBrowserClassRefactoringHelp,
-	#category : #Refactoring-Help,
-	#timestamp : 'NicolaiHess 7/27/2016 21:34'
+	#category : #Refactoring-Help
 }
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserVariableRefactoringHelp class>>abstractVariableRefactoring [
+{ #category : #pages }
+RBBrowserVariableRefactoringHelp class >> abstractVariableRefactoring [
 	^HelpTopic
 		title: 'Abstract'
 		contents: 
@@ -24,11 +20,8 @@ There is no special handling for already existing accessors methods, their direc
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserVariableRefactoringHelp class>>accessorVariableRefactoring [
+{ #category : #pages }
+RBBrowserVariableRefactoringHelp class >> accessorVariableRefactoring [
 	^HelpTopic
 		title: 'Accessor'
 		contents: 
@@ -40,30 +33,21 @@ A getter and setter methods is generated, with the name of the chosen instance v
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserVariableRefactoringHelp class>>addVariableRefactoring [
+{ #category : #pages }
+RBBrowserVariableRefactoringHelp class >> addVariableRefactoring [
 	^HelpTopic
 		title: 'Add Variable'
 		contents: RBAddInstanceVariableRefactoring comment
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserVariableRefactoringHelp class>>bookName [
+{ #category : #accessing }
+RBBrowserVariableRefactoringHelp class >> bookName [
 	^ 'Class and Instance Variable Refactorings'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserVariableRefactoringHelp class>>moveToVariableRefactoring [
+{ #category : #pages }
+RBBrowserVariableRefactoringHelp class >> moveToVariableRefactoring [
 	^HelpTopic
 		title: 'Move to class'
 		contents: 
@@ -74,19 +58,13 @@ Another dialog for choosing the instance variable to move. If there are any meth
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserVariableRefactoringHelp class>>pages [
+{ #category : #accessing }
+RBBrowserVariableRefactoringHelp class >> pages [
 	^ #(addVariableRefactoring renameVariableRefactoring removeVariableRefactoring abstractVariableRefactoring  accessorVariableRefactoring moveToVariableRefactoring pullUpVariableRefactoring pushDownVariableRefactoring)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserVariableRefactoringHelp class>>pullUpVariableRefactoring [
+{ #category : #pages }
+RBBrowserVariableRefactoringHelp class >> pullUpVariableRefactoring [
 	^HelpTopic
 		title: 'Pull up'
 		contents: 
@@ -96,11 +74,8 @@ Moves an instance/class variable up to the superclass. The variable is added to 
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserVariableRefactoringHelp class>>pushDownVariableRefactoring [
+{ #category : #pages }
+RBBrowserVariableRefactoringHelp class >> pushDownVariableRefactoring [
 	^HelpTopic
 		title: 'Push down'
 		contents: 
@@ -112,11 +87,8 @@ No accessors method will be changed or generated.
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserVariableRefactoringHelp class>>removeVariableRefactoring [
+{ #category : #pages }
+RBBrowserVariableRefactoringHelp class >> removeVariableRefactoring [
 	^HelpTopic
 		title: 'Remove'
 		contents: 
@@ -126,11 +98,8 @@ Shows a list of variables from the class or instance side. The selected variable
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserVariableRefactoringHelp class>>renameVariableRefactoring [
+{ #category : #pages }
+RBBrowserVariableRefactoringHelp class >> renameVariableRefactoring [
 	^HelpTopic
 		title: 'Rename'
 		contents: 

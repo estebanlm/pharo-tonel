@@ -17,114 +17,80 @@ Class {
 		'actionHolder',
 		'autoScaleHolder'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 6/27/2016 13:46'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ImageModel class>>adapterName [
+{ #category : #specs }
+ImageModel class >> adapterName [
 
 	^ #ImageAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ImageModel class>>defaultSpec [
+{ #category : #specs }
+ImageModel class >> defaultSpec [
 	<spec>
 	
 	^ #(ImageAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ImageModel>>action [
+{ #category : #api }
+ImageModel >> action [
 	"<api: #inspect>"
 
 	^ actionHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ImageModel>>action: aBlock [
+{ #category : #api }
+ImageModel >> action: aBlock [
 	"Set the action of the image"
 	"<api: #block getter: #action>"
 	actionHolder value: aBlock
 ]
 
-{
-	#category : #api-valueHolder,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ImageModel>>actionHolder [
+{ #category : #api-valueHolder }
+ImageModel >> actionHolder [
 	"To be able to register action when the action is changed."
 	^ actionHolder
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ImageModel>>autoScale [
+{ #category : #api }
+ImageModel >> autoScale [
 	"<api: #inspect>"
 
 	^ autoScaleHolder value
 ]
 
-{
-	#category : #api-valueHolder,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ImageModel>>autoScaleHolder [
+{ #category : #api-valueHolder }
+ImageModel >> autoScaleHolder [
 	"To be able to register action when the autoscale is changed."
 
 	^ autoScaleHolder
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ImageModel>>image [
+{ #category : #api }
+ImageModel >> image [
 	"<api: #inspect>"
 
 	^ imageHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ImageModel>>image: aForm [
+{ #category : #api }
+ImageModel >> image: aForm [
 	"<api: #image getter: #image>"
 	"Set the form of the imagemorph"
 	
 	imageHolder value: aForm
 ]
 
-{
-	#category : #api-valueHolder,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ImageModel>>imageHolder [
+{ #category : #api-valueHolder }
+ImageModel >> imageHolder [
 	"To be able to register action when the image is changed."
 	^ imageHolder
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ImageModel>>initialize [
+{ #category : #initialization }
+ImageModel >> initialize [
 	super initialize.
 	imageHolder := nil asValueHolder.
 	actionHolder := [] asValueHolder. 
@@ -132,11 +98,8 @@ ImageModel>>initialize [
 	imageHolder whenChangedDo: [ self changed: #getImage ].
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ImageModel>>switchAutoscale [
+{ #category : #api }
+ImageModel >> switchAutoscale [
 	autoScaleHolder value: autoScaleHolder value not.
 	self changed: #switchAutoscale with: {}
 ]

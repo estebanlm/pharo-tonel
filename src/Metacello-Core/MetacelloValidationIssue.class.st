@@ -11,15 +11,11 @@ Class {
 		'reasonCode',
 		'callSite'
 	],
-	#category : #Metacello-Core-Validation,
-	#timestamp : 'HenrikNergaard 3/3/2017 12:30'
+	#category : #Metacello-Core-Validation
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationIssue class>>configurationClass: aClass reasonCode: aSymbol callSite: aCallSite explanation: aString [
+{ #category : #'instance creation' }
+MetacelloValidationIssue class >> configurationClass: aClass reasonCode: aSymbol callSite: aCallSite explanation: aString [
 
 	^(self new)
 		configurationClass: aClass;
@@ -29,104 +25,68 @@ MetacelloValidationIssue class>>configurationClass: aClass reasonCode: aSymbol c
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationIssue>>callSite [
+{ #category : #accessing }
+MetacelloValidationIssue >> callSite [
 	^ callSite
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationIssue>>callSite: anObject [
+{ #category : #accessing }
+MetacelloValidationIssue >> callSite: anObject [
 	callSite := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationIssue>>configurationClass [
+{ #category : #accessing }
+MetacelloValidationIssue >> configurationClass [
 	^ configurationClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationIssue>>configurationClass: aClass [
+{ #category : #accessing }
+MetacelloValidationIssue >> configurationClass: aClass [
 	configurationClass := aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationIssue>>explanation [
+{ #category : #accessing }
+MetacelloValidationIssue >> explanation [
 	^ explanation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationIssue>>explanation: aString [
+{ #category : #accessing }
+MetacelloValidationIssue >> explanation: aString [
 	explanation := aString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationIssue>>isCritical [
+{ #category : #testing }
+MetacelloValidationIssue >> isCritical [
 
 	^self isError or: [ self isCriticalWarning ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationIssue>>isCriticalWarning [
+{ #category : #testing }
+MetacelloValidationIssue >> isCriticalWarning [
 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationIssue>>isError [
+{ #category : #testing }
+MetacelloValidationIssue >> isError [
 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationIssue>>isWarning [
+{ #category : #testing }
+MetacelloValidationIssue >> isWarning [
 
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationIssue>>label [
+{ #category : #accessing }
+MetacelloValidationIssue >> label [
 
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationIssue>>printOn: aStream [
+{ #category : #printing }
+MetacelloValidationIssue >> printOn: aStream [
 
 	aStream
 		nextPutAll: self label;
@@ -158,20 +118,14 @@ MetacelloValidationIssue>>printOn: aStream [
 	aStream nextPut: $]  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationIssue>>reasonCode [
+{ #category : #accessing }
+MetacelloValidationIssue >> reasonCode [
 
 	reasonCode == nil ifTrue: [ reasonCode := #none ].
 	^ reasonCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationIssue>>reasonCode: anObject [
+{ #category : #accessing }
+MetacelloValidationIssue >> reasonCode: anObject [
 	reasonCode := anObject
 ]

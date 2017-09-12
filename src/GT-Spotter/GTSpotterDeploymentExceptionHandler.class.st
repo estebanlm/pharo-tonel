@@ -1,9 +1,5 @@
-"
-
-"
 Class {
 	#name : #GTSpotterDeploymentExceptionHandler,
 	#superclass : #GTSpotterExceptionHandler,
-	#category : #GT-Spotter-Exceptions,
-	#timestamp : ''
+	#category : #GT-Spotter-Exceptions
 }

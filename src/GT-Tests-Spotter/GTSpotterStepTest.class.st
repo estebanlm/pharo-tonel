@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterStepTest,
 	#superclass : #TestCase,
@@ -13,15 +10,11 @@ Class {
 		'currentContext',
 		'previousContext'
 	],
-	#category : #GT-Tests-Spotter-Scripting,
-	#timestamp : ''
+	#category : #GT-Tests-Spotter-Scripting
 }
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>assertCandidateMatching: aBlock [
+{ #category : #convenience }
+GTSpotterStepTest >> assertCandidateMatching: aBlock [
 	| candidates |
 	self assert: currentProcessor notNil.
 	
@@ -36,19 +29,13 @@ GTSpotterStepTest>>assertCandidateMatching: aBlock [
 	^ currentCandidate
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>assertDiveIn [
+{ #category : #convenience }
+GTSpotterStepTest >> assertDiveIn [
 	self assertDiveIn: #diveIn
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>assertDiveIn: aSelector [
+{ #category : #private }
+GTSpotterStepTest >> assertDiveIn: aSelector [
 	| previousStepsSize link |
 	" backup previous conditions "
 	previousStepsSize := spotter steps size.
@@ -79,19 +66,13 @@ GTSpotterStepTest>>assertDiveIn: aSelector [
 	self assert: currentStep = spotter currentStep.
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>assertDiveInCategory [
+{ #category : #convenience }
+GTSpotterStepTest >> assertDiveInCategory [
 	self assertDiveIn: #diveInCategory
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>assertDiveOut [
+{ #category : #convenience }
+GTSpotterStepTest >> assertDiveOut [
 	| previousStepsSize |
 	" backup previous conditions "
 	previousStepsSize := spotter steps size.
@@ -110,19 +91,13 @@ GTSpotterStepTest>>assertDiveOut [
 	self assert: currentStep = spotter currentStep.
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>assertProcessorByTitle: aString [
+{ #category : #convenience }
+GTSpotterStepTest >> assertProcessorByTitle: aString [
 	^ self assertProcessorMatching: [ :processor | processor title = aString ]
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>assertProcessorIncludes: anObject [
+{ #category : #convenience }
+GTSpotterStepTest >> assertProcessorIncludes: anObject [
 	self assert: anObject notNil.
 	self assert: currentProcessor notNil.
 	self assert: currentProcessor allFilteredCandidates notEmpty.
@@ -130,11 +105,8 @@ GTSpotterStepTest>>assertProcessorIncludes: anObject [
 	self assert: (currentProcessor allFilteredCandidates anySatisfy: [ :candidate | candidate = anObject ])
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>assertProcessorIncludesAll: aCollection [
+{ #category : #convenience }
+GTSpotterStepTest >> assertProcessorIncludesAll: aCollection [
 	self assert: aCollection notEmpty.
 	self assert: currentProcessor notNil.
 	self assert: currentProcessor allFilteredCandidates notEmpty.
@@ -144,11 +116,8 @@ GTSpotterStepTest>>assertProcessorIncludesAll: aCollection [
 			candidate = each ]) ]
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>assertProcessorMatching: aBlock [
+{ #category : #convenience }
+GTSpotterStepTest >> assertProcessorMatching: aBlock [
 	| processors |
 	processors := spotter currentStep processors select: [ :each | aBlock value: each ].
 	
@@ -161,20 +130,14 @@ GTSpotterStepTest>>assertProcessorMatching: aBlock [
 	^ currentProcessor
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>assertProcessorNotEmpty [
+{ #category : #convenience }
+GTSpotterStepTest >> assertProcessorNotEmpty [
 	self assert: currentProcessor notNil.
 	self deny: currentProcessor allFilteredCandidates isEmpty.
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>assertSearch: aString [
+{ #category : #convenience }
+GTSpotterStepTest >> assertSearch: aString [
 
 	" assert conditions before search "
 	self deny: (spotter currentStep context matches: aString).
@@ -187,19 +150,12 @@ GTSpotterStepTest>>assertSearch: aString [
 	self assert: spotter currentStep context text asString = aString asString
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>assortCandidatesSize: aNumber [
-
+{ #category : #convenience }
+GTSpotterStepTest >> assortCandidatesSize: aNumber [
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>basicSearch: aString [
+{ #category : #private }
+GTSpotterStepTest >> basicSearch: aString [
 	
 	" assert conditions before search "
 	self flag: '#currentStep should be made more stable. This will fail for an empty, uninitialized spotter / but after multiple diveIn/diveOut it will be ok - inconsistent'.
@@ -219,19 +175,13 @@ GTSpotterStepTest>>basicSearch: aString [
 	self assert: previousStep == currentStep.
 ]
 
-{
-	#category : #private-navigation,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>defaultPackages [
+{ #category : #private-navigation }
+GTSpotterStepTest >> defaultPackages [
 	^ { 'GT-Spotter'. 'GT-SpotterExtensions-Core' }
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>denySearch: aString [
+{ #category : #convenience }
+GTSpotterStepTest >> denySearch: aString [
 	" if the new input is the same as before we do not expect a new search to be triggered . Therefore the context should not change "
 	
 	"self assert: (spotter currentStep context matches: aStringOrText)."
@@ -244,19 +194,13 @@ GTSpotterStepTest>>denySearch: aString [
 	self assert: (previousContext matches: aString).
 ]
 
-{
-	#category : #private-navigation,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>implementors: aSelector [
+{ #category : #private-navigation }
+GTSpotterStepTest >> implementors: aSelector [
 	^ self implementors: aSelector inPackages: self defaultPackages
 ]
 
-{
-	#category : #private-navigation,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>implementors: aSelector inPackages: anArray [
+{ #category : #private-navigation }
+GTSpotterStepTest >> implementors: aSelector inPackages: anArray [
 	| implementors |
 	implementors := OrderedCollection new.
 	RPackageOrganizer default packages do: [ :package |
@@ -267,29 +211,20 @@ GTSpotterStepTest>>implementors: aSelector inPackages: anArray [
 	^ implementors
 ]
 
-{
-	#category : #private-navigation,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>pragma: aSelector of: aCompiledMethod [
+{ #category : #private-navigation }
+GTSpotterStepTest >> pragma: aSelector of: aCompiledMethod [
 	^ aCompiledMethod pragmas 
 		detect: [ :each | each keyword = aSelector ] 
 		ifNone: [ nil ]
 ]
 
-{
-	#category : #private-navigation,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>pragmas: aSelector [
+{ #category : #private-navigation }
+GTSpotterStepTest >> pragmas: aSelector [
 	^ self pragmas: aSelector inPackages: self defaultPackages
 ]
 
-{
-	#category : #private-navigation,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>pragmas: aSelector inPackages: anArray [
+{ #category : #private-navigation }
+GTSpotterStepTest >> pragmas: aSelector inPackages: anArray [
 	| pragmas |
 	pragmas := OrderedCollection new.
 	RPackageOrganizer default packages do: [ :package |
@@ -303,19 +238,13 @@ GTSpotterStepTest>>pragmas: aSelector inPackages: anArray [
 	^ pragmas
 ]
 
-{
-	#category : #private-navigation,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>senders: aSelector [
+{ #category : #private-navigation }
+GTSpotterStepTest >> senders: aSelector [
 	^ self senders: aSelector inPackages: self defaultPackages
 ]
 
-{
-	#category : #private-navigation,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>senders: aSelector inPackages: anArray [
+{ #category : #private-navigation }
+GTSpotterStepTest >> senders: aSelector inPackages: anArray [
 	| senders |
 	senders := OrderedCollection new.
 	RPackageOrganizer default packages do: [ :package |
@@ -327,12 +256,8 @@ GTSpotterStepTest>>senders: aSelector inPackages: anArray [
 	^ senders
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>"protocol: running"
-setUp [
+{ #category : #running }
+GTSpotterStepTest >> setUp [
 	super setUp.
 	
 	spotter := GTMockSpotter new.
@@ -343,40 +268,28 @@ setUp [
 	currentStep := currentProcessor := currentCandidate := nil
 ]
 
-{
-	#category : #private-navigation,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>subclassesOf: aClass filterBySubstring: aString inPackage: aPackageName [
+{ #category : #private-navigation }
+GTSpotterStepTest >> subclassesOf: aClass filterBySubstring: aString inPackage: aPackageName [
 	^ (self subclassesOf: aClass inPackage: aPackageName) select: [ :each |
 		each name includesSubstring: aString caseSensitive: false ]
 ]
 
-{
-	#category : #private-navigation,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>subclassesOf: aClass inPackage: aPackageName [
+{ #category : #private-navigation }
+GTSpotterStepTest >> subclassesOf: aClass inPackage: aPackageName [
 	^ (RPackageOrganizer default packages 
 		detect: [ :each | each packageName = aPackageName ] 
 		ifNone: [ ^ #() ]) classes intersection: aClass withAllSubclasses
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>tearDown [
+{ #category : #running }
+GTSpotterStepTest >> tearDown [
 	super tearDown.
 	
 	spotter := currentStep := currentProcessor := currentCandidate := nil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>testContextChange [
+{ #category : #tests }
+GTSpotterStepTest >> testContextChange [
 	
 	self assertSearch: 'a'.
 	self assert: previousContext text = ''.
@@ -407,22 +320,16 @@ GTSpotterStepTest>>testContextChange [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>testMock [
+{ #category : #tests }
+GTSpotterStepTest >> testMock [
 	" test the mock setup - the mock objects do exactly the same as the original implementation, but we replace the asynchronous implementation by a synchronous "
 	self assert: spotter class = GTMockSpotter.
 	self assert: spotter newStep class = GTMockSpotterStep.
 	self assert: spotter newStep asyncTask class = GTMockSpotterTask.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>testProcessorForClasses [
+{ #category : #tests }
+GTSpotterStepTest >> testProcessorForClasses [
 	self assertSearch: 'Collection'.
 	self assertProcessorByTitle: 'Classes'.
 	self assertProcessorNotEmpty.
@@ -431,11 +338,8 @@ GTSpotterStepTest>>testProcessorForClasses [
 														inPackage: 'Collections-Abstract')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>testProcessorForImplementors [
+{ #category : #tests }
+GTSpotterStepTest >> testProcessorForImplementors [
 	| partialImplementors |
 	self assertSearch: 'do:'.
 	self assertProcessorByTitle: 'Implementors'.
@@ -454,11 +358,8 @@ GTSpotterStepTest>>testProcessorForImplementors [
 	self assert: currentProcessor allFilteredCandidates size > partialImplementors size.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>testProcessorForPragmas [
+{ #category : #tests }
+GTSpotterStepTest >> testProcessorForPragmas [
 	self assertSearch: 'spotterOrder:'.
 	self assertProcessorByTitle: 'Pragmas'.
 	self assertProcessorNotEmpty.
@@ -466,11 +367,8 @@ GTSpotterStepTest>>testProcessorForPragmas [
 	self assertCandidateMatching: [ :each | each class = PragmaType and: [ each keyword = #spotterOrder: ] ]  
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>testProcessorForPragmasThenDiveIn [
+{ #category : #tests }
+GTSpotterStepTest >> testProcessorForPragmasThenDiveIn [
 	self testProcessorForPragmas.
 	
 	self assertDiveIn.
@@ -509,11 +407,8 @@ GTSpotterStepTest>>testProcessorForPragmasThenDiveIn [
 	self assert: currentStep context text = 'spotterOrder:'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>testProcessorForPragmasThenDiveInCategory [
+{ #category : #tests }
+GTSpotterStepTest >> testProcessorForPragmasThenDiveInCategory [
 	self testProcessorForPragmas.
 	
 	" diving into the category (without search) just reveals what was shown before - so this can be repeated infinitely and should return the same result each time "
@@ -531,19 +426,13 @@ GTSpotterStepTest>>testProcessorForPragmasThenDiveInCategory [
 	self assert: currentStep context text = 'spotterOrder:'
 ]
 
-{
-	#category : #private-navigation,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>users: aSelector [
+{ #category : #private-navigation }
+GTSpotterStepTest >> users: aSelector [
 	^ self users: aSelector inPackages: self defaultPackages
 ]
 
-{
-	#category : #private-navigation,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterStepTest>>users: aSelector inPackages: anArray [
+{ #category : #private-navigation }
+GTSpotterStepTest >> users: aSelector inPackages: anArray [
 	| users |
 	users := OrderedCollection new.
 	RPackageOrganizer default packages do: [ :package |

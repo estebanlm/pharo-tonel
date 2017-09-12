@@ -21,15 +21,11 @@ To compare the different delay schedulers...
 Class {
 	#name : #DelayExperimentalCourageousScheduler,
 	#superclass : #DelayMicrosecondScheduler,
-	#category : #Kernel-Processes,
-	#timestamp : 'BenComan 11/23/2015 22:29'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #'low priority processes',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayExperimentalCourageousScheduler>>schedule: aDelay [
+{ #category : #'low priority processes' }
+DelayExperimentalCourageousScheduler >> schedule: aDelay [
 
 	"Depends on... semantics of bytecode inlining and cooperative multitasking  
 	 such that interuption cannot occur between the assignment and the signal.
@@ -43,11 +39,8 @@ DelayExperimentalCourageousScheduler>>schedule: aDelay [
 
 ]
 
-{
-	#category : #'low priority processes',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayExperimentalCourageousScheduler>>unschedule: aDelay [
+{ #category : #'low priority processes' }
+DelayExperimentalCourageousScheduler >> unschedule: aDelay [
 
 	"Depends on... semantics of bytecode inlining and cooperative multitasking  
 	 such that interuption cannot occur between the assignment and the signal.

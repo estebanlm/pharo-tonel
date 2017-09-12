@@ -13,122 +13,79 @@ Class {
 		'ports',
 		'forbiddenAnnouncements'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'DamienCassou 7/9/2011 23:44'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionContext>>addPort: aPort [
+{ #category : #accessing }
+GLMTransmissionContext >> addPort: aPort [
 	self ports add: aPort
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionContext>>can: aPane announce: anAnnouncement [
+{ #category : #accessing }
+GLMTransmissionContext >> can: aPane announce: anAnnouncement [
 	^ ((self forbiddenAnnouncements at: aPane ifAbsent: [Set new])
 		includes: anAnnouncement ) not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionContext>>canAnnounceMatchingPresentationsChanged: aPane [
+{ #category : #accessing }
+GLMTransmissionContext >> canAnnounceMatchingPresentationsChanged: aPane [
 	^ self can: aPane announce: GLMMatchingPresentationsChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionContext>>canAnnouncePresentationsChanged: aPane [
+{ #category : #accessing }
+GLMTransmissionContext >> canAnnouncePresentationsChanged: aPane [
 	self can: aPane announce: GLMPresentationsChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionContext>>forbid: aPane toAnnounce: anAnnouncement [
+{ #category : #accessing }
+GLMTransmissionContext >> forbid: aPane toAnnounce: anAnnouncement [
 	(self forbiddenAnnouncements at: aPane ifAbsentPut: [Set new])
 		add: anAnnouncement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionContext>>forbidToAnnounceMatchingPresentationsChanged: aPane [
+{ #category : #accessing }
+GLMTransmissionContext >> forbidToAnnounceMatchingPresentationsChanged: aPane [
 	self forbid: aPane toAnnounce: GLMMatchingPresentationsChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionContext>>forbidToAnnouncePresentationsChanged: aPane [
+{ #category : #accessing }
+GLMTransmissionContext >> forbidToAnnouncePresentationsChanged: aPane [
 	self forbid: aPane toAnnounce: GLMPresentationsChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionContext>>forbiddenAnnouncements [
+{ #category : #accessing }
+GLMTransmissionContext >> forbiddenAnnouncements [
 	"forbiddenAnnouncements holds a dictionary in which the key is a pane and the value is a collection of announcements"
 	^ forbiddenAnnouncements ifNil: [forbiddenAnnouncements := IdentityDictionary new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionContext>>forbiddenAnnouncements: anObject [
+{ #category : #accessing }
+GLMTransmissionContext >> forbiddenAnnouncements: anObject [
 	forbiddenAnnouncements := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionContext>>includesPort: aPort [
+{ #category : #testing }
+GLMTransmissionContext >> includesPort: aPort [
 	^ self ports includes: aPort
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionContext>>ports [
+{ #category : #accessing }
+GLMTransmissionContext >> ports [
 	^ ports ifNil: [ports := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionContext>>ports: anObject [
+{ #category : #accessing }
+GLMTransmissionContext >> ports: anObject [
 	ports := anObject
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionContext>>postCopy [
+{ #category : #copying }
+GLMTransmissionContext >> postCopy [
 	ports := ports copy
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionContext>>printOn: aStream  [
+{ #category : #printing }
+GLMTransmissionContext >> printOn: aStream [ 
 	super printOn: aStream.
 	aStream nextPut: $(.
 	ports printOn: aStream.

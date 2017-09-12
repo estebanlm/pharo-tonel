@@ -17,33 +17,23 @@ var := [ statements.
 Class {
 	#name : #RBUnwindBlocksRule,
 	#superclass : #RBTransformationRule,
-	#category : #Refactoring-Critics-TransformationRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 18:59'
+	#category : #Refactoring-Critics-TransformationRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnwindBlocksRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBUnwindBlocksRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'UnwindBlocksRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnwindBlocksRule>>group [
+{ #category : #accessing }
+RBUnwindBlocksRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnwindBlocksRule>>initialize [
+{ #category : #initialization }
+RBUnwindBlocksRule >> initialize [
 	super initialize.
 	self rewriteRule
 		replace: '[| `@temps | ``@.Statements. `var := ``@object] ensure: ``@block'
@@ -56,10 +46,7 @@ RBUnwindBlocksRule>>initialize [
 			with: '^[| `@temps | ``@.Statements. ``@object] ifCurtailed: ``@block'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnwindBlocksRule>>name [
+{ #category : #accessing }
+RBUnwindBlocksRule >> name [
 	^ 'Move assignment out of unwind blocks'
 ]

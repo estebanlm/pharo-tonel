@@ -9,39 +9,26 @@ Class {
 		'circle',
 		'moveToDraw'
 	],
-	#category : #OSWindow-SDL2-Examples-Touch,
-	#timestamp : 'MerwanOuddane 8/21/2015 14:06'
+	#category : #OSWindow-SDL2-Examples-Touch
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchExample class>>example [
+{ #category : #'as yet unclassified' }
+SDL2TouchExample class >> example [
 	^ self new open
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchExample>>backgroundColor [
+{ #category : #accessing }
+SDL2TouchExample >> backgroundColor [
 	^ Color white
 ]
 
-{
-	#category : #'manage move',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchExample>>beginMove: touchId at: position [
+{ #category : #'manage move' }
+SDL2TouchExample >> beginMove: touchId at: position [
 	moveToDraw at: touchId put: (SDL2TouchStateMachine for: position * self defaultExtent)
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchExample>>clearSurface [
+{ #category : #drawing }
+SDL2TouchExample >> clearSurface [
 	renderer athensSurface
 		drawDuring:
 			[ :canvas | 
@@ -49,21 +36,15 @@ SDL2TouchExample>>clearSurface [
 			canvas drawShape: (0 @ 0 extent: self defaultExtent) ]
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchExample>>createEventHandler [
+{ #category : #factory }
+SDL2TouchExample >> createEventHandler [
 	^OSWindowTouchEventHandler new
 		touchExample: self;
 		yourself
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchExample>>drawCircleAt: point color: color [
+{ #category : #drawing }
+SDL2TouchExample >> drawCircleAt: point color: color [
 	renderer athensSurface
 		drawDuring: [ :canvas | 
 			canvas pathTransform translateBy: point.
@@ -73,11 +54,8 @@ SDL2TouchExample>>drawCircleAt: point color: color [
 				draw ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchExample>>drawMoves [
+{ #category : #drawing }
+SDL2TouchExample >> drawMoves [
 	moveToDraw
 		do:
 			[ :each | 
@@ -103,11 +81,8 @@ SDL2TouchExample>>drawMoves [
 			last ifNotNil: [ self drawCircleAt: last color: color ] ]
 ]
 
-{
-	#category : #'manage move',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchExample>>endMove: touchId at: position [
+{ #category : #'manage move' }
+SDL2TouchExample >> endMove: touchId at: position [
 	(moveToDraw at: touchId) finish: position * self defaultExtent.
 	[ 
 	| d |
@@ -116,20 +91,14 @@ SDL2TouchExample>>endMove: touchId at: position [
 	moveToDraw removeKey: touchId ifAbsent: [  ] ] fork
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchExample>>initialize [
+{ #category : #initialization }
+SDL2TouchExample >> initialize [
 	super initialize.
 	moveToDraw := Dictionary new.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchExample>>initializeFromSurface [
+{ #category : #initialization }
+SDL2TouchExample >> initializeFromSurface [
 	circle := renderer athensSurface
 		createPath:
 			[ :builder | 
@@ -142,19 +111,13 @@ SDL2TouchExample>>initializeFromSurface [
 				ccwArcTo: -5 @ 0 angle: 90 degreesToRadians ]
 ]
 
-{
-	#category : #'manage move',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchExample>>move: touchId at: position [
+{ #category : #'manage move' }
+SDL2TouchExample >> move: touchId at: position [
 	(moveToDraw at: touchId) add: position * self defaultExtent
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchExample>>redraw [
+{ #category : #drawing }
+SDL2TouchExample >> redraw [
 	self clearSurface.
 	self drawMoves
 ]

@@ -11,24 +11,17 @@ Class {
 		'literalValues',
 		'tempVars'
 	],
-	#category : #Compiler-Support,
-	#timestamp : '<historical>'
+	#category : #Compiler-Support
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>accept: aVisitor [
+{ #category : #visiting }
+DecompilerConstructor >> accept: aVisitor [
 	"I am not really a ParseNode.  Only here to access constants defined in parseNode."
 	self shouldNotImplement
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeAnyLitInd: association [
+{ #category : #constructor }
+DecompilerConstructor >> codeAnyLitInd: association [
 
 	^VariableNode new
 		name: association key
@@ -37,11 +30,8 @@ DecompilerConstructor>>codeAnyLitInd: association [
 		type: LdLitIndType
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeAnyLiteral: value [
+{ #category : #constructor }
+DecompilerConstructor >> codeAnyLiteral: value [
 
 	^LiteralNode new
 		key: value
@@ -49,11 +39,8 @@ DecompilerConstructor>>codeAnyLiteral: value [
 		type: LdLitType
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeAnySelector: selector [
+{ #category : #constructor }
+DecompilerConstructor >> codeAnySelector: selector [
 
 	^SelectorNode new
 		key: selector
@@ -61,67 +48,46 @@ DecompilerConstructor>>codeAnySelector: selector [
 		type: SendType
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeArguments: args block: block [
+{ #category : #constructor }
+DecompilerConstructor >> codeArguments: args block: block [
 
 	^block arguments: args
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeArguments: args temps: temps block: block  [
+{ #category : #constructor }
+DecompilerConstructor >> codeArguments: args temps: temps block: block [ 
 	block
 		arguments: args;
 		temporaries: temps.
 	^block
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeAssignTo: variable value: expression [
+{ #category : #constructor }
+DecompilerConstructor >> codeAssignTo: variable value: expression [
 
 	^AssignmentNode new variable: variable value: expression
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeBlock: statements returns: returns [
+{ #category : #constructor }
+DecompilerConstructor >> codeBlock: statements returns: returns [
 	^ BlockNode statements: statements returns: returns
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeBrace: elements [
+{ #category : #constructor }
+DecompilerConstructor >> codeBrace: elements [
 
 	^BraceNode new elements: elements
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeCascade: receiver messages: messages [
+{ #category : #constructor }
+DecompilerConstructor >> codeCascade: receiver messages: messages [
 
 	^ (BraceNode new matchBraceStreamReceiver: receiver messages: messages)
 		ifNil: [CascadeNode new receiver: receiver messages: messages]
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeCascadedMessage: selector arguments: arguments [
+{ #category : #constructor }
+DecompilerConstructor >> codeCascadedMessage: selector arguments: arguments [
 
 	^self
 		codeMessage: nil
@@ -129,11 +95,8 @@ DecompilerConstructor>>codeCascadedMessage: selector arguments: arguments [
 		arguments: arguments
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeConstants [
+{ #category : #constructor }
+DecompilerConstructor >> codeConstants [
 	"Answer with an array of the objects representing self, true, false, nil,
 	-1, 0, 1, 2."
 
@@ -141,30 +104,21 @@ DecompilerConstructor>>codeConstants [
 		, ((-1 to: 2) collect: [:i | LiteralNode new key: i code: LdMinus1 + i + 1])
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeEmptyBlock [
+{ #category : #constructor }
+DecompilerConstructor >> codeEmptyBlock [
 	^ BlockNode withJust: NodeNil
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeInst: index [
+{ #category : #constructor }
+DecompilerConstructor >> codeInst: index [
 
 	^InstanceVariableNode new
 		name: (instVars at: index + 1 ifAbsent: ['unknown', index asString])
 		index: index + 1
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeMessage: receiver selector: selector arguments: arguments [
+{ #category : #constructor }
+DecompilerConstructor >> codeMessage: receiver selector: selector arguments: arguments [
 	| symbol node |
 	symbol := selector key.
 	(node := BraceNode new
@@ -180,11 +134,8 @@ DecompilerConstructor>>codeMessage: receiver selector: selector arguments: argum
 			precedence: symbol precedence
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeMethod: selector block: block tempVars: vars primitive: primitive class: class [
+{ #category : #constructor }
+DecompilerConstructor >> codeMethod: selector block: block tempVars: vars primitive: primitive class: class [
 
 	| node methodTemps arguments temporaries |
 	node := self codeSelector: selector code: nil.
@@ -208,29 +159,20 @@ DecompilerConstructor>>codeMethod: selector block: block tempVars: vars primitiv
 		primitive: primitive
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeSelector: sel code: code [
+{ #category : #constructor }
+DecompilerConstructor >> codeSelector: sel [ code: code
 
 	^SelectorNode new key: sel code: code
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeSuper [
+{ #category : #constructor }
+DecompilerConstructor >> codeSuper [
 
 	^NodeSuper
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeTemp: index [
+{ #category : #constructor }
+DecompilerConstructor >> codeTemp: index [
 
 	^ TempVariableNode new
 		name: 't' , (index + 1) printString
@@ -239,11 +181,8 @@ DecompilerConstructor>>codeTemp: index [
 		scope: 0
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeTemp: index named: tempName [
+{ #category : #constructor }
+DecompilerConstructor >> codeTemp: index named: tempName [
 
 	^ TempVariableNode new
 		name: tempName
@@ -252,20 +191,14 @@ DecompilerConstructor>>codeTemp: index named: tempName [
 		scope: 0
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>codeThisContext [
+{ #category : #constructor }
+DecompilerConstructor >> codeThisContext [
 
 	^NodeThisContext
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>decodeIfNilWithReceiver: receiver selector: selector arguments: arguments [
+{ #category : #constructor }
+DecompilerConstructor >> decodeIfNilWithReceiver: receiver selector: selector arguments: arguments [
 	receiver ifNil: [ ^nil ].		"For instance, when cascading"
 	selector == #ifTrue:ifFalse:
 		ifFalse: [^ nil].
@@ -281,19 +214,13 @@ DecompilerConstructor>>decodeIfNilWithReceiver: receiver selector: selector argu
 		noteSpecialSelector: #ifNil:ifNotNil:
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>isForClosures [
+{ #category : #testing }
+DecompilerConstructor >> isForClosures [
 	^false
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructor>>method: aMethod class: aClass literals: literals [
+{ #category : #initialize-release }
+DecompilerConstructor >> method: aMethod class: aClass literals: literals [
 
 	method := aMethod.
 	instVars := aClass allInstVarNames.

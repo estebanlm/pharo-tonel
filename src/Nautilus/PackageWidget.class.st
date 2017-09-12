@@ -12,23 +12,16 @@ Class {
 		'packagesSelection',
 		'groupsSelection'
 	],
-	#category : #Nautilus-Widgets,
-	#timestamp : 'StephaneDucasse 11/11/2015 16:12'
+	#category : #Nautilus-Widgets
 }
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>buildContents [
+{ #category : #protocol }
+PackageWidget >> buildContents [
 	packagesList buildContents
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>buildPackagesList [
+{ #category : #'item creation' }
+PackageWidget >> buildPackagesList [
 	| treeModel |
 	treeModel := PackageTreeModel new
 		model: self model;
@@ -49,51 +42,33 @@ PackageWidget>>buildPackagesList [
 	^ packagesList
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>deselectAll [
+{ #category : #protocol }
+PackageWidget >> deselectAll [
 	packagesList model deselectAll
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>doubleClick [
+{ #category : #'event handling' }
+PackageWidget >> doubleClick [
 	self selectedNode ifNotNil: [ :n | n doubleClick ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>enabled: aTrue  [
+{ #category : #protocol }
+PackageWidget >> enabled: aTrue [ 
 	packagesList model enabled: aTrue
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>expandAllFromNode: aPackageTreePackageNodeModel  [
+{ #category : #protocol }
+PackageWidget >> expandAllFromNode: aPackageTreePackageNodeModel [ 
 	packagesList model expandAllFromNode: aPackageTreePackageNodeModel 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>hasFocus [
+{ #category : #protocol }
+PackageWidget >> hasFocus [
 	^ packagesList hasKeyboardFocus 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>initialize [
+{ #category : #initialization }
+PackageWidget >> initialize [
 
 	super initialize.
 
@@ -102,91 +77,58 @@ PackageWidget>>initialize [
 	groupsSelection := Dictionary new.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>packagesList [
+{ #category : #private }
+PackageWidget >> packagesList [
 	^ packagesList 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>packagesSelection [
+{ #category : #private }
+PackageWidget >> packagesSelection [
 	^ packagesSelection 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>removeShortcuts: aSymbol [
+{ #category : #protocol }
+PackageWidget >> removeShortcuts: aSymbol [
 	self model removeShortcuts: aSymbol from: packagesList
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>resetGroupsSelection [
+{ #category : #protocol }
+PackageWidget >> resetGroupsSelection [
 	groupsSelection removeAll
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>resetPackagesSelection [
+{ #category : #protocol }
+PackageWidget >> resetPackagesSelection [
 	packagesSelection removeAll
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>scrollSelectionIntoView [
+{ #category : #protocol }
+PackageWidget >> scrollSelectionIntoView [
 	packagesList scrollSelectionIntoView
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>selectGroup: aGroup [
+{ #category : #protocol }
+PackageWidget >> selectGroup: aGroup [
 	groupsSelection at: aGroup put: true
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>selectItems: aCollection  [
+{ #category : #protocol }
+PackageWidget >> selectItems: aCollection [ 
 	packagesList model selectItems: aCollection 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>selectPackage: aPackage [
+{ #category : #protocol }
+PackageWidget >> selectPackage: aPackage [
 	self packagesSelection at: aPackage put: true
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>selectedGroup [
+{ #category : #protocol }
+PackageWidget >> selectedGroup [
 	^ self selectedGroups ifEmpty: [ nil ] ifNotEmpty: [ :col | col first ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>selectedGroups [
+{ #category : #protocol }
+PackageWidget >> selectedGroups [
 
 	| associations |
 	associations := groupsSelection associations select: [:assoc | assoc value ].
@@ -194,70 +136,46 @@ PackageWidget>>selectedGroups [
 	^ associations select: [:each | each notNil ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>selectedPackage [
+{ #category : #protocol }
+PackageWidget >> selectedPackage [
 
 	^ self selectedPackages ifEmpty: [ nil ] ifNotEmpty: [ :col | col first ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>selectedPackageGroup [
+{ #category : #protocol }
+PackageWidget >> selectedPackageGroup [
 	^ self selectedPackage ifNil: [ self selectedGroup ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>selectedPackages [
+{ #category : #protocol }
+PackageWidget >> selectedPackages [
 	| associations |
 	associations := packagesSelection associations select: [ :assoc | assoc value ].
 	associations := associations collect: [ :assoc | assoc key ].
 	^ associations select: [ :each | each notNil ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>setShortcuts: aSymbol [
+{ #category : #protocol }
+PackageWidget >> setShortcuts: aSymbol [
 	self model setShortcuts: aSymbol to: packagesList
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>takeKeyboardFocus [
+{ #category : #protocol }
+PackageWidget >> takeKeyboardFocus [
 	packagesList takeKeyboardFocus 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>updateContentsWithPreviouslyExpanded: aCollection  [
+{ #category : #updating }
+PackageWidget >> updateContentsWithPreviouslyExpanded: aCollection [ 
 	packagesList updateContentsWithPreviouslyExpanded: aCollection
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>updateList [
+{ #category : #protocol }
+PackageWidget >> updateList [
 	packagesList model updateList
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageWidget>>updatePackageView [
+{ #category : #protocol }
+PackageWidget >> updatePackageView [
 	packagesList model changed:#rootNodes
 ]

@@ -1,68 +1,43 @@
-"
-
-"
 Class {
 	#name : #LabelledContainerTest,
 	#superclass : #SpecTestCase,
-	#category : #Spec-Tests-PolyWidgets-Elementary,
-	#timestamp : ''
+	#category : #Spec-Tests-PolyWidgets-Elementary
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LabelledContainerTest>>classToTest [
+{ #category : #running }
+LabelledContainerTest >> classToTest [
 	^ LabelledContainer
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LabelledContainerTest>>initializeTestedInstance [
+{ #category : #running }
+LabelledContainerTest >> initializeTestedInstance [
 	testedInstance content: TestingComposableModel.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LabelledContainerTest>>testContent [
+{ #category : #tests }
+LabelledContainerTest >> testContent [
 	testedInstance content: ListModel.
 	self assert: testedInstance subwidget class equals: ListModel
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LabelledContainerTest>>testDoesNotUnderstand [
+{ #category : #tests }
+LabelledContainerTest >> testDoesNotUnderstand [
 	testedInstance content: ListModel.
 	testedInstance items: {'aaa' . 'bbb' . 'ccc'}.
 	self assertCollection: testedInstance listItems hasSameElements: {'aaa' . 'bbb' . 'ccc'}
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LabelledContainerTest>>testLabelBottom [
+{ #category : #tests }
+LabelledContainerTest >> testLabelBottom [
 	self openInstance: #labelBottom
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LabelledContainerTest>>testLabelLeft [
+{ #category : #tests }
+LabelledContainerTest >> testLabelLeft [
 	self openInstance:#labelLeft
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LabelledContainerTest>>testLabelRight [
+{ #category : #tests }
+LabelledContainerTest >> testLabelRight [
 	self openInstance:#labelRight
 ]

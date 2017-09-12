@@ -1,12 +1,7 @@
-Extension {
-	#name : #TextEditor
-}
+Extension { #name : #TextEditor }
 
-{
-	#category : #'*NECompletion',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-TextEditor>>atCompletionPosition [
+{ #category : #'*NECompletion' }
+TextEditor >> atCompletionPosition [
 	"Return true if the cursor is at a possible completion position"
 	| cursorPosition  |
 	cursorPosition := self startIndex.

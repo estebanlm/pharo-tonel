@@ -10,65 +10,43 @@ OSPlatform current.
 Class {
 	#name : #WinPlatform,
 	#superclass : #OSPlatform,
-	#category : #System-Platforms,
-	#timestamp : '<historical>'
+	#category : #System-Platforms
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-WinPlatform class>>isActivePlatform [
+{ #category : #testing }
+WinPlatform class >> isActivePlatform [
 	"Answer whether the receiver is the active platform"
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-WinPlatform>>family [
+{ #category : #accessing }
+WinPlatform >> family [
 	^#Windows
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-WinPlatform>>isWindows [
+{ #category : #testing }
+WinPlatform >> isWindows [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-WinPlatform>>keyForValue: aKeyValue [
+{ #category : #accessing }
+WinPlatform >> keyForValue: aKeyValue [
 	^Key valueForWindowsPlatform: aKeyValue.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-WinPlatform>>lineEnding [
+{ #category : #accessing }
+WinPlatform >> lineEnding [
 
 	^ String crlf
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-WinPlatform>>menuShortcutString [
+{ #category : #accessing }
+WinPlatform >> menuShortcutString [
 	^ 'ctrl'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-WinPlatform>>virtualKey: virtualKeyCode [
+{ #category : #accessing }
+WinPlatform >> virtualKey: virtualKeyCode [
 	"Win32Platform virtualKey: $C charCode"
 
 	(virtualKeyCode between: 65 "$A charCode" and: 90 "$Z")

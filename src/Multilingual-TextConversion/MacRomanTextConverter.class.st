@@ -4,15 +4,11 @@ Text converter for Mac Roman.  An encoding used for the languages originated fro
 Class {
 	#name : #MacRomanTextConverter,
 	#superclass : #ByteTextConverter,
-	#category : #Multilingual-TextConversion,
-	#timestamp : '<historical>'
+	#category : #Multilingual-TextConversion
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MacRomanTextConverter class>>byteToUnicodeSpec [
+{ #category : #initialization }
+MacRomanTextConverter class >> byteToUnicodeSpec [
 	"ByteTextConverter generateByteToUnicodeSpec: 'http://unicode.org/Public/MAPPINGS/VENDORS/APPLE/ROMAN.TXT'"
 
 	^ #(
@@ -34,28 +30,19 @@ MacRomanTextConverter class>>byteToUnicodeSpec [
 	16r00AF 16r02D8 16r02D9 16r02DA 16r00B8 16r02DD 16r02DB 16r02C7 )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MacRomanTextConverter class>>encodingNames  [
+{ #category : #accessing }
+MacRomanTextConverter class >> encodingNames [ 
 
 	^ #('mac-roman' ) copy
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MacRomanTextConverter class>>initialize [
+{ #category : #initialization }
+MacRomanTextConverter class >> initialize [
 	self initializeTables
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MacRomanTextConverter class>>languageEnvironment [
+{ #category : #accessing }
+MacRomanTextConverter class >> languageEnvironment [
 	^Latin1Environment
 ]

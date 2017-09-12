@@ -56,15 +56,11 @@ Class {
 		'pragmaCollector',
 		'currentRoot'
 	],
-	#category : #MenuRegistration-Core,
-	#timestamp : 'AlainPlantec 11/16/2010 19:48'
+	#category : #MenuRegistration-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder class>>itemSortBlock [
+{ #category : #private }
+PragmaMenuBuilder class >> itemSortBlock [
 	"The block which is used to sort a menu tree"
 	^ [:a :b | 
 		((a order notNil and: [b order notNil]) and: [a order ~= b order])
@@ -74,11 +70,8 @@ PragmaMenuBuilder class>>itemSortBlock [
 				ifFalse: [a order ifNil: [false] ifNotNil: [true]]]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder class>>orderAssignBlock [
+{ #category : #private }
+PragmaMenuBuilder class >> orderAssignBlock [
 	"The block which is used to set MenuRegistration tree node order inst var (which is used to sort the tree)"
 
 	^ [ :list | 
@@ -102,20 +95,14 @@ PragmaMenuBuilder class>>orderAssignBlock [
 		ifNone: [ list ]	"No order has been set - do not touch anything, the list order is ok" ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder class>>pragmaKeyword: aPragmaKeyword model: aModel [
+{ #category : #'instance creation' }
+PragmaMenuBuilder class >> pragmaKeyword: aPragmaKeyword model: aModel [
 	"Build a builder using aPragmaKeyword as the pragma keyword and aModel a the model of the resulting builder"
 	^ self withAllPragmaKeywords: (Array with: aPragmaKeyword) model: aModel
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder class>>withAllPragmaKeywords: aCollection model: aModel [
+{ #category : #'instance creation' }
+PragmaMenuBuilder class >> withAllPragmaKeywords: aCollection model: aModel [
 	"Build a builder using aPragmaKeyword as the pragma keyword and aModel a the model of the resulting builder"
 	^ self new 
 		pragmaKeywords: aCollection;
@@ -123,22 +110,16 @@ PragmaMenuBuilder class>>withAllPragmaKeywords: aCollection model: aModel [
 		yourself.
 ]
 
-{
-	#category : #'registrations handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>allMisplacedItems [
+{ #category : #'registrations handling' }
+PragmaMenuBuilder >> allMisplacedItems [
 	| misplaced |
 	self collectMisplacedItemsIn: (misplaced := OrderedCollection new).
 	^ misplaced
 
 ]
 
-{
-	#category : #'registrations handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>arrangeRegistrations. [
+{ #category : #'registrations handling' }
+PragmaMenuBuilder >> arrangeRegistrations. [
 	self allMisplacedItems do: [:item |
 		(self itemNamed: item parentName)
 			ifNotNil: [:newOwner | item owner removeItem: item.
@@ -147,11 +128,8 @@ PragmaMenuBuilder>>arrangeRegistrations. [
 
 ]
 
-{
-	#category : #'menu building',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>buildTree [
+{ #category : #'menu building' }
+PragmaMenuBuilder >> buildTree [
 	"Retrieve all menu registrations with the help of a PragmaCollector then, 
 	reorganise the tree and sort it  - see class comment for more informations"
 	itemList := OrderedCollection new.
@@ -160,19 +138,13 @@ PragmaMenuBuilder>>buildTree [
 	self sortRegistrations
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>builder [
+{ #category : #accessing }
+PragmaMenuBuilder >> builder [
 	^ self
 ]
 
-{
-	#category : #'registrations handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>collectRegistrations [
+{ #category : #'registrations handling' }
+PragmaMenuBuilder >> collectRegistrations [
 	"Retrieve all pragma methods and evaluate them by passing the 
 	MenuRegistration class as argument. The result is a list of trees
 	stored in my itemList inst var"
@@ -189,31 +161,22 @@ PragmaMenuBuilder>>collectRegistrations [
 	self interpretRegistration: menu
 ]
 
-{
-	#category : #'menu building',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>currentRoot: anItem while: aBlock [
+{ #category : #'menu building' }
+PragmaMenuBuilder >> currentRoot: anItem while: aBlock [
 	| old |
 	old := currentRoot.
 	currentRoot := anItem.
 	[aBlock value] ensure: [currentRoot := old]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>fallbackMenu [
+{ #category : #private }
+PragmaMenuBuilder >> fallbackMenu [
 
 	^ FallbackMenu when: self fails: model.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>initialize [
+{ #category : #initialization }
+PragmaMenuBuilder >> initialize [
 	super initialize.
 	isGroup := true.
 	currentRoot := self.
@@ -221,11 +184,8 @@ PragmaMenuBuilder>>initialize [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>interpretRegistration: aRegistration  [
+{ #category : #private }
+PragmaMenuBuilder >> interpretRegistration: aRegistration [ 
 	| root |
 	root := MenuRegistration owner: self.
 	aRegistration handOutItems do: [:item || node |
@@ -260,47 +220,32 @@ PragmaMenuBuilder>>interpretRegistration: aRegistration  [
 				ifTrue: [ node withSeparatorAfter ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>itemReceiver [
+{ #category : #accessing }
+PragmaMenuBuilder >> itemReceiver [
 	^ model
 ]
 
-{
-	#category : #'public menu building',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>menu [
+{ #category : #'public menu building' }
+PragmaMenuBuilder >> menu [
 	"returns a MenuMorph build from my menuSpec"
 	
 	^ self menuFrom: [ self menuSpec ].
 ]
 
-{
-	#category : #'public menu building',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>menuAt: aName [
+{ #category : #'public menu building' }
+PragmaMenuBuilder >> menuAt: aName [
 	"returns a MenuMorph from my menuSpec"
 	^ self menuFrom: [ self menuSpecAt: aName ].
 ]
 
-{
-	#category : #'public menu building',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>menuEntitled: aTitle  [
+{ #category : #'public menu building' }
+PragmaMenuBuilder >> menuEntitled: aTitle [ 
 	"returns a MenuMorph build from my menuSpec"
 	^ self menuFrom: [ self menuSpec label: aTitle ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>menuFrom: specBlock [
+{ #category : #private }
+PragmaMenuBuilder >> menuFrom: specBlock [
 
 	^ [ specBlock value asMenuMorph ]
 			on: Error
@@ -309,20 +254,14 @@ PragmaMenuBuilder>>menuFrom: specBlock [
 				self fallbackMenu ].
 ]
 
-{
-	#category : #'public menu building',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>menuSpec [
+{ #category : #'public menu building' }
+PragmaMenuBuilder >> menuSpec [
 	"returns a PluggableMenuSpec build from my contents"
 	^ self menuSpecAt: nil
 ]
 
-{
-	#category : #'public menu building',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>menuSpecAt: aName [
+{ #category : #'public menu building' }
+PragmaMenuBuilder >> menuSpecAt: aName [
 	"returns a PluggableMenuSpec build from my contents starting at 
 	the inner MenuRegistration named aName or from here if aName is nil"
 	| root |
@@ -333,38 +272,26 @@ PragmaMenuBuilder>>menuSpecAt: aName [
 	^ root
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>model [
+{ #category : #accessing }
+PragmaMenuBuilder >> model [
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>model: anObject [
+{ #category : #accessing }
+PragmaMenuBuilder >> model: anObject [
 	model := anObject
 ]
 
-{
-	#category : #'menu building',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>newSubItem [
+{ #category : #'menu building' }
+PragmaMenuBuilder >> newSubItem [
 	| reg |
 	reg := MenuRegistration owner: currentRoot.
 	currentRoot addItem: reg.
 	^ reg
 ]
 
-{
-	#category : #'registrations handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>pragmaCollector [
+{ #category : #'registrations handling' }
+PragmaMenuBuilder >> pragmaCollector [
 	"Return an up-to-date pragmaCollector which contains all pragmas which keyword is self pragmaKeyword"
 
 	^ pragmaCollector
@@ -378,48 +305,33 @@ PragmaMenuBuilder>>pragmaCollector [
 			pragmaCollector ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>pragmaKeyword [
+{ #category : #accessing }
+PragmaMenuBuilder >> pragmaKeyword [
 	"Deprecated"
 	^  pragmaKeywords isEmptyOrNil ifFalse: [pragmaKeywords first]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>pragmaKeyword: aString [
+{ #category : #accessing }
+PragmaMenuBuilder >> pragmaKeyword: aString [
 	"Set the pragma keyword used to select pragmas (see #pragmaCollector)"
 	pragmaKeywords add: aString asSymbol.
 	self pragmaCollector reset.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>pragmaKeywords [
+{ #category : #accessing }
+PragmaMenuBuilder >> pragmaKeywords [
 	"Returns the pragma keyword used to select pragmas (see #pragmaCollector)"
 	^  pragmaKeywords 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>pragmaKeywords: aCollection [
+{ #category : #accessing }
+PragmaMenuBuilder >> pragmaKeywords: aCollection [
 	"Returns the pragma keyword used to select pragmas (see #pragmaCollector)"
 	pragmaKeywords addAll: (aCollection collect: [:k | k asSymbol])
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>release [
+{ #category : #initialize-release }
+PragmaMenuBuilder >> release [
 	self pragmaCollector unsubscribe: self.
 	pragmaCollector := nil.
 	model := nil.
@@ -427,11 +339,8 @@ PragmaMenuBuilder>>release [
 	
 ]
 
-{
-	#category : #'registrations handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuBuilder>>sortRegistrations [
+{ #category : #'registrations handling' }
+PragmaMenuBuilder >> sortRegistrations [
 	"Try to update MenuRegistration order inst. var and the sort the trees"
 	self assignOrderWithBlock: self class orderAssignBlock.
 	self sort: self class itemSortBlock

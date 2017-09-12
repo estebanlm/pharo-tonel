@@ -13,15 +13,11 @@ Class {
 	#instVars : [
 		'oldClass'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'MarkRizun 7/24/2014 14:19'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveInstVarToClassRefactoring class>>model: aRBSmalltalk variable: aVarName class: aClass oldClass: anOldClass [
+{ #category : #'as yet unclassified' }
+RBMoveInstVarToClassRefactoring class >> model: aRBSmalltalk variable: aVarName class: aClass oldClass: anOldClass [
 	^(self new)
 		model: aRBSmalltalk;
 		variable: aVarName class: aClass;
@@ -29,11 +25,8 @@ RBMoveInstVarToClassRefactoring class>>model: aRBSmalltalk variable: aVarName cl
 		yourself.
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveInstVarToClassRefactoring>>collectSendersOfInstVar [
+{ #category : #transforming }
+RBMoveInstVarToClassRefactoring >> collectSendersOfInstVar [
 	| brokenSenders subclasses hasInstVar |
 	hasInstVar := false.
 	brokenSenders := OrderedCollection new.
@@ -57,31 +50,21 @@ RBMoveInstVarToClassRefactoring>>collectSendersOfInstVar [
 			^ brokenSenders ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveInstVarToClassRefactoring>>oldClass: aClass [
+{ #category : #accessing }
+RBMoveInstVarToClassRefactoring >> oldClass: aClass [
 	oldClass := self classObjectFor: aClass
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveInstVarToClassRefactoring>>preconditions [
+{ #category : #preconditions }
+RBMoveInstVarToClassRefactoring >> preconditions [
 	^ RBCondition
 		withBlock: [ 
 			(class hierarchyDefinesInstanceVariable: variableName)
 				ifTrue: [ self refactoringError: 'Already defined in hierarchy' ].true ]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveInstVarToClassRefactoring>>"protocol: transforming" [
-transform
+{ #category : #transforming }
+RBMoveInstVarToClassRefactoring >> transform [
 	| brokenSenders |
 	class addInstanceVariable: variableName asString.
 	oldClass removeInstanceVariable: variableName asString.

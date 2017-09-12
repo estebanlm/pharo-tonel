@@ -239,24 +239,17 @@ Class {
 		'maxNodeWidth',
 		'enabled'
 	],
-	#category : #Morphic-Widgets-Tree,
-	#timestamp : 'AlainPlantec 2/13/2010 07:41'
+	#category : #Morphic-Widgets-Tree
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph class>>on: anObject [
+{ #category : #'instance creation' }
+MorphTreeMorph class >> on: anObject [
 	^ self new model: anObject
 
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>acceptDroppingMorph: aMorph event: evt [
+{ #category : #dropping/grabbing }
+MorphTreeMorph >> acceptDroppingMorph: aMorph event: evt [
 	"This message is sent when a morph is dropped onto a morph that has agreed 
 	to accept the dropped morph by responding 'true' to the wantsDroppedMorph:Event: 
 	message. This implementation relay the drop to the model then release the morph
@@ -271,20 +264,14 @@ MorphTreeMorph>>acceptDroppingMorph: aMorph event: evt [
 
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>addColumn: aTreeColumn [
+{ #category : #'column handling' }
+MorphTreeMorph >> addColumn: aTreeColumn [
 	"add a column"
 	self addColumn: aTreeColumn afterIndex: self columns size
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>addColumn: aTreeColumn afterIndex: aPosition [
+{ #category : #'column handling' }
+MorphTreeMorph >> addColumn: aTreeColumn afterIndex: aPosition [
 	"add a column at a given index then update the list
 	in order to take the new column into account"
 	aTreeColumn container: self.
@@ -296,11 +283,8 @@ MorphTreeMorph>>addColumn: aTreeColumn afterIndex: aPosition [
 
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>addColumnResizers [
+{ #category : #'column handling' }
+MorphTreeMorph >> addColumnResizers [
 	"add all needed column resizers"
 	columnResizers := self columnResizerFrames
 				withIndexCollect: [:frm :idx | 
@@ -309,11 +293,8 @@ MorphTreeMorph>>addColumnResizers [
 	self columnResizersToFront
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>addMorphsAfter: parentMorph fromCollection: aCollection [
+{ #category : #submorphs-add/remove }
+MorphTreeMorph >> addMorphsAfter: parentMorph fromCollection: aCollection [
 	"Sent when expanding a node in order to add chilldren nodes after the expanded node"
 	| priorMorph morphList  subs |
 	priorMorph := nil.
@@ -351,11 +332,8 @@ MorphTreeMorph>>addMorphsAfter: parentMorph fromCollection: aCollection [
 
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>addMorphsTo: morphList from: aCollection withExpandedItems: expandedItems atLevel: newIndent  [
+{ #category : #submorphs-add/remove }
+MorphTreeMorph >> addMorphsTo: morphList from: aCollection withExpandedItems: expandedItems atLevel: newIndent [ 
 	"Sent when building the list (by #buildContents), takes
 	into accound old expanded items: they remain 
 	expanded such that a list update don't change the list
@@ -386,20 +364,14 @@ MorphTreeMorph>>addMorphsTo: morphList from: aCollection withExpandedItems: expa
 	^ firstAddition
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>addSubmorphsFromNodeList [
+{ #category : #submorphs-add/remove }
+MorphTreeMorph >> addSubmorphsFromNodeList [
 	self addSubmorphsFromNodeList: self currentNodelist previouslyExpanded: #() 
 
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>addSubmorphsFromNodeList: aNodeList previouslyExpanded: expandedNodeList [
+{ #category : #submorphs-add/remove }
+MorphTreeMorph >> addSubmorphsFromNodeList: aNodeList previouslyExpanded: expandedNodeList [
 	| morphList  |
 	morphList := OrderedCollection new.
 	self 
@@ -414,21 +386,15 @@ MorphTreeMorph>>addSubmorphsFromNodeList: aNodeList previouslyExpanded: expanded
 	
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>adjustSubmorphPositions [
+{ #category : #updating }
+MorphTreeMorph >> adjustSubmorphPositions [
 	maxNodeWidth := 0.
 	^ self adjustSubmorphPositionsOf: self allNodeMorphs startIdx: 1 startPos: 0@0 
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>adjustSubmorphPositionsOf: aCollection startIdx: anIndex startPos: aStartPoint [
+{ #category : #updating }
+MorphTreeMorph >> adjustSubmorphPositionsOf: aCollection startIdx: anIndex startPos: aStartPoint [
 	| p idx |
 	p := aStartPoint.
 	idx := anIndex.
@@ -445,11 +411,8 @@ MorphTreeMorph>>adjustSubmorphPositionsOf: aCollection startIdx: anIndex startPo
 	
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>adoptPaneColor: paneColor [
+{ #category : #'accessing colors' }
+MorphTreeMorph >> adoptPaneColor: paneColor [
 	"Pass on to the selection, the border"
 	
 	super adoptPaneColor: paneColor.
@@ -458,81 +421,54 @@ MorphTreeMorph>>adoptPaneColor: paneColor [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>allNodeMorphs [
+{ #category : #accessing }
+MorphTreeMorph >> allNodeMorphs [
 	"all list morphs"
 	^ scroller submorphs
 		
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>allowColumnDrop [
+{ #category : #dropping/grabbing }
+MorphTreeMorph >> allowColumnDrop [
 	"allowing column drop means that a column 
 	can be dropped into another one. The default behavior is to swap the
 	two columns"
 	columnDropUnabled := true
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>autoDeselection: trueOrFalse [
+{ #category : #selection }
+MorphTreeMorph >> autoDeselection: trueOrFalse [
 	"Enable/disable autoDeselect (see class comment)"
 	self listManager autoDeselection: trueOrFalse
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>autoMultiSelection [
+{ #category : #selection }
+MorphTreeMorph >> autoMultiSelection [
 	^ self listManager autoMultiSelection
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>autoMultiSelection: aBoolean [
+{ #category : #selection }
+MorphTreeMorph >> autoMultiSelection: aBoolean [
 	self listManager autoMultiSelection: aBoolean
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>beCheckList [
+{ #category : #selection }
+MorphTreeMorph >> beCheckList [
 	self isCheckList: true. 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>beMultiple	 [
+{ #category : #selection }
+MorphTreeMorph >> beMultiple [	
 	self listManager multipleSelection: true
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>beSingle	 [
+{ #category : #selection }
+MorphTreeMorph >> beSingle [	
 	self listManager multipleSelection: false
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>buildContents [
+{ #category : #updating }
+MorphTreeMorph >> buildContents [
 	nodeList := nil.
 	scroller removeAllMorphs.
 	(self nodeList isNil or: [self nodeList isEmpty]) 
@@ -543,11 +479,8 @@ MorphTreeMorph>>buildContents [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>buildTopHeader [
+{ #category : #updating }
+MorphTreeMorph >> buildTopHeader [
 	| subs |
 	subs := OrderedCollection new.
 	self columns
@@ -566,60 +499,39 @@ MorphTreeMorph>>buildTopHeader [
 
 ]
 
-{
-	#category : #'announce requests',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>changeListRequest: anAnnounce [
+{ #category : #'announce requests' }
+MorphTreeMorph >> changeListRequest: anAnnounce [
 	self updateList
 ]
 
-{
-	#category : #'announce requests',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>changeRequest: anAnnounce [
+{ #category : #'announce requests' }
+MorphTreeMorph >> changeRequest: anAnnounce [
 	^ anAnnounce change: self
 ]
 
-{
-	#category : #'announce requests',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>changeSelectionRequest: anAnnounce [
+{ #category : #'announce requests' }
+MorphTreeMorph >> changeSelectionRequest: anAnnounce [
 	self updateSelectionFromModel
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>childrenDo: aBlock [
+{ #category : #enumeration }
+MorphTreeMorph >> childrenDo: aBlock [
 	self roots do: aBlock
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>collapseAll [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> collapseAll [
 	self updateContentsWithPreviouslyExpanded: Array new.
 
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>collapseNodePath: aPath [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> collapseNodePath: aPath [
 	self allNodeMorphs first collapseNodePath: aPath
 ]
 
-{
-	#category : #'announce requests',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>collapseRequest: anAnnounce [
+{ #category : #'announce requests' }
+MorphTreeMorph >> collapseRequest: anAnnounce [
 	anAnnounce nodes
 		ifEmpty: [^ self collapseAll]
 		ifNotEmpty: [:nodes | self collapseNodePath: nodes]
@@ -627,77 +539,53 @@ MorphTreeMorph>>collapseRequest: anAnnounce [
 
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>columnColorForEven: evenColor  [
+{ #category : #'accessing colors' }
+MorphTreeMorph >> columnColorForEven: evenColor [ 
 	columnColors at: 2 put: nil.
 	columnColors at: 1 put: evenColor.
 	
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>columnColorForEven: evenColor odd: oddColor [
+{ #category : #'accessing colors' }
+MorphTreeMorph >> columnColorForEven: evenColor odd: oddColor [
 	columnColors at: 2 put: oddColor.
 	columnColors at: 1 put: evenColor.
 	
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>columnColorForOdd: oddColor  [
+{ #category : #'accessing colors' }
+MorphTreeMorph >> columnColorForOdd: oddColor [ 
 	columnColors at: 1 put: nil.
 	columnColors at: 2 put: oddColor.
 	
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>columnColors  [
+{ #category : #'accessing colors' }
+MorphTreeMorph >> columnColors [ 
 	^ columnColors 
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>columnDropUnabled [
+{ #category : #'column handling' }
+MorphTreeMorph >> columnDropUnabled [
 	"return true if column drop is enabled - see also #allowColumnDrop"
 	^ columnDropUnabled ifNil: [columnDropUnabled := false]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>columnInset [
+{ #category : #geometry }
+MorphTreeMorph >> columnInset [
 	"Horizontal space between a resizer and a row morph"
 	^ columnInset ifNil: [columnInset := 0]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>columnInset: anInteger [
+{ #category : #geometry }
+MorphTreeMorph >> columnInset: anInteger [
 	"Change the horizontal space between a resizer and a row morph"
 	columnInset := anInteger.
 
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>columnResizerFrames [
+{ #category : #'column handling' }
+MorphTreeMorph >> columnResizerFrames [
 	"return all resizers bounds in a collection - used to update column resizers position"
 	| xOffset frms |
 	xOffset := 0.
@@ -712,40 +600,28 @@ MorphTreeMorph>>columnResizerFrames [
 	^ frms collect: [:f | f translateBy: (scroller offset x negated @ 0)]
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>columnResizers [
+{ #category : #'column handling' }
+MorphTreeMorph >> columnResizers [
 	"return the resizers which make it possible 
 	to resize columns horizontally with the mouse"
 	^ columnResizers ifNil: [ columnResizers := OrderedCollection new ]
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>columnResizersToFront [
+{ #category : #'column handling' }
+MorphTreeMorph >> columnResizersToFront [
 	"Column resizers should always be at top"
 	self columnResizers do: [:cl | cl comeToFront; fillStyle: cl normalFillStyle].
 
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>columns [
+{ #category : #'column handling' }
+MorphTreeMorph >> columns [
 	"Return a column definitions, if empty, return a collection with one column"
 	^columns ifNil: [self columns: (OrderedCollection with: MorphTreeColumn new). columns]
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>columns: aListOfTreeColumn [
+{ #category : #'column handling' }
+MorphTreeMorph >> columns: aListOfTreeColumn [
 	"set the columns -  as a consequence, the topHeader is update (if present) and column resizers are added"
 
 	self removeColumnResizers.
@@ -757,11 +633,8 @@ MorphTreeMorph>>columns: aListOfTreeColumn [
 
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>columnsChanged [
+{ #category : #'column handling' }
+MorphTreeMorph >> columnsChanged [
 	"A column has been added or removed or swapped with another one
 	- rebuild all resizers and the top header"
 	self removeColumnResizers.
@@ -771,56 +644,38 @@ MorphTreeMorph>>columnsChanged [
 
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>commandOrCrontrolKeyPressed: anEvent [
+{ #category : #events-processing }
+MorphTreeMorph >> commandOrCrontrolKeyPressed: anEvent [
 	^ (Smalltalk os isMacOS) 
 		ifTrue: [anEvent controlKeyPressed]
 		ifFalse: [anEvent commandKeyPressed]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>currentNodelist [
+{ #category : #accessing }
+MorphTreeMorph >> currentNodelist [
 	"The nodeList currently viewed "
 	^ self nodeList
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>currentlyExpanded [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> currentlyExpanded [
 
 	^ self expandedNodesFrom: (self allNodeMorphs).
 	
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>deselectAll [
+{ #category : #selection }
+MorphTreeMorph >> deselectAll [
 	self listManager deselectAll
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>disable [
+{ #category : #accessing }
+MorphTreeMorph >> disable [
 	self enabled: false
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>doubleClick: anEvent  [
+{ #category : #events-processing }
+MorphTreeMorph >> doubleClick: anEvent [ 
 	| targetMorph |
 	targetMorph := self scrollerSubMorphFromPoint: anEvent position.
 	(self listManager doubleClick:  anEvent on: targetMorph)
@@ -828,20 +683,14 @@ MorphTreeMorph>>doubleClick: anEvent  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>doubleClickSelector: aSelector [
+{ #category : #accessing }
+MorphTreeMorph >> doubleClickSelector: aSelector [
 	"set a  double click action"
 	self listManager doubleClickSelector: aSelector
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>drawLinesOn: aCanvas [
+{ #category : #drawing }
+MorphTreeMorph >> drawLinesOn: aCanvas [
 	"Draw the lines for the submorphs.
 	Modified for performance."
 	self hasToggleAtRoot ifFalse: [^ self].
@@ -865,11 +714,8 @@ MorphTreeMorph>>drawLinesOn: aCanvas [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>drawOn: aCanvas  [
+{ #category : #drawing }
+MorphTreeMorph >> drawOn: aCanvas [ 
 	super drawOn: aCanvas.
 	self columns do: [:col | col drawColumnOn: aCanvas].
 
@@ -877,35 +723,23 @@ MorphTreeMorph>>drawOn: aCanvas  [
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>emptySelection [
+{ #category : #selection }
+MorphTreeMorph >> emptySelection [
 	self listManager emptySelection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>enable [
+{ #category : #accessing }
+MorphTreeMorph >> enable [
 	self enabled: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>enabled [
+{ #category : #accessing }
+MorphTreeMorph >> enabled [
 	^ enabled ifNil: [ enabled := super enabled ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>enabled: aBoolean [
+{ #category : #accessing }
+MorphTreeMorph >> enabled: aBoolean [
 	enabled := aBoolean.
 	self
 		submorphsDo: [ :sm | 
@@ -917,11 +751,8 @@ MorphTreeMorph>>enabled: aBoolean [
 	self changed
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>enabledFromModel [
+{ #category : #updating }
+MorphTreeMorph >> enabledFromModel [
 	| val |
 	self model ifNil: [ ^ self ].
 	val := self model enabled.
@@ -929,11 +760,8 @@ MorphTreeMorph>>enabledFromModel [
 		ifTrue: [ self enabled: val ] 
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expand: aMorph suchThat: aBlock [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expand: aMorph suchThat: aBlock [
 	(aBlock value: aMorph complexContents)
 		ifTrue: [
 			aMorph isExpanded ifFalse: [aMorph expand].
@@ -941,11 +769,8 @@ MorphTreeMorph>>expand: aMorph suchThat: aBlock [
 	self innerWidgetChanged.
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expand: aMorph to: level [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expand: aMorph to: level [
 	| allChildren |
 	aMorph toggleExpandedState.
 	allChildren := OrderedCollection new: 10.
@@ -957,22 +782,16 @@ MorphTreeMorph>>expand: aMorph to: level [
 			ifTrue: [self expand: each to: level-1]].
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expandAll [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expandAll [
 	"Expand all of the roots"
 	
 	self roots reverseDo: [:m | self expandAllSilently: m].
 	self innerWidgetChanged
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expandAll: aMorph [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expandAll: aMorph [
 	|  subs |
 	self expandAllSilently: aMorph.
 	aMorph updateChildrenRecursively.
@@ -984,11 +803,8 @@ MorphTreeMorph>>expandAll: aMorph [
 
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expandAll: aMorph except: aBlock [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expandAll: aMorph except: aBlock [
 	| allChildren |
 	(aBlock value: aMorph complexContents)
 		ifFalse: [^self].
@@ -1001,21 +817,15 @@ MorphTreeMorph>>expandAll: aMorph except: aBlock [
 			ifTrue: [self expandAll: each except: aBlock]].
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expandAllFromNode: aNode [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expandAllFromNode: aNode [
 		self expandAll: ((self nodeMorphOfNode: aNode) ifNil: [^self]).
 		self adjustSubmorphPositions
 
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expandAllSilently: aMorph [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expandAllSilently: aMorph [
 	aMorph isExpanded ifFalse: [aMorph expand].
 	aMorph childrenDo: [:ch | self expandAllSilently: ch].
 	
@@ -1023,47 +833,32 @@ MorphTreeMorph>>expandAllSilently: aMorph [
 
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expandAllSuchThat: aBlock [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expandAllSuchThat: aBlock [
 	self roots do: [:m | self expand: m suchThat: aBlock].
 	self innerWidgetChanged
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expandAllTo: aLevel [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expandAllTo: aLevel [
 	self roots do: [:m | self expand: m to: aLevel].
 	self innerWidgetChanged
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expandItemPath: aNodePath [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expandItemPath: aNodePath [
 	(self allNodeMorphs at: 1 ifAbsent: [^self]) 
 		openItemPath: aNodePath
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expandNodePath: aNodePath [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expandNodePath: aNodePath [
 	(self allNodeMorphs at: 1 ifAbsent: [^self]) 
 		openNodePath: aNodePath
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expandRoots [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expandRoots [
 	"Expand all the receiver's roots"
 	
 	self roots
@@ -1073,11 +868,8 @@ MorphTreeMorph>>expandRoots [
 	self innerWidgetChanged
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expandSilently: aMorph suchThat: aBlock [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expandSilently: aMorph suchThat: aBlock [
 	(aBlock value: aMorph complexContents)
 		ifTrue: [
 			aMorph isExpanded ifFalse: [aMorph expand].
@@ -1085,21 +877,15 @@ MorphTreeMorph>>expandSilently: aMorph suchThat: aBlock [
 
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expandedForm [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expandedForm [
 	"Answer the form to use for expanded items."
 	
 	^self theme treeExpandedForm
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expandedFormForMorph: aMorph [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expandedFormForMorph: aMorph [
 	"Answer the form to use for expanded items."
 	
 	^ ((aMorph selected) and: [self selectionColor luminance < 0.7])
@@ -1107,40 +893,28 @@ MorphTreeMorph>>expandedFormForMorph: aMorph [
 		ifFalse: [self theme treeExpandedForm]
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expandedNodesFrom: aMorpList [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expandedNodesFrom: aMorpList [
 
 	^ (aMorpList select: [ :each | each isExpanded]) collect: [ :each | each complexContents].
 	
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>expandedToggleImage [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> expandedToggleImage [
 	^ expandedToggleImage ifNil: [expandedToggleImage := ImageMorph new form: self expandedForm].
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>extent: newExtent [
+{ #category : #geometry }
+MorphTreeMorph >> extent: newExtent [
 	super extent: newExtent.
 	self resizerChanged.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>fillStyleToUse [
+{ #category : #accessing }
+MorphTreeMorph >> fillStyleToUse [
 	"Answer the fillStyle that should be used for the receiver."
 	
 	^self enabled
@@ -1148,67 +922,46 @@ MorphTreeMorph>>fillStyleToUse [
 		ifFalse: [self theme listDisabledFillStyleFor: self]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>firstChild [
+{ #category : #accessing }
+MorphTreeMorph >> firstChild [
 	"returns the first scroller submorph if not empty, or nil if empty"
 	^ self firstNodeMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>firstNodeMorph [
+{ #category : #accessing }
+MorphTreeMorph >> firstNodeMorph [
 	"returns the first scroller submorph if not empty, or nil if empty"
 	^ self allNodeMorphs ifEmpty: [nil] ifNotEmpty: [scroller submorphs at: 1]
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>forbidColumnDrop [
+{ #category : #dropping/grabbing }
+MorphTreeMorph >> forbidColumnDrop [
 	"Do not allow column drag and drop"
 	columnDropUnabled := false
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>gapAfterToggle [
+{ #category : #geometry }
+MorphTreeMorph >> gapAfterToggle [
 	"horizontal space after the toggle"
 	^ gapAfterToggle ifNil: [gapAfterToggle := 5]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>gapAfterToggle: anInteger [
+{ #category : #geometry }
+MorphTreeMorph >> gapAfterToggle: anInteger [
 	"set the horizontal space after the toggle"
 	gapAfterToggle := anInteger.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>getList  [
+{ #category : #accessing }
+MorphTreeMorph >> getList [ 
 	"Answer the full list to be displayed."
 	^ model rootNodes.
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>hScrollBarValue: scrollValue [
+{ #category : #scrolling }
+MorphTreeMorph >> hScrollBarValue: scrollValue [
 	| prev |
 	prev := scroller offset x.
 	super hScrollBarValue: scrollValue.
@@ -1218,11 +971,8 @@ MorphTreeMorph>>hScrollBarValue: scrollValue [
 			self updateTopHeader]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>handleMouseMove: anEvent [
+{ #category : #events-processing }
+MorphTreeMorph >> handleMouseMove: anEvent [
 	"Reimplemented because we really want #mouseMove when a morph is dragged around"
 	
 	anEvent wasHandled 
@@ -1241,63 +991,42 @@ MorphTreeMorph>>handleMouseMove: anEvent [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>handlesKeyboard: evt [
+{ #category : #'event handling' }
+MorphTreeMorph >> handlesKeyboard: evt [
 	^true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>handlesMouseOver: evt [
+{ #category : #'event handling' }
+MorphTreeMorph >> handlesMouseOver: evt [
 	^ self mouseOverAllowed 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>handlesMouseOverDragging: evt [
+{ #category : #'event handling' }
+MorphTreeMorph >> handlesMouseOverDragging: evt [
 	^self dropEnabled
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>handlesMouseStillDown: anEvent [
+{ #category : #'event handling' }
+MorphTreeMorph >> handlesMouseStillDown: anEvent [
 	"Still down event is used to scroll the selection 
 	when the mouse is outside (upon the top of 
 	below the bottom)"
 	^ (self innerBounds containsPoint: anEvent position) not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>hasIconBlock [
+{ #category : #accessing }
+MorphTreeMorph >> hasIconBlock [
 	^ iconBlock notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>hasToggleAtRoot [
+{ #category : #accessing }
+MorphTreeMorph >> hasToggleAtRoot [
 	^ hasToggleAtRoot ifNil: [hasToggleAtRoot := self roots anySatisfy: [:s | s hasToggle]]
 
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>headerBounds [
+{ #category : #'column handling' }
+MorphTreeMorph >> headerBounds [
 	"return the bounds of each top header button (one per column)"
 
 	| positions controlBounds currPos currLeft |
@@ -1323,54 +1052,36 @@ MorphTreeMorph>>headerBounds [
 	^ controlBounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>iconBlock [
+{ #category : #accessing }
+MorphTreeMorph >> iconBlock [
 	^ iconBlock ifNil: [[:node | node icon]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>iconBlock: aValuableWithOneArg [
+{ #category : #accessing }
+MorphTreeMorph >> iconBlock: aValuableWithOneArg [
 	"A valuable which value is an icon or nil. takes a node as argument"
 	iconBlock := aValuableWithOneArg
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>indentGap [
+{ #category : #geometry }
+MorphTreeMorph >> indentGap [
 	^ indentGap ifNil: [indentGap := 20]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>indentGap: anInteger [
+{ #category : #geometry }
+MorphTreeMorph >> indentGap: anInteger [
 	indentGap := anInteger.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>indentingItemClass [
+{ #category : #accessing }
+MorphTreeMorph >> indentingItemClass [
 	
 	^ MorphTreeNodeMorph
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>initialize [
+{ #category : #initialization }
+MorphTreeMorph >> initialize [
 	"initialize the state of the receiver"
 	super initialize.
 	columnColors := Array 
@@ -1385,143 +1096,98 @@ MorphTreeMorph>>initialize [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>innerBounds [
+{ #category : #geometry }
+MorphTreeMorph >> innerBounds [
 	| inner |
 	inner := super innerBounds.
 	inner := inner withTop: self top + self topHeaderHeight.
 	^ inner
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>innerWidgetChanged [
+{ #category : #updating }
+MorphTreeMorph >> innerWidgetChanged [
 	self setScrollDeltas.
 	self updateColumnMorphsWidth.
 	self adjustSubmorphPositions.
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>insertNewMorphs: morphList [
+{ #category : #updating }
+MorphTreeMorph >> insertNewMorphs: morphList [
 	scroller addAllMorphs: morphList.
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>isCheckList: aBoolean [
+{ #category : #selection }
+MorphTreeMorph >> isCheckList: aBoolean [
 	self listManager isCheckList: aBoolean. 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>isSingle	 [
+{ #category : #selection }
+MorphTreeMorph >> isSingle [	
 	^ self isMultiple not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>itemStringGetter: aValuable [
+{ #category : #accessing }
+MorphTreeMorph >> itemStringGetter: aValuable [
 	"Set how to get a string for the first column with a valuable which 
 	takes a row item (from a MorphTreeMorphNode point of view, its complexContents item) as argument"
 	self columns first itemStringGetter: aValuable
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>keyStroke: event  [
+{ #category : #events-processing }
+MorphTreeMorph >> keyStroke: event [ 
 	"Process potential command keys."
 	(self navigationKey: event) ifTrue: [^true].
 	(self scrollByKeyboard: event) ifTrue: [^true].
 	^ self listManager keyStroke: event
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>keyboardFocusChange: aBoolean [
+{ #category : #'event handling' }
+MorphTreeMorph >> keyboardFocusChange: aBoolean [
 	"The message is sent to a morph when its keyboard focus changes.
 	Update for focus feedback."
 	super keyboardFocusChange: aBoolean.
 	self focusChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>keystrokeActionSelector: aSelector [
+{ #category : #accessing }
+MorphTreeMorph >> keystrokeActionSelector: aSelector [
 	self listManager keystrokeActionSelector: aSelector
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>lastColumnBounded [
+{ #category : #'column handling' }
+MorphTreeMorph >> lastColumnBounded [
 	"Return true if the last column can be resized with a resizer"
 	^ self lastColumnUnbounded not
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>lastColumnUnbounded [
+{ #category : #'column handling' }
+MorphTreeMorph >> lastColumnUnbounded [
 	"Return true if the last column can not be resized with a resizer"
 	^ unboundLastColumn ifNil: [unboundLastColumn := true]
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>lineColor: aColor [
+{ #category : #'accessing colors' }
+MorphTreeMorph >> lineColor: aColor [
 	lineColorBlock := [:node | aColor]
 
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>lineColorBlock [
+{ #category : #'accessing colors' }
+MorphTreeMorph >> lineColorBlock [
 	^ lineColorBlock
 
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>lineColorBlock: aValuable [
+{ #category : #'accessing colors' }
+MorphTreeMorph >> lineColorBlock: aValuable [
 	lineColorBlock := aValuable
 
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>lineColorForNode: aNode [
+{ #category : #'accessing colors' }
+MorphTreeMorph >> lineColorForNode: aNode [
 	"Answer a good color to use for drawing the lines that connect members of the hierarchy view.
 	Used the cached color, or derive it if necessary by finding the receiver or 
 	the first owner (up to my root) that is not transparent, then picking a contrasting color.
@@ -1543,19 +1209,13 @@ MorphTreeMorph>>lineColorForNode: aNode [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>listManager [
+{ #category : #accessing }
+MorphTreeMorph >> listManager [
 	^ listManager ifNil: [listManager := MorphTreeListManager new client: self] 
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>makeLastColumnBounded [
+{ #category : #'column handling' }
+MorphTreeMorph >> makeLastColumnBounded [
 	"Make the last column horizontally resizable with a resizer"
 	self lastColumnBounded 
 		ifFalse: [
@@ -1564,56 +1224,38 @@ MorphTreeMorph>>makeLastColumnBounded [
 
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>makeLastColumnUnbounded [
+{ #category : #'column handling' }
+MorphTreeMorph >> makeLastColumnUnbounded [
 	"Make the last column not horizontally  resizable (no resizer for it)"
 	unboundLastColumn := true
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>maxNodeWidth [
+{ #category : #geometry }
+MorphTreeMorph >> maxNodeWidth [
 	^ maxNodeWidth ifNil: [maxNodeWidth := 0]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>minResizerOffset [
+{ #category : #geometry }
+MorphTreeMorph >> minResizerOffset [
 	^ 20
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>minResizerX [
+{ #category : #geometry }
+MorphTreeMorph >> minResizerX [
 	^ scroller left + self minResizerOffset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>model: aTreeModel [
+{ #category : #accessing }
+MorphTreeMorph >> model: aTreeModel [
 	self model ifNotNil: [self model announcer unsubscribe: self].
 	super model: aTreeModel.
 	self registerRequestHandlers
 
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>mouseDown: event  [
+{ #category : #events-processing }
+MorphTreeMorph >> mouseDown: event [ 
 	"Changed to take keybaord focus."
 	| targetMorph selectors |
 	self enabled ifFalse: [ ^self ].
@@ -1648,11 +1290,8 @@ MorphTreeMorph>>mouseDown: event  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>mouseDownHighlightColor [
+{ #category : #accessing }
+MorphTreeMorph >> mouseDownHighlightColor [
 	"Answer a good color to use for drawing the mouse down highlight.
 	Used the line color if not transparent, otherwise a contrasting color in the
 	same way as the line color is determined.
@@ -1669,11 +1308,8 @@ MorphTreeMorph>>mouseDownHighlightColor [
 
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>mouseEnter: event [
+{ #category : #events-processing }
+MorphTreeMorph >> mouseEnter: event [
 	"Changed to take keyboardFocusOnMouseDown preference into account."
 	
 	super mouseEnter: event.
@@ -1681,11 +1317,8 @@ MorphTreeMorph>>mouseEnter: event [
 	self keyboardFocusOnMouseDown ifFalse: [self takeKeyboardFocus]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>mouseEnterDragging: evt [
+{ #category : #events-processing }
+MorphTreeMorph >> mouseEnterDragging: evt [
 	| aMorph |
 	(evt hand hasSubmorphs and: [self dropEnabled]) 
 		ifFalse: [^super mouseEnterDragging: evt].
@@ -1697,11 +1330,8 @@ MorphTreeMorph>>mouseEnterDragging: evt [
 			"above is ugly but necessary for now"].
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>mouseLeaveDragging: anEvent [
+{ #category : #events-processing }
+MorphTreeMorph >> mouseLeaveDragging: anEvent [
 	(self dropEnabled and:[anEvent hand hasSubmorphs]) ifFalse: ["no d&d"
 		^ super mouseLeaveDragging: anEvent].
 	self resetPotentialDropMorph.
@@ -1710,11 +1340,8 @@ MorphTreeMorph>>mouseLeaveDragging: anEvent [
 
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>mouseMove: evt [
+{ #category : #events-processing }
+MorphTreeMorph >> mouseMove: evt [
 
 	| targetMorph |
 	self enabled ifFalse: [ ^self ].
@@ -1737,19 +1364,13 @@ MorphTreeMorph>>mouseMove: evt [
 		ifTrue: [self mouseEnterDragging: evt].
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>mouseOverAllowed [
+{ #category : #'event handling' }
+MorphTreeMorph >> mouseOverAllowed [
 	^ mouseOverAllowed ifNil: [mouseOverAllowed := false]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>mouseStillDown: anEvent [
+{ #category : #events-processing }
+MorphTreeMorph >> mouseStillDown: anEvent [
 	(anEvent hand position y > self innerBounds bottom)
 		ifTrue: [self listManager selectMoreAtBottom]
 		ifFalse: [
@@ -1758,20 +1379,14 @@ MorphTreeMorph>>mouseStillDown: anEvent [
 				ifFalse: [super mouseStillDown: anEvent]]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>mouseStillDownStepRate [
+{ #category : #events-processing }
+MorphTreeMorph >> mouseStillDownStepRate [
 	"At what rate do I want to receive #mouseStillDown: notifications?"
 	^10
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>mouseUp: event  [
+{ #category : #events-processing }
+MorphTreeMorph >> mouseUp: event [ 
 	"Fixed up highlight problems."
 	| nodeMorph wasHigh |
 	
@@ -1797,38 +1412,26 @@ MorphTreeMorph>>mouseUp: event  [
 	
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>multiSelection: aBoolean [
+{ #category : #selection }
+MorphTreeMorph >> multiSelection: aBoolean [
 	self listManager multipleSelection: aBoolean
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>newTransformMorph [
+{ #category : #scrolling }
+MorphTreeMorph >> newTransformMorph [
 	^ MorphTreeTransformMorph new 
 ]
 
-{
-	#category : #'announce requests',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>nodeCollapseRequest: anAnnounce [
+{ #category : #'announce requests' }
+MorphTreeMorph >> nodeCollapseRequest: anAnnounce [
 	anAnnounce nodes
 		ifEmpty: [self collapseAll]
 		ifNotEmpty: [:nodes | self collapseNodePath: nodes]
 
 ]
 
-{
-	#category : #'announce requests',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>nodeExpandRequest: anAnnounce [
+{ #category : #'announce requests' }
+MorphTreeMorph >> nodeExpandRequest: anAnnounce [
 	anAnnounce nodes
 		ifEmpty: [self expandAll]
 		ifNotEmpty: [:nodes | anAnnounce recur 
@@ -1837,86 +1440,59 @@ MorphTreeMorph>>nodeExpandRequest: anAnnounce [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>nodeList [
+{ #category : #accessing }
+MorphTreeMorph >> nodeList [
 	^ nodeList ifNil: [nodeList := self getList]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>nodeList: aCollection  [
+{ #category : #accessing }
+MorphTreeMorph >> nodeList: aCollection [ 
 	nodeList := aCollection.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>nodeListSelector [
+{ #category : #accessing }
+MorphTreeMorph >> nodeListSelector [
 	^ #rootNodes
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>nodeMorphOfNode: aNode [
+{ #category : #accessing }
+MorphTreeMorph >> nodeMorphOfNode: aNode [
 	^ self allNodeMorphs detect: [:m | m complexContents  = aNode] ifNone: []
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>nodeStringGetter: aValuable [
+{ #category : #accessing }
+MorphTreeMorph >> nodeStringGetter: aValuable [
 	"Set how to get a string for the first column node with a valuable which 
 	takes a row  MorphTreeMorphNode as argument"
 	self columns first nodeStringGetter: aValuable
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>notExpandedForm [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> notExpandedForm [
 	"Answer the form to use for unexpanded items."
 	
 	^self theme treeUnexpandedForm
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>notExpandedFormForMorph: aMorph [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> notExpandedFormForMorph: aMorph [
 	^ (aMorph selected and: [self selectionColor luminance < 0.7])
 		ifTrue: [self theme whiteTreeUnexpandedForm]
 		ifFalse: [self theme treeUnexpandedForm]
 
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>notExpandedToggleImage [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> notExpandedToggleImage [
 	^ notExpandedToggleImage ifNil: [notExpandedToggleImage := ImageMorph new form: self notExpandedForm].
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>noteRemovalOfAll: aCollection [
+{ #category : #updating }
+MorphTreeMorph >> noteRemovalOfAll: aCollection [
 	"TODO: update the selection as well"
 
 	 self listManager noteRemovalOfAll: aCollection.
@@ -1925,68 +1501,47 @@ MorphTreeMorph>>noteRemovalOfAll: aCollection [
 	self adjustSubmorphPositions
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>potentialDropMorph [
+{ #category : #dropping/grabbing }
+MorphTreeMorph >> potentialDropMorph [
 	"return the morph (the MorphTreeNodeMorph) 
 	which is the current drop target candidate "
 	^potentialDropMorph
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>potentialDropMorph: aMorph [
+{ #category : #dropping/grabbing }
+MorphTreeMorph >> potentialDropMorph: aMorph [
 	"Set the morph (the MorphTreeNodeMorph) 
 	which is the current drop target candidate "
 	potentialDropMorph := aMorph.
 	aMorph highlightForDrop
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>preferedPaneColor [
+{ #category : #'accessing colors' }
+MorphTreeMorph >> preferedPaneColor [
 	^ preferedPaneColor
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>preferedPaneColor: aColor [
+{ #category : #'accessing colors' }
+MorphTreeMorph >> preferedPaneColor: aColor [
 	self color: (preferedPaneColor := aColor).
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>privateUpdateColumnMorphs [
+{ #category : #updating }
+MorphTreeMorph >> privateUpdateColumnMorphs [
 	self resetRootInfo.
 	self updateTopHeader.
 	self innerWidgetChanged.
 
 ]
 
-{
-	#category : #'announce requests',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>registerRequestHandlers [
+{ #category : #'announce requests' }
+MorphTreeMorph >> registerRequestHandlers [
 	self model announcer when: MorphTreeChangeRequest send: #changeRequest: to: self.
 ]
 
-{
-	#category : #'initialize - release',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>release [
+{ #category : #'initialize - release' }
+MorphTreeMorph >> release [
 	lineColorBlock := nil.
 	columnResizers := nil.
 	preferedPaneColor := nil.
@@ -2004,20 +1559,14 @@ MorphTreeMorph>>release [
 	super release.
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>removeColumn: aTreeColumn [
+{ #category : #'column handling' }
+MorphTreeMorph >> removeColumn: aTreeColumn [
 	"Remove a column - rough implementation"
 	self removeColumnAtIndex: (self columns indexOf: aTreeColumn)
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>removeColumnAtIndex: aPosition. [
+{ #category : #'column handling' }
+MorphTreeMorph >> removeColumnAtIndex: aPosition. [
 	"remove a column at a given position - rough implementation"
 	self columns removeAt: aPosition.
 	self columnsChanged.
@@ -2029,41 +1578,29 @@ MorphTreeMorph>>removeColumnAtIndex: aPosition. [
 
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>removeColumnResizers [
+{ #category : #'column handling' }
+MorphTreeMorph >> removeColumnResizers [
 	"Remove all column resizers"
 	self removeAllMorphsIn: self columnResizers.
 	self columnResizers do: [:r | r release].
 	self columnResizers removeAll
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>removeOnlyLastSelected: aBoolean [
+{ #category : #selection }
+MorphTreeMorph >> removeOnlyLastSelected: aBoolean [
 	self listManager removeOnlyLastSelected: aBoolean
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>removeTopHeader [
+{ #category : #updating }
+MorphTreeMorph >> removeTopHeader [
 	topHeader 
 		ifNotNil: [self removeMorph: topHeader.
 		topHeader := nil]
 
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>resetPotentialDropMorph [
+{ #category : #dropping/grabbing }
+MorphTreeMorph >> resetPotentialDropMorph [
 	"release the current drop morph candidate"
 	potentialDropMorph ifNotNil: [
 		potentialDropMorph resetHighlightForDrop.
@@ -2071,19 +1608,13 @@ MorphTreeMorph>>resetPotentialDropMorph [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>resetRootInfo [
+{ #category : #updating }
+MorphTreeMorph >> resetRootInfo [
 	hasToggleAtRoot := nil.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>resizerChanged [
+{ #category : #updating }
+MorphTreeMorph >> resizerChanged [
 	self columns size > 1
 		ifTrue: [
 			self updateColumnResizersXOffset;
@@ -2092,102 +1623,69 @@ MorphTreeMorph>>resizerChanged [
 		ifFalse: [self updateTopHeader]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>resizerWidth [
+{ #category : #geometry }
+MorphTreeMorph >> resizerWidth [
 	^ resizerWidth ifNil:[resizerWidth := 3]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>resizerWidth: anInteger [
+{ #category : #geometry }
+MorphTreeMorph >> resizerWidth: anInteger [
 	resizerWidth := anInteger.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>roots [
+{ #category : #accessing }
+MorphTreeMorph >> roots [
 	"Answer the receiver's roots"
 	^ self rootsFrom: self allNodeMorphs
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>rootsFrom: aCollectionOfNodes [
+{ #category : #accessing }
+MorphTreeMorph >> rootsFrom: aCollectionOfNodes [
 	"Answer the receiver's roots"
 	^ aCollectionOfNodes
 		select: [:each | each indentLevel isZero]
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>rowColorForEven: evenColor  [
+{ #category : #'accessing colors' }
+MorphTreeMorph >> rowColorForEven: evenColor [ 
 	rowColors at: 1 put: evenColor.
 	
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>rowColorForEven: evenColor odd: oddColor [
+{ #category : #'accessing colors' }
+MorphTreeMorph >> rowColorForEven: evenColor odd: oddColor [
 	rowColors at: 2 put: oddColor.
 	rowColors at: 1 put: evenColor.
 	
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>rowColorForOdd: oddColor  [
+{ #category : #'accessing colors' }
+MorphTreeMorph >> rowColorForOdd: oddColor [ 
 	rowColors at: 2 put: oddColor.
 	
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>rowColors [
+{ #category : #'accessing colors' }
+MorphTreeMorph >> rowColors [
 	^ rowColors
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>rowInset [
+{ #category : #geometry }
+MorphTreeMorph >> rowInset [
 	^ rowInset  ifNil: [rowInset := 0]
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>rowInset: anInteger [
+{ #category : #geometry }
+MorphTreeMorph >> rowInset: anInteger [
 	rowInset := anInteger.
 
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>rowMorphsWidths [
+{ #category : #'column handling' }
+MorphTreeMorph >> rowMorphsWidths [
 	"Return all row morphs witdhs based on the header bounds. 
 	used when a resizer is moved horizontally or if some 
 	change implies that the list is rebuilt"
@@ -2198,11 +1696,8 @@ MorphTreeMorph>>rowMorphsWidths [
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>scrollDeltaWidth [
+{ #category : #scrolling }
+MorphTreeMorph >> scrollDeltaWidth [
 	"A guess -- assume that the width of a char is approx 1/2 the height of the font"
 	^ self scrollDeltaHeight // 2
 
@@ -2210,21 +1705,15 @@ MorphTreeMorph>>scrollDeltaWidth [
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>scrollSelectionIntoView [
+{ #category : #scrolling }
+MorphTreeMorph >> scrollSelectionIntoView [
 	"make sure that the current selection is visible"
 	self listManager selectedMorph
 		ifNotNil: [:morph | self scrollToShow: morph bounds ]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>scrollerSubMorphFromPoint: aPoint [
+{ #category : #events-processing }
+MorphTreeMorph >> scrollerSubMorphFromPoint: aPoint [
 	"Return the list element (morph) at the given point or nil if outside"
 
 	| ptY |
@@ -2244,89 +1733,59 @@ MorphTreeMorph>>scrollerSubMorphFromPoint: aPoint [
 						ifFalse: [ 1 ] ]	"found" ]
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>secondarySelectionColor [
+{ #category : #selection }
+MorphTreeMorph >> secondarySelectionColor [
 
 	^ self theme secondarySelectionColor
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>selectAll [
+{ #category : #selection }
+MorphTreeMorph >> selectAll [
 	self listManager selectAll
 ]
 
-{
-	#category : #'announce requests',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>selectItems: aNodeItemCollection [
+{ #category : #'announce requests' }
+MorphTreeMorph >> selectItems: aNodeItemCollection [
 	self selectedItems: aNodeItemCollection
 
 ]
 
-{
-	#category : #'announce requests',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>selectItemsRequest: anAnnounce [
+{ #category : #'announce requests' }
+MorphTreeMorph >> selectItemsRequest: anAnnounce [
 	self selectedItems: anAnnounce itemsToSelect 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>selectNodePath: aPath [
+{ #category : #selection }
+MorphTreeMorph >> selectNodePath: aPath [
 	aPath 
 		ifNil: [self emptySelection] 
 		ifNotNil: [self firstChild 
 			ifNotNil: [:fc | fc selectNodePath: aPath]]
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>selectedItems: aNodeItemCollection [
+{ #category : #selection }
+MorphTreeMorph >> selectedItems: aNodeItemCollection [
 	self listManager selectedItems: aNodeItemCollection
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>selectedMorph [
+{ #category : #selection }
+MorphTreeMorph >> selectedMorph [
 	^ self listManager selectedMorph
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>selectedMorphList [
+{ #category : #selection }
+MorphTreeMorph >> selectedMorphList [
 	^ self listManager selectedMorphList
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>selectionChanged [
+{ #category : #selection }
+MorphTreeMorph >> selectionChanged [
 	self changed
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>selectionColor [
+{ #category : #selection }
+MorphTreeMorph >> selectionColor [
 	"Answer the colour to use for selected items."
 
 	^ self 
@@ -2334,11 +1793,8 @@ MorphTreeMorph>>selectionColor [
 		ifAbsent: [ self theme selectionColor ]
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>selectionColor: aColor [
+{ #category : #selection }
+MorphTreeMorph >> selectionColor: aColor [
 	"Set the colour for selected items."
 
 	| w |
@@ -2352,22 +1808,16 @@ MorphTreeMorph>>selectionColor: aColor [
 			ifFalse: [self theme unfocusedSelectionColor])
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>selectionColorToUse [
+{ #category : #selection }
+MorphTreeMorph >> selectionColorToUse [
 	"Answer the colour to use for selected items."
 	self enabled ifFalse: [ ^ self paneColor ].
 	^ self valueOfProperty: #selectionColorToUse 
 		ifAbsent: [ self theme selectionColor ].
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>selectionColorToUse: aColor [
+{ #category : #selection }
+MorphTreeMorph >> selectionColorToUse: aColor [
 	"Set the colour for selected items."
 
 	aColor = self selectionColorToUse ifTrue: [^self].
@@ -2377,28 +1827,19 @@ MorphTreeMorph>>selectionColorToUse: aColor [
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>selectionFrameFor: aNodeMorph [
+{ #category : #selection }
+MorphTreeMorph >> selectionFrameFor: aNodeMorph [
 	"Answer the frame of aNodeMorph in the receiver"
 	^ aNodeMorph bounds:  aNodeMorph selectionFrame in: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>setSelectedMorph: aNodeMorph  [
+{ #category : #accessing }
+MorphTreeMorph >> setSelectedMorph: aNodeMorph [ 
 	self listManager setSelectedMorph: aNodeMorph
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>startDrag: anEvent  [
+{ #category : #events-processing }
+MorphTreeMorph >> startDrag: anEvent [ 
 	| aTransferMorph itemMorph passenger |
 	self dragEnabled
 		ifTrue: [itemMorph := self allNodeMorphs
@@ -2424,20 +1865,14 @@ MorphTreeMorph>>startDrag: anEvent  [
 	anEvent hand releaseMouseFocus: self
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>swapColumn: aColumn withColumn: anotherColumn [
+{ #category : #'column handling' }
+MorphTreeMorph >> swapColumn: aColumn withColumn: anotherColumn [
 	"column swapping - this is the default behavior for column drag & drop"
 	self swapColumnAt:  aColumn index withColumnAt: anotherColumn index
 ]
 
-{
-	#category : #'column handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>swapColumnAt: oneIndex withColumnAt: anotherIndex [
+{ #category : #'column handling' }
+MorphTreeMorph >> swapColumnAt: oneIndex withColumnAt: anotherIndex [
 	"swap two column - very rough implementation which 
 	simply rebuild everything"
 	self columns swap: oneIndex with: anotherIndex. 
@@ -2447,21 +1882,15 @@ MorphTreeMorph>>swapColumnAt: oneIndex withColumnAt: anotherIndex [
 
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>takesKeyboardFocus [
+{ #category : #events-processing }
+MorphTreeMorph >> takesKeyboardFocus [
 	"Answer whether the receiver can normally take keyboard focus."
 
 	^ self enabled
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>themeChanged [
+{ #category : #updating }
+MorphTreeMorph >> themeChanged [
 	
 	rowColors at: 1 put: (	
 		rowColors asSet size = 1 
@@ -2474,11 +1903,8 @@ MorphTreeMorph>>themeChanged [
 	super themeChanged.
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>toggleExpandedState: aMorph event: event [
+{ #category : #events-processing }
+MorphTreeMorph >> toggleExpandedState: aMorph event: event [
 	| oldState |
 	event yellowButtonPressed 
 		ifTrue: [
@@ -2491,51 +1917,33 @@ MorphTreeMorph>>toggleExpandedState: aMorph event: event [
 	
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>toggleImageHeight [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> toggleImageHeight [
 	^ self expandedToggleImage height max: self notExpandedToggleImage height.
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>toggleImageWidth [
+{ #category : #expanding-collapsing }
+MorphTreeMorph >> toggleImageWidth [
 	^ self expandedToggleImage width max: self notExpandedToggleImage width.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>topHeader [
+{ #category : #accessing }
+MorphTreeMorph >> topHeader [
 	^ topHeader 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>topHeaderBackground [
+{ #category : #accessing }
+MorphTreeMorph >> topHeaderBackground [
 	^ topHeaderBackground ifNil: [topHeaderBackground := Color transparent]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>topHeaderBackground: aFillStyle [
+{ #category : #accessing }
+MorphTreeMorph >> topHeaderBackground: aFillStyle [
 	topHeaderBackground := aFillStyle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>topHeaderHeight [
+{ #category : #accessing }
+MorphTreeMorph >> topHeaderHeight [
 	| h |
 	self topHeader 
 		ifNil: [^ 0] 
@@ -2546,67 +1954,46 @@ MorphTreeMorph>>topHeaderHeight [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>treeLineDashes [
+{ #category : #accessing }
+MorphTreeMorph >> treeLineDashes [
 	^ treeLineDashes 
 		ifNil: [treeLineDashes := self theme treeLineDashes]
 	
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>treeLineDashes: anArrayOfInteger [
+{ #category : #accessing }
+MorphTreeMorph >> treeLineDashes: anArrayOfInteger [
 	treeLineDashes := anArrayOfInteger
 	
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>treeLineWidth [
+{ #category : #geometry }
+MorphTreeMorph >> treeLineWidth [
 	^ treeLineWidth ifNil: [treeLineWidth := self  theme treeLineWidth] 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>treeLineWidth: anInteger [
+{ #category : #geometry }
+MorphTreeMorph >> treeLineWidth: anInteger [
 	treeLineWidth := anInteger
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>update: aSymbol [
+{ #category : #updating }
+MorphTreeMorph >> update: aSymbol [
 	aSymbol = self nodeListSelector
 		ifTrue: [ ^ self updateList ].
 	super update: aSymbol 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>updateColumnMorphs [
+{ #category : #updating }
+MorphTreeMorph >> updateColumnMorphs [
 	self privateUpdateColumnMorphs
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>updateColumnMorphsWidth [
+{ #category : #updating }
+MorphTreeMorph >> updateColumnMorphsWidth [
 	| rowMorphsWidths |
 	self columns size > 1 ifFalse: [^ self].
 	rowMorphsWidths := self rowMorphsWidths.
@@ -2614,11 +2001,8 @@ MorphTreeMorph>>updateColumnMorphsWidth [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>updateColumnResizersHeight [
+{ #category : #updating }
+MorphTreeMorph >> updateColumnResizersHeight [
 	self columnResizers do: [:col | | b |
 		b :=  col bounds.
 		b := b left @ self top corner: b right @ scroller bottom.
@@ -2626,20 +2010,14 @@ MorphTreeMorph>>updateColumnResizersHeight [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>updateColumnResizersXOffset [
+{ #category : #updating }
+MorphTreeMorph >> updateColumnResizersXOffset [
 	self columnResizerFrames with: self columnResizers do: [:frm :resizer | resizer bounds: (frm withBottom: scroller bottom)].
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>updateContentsWithPreviouslyExpanded: aNodeList [
+{ #category : #updating }
+MorphTreeMorph >> updateContentsWithPreviouslyExpanded: aNodeList [
 	"Make sure we notice the removal of the contained nodes."
 
 	nodeList := nil.
@@ -2652,39 +2030,27 @@ MorphTreeMorph>>updateContentsWithPreviouslyExpanded: aNodeList [
 	self listManager updateLastClickedMorph
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>updateFromSelection: aSelection [
+{ #category : #updating }
+MorphTreeMorph >> updateFromSelection: aSelection [
 	aSelection selectedNodePathList do: [:path | self selectNodePath: path].
 	self scrollSelectionIntoView
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>updateList [
+{ #category : #updating }
+MorphTreeMorph >> updateList [
 	|value|
 	value := scrollBar value.
 	self updateContentsWithPreviouslyExpanded: self currentlyExpanded.
 	self vScrollValue: value
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>updateSelectionFromModel [
+{ #category : #updating }
+MorphTreeMorph >> updateSelectionFromModel [
 	^ self listManager updateSelectionFromModel
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>updateTopHeader [
+{ #category : #updating }
+MorphTreeMorph >> updateTopHeader [
 	self topHeader ifNotNil: [:th | | w |
 		th width: scroller width.
 		w := self headerBounds.
@@ -2692,11 +2058,8 @@ MorphTreeMorph>>updateTopHeader [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>vExtraScrollRange [
+{ #category : #geometry }
+MorphTreeMorph >> vExtraScrollRange [
 	"Return the amount of extra blank space to include below the bottom of the scroll content."
 	"The classic behavior would be ^bounds height - (bounds height * 3 // 4)"
 	"Takes into accound the top header height if present"
@@ -2704,11 +2067,8 @@ MorphTreeMorph>>vExtraScrollRange [
 
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>wantsDroppedMorph: aMorph event: anEvent [
+{ #category : #dropping/grabbing }
+MorphTreeMorph >> wantsDroppedMorph: aMorph event: anEvent [
 	"Return true if the receiver wishes to accept the given morph, which is being dropped 
 	by a hand in response to the given event. Note that for a successful drop operation 
 	both parties need to agree. The symmetric check is done automatically
@@ -2717,43 +2077,28 @@ MorphTreeMorph>>wantsDroppedMorph: aMorph event: anEvent [
 	^ self model wantsDroppedMorph: aMorph event: anEvent inMorph: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>withHLines [
+{ #category : #accessing }
+MorphTreeMorph >> withHLines [
 	^ withHLines ifNil: [withHLines := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>withHLines: aBoolean [
+{ #category : #accessing }
+MorphTreeMorph >> withHLines: aBoolean [
 	withHLines := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>withTreeLines [
+{ #category : #accessing }
+MorphTreeMorph >> withTreeLines [
 	^ self  treeLineWidth > 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>withTreeLines: aBoolean [
+{ #category : #accessing }
+MorphTreeMorph >> withTreeLines: aBoolean [
 	self  treeLineWidth: 1
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorph>>yellowButtonEvent: anEvent [
+{ #category : #events-processing }
+MorphTreeMorph >> yellowButtonEvent: anEvent [
 
 	(self scrollerSubMorphFromPoint: anEvent position) 
 		ifNotNil: [:sel |

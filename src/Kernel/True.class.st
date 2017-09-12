@@ -6,45 +6,32 @@ Be aware however that most of these methods are not sent as real messages in nor
 Class {
 	#name : #True,
 	#superclass : #Boolean,
-	#category : #Kernel-Objects,
-	#timestamp : '<historical>'
+	#category : #Kernel-Objects
 }
 
-{
-	#category : #'logical operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-True>>& aBoolean [
+{ #category : #'logical operations' }
+True >> & aBoolean [ 
 	"Evaluating conjunction -- answer aBoolean since receiver is true."
 
 	^aBoolean
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-True>>and: alternativeBlock [
+{ #category : #controlling }
+True >> and: alternativeBlock [ 
 	"Nonevaluating conjunction -- answer the value of alternativeBlock since
 	the receiver is true."
 
 	^alternativeBlock value
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-True>>asBit [
+{ #category : #converting }
+True >> asBit [
 
 	^ 1
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-True>>ifFalse: alternativeBlock [
+{ #category : #controlling }
+True >> ifFalse: alternativeBlock [ 
 	"Since the condition is true, the value is the true alternative, which is nil. 
 	Execution does not actually reach here because the expression is compiled 
 	in-line."
@@ -52,81 +39,57 @@ True>>ifFalse: alternativeBlock [
 	^nil
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-True>>ifFalse: falseAlternativeBlock ifTrue: trueAlternativeBlock [
+{ #category : #controlling }
+True >> ifFalse: falseAlternativeBlock ifTrue: trueAlternativeBlock [ 
 	"Answer the value of trueAlternativeBlock. Execution does not 
 	actually reach here because the expression is compiled in-line."
 
 	^trueAlternativeBlock value
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-True>>ifTrue: alternativeBlock [
+{ #category : #controlling }
+True >> ifTrue: alternativeBlock [ 
 	"Answer the value of alternativeBlock. Execution does not actually 
 	reach here because the expression is compiled in-line."
 
 	^alternativeBlock value
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-True>>ifTrue: trueAlternativeBlock ifFalse: falseAlternativeBlock [
+{ #category : #controlling }
+True >> ifTrue: trueAlternativeBlock ifFalse: falseAlternativeBlock [ 
 	"Answer with the value of trueAlternativeBlock. Execution does not 
 	actually reach here because the expression is compiled in-line."
 
 	^trueAlternativeBlock value
 ]
 
-{
-	#category : #'logical operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-True>>not [
+{ #category : #'logical operations' }
+True >> not [
 	"Negation--answer false since the receiver is true."
 
 	^false
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-True>>or: alternativeBlock [
+{ #category : #controlling }
+True >> or: alternativeBlock [ 
 	"Nonevaluating disjunction -- answer true since the receiver is true."
 
 	^self
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-True>>printOn: aStream [
+{ #category : #printing }
+True >> printOn: aStream [ 
 
 	aStream nextPutAll: 'true'
 ]
 
-{
-	#category : #'logical operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-True>>xor: aBoolean [
+{ #category : #'logical operations' }
+True >> xor: aBoolean [
 	^aBoolean value not
 ]
 
-{
-	#category : #'logical operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-True>>| aBoolean [
+{ #category : #'logical operations' }
+True >> | aBoolean [ 
 	"Evaluating disjunction (OR) -- answer true since the receiver is true."
 
 	^self

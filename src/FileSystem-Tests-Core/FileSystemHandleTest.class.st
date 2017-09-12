@@ -9,67 +9,45 @@ Class {
 		'handle',
 		'reference'
 	],
-	#category : #FileSystem-Tests-Core,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:35'
+	#category : #FileSystem-Tests-Core
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest class>>isAbstract [
+{ #category : #testing }
+FileSystemHandleTest class >> isAbstract [
 	^ self name = #FileSystemHandleTest
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest class>>shouldInheritSelectors  [
+{ #category : #testing }
+FileSystemHandleTest class >> shouldInheritSelectors [ 
 	^ true
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>createFileSystem [
+{ #category : #running }
+FileSystemHandleTest >> createFileSystem [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>setUp [
+{ #category : #running }
+FileSystemHandleTest >> setUp [
 	filesystem := self createFileSystem.
 	reference := filesystem * 'plonk'.
 	handle := reference openWritable: true
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>tearDown [
+{ #category : #running }
+FileSystemHandleTest >> tearDown [
 	handle ensureClosed.
 	reference ensureDelete.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>testAt [
+{ #category : #tests }
+FileSystemHandleTest >> testAt [
 	handle at: 1 write: (ByteArray with: 3) startingAt: 1 count: 1.
 	self assert: (handle at: 1) = 3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>testAtPut [
+{ #category : #tests }
+FileSystemHandleTest >> testAtPut [
 	| in |
 	handle at: 1 put: 3.
 	in := ByteArray new: 1.
@@ -77,20 +55,14 @@ FileSystemHandleTest>>testAtPut [
 	self assert: in first = 3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>testAtPutBinaryAscii [
+{ #category : #tests }
+FileSystemHandleTest >> testAtPutBinaryAscii [
 	handle at: 1 put: 32.
 	handle at: 1 put: Character space
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>testAtWriteBinaryAscii [
+{ #category : #tests }
+FileSystemHandleTest >> testAtWriteBinaryAscii [
 	handle
 		at: 1
 		write: #[32]
@@ -103,32 +75,23 @@ FileSystemHandleTest>>testAtWriteBinaryAscii [
 		count: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>testClose [
+{ #category : #tests }
+FileSystemHandleTest >> testClose [
 	handle close.
 	self deny: handle isOpen
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>testCreatedOpen [
+{ #category : #tests }
+FileSystemHandleTest >> testCreatedOpen [
 	
 	
 	self flag: 'TODO: activated once FileHandle is in use again!'.
 	"self assert: handle isOpen"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>testEnsureClosed [
+{ #category : #tests }
+FileSystemHandleTest >> testEnsureClosed [
 	filesystem := self createFileSystem.
 	reference := filesystem * 'plonk'.
 	handle := reference openWritable: true.
@@ -141,11 +104,8 @@ FileSystemHandleTest>>testEnsureClosed [
 	handle ensureClosed
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>testIO [
+{ #category : #tests }
+FileSystemHandleTest >> testIO [
 	| out in |
 	out := #(1 2 3) asByteArray.
 	in := ByteArray new: 3.
@@ -154,11 +114,8 @@ FileSystemHandleTest>>testIO [
 	self assert: out = in.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>testReadBufferTooLarge [
+{ #category : #tests }
+FileSystemHandleTest >> testReadBufferTooLarge [
 	| out in result |
 	out := #(1 2 3) asByteArray.
 	in := ByteArray new: 5.
@@ -169,11 +126,8 @@ FileSystemHandleTest>>testReadBufferTooLarge [
 	self assert: in = #(9 1 2 3 9) asByteArray.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>testReadOnly [
+{ #category : #tests }
+FileSystemHandleTest >> testReadOnly [
 	handle close.
 	handle := reference openWritable: false.
 	self 
@@ -186,30 +140,21 @@ FileSystemHandleTest>>testReadOnly [
 		raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>testReference [
+{ #category : #tests }
+FileSystemHandleTest >> testReference [
 	self assert: handle reference = reference asAbsolute
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>testSizeAfterGrow [
+{ #category : #tests }
+FileSystemHandleTest >> testSizeAfterGrow [
 	| out |
 	out := #(1 2 3) asByteArray.
 	handle at: 1 write: out startingAt: 1 count: 3.
 	self assert: handle size = 3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>testSizeNoGrow [
+{ #category : #tests }
+FileSystemHandleTest >> testSizeNoGrow [
 	| bytes |
 	bytes := #(1 2 3 4) asByteArray.
 	handle at: 1 write: bytes startingAt: 1 count: 3.
@@ -217,11 +162,8 @@ FileSystemHandleTest>>testSizeNoGrow [
 	self assert: handle size = 4
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>testTruncate [
+{ #category : #tests }
+FileSystemHandleTest >> testTruncate [
 	| out |
 	out := #(1 2 3 4 5) asByteArray.
 	handle at: 1 write: out startingAt: 1 count: 5.
@@ -229,11 +171,8 @@ FileSystemHandleTest>>testTruncate [
 	self assert: handle size = 3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileSystemHandleTest>>testWriteStream [
+{ #category : #tests }
+FileSystemHandleTest >> testWriteStream [
 	| stream |
 	stream := handle writeStream.
 	self assert: (stream respondsTo: #nextPut:)

@@ -1,12 +1,7 @@
-Extension {
-	#name : #Class
-}
+Extension { #name : #Class }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Class>>gtInspectorAllReferencesIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Class >> gtInspectorAllReferencesIn: composite [
 	"This provides a list of all methods provided by the current class"
 	<gtInspectorPresentationOrder: 20>
 	composite list 
@@ -17,11 +12,8 @@ Class>>gtInspectorAllReferencesIn: composite [
 		tags: [ :each | { each package name } ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Class>>gtInspectorAllReferencesOutsideIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Class >> gtInspectorAllReferencesOutsideIn: composite [
 	"This provides a list of all methods provided by the current class"
 	<gtInspectorPresentationOrder: 20>
 	composite list 
@@ -33,11 +25,8 @@ Class>>gtInspectorAllReferencesOutsideIn: composite [
 		tags: [ :each | { each package name } ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Class>>gtInspectorCommentIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Class >> gtInspectorCommentIn: composite [
 	"This provides an editable comment of the current class"
 	<gtInspectorPresentationOrder: 20>
 	composite text 
@@ -50,22 +39,16 @@ Class>>gtInspectorCommentIn: composite [
 			entitled: 'Accept'
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Class>>gtInspectorDefinitionIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Class >> gtInspectorDefinitionIn: composite [
 	<gtInspectorPresentationOrder: 15>
 	composite pharoScript 
 		title: 'Definition';
 		display: [ self definition ] 
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Class>>gtInspectorInstanceVariablesIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Class >> gtInspectorInstanceVariablesIn: composite [
 	"This provides a list of all class instance variables and the corresponding values"
 
 	<localClassMethod> 
@@ -81,11 +64,8 @@ Class>>gtInspectorInstanceVariablesIn: composite [
 		column: 'Value' evaluated: [ :each | each value ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Class>>gtInspectorMethodsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Class >> gtInspectorMethodsIn: composite [
 	"This provides a list of all methods provided by the current class"
 
 	<localClassMethod> 

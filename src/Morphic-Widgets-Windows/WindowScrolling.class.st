@@ -8,30 +8,20 @@ Class {
 	#instVars : [
 		'step'
 	],
-	#category : #Morphic-Widgets-Windows-Announcements,
-	#timestamp : 'NicolaiHess 4/25/2015 23:18'
+	#category : #Morphic-Widgets-Windows-Announcements
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowScrolling>>isScrolled [
+{ #category : #testing }
+WindowScrolling >> isScrolled [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowScrolling>>step [
+{ #category : #accessing }
+WindowScrolling >> step [
 	^ step
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowScrolling>>step: anObject [
+{ #category : #accessing }
+WindowScrolling >> step: anObject [
 	step := anObject
 ]

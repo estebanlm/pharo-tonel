@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #GLMDynamicMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMDynamicMorphicTest>>expectedFailures  [
+{ #category : #tests }
+GLMDynamicMorphicTest >> expectedFailures [ 
 	^ #(testWithDisplay)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMDynamicMorphicTest>>testSurroundingPanel [
+{ #category : #tests }
+GLMDynamicMorphicTest >> testSurroundingPanel [
 	| browser dynamicContainerMorph |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -32,11 +22,8 @@ GLMDynamicMorphicTest>>testSurroundingPanel [
 	self assert: (dynamicContainerMorph submorphs first isKindOf: RubScrolledTextMorph)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMDynamicMorphicTest>>testUpdate [
+{ #category : #tests }
+GLMDynamicMorphicTest >> testUpdate [
 	| browser dynamicContainerMorph presentationObject |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -55,11 +42,8 @@ GLMDynamicMorphicTest>>testUpdate [
 	self assert: (dynamicContainerMorph submorphs first submorphs first isKindOf: MorphTreeMorph)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMDynamicMorphicTest>>testWithDisplay [
+{ #category : #tests }
+GLMDynamicMorphicTest >> testWithDisplay [
 	| browser dynamic stacker text textMorph |
 	browser := GLMTabulator new column: #stacker; yourself.
 	browser transmit to: #stacker; andShow: [:c | 
@@ -79,11 +63,8 @@ GLMDynamicMorphicTest>>testWithDisplay [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMDynamicMorphicTest>>testWithPresentation [
+{ #category : #tests }
+GLMDynamicMorphicTest >> testWithPresentation [
 	| browser dynamic text textMorph |
 	browser := GLMTabulator new column: #stacker; yourself.
 	browser transmit to: #stacker; andShow: [:c | 

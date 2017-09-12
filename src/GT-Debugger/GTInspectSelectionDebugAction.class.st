@@ -7,26 +7,19 @@ Class {
 	#instVars : [
 		'shouldBasicInspect'
 	],
-	#category : #GT-Debugger-Actions,
-	#timestamp : 'TudorGirba 1/10/2016 23:42'
+	#category : #GT-Debugger-Actions
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTInspectSelectionDebugAction class>>gtActionFor: aDebugger [
+{ #category : #registration }
+GTInspectSelectionDebugAction class >> gtActionFor: aDebugger [
 	"<gtContextCodeDebuggingAction>"
 	
 	^ (self forDebugger: aDebugger)
 			icon: GLMUIThemeExtraIcons glamorousInspect
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTInspectSelectionDebugAction class>>gtBasicInspectActionFor: aDebugger [
+{ #category : #registration }
+GTInspectSelectionDebugAction class >> gtBasicInspectActionFor: aDebugger [
 	"<gtContextCodeDebuggingAction>"
 	
 	^ (self forDebugger: aDebugger)
@@ -37,38 +30,26 @@ GTInspectSelectionDebugAction class>>gtBasicInspectActionFor: aDebugger [
 			icon: GLMUIThemeExtraIcons glamorousInspect
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTInspectSelectionDebugAction>>defaultKeymap [
+{ #category : #accessing }
+GTInspectSelectionDebugAction >> defaultKeymap [
 
 	^ PharoShortcuts current inspectItShortcut 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTInspectSelectionDebugAction>>defaultLabel [
+{ #category : #accessing }
+GTInspectSelectionDebugAction >> defaultLabel [
 
 	^ 'Inspect it'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTInspectSelectionDebugAction>>defaultOrder [
+{ #category : #accessing }
+GTInspectSelectionDebugAction >> defaultOrder [
 
 	^ 15
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTInspectSelectionDebugAction>>executeAction [
+{ #category : #actions }
+GTInspectSelectionDebugAction >> executeAction [
 	
 	self codePresentation evaluateSelectionAndDo: [ :result |
 		shouldBasicInspect 
@@ -78,30 +59,21 @@ GTInspectSelectionDebugAction>>executeAction [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTInspectSelectionDebugAction>>id [
+{ #category : #accessing }
+GTInspectSelectionDebugAction >> id [
 
 	^ #gTInspectSelectionDebugAction
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTInspectSelectionDebugAction>>initialize [
+{ #category : #initialization }
+GTInspectSelectionDebugAction >> initialize [
 	super initialize.
 	self needsUpdate: false.
 	shouldBasicInspect := false
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTInspectSelectionDebugAction>>makeBasicInspect [
+{ #category : #actions }
+GTInspectSelectionDebugAction >> makeBasicInspect [
 
 	shouldBasicInspect := true
 ]

@@ -4,23 +4,16 @@ SUnit tests for the help browser
 Class {
 	#name : #HelpBrowserTest,
 	#superclass : #TestCase,
-	#category : #HelpSystem-Tests-Core-UI,
-	#timestamp : 'TorstenBergmann 2/4/2014 21:18'
+	#category : #HelpSystem-Tests-Core-UI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-HelpBrowserTest>>defaultTestClass [
+{ #category : #accessing }
+HelpBrowserTest >> defaultTestClass [
 	^HelpBrowser
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-HelpBrowserTest>>testDefaultHelpBrowser [
+{ #category : #testing }
+HelpBrowserTest >> testDefaultHelpBrowser [
 	
 	| current replacement instance |
 	current := self defaultTestClass defaultHelpBrowser.
@@ -36,11 +29,8 @@ HelpBrowserTest>>testDefaultHelpBrowser [
 	 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-HelpBrowserTest>>testDefaultHelpBrowserIsReplacable [
+{ #category : #testing }
+HelpBrowserTest >> testDefaultHelpBrowserIsReplacable [
 	
 	| current replacement instance |
 	"save the one that is registered"
@@ -57,20 +47,14 @@ HelpBrowserTest>>testDefaultHelpBrowserIsReplacable [
 	 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-HelpBrowserTest>>testLazyDefaultHelpBrowser [
+{ #category : #testing }
+HelpBrowserTest >> testLazyDefaultHelpBrowser [
 	
 	self assert: self defaultTestClass defaultHelpBrowser notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-HelpBrowserTest>>testOpen [
+{ #category : #testing }
+HelpBrowserTest >> testOpen [
 	|browser|
 	browser := self defaultTestClass open.
 	World doOneCycleNow. 

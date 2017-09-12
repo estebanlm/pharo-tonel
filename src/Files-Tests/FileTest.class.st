@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #FileTest,
 	#superclass : #TestCase,
-	#category : #Files-Tests,
-	#timestamp : ''
+	#category : #Files-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FileTest>>tearDown [
+{ #category : #running }
+FileTest >> tearDown [
 
 	'asd.txt' asFileReference ensureDelete.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FileTest>>testFileDelete [
+{ #category : #tests }
+FileTest >> testFileDelete [
 
 	| file |
 	file := File named: 'asd.txt'.
@@ -30,11 +20,8 @@ FileTest>>testFileDelete [
 	self deny: file exists.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FileTest>>testFileExists [
+{ #category : #tests }
+FileTest >> testFileExists [
 
 	| file |
 	file := File named: 'asd.txt'.
@@ -43,22 +30,16 @@ FileTest>>testFileExists [
 	file delete.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FileTest>>testFilesAreRegisteredInWeakRegistry [
+{ #category : #tests }
+FileTest >> testFilesAreRegisteredInWeakRegistry [
 
 	|  f |
 	f := (File named: 'asd.txt') writeStream.
 	self assert: (File registry keys includes: f)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FileTest>>testOpenFileForReadDoesNotDeleteExistingFile [
+{ #category : #tests }
+FileTest >> testOpenFileForReadDoesNotDeleteExistingFile [
 
 	| file |
 	file := (File named: 'asd.txt') writeStreamDo: [ :stream | stream nextPutAll: 'aaa' ].
@@ -67,11 +48,8 @@ FileTest>>testOpenFileForReadDoesNotDeleteExistingFile [
 	self assert: file size equals: 3.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FileTest>>testOpeningFileNormallyDoesNotDeleteExistingFile [
+{ #category : #tests }
+FileTest >> testOpeningFileNormallyDoesNotDeleteExistingFile [
 
 	| file |
 	file := (File named: 'asd.txt') writeStreamDo: [ :stream | stream nextPutAll: 'aaa' ].
@@ -80,11 +58,8 @@ FileTest>>testOpeningFileNormallyDoesNotDeleteExistingFile [
 	self assert: file size equals: 3.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FileTest>>testOpeningFileObjectCreatesFile [
+{ #category : #tests }
+FileTest >> testOpeningFileObjectCreatesFile [
 
 	(File named: 'asd.txt') writeStream.
 	"Our File implementation should not cache anything.
@@ -92,11 +67,8 @@ FileTest>>testOpeningFileObjectCreatesFile [
 	self assert: (File named: 'asd.txt') exists.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FileTest>>testOpeningFileSetsPositionAtBeggining [
+{ #category : #tests }
+FileTest >> testOpeningFileSetsPositionAtBeggining [
 
 	| file |
 	(File named: 'asd.txt') writeStreamDo: [ :stream | stream nextPutAll: 'aaa' ].
@@ -104,11 +76,8 @@ FileTest>>testOpeningFileSetsPositionAtBeggining [
 	self assert: file position equals: 0.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FileTest>>testOpeningForAppendSetsPositionAtEnd [
+{ #category : #tests }
+FileTest >> testOpeningForAppendSetsPositionAtEnd [
 
 	| file |
 	(File named: 'asd.txt') writeStreamDo: [ :stream | stream nextPutAll: 'aaa' ].
@@ -116,11 +85,8 @@ FileTest>>testOpeningForAppendSetsPositionAtEnd [
 	self assert: file position equals: 3.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FileTest>>testRegistryShouldBeCleaned [
+{ #category : #tests }
+FileTest >> testRegistryShouldBeCleaned [
 
 	| oldSize |
 	"We force some garbage collection to avoid noise in the test"

@@ -12,285 +12,200 @@ Class {
 		'Current',
 		'UseThemeSounds'
 	],
-	#category : #Polymorph-Widgets-Themes,
-	#timestamp : 'AlainPlantec 1/7/2010 22:41'
+	#category : #Polymorph-Widgets-Themes
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme class>>allThemeClasses [
+{ #category : #'as yet unclassified' }
+SoundTheme class >> allThemeClasses [
 	"Answer the subclasses of the receiver that are considered to be
 	concrete (useable as a theme)."
 
 	^self withAllSubclasses reject: [:c | c isAbstract]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme class>>beCurrent [
+{ #category : #'as yet unclassified' }
+SoundTheme class >> beCurrent [
 	"Make a new instance of the receiver be the current theme."
 
 	self isAbstract ifTrue: [^self error: self name, ' is abstract, send #beCurrent to a subclass.'].
 	self current: self newDefault
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme class>>current [
+{ #category : #'as yet unclassified' }
+SoundTheme class >> current [
 	"Answer the current ui theme."
 
 	^Current ifNil: [Current := NullSoundTheme newDefault. Current]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme class>>current: aSoundTheme [
+{ #category : #'as yet unclassified' }
+SoundTheme class >> current: aSoundTheme [
 	"Set the current sound theme."
 
 	Current := aSoundTheme
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme class>>isAbstract [
+{ #category : #'as yet unclassified' }
+SoundTheme class >> isAbstract [
 	"Answer whether the receiver is considered to be abstract."
 
 	^false
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme class>>isCurrent [
+{ #category : #'as yet unclassified' }
+SoundTheme class >> isCurrent [
 	"Answer whether an instance of the receiver is the current theme."
 
 	^self current class == self
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme class>>newDefault [
+{ #category : #'as yet unclassified' }
+SoundTheme class >> newDefault [
 	"Answer a new instance of the sound theme with
 	its default sounds."
 
 	^self new
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme class>>themeName [
+{ #category : #'as yet unclassified' }
+SoundTheme class >> themeName [
 	"Answer the friendly name of the theme."
 
 	^'Beeper sounds'
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme class>>useThemeSounds [
+{ #category : #settings }
+SoundTheme class >> useThemeSounds [
 	 ^ UseThemeSounds ifNil: [UseThemeSounds := true]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme class>>useThemeSounds: aBoolean [
+{ #category : #settings }
+SoundTheme class >> useThemeSounds: aBoolean [
 	UseThemeSounds := aBoolean
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>abortSound [
+{ #category : #sounds }
+SoundTheme >> abortSound [
 	"Answer the abort sound."
 
 	^self sounds at: #abort ifAbsent: [self defaultSound]
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>alertSound [
+{ #category : #sounds }
+SoundTheme >> alertSound [
 	"Answer the alert sound."
 
 	^self sounds at: #alert ifAbsent: [self defaultSound]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>defaultAbortSound [
+{ #category : #initialize-release }
+SoundTheme >> defaultAbortSound [
 	"Answer the default abort sound."
 
 	^self defaultSound
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>defaultAlertSound [
+{ #category : #initialize-release }
+SoundTheme >> defaultAlertSound [
 	"Answer the default alert sound."
 
 	^self defaultSound
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>defaultDefaultSound [
+{ #category : #initialize-release }
+SoundTheme >> defaultDefaultSound [
 	"Answer the default default sound!"
 
 	^Beeper default
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>defaultDenySound [
+{ #category : #initialize-release }
+SoundTheme >> defaultDenySound [
 	"Answer the default deny sound."
 
 	^self defaultSound
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>defaultMessageSound [
+{ #category : #initialize-release }
+SoundTheme >> defaultMessageSound [
 	"Answer the default message sound."
 
 	^self defaultSound
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>defaultQuestionSound [
+{ #category : #initialize-release }
+SoundTheme >> defaultQuestionSound [
 	"Answer the default question sound."
 
 	^self defaultSound
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>defaultSound [
+{ #category : #sounds }
+SoundTheme >> defaultSound [
 	"Answer the default sound."
 
 	^self sounds at: #default ifAbsent: [self defaultDefaultSound]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>defaultWindowCloseSound [
+{ #category : #initialize-release }
+SoundTheme >> defaultWindowCloseSound [
 	"Answer the default window close sound."
 
 	^self defaultSound
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>defaultWindowMaximizeSound [
+{ #category : #initialize-release }
+SoundTheme >> defaultWindowMaximizeSound [
 	"Answer the default window maximize sound."
 
 	^self defaultSound
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>defaultWindowMinimizeSound [
+{ #category : #initialize-release }
+SoundTheme >> defaultWindowMinimizeSound [
 	"Answer the default window minimize sound."
 
 	^self defaultSound
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>defaultWindowOpenSound [
+{ #category : #initialize-release }
+SoundTheme >> defaultWindowOpenSound [
 	"Answer the default window open sound."
 
 	^self defaultSound
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>defaultWindowRestoreDownSound [
+{ #category : #initialize-release }
+SoundTheme >> defaultWindowRestoreDownSound [
 	"Answer the default window restore down sound."
 
 	^self defaultSound
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>defaultWindowRestoreUpSound [
+{ #category : #initialize-release }
+SoundTheme >> defaultWindowRestoreUpSound [
 	"Answer the default window restore up sound."
 
 	^self defaultSound
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>denySound [
+{ #category : #sounds }
+SoundTheme >> denySound [
 	"Answer the deny sound."
 
 	^self sounds at: #deny ifAbsent: [self defaultSound]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>initialize [
+{ #category : #initialization }
+SoundTheme >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
 	self initializeSounds
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>initializeSounds [
+{ #category : #initialize-release }
+SoundTheme >> initializeSounds [
 	"Initialize the receiver's event sounds."
 
 	self sounds: Dictionary new.
@@ -308,101 +223,71 @@ SoundTheme>>initializeSounds [
 		at: #windowClose put: self defaultWindowCloseSound
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>messageSound [
+{ #category : #sounds }
+SoundTheme >> messageSound [
 	"Answer the message sound."
 
 	^self sounds at: #message ifAbsent: [self defaultSound]
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>questionSound [
+{ #category : #sounds }
+SoundTheme >> questionSound [
 	"Answer the question sound."
 
 	^self sounds at: #question ifAbsent: [self defaultSound]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>sounds [
+{ #category : #accessing }
+SoundTheme >> sounds [
 	"Answer the value of sounds"
 
 	^ sounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>sounds: anObject [
+{ #category : #accessing }
+SoundTheme >> sounds: anObject [
 	"Set the value of sounds"
 
 	sounds := anObject
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>windowCloseSound [
+{ #category : #sounds }
+SoundTheme >> windowCloseSound [
 	"Answer the window close sound."
 
 	^self sounds at: #windowClose ifAbsent: [self defaultSound]
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>windowMaximizeSound [
+{ #category : #sounds }
+SoundTheme >> windowMaximizeSound [
 	"Answer the window maximize sound."
 
 	^self sounds at: #windowMaximize ifAbsent: [self defaultSound]
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>windowMinimizeSound [
+{ #category : #sounds }
+SoundTheme >> windowMinimizeSound [
 	"Answer the window minimize sound."
 
 	^self sounds at: #windowMinimize ifAbsent: [self defaultSound]
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>windowOpenSound [
+{ #category : #sounds }
+SoundTheme >> windowOpenSound [
 	"Answer the window open sound."
 
 	^self sounds at: #windowOpen ifAbsent: [self defaultSound]
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>windowRestoreDownSound [
+{ #category : #sounds }
+SoundTheme >> windowRestoreDownSound [
 	"Answer the window restore down sound."
 
 	^self sounds at: #windowRestoreDown ifAbsent: [self defaultSound]
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SoundTheme>>windowRestoreUpSound [
+{ #category : #sounds }
+SoundTheme >> windowRestoreUpSound [
 	"Answer the window restore up sound."
 
 	^self sounds at: #windowRestoreUp ifAbsent: [self defaultSound]

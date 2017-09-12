@@ -1,12 +1,7 @@
-Extension {
-	#name : #Object
-}
+Extension { #name : #Object }
 
-{
-	#category : #'*Tools-Debugger',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Object class>>canonicalArgumentName [
+{ #category : #'*Tools-Debugger' }
+Object class >> canonicalArgumentName [
 
 	| prefix |
 	prefix := self name first isVowel
@@ -15,11 +10,8 @@ Object class>>canonicalArgumentName [
 	^ prefix, self name.
 ]
 
-{
-	#category : #'*Tools-FileList',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Object class>>services [
+{ #category : #'*Tools-FileList' }
+Object class >> services [
 	"Backstop"
 	^#()
 ]

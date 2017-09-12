@@ -11,25 +11,18 @@ Class {
 	#instVars : [
 		'orEnvironment'
 	],
-	#category : #Refactoring-Environment,
-	#timestamp : 'NicolaiHess 4/27/2015 21:23'
+	#category : #Refactoring-Environment
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBOrEnvironment class>>onEnvironment: anEnvironment or: anotherEnvironment [
+{ #category : #'instance creation' }
+RBOrEnvironment class >> onEnvironment: anEnvironment or: anotherEnvironment [
 	^ (self onEnvironment: anEnvironment)
 		orEnvironment: anotherEnvironment;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBOrEnvironment>>classesDo: aBlock [
+{ #category : #accessing }
+RBOrEnvironment >> classesDo: aBlock [
 	| enumerated |
 	enumerated := IdentitySet new.
 	environment classesDo: [ :each | 
@@ -40,29 +33,20 @@ RBOrEnvironment>>classesDo: aBlock [
 			ifFalse: [ aBlock value: each ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBOrEnvironment>>definesClass: aClass [
+{ #category : #testing }
+RBOrEnvironment >> definesClass: aClass [
 	^ (environment definesClass: aClass) or: [ 
 		orEnvironment definesClass: aClass ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBOrEnvironment>>includesCategory: aCategory  [
+{ #category : #testing }
+RBOrEnvironment >> includesCategory: aCategory [ 
 	^ (environment includesCategory: aCategory)
 		or: [ orEnvironment includesCategory: aCategory ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBOrEnvironment>>includesClass: aClass [
+{ #category : #testing }
+RBOrEnvironment >> includesClass: aClass [
 	(environment includesClass: aClass) ifTrue: [ ^ true ].
 	(orEnvironment includesClass: aClass) ifTrue: [ ^ true ].
 	(environment selectorsForClass: aClass) isEmpty ifFalse: [ ^ true ].
@@ -70,54 +54,36 @@ RBOrEnvironment>>includesClass: aClass [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBOrEnvironment>>includesProtocol: aProtocol in: aClass [
+{ #category : #testing }
+RBOrEnvironment >> includesProtocol: aProtocol [ in: aClass
 	^ (environment includesProtocol: aProtocol in: aClass)
 		or: [ orEnvironment includesProtocol: aProtocol in: aClass ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBOrEnvironment>>includesSelector: aSelector in: aClass [
+{ #category : #testing }
+RBOrEnvironment >> includesSelector: aSelector [ in: aClass
 	^ (environment includesSelector: aSelector in: aClass)
 		or: [ orEnvironment includesSelector: aSelector in: aClass ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBOrEnvironment>>orEnvironment: aBrowserEnvironment  [
+{ #category : #initialization }
+RBOrEnvironment >> orEnvironment: aBrowserEnvironment [ 
 	orEnvironment := aBrowserEnvironment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBOrEnvironment>>packages [
+{ #category : #accessing }
+RBOrEnvironment >> packages [
 	^ environment packages | orEnvironment packages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBOrEnvironment>>selectionIntervalFor: aString [
+{ #category : #accessing }
+RBOrEnvironment >> selectionIntervalFor: aString [
 	^ (environment selectionIntervalFor: aString)
 		ifNil: [ orEnvironment selectionIntervalFor: aString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBOrEnvironment>>selectorsForClass: aClass do: aBlock [
+{ #category : #accessing }
+RBOrEnvironment >> selectorsForClass: aClass do: aBlock [
 	| enumerated |
 	enumerated := IdentitySet new.
 	environment
@@ -132,11 +98,8 @@ RBOrEnvironment>>selectorsForClass: aClass do: aBlock [
 				ifFalse: [ aBlock value: each ] ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBOrEnvironment>>storeOn: aStream  [
+{ #category : #printing }
+RBOrEnvironment >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	environment storeOn: aStream.
 	aStream nextPutAll: ' | '.

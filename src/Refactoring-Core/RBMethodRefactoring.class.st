@@ -9,25 +9,18 @@ Class {
 	#instVars : [
 		'class'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 21:36'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethodRefactoring>>buildSelectorString: aSelector  [
+{ #category : #private }
+RBMethodRefactoring >> buildSelectorString: aSelector [ 
 	aSelector numArgs = 0 ifTrue: [^aSelector].
 	^self buildSelectorString: aSelector
 		withPermuteMap: (1 to: aSelector numArgs)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethodRefactoring>>buildSelectorString: aSelector withPermuteMap: anIntegerCollection  [
+{ #category : #private }
+RBMethodRefactoring >> buildSelectorString: aSelector withPermuteMap: anIntegerCollection [ 
 	| stream keywords |
 	aSelector numArgs == 0 ifTrue: [^aSelector asString].
 	stream := WriteStream on: String new.

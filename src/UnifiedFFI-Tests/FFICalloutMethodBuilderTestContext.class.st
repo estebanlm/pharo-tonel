@@ -10,70 +10,45 @@ Class {
 		'argumentNames',
 		'methodClass'
 	],
-	#category : #UnifiedFFI-Tests,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTestContext>>argumentNames [
+{ #category : #accessing }
+FFICalloutMethodBuilderTestContext >> argumentNames [
 	^ argumentNames
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTestContext>>argumentNames: anObject [
+{ #category : #accessing }
+FFICalloutMethodBuilderTestContext >> argumentNames: anObject [
 	argumentNames := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTestContext>>method [
+{ #category : #accessing }
+FFICalloutMethodBuilderTestContext >> method [
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTestContext>>methodClass [
+{ #category : #accessing }
+FFICalloutMethodBuilderTestContext >> methodClass [
 	^ methodClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTestContext>>methodClass: anObject [
+{ #category : #accessing }
+FFICalloutMethodBuilderTestContext >> methodClass: anObject [
 	methodClass := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTestContext>>selector [
+{ #category : #accessing }
+FFICalloutMethodBuilderTestContext >> selector [
 	^ selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTestContext>>selector: anObject [
+{ #category : #accessing }
+FFICalloutMethodBuilderTestContext >> selector: anObject [
 	selector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTestContext>>trailer [
+{ #category : #accessing }
+FFICalloutMethodBuilderTestContext >> trailer [
 	^ CompiledMethodTrailer empty
 ]

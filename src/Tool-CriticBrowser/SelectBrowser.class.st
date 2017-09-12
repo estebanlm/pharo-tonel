@@ -13,15 +13,11 @@ Class {
 		'removeAllButtonModel',
 		'nextButtonModel'
 	],
-	#category : #Tool-CriticBrowser,
-	#timestamp : '<historical>'
+	#category : #Tool-CriticBrowser
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser class>>defaultSpec [
+{ #category : #specs }
+SelectBrowser class >> defaultSpec [
 
 		<spec>
 	
@@ -42,35 +38,23 @@ SelectBrowser class>>defaultSpec [
 					add: #nextButtonModel ] height: 25]	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>addAllButtonModel [
+{ #category : #accessing }
+SelectBrowser >> addAllButtonModel [
 	^ addAllButtonModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>addButtonModel [
+{ #category : #accessing }
+SelectBrowser >> addButtonModel [
 	^ addButtonModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>initialExtent [
+{ #category : #api }
+SelectBrowser >> initialExtent [
 	^   450@360
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>initializeWidgets [
+{ #category : #initialization }
+SelectBrowser >> initializeWidgets [
 
 	addButtonModel := self newButton.
 	addAllButtonModel := self newButton. 
@@ -87,63 +71,42 @@ SelectBrowser>>initializeWidgets [
 	self setNextButtonModel. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>items: aCollection [
+{ #category : #accessing }
+SelectBrowser >> items: aCollection [
 	"Set the elements to be analysed"
 	
 	toSelectModel items: (self sort: aCollection)
 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>nextAction [
+{ #category : #api }
+SelectBrowser >> nextAction [
 	self subclassResponsibility
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>nextButtonModel [
+{ #category : #accessing }
+SelectBrowser >> nextButtonModel [
 	^ nextButtonModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>removeAllButtonModel [
+{ #category : #accessing }
+SelectBrowser >> removeAllButtonModel [
 	^ removeAllButtonModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>removeButtonModel [
+{ #category : #accessing }
+SelectBrowser >> removeButtonModel [
 	^ removeButtonModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>selectedModel [
+{ #category : #accessing }
+SelectBrowser >> selectedModel [
 	^ selectedModel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>setAddAllButtonModel [
+{ #category : #initialization }
+SelectBrowser >> setAddAllButtonModel [
 	
 	addAllButtonModel
 		state: false;
@@ -153,11 +116,8 @@ SelectBrowser>>setAddAllButtonModel [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>setAddButtonModel [
+{ #category : #initialization }
+SelectBrowser >> setAddButtonModel [
 	
 	addButtonModel
 		state: false;
@@ -167,11 +127,8 @@ SelectBrowser>>setAddButtonModel [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>setFocusOrder [
+{ #category : #initialization }
+SelectBrowser >> setFocusOrder [
 
 	self focusOrder
 		add: addButtonModel;
@@ -181,11 +138,8 @@ SelectBrowser>>setFocusOrder [
 		
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>setNextButtonModel [
+{ #category : #initialization }
+SelectBrowser >> setNextButtonModel [
 	
 	nextButtonModel
 		state: false;
@@ -195,11 +149,8 @@ SelectBrowser>>setNextButtonModel [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>setRemoveAllButtonModel [
+{ #category : #initialization }
+SelectBrowser >> setRemoveAllButtonModel [
 	
 	removeAllButtonModel
 		state: false;
@@ -209,11 +160,8 @@ SelectBrowser>>setRemoveAllButtonModel [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>setRemoveButtonModel [
+{ #category : #initialization }
+SelectBrowser >> setRemoveButtonModel [
 	
 	removeButtonModel
 		state: false;
@@ -223,10 +171,7 @@ SelectBrowser>>setRemoveButtonModel [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectBrowser>>toSelectModel [
+{ #category : #accessing }
+SelectBrowser >> toSelectModel [
 	^ toSelectModel
 ]

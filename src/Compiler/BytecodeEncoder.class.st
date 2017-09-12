@@ -10,15 +10,11 @@ Class {
 		'rootNode',
 		'blockExtentsToLocals'
 	],
-	#category : #Compiler-Kernel,
-	#timestamp : '<historical>'
+	#category : #Compiler-Kernel
 }
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder class>>nonExtensionBytecodeAt: pc in: method [
+{ #category : #'bytecode decoding' }
+BytecodeEncoder class >> nonExtensionBytecodeAt: pc in: method [
 	"Answer the actual bytecode at pc in method, skipping past any preceeding extensions."
 	| thePC bytecode |
 	thePC := pc.
@@ -27,29 +23,20 @@ BytecodeEncoder class>>nonExtensionBytecodeAt: pc in: method [
 	^bytecode
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder class>>specialSelectors	 [
+{ #category : #'bytecode decoding' }
+BytecodeEncoder class >> specialSelectors [	
 	^ #(#+ #- #< #> #'<=' #'>=' #= #'~=' #* #/ #'\\' #@ #bitShift: #'//' #bitAnd: #bitOr: #at: #at:put: #size #next #nextPut: #atEnd #'==' nil "class" nil "blockCopy:" #value #value: #do: #new #new: #x #y)
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder class>>stackDeltaForPrimitive: primitiveIndex in: method  [
+{ #category : #'bytecode decoding' }
+BytecodeEncoder class >> stackDeltaForPrimitive: primitiveIndex in: method [ 
 	"This is the default implementation. Subclasses with inline primitives
 	will need to override."
 	^ 0
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>bindAndJuggle: name [
+{ #category : #temps }
+BytecodeEncoder >> bindAndJuggle: name [
 	"This is used to insert a new temp and reorcder temps on editing.
 	 It doesn't really work for closure compilation since we have multiple
 	 locations for temps.  Simply signal a reparse is necessary."
@@ -57,11 +44,8 @@ BytecodeEncoder>>bindAndJuggle: name [
 	ReparseAfterSourceEditing signal
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>bindBlockArg: name within: aBlockNode [
+{ #category : #temps }
+BytecodeEncoder >> bindBlockArg: name within: aBlockNode [
 	"Read the comment in the superclass's method.
 	 If we have closures we should check the argument
 	 count against the block, not the method.
@@ -84,11 +68,8 @@ BytecodeEncoder>>bindBlockArg: name within: aBlockNode [
 		yourself
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>bindBlockTemp: name within: aBlockNode [
+{ #category : #temps }
+BytecodeEncoder >> bindBlockTemp: name within: aBlockNode [
 	"Read the comment in the superclass's bindBlockArg:within: method.
 	 If we have closures we should check the argument
 	 count against the block, not the method.
@@ -107,11 +88,8 @@ BytecodeEncoder>>bindBlockTemp: name within: aBlockNode [
 	^self bindTemp: name
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>bindTemp: name [
+{ #category : #temps }
+BytecodeEncoder >> bindTemp: name [
 	"Declare a temporary; error not if a field or class variable or out-of-scope temp.
 	 Read the comment in Encoder5>>bindBlockArg:within: and subclass implementations."
 	self supportsClosureOpcodes ifFalse:
@@ -124,11 +102,8 @@ BytecodeEncoder>>bindTemp: name [
 	^self reallyBind: name
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>blockExtentsToTempsMap [
+{ #category : #temps }
+BytecodeEncoder >> blockExtentsToTempsMap [
 	"Answer a Dictionary of blockExtent to temp locations for the current method.
 	 This is used by the debugger to locate temp vars in contexts.  A temp map
 	 entry is a pair of the temp's name and its index, where an index is either an
@@ -153,11 +128,8 @@ BytecodeEncoder>>blockExtentsToTempsMap [
 	^blockExtentsToTempsMap
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>computeMethodHeaderForNumArgs: numArgs numTemps: numTemps numLits: numLits primitive: primitiveIndex [
+{ #category : #'as yet unclassified' }
+BytecodeEncoder >> computeMethodHeaderForNumArgs: numArgs numTemps: numTemps numLits: numLits primitive: primitiveIndex [
 	numArgs > 15 ifTrue:
 		[^self error: 'Cannot compile -- too many arguments'].
 	numTemps > 63 ifTrue:
@@ -172,27 +144,18 @@ BytecodeEncoder>>computeMethodHeaderForNumArgs: numArgs numTemps: numTemps numLi
 	+ numLits
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>genPushNClosureTemps: numTemps [
+{ #category : #'bytecode generation' }
+BytecodeEncoder >> genPushNClosureTemps: numTemps [
 	numTemps timesRepeat: [ self genPushSpecialLiteral: nil ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>hasGeneratedMethod [
+{ #category : #testing }
+BytecodeEncoder >> hasGeneratedMethod [
 	^blockExtentsToLocals notNil
 ]
 
-{
-	#category : #'special literal encodings',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>if: code isSpecialLiteralForPush: aBlock [
+{ #category : #'special literal encodings' }
+BytecodeEncoder >> if: code isSpecialLiteralForPush: aBlock [
 	"If code is that of a special literal for push then evaluate aBlock with the special literal
 	 The special literals for push are nil true false -1 0 1 & 2 which have special encodings
 	 in the blue book bytecode set.  Answer whether it was a special literal."
@@ -201,11 +164,8 @@ BytecodeEncoder>>if: code isSpecialLiteralForPush: aBlock [
 			true]
 ]
 
-{
-	#category : #'special literal encodings',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>if: code isSpecialLiteralForReturn: aBlock [
+{ #category : #'special literal encodings' }
+BytecodeEncoder >> if: code isSpecialLiteralForReturn: aBlock [
 	"If code is that of a special literal for return then evaluate aBlock with the special literal.
 	 The special literals for return are nil true false which have special encodings
 	 in the blue book bytecode set.  Answer whether it was a special literal."
@@ -214,385 +174,247 @@ BytecodeEncoder>>if: code isSpecialLiteralForReturn: aBlock [
 			true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>methodStreamPosition [
+{ #category : #accessing }
+BytecodeEncoder >> methodStreamPosition [
 	^stream position
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>nextPut: aByte [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> nextPut: aByte [
 	"For sizing make the encoder its own stream and
 	 keep track of position with this version of nextPut:"
 	position := position + 1
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>noteBlockExtent: blockExtent hasLocals: tempNodes [
+{ #category : #temps }
+BytecodeEncoder >> noteBlockExtent: blockExtent hasLocals: tempNodes [
 	blockExtentsToLocals ifNil:
 		[blockExtentsToLocals := Dictionary new].
 	blockExtentsToLocals at: blockExtent put: tempNodes asArray
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>outOfRangeError: string index: index range: rangeStart to: rangeEnd [
+{ #category : #'bytecode generation' }
+BytecodeEncoder >> outOfRangeError: string index: index range: rangeStart to: rangeEnd [
 	"For now..."
 	^self error: thisContext sender method selector, ' ', string
 				, ' index ', index printString
 				, ' is out of range ', rangeStart printString, ' to ', rangeEnd printString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>rootNode "^<BlockNode>" [
+{ #category : #accessing }
+BytecodeEncoder >> rootNode [ "^<BlockNode>"
 	^rootNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>rootNode: node "<BlockNode>" [
+{ #category : #accessing }
+BytecodeEncoder >> rootNode: node [ "<BlockNode>"
 	rootNode := node
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeBranchPopFalse: distance [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeBranchPopFalse: distance [
 	^self sizeOpcodeSelector: #genBranchPopFalse: withArguments: {distance}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeBranchPopTrue: distance [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeBranchPopTrue: distance [
 	^self sizeOpcodeSelector: #genBranchPopTrue: withArguments: {distance}
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeCallPrimitive: primitiveIndex [
+{ #category : #'as yet unclassified' }
+BytecodeEncoder >> sizeCallPrimitive: primitiveIndex [
 	^self sizeOpcodeSelector: #genCallPrimitive: withArguments: {primitiveIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeDup [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeDup [
 	^self sizeOpcodeSelector: #genDup withArguments: #()
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeJump: distance [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeJump: distance [
 	^self sizeOpcodeSelector: #genJump: withArguments: {distance}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeJumpLong: distance [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeJumpLong: distance [
 	^self sizeOpcodeSelector: #genJumpLong: withArguments: {distance}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeOpcodeSelector: genSelector withArguments: args [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeOpcodeSelector: genSelector withArguments: args [
 	stream := self.
 	position := 0.
 	self perform: genSelector withArguments: args.
 	^position
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizePop [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizePop [
 	^self sizeOpcodeSelector: #genPop withArguments: #()
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizePushClosureCopyNumCopiedValues: numCopied numArgs: numArgs jumpSize: jumpSize [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizePushClosureCopyNumCopiedValues: numCopied numArgs: numArgs jumpSize: jumpSize [
 	^self
 		sizeOpcodeSelector: #genPushClosureCopyNumCopiedValues:numArgs:jumpSize:
 		withArguments: {numCopied. numArgs. jumpSize}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizePushConsArray: numElements [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizePushConsArray: numElements [
 	^self sizeOpcodeSelector: #genPushConsArray: withArguments: {numElements}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizePushInstVar: instVarIndex [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizePushInstVar: instVarIndex [
 	^self sizeOpcodeSelector: #genPushInstVar: withArguments: {instVarIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizePushInstVarLong: instVarIndex [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizePushInstVarLong: instVarIndex [
 	^self sizeOpcodeSelector: #genPushInstVarLong: withArguments: {instVarIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizePushLiteral: literalIndex [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizePushLiteral: literalIndex [
 	^self sizeOpcodeSelector: #genPushLiteral: withArguments: {literalIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizePushLiteralVar: literalIndex [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizePushLiteralVar: literalIndex [
 	^self sizeOpcodeSelector: #genPushLiteralVar: withArguments: {literalIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizePushNewArray: size [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizePushNewArray: size [
 	^self sizeOpcodeSelector: #genPushNewArray: withArguments: {size}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizePushReceiver [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizePushReceiver [
 	^self sizeOpcodeSelector: #genPushReceiver withArguments: #()
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizePushRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizePushRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 	^self sizeOpcodeSelector: #genPushRemoteTemp:inVectorAt: withArguments: {tempIndex. tempVectorIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizePushSpecialLiteral: specialLiteral [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizePushSpecialLiteral: specialLiteral [
 	^self sizeOpcodeSelector: #genPushSpecialLiteral: withArguments: {specialLiteral}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizePushTemp: tempIndex [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizePushTemp: tempIndex [
 	^self sizeOpcodeSelector: #genPushTemp: withArguments: {tempIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizePushThisContext [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizePushThisContext [
 	^self sizeOpcodeSelector: #genPushThisContext withArguments: #()
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeReturnReceiver [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeReturnReceiver [
 	^self sizeOpcodeSelector: #genReturnReceiver withArguments: #()
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeReturnSpecialLiteral: specialLiteral [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeReturnSpecialLiteral: specialLiteral [
 	^self sizeOpcodeSelector: #genReturnSpecialLiteral: withArguments: {specialLiteral}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeReturnTop [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeReturnTop [
 	^self sizeOpcodeSelector: #genReturnTop withArguments: #()
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeReturnTopToCaller [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeReturnTopToCaller [
 	^self sizeOpcodeSelector: #genReturnTopToCaller withArguments: #()
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeSend: selectorLiteralIndex numArgs: nArgs [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeSend: selectorLiteralIndex numArgs: nArgs [
 	^self sizeOpcodeSelector: #genSend:numArgs: withArguments: {selectorLiteralIndex. nArgs}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeSendSuper: selectorLiteralIndex numArgs: nArgs [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeSendSuper: selectorLiteralIndex numArgs: nArgs [
 	^self sizeOpcodeSelector: #genSendSuper:numArgs: withArguments: {selectorLiteralIndex. nArgs}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeStoreInstVar: instVarIndex [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeStoreInstVar: instVarIndex [
 	^self sizeOpcodeSelector: #genStoreInstVar: withArguments: {instVarIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeStoreInstVarLong: instVarIndex [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeStoreInstVarLong: instVarIndex [
 	^self sizeOpcodeSelector: #genStoreInstVarLong: withArguments: {instVarIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeStoreLiteralVar: literalIndex [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeStoreLiteralVar: literalIndex [
 	^self sizeOpcodeSelector: #genStoreLiteralVar: withArguments: {literalIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeStorePopInstVar: instVarIndex [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeStorePopInstVar: instVarIndex [
 	^self sizeOpcodeSelector: #genStorePopInstVar: withArguments: {instVarIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeStorePopInstVarLong: instVarIndex [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeStorePopInstVarLong: instVarIndex [
 	^self sizeOpcodeSelector: #genStorePopInstVarLong: withArguments: {instVarIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeStorePopLiteralVar: literalIndex [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeStorePopLiteralVar: literalIndex [
 	^self sizeOpcodeSelector: #genStorePopLiteralVar: withArguments: {literalIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeStorePopRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeStorePopRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 	^self sizeOpcodeSelector: #genStorePopRemoteTemp:inVectorAt: withArguments: {tempIndex. tempVectorIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeStorePopTemp: tempIndex [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeStorePopTemp: tempIndex [
 	^self sizeOpcodeSelector: #genStorePopTemp: withArguments: {tempIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeStoreRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeStoreRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 	^self sizeOpcodeSelector: #genStoreRemoteTemp:inVectorAt: withArguments: {tempIndex. tempVectorIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeStoreTemp: tempIndex [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeStoreTemp: tempIndex [
 	^self sizeOpcodeSelector: #genStoreTemp: withArguments: {tempIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>sizeTrapIfNotInstanceOf: litIndex  [
+{ #category : #'opcode sizing' }
+BytecodeEncoder >> sizeTrapIfNotInstanceOf: litIndex [ 
 	^ self sizeOpcodeSelector: #genTrapIfNotInstanceOf: withArguments: {litIndex}
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>stream: s [
+{ #category : #accessing }
+BytecodeEncoder >> stream: s [
 	stream := s
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>streamToMethod: aCompiledMethod [
+{ #category : #initialize-release }
+BytecodeEncoder >> streamToMethod: aCompiledMethod [
 	stream := WriteStream with: aCompiledMethod.
 	stream position: aCompiledMethod initialPC - 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BytecodeEncoder>>supportsClosureOpcodes [
+{ #category : #testing }
+BytecodeEncoder >> supportsClosureOpcodes [
 	"Answer if the receiver supports the
 		genPushNewArray:/genPushConsArray:
 		genPushRemoteTemp:inVectorAt:

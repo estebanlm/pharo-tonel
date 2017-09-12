@@ -9,15 +9,11 @@ Class {
 		'stored',
 		'merger'
 	],
-	#category : #System-Identification-Tests,
-	#timestamp : '<historical>'
+	#category : #System-Identification-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierMergerTest>>setUp [
+{ #category : #running }
+GlobalIdentifierMergerTest >> setUp [
 	super setUp.
 	existing := Dictionary new.
 	stored := Dictionary new.
@@ -25,11 +21,8 @@ GlobalIdentifierMergerTest>>setUp [
 	merger existing: existing; stored: stored
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierMergerTest>>testMerge [
+{ #category : #tests }
+GlobalIdentifierMergerTest >> testMerge [
 	"Existing is empty. Stored has value."
 	stored at: #a put: 42.
 	self assert: merger merge.
@@ -38,11 +31,8 @@ GlobalIdentifierMergerTest>>testMerge [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierMergerTest>>testMerge2 [
+{ #category : #tests }
+GlobalIdentifierMergerTest >> testMerge2 [
 	"Existing has something. Stored has another key."
 	existing at: #a put: 42.
 	stored at: #b put: 21.
@@ -55,11 +45,8 @@ GlobalIdentifierMergerTest>>testMerge2 [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierMergerTest>>testMerge3 [
+{ #category : #tests }
+GlobalIdentifierMergerTest >> testMerge3 [
 	"Existing has same key as stored."
 	existing at: #a put: 42.
 	stored at: #a put: 21.
@@ -71,11 +58,8 @@ GlobalIdentifierMergerTest>>testMerge3 [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierMergerTest>>testMerge4 [
+{ #category : #tests }
+GlobalIdentifierMergerTest >> testMerge4 [
 	"Existing has different computer id as stored."
 	existing at: #computerUUID put: 42.
 	existing at: #a put: 43.
@@ -94,11 +78,8 @@ GlobalIdentifierMergerTest>>testMerge4 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierMergerTest>>testMerge5 [
+{ #category : #tests }
+GlobalIdentifierMergerTest >> testMerge5 [
 	"Existing has different computer id as stored."
 	existing at: #computerUUID put: 42.
 	existing at: #a put: 43.
@@ -116,11 +97,8 @@ GlobalIdentifierMergerTest>>testMerge5 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierMergerTest>>testMerge6 [
+{ #category : #tests }
+GlobalIdentifierMergerTest >> testMerge6 [
 	"Existing has different computer id as stored."
 	existing at: #a put: 43.
 	existing at: #c put: 44.
@@ -138,11 +116,8 @@ GlobalIdentifierMergerTest>>testMerge6 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierMergerTest>>testMerge7 [
+{ #category : #tests }
+GlobalIdentifierMergerTest >> testMerge7 [
 	"Ensure that it converts computerUUID into string."
 	stored at: #computerUUID put: UUID new.
 	self assert: merger merge.
@@ -151,11 +126,8 @@ GlobalIdentifierMergerTest>>testMerge7 [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierMergerTest>>testMerge8 [
+{ #category : #tests }
+GlobalIdentifierMergerTest >> testMerge8 [
 	"Ensure that it converts secretUUID into string."
 	stored at: #secretUUID put: UUID new.
 	self assert: merger merge.

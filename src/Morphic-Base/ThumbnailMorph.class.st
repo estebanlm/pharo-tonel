@@ -18,15 +18,11 @@ Class {
 		'RecursionDepth',
 		'RecursionMax'
 	],
-	#category : #Morphic-Base-Basic,
-	#timestamp : 'sw 1/6/2005 03:47'
+	#category : #Morphic-Base-Basic
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph class>>example1 [
+{ #category : #example }
+ThumbnailMorph class >> example1 [
 	"Create a thumbnail representing another Morph. The thumbnail is continously updated."
 	"self example1"
 	| t r |
@@ -36,11 +32,8 @@ ThumbnailMorph class>>example1 [
 	t openInWorld
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph class>>initialize [
+{ #category : #initialization }
+ThumbnailMorph class >> initialize [
 	"Initialize the class variables of ThumbnailMorph"
 
 	RecursionMax := 2.
@@ -50,11 +43,8 @@ ThumbnailMorph class>>initialize [
 "ThumbnailMorph initialize"
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph class>>recursionReset [
+{ #category : #'as yet unclassified' }
+ThumbnailMorph class >> recursionReset [
 	"ThumbnailMorph recursionReset"
 	"Reset the RecursionDepth counter in case the user interrupted
 during a thumbnail being drawn.  Do this just once in a while when no
@@ -63,11 +53,8 @@ drawOn: is being called.  tk 9/8/97"
 	RecursionDepth := 0.
 ]
 
-{
-	#category : #'what to view',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>actualViewee [
+{ #category : #'what to view' }
+ThumbnailMorph >> actualViewee [
 	"Return the actual morph to be viewed, or nil if there isn't an appropriate morph to view."
 
 	| aMorph actualViewee |
@@ -82,20 +69,14 @@ ThumbnailMorph>>actualViewee [
 	^ actualViewee
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>defaultBorderWidth [
+{ #category : #initialization }
+ThumbnailMorph >> defaultBorderWidth [
 "answer the default border width for the receiver"
 	^ 1
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>defaultColor [
+{ #category : #initialization }
+ThumbnailMorph >> defaultColor [
 "answer the default color/fill style for the receiver"
 	^ Color
 		r: 0.781
@@ -103,11 +84,8 @@ ThumbnailMorph>>defaultColor [
 		b: 0.781
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>drawForForm: aForm on: aCanvas [
+{ #category : #display }
+ThumbnailMorph >> drawForForm: aForm on: aCanvas [
 	"Draw a small view of the given form on the canvas"
 
 	| scale shrunkForm viewedObjectBox interimCanvas |
@@ -122,11 +100,8 @@ ThumbnailMorph>>drawForForm: aForm on: aCanvas [
 	aCanvas paintImage: shrunkForm at: self center - shrunkForm boundingBox center
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>drawMeOn: aCanvas  [
+{ #category : #display }
+ThumbnailMorph >> drawMeOn: aCanvas [ 
 	"Draw a small view of a morph in another place.  Guard against infinite recursion if that morph has a thumbnail of itself inside.  Now also works if the thing to draw is a plain Form rather than a morph."
 
 	| viewedMorphBox scale c shrunkForm aWorld aFormOrMorph  |
@@ -161,11 +136,8 @@ ThumbnailMorph>>drawMeOn: aCanvas  [
 				at: self center - shrunkForm boundingBox center]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+ThumbnailMorph >> drawOn: aCanvas [
 	"Draw a small view of a morph in another place. Guard against infinite recursion if that morph has a thumbnail of itself inside."
 	| time |
 	time := Time millisecondClockValue.
@@ -175,11 +147,8 @@ ThumbnailMorph>>drawOn: aCanvas [
 
 ]
 
-{
-	#category : #'what to view',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>formOrMorphToView [
+{ #category : #'what to view' }
+ThumbnailMorph >> formOrMorphToView [
 	"Answer the form to be viewed, or the morph to be viewed, or nil"
 
 	| actualViewee |
@@ -191,31 +160,22 @@ ThumbnailMorph>>formOrMorphToView [
 		ifFalse: [actualViewee]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>getSelector [
+{ #category : #accessing }
+ThumbnailMorph >> getSelector [
 	"Answer the selector I send to my target to retrieve my value"
 
 	^ viewSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>getSelector: aSelector [
+{ #category : #accessing }
+ThumbnailMorph >> getSelector: aSelector [
 	"Set the selector used to obtain my value"
 
 	self objectToView: objectToView viewSelector: aSelector
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>initialize [
+{ #category : #initialization }
+ThumbnailMorph >> initialize [
 	"Initialize the receiver, obeying a #nominalExtent property if I have one"
 	| anExtent |
 	
@@ -224,11 +184,8 @@ ThumbnailMorph>>initialize [
 	self extent: anExtent
 ]
 
-{
-	#category : #'what to view',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>morphToView [
+{ #category : #'what to view' }
+ThumbnailMorph >> morphToView [
 	"If the receiver is viewing some object, answer a morph can be thought of as being viewed;  A gesture is made toward generalizing this beyond the morph/player regime, in that a plain blue rectangle is returned rather than simply failing if the referent is not itself displayable."
 
 	objectToView ifNil: [^ nil].
@@ -240,11 +197,8 @@ ThumbnailMorph>>morphToView [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>objectToView: objectOrNil [
+{ #category : #initialization }
+ThumbnailMorph >> objectToView: objectOrNil [
 	(objectOrNil isMorph and: [objectOrNil allMorphs includes: self]) ifTrue:
 		["cannot view a morph containing myself or drawOn: goes into infinite recursion"
 		objectToView := nil.
@@ -252,39 +206,27 @@ ThumbnailMorph>>objectToView: objectOrNil [
 	objectToView := objectOrNil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>objectToView: objectOrNil viewSelector: aSelector [
+{ #category : #initialization }
+ThumbnailMorph >> objectToView: objectOrNil viewSelector: aSelector [
 	self objectToView: objectOrNil.
 	viewSelector := aSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>putSelector [
+{ #category : #accessing }
+ThumbnailMorph >> putSelector [
 	"Answer the selector used  for the receiver to send a fresh value back to its target"
 
 	^ nil
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>releaseCachedState [
+{ #category : #caching }
+ThumbnailMorph >> releaseCachedState [
 	super releaseCachedState.
 	lastSketchForm := lastFormShown := nil.
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>scaleFor:  viewedMorphBox in: myBox [
+{ #category : #display }
+ThumbnailMorph >> scaleFor:  viewedMorphBox in: myBox [
 	"Compute the proper scale for the thumbnail."
 
 	|   scale  scaleX scaleY ratio factor  |
@@ -305,11 +247,8 @@ scaleX := myBox width asFloat / viewedMorphBox width.
 
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>step [
+{ #category : #'stepping and presenter' }
+ThumbnailMorph >> step [
 	"Optimization: Don't redraw if we're viewing some kind of SketchMorph and its rotated Form hasn't changed."
 
 	| viewee |
@@ -319,42 +258,30 @@ ThumbnailMorph>>step [
 
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>stepTime  [
+{ #category : #'stepping and presenter' }
+ThumbnailMorph >> stepTime [ 
 	"Adjust my step time to the time it takes drawing my referent"
 	drawTime ifNil:[^ 250].
 	^(20 * drawTime) max: 250.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>target [
+{ #category : #accessing }
+ThumbnailMorph >> target [
 	"Answer the object on which I act"
 
 	^ objectToView
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>veryDeepFixupWith: deepCopier [
+{ #category : #copying }
+ThumbnailMorph >> veryDeepFixupWith: deepCopier [
 	"If target and arguments fields were weakly copied, fix them here.  If they were in the tree being copied, fix them up, otherwise point to the originals!!"
 
 super veryDeepFixupWith: deepCopier.
 objectToView := deepCopier references at: objectToView ifAbsent: [objectToView].
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ThumbnailMorph>>veryDeepInner: deepCopier [
+{ #category : #copying }
+ThumbnailMorph >> veryDeepInner: deepCopier [
 	"Copy all of my instance variables.  Some need to be not copied at all, but shared.  	Warning!!  Every instance variable defined in this class must be handled.  We must also implement veryDeepFixupWith:.  See DeepCopier class comment."
 
 super veryDeepInner: deepCopier.

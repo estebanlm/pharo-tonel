@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMUpdateMorphicTest,
 	#superclass : #GLMMorphicTest,
@@ -15,23 +12,16 @@ Class {
 		'unupdatedListMorph',
 		'labelMorph'
 	],
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMUpdateMorphicTest>>expectedFailures [
+{ #category : #tests }
+GLMUpdateMorphicTest >> expectedFailures [
 	^ #(testUpdatePresentationTitle)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMUpdateMorphicTest>>setUp [
+{ #category : #tests }
+GLMUpdateMorphicTest >> setUp [
 	announcer := Announcer new.
 	entity := OrderedCollection with: 1 with: 2 with: 3.
 	browser := GLMTabulator new.
@@ -78,11 +68,8 @@ GLMUpdateMorphicTest>>setUp [
 									last submorphs first submorphs first.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMUpdateMorphicTest>>testAdd [
+{ #category : #tests }
+GLMUpdateMorphicTest >> testAdd [
 	entity add: 4.
 	announcer announce: GLMTestAnnouncement.
 	self assert: listMorph roots size equals: 4.
@@ -94,11 +81,8 @@ GLMUpdateMorphicTest>>testAdd [
 	self assert: labelMorph contents equals: '4'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMUpdateMorphicTest>>testAddAndUpdateBrowserManually [
+{ #category : #tests }
+GLMUpdateMorphicTest >> testAddAndUpdateBrowserManually [
 	entity add: 4.
 	self assert: unupdatedListMorph model roots size equals: 3.
 	browser update.
@@ -108,11 +92,8 @@ GLMUpdateMorphicTest>>testAddAndUpdateBrowserManually [
 	self assert: unupdatedListMorph model roots size equals: 5
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMUpdateMorphicTest>>testAnnouncerUnregistration [
+{ #category : #tests }
+GLMUpdateMorphicTest >> testAnnouncerUnregistration [
 	self assert: announcer numberOfSubscriptions equals: 5.
 	browser entity: #($a $b).
 	self assert: announcer numberOfSubscriptions equals: 5.
@@ -124,11 +105,8 @@ GLMUpdateMorphicTest>>testAnnouncerUnregistration [
 	self assert: announcer numberOfSubscriptions equals: 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMUpdateMorphicTest>>testInvalidateSelection [
+{ #category : #tests }
+GLMUpdateMorphicTest >> testInvalidateSelection [
 	(browser panes first port: #selection) value: 3.
 	entity removeLast.
 	announcer announce: GLMTestAnnouncement.
@@ -136,11 +114,8 @@ GLMUpdateMorphicTest>>testInvalidateSelection [
 	self assert: listMorph model selection isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMUpdateMorphicTest>>testRemove [
+{ #category : #tests }
+GLMUpdateMorphicTest >> testRemove [
 	entity removeLast.
 	announcer announce: GLMTestAnnouncement.
 	self assert: listMorph model roots size equals: 2.
@@ -149,21 +124,15 @@ GLMUpdateMorphicTest>>testRemove [
 	self assert: labelMorph contents equals: '2'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMUpdateMorphicTest>>testUpdateBrowserTitle [
+{ #category : #tests }
+GLMUpdateMorphicTest >> testUpdateBrowserTitle [
 	browser title: 'something'.
 	browser update.
 	self assert: window label equals: 'something'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMUpdateMorphicTest>>testUpdatePresentationTitle [
+{ #category : #tests }
+GLMUpdateMorphicTest >> testUpdatePresentationTitle [
 	browser panes first presentations first title: 'something'.
 	browser panes first presentations first update.
 	self assert: listLabelMorph contents equals: 'something'

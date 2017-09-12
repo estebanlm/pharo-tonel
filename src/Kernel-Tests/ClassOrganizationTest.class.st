@@ -8,32 +8,22 @@ Class {
 		'organization',
 		'class'
 	],
-	#category : #Kernel-Tests-Protocols,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:00'
+	#category : #Kernel-Tests-Protocols
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassOrganizationTest>>organization  [
+{ #category : #accessing }
+ClassOrganizationTest >> organization [ 
 	^ organization
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassOrganizationTest>>runCase  [
+{ #category : #running }
+ClassOrganizationTest >> runCase [ 
 	SystemAnnouncer uniqueInstance 
 		suspendAllWhile: [ super runCase ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassOrganizationTest>>setUp  [
+{ #category : #running }
+ClassOrganizationTest >> setUp [ 
 	class := Object subclass: #ClassForTests instanceVariableNames: '' classVariableNames: '' category: 'ClassOrganizer-Tests'.
 	organization := ClassOrganization forClass: class.
 	organization addCategory: 'empty'.
@@ -42,41 +32,29 @@ ClassOrganizationTest>>setUp  [
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassOrganizationTest>>tearDown [
+{ #category : #running }
+ClassOrganizationTest >> tearDown [
 	class removeFromSystem
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassOrganizationTest>>testAddCategory [
+{ #category : #tests }
+ClassOrganizationTest >> testAddCategory [
 	
 	self organization addCategory: 'test-protocol'.
 	
 	self assert: (self organization categories includes: 'test-protocol')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassOrganizationTest>>testCategories [
+{ #category : #tests }
+ClassOrganizationTest >> testCategories [
 	| categories |
 	
 	categories := self organization categories.
 	self assert: categories notEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassOrganizationTest>>testListAtCategoryNamed [
+{ #category : #tests }
+ClassOrganizationTest >> testListAtCategoryNamed [
 	| methods |
 
 	methods := self organization listAtCategoryNamed: 'empty'.
@@ -87,11 +65,8 @@ ClassOrganizationTest>>testListAtCategoryNamed [
 	self assert: methods first = #one.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassOrganizationTest>>testRemoveCategory [
+{ #category : #tests }
+ClassOrganizationTest >> testRemoveCategory [
 	self assert: self organization categories size = 2.
 	self should: [ self organization removeCategory: 'one' ] raise: Error.
 	self organization removeCategory: 'empty'.
@@ -99,10 +74,7 @@ ClassOrganizationTest>>testRemoveCategory [
 	self assert: self organization categories first = 'one'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassOrganizationTest>>testRemoveNonExistingProtocol [
+{ #category : #tests }
+ClassOrganizationTest >> testRemoveNonExistingProtocol [
 	self organization removeCategory: 'non-existent'
 ]

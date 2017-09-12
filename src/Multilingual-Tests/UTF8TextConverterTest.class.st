@@ -4,15 +4,11 @@ SUnit tests for UTF8TextConverter
 Class {
 	#name : #UTF8TextConverterTest,
 	#superclass : #TestCase,
-	#category : #Multilingual-Tests-TextConversion,
-	#timestamp : 'TorstenBergmann 2/5/2014 10:18'
+	#category : #Multilingual-Tests-TextConversion
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-UTF8TextConverterTest>>testNextPutAllStartingAt [
+{ #category : #testing }
+UTF8TextConverterTest >> testNextPutAllStartingAt [
 	"Test that non-ascii ByteString characters are converted correctly when using next:putAll:startingAt:"
 	|converter stream source|
 	converter := UTF8TextConverter new.
@@ -23,11 +19,8 @@ converter next: 5 putAll: source startingAt: 5 toStream: stream.
 self assert: stream contents asByteArray = #[16r65 16r66 16rC3 16rA5 16r67 16r68] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-UTF8TextConverterTest>>testPutSingle2ByteEncodedCharacter [
+{ #category : #testing }
+UTF8TextConverterTest >> testPutSingle2ByteEncodedCharacter [
 	| actual |
 	"Test that the utf8-encoded bytes are stored when stream is ascii.
 	(In the case of internal writeStreams, that its destination is a String)"
@@ -41,11 +34,8 @@ UTF8TextConverterTest>>testPutSingle2ByteEncodedCharacter [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-UTF8TextConverterTest>>testPutSingle3ByteEncodedCharacter [
+{ #category : #testing }
+UTF8TextConverterTest >> testPutSingle3ByteEncodedCharacter [
 	| actual |
 	"Test that the utf8-encoded bytes are stored when stream is ascii.
 	(In the case of internal writeStreams, that its destination is a String)"
@@ -59,11 +49,8 @@ UTF8TextConverterTest>>testPutSingle3ByteEncodedCharacter [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-UTF8TextConverterTest>>testPutSingle4ByteEncodedCharacter [
+{ #category : #testing }
+UTF8TextConverterTest >> testPutSingle4ByteEncodedCharacter [
 	| actual |
 	"Test that the utf8-encoded bytes are stored when stream is ascii.
 	(In the case of internal writeStreams, that its destination is a String)"
@@ -77,11 +64,8 @@ UTF8TextConverterTest>>testPutSingle4ByteEncodedCharacter [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-UTF8TextConverterTest>>testPutSingleCharacterBinary [
+{ #category : #testing }
+UTF8TextConverterTest >> testPutSingleCharacterBinary [
 	| actual |
 	"Test that the raw 8/32bit representations of Characters/WideCharacters are stored when stream is binary.
 	(In the case of internal writeStreams, that its destination is a ByteArray)"

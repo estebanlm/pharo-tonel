@@ -1,22 +1,14 @@
-Extension {
-	#name : #HelpTopic
-}
+Extension { #name : #HelpTopic }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-HelpTopic>>gtAllSubtopics [
+{ #category : #'*GT-SpotterExtensions-Core' }
+HelpTopic >> gtAllSubtopics [
 	 ^ self subtopics flatCollect: [:aTopic |
 		aTopic asOrderedCollection, aTopic gtAllSubtopics ]
 		 
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-HelpTopic>>gtBreadcrumbTitle [
+{ #category : #'*GT-SpotterExtensions-Core' }
+HelpTopic >> gtBreadcrumbTitle [
 	|breadcrumbTitle currentHelpTopic|
 	
 	currentHelpTopic := self.	
@@ -27,29 +19,20 @@ HelpTopic>>gtBreadcrumbTitle [
 	^ breadcrumbTitle 
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-HelpTopic>>gtTopicIcon [
+{ #category : #'*GT-SpotterExtensions-Core' }
+HelpTopic >> gtTopicIcon [
 	^ self hasSubtopics
 		ifTrue: [ Smalltalk ui icons iconNamed: #bookIcon ]
 		ifFalse: [ Smalltalk ui icons iconNamed: #pageIcon ]
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-HelpTopic>>spotterActDefault [
+{ #category : #'*GT-SpotterExtensions-Core' }
+HelpTopic >> spotterActDefault [
 	HelpBrowser openOn: self
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-HelpTopic>>spotterForHelpTopicFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+HelpTopic >> spotterForHelpTopicFor: aStep [
 	<spotterOrder: 200>
 	self flag: 'filter for multiple items like #title + #contents (combined by OR)'.
 	self flag: #specialFilter.
@@ -63,11 +46,8 @@ HelpTopic>>spotterForHelpTopicFor: aStep [
 		wantsToDisplayOnEmptyQuery: true
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-HelpTopic>>spotterPreviewContentHelpIn: aComposite [
+{ #category : #'*GT-SpotterExtensions-Core' }
+HelpTopic >> spotterPreviewContentHelpIn: aComposite [
 	<spotterPreview: 10>
 	
 	self hasSubtopics ifTrue: [ ^ self ].
@@ -80,11 +60,8 @@ HelpTopic>>spotterPreviewContentHelpIn: aComposite [
 	self flag: 'move "entity: self" somewhere else, maybe'
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-HelpTopic>>spotterPreviewSubtopicsHelpIn: aComposite [
+{ #category : #'*GT-SpotterExtensions-Core' }
+HelpTopic >> spotterPreviewSubtopicsHelpIn: aComposite [
 	<spotterPreview: 15>
 
 	aComposite list

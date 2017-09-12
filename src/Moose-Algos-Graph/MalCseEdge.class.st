@@ -1,37 +1,24 @@
-"
-
-"
 Class {
 	#name : #MalCseEdge,
 	#superclass : #MalDijkstraEdge,
 	#instVars : [
 		'cseVisited'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCseEdge>>cseVisited [
+{ #category : #accessing }
+MalCseEdge >> cseVisited [
 	^ cseVisited
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCseEdge>>cseVisited: aBoolean [
+{ #category : #accessing }
+MalCseEdge >> cseVisited: aBoolean [
 	cseVisited := aBoolean
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCseEdge>>initialize  [
+{ #category : #initialization }
+MalCseEdge >> initialize [ 
 
 	super initialize.
 	self cseVisited: false.

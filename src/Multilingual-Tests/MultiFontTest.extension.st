@@ -1,12 +1,7 @@
-Extension {
-	#name : #MultiFontTest
-}
+Extension { #name : #MultiFontTest }
 
-{
-	#category : #'*Multilingual-Tests-OtherLanguages',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiFontTest>>testMultistringFont [
+{ #category : #'*Multilingual-Tests-OtherLanguages' }
+MultiFontTest >> testMultistringFont [
 	"self debug: #testMultistringFont"
 	| text p style height width |
 	[(TextStyle default fontArray at: JapaneseEnvironment leadingChar)

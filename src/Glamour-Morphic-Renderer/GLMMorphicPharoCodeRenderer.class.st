@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicPharoCodeRenderer,
 	#superclass : #GLMMorphicRubricTextRenderer,
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoCodeRenderer>>actOnCompileText: ann  [
+{ #category : #callbacks }
+GLMMorphicPharoCodeRenderer >> actOnCompileText: ann [ 
 	
 	"The current compiler wants to notify a text morph object in case of errors. 
 	The compilation is delagated to the renderer, as the renderer has access
@@ -23,11 +16,8 @@ GLMMorphicPharoCodeRenderer>>actOnCompileText: ann  [
 		notifying: textMorph) ifTrue: [ ann action ifNotNil: [ :action | action value ] ]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoCodeRenderer>>actOnEvaluateSelection: ann  [
+{ #category : #callbacks }
+GLMMorphicPharoCodeRenderer >> actOnEvaluateSelection: ann [ 
 
 	"We get here as a result of an announcement.
 	If we do not defer the execution and an exception is triggered by the execution of the code
@@ -40,11 +30,8 @@ GLMMorphicPharoCodeRenderer>>actOnEvaluateSelection: ann  [
 	
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoCodeRenderer>>actOnHighlightAndEvaluate: ann  [
+{ #category : #callbacks }
+GLMMorphicPharoCodeRenderer >> actOnHighlightAndEvaluate: ann [ 
 
 	"We get here as a result of an announcement.
 	If we do not defer the execution and an exception is triggered by the execution of the code
@@ -55,11 +42,8 @@ GLMMorphicPharoCodeRenderer>>actOnHighlightAndEvaluate: ann  [
 			textMorph shoutStyler style: textMorph text. ] ]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoCodeRenderer>>debugHighlightedText [
+{ #category : #callbacks }
+GLMMorphicPharoCodeRenderer >> debugHighlightedText [
 
 	UIManager default defer: [ 
 		textMorph textArea editor debugHighlight.
@@ -67,33 +51,24 @@ GLMMorphicPharoCodeRenderer>>debugHighlightedText [
 	
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoCodeRenderer>>evaluateAndPopPrintHighlight [
+{ #category : #callbacks }
+GLMMorphicPharoCodeRenderer >> evaluateAndPopPrintHighlight [
 
 	GLMPrintPopper
 		installAlarm: #popupPrint
 		for: self
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoCodeRenderer>>evaluateAndPrintSelection [
+{ #category : #callbacks }
+GLMMorphicPharoCodeRenderer >> evaluateAndPrintSelection [
 
 	UIManager default defer: [ 
 		textMorph textArea editor printIt ]
 	
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoCodeRenderer>>modelFor: aPresentation [
+{ #category : #rendering }
+GLMMorphicPharoCodeRenderer >> modelFor: aPresentation [
 	| highlightContext |
 	highlightContext := aPresentation highlightSmalltalkContext. 
 	^ GLMRubricSmalltalkTextModel new
@@ -103,11 +78,8 @@ GLMMorphicPharoCodeRenderer>>modelFor: aPresentation [
 		yourself
 ]
 
-{
-	#category : #events-alarms,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoCodeRenderer>>popupPrint [
+{ #category : #events-alarms }
+GLMMorphicPharoCodeRenderer >> popupPrint [
 	"Evaluates selected code and prints it in a popper"
 	textMorph textArea editor highlightEvaluateAndDo: [ :result | 
 		textMorph shoutStyler style: textMorph text.
@@ -115,21 +87,15 @@ GLMMorphicPharoCodeRenderer>>popupPrint [
 			openFromRubric: textMorph textArea withResult: result ]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoCodeRenderer>>profileHighlightedText [
+{ #category : #callbacks }
+GLMMorphicPharoCodeRenderer >> profileHighlightedText [
 
 	textMorph textArea editor tallyHighlight.
 	textMorph shoutStyler style: textMorph text.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoCodeRenderer>>registerEventsForPresentation: aPresentation [
+{ #category : #private }
+GLMMorphicPharoCodeRenderer >> registerEventsForPresentation: aPresentation [
 	super registerEventsForPresentation: aPresentation.
 	aPresentation when: GLMSelectCurrentLine send: #selectLine to: self.
 	aPresentation when: GLMEvaluateSelection send: #actOnEvaluateSelection: to: self.
@@ -140,11 +106,8 @@ GLMMorphicPharoCodeRenderer>>registerEventsForPresentation: aPresentation [
 	aPresentation when: GLMPrintSelection send: #evaluateAndPopPrintHighlight to: self
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoCodeRenderer>>selectLine [
+{ #category : #callbacks }
+GLMMorphicPharoCodeRenderer >> selectLine [
 	
 	textMorph textArea editor lineSelectAndEmptyCheck: [^ nil]
 ]

@@ -60,15 +60,11 @@ Class {
 	#classVars : [
 		'UseGradientLook'
 	],
-	#category : #Morphic-Widgets-Basic-Buttons,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Basic-Buttons
 }
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph class>>buildPluggableButtonShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+PluggableButtonMorph class >> buildPluggableButtonShortcutsOn: aBuilder [
 	<keymap>
 	(aBuilder shortcut: #action1)
 		category: #PluggableButtonMorph
@@ -76,11 +72,8 @@ PluggableButtonMorph class>>buildPluggableButtonShortcutsOn: aBuilder [
 		do: [ :target :morph :event | morph performAction ].
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph class>>exampleButtonNoAction [
+{ #category : #examples }
+PluggableButtonMorph class >> exampleButtonNoAction [
 	<exampleWidget>
 
 	^ PluggableButtonMorph
@@ -90,27 +83,18 @@ PluggableButtonMorph class>>exampleButtonNoAction [
 		help: 'This is a button'
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph class>>gradientButtonLook  [
+{ #category : #settings }
+PluggableButtonMorph class >> gradientButtonLook [ 
 	^ UseGradientLook ifNil: [UseGradientLook := self theme settings preferGradientFill]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph class>>gradientButtonLook: aBoolean [
+{ #category : #settings }
+PluggableButtonMorph class >> gradientButtonLook: aBoolean [
 	UseGradientLook := aBoolean
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph class>>newButtonFor: aModel action: actionSel label: stringOrText help: helpText [
+{ #category : #'instance creation' }
+PluggableButtonMorph class >> newButtonFor: aModel action: actionSel label: stringOrText help: helpText [
 	"Answer a new button."
 
 	^self
@@ -123,11 +107,8 @@ PluggableButtonMorph class>>newButtonFor: aModel action: actionSel label: string
 		help: helpText
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph class>>newButtonFor: aModel 
+{ #category : #'instance creation' }
+PluggableButtonMorph class >> newButtonFor: aModel 
 	getState: stateSel 
 	action: actionSel 
 	arguments: args 
@@ -151,21 +132,15 @@ PluggableButtonMorph class>>newButtonFor: aModel
 	^b
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph class>>on: anObject [
+{ #category : #'instance creation' }
+PluggableButtonMorph class >> on: anObject [
 
 	^ self on: anObject getState: #isOn action: #switch
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph class>>on: anObject getState: getStateSel action: actionSel [
+{ #category : #'instance creation' }
+PluggableButtonMorph class >> on: anObject getState: getStateSel action: actionSel [
 
 	^ self new
 		on: anObject
@@ -177,11 +152,8 @@ PluggableButtonMorph class>>on: anObject getState: getStateSel action: actionSel
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph class>>on: anObject getState: getStateSel action: actionSel label: labelSel [
+{ #category : #'instance creation' }
+PluggableButtonMorph class >> on: anObject getState: getStateSel action: actionSel label: labelSel [
 
 	^ self new
 		on: anObject
@@ -193,11 +165,8 @@ PluggableButtonMorph class>>on: anObject getState: getStateSel action: actionSel
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph class>>on: anObject getState: getStateSel action: actionSel label: labelSel icon: iconSel menu: menuSel [
+{ #category : #'instance creation' }
+PluggableButtonMorph class >> on: anObject getState: getStateSel action: actionSel label: labelSel icon: iconSel menu: menuSel [
 
 	^ self new
 		on: anObject
@@ -209,11 +178,8 @@ PluggableButtonMorph class>>on: anObject getState: getStateSel action: actionSel
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph class>>on: anObject getState: getStateSel action: actionSel label: labelSel menu: menuSel [
+{ #category : #'instance creation' }
+PluggableButtonMorph class >> on: anObject getState: getStateSel action: actionSel label: labelSel menu: menuSel [
 
 	^ self new
 		on: anObject
@@ -225,61 +191,43 @@ PluggableButtonMorph class>>on: anObject getState: getStateSel action: actionSel
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>action [
+{ #category : #accessing }
+PluggableButtonMorph >> action [
 	"Answer the action selector."
 
 	^self actionSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>action: aSymbol  [
+{ #category : #accessing }
+PluggableButtonMorph >> action: aSymbol [ 
 	"Set actionSelector to be the action defined by aSymbol."
 
 	actionSelector := aSymbol.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>actionBlock [
+{ #category : #accessing }
+PluggableButtonMorph >> actionBlock [
 
 	^ actionBlock 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>actionBlock: aBlock [
+{ #category : #accessing }
+PluggableButtonMorph >> actionBlock: aBlock [
 	"an action can be either specified by a block or a selector. If the block is set it takes priority over selector."
 	
 	actionBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>actionSelector [
+{ #category : #accessing }
+PluggableButtonMorph >> actionSelector [
 	"Answer the receiver's actionSelector"
 
 	^ actionSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>actionSelector: aSymbol  [
+{ #category : #accessing }
+PluggableButtonMorph >> actionSelector: aSymbol [ 
 	"Set actionSelector to be the action defined by aSymbol.
 	SimpleButtonMorph cross-compatibility"
 
@@ -287,96 +235,69 @@ PluggableButtonMorph>>actionSelector: aSymbol  [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>addStandardHaloMenuItemsTo: aMenu hand: aHandMorph [
+{ #category : #'event handling' }
+PluggableButtonMorph >> addStandardHaloMenuItemsTo: aMenu hand: aHandMorph [
 
 	aMenu add: 'browse action' selector: #browseAction.
 	aMenu addLine.
 	super addStandardHaloMenuItemsTo: aMenu hand: aHandMorph.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>adoptColor: aColor [
+{ #category : #updating }
+PluggableButtonMorph >> adoptColor: aColor [
 	"Go through paneColorChanged instead."
 	
 	self paneColorChanged
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>adoptPaneColor: aColor [
+{ #category : #updating }
+PluggableButtonMorph >> adoptPaneColor: aColor [
 
 	super adoptPaneColor: aColor.
 	aColor ifNil: [^self].
 	self adoptColor: self colorToUse
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>arguments [
+{ #category : #accessing }
+PluggableButtonMorph >> arguments [
 	"Answer the static arguments.
 	SimpleButtonMorph cross-compatibility."
 
 	^arguments
 ]
 
-{
-	#category : #arguments,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>arguments: args [
+{ #category : #arguments }
+PluggableButtonMorph >> arguments: args [
 	"If the receiver takes argument(s) that are static, they can be filled by calling this.  If its argument(s) are to be dynamically determined, then use an argumentProvider and argumentSelector instead"
 
 	arguments := args
 ]
 
-{
-	#category : #arguments,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>argumentsProvider: anObject argumentsSelector: aSelector [
+{ #category : #arguments }
+PluggableButtonMorph >> argumentsProvider: anObject argumentsSelector: aSelector [
 	"Set the argument provider and selector"
 
 	argumentsProvider := anObject.
 	argumentsSelector := aSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>askBeforeChanging [
+{ #category : #accessing }
+PluggableButtonMorph >> askBeforeChanging [
 
 	^ askBeforeChanging
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>askBeforeChanging: aBoolean [
+{ #category : #accessing }
+PluggableButtonMorph >> askBeforeChanging: aBoolean [
 	"If this preference is turned on, then give the model an opportunity to ask the user before accepting a change that might cause unaccepted edits to be lost."
 
 	askBeforeChanging := aBoolean.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>availableBorderStyles [
+{ #category : #accessing }
+PluggableButtonMorph >> availableBorderStyles [
 	"Return the selectors of the the available border styles for each state.
 	Must match the order of interactionStates."
 	
@@ -384,11 +305,8 @@ PluggableButtonMorph>>availableBorderStyles [
 		selectedBorderStyle selectedPressedBorderStyle selectedMouseOverBorderStyle selectedDisabledBorderStyle)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>availableFillStyles [
+{ #category : #accessing }
+PluggableButtonMorph >> availableFillStyles [
 	"Return the selectors of the the available fill styles for each state.
 	Must match the order of interactionStates."
 	
@@ -396,51 +314,36 @@ PluggableButtonMorph>>availableFillStyles [
 		selectedFillStyle selectedPressedFillStyle selectedMouseOverFillStyle selectedDisabledFillStyle)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>beIconBottom [
+{ #category : #accessing }
+PluggableButtonMorph >> beIconBottom [
 	"show icon top to label"
 	iconPosition := #bottom.
 	self update: getIconSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>beIconLeft [
+{ #category : #accessing }
+PluggableButtonMorph >> beIconLeft [
 	"show icon left to label"
 	iconPosition := #left.
 	self update: getIconSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>beIconRight [
+{ #category : #accessing }
+PluggableButtonMorph >> beIconRight [
 	"show icon right to label"
 	iconPosition := #right.
 	self update: getIconSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>beIconTop [
+{ #category : #accessing }
+PluggableButtonMorph >> beIconTop [
 	"show icon top to label"
 	iconPosition := #top.
 	self update: getIconSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>borderStyleToUse [
+{ #category : #accessing }
+PluggableButtonMorph >> borderStyleToUse [
 	"Return the borderStyle to use for the receiver."
 	
 	self gradientLook ifFalse:[^self borderStyle].
@@ -449,22 +352,16 @@ PluggableButtonMorph>>borderStyleToUse [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>browseAction [
+{ #category : #private }
+PluggableButtonMorph >> browseAction [
 
 	| classDefiningAction |
 	classDefiningAction := self model class whichClassIncludesSelector: self actionSelector.
 	Smalltalk tools browser openOnClass: classDefiningAction selector: self actionSelector.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>changed [
+{ #category : #updating }
+PluggableButtonMorph >> changed [
 	"Update the fillStyle here."
 
 	|lc pc bs|
@@ -487,11 +384,8 @@ PluggableButtonMorph>>changed [
 	super changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>color: aColor [
+{ #category : #accessing }
+PluggableButtonMorph >> color: aColor [
 	"Check to avoid repeats of the same color."
 
 	aColor ifNil: [^self].
@@ -502,11 +396,8 @@ PluggableButtonMorph>>color: aColor [
 	self class gradientButtonLook ifTrue: [self adoptColor: aColor]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>colorToUse [
+{ #category : #accessing }
+PluggableButtonMorph >> colorToUse [
 	"Answer the color we should use."
 
 	|c|
@@ -524,80 +415,56 @@ PluggableButtonMorph>>colorToUse [
 	^c
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>contentHolder [
+{ #category : #accessing }
+PluggableButtonMorph >> contentHolder [
 	"Answer the alignment morph for extra control."
 
 	^self submorphs first
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>cornerStyle: aSymbol [
+{ #category : #accessing }
+PluggableButtonMorph >> cornerStyle: aSymbol [
 	"Adjust the layout inset."
 
 	super cornerStyle: aSymbol.
 	self layoutInset: (self theme buttonLabelInsetFor: self)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>defaultBorderWidth [
+{ #category : #initialization }
+PluggableButtonMorph >> defaultBorderWidth [
 	"answer the default border width for the receiver"
 	^ self theme borderWidth
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>defaultColor [
+{ #category : #initialization }
+PluggableButtonMorph >> defaultColor [
 	"answer the default color/fill style for the receiver"
 	^ self containingWindow ifNil: [Color lightGreen] ifNotNil: [:w | w defaultBackgroundColor]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>disable [
+{ #category : #accessing }
+PluggableButtonMorph >> disable [
 	"Disable the button."
 
 	self enabled: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>disabledBorderStyle [
+{ #category : #accessing }
+PluggableButtonMorph >> disabledBorderStyle [
 	"Return the disabled borderStyle of the receiver."
 	
 	^self theme buttonDisabledBorderStyleFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>disabledFillStyle [
+{ #category : #accessing }
+PluggableButtonMorph >> disabledFillStyle [
 	"Return the disabled fillStyle of the receiver."
 	
 	^self theme buttonDisabledFillStyleFor: self
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>drawSubmorphsOn: aCanvas  [
+{ #category : #drawing }
+PluggableButtonMorph >> drawSubmorphsOn: aCanvas [ 
 	"Display submorphs back to front.
 	Draw the focus here since we are using inset bounds
 	for the focus rectangle."
@@ -606,29 +473,20 @@ PluggableButtonMorph>>drawSubmorphsOn: aCanvas  [
 	self hasKeyboardFocus ifTrue: [self drawKeyboardFocusOn: aCanvas]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>enable [
+{ #category : #accessing }
+PluggableButtonMorph >> enable [
 	"Enable the button."
 
 	self enabled: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>enabled [
+{ #category : #accessing }
+PluggableButtonMorph >> enabled [
 	^ enabled ifNil: [enabled := true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>enabled: aBoolean [
+{ #category : #accessing }
+PluggableButtonMorph >> enabled: aBoolean [
 	"Set the enabled state of the receiver."
 	
 	enabled = aBoolean ifTrue: [^self].
@@ -637,11 +495,8 @@ PluggableButtonMorph>>enabled: aBoolean [
 	self changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>extent: aPoint  [
+{ #category : #accessing }
+PluggableButtonMorph >> extent: aPoint [ 
 	"Set the receiver's extent to value provided.
 	Update the gradient fills."
 
@@ -654,11 +509,8 @@ PluggableButtonMorph>>extent: aPoint  [
 	^answer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>feedbackColor: aColor [
+{ #category : #accessing }
+PluggableButtonMorph >> feedbackColor: aColor [
 	"Set the color of this button's selection feedback border."
 
 	feedbackColor := aColor.
@@ -666,11 +518,8 @@ PluggableButtonMorph>>feedbackColor: aColor [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>fillStyleToUse [
+{ #category : #accessing }
+PluggableButtonMorph >> fillStyleToUse [
 	"Return the fillStyle to use for the receiver."
 	
 	^self perform: (self availableFillStyles at: (
@@ -678,110 +527,74 @@ PluggableButtonMorph>>fillStyleToUse [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>focusBounds [
+{ #category : #accessing }
+PluggableButtonMorph >> focusBounds [
 	"Answer the bounds for drawing the focus indication."
 
 	^self theme buttonFocusBoundsFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>focusColor [
+{ #category : #accessing }
+PluggableButtonMorph >> focusColor [
 	"Answer the keyboard focus indication color."
 
 	^self color contrastingColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>focusIndicatorCornerRadius [
+{ #category : #accessing }
+PluggableButtonMorph >> focusIndicatorCornerRadius [
 	"Answer the corner radius preferred for the focus indicator
 	for the receiver for themes that support this."
 
 	^self theme buttonFocusIndicatorCornerRadiusFor: self 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>font [
+{ #category : #accessing }
+PluggableButtonMorph >> font [
 	^ font
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>font: anObject [
+{ #category : #accessing }
+PluggableButtonMorph >> font: anObject [
 	font := anObject.
 	self update: getLabelSelector.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>getColorSelector [
+{ #category : #accessing }
+PluggableButtonMorph >> getColorSelector [
 	^getColorSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>getColorSelector: aSymbol [
+{ #category : #accessing }
+PluggableButtonMorph >> getColorSelector: aSymbol [
 	getColorSelector := aSymbol.
 	self update: getColorSelector.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>getEnabledSelector [
+{ #category : #accessing }
+PluggableButtonMorph >> getEnabledSelector [
 	^getEnabledSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>getEnabledSelector: aSymbol [
+{ #category : #accessing }
+PluggableButtonMorph >> getEnabledSelector: aSymbol [
 	getEnabledSelector := aSymbol.
 	self update: aSymbol.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>getFontSelector [
+{ #category : #accessing }
+PluggableButtonMorph >> getFontSelector [
 	^ getFontSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>getFontSelector: anObject [
+{ #category : #accessing }
+PluggableButtonMorph >> getFontSelector: anObject [
 	getFontSelector := anObject.
 	self update: getFontSelector.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>getMenu: shiftPressed  [
+{ #category : #private }
+PluggableButtonMorph >> getMenu: shiftPressed [ 
 	"Answer the menu for this button, supplying an empty menu to be filled in. If the menu selector takes an extra argument, pass in the current state of the shift key."
 
 	| menu |
@@ -798,21 +611,15 @@ PluggableButtonMorph>>getMenu: shiftPressed  [
 	^self error: 'The getMenuSelector must be a 1- or 2-keyword symbol'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>getMenuSelector: aSymbol [
+{ #category : #accessing }
+PluggableButtonMorph >> getMenuSelector: aSymbol [
 	"Set the menu selector."
 
 	getMenuSelector := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>getModelState [
+{ #category : #accessing }
+PluggableButtonMorph >> getModelState [
 	"Answer the result of sending the receiver's model the getStateSelector message.
 	If the selector expects arguments then supply as for the actionSelector."
 
@@ -825,99 +632,66 @@ PluggableButtonMorph>>getModelState [
 							model perform: getStateSelector withEnoughArguments: arguments]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>gradientLook [
+{ #category : #accessing }
+PluggableButtonMorph >> gradientLook [
 	^ gradientLook ifNil: [gradientLook := self theme currentSettings preferGradientFill]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>gradientLook: aBoolean [
+{ #category : #accessing }
+PluggableButtonMorph >> gradientLook: aBoolean [
 	gradientLook := aBoolean
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>handlesKeyboard: evt [
+{ #category : #'event handling' }
+PluggableButtonMorph >> handlesKeyboard: evt [
 	"Answer true, we'll handle spacebar for pressing plus the usual
 	tab navigation."
 	
 	^true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>handlesMouseDown: evt [
+{ #category : #'event handling' }
+PluggableButtonMorph >> handlesMouseDown: evt [
 
 	^ true
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>handlesMouseOver: evt [
+{ #category : #'event handling' }
+PluggableButtonMorph >> handlesMouseOver: evt [
 
 	^ true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>handlesMouseOverDragging: evt [
+{ #category : #'event handling' }
+PluggableButtonMorph >> handlesMouseOverDragging: evt [
 
 	^ true
 ]
 
-{
-	#category : #balloon,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>helpText  [
+{ #category : #balloon }
+PluggableButtonMorph >> helpText [ 
 	^ self balloonText
 ]
 
-{
-	#category : #balloon,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>helpText: aString [
+{ #category : #balloon }
+PluggableButtonMorph >> helpText: aString [
 
 	self setBalloonText: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>icon [
+{ #category : #accessing }
+PluggableButtonMorph >> icon [
 	^ icon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>icon: anIcon [
+{ #category : #accessing }
+PluggableButtonMorph >> icon: anIcon [
 	icon := anIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>iconPosition [
+{ #category : #accessing }
+PluggableButtonMorph >> iconPosition [
 	"Position of the icon. 
 	  #left - Icon will be left to the label
 	  #right - Icon will be right to the label 
@@ -925,11 +699,8 @@ PluggableButtonMorph>>iconPosition [
 	^ iconPosition ifNil: [ iconPosition := #left ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>indicateModalChild [
+{ #category : #drawing }
+PluggableButtonMorph >> indicateModalChild [
 	"Flash the button border."
 	
 	|fs c w d|
@@ -952,11 +723,8 @@ PluggableButtonMorph>>indicateModalChild [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>initialize [
+{ #category : #initialization }
+PluggableButtonMorph >> initialize [
 	"Initialize the state of the receiver."
 
 	super initialize.
@@ -982,21 +750,15 @@ PluggableButtonMorph>>initialize [
 	self clipSubmorphs: true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>initializeLabelMorph [
+{ #category : #initialization }
+PluggableButtonMorph >> initializeLabelMorph [
 	labelMorph := LabelMorph new
 		extent: 0 @ 0;
 		yourself	"this is a safe guard for enabled: among others."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>interactionState [
+{ #category : #accessing }
+PluggableButtonMorph >> interactionState [
 	"Return the state that the receiver is in, #pressed, #normal etc.."
 	
 	|state mo|
@@ -1020,43 +782,31 @@ PluggableButtonMorph>>interactionState [
 			ifFalse: [#disabled]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>interactionStates [
+{ #category : #accessing }
+PluggableButtonMorph >> interactionStates [
 	"Return all the states that the receiver may be in at any given moment."
 	
 	^#(normal mouseOver pressed disabled
 		selected selectedPressed selectedMouseOver selectedDisabled)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>invokeMenu: evt [
+{ #category : #private }
+PluggableButtonMorph >> invokeMenu: evt [
 	"Invoke my menu in response to the given event."
 	| menu |
 	menu := self getMenu: evt shiftPressed.
 	menu ifNotNil: [menu popUpEvent: evt in: self world]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>isDefault [
+{ #category : #accessing }
+PluggableButtonMorph >> isDefault [
 	"Answer whether the button is considered to be a default one."
 
 	^self valueOfProperty: #isDefault ifAbsent: [false] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>isDefault: aBoolean [
+{ #category : #accessing }
+PluggableButtonMorph >> isDefault: aBoolean [
 	"Set whether the button is to be considered default."
 
 	aBoolean
@@ -1065,20 +815,14 @@ PluggableButtonMorph>>isDefault: aBoolean [
 	self changed
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>isMorphicModel  [
+{ #category : #compatibility }
+PluggableButtonMorph >> isMorphicModel [ 
 
 	^ true
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>keyStroke: event  [
+{ #category : #keyboard }
+PluggableButtonMorph >> keyStroke: event [ 
 	"Process spacebar for action and tab keys for navigation."
 	
 	(self navigationKey: event) ifTrue: [^self].
@@ -1086,44 +830,32 @@ PluggableButtonMorph>>keyStroke: event  [
 		ifTrue: [self performAction]
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>keyboardFocusChange: aBoolean [
+{ #category : #keyboard }
+PluggableButtonMorph >> keyboardFocusChange: aBoolean [
 	"The message is sent to a morph when its keyboard focus changes.
 	Update for focus feedback."
 	super keyboardFocusChange: aBoolean.
 	self focusChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>label [
+{ #category : #accessing }
+PluggableButtonMorph >> label [
 	"Answer the DisplayObject used as this button's label."
 
 	^ label
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>label: aStringOrTextOrMorph [
+{ #category : #accessing }
+PluggableButtonMorph >> label: aStringOrTextOrMorph [
 	"Label this button with the given string or morph."
 	font ifNil: [
 		self label: aStringOrTextOrMorph font: self theme buttonFont]
 	ifNotNil: [ self label: aStringOrTextOrMorph font: font ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>label: aStringOrTextOrMorph font: aFont [
+{ #category : #accessing }
+PluggableButtonMorph >> label: aStringOrTextOrMorph font: aFont [
 	"Label this button with the given string or morph."
 	| containerMorph |
 
@@ -1162,37 +894,25 @@ PluggableButtonMorph>>label: aStringOrTextOrMorph font: aFont [
 	self updateLabelEnablement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>labelMorph [
+{ #category : #accessing }
+PluggableButtonMorph >> labelMorph [
 	"Answer the actual label morph."
 
 	^ labelMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>lastState [
+{ #category : #accessing }
+PluggableButtonMorph >> lastState [
 	^ lastState
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>lastState: anObject [
+{ #category : #accessing }
+PluggableButtonMorph >> lastState: anObject [
 	lastState := anObject
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>layoutBounds: aRectangle [
+{ #category : #layout }
+PluggableButtonMorph >> layoutBounds: aRectangle [
 	"Set the bounds for laying out children of the receiver.
 	Update the fillstyle since it may depend on the bounds."
 	
@@ -1202,41 +922,29 @@ PluggableButtonMorph>>layoutBounds: aRectangle [
 			ifTrue: [self fillStyle: self fillStyleToUse]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>minHeight [
+{ #category : #accessing }
+PluggableButtonMorph >> minHeight [
 	"Consult the theme also."
 
 	^super minHeight max: self theme buttonMinHeight
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>minWidth [
+{ #category : #accessing }
+PluggableButtonMorph >> minWidth [
 	"Consult the theme also."
 
 	^super minWidth max: self theme buttonMinWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>model [
+{ #category : #accessing }
+PluggableButtonMorph >> model [
 	"Answer the receiver's model."
 	
 	^model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>model: anObject [
+{ #category : #accessing }
+PluggableButtonMorph >> model: anObject [
 	"Set my model and make me me a dependent of the given object."
 
 	model ifNotNil: [model removeDependent: self].
@@ -1245,11 +953,8 @@ PluggableButtonMorph>>model: anObject [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>mouseDown: evt [
+{ #category : #'event handling' }
+PluggableButtonMorph >> mouseDown: evt [
 	"Details: If this button is triggered on mouse down or the event is the menu gesture, handle it immediately. Otherwise, make a list of buttons (including the receiver) for mouseMove feedback. This allows a simple radio-button effect among the button submorphs of a given morph."
 
 	self enabled ifFalse: [^self].
@@ -1265,11 +970,8 @@ PluggableButtonMorph>>mouseDown: evt [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>mouseEnter: evt [
+{ #category : #'event handling' }
+PluggableButtonMorph >> mouseEnter: evt [
 	"Update the appearance."
 	self setProperty: #mouseEntered toValue: true.
 	
@@ -1280,11 +982,8 @@ PluggableButtonMorph>>mouseEnter: evt [
 	super mouseEnter: evt
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>mouseLeave: evt [
+{ #category : #'event handling' }
+PluggableButtonMorph >> mouseLeave: evt [
 	"Update the appearance."
 	self setProperty: #mouseEntered toValue: false.
 	self gradientLook
@@ -1295,51 +994,36 @@ PluggableButtonMorph>>mouseLeave: evt [
 	super mouseLeave: evt
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>mouseLeaveDragging: evt [
+{ #category : #'event handling' }
+PluggableButtonMorph >> mouseLeaveDragging: evt [
 
 	self mouseLeave: evt
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>mouseMove: evt [
+{ #category : #'event handling' }
+PluggableButtonMorph >> mouseMove: evt [
 
 	allButtons ifNil: [^ self].
 	allButtons do: [:m | m updateFeedbackForEvt: evt].
 
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>mouseOverBorderStyle [
+{ #category : #style }
+PluggableButtonMorph >> mouseOverBorderStyle [
 	"Return the mouse over borderStyle of the receiver."
 	
 	^self theme buttonMouseOverBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>mouseOverFillStyle [
+{ #category : #style }
+PluggableButtonMorph >> mouseOverFillStyle [
 	"Return the mouse over fillStyle of the receiver."
 	
 	^self theme buttonMouseOverFillStyleFor: self
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>mouseUp: evt [
+{ #category : #'event handling' }
+PluggableButtonMorph >> mouseUp: evt [
 	"Perform the button action if the mouse pointer is in a button in the group.
 	Optimised feedback updates."
 	
@@ -1356,11 +1040,8 @@ PluggableButtonMorph>>mouseUp: evt [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>newLabel [
+{ #category : #accessing }
+PluggableButtonMorph >> newLabel [
 	"Answer a new label for the receiver."
 	|lbl|
 	lbl := self theme buttonLabelFor: self.
@@ -1369,72 +1050,51 @@ PluggableButtonMorph>>newLabel [
 	^lbl
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>newLabel: aFont [
+{ #category : #accessing }
+PluggableButtonMorph >> newLabel: aFont [
 	"Answer a new label for the receiver with the given font."
 
 	^self newLabel
 		font: aFont
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>normalBorderStyle [
+{ #category : #style }
+PluggableButtonMorph >> normalBorderStyle [
 	"Return the normal borderStyle of the receiver."
 	
 	^self theme buttonNormalBorderStyleFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>normalColor [
+{ #category : #accessing }
+PluggableButtonMorph >> normalColor [
 	"Return the normal colour for the receiver."
 	
 	^self theme buttonColorFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>normalFillStyle [
+{ #category : #style }
+PluggableButtonMorph >> normalFillStyle [
 	"Return the normal fillStyle of the receiver."
 	
 	^self theme buttonNormalFillStyleFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>offColor [
+{ #category : #accessing }
+PluggableButtonMorph >> offColor [
 	^ offColor
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>offColor: colorWhenOff [
+{ #category : #accessing }
+PluggableButtonMorph >> offColor: colorWhenOff [
 	"Set the fill colors to be used when this button is off."
 
 	self onColor: onColor offColor: colorWhenOff
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>on: anObject getState: getStateSel action: actionSel label: labelSel icon: iconSel menu: menuSel [
+{ #category : #accessing }
+PluggableButtonMorph >> on: anObject getState: getStateSel action: actionSel label: labelSel icon: iconSel menu: menuSel [
 	"Set up the pluggable parameters.
 	Update label and state."
 	
@@ -1450,11 +1110,8 @@ PluggableButtonMorph>>on: anObject getState: getStateSel action: actionSel label
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>on: anObject getState: getStateSel action: actionSel label: labelSel menu: menuSel [
+{ #category : #accessing }
+PluggableButtonMorph >> on: anObject getState: getStateSel action: actionSel label: labelSel menu: menuSel [
 	"This method is for backward compatibility."
 	self 
 		on: anObject 
@@ -1465,22 +1122,16 @@ PluggableButtonMorph>>on: anObject getState: getStateSel action: actionSel label
 		menu: menuSel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>onColor [
+{ #category : #accessing }
+PluggableButtonMorph >> onColor [
 	"Answer the on color."
 	
 	^onColor
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>onColor: colorWhenOn offColor: colorWhenOff [
+{ #category : #accessing }
+PluggableButtonMorph >> onColor: colorWhenOn offColor: colorWhenOff [
 	"Set the fill colors to be used when this button is on/off."
 
 	onColor := colorWhenOn.
@@ -1492,31 +1143,22 @@ PluggableButtonMorph>>onColor: colorWhenOn offColor: colorWhenOff [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>paneColorChanged [
+{ #category : #updating }
+PluggableButtonMorph >> paneColorChanged [
 	"Use changed to update the appearance."
 
 	self changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>performAction [
+{ #category : #accessing }
+PluggableButtonMorph >> performAction [
 	"backward compatibility"
 	
 	self performAction: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>performAction: event [
+{ #category : #accessing }
+PluggableButtonMorph >> performAction: event [
 	"Inform the model that this button has been pressed. Sent by the controller when this button is pressed. If the button's actionSelector takes any arguments, they are obtained dynamically by sending the argumentSelector to the argumentsProvider"
 
 	enabled ifFalse: [^self].
@@ -1531,182 +1173,128 @@ PluggableButtonMorph>>performAction: event [
 					model perform: actionSelector withArguments: arguments]]
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>pressedBorderStyle [
+{ #category : #style }
+PluggableButtonMorph >> pressedBorderStyle [
 	"Return the pressed borderStyle of the receiver."
 	
 	^self theme buttonPressedBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>pressedFillStyle [
+{ #category : #style }
+PluggableButtonMorph >> pressedFillStyle [
 	"Return the pressed fillStyle of the receiver."
 	
 	^self theme buttonPressedFillStyleFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>roundedCorners: anArray [
+{ #category : #accessing }
+PluggableButtonMorph >> roundedCorners: anArray [
 	"Adjust the layout inset if necessary."
 
 	super roundedCorners: anArray.
 	self layoutInset: (self theme buttonLabelInsetFor: self)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>selectedBorderStyle [
+{ #category : #accessing }
+PluggableButtonMorph >> selectedBorderStyle [
 	"Return the selected borderStyle of the receiver."
 	
 	^self theme buttonSelectedBorderStyleFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>selectedDisabledBorderStyle [
+{ #category : #accessing }
+PluggableButtonMorph >> selectedDisabledBorderStyle [
 	"Return the selected disabled borderStyle of the receiver."
 	
 	^self theme buttonSelectedDisabledBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>selectedDisabledFillStyle [
+{ #category : #style }
+PluggableButtonMorph >> selectedDisabledFillStyle [
 	"Return the selected disabled fillStyle of the receiver."
 	
 	^self theme buttonSelectedDisabledFillStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>selectedFillStyle [
+{ #category : #style }
+PluggableButtonMorph >> selectedFillStyle [
 	"Return the selected fillStyle of the receiver."
 	
 	^self theme buttonSelectedFillStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>selectedMouseOverBorderStyle [
+{ #category : #style }
+PluggableButtonMorph >> selectedMouseOverBorderStyle [
 	"Return the selected mouse over borderStyle of the receiver."
 	
 	^self theme buttonSelectedMouseOverBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>selectedMouseOverFillStyle [
+{ #category : #style }
+PluggableButtonMorph >> selectedMouseOverFillStyle [
 	"Return the selected mouse over fillStyle of the receiver."
 	
 	^self theme buttonSelectedMouseOverFillStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>selectedPressedBorderStyle [
+{ #category : #style }
+PluggableButtonMorph >> selectedPressedBorderStyle [
 	"Return the selected pressed borderStyle of the receiver."
 	
 	^self theme buttonSelectedPressedBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>selectedPressedFillStyle [
+{ #category : #style }
+PluggableButtonMorph >> selectedPressedFillStyle [
 	"Return the selected pressed fillStyle of the receiver."
 	
 	^self theme buttonSelectedPressedFillStyleFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>shortcutCharacter [
+{ #category : #accessing }
+PluggableButtonMorph >> shortcutCharacter [
 	"Return the Character to be used as a shortcut to turn on this switch, or nil if this switch doesn't have a keyboard shortcut."
 
 	^ shortcutCharacter
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>shortcutCharacter: aCharacter  [
+{ #category : #accessing }
+PluggableButtonMorph >> shortcutCharacter: aCharacter [ 
 	"Set the character to be used as a keyboard shortcut for turning on this switch."
 
 	shortcutCharacter := aCharacter.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>showSelectionFeedback [
+{ #category : #accessing }
+PluggableButtonMorph >> showSelectionFeedback [
 	"Answer whether the feedback should be shown for being pressed."
 
 	^showSelectionFeedback
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>showSelectionFeedback: aBoolean [
+{ #category : #accessing }
+PluggableButtonMorph >> showSelectionFeedback: aBoolean [
 	"Set the feedback."
 
 	showSelectionFeedback := aBoolean
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>takesKeyboardFocus [
+{ #category : #keyboard }
+PluggableButtonMorph >> takesKeyboardFocus [
 	"Answer whether the receiver can normally take keyboard focus."
 
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>target [
+{ #category : #accessing }
+PluggableButtonMorph >> target [
 	^model
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>themeChanged [
+{ #category : #updating }
+PluggableButtonMorph >> themeChanged [
 	"Set the border style to thin gray in the case of going to StandardSqueak."
 
 	self
@@ -1722,32 +1310,23 @@ PluggableButtonMorph>>themeChanged [
 	super themeChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>triggerOnMouseDown [
+{ #category : #accessing }
+PluggableButtonMorph >> triggerOnMouseDown [
 
 	^ triggerOnMouseDown
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>triggerOnMouseDown: aBoolean [
+{ #category : #accessing }
+PluggableButtonMorph >> triggerOnMouseDown: aBoolean [
 	"If this preference is turned on, then trigger my action immediately when the mouse goes down."
 
 	triggerOnMouseDown := aBoolean.
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>update: aParameter  [
+{ #category : #updating }
+PluggableButtonMorph >> update: aParameter [ 
 	|state|
 	
 	aParameter ifNil: [^self].
@@ -1777,11 +1356,8 @@ PluggableButtonMorph>>update: aParameter  [
 	aParameter first = #askBeforeChanging: ifTrue: [ self askBeforeChanging: aParameter second ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>updateFeedbackForEvt: evt [
+{ #category : #updating }
+PluggableButtonMorph >> updateFeedbackForEvt: evt [
 
 	| newState |
 	newState := self containsPoint: evt cursorPoint.
@@ -1791,21 +1367,15 @@ PluggableButtonMorph>>updateFeedbackForEvt: evt [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>updateLabelEnablement [
+{ #category : #updating }
+PluggableButtonMorph >> updateLabelEnablement [
 	"Set the enabled state of the label if possible."
 	
 	self labelMorph enabled: self enabled
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>veryDeepFixupWith: deepCopier [
+{ #category : #copying }
+PluggableButtonMorph >> veryDeepFixupWith: deepCopier [
 	"If fields were weakly copied, fix them here.  If they were in the tree being copied, fix them up, otherwise point to the originals!!"
 
 super veryDeepFixupWith: deepCopier.
@@ -1813,11 +1383,8 @@ model := deepCopier references at: model ifAbsent: [model].
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>veryDeepInner: deepCopier [
+{ #category : #copying }
+PluggableButtonMorph >> veryDeepInner: deepCopier [
 	"Copy all of my instance variables.  Some need to be not copied at all, but shared.  	Warning!!  Every instance variable defined in this class must be handled.  We must also implement veryDeepFixupWith:.  See DeepCopier class comment."
 
 super veryDeepInner: deepCopier.
@@ -1841,11 +1408,8 @@ argumentsProvider := argumentsProvider veryDeepCopyWith: deepCopier.
 argumentsSelector := argumentsSelector.  " a Symbol" 
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>wantsKeyboardFocusNavigation [
+{ #category : #keyboard }
+PluggableButtonMorph >> wantsKeyboardFocusNavigation [
 	"Answer whether the receiver would like keyboard focus
 	when navigated to by keyboard."
 
@@ -1853,11 +1417,8 @@ PluggableButtonMorph>>wantsKeyboardFocusNavigation [
 		self valueOfProperty: #wantsKeyboardFocusNavigation ifAbsent: [true]]
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorph>>wantsKeyboardFocusOnMouseDown [
+{ #category : #keyboard }
+PluggableButtonMorph >> wantsKeyboardFocusOnMouseDown [
 	"Answer whether the receiver would like keyboard focus
 	on a mouse down event. use a property here for apps that want to take keyboard
 	focus when the button is pressed (so that other morphs can, e.g. accept on focus change)."

@@ -10,14 +10,10 @@ this single selector printOn:indent: is scanned as one RBMultiKeywordLiteralToke
 Class {
 	#name : #RBMultiKeywordLiteralToken,
 	#superclass : #RBLiteralToken,
-	#category : #AST-Core-Tokens,
-	#timestamp : 'NicolaiHess 8/22/2016 15:46'
+	#category : #AST-Core-Tokens
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMultiKeywordLiteralToken>>isMultiKeyword [
+{ #category : #testing }
+RBMultiKeywordLiteralToken >> isMultiKeyword [
 	^true
 ]

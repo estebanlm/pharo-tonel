@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'direction'
 	],
-	#category : #Morphic-Core-Events,
-	#timestamp : 'gvc 9/23/2008 11:46'
+	#category : #Morphic-Core-Events
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseWheelEvent class>>fromCharacter: aCharacter position: aPoint buttons: evtButtons hand: evtHand stamp: stamp [
+{ #category : #'instance creation' }
+MouseWheelEvent class >> fromCharacter: aCharacter position: aPoint buttons: evtButtons hand: evtHand stamp: stamp [
 
 	^ self new
 		setType: #mouseWheel
@@ -26,77 +22,53 @@ MouseWheelEvent class>>fromCharacter: aCharacter position: aPoint buttons: evtBu
 		stamp: stamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseWheelEvent>>direction [
+{ #category : #accessing }
+MouseWheelEvent >> direction [
 	"Answer the value of direction"
 
 	^ direction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseWheelEvent>>direction: anObject [
+{ #category : #accessing }
+MouseWheelEvent >> direction: anObject [
 	"Set the value of direction"
 
 	direction := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseWheelEvent>>isDown [
+{ #category : #testing }
+MouseWheelEvent >> isDown [
 
 	^ direction = Character arrowDown
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseWheelEvent>>isLeft [
+{ #category : #testing }
+MouseWheelEvent >> isLeft [
 
 	^ direction = Character arrowLeft
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseWheelEvent>>isMouseWheel [
+{ #category : #testing }
+MouseWheelEvent >> isMouseWheel [
 	"Answer whether the receiver is a mouse wheel event."
 	
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseWheelEvent>>isRight [
+{ #category : #testing }
+MouseWheelEvent >> isRight [
 
 	^ direction = Character arrowRight
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseWheelEvent>>isUp [
+{ #category : #testing }
+MouseWheelEvent >> isUp [
 
 	^ direction = Character arrowUp
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseWheelEvent>>printOn: aStream [
+{ #category : #printing }
+MouseWheelEvent >> printOn: aStream [
 
 	aStream nextPut: $[.
 	aStream nextPutAll: self cursorPoint printString; space.
@@ -109,11 +81,8 @@ MouseWheelEvent>>printOn: aStream [
 	aStream nextPut: $].
 ]
 
-{
-	#category : #dispatching,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseWheelEvent>>sentTo: anObject [
+{ #category : #dispatching }
+MouseWheelEvent >> sentTo: anObject [
 	"Dispatch the receiver into anObject"
 	
 	type == #mouseWheel ifTrue:[^anObject handleMouseWheel: self].
@@ -121,11 +90,8 @@ MouseWheelEvent>>sentTo: anObject [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseWheelEvent>>setType: evtType position: evtPos direction: dirSymbol buttons: evtButtons hand: evtHand stamp: stamp [
+{ #category : #accessing }
+MouseWheelEvent >> setType: evtType position: evtPos direction: dirSymbol buttons: evtButtons hand: evtHand stamp: stamp [
 	"Set the state for the receiver."
 	
 	type := evtType.

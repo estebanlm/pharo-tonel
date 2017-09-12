@@ -4,15 +4,11 @@ A concrete container already knows how to treat classes, methods and packages.
 Class {
 	#name : #RGContainer,
 	#superclass : #RGAbstractContainer,
-	#category : #Ring-Core-Containers,
-	#timestamp : 'VeronicaUquillas 9/6/2011 16:12'
+	#category : #Ring-Core-Containers
 }
 
-{
-	#category : #'image package loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer class>>allManagers [
+{ #category : #'image package loading' }
+RGContainer class >> allManagers [
 
 	^ Smalltalk globals at: #MCWorkingCopy 
 		ifPresent: [:mcwc | mcwc allManagers ] 
@@ -20,11 +16,8 @@ RGContainer class>>allManagers [
 
 ]
 
-{
-	#category : #'image package loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer class>>category: categoryName matches: prefix [
+{ #category : #'image package loading' }
+RGContainer class >> category: categoryName matches: prefix [
 
 	| prefixSize catSize |
 	categoryName ifNil: [ ^false ].
@@ -36,38 +29,26 @@ RGContainer class>>category: categoryName matches: prefix [
 	^(categoryName at: prefix size + 1 ifAbsent: [ ^true ]) = $-
 ]
 
-{
-	#category : #'image package loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer class>>packageKeys [
+{ #category : #'image package loading' }
+RGContainer class >> packageKeys [
 
 	^ self allManagers collect: [ :pck | pck package name asSymbol -> ('*', pck package name asLowercase) ]
 ]
 
-{
-	#category : #'image package loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer class>>packageNames [
+{ #category : #'image package loading' }
+RGContainer class >> packageNames [
 
 	^ self allManagers collect: [ :pck | pck package name asSymbol ]
 ]
 
-{
-	#category : #'image package loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer class>>packageOfClass: aRGBehaviorDefinition [
+{ #category : #'image package loading' }
+RGContainer class >> packageOfClass: aRGBehaviorDefinition [
 
 	^ self packageOfClass: aRGBehaviorDefinition using: self packageNames.
 ]
 
-{
-	#category : #'image package loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer class>>packageOfClass: aRGBehaviorDefinition using: packageNames [
+{ #category : #'image package loading' }
+RGContainer class >> packageOfClass: aRGBehaviorDefinition using: packageNames [
 
 	"Looks for the package of aRGBehaviorDefinition from the image"
 	| pName |
@@ -78,20 +59,14 @@ RGContainer class>>packageOfClass: aRGBehaviorDefinition using: packageNames [
 	^ pName ifNotNil:[ RGPackage named: pName ]
 ]
 
-{
-	#category : #'image package loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer class>>packageOfMethod: aRGMethodDefinition [
+{ #category : #'image package loading' }
+RGContainer class >> packageOfMethod: aRGMethodDefinition [
 
 	^ self packageOfMethod: aRGMethodDefinition using: self packageKeys
 ]
 
-{
-	#category : #'image package loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer class>>packageOfMethod: aRGMethodDefinition using: packageKeys [
+{ #category : #'image package loading' }
+RGContainer class >> packageOfMethod: aRGMethodDefinition using: packageKeys [
 
 	"Looks for the package of aRGMethodDefinition from the image"
 	| pName parentPackage |
@@ -105,11 +80,8 @@ RGContainer class>>packageOfMethod: aRGMethodDefinition using: packageKeys [
 	^ pName ifNotNil:[ RGPackage named: pName key ]
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>addClass: aRGBehaviorDefinition [
+{ #category : #adding/removing }
+RGContainer >> addClass: aRGBehaviorDefinition [
 	"aRGBehaviorDefinition has to be a class, trait or metaclass"
 	self flag: 'when i am adding a metaclass? check this?'.
 
@@ -118,82 +90,58 @@ RGContainer>>addClass: aRGBehaviorDefinition [
 	self addElement: aRGBehaviorDefinition in: self definedClasses
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>addClassNamed: className  [
+{ #category : #adding/removing }
+RGContainer >> addClassNamed: className [ 
 	"Creates a class with the given name"
 	self addClass: (RGClassDefinition named: className)
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>addMethod: aRGMethodDefinition [
+{ #category : #adding/removing }
+RGContainer >> addMethod: aRGMethodDefinition [
 	"aRGMethodDefinition needs to satisfy the status isMethod"
 
 	aRGMethodDefinition isMethod ifFalse:[ ^self ].
 	self addElement: aRGMethodDefinition in: self methods
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>addPackage: aRGPackage [
+{ #category : #adding/removing }
+RGContainer >> addPackage: aRGPackage [
 	"adds a child package"
 
 	aRGPackage isPackage ifFalse:[ ^self ].
 	self addElement: aRGPackage in: self packages
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>addPackageNamed: packageName [
+{ #category : #adding/removing }
+RGContainer >> addPackageNamed: packageName [
 	"adds a child package with the given name"
 
 	(self includesPackageNamed: packageName) ifTrue: [ ^self ].
 	self addPackage: (RGPackage named: packageName)
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>addTrait: aRGTraitDefinition [
+{ #category : #adding/removing }
+RGContainer >> addTrait: aRGTraitDefinition [
 	"convenient method"
 
 	self addClass: aRGTraitDefinition
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>addTraitNamed: traitName  [
+{ #category : #adding/removing }
+RGContainer >> addTraitNamed: traitName [ 
 	"Creates a trait with the given name"
 	self addClass:  (RGTraitDefinition named: traitName)
 ]
 
-{
-	#category : #'convenient accesses',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>allClasses [
+{ #category : #'convenient accesses' }
+RGContainer >> allClasses [
 	"convenient method"
 
 	^self classes
 ]
 
-{
-	#category : #iterating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>allClassesDo: aBlock [
+{ #category : #iterating }
+RGContainer >> allClassesDo: aBlock [
 	"Evaluate the argument, aBlock, for each class and its metaclass"
 
 	self allClasses do: [ :each|
@@ -202,31 +150,22 @@ RGContainer>>allClassesDo: aBlock [
 			ifTrue:[ aBlock value: each theMetaClass ] ]
 ]
 
-{
-	#category : #'convenient accesses',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>allMethods [
+{ #category : #'convenient accesses' }
+RGContainer >> allMethods [
 	"convenient method"
 
 	^self methods
 ]
 
-{
-	#category : #'convenient accesses',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>allTraits [
+{ #category : #'convenient accesses' }
+RGContainer >> allTraits [
 	"convenient method"
 	
 	^self allClasses select:[ :each | each isTrait ]
 ]
 
-{
-	#category : #iterating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>allTraitsDo: aBlock [
+{ #category : #iterating }
+RGContainer >> allTraitsDo: aBlock [
 	"Evaluate the argument, aBlock, for each trait"
 
 	self allTraits do: [ :each|
@@ -235,22 +174,16 @@ RGContainer>>allTraitsDo: aBlock [
 			ifTrue:[ aBlock value: each theMetaClass ] ]
 ]
 
-{
-	#category : #'lookup by name',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>classNamed: className [
+{ #category : #'lookup by name' }
+RGContainer >> classNamed: className [
 	"Retrieves an RGBehaviorDefinition object.
 	className could be theMetaClass name"
 	
 	^self classOrTraitNamed: className
 ]
 
-{
-	#category : #'convenient accesses',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>classNames [
+{ #category : #'convenient accesses' }
+RGContainer >> classNames [
 	"Retrieves class names (including traits)"
 	
 	^ self definedClasses isDictionary
@@ -258,11 +191,8 @@ RGContainer>>classNames [
 		ifFalse:[ self definedClasses collect:[ :class|  class name ] ]
 ]
 
-{
-	#category : #'lookup by name',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>classOrTraitNamed: className [
+{ #category : #'lookup by name' }
+RGContainer >> classOrTraitNamed: className [
 	"A class or metaclass can be reached by its name"
 	| theClass |
 
@@ -275,31 +205,22 @@ RGContainer>>classOrTraitNamed: className [
 		ifFalse:[ theClass ] 
 ]
 
-{
-	#category : #'convenient accesses',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>classes [
+{ #category : #'convenient accesses' }
+RGContainer >> classes [
 	"convenient method"
 
 	^self definedClasses
 ]
 
-{
-	#category : #'convenient accesses',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>classes: aCollection [
+{ #category : #'convenient accesses' }
+RGContainer >> classes: aCollection [
 	"convenient method"
 
 	self definedClasses: aCollection
 ]
 
-{
-	#category : #iterating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>classesDo: aBlock [
+{ #category : #iterating }
+RGContainer >> classesDo: aBlock [
 
 	self classes do: [ :each|
 		aBlock value: each.
@@ -307,41 +228,29 @@ RGContainer>>classesDo: aBlock [
 			ifTrue:[ aBlock value: each theMetaClass ] ]
 ]
 
-{
-	#category : #'image package loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>cleanEmptyPackages [
+{ #category : #'image package loading' }
+RGContainer >> cleanEmptyPackages [
 
 	(self packages select:[ :pck| pck classes size isZero and:[ pck methods size isZero ] ])
 		do:[ :pck| self removePackage: pck ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>definedClasses [
+{ #category : #accessing }
+RGContainer >> definedClasses [
 	"Retrieves classes (traits are included)"
 
 	^self elements at: #definedClasses ifAbsentPut:[ IdentityDictionary new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>definedClasses: aCollection [
+{ #category : #accessing }
+RGContainer >> definedClasses: aCollection [
 	"Set the classes collection"
 
 	self elements at: #definedClasses put: aCollection
 ]
 
-{
-	#category : #iterating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>definedClassesDo: aBlock [
+{ #category : #iterating }
+RGContainer >> definedClassesDo: aBlock [
 
 	self definedClasses do: [ :each|
 		aBlock value: each.
@@ -349,21 +258,15 @@ RGContainer>>definedClassesDo: aBlock [
 			ifTrue:[ aBlock value: each theMetaClass ] ]
 ]
 
-{
-	#category : #'convenient accesses',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>extensionMethods [
+{ #category : #'convenient accesses' }
+RGContainer >> extensionMethods [
 	"Retrieves a collection (by default a dictionary) with the extensions methods of the receiver"
 
 	^self methods values select:[ :mth| mth isExtension ]
 ]
 
-{
-	#category : #'image package loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>findPackageOfClass: aRGBehaviorDefinition using: packageKeys [
+{ #category : #'image package loading' }
+RGContainer >> findPackageOfClass: aRGBehaviorDefinition using: packageKeys [
 
 	"Look for the package of a class. It is nil when there is not a package created for a category in MC"
 	| pair |
@@ -373,11 +276,8 @@ RGContainer>>findPackageOfClass: aRGBehaviorDefinition using: packageKeys [
 		pair ifNotNil:[ self packages at: pair key ] ]
 ]
 
-{
-	#category : #'image package loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>findPackageOfMethod: aRGMethodDefinition using: packageKeys [
+{ #category : #'image package loading' }
+RGContainer >> findPackageOfMethod: aRGMethodDefinition using: packageKeys [
 
 	"Look for the package of an extension method. nil otherwise"
 	| pair lname |	
@@ -388,88 +288,61 @@ RGContainer>>findPackageOfMethod: aRGMethodDefinition using: packageKeys [
 	^ pair ifNotNil:[ self packages at: pair key ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>hasClasses [
+{ #category : #testing }
+RGContainer >> hasClasses [
 
 	^self definedClasses notEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>hasMethods [
+{ #category : #testing }
+RGContainer >> hasMethods [
 
 	^self methods notEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>includesClass: aRGBehaviorDefinition [
+{ #category : #testing }
+RGContainer >> includesClass: aRGBehaviorDefinition [
 	"Returns true if the receiver includes aRGBehaviorDefinition in the defined classes"
 
 	^self definedClasses includes: aRGBehaviorDefinition
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>includesClassNamed: className [
+{ #category : #testing }
+RGContainer >> includesClassNamed: className [
 	"Returns true if the receiver includes the className in the defined classes"
 
 	self flag: 'can a metaclass be stored without its nonMetaClass? Check this'.
 	^self includesElementNamed: (self theNonMetaClassNameOf: className) in: self definedClasses.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>includesMethod: aRGMethodDefinition [
+{ #category : #testing }
+RGContainer >> includesMethod: aRGMethodDefinition [
 
 	^self methods includes: aRGMethodDefinition
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>includesMethodNamed: fullSelectorName [
+{ #category : #testing }
+RGContainer >> includesMethodNamed: fullSelectorName [
 	
 	^self includesElementNamed: fullSelectorName in: self methods
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>includesPackage: aRGPackage [
+{ #category : #testing }
+RGContainer >> includesPackage: aRGPackage [
 	"Verifies if a child package == aRGPackage exists"
 	
 	^self packages includes: aRGPackage
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>includesPackageNamed: packageName [
+{ #category : #testing }
+RGContainer >> includesPackageNamed: packageName [
 	"Verifies if a child package with name = packageName exists"
 	
 	^self includesElementNamed: packageName in: self packages
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>initialize [
+{ #category : #initialization }
+RGContainer >> initialize [
 
 	super initialize.
 	self definedClasses: IdentityDictionary new.
@@ -477,11 +350,8 @@ RGContainer>>initialize [
 	self packages: IdentityDictionary new.
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>isMetaclassName: aSymbol [
+{ #category : #utilities }
+RGContainer >> isMetaclassName: aSymbol [
 	"Validates if the arguments corresponds to a nonMetaClass"
 	
 	^(aSymbol
@@ -489,32 +359,23 @@ RGContainer>>isMetaclassName: aSymbol [
 		startingAt: 1) > 0
 ]
 
-{
-	#category : #'image class and method loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>loadClass: aRGBehaviorDefinition using: packageKeys [
+{ #category : #'image class and method loading' }
+RGContainer >> loadClass: aRGBehaviorDefinition using: packageKeys [
 
 	self setPackageOfClass: aRGBehaviorDefinition using: packageKeys.
 	self addClass: aRGBehaviorDefinition
 ]
 
-{
-	#category : #'image class and method loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>loadMethod: aRGMethodDefinition inClass: aRGBehaviorDefinition using: packageKeys [
+{ #category : #'image class and method loading' }
+RGContainer >> loadMethod: aRGMethodDefinition inClass: aRGBehaviorDefinition using: packageKeys [
 
 	self addMethod: aRGMethodDefinition.
 	aRGBehaviorDefinition addMethod: aRGMethodDefinition.
 	self setPackageOfMethod: aRGMethodDefinition ofClass: aRGBehaviorDefinition using: packageKeys
 ]
 
-{
-	#category : #'image package loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>loadPackagesFromImage [
+{ #category : #'image package loading' }
+RGContainer >> loadPackagesFromImage [
 
 	| rgPackage rgPackageKeys |
 	rgPackageKeys := OrderedCollection new.
@@ -525,11 +386,8 @@ RGContainer>>loadPackagesFromImage [
 	^ rgPackageKeys
 ]
 
-{
-	#category : #'image class and method loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>loadTraitUsers [
+{ #category : #'image class and method loading' }
+RGContainer >> loadTraitUsers [
 	"Set the users of a trait"
 	| users |
 	
@@ -542,11 +400,8 @@ RGContainer>>loadTraitUsers [
 				rgTrait theMetaClass addUser: each theMetaClass ] ] ]
 ]
 
-{
-	#category : #'lookup by name',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>metaclassNamed: metaclassName [
+{ #category : #'lookup by name' }
+RGContainer >> metaclassNamed: metaclassName [
 	| theClass |
 	
 	theClass:= (self classOrTraitNamed: metaclassName).
@@ -558,118 +413,82 @@ RGContainer>>metaclassNamed: metaclassName [
 	^nil
 ]
 
-{
-	#category : #'lookup by name',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>methodNamed: fullSelectorName [
+{ #category : #'lookup by name' }
+RGContainer >> methodNamed: fullSelectorName [
 
 	^self elementNamed: fullSelectorName in: self methods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>methods [
+{ #category : #accessing }
+RGContainer >> methods [
 	"Retrieves methods defined in the container"
 	
 	^self elements at: #methods ifAbsentPut:[ IdentityDictionary new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>methods: aCollection [
+{ #category : #accessing }
+RGContainer >> methods: aCollection [
 	"Set the methods collection"
 	
 	self elements at: #methods put: aCollection
 ]
 
-{
-	#category : #iterating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>methodsDo: aBlock [
+{ #category : #iterating }
+RGContainer >> methodsDo: aBlock [
 
 	self methods
 		do:[ :each| aBlock value: each ]
 ]
 
-{
-	#category : #'lookup by name',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>packageNamed: packageName [
+{ #category : #'lookup by name' }
+RGContainer >> packageNamed: packageName [
 	"Look for a child package named packageName"
 	
 	^self elementNamed: packageName in: self packages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>packages [
+{ #category : #accessing }
+RGContainer >> packages [
 	"Retrieves the children packages defined in the receiver"
 
 	^self elements at: #packages ifAbsentPut:[ IdentityDictionary new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>packages: aCollection [
+{ #category : #accessing }
+RGContainer >> packages: aCollection [
 
 	self elementsCategorized: #packages with: aCollection
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>removeClass: aRGAbstractClassDefinition [
+{ #category : #adding/removing }
+RGContainer >> removeClass: aRGAbstractClassDefinition [
 
 	self removeElement: aRGAbstractClassDefinition from: self definedClasses
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>removeMethod: aRGMethodDefinition [
+{ #category : #adding/removing }
+RGContainer >> removeMethod: aRGMethodDefinition [
 
 	self removeElement: aRGMethodDefinition from: self methods
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>removePackage: aRGPackage [
+{ #category : #adding/removing }
+RGContainer >> removePackage: aRGPackage [
 	"removes a child aRGPackage"
 
 	aRGPackage isPackage ifFalse:[ ^self ].
 	self removeElement: aRGPackage from: self packages
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>removeTrait: aRGTraitDefinition [
+{ #category : #adding/removing }
+RGContainer >> removeTrait: aRGTraitDefinition [
 	"convenient method"
 
 	self removeClass: aRGTraitDefinition
 ]
 
-{
-	#category : #'image package loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>setPackageOfClass: rgClass using: packageKeys [
+{ #category : #'image package loading' }
+RGContainer >> setPackageOfClass: rgClass using: packageKeys [
 	"Set the package to aRGBehaviorDefinition"
 
 	(self findPackageOfClass: rgClass using: packageKeys) 
@@ -677,11 +496,8 @@ RGContainer>>setPackageOfClass: rgClass using: packageKeys [
 	
 ]
 
-{
-	#category : #'image package loading',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>setPackageOfMethod: rgMethod ofClass: rgClass using: packageKeys [
+{ #category : #'image package loading' }
+RGContainer >> setPackageOfMethod: rgMethod ofClass: rgClass using: packageKeys [
 	"Set the package to aRGMethodDefinition and its value isExtension"
 
 	(self findPackageOfMethod: rgMethod using: packageKeys) 
@@ -693,11 +509,8 @@ RGContainer>>setPackageOfMethod: rgMethod ofClass: rgClass using: packageKeys [
 			rgMethod isExtension: (rgMethod package ~= rgClass package) ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>theNonMetaClassNameOf: aSymbol [
+{ #category : #utilities }
+RGContainer >> theNonMetaClassNameOf: aSymbol [
 	"Rejects the prefix ' class' or ' classTrait' of the argument"
 	| index |
 	
@@ -711,11 +524,8 @@ RGContainer>>theNonMetaClassNameOf: aSymbol [
 		to: index - 1) asSymbol
 ]
 
-{
-	#category : #'lookup by name',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>traitNamed: traitName [
+{ #category : #'lookup by name' }
+RGContainer >> traitNamed: traitName [
 	"Retrieves an RGTraitDefinition object.
 	traitName could be theMetaClass name"
 	| trait |
@@ -725,11 +535,8 @@ RGContainer>>traitNamed: traitName [
 	ifFalse:[ nil ]
 ]
 
-{
-	#category : #'convenient accesses',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>traitNames [
+{ #category : #'convenient accesses' }
+RGContainer >> traitNames [
 	"Retrieves the names of defined traits"
 
 	^ self traits isDictionary
@@ -737,21 +544,15 @@ RGContainer>>traitNames [
 		ifFalse:[ self traits collect:[ :trait| trait name ] ]
 ]
 
-{
-	#category : #'convenient accesses',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>traits [
+{ #category : #'convenient accesses' }
+RGContainer >> traits [
 	"Retrieves a collection (by default a dictionary) containing only defined traits"
 
 	^self definedClasses select:[ :each| each isTrait ]
 ]
 
-{
-	#category : #iterating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>traitsDo: aBlock [
+{ #category : #iterating }
+RGContainer >> traitsDo: aBlock [
 
 	self traits do: [ :each|
 		aBlock value: each.
@@ -759,29 +560,20 @@ RGContainer>>traitsDo: aBlock [
 			ifTrue:[ aBlock value: each theMetaClass ] ]
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>withoutClasses [
+{ #category : #adding/removing }
+RGContainer >> withoutClasses [
 
 	self removeElementsCategorized: #definedClasses
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>withoutMethods [
+{ #category : #adding/removing }
+RGContainer >> withoutMethods [
 	
 	self removeElementsCategorized: #methods
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGContainer>>withoutPackages [
+{ #category : #adding/removing }
+RGContainer >> withoutPackages [
 	
 	self removeElementsCategorized: #packages
 ]

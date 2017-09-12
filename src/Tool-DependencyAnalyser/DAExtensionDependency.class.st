@@ -13,39 +13,26 @@ Class {
 		'selector',
 		'method'
 	],
-	#category : #Tool-DependencyAnalyser-Core,
-	#timestamp : 'BaptisteQuide 7/31/2014 12:06'
+	#category : #Tool-DependencyAnalyser-Core
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAExtensionDependency>>isExtensionDependency [
+{ #category : #testing }
+DAExtensionDependency >> isExtensionDependency [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAExtensionDependency>>method [
+{ #category : #accessing }
+DAExtensionDependency >> method [
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAExtensionDependency>>method: anObject [
+{ #category : #accessing }
+DAExtensionDependency >> method: anObject [
 	method := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAExtensionDependency>>printReasonOn: aStream [
+{ #category : #printing }
+DAExtensionDependency >> printReasonOn: aStream [
 	aStream
 		nextPutAll: self theClass name;
 		nextPutAll: '>>';
@@ -53,18 +40,12 @@ DAExtensionDependency>>printReasonOn: aStream [
 		nextPutAll: ' (extension)'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAExtensionDependency>>selector [
+{ #category : #accessing }
+DAExtensionDependency >> selector [
 	^ selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAExtensionDependency>>selector: aSelector [
+{ #category : #accessing }
+DAExtensionDependency >> selector: aSelector [
 	selector := aSelector
 ]

@@ -14,173 +14,118 @@ Class {
 	#classInstVars : [
 		'enabled'
 	],
-	#category : #Renraku-Rules,
-	#timestamp : 'YuriyTymchuk 7/12/2016 14:56'
+	#category : #Renraku-Rules
 }
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule class>>asRBRule [
+{ #category : #conversion }
+ReAbstractRule class >> asRBRule [
 
 	^ self new asRBRule
 ]
 
-{
-	#category : #testing-interest,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule class>>checksClass [
+{ #category : #testing-interest }
+ReAbstractRule class >> checksClass [
 
 	^ false
 ]
 
-{
-	#category : #testing-interest,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule class>>checksMethod [
+{ #category : #testing-interest }
+ReAbstractRule class >> checksMethod [
 
 	^ false
 ]
 
-{
-	#category : #testing-interest,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule class>>checksNode [
+{ #category : #testing-interest }
+ReAbstractRule class >> checksNode [
 
 	^ false
 ]
 
-{
-	#category : #testing-interest,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule class>>checksPackage [
+{ #category : #testing-interest }
+ReAbstractRule class >> checksPackage [
 
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule class>>enabled [
+{ #category : #accessing }
+ReAbstractRule class >> enabled [
 
 	^ enabled ifNil: [ enabled := true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule class>>enabled: aBoolean [
+{ #category : #accessing }
+ReAbstractRule class >> enabled: aBoolean [
 	enabled := aBoolean.
 	ReRuleManager reset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule class>>enabledSettingID [
+{ #category : #accessing }
+ReAbstractRule class >> enabledSettingID [
 
 	^ (self name, '_enabled') asSymbol
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule class>>identifierMinorVersionNumber [
+{ #category : #manifest }
+ReAbstractRule class >> identifierMinorVersionNumber [
 	"This number identifies the version of the rule definition. Each time the rule is updated and its changes invalidates previous false positives identification (and as such should be reassessed by developers) the number should be increased."
 	^ 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule class>>isUsed [
+{ #category : #testing }
+ReAbstractRule class >> isUsed [
 	"all my sublasses are used"
 	^self name = 'RBLintRule'
 		ifTrue: [ super isUsed ]
 		ifFalse: [ true ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule class>>isVisible [
+{ #category : #testing }
+ReAbstractRule class >> isVisible [
 	
 	^ self methodOfInteresetSelectors anySatisfy: [ :selector |
 		self perform: selector ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule class>>methodOfInteresetSelectors [
+{ #category : #properties }
+ReAbstractRule class >> methodOfInteresetSelectors [
 
 	^ #(checksMethod checksClass checksPackage checksNode)
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule class>>uniqueIdentifierName [
+{ #category : #manifest }
+ReAbstractRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^ self name
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule class>>uniqueIdentifierNumber [
+{ #category : #manifest }
+ReAbstractRule class >> uniqueIdentifierNumber [
 	"This number should be unique and should change only when the rule completely change semantics"
 	^ 0
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule>>anchorFor: anEntity [
+{ #category : #helpers }
+ReAbstractRule >> anchorFor: anEntity [
 
 	^ ReSourceAnchor
 			entity: anEntity
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule>>asRBRule [
+{ #category : #conversion }
+ReAbstractRule >> asRBRule [
 
 	^ RBRenrakuWrapperLintRule new: self
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule>>basicCheck: anEntity [
+{ #category : #running }
+ReAbstractRule >> basicCheck: anEntity [
 
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule>>check: anEntity [
+{ #category : #running }
+ReAbstractRule >> check: anEntity [
 
 	| critiques |
 	
@@ -189,21 +134,15 @@ ReAbstractRule>>check: anEntity [
 	^ critiques
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule>>check: anEntity forCritiquesDo: aCriticBlock [
+{ #category : #running }
+ReAbstractRule >> check: anEntity forCritiquesDo: aCriticBlock [
 
 	(self basicCheck: anEntity)
 		ifTrue: [ aCriticBlock cull: (self critiqueFor: anEntity) ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule>>check: anEntity forCritiquesDo: aCriticBlock ifNone: alternativeBlock [
+{ #category : #running }
+ReAbstractRule >> check: anEntity forCritiquesDo: aCriticBlock ifNone: alternativeBlock [
 	| encounteredCritique |
 	
 	encounteredCritique := false.
@@ -215,11 +154,8 @@ ReAbstractRule>>check: anEntity forCritiquesDo: aCriticBlock ifNone: alternative
 	encounteredCritique ifFalse: alternativeBlock
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule>>check: anEntity ifNoCritiques: alternativeBlock [
+{ #category : #running }
+ReAbstractRule >> check: anEntity ifNoCritiques: alternativeBlock [
 	| critiques |
 	
 	critiques := OrderedCollection new.
@@ -227,67 +163,45 @@ ReAbstractRule>>check: anEntity ifNoCritiques: alternativeBlock [
 	^ critiques
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule>>critiqueFor: anEntity [
+{ #category : #helpers }
+ReAbstractRule >> critiqueFor: anEntity [
 
 	^ ReTrivialCritique
 		withAnchor: (self anchorFor: anEntity)
 		by: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule>>group [
+{ #category : #accessing }
+ReAbstractRule >> group [
 	^ 'Unclassified rules'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule>>isComposite [
+{ #category : #testing }
+ReAbstractRule >> isComposite [
 
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule>>name [
+{ #category : #accessing }
+ReAbstractRule >> name [
 	"Answer a human readable name of the rule."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule>>rationale [
+{ #category : #accessing }
+ReAbstractRule >> rationale [
 	"Answer an explanation of the rule, usually in one line. Long description can be obtained using longDescription."
 
 	^ self class comment
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule>>resetResult [
-
+{ #category : #compatibility }
+ReAbstractRule >> resetResult [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractRule>>severity [
+{ #category : #accessing }
+ReAbstractRule >> severity [
 	"Answer the severity of issues reported by this rule. This method should return one of #error, #warning, or #information."
 
 	^ #warning

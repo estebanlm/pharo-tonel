@@ -4,49 +4,33 @@ Command to open help for Versionner
 Class {
 	#name : #MBHelpCommand,
 	#superclass : #MBDevCycleCommands,
-	#category : #Versionner-Core-Commands,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:10'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBHelpCommand>>documentation [
+{ #category : #documentation }
+MBHelpCommand >> documentation [
 	^ 'Open the help window'
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBHelpCommand>>execute [
+{ #category : #execute }
+MBHelpCommand >> execute [
 	Smalltalk at: #HelpBrowser ifPresent: [ :class | ^class openOn: (Smalltalk at: #VersionnerHelp) ].
 	self workspaceHelp
 ]
 
-{
-	#category : #ordering,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBHelpCommand>>order [
+{ #category : #ordering }
+MBHelpCommand >> order [
 
 	^'80'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBHelpCommand>>title [
+{ #category : #accessing }
+MBHelpCommand >> title [
 	^ 'help'
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBHelpCommand>>workspaceHelp [
+{ #category : #execute }
+MBHelpCommand >> workspaceHelp [
 	| helpText |
 	helpText := '"Versionner is a graphical tool to manage the dependencies and the version of your software. It is a complete replacement of the Monticello browser and acts as a facade for Metacello. You can use Versionner in a number of different scenarios.
 	

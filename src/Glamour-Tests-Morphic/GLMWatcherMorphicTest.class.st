@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #GLMWatcherMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMWatcherMorphicTest>>expectedFailures  [
+{ #category : #tests }
+GLMWatcherMorphicTest >> expectedFailures [ 
 	^ #(testSimple testWithDynamicPresentation)
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMWatcherMorphicTest>>testSimple [
+{ #category : #tests }
+GLMWatcherMorphicTest >> testSimple [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -38,11 +28,8 @@ GLMWatcherMorphicTest>>testSimple [
 	self assert: (self find: RubScrolledTextMorph in: GLMWatcherWindow uniqueInstance) text equals: '42'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMWatcherMorphicTest>>testWithDynamicPresentation [
+{ #category : #tests }
+GLMWatcherMorphicTest >> testWithDynamicPresentation [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.

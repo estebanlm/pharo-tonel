@@ -1,12 +1,7 @@
-Extension {
-	#name : #VirtualMachine
-}
+Extension { #name : #VirtualMachine }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-VirtualMachine>>gtInspectorDetailsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+VirtualMachine >> gtInspectorDetailsIn: composite [
 	<gtInspectorPresentationOrder: 0>
 	composite table
 		title: 'Details';

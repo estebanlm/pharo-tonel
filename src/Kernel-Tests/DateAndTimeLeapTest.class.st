@@ -14,15 +14,11 @@ Class {
 		'aTimeZone',
 		'localTimeZoneToRestore'
 	],
-	#category : #Kernel-Tests-Chronology,
-	#timestamp : 'tlk 1/6/2004 17:54'
+	#category : #Kernel-Tests-Chronology
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>setUp [
+{ #category : #running }
+DateAndTimeLeapTest >> setUp [
 	aDateAndTime := (DateAndTime 
 		year: 2004 month: 2 day: 29 
 		hour: 13 minute: 33 second: 0 
@@ -32,29 +28,20 @@ DateAndTimeLeapTest>>setUp [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testAsDate [
+{ #category : #tests }
+DateAndTimeLeapTest >> testAsDate [
 	self assert: aDateAndTime asDate equals:  ('February 29, 2004' asDate translateTo: 2 hours).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testAsDuration [
+{ #category : #tests }
+DateAndTimeLeapTest >> testAsDuration [
 	self assert: aDateAndTime asDuration equals: aDuration
 	
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testAsLocal [
+{ #category : #tests }
+DateAndTimeLeapTest >> testAsLocal [
 	self assert: aDateAndTime asLocal =  aDateAndTime.
 	self assert: aDateAndTime asLocal = (aDateAndTime offset: aDateAndTime class localOffset)
 
@@ -62,72 +49,51 @@ DateAndTimeLeapTest>>testAsLocal [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testAsMonth [
+{ #category : #tests }
+DateAndTimeLeapTest >> testAsMonth [
 	self
 		assert: aDateAndTime asMonth
 		equals: (Month year: 2004 month: 'February').
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testAsNanoSeconds [
+{ #category : #tests }
+DateAndTimeLeapTest >> testAsNanoSeconds [
 	self assert: aDateAndTime asNanoSeconds =  aDuration asNanoSeconds.
 	self assert: aDateAndTime asNanoSeconds = 48780000000000
 	
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testAsSeconds [
+{ #category : #tests }
+DateAndTimeLeapTest >> testAsSeconds [
 	self assert: aDuration asSeconds =  48780.
 	self assert: aDateAndTime asSeconds = 3255507180.
 	
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testAsTime [
+{ #category : #tests }
+DateAndTimeLeapTest >> testAsTime [
 	self assert: aDateAndTime asTime equals: (Time hour: 13 minute: 33 second: 0)
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testAsUTC [
+{ #category : #tests }
+DateAndTimeLeapTest >> testAsUTC [
 	self assert: aDateAndTime asUTC =  aDateAndTime
 
           
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testAsWeek [
+{ #category : #tests }
+DateAndTimeLeapTest >> testAsWeek [
 	self assert: aDateAndTime asWeek equals: ((Week starting: '02-29-2004' asDate) translateTo: 2 hours).
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testAsYear [
+{ #category : #tests }
+DateAndTimeLeapTest >> testAsYear [
 	"A year always starts at January 1"
 	self 
 		assert: aDateAndTime asYear
@@ -138,268 +104,187 @@ DateAndTimeLeapTest>>testAsYear [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testDay [
+{ #category : #tests }
+DateAndTimeLeapTest >> testDay [
 	self assert: aDateAndTime day =   60. 
 	self deny: aDateAndTime day =   29 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testDayMonthYearDo [
+{ #category : #tests }
+DateAndTimeLeapTest >> testDayMonthYearDo [
 	self assert: (aDateAndTime dayMonthYearDo: [:eachDay :eachMonth :eachYear |  eachYear])  = 2004.
 	self assert: (aDateAndTime dayMonthYearDo: [:eachDay :eachMonth :eachYear |  eachMonth]) = 2.
 	self assert: (aDateAndTime dayMonthYearDo: [:eachDay :eachMonth :eachYear |  eachDay]) = 29.
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testDayOfMonth [
+{ #category : #tests }
+DateAndTimeLeapTest >> testDayOfMonth [
 	self assert: aDateAndTime dayOfMonth  = 29.
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testDayOfWeek [
+{ #category : #tests }
+DateAndTimeLeapTest >> testDayOfWeek [
 	self assert: aDateAndTime dayOfWeek  = 1.
 	self assert: aDateAndTime dayOfWeekAbbreviation = 'Sun'.
 	self assert: aDateAndTime dayOfWeekName = 'Sunday'.
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testDayOfYear [
+{ #category : #tests }
+DateAndTimeLeapTest >> testDayOfYear [
 	self assert: aDateAndTime dayOfYear  = 60.
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testDaysInMonth [
+{ #category : #tests }
+DateAndTimeLeapTest >> testDaysInMonth [
 	self assert: aDateAndTime daysInMonth  = 29.
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testDaysInYear [
+{ #category : #tests }
+DateAndTimeLeapTest >> testDaysInYear [
 	self assert: aDateAndTime daysInYear  = 366.
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testDaysLeftInYear [
+{ #category : #tests }
+DateAndTimeLeapTest >> testDaysLeftInYear [
 	self assert: aDateAndTime daysLeftInYear  = 306.
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testFirstDayOfMonth [
+{ #category : #tests }
+DateAndTimeLeapTest >> testFirstDayOfMonth [
 	self deny: aDateAndTime firstDayOfMonth =  1.
 	self assert: aDateAndTime firstDayOfMonth = 32
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testFromString [
+{ #category : #tests }
+DateAndTimeLeapTest >> testFromString [
 	self assert: aDateAndTime =  (DateAndTime fromString: ' 2004-02-29T13:33:00+02:00').
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testHour [
+{ #category : #tests }
+DateAndTimeLeapTest >> testHour [
 	self assert: aDateAndTime hour equals: aDateAndTime hour24.
 	self assert: aDateAndTime hour equals: 13.
 	self assert: aDateAndTime hour equals: aDateAndTime hours
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testHour12 [
+{ #category : #tests }
+DateAndTimeLeapTest >> testHour12 [
 	self assert: aDateAndTime hour12  =   1.
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testIsLeapYear [
+{ #category : #tests }
+DateAndTimeLeapTest >> testIsLeapYear [
 	self assert: aDateAndTime isLeapYear
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testLessThan [
+{ #category : #tests }
+DateAndTimeLeapTest >> testLessThan [
 	self assert: aDateAndTime  < (aDateAndTime + '1:00:00:00').
 	self assert: aDateAndTime + -1 < aDateAndTime.
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testMeridianAbbreviation [
+{ #category : #tests }
+DateAndTimeLeapTest >> testMeridianAbbreviation [
 	self assert: aDateAndTime meridianAbbreviation = 'PM'.
 
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testMiddleOf [
+{ #category : #tests }
+DateAndTimeLeapTest >> testMiddleOf [
 	self assert: (aDateAndTime middleOf: aDuration)  = 
 	 (Timespan starting: (DateAndTime year: 2004 month: 2 day: 29 hour: 6 minute: 46 second: 30 offset: 2 hours)
 	duration: (Duration days: 0 hours: 13 minutes: 33 seconds: 0 nanoSeconds: 0 ))
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testMidnight [
+{ #category : #tests }
+DateAndTimeLeapTest >> testMidnight [
 	self assert: aDateAndTime midnight equals: '2004-02-29T00:00:00+02:00' asDateAndTime.
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testMinute [
+{ #category : #tests }
+DateAndTimeLeapTest >> testMinute [
 	self assert: aDateAndTime minute =  33
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testMinutes [
+{ #category : #tests }
+DateAndTimeLeapTest >> testMinutes [
 	self assert: aDateAndTime minutes = 33
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testMonth [
+{ #category : #tests }
+DateAndTimeLeapTest >> testMonth [
 	self assert: aDateAndTime month  = 2.
 	self assert: aDateAndTime monthAbbreviation = 'Feb'.
 	self assert: aDateAndTime monthName = 'February'.
 	self assert: aDateAndTime monthIndex = 2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testNanoSecond [
+{ #category : #tests }
+DateAndTimeLeapTest >> testNanoSecond [
 	self assert: aDateAndTime nanoSecond =  0
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testNoon [
+{ #category : #tests }
+DateAndTimeLeapTest >> testNoon [
 	self assert: aDateAndTime noon equals:  '2004-02-29T12:00:00+02:00' asDateAndTime
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testOffset [
+{ #category : #tests }
+DateAndTimeLeapTest >> testOffset [
 
 	self assert: aDateAndTime offset =  '0:02:00:00' asDuration.
 	self assert: (aDateAndTime offset: '-0:12:00:00') equals: '2004-02-28T23:33:00-12:00' asDateAndTime.
 	self assert: (aDateAndTime offset: '0:12:00:00') equals:  '2004-02-29T23:33:00+12:00' asDateAndTime
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testPrintOn [
+{ #category : #tests }
+DateAndTimeLeapTest >> testPrintOn [
 	self assert: (String streamContents: [ :str | aDateAndTime printOn: str ]) equals: '2004-02-29T13:33:00+02:00'.
 	self assert: (String streamContents: [ :str | aTimeZone printOn: str ]) equals: 'a TimeZone(UTC)'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testSecond [
+{ #category : #tests }
+DateAndTimeLeapTest >> testSecond [
 	self assert: aDateAndTime second =  0
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testSeconds [
+{ #category : #tests }
+DateAndTimeLeapTest >> testSeconds [
 	self assert: aDateAndTime seconds =  0
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testTicks [
+{ #category : #tests }
+DateAndTimeLeapTest >> testTicks [
 	self 
 		assert: aDateAndTime ticks  
 		equals: ((DateAndTime julianDayNumber: 2453065) + 41580 seconds) ticks.
@@ -408,21 +293,15 @@ DateAndTimeLeapTest>>testTicks [
 		equals:  #(2453065 41580 0)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testTicksOffset [
+{ #category : #tests }
+DateAndTimeLeapTest >> testTicksOffset [
 	self assert: aDateAndTime =  (aDateAndTime ticks:  #(2453065 48780 0) offset: DateAndTime localOffset).
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testTimeZone [
+{ #category : #tests }
+DateAndTimeLeapTest >> testTimeZone [
 	aDateAndTime := '2004-02-29T13:33:00+00:00' asDateAndTime.
 	self assert: aDateAndTime timeZone name equals: 'Universal Time'.
 	self assert: aDateAndTime timeZone abbreviation 	equals: 'UTC'
@@ -430,38 +309,26 @@ DateAndTimeLeapTest>>testTimeZone [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testUtcOffset [
+{ #category : #tests }
+DateAndTimeLeapTest >> testUtcOffset [
      self assert: (aDateAndTime offset: '0:02:00:00') =  '2004-02-29T13:33:00+02:00' asDateAndTime
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testYear [
+{ #category : #tests }
+DateAndTimeLeapTest >> testYear [
 	self assert: aDateAndTime year = 2004.
 
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testYearDayHourMinuteSecond [
+{ #category : #tests }
+DateAndTimeLeapTest >> testYearDayHourMinuteSecond [
 	self assert: aDateAndTime equals:  (DateAndTime year: 2004 day: 60 hour: 13 minute: 33 second: 0 offset: 2 hours).
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeLeapTest>>testYearMonthDayHourMinuteSecond [
+{ #category : #tests }
+DateAndTimeLeapTest >> testYearMonthDayHourMinuteSecond [
 	self assert: aDateAndTime equals:  (DateAndTime year: 2004 month: 2 day: 29 hour: 13 minute: 33 second: 0 offset: 2 hours).
 
 ]

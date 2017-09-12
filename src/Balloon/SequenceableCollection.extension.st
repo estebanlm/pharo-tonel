@@ -1,12 +1,7 @@
-Extension {
-	#name : #SequenceableCollection
-}
+Extension { #name : #SequenceableCollection }
 
-{
-	#category : #'*Balloon',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SequenceableCollection>>asPointArray [
+{ #category : #'*Balloon' }
+SequenceableCollection >> asPointArray [
 	"Answer an PointArray whose elements are the elements of the receiver, in 
 	the same order."
 

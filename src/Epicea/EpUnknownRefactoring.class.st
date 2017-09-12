@@ -7,43 +7,30 @@ Class {
 	#instVars : [
 		'printString'
 	],
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 2/11/2014 20:14'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnknownRefactoring class>>for: aRBRefactoring [
+{ #category : #'instance creation' }
+EpUnknownRefactoring class >> for: aRBRefactoring [
 	^ self basicNew
 		initializeWith: aRBRefactoring;
 		yourself
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnknownRefactoring>>asRBRefactoring [
+{ #category : #converting }
+EpUnknownRefactoring >> asRBRefactoring [
 	"The original refactoring cannot be recreated."
 	
 	^ self shouldNotImplement
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnknownRefactoring>>canBuildRBRefactoring [
+{ #category : #testing }
+EpUnknownRefactoring >> canBuildRBRefactoring [
 	^ false
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnknownRefactoring>>initializeWith: aRBRefactoring [
+{ #category : #initialize-release }
+EpUnknownRefactoring >> initializeWith: aRBRefactoring [
 	self initialize.
 	printString := aRBRefactoring printString
 ]

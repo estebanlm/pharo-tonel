@@ -10,15 +10,11 @@ Class {
 		'direction',
 		'tileFlag'
 	],
-	#category : #Athens-Balloon,
-	#timestamp : '<historical>'
+	#category : #Athens-Balloon
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonImagePaint>>athensFillPath: aPath on: anAthensCanvas [
+{ #category : #rendering }
+AthensBalloonImagePaint >> athensFillPath: aPath on: anAthensCanvas [
 
 	anAthensCanvas surface engine
 		prepareForRendering;
@@ -26,11 +22,8 @@ AthensBalloonImagePaint>>athensFillPath: aPath on: anAthensCanvas [
 		fillBezierShape: aPath contoursForFilling
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonImagePaint>>athensFillRectangle: aRect on: anAthensCanvas [
+{ #category : #rendering }
+AthensBalloonImagePaint >> athensFillRectangle: aRect on: anAthensCanvas [
 	"This is a terminal method in rendering dispatch scheme
 	canvas->shape->paint. See AthensCanvas>>fillShape: "
 	|rotation normal|
@@ -45,49 +38,34 @@ AthensBalloonImagePaint>>athensFillRectangle: aRect on: anAthensCanvas [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonImagePaint>>direction [
+{ #category : #accessing }
+AthensBalloonImagePaint >> direction [
 
 	^ direction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonImagePaint>>direction: anObject [
+{ #category : #accessing }
+AthensBalloonImagePaint >> direction: anObject [
 
 	direction := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonImagePaint>>form [
+{ #category : #accessing }
+AthensBalloonImagePaint >> form [
 
 	^ form
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonImagePaint>>form: anObject [
+{ #category : #accessing }
+AthensBalloonImagePaint >> form: anObject [
 
 	form := anObject.
 	origin := 0@0.
 	direction := form extent x @0.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonImagePaint>>initialize [
+{ #category : #initialize }
+AthensBalloonImagePaint >> initialize [
 
 	super initialize.
 
@@ -97,36 +75,24 @@ AthensBalloonImagePaint>>initialize [
 	tileFlag := false.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonImagePaint>>normal [
+{ #category : #accessing }
+AthensBalloonImagePaint >> normal [
 	^ ((direction y negated @ direction x) *  form height / form width ) rounded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonImagePaint>>origin [
+{ #category : #accessing }
+AthensBalloonImagePaint >> origin [
 
 	^ origin
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonImagePaint>>origin: anObject [
+{ #category : #accessing }
+AthensBalloonImagePaint >> origin: anObject [
 
 	origin := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonImagePaint>>repeat [
+{ #category : #accessing }
+AthensBalloonImagePaint >> repeat [
 	tileFlag:=true
 ]

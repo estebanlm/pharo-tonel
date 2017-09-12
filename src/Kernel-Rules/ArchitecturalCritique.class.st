@@ -4,15 +4,11 @@ A TrivialCritique with and extended actions to open a dependency browser for Arc
 Class {
 	#name : #ArchitecturalCritique,
 	#superclass : #ReTrivialCritique,
-	#category : #Kernel-Rules,
-	#timestamp : 'YuriyTymchuk 8/8/2016 18:27'
+	#category : #Kernel-Rules
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-ArchitecturalCritique>>actions [
+{ #category : #actions }
+ArchitecturalCritique >> actions [
 	^ super actions copyWith: 
 		(RePropertyAction new
 			icon: #smallWindow asIcon;
@@ -23,11 +19,8 @@ ArchitecturalCritique>>actions [
 				
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-ArchitecturalCritique>>openDependencyAnalyzerOn: package [
+{ #category : #actions }
+ArchitecturalCritique >> openDependencyAnalyzerOn: package [
 
 	^ (DAPackageAnalyzerPackageDependenciesWindow
 			onPackagesNamed: {package packageName}) open

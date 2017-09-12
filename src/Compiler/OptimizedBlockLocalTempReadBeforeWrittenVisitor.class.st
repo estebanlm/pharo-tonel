@@ -9,31 +9,21 @@ Class {
 		'readBeforeWritten',
 		'written'
 	],
-	#category : #Compiler-Support,
-	#timestamp : 'StephaneDucasse 11/29/2011 22:25'
+	#category : #Compiler-Support
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-OptimizedBlockLocalTempReadBeforeWrittenVisitor>>initialize [
+{ #category : #initialization }
+OptimizedBlockLocalTempReadBeforeWrittenVisitor >> initialize [
 	inOptimizedBlock := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-OptimizedBlockLocalTempReadBeforeWrittenVisitor>>readBeforeWritten [
+{ #category : #accessing }
+OptimizedBlockLocalTempReadBeforeWrittenVisitor >> readBeforeWritten [
 	^readBeforeWritten ifNil: [IdentitySet new]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-OptimizedBlockLocalTempReadBeforeWrittenVisitor>>visitAssignmentNode: anAssignmentNode [
+{ #category : #visiting }
+OptimizedBlockLocalTempReadBeforeWrittenVisitor >> visitAssignmentNode: anAssignmentNode [
 	anAssignmentNode value accept: self.
 	anAssignmentNode variable isTemp
 		ifTrue:
@@ -43,11 +33,8 @@ OptimizedBlockLocalTempReadBeforeWrittenVisitor>>visitAssignmentNode: anAssignme
 			[anAssignmentNode variable accept: self]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-OptimizedBlockLocalTempReadBeforeWrittenVisitor>>visitBlockNode: aBlockNode [
+{ #category : #visiting }
+OptimizedBlockLocalTempReadBeforeWrittenVisitor >> visitBlockNode: aBlockNode [
 	| savedWritten |
 	"If we're in the optimized block in one side of an optimized ifTrue:ifFalse: et al
 	 leave it to the enclosing visitMessageNode: activation to handle merging written."
@@ -60,11 +47,8 @@ OptimizedBlockLocalTempReadBeforeWrittenVisitor>>visitBlockNode: aBlockNode [
 	written := savedWritten
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-OptimizedBlockLocalTempReadBeforeWrittenVisitor>>visitMessageNode: aMessageNode [
+{ #category : #visiting }
+OptimizedBlockLocalTempReadBeforeWrittenVisitor >> visitMessageNode: aMessageNode [
 	| savedWritten writtenPostFirstArm |
 	(aMessageNode isOptimized
 	 and: [#(ifTrue:ifFalse: ifFalse:ifTrue: ifNil:ifNotNil: ifNotNil:ifNil:) includes: aMessageNode selector key]) ifFalse:
@@ -89,11 +73,8 @@ OptimizedBlockLocalTempReadBeforeWrittenVisitor>>visitMessageNode: aMessageNode 
 		[written := written intersection: writtenPostFirstArm]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-OptimizedBlockLocalTempReadBeforeWrittenVisitor>>visitTempVariableNode: aTempVariableNode [
+{ #category : #visiting }
+OptimizedBlockLocalTempReadBeforeWrittenVisitor >> visitTempVariableNode: aTempVariableNode [
 	(aTempVariableNode isArg
 	 or: [written notNil
 		and: [written includes: aTempVariableNode]]) ifTrue:

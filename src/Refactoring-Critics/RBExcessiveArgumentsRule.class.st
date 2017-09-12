@@ -8,74 +8,49 @@ The defined number of arguments can be edited in #argumentsCount.
 Class {
 	#name : #RBExcessiveArgumentsRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:09'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveArgumentsRule class>>checksMethod [
+{ #category : #testing }
+RBExcessiveArgumentsRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveArgumentsRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBExcessiveArgumentsRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'ExcessiveArgumentsRule'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveArgumentsRule>>argumentsCount [
+{ #category : #private }
+RBExcessiveArgumentsRule >> argumentsCount [
 	^ 5
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveArgumentsRule>>basicCheck: aMethod  [
+{ #category : #running }
+RBExcessiveArgumentsRule >> basicCheck: aMethod [ 
 	^ aMethod numArgs >= self argumentsCount
 		
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveArgumentsRule>>checkMethod: aMethod  [
+{ #category : #running }
+RBExcessiveArgumentsRule >> checkMethod: aMethod [ 
 	(self basicCheck: aMethod)
 		ifTrue: [ result addMethod: aMethod ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveArgumentsRule>>group [
+{ #category : #accessing }
+RBExcessiveArgumentsRule >> group [
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveArgumentsRule>>name [
+{ #category : #accessing }
+RBExcessiveArgumentsRule >> name [
 	^ 'Excessive number of arguments'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveArgumentsRule>>rationale [
+{ #category : #accessing }
+RBExcessiveArgumentsRule >> rationale [
 	^ 'Long argument lists (five or more) can indicate that a new object should be created to wrap the numerous parameters.'
 ]

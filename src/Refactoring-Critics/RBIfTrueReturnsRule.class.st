@@ -4,33 +4,23 @@ Checks for common ifTrue: returns that could be simplified using a boolean expre
 Class {
 	#name : #RBIfTrueReturnsRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 22:11'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBIfTrueReturnsRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBIfTrueReturnsRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'IfTrueReturnsRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBIfTrueReturnsRule>>group [
+{ #category : #accessing }
+RBIfTrueReturnsRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBIfTrueReturnsRule>>initialize [
+{ #category : #initialization }
+RBIfTrueReturnsRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyOf: #(
@@ -53,10 +43,7 @@ RBIfTrueReturnsRule>>initialize [
 				ifFalse: [ answer ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBIfTrueReturnsRule>>name [
+{ #category : #accessing }
+RBIfTrueReturnsRule >> name [
 	^ 'ifTrue:/ifFalse: returns instead of and:/or:''s'
 ]

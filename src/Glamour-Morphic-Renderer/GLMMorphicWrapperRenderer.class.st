@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicWrapperRenderer,
 	#superclass : #GLMMorphicBrowserRenderer,
 	#instVars : [
 		'container'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWrapperRenderer>>render: aBrowser [
+{ #category : #rendering }
+GLMMorphicWrapperRenderer >> render: aBrowser [
 	| paneMorph |
 	container := GLMMorphic containerMorph.
 	paneMorph := self renderObject: aBrowser defaultPane.

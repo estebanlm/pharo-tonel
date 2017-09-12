@@ -13,77 +13,52 @@ Class {
 	#classVars : [
 		'Default'
 	],
-	#category : #System-Clipboard,
-	#timestamp : 'AlainPlantec 1/15/2010 11:42'
+	#category : #System-Clipboard
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Clipboard class>>chooseRecentClipping  "Clipboard chooseRecentClipping" [
+{ #category : #accessing }
+Clipboard class >> chooseRecentClipping [  "Clipboard chooseRecentClipping"
 	"Choose by menu from among the recent clippings"
 	^self default chooseRecentClipping
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Clipboard class>>clipboardText "Clipboard clipboardText" [
+{ #category : #accessing }
+Clipboard class >> clipboardText [ "Clipboard clipboardText"
 	^self default clipboardText.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Clipboard class>>clipboardText: aText  [
+{ #category : #accessing }
+Clipboard class >> clipboardText: aText [ 
 	^self default clipboardText: aText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Clipboard class>>default [
+{ #category : #accessing }
+Clipboard class >> default [
 	^Default ifNil: [Default := Smalltalk os clipboardClass new].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Clipboard class>>initialize [
+{ #category : #initialization }
+Clipboard class >> initialize [
 	self startUp: true.
 	SessionManager default 
 		registerSystemClassNamed: self name
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Clipboard class>>shutDown: isImageQuitting [
+{ #category : #'system startup' }
+Clipboard class >> shutDown: isImageQuitting [
 	"Pharo is shutting down. If this platform requires specific shutdown code, this is a great place to put it."
 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Clipboard class>>startUp: isImageStarting [
+{ #category : #'system startup' }
+Clipboard class >> startUp: isImageStarting [
 	"Pharo is starting up. If this platform requires specific intialization, this is a great place to put it."
 	isImageStarting
 		ifTrue: [Default := nil]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Clipboard>>chooseRecentClipping   [
+{ #category : #accessing }
+Clipboard >> chooseRecentClipping [  
 	"Choose by menu from among the recent clippings"
 	"Clipboard chooseRecentClipping"
 	
@@ -95,11 +70,8 @@ Clipboard>>chooseRecentClipping   [
 		values: recent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Clipboard>>clipboardText [
+{ #category : #accessing }
+Clipboard >> clipboardText [
 	"Return the text currently in the clipboard. If the system clipboard is empty, or if it differs from the Smalltalk clipboard text, use the Smalltalk clipboard. This is done since (a) the Mac clipboard gives up on very large chunks of text and (b) since not all platforms support the notion of a clipboard."
 
 	| string decodedString |
@@ -115,11 +87,8 @@ Clipboard>>clipboardText [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Clipboard>>clipboardText: text  [
+{ #category : #accessing }
+Clipboard >> clipboardText: text [ 
 
         | string |
         string := text asString.
@@ -129,21 +98,15 @@ Clipboard>>clipboardText: text  [
         self primitiveClipboardText: string.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Clipboard>>initialize [
+{ #category : #initialization }
+Clipboard >> initialize [
 	super initialize.
 	contents := '' asText.
 	recent := OrderedCollection new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Clipboard>>noteRecentClipping: text [
+{ #category : #private }
+Clipboard >> noteRecentClipping: text [
 	"Keep most recent clippings in a queue for pasteRecent (paste... command)"
 	text isEmpty ifTrue: [^ self].
 	text size > 50000 ifTrue: [^ self].
@@ -153,21 +116,15 @@ Clipboard>>noteRecentClipping: text [
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Clipboard>>primitiveClipboardText [
+{ #category : #primitives }
+Clipboard >> primitiveClipboardText [
 	"Get the current clipboard text. Return the empty string if the primitive fails."
 	<primitive: 141>
 	^ ''
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Clipboard>>primitiveClipboardText: aString [
+{ #category : #primitives }
+Clipboard >> primitiveClipboardText: aString [
 	"Set the current clipboard text to the given string."
 
 	<primitive: 141>

@@ -7,25 +7,18 @@ Instances of classes using this kind of layout have always the same size.
 Class {
 	#name : #FixedLayout,
 	#superclass : #PointerLayout,
-	#category : #Slot-Layout,
-	#timestamp : '<historical>'
+	#category : #Slot-Layout
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-FixedLayout class>>extending: superLayout scope: aScope host: aClass [
+{ #category : #'instance creation' }
+FixedLayout class >> extending: superLayout scope: aScope host: aClass [
 	^ (superLayout extend: aScope)
 		host: aClass;
 		yourself
 ]
 
-{
-	#category : #format,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-FixedLayout>>instanceSpecification [
+{ #category : #format }
+FixedLayout >> instanceSpecification [
 	^ self hasFields
 		ifTrue: [ 1 ]
 		ifFalse: [ 0 ]

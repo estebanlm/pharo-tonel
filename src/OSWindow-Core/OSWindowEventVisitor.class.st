@@ -5,246 +5,127 @@ serving just to cover complete protocol, which user(s) will need to implement in
 Class {
 	#name : #OSWindowEventVisitor,
 	#superclass : #Object,
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'IgorStasenko 7/30/2014 17:45'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>handleEvent: anEvent [
+{ #category : #events }
+OSWindowEventVisitor >> handleEvent: anEvent [
 	anEvent accept: self.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitJoyAxisEvent: anEvent [
+{ #category : #visiting }
+OSWindowEventVisitor >> visitJoyAxisEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitJoyButtonDownEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitJoyButtonUpEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitJoyDeviceAddedEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitJoyDeviceRemappedEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitJoyDeviceRemovedEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitKeyDownEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitKeyUpEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitMouseButtonPressEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitMouseButtonReleaseEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitMouseMoveEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitMouseWheelEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitTextInputEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitTouchPointerDownEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitTouchPointerMoveEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitTouchPointerUpEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitUnknownEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitWindowCloseEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitWindowDropEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitWindowExposeEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitWindowFocusInEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitWindowFocusOutEvent: anEvent [
+]
+
+{ #category : #visiting }
+OSWindowEventVisitor >> visitWindowFrameEvent: anEvent [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitJoyButtonDownEvent: anEvent [
-
+{ #category : #visiting }
+OSWindowEventVisitor >> visitWindowMaximizedEvent: anEvent [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitJoyButtonUpEvent: anEvent [
-
+{ #category : #visiting }
+OSWindowEventVisitor >> visitWindowMinimizedEvent: anEvent [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitJoyDeviceAddedEvent: anEvent [
-
+{ #category : #visiting }
+OSWindowEventVisitor >> visitWindowMouseEnterEvent: anEvent [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitJoyDeviceRemappedEvent: anEvent [
-
+{ #category : #visiting }
+OSWindowEventVisitor >> visitWindowMouseLeaveEvent: anEvent [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitJoyDeviceRemovedEvent: anEvent [
-
+{ #category : #visiting }
+OSWindowEventVisitor >> visitWindowMoveEvent: anEvent [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitKeyDownEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitKeyUpEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitMouseButtonPressEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitMouseButtonReleaseEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitMouseMoveEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitMouseWheelEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitTextInputEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitTouchPointerDownEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitTouchPointerMoveEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitTouchPointerUpEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitUnknownEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitWindowCloseEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitWindowDropEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitWindowExposeEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitWindowFocusInEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitWindowFocusOutEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitWindowFrameEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitWindowMaximizedEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitWindowMinimizedEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitWindowMouseEnterEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitWindowMouseLeaveEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitWindowMoveEvent: anEvent [
-
-]
-
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventVisitor>>visitWindowResizeEvent: anEvent [
-
+{ #category : #visiting }
+OSWindowEventVisitor >> visitWindowResizeEvent: anEvent [
 ]

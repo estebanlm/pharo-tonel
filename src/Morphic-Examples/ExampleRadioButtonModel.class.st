@@ -7,45 +7,32 @@ Class {
 	#instVars : [
 		'option'
 	],
-	#category : #Morphic-Examples-Widgets,
-	#timestamp : 'gvc 9/23/2008 11:58'
+	#category : #Morphic-Examples-Widgets
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ExampleRadioButtonModel>>beCenter [
+{ #category : #'as yet unclassified' }
+ExampleRadioButtonModel >> beCenter [
 	"Set the option to #center."
 
 	self option: #center
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ExampleRadioButtonModel>>beLeft [
+{ #category : #'as yet unclassified' }
+ExampleRadioButtonModel >> beLeft [
 	"Set the option to #left."
 
 	self option: #left
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ExampleRadioButtonModel>>beRight [
+{ #category : #'as yet unclassified' }
+ExampleRadioButtonModel >> beRight [
 	"Set the option to #right."
 
 	self option: #right
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ExampleRadioButtonModel>>initialize [
+{ #category : #initialization }
+ExampleRadioButtonModel >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -53,51 +40,36 @@ ExampleRadioButtonModel>>initialize [
 		option: #left
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ExampleRadioButtonModel>>isCenter [
+{ #category : #'as yet unclassified' }
+ExampleRadioButtonModel >> isCenter [
 	"Answer whether the option if #center."
 
 	^self option == #center
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ExampleRadioButtonModel>>isLeft [
+{ #category : #'as yet unclassified' }
+ExampleRadioButtonModel >> isLeft [
 	"Answer whether the option if #left."
 
 	^self option == #left
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ExampleRadioButtonModel>>isRight [
+{ #category : #'as yet unclassified' }
+ExampleRadioButtonModel >> isRight [
 	"Answer whether the option if #right."
 
 	^self option == #right
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ExampleRadioButtonModel>>option [
+{ #category : #accessing }
+ExampleRadioButtonModel >> option [
 	"Answer the value of option"
 
 	^ option
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ExampleRadioButtonModel>>option: aSymbol [
+{ #category : #accessing }
+ExampleRadioButtonModel >> option: aSymbol [
 	"Set the value of option"
 
 	option := aSymbol.

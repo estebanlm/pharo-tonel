@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'excessSignals'
 	],
-	#category : #Kernel-Processes,
-	#timestamp : '<historical>'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore class>>forMutualExclusion [
+{ #category : #'instance creation' }
+Semaphore class >> forMutualExclusion [
 	"Answer an instance of me that contains a single signal. This new 
 	instance can now be used for mutual exclusion (see the critical: message 
 	to Semaphore)."
@@ -23,39 +19,27 @@ Semaphore class>>forMutualExclusion [
 	^self new signal
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore class>>new [
+{ #category : #'instance creation' }
+Semaphore class >> new [
 	"Answer a new instance of Semaphore that contains no signals."
 
 	^self basicNew initSignals
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>= anObject [
+{ #category : #comparing }
+Semaphore >> = anObject [
 	^ self == anObject
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>consumeAllSignals [
+{ #category : #initialize-release }
+Semaphore >> consumeAllSignals [
 	"Consume any excess signals the receiver may have accumulated."
 
 	excessSignals := 0.
 ]
 
-{
-	#category : #'mutual exclusion',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>critical: mutuallyExcludedBlock [
+{ #category : #'mutual exclusion' }
+Semaphore >> critical: mutuallyExcludedBlock [			
 	"Evaluate mutuallyExcludedBlock only if the receiver is not currently in
 	the process of running the critical: message. If the receiver is, evaluate
 	mutuallyExcludedBlock after the other critical: message is finished."
@@ -86,11 +70,8 @@ Semaphore>>critical: mutuallyExcludedBlock [
 
 ]
 
-{
-	#category : #'mutual exclusion',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>critical: mutuallyExcludedBlock ifCurtailed: terminationBlock [
+{ #category : #'mutual exclusion' }
+Semaphore >> critical: mutuallyExcludedBlock ifCurtailed: terminationBlock [
 	"Evaluate mutuallyExcludedBlock only if the receiver is not currently in 
 	the process of running the critical: message. If the receiver is, evaluate 
 	mutuallyExcludedBlock after the other critical: message is finished."
@@ -98,11 +79,8 @@ Semaphore>>critical: mutuallyExcludedBlock ifCurtailed: terminationBlock [
 
 ]
 
-{
-	#category : #'mutual exclusion',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>critical: mutuallyExcludedBlock ifError: errorBlock [
+{ #category : #'mutual exclusion' }
+Semaphore >> critical: mutuallyExcludedBlock ifError: errorBlock [
 	"Evaluate mutuallyExcludedBlock only if the receiver is not currently in 
 	the process of running the critical: message. If the receiver is, evaluate 
 	mutuallyExcludedBlock after the other critical: message is finished."
@@ -119,11 +97,8 @@ Semaphore>>critical: mutuallyExcludedBlock ifError: errorBlock [
 	^blockValue
 ]
 
-{
-	#category : #'mutual exclusion',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>critical: mutuallyExcludedBlock ifLocked: alternativeBlock [
+{ #category : #'mutual exclusion' }
+Semaphore >> critical: mutuallyExcludedBlock ifLocked: alternativeBlock [
 	"Evaluate mutuallyExcludedBlock only if the receiver is not currently in 
 	the process of running the critical: message. If the receiver is, evaluate 
 	mutuallyExcludedBlock after the other critical: message is finished."
@@ -140,49 +115,34 @@ test is written carefully so that it will result in bytecodes only."
 	^self critical: mutuallyExcludedBlock
 ]
 
-{
-	#category : #'process termination handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>handleProcessTerminationOfWaitingContext: suspendedContext [
+{ #category : #'process termination handling' }
+Semaphore >> handleProcessTerminationOfWaitingContext: suspendedContext [
 
 	^suspendedContext method == (Semaphore compiledMethodAt: #critical:) 
 		ifTrue: [ suspendedContext home]
 		ifFalse: [ suspendedContext]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>hash [
+{ #category : #comparing }
+Semaphore >> hash [
 	^ self identityHash
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>initSignals [
+{ #category : #initialize-release }
+Semaphore >> initSignals [
 	"Consume any excess signals the receiver may have accumulated."
 
 	excessSignals := 0.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>isSignaled [
+{ #category : #testing }
+Semaphore >> isSignaled [
 	"Return true if this semaphore is currently signaled"
 	^excessSignals > 0
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>resumeProcess: aProcess [
+{ #category : #initialize-release }
+Semaphore >> resumeProcess: aProcess [
 	"Remove the given process from the list of waiting processes (if it's there) and resume it.  This is used when a process asked for its wait to be timed out."
 
 	| process |
@@ -190,11 +150,8 @@ Semaphore>>resumeProcess: aProcess [
 	process ifNotNil: [process resume].
 ]
 
-{
-	#category : #communication,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>signal [
+{ #category : #communication }
+Semaphore >> signal [
 	"Primitive. Send a signal through the receiver. If one or more processes 
 	have been suspended trying to receive a signal, allow the first one to 
 	proceed. If no process is waiting, remember the excess signal. Essential. 
@@ -210,21 +167,15 @@ Semaphore>>signal [
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>terminateProcess [
+{ #category : #initialize-release }
+Semaphore >> terminateProcess [
 	"Terminate the process waiting on this semaphore, if any."
 
 	self isEmpty ifFalse: [ self removeFirst terminate ].
 ]
 
-{
-	#category : #communication,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>wait [
+{ #category : #communication }
+Semaphore >> wait [
 	"Primitive. The active Process must receive a signal through the receiver 
 	before proceeding. If no signal has been sent, the active Process will be 
 	suspended until one is sent. Essential. See Object documentation 
@@ -239,11 +190,8 @@ Semaphore>>wait [
 
 ]
 
-{
-	#category : #communication,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>wait: aDuration [
+{ #category : #communication }
+Semaphore >> wait: aDuration [
 	"Wait on this semaphore for up to the given time duration, then timeout. 
 	Return true if the deadline expired, false otherwise."
 	| d |
@@ -251,11 +199,8 @@ Semaphore>>wait: aDuration [
 	^d wait
 ]
 
-{
-	#category : #communication,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>wait: aDuration onCompletion: completionBlock onTimeout: timeoutBlock [
+{ #category : #communication }
+Semaphore >> wait: aDuration onCompletion: completionBlock onTimeout: timeoutBlock [
 	"Wait on this semaphore for up to the given time duration, then timeout.
 	If the deadline expired execute timeoutBlock, otherwise execute completionBlock.
 	Return the value returned by the executed block."
@@ -264,11 +209,8 @@ Semaphore>>wait: aDuration onCompletion: completionBlock onTimeout: timeoutBlock
 	^d waitOnCompletion: completionBlock onTimeout: timeoutBlock
 ]
 
-{
-	#category : #communication,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>waitTimeoutMSecs: anInteger [
+{ #category : #communication }
+Semaphore >> waitTimeoutMSecs: anInteger [
 	"Wait on this semaphore for up to the given number of milliseconds, then timeout. 
 	Return true if the deadline expired, false otherwise."
 	| d |
@@ -276,22 +218,16 @@ Semaphore>>waitTimeoutMSecs: anInteger [
 	^d wait
 ]
 
-{
-	#category : #communication,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>waitTimeoutSeconds: anInteger [
+{ #category : #communication }
+Semaphore >> waitTimeoutSeconds: anInteger [
 	"Wait on this semaphore for up to the given number of seconds, then timeout.
 	Return true if the deadline expired, false otherwise."
 	^self waitTimeoutMSecs: anInteger * 1000.
 
 ]
 
-{
-	#category : #communication,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Semaphore>>waitTimeoutSeconds: anInteger onCompletion: completionBlock onTimeout: timeoutBlock [
+{ #category : #communication }
+Semaphore >> waitTimeoutSeconds: anInteger onCompletion: completionBlock onTimeout: timeoutBlock [
 	"Wait on this semaphore for up to the given number of seconds, then timeout.
 	If the deadline expired execute timeoutBlock, otherwise execute completionBlock.
 	Return the value returned by the executed block."

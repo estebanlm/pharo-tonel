@@ -9,51 +9,35 @@ Class {
 		'methods',
 		'name'
 	],
-	#category : #Kernel-Protocols,
-	#timestamp : '<historical>'
+	#category : #Kernel-Protocols
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol class>>ambiguous [
+{ #category : #'instance creation' }
+Protocol class >> ambiguous [
 	^ #ambiguous
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol class>>defaultName [
+{ #category : #accessing }
+Protocol class >> defaultName [
 
 	^  self unclassified
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol class>>empty [
+{ #category : #'instance creation' }
+Protocol class >> empty [ 
 	 ^ self name: #''
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol class>>name: nm [
+{ #category : #'instance creation' }
+Protocol class >> name: nm [
 
 	^ self new
 		name: nm;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol class>>name: nm methods: methods [
+{ #category : #'instance creation' }
+Protocol class >> name: nm methods: methods [ 
 
 	^ self new
 		methods: methods;
@@ -61,70 +45,46 @@ Protocol class>>name: nm methods: methods [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol class>>nullCategory [
+{ #category : #accessing }
+Protocol class >> nullCategory [
 
 	^ #'no messages'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol class>>unclassified [
+{ #category : #accessing }
+Protocol class >> unclassified [
 	^ #'as yet unclassified'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>addAllMethodsFrom: aProtocol [
+{ #category : #accessing }
+Protocol >> addAllMethodsFrom: aProtocol [
 
 	aProtocol methods do: [ :each | self addMethod: each ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>addMethod: aSymbol [
+{ #category : #accessing }
+Protocol >> addMethod: aSymbol [
 	^ methods add: aSymbol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>canBeRemoved [
+{ #category : #private }
+Protocol >> canBeRemoved [
 	^ self isEmpty 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>canBeRenamed [
+{ #category : #testing }
+Protocol >> canBeRenamed [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>includesSelector: selector [
+{ #category : #testing }
+Protocol >> includesSelector: selector [
 
 	^ methods includes: selector
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>initialize [
+{ #category : #initialization }
+Protocol >> initialize [
 
 	super initialize.
 
@@ -132,72 +92,48 @@ Protocol>>initialize [
 	name := self class defaultName.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>isEmpty [
+{ #category : #testing }
+Protocol >> isEmpty [
 
 	^ self methods isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>isExtensionProtocol [
+{ #category : #testing }
+Protocol >> isExtensionProtocol [ 
 	^ self name first = $*.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>isVirtualProtocol [
+{ #category : #testing }
+Protocol >> isVirtualProtocol [
 	"A virtual protocol is a calculated one (it does not have any methods by it self)"
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>methods [
+{ #category : #accessing }
+Protocol >> methods [
 
 	^ methods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>methods: anObject [
+{ #category : #accessing }
+Protocol >> methods: anObject [
 	
 	methods := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>name [
+{ #category : #accessing }
+Protocol >> name [
 
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>name: anObject [
+{ #category : #accessing }
+Protocol >> name: anObject [
 	name := anObject asSymbol
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>printOn: aStream [
+{ #category : #printing }
+Protocol >> printOn: aStream [
 
 	aStream 
 		nextPutAll: (self class name);
@@ -208,29 +144,20 @@ Protocol>>printOn: aStream [
 		nextPutAll: ' selector(s)'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>removeAllMethods [
+{ #category : #accessing }
+Protocol >> removeAllMethods [
 
 	^ methods removeAll.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>removeMethod: aSymbol [
+{ #category : #accessing }
+Protocol >> removeMethod: aSymbol [
 
 	^ methods remove: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Protocol>>rename: newName [
+{ #category : #accessing }
+Protocol >> rename: newName [
 
 	self name: newName
 ]

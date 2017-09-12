@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #SugsDiffModelContext,
 	#superclass : #SugsAbstractContext,
-	#category : #SmartSuggestions,
-	#timestamp : ''
+	#category : #SmartSuggestions
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsDiffModelContext>>selectedInterval [
+{ #category : #accessing }
+SugsDiffModelContext >> selectedInterval [
 
 	^ 1 to: 0
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsDiffModelContext>>selectedMethod [
+{ #category : #selection }
+SugsDiffModelContext >> selectedMethod [
 	
 	^ nil
 ]

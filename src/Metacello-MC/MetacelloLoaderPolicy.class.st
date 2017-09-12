@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloLoaderPolicy,
 	#superclass : #Object,
@@ -15,24 +12,17 @@ Class {
 		'loadDirective',
 		'silently'
 	],
-	#category : #Metacello-MC-Loaders,
-	#timestamp : ''
+	#category : #Metacello-MC-Loaders
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy class>>overrideRepositories: aCollection [
+{ #category : #'instance creation' }
+MetacelloLoaderPolicy class >> overrideRepositories: aCollection [
 
 	^self new overrideRepositories: aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>cacheGofer [
+{ #category : #accessing }
+MetacelloLoaderPolicy >> cacheGofer [
 
 	cacheGofer == nil 
 		ifTrue: [ 
@@ -43,75 +33,51 @@ MetacelloLoaderPolicy>>cacheGofer [
 	^ cacheGofer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>cacheRepository [
+{ #category : #accessing }
+MetacelloLoaderPolicy >> cacheRepository [
 
 	cacheRepository == nil ifTrue: [ cacheRepository := MCDictionaryRepository new ].
 	^ cacheRepository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>cacheRepository: anMCRepository [
+{ #category : #accessing }
+MetacelloLoaderPolicy >> cacheRepository: anMCRepository [
 
 	cacheRepository := anMCRepository.
 	"getting a new repository, so wipe out the cacheGofer and ensureMap"
 	ensuredMap := cacheGofer := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>ensuredMap [
+{ #category : #accessing }
+MetacelloLoaderPolicy >> ensuredMap [
 
 	ensuredMap == nil ifTrue: [ ensuredMap := Dictionary new ].
 	^ensuredMap
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>ensuredMap: anObject [
+{ #category : #accessing }
+MetacelloLoaderPolicy >> ensuredMap: anObject [
 	ensuredMap := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>hasRepositoryOverrides [
+{ #category : #testing }
+MetacelloLoaderPolicy >> hasRepositoryOverrides [
 
 	^self overrideRepositories ~~ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>ignoreImage [
+{ #category : #accessing }
+MetacelloLoaderPolicy >> ignoreImage [
 	^ ignoreImage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>ignoreImage: anObject [
+{ #category : #accessing }
+MetacelloLoaderPolicy >> ignoreImage: anObject [
 	ignoreImage := anObject
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>initialize [
+{ #category : #initialize-release }
+MetacelloLoaderPolicy >> initialize [
 
 	self 
 		repositoryMap; 
@@ -120,66 +86,45 @@ MetacelloLoaderPolicy>>initialize [
 	ignoreImage := false
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>load [
+{ #category : #actions }
+MetacelloLoaderPolicy >> load [
 
 	overrideRepositories := Array with: self cacheRepository. "ensure that hasRepositoryOverrides is true"
 	self loadDirective loadWithPolicy: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>loadData [
+{ #category : #accessing }
+MetacelloLoaderPolicy >> loadData [
 
  	loadData == nil ifTrue: [ loadData := MetacelloLoadData new ].
 	^loadData
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>loadDirective [
+{ #category : #accessing }
+MetacelloLoaderPolicy >> loadDirective [
 
 	loadDirective == nil ifTrue: [ loadDirective := MetacelloLinearLoadDirective new ].
 	^ loadDirective
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>overrideRepositories [
+{ #category : #accessing }
+MetacelloLoaderPolicy >> overrideRepositories [
 	^ overrideRepositories
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>overrideRepositories: anObject [
+{ #category : #accessing }
+MetacelloLoaderPolicy >> overrideRepositories: anObject [
 	overrideRepositories := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>pushAtomicLoadDirectivesDuring: aBlock for: aLoader [
+{ #category : #actions }
+MetacelloLoaderPolicy >> pushAtomicLoadDirectivesDuring: aBlock for: aLoader [
 
 	self pushLoadDirective: (MetacelloAtomicLoadDirective loader: aLoader) during: aBlock.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>pushExplicitLoadDirectivesDuring: aBlock for: aLoader [
+{ #category : #actions }
+MetacelloLoaderPolicy >> pushExplicitLoadDirectivesDuring: aBlock for: aLoader [
 
 	| directive |
 	directive := MetacelloExplicitLoadDirective loader: aLoader.
@@ -187,20 +132,14 @@ MetacelloLoaderPolicy>>pushExplicitLoadDirectivesDuring: aBlock for: aLoader [
 	^directive
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>pushLinearLoadDirectivesDuring: aBlock for: aLoader [
+{ #category : #actions }
+MetacelloLoaderPolicy >> pushLinearLoadDirectivesDuring: aBlock for: aLoader [
 
 	self pushLoadDirective: (MetacelloLinearLoadDirective loader: aLoader) during: aBlock.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>pushLoadDirective: aLoaderDirective during: aBlock [
+{ #category : #private }
+MetacelloLoaderPolicy >> pushLoadDirective: aLoaderDirective during: aBlock [
 
 	|  oldRoot |
 	self loadDirective add: aLoaderDirective.
@@ -209,47 +148,32 @@ MetacelloLoaderPolicy>>pushLoadDirective: aLoaderDirective during: aBlock [
 	aBlock ensure: [ loadDirective := oldRoot ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>repositoryMap [
+{ #category : #accessing }
+MetacelloLoaderPolicy >> repositoryMap [
 
 	repositoryMap == nil ifTrue: [ repositoryMap := Dictionary new ].
 	^repositoryMap
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>repositoryMap: anObject [
+{ #category : #accessing }
+MetacelloLoaderPolicy >> repositoryMap: anObject [
 	repositoryMap := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>resetCacheGofer [
+{ #category : #accessing }
+MetacelloLoaderPolicy >> resetCacheGofer [
 
 	cacheGofer := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>silently [
+{ #category : #accessing }
+MetacelloLoaderPolicy >> silently [
 
 	silently == nil ifTrue: [ silently := false ].
 	^ silently
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoaderPolicy>>silently: anObject [
+{ #category : #accessing }
+MetacelloLoaderPolicy >> silently: anObject [
 	silently := anObject
 ]

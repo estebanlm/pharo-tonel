@@ -1,12 +1,7 @@
-Extension {
-	#name : #RGMethodDefinitionTest
-}
+Extension { #name : #RGMethodDefinitionTest }
 
-{
-	#category : #'*Ring-Tests-Monticello',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RGMethodDefinitionTest>>testAsFullMethodDefinition [
+{ #category : #'*Ring-Tests-Monticello' }
+RGMethodDefinitionTest >> testAsFullMethodDefinition [
 	"self debug: #testAsFullMethodDefinition"
 	
 	| rgMethod |

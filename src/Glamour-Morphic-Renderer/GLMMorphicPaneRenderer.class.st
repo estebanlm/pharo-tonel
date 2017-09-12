@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicPaneRenderer,
 	#superclass : #GLMMorphicWidgetRenderer,
@@ -8,15 +5,11 @@ Class {
 		'container',
 		'contentMorph'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPaneRenderer>>actOnMatchingPresentationChanged: anAnnouncement [
+{ #category : #rendering }
+GLMMorphicPaneRenderer >> actOnMatchingPresentationChanged: anAnnouncement [
 	container removeAllMorphs.
 	self renderContainerFor: anAnnouncement pane.
 	self renderer window
@@ -25,11 +18,8 @@ GLMMorphicPaneRenderer>>actOnMatchingPresentationChanged: anAnnouncement [
 			self renderer window fullBounds ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPaneRenderer>>actOnPresentationToolbarUpdated: anAnnouncement [
+{ #category : #rendering }
+GLMMorphicPaneRenderer >> actOnPresentationToolbarUpdated: anAnnouncement [
 	"If this method is called contentMorph should be an tab widget"
 	| presentation |
 	
@@ -42,11 +32,8 @@ GLMMorphicPaneRenderer>>actOnPresentationToolbarUpdated: anAnnouncement [
 	
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPaneRenderer>>render: aPane [
+{ #category : #rendering }
+GLMMorphicPaneRenderer >> render: aPane [
 	container := GLMMorphic containerMorph.
 	self renderContainerFor: aPane.
 	aPane when: GLMMatchingPresentationsChanged send: #actOnMatchingPresentationChanged: to: self.
@@ -55,11 +42,8 @@ GLMMorphicPaneRenderer>>render: aPane [
 	^ container
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPaneRenderer>>renderContainerFor: aPane [
+{ #category : #rendering }
+GLMMorphicPaneRenderer >> renderContainerFor: aPane [
 
 	contentMorph := self 
 		morph: (self renderObject: aPane presentations) 

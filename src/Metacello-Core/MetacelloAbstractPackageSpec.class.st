@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloAbstractPackageSpec,
 	#superclass : #MetacelloSpec,
@@ -10,15 +7,11 @@ Class {
 		'includes',
 		'answers'
 	],
-	#category : #Metacello-Core-Specs,
-	#timestamp : ''
+	#category : #Metacello-Core-Specs
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>addToMetacelloPackages: aMetacelloPackagesSpec [
+{ #category : #adding }
+MetacelloAbstractPackageSpec >> addToMetacelloPackages: aMetacelloPackagesSpec [
 
 	aMetacelloPackagesSpec addMember: 
 		(aMetacelloPackagesSpec addMember 
@@ -27,30 +20,21 @@ MetacelloAbstractPackageSpec>>addToMetacelloPackages: aMetacelloPackagesSpec [
 			yourself)
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>answers [
+{ #category : #querying }
+MetacelloAbstractPackageSpec >> answers [
 
 	answers == nil ifTrue: [ answers := #() ].
 	^answers
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>answers: aListOfPairs [
+{ #category : #accessing }
+MetacelloAbstractPackageSpec >> answers: aListOfPairs [
 
 	self setAnswers: aListOfPairs
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>configMethodBodyOn: aStream hasName: hasName cascading: cascading indent: indent [
+{ #category : #printing }
+MetacelloAbstractPackageSpec >> configMethodBodyOn: aStream hasName: hasName cascading: cascading indent: indent [
 
 	| hasCascading hasRequires hasIncludes hasAnswers |
 	hasCascading := cascading.
@@ -95,20 +79,14 @@ MetacelloAbstractPackageSpec>>configMethodBodyOn: aStream hasName: hasName casca
 				ifFalse: [ aStream nextPut: $) ]].
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>configMethodCascadeOn: aStream member: aMember last: lastCascade indent: indent [
+{ #category : #printing }
+MetacelloAbstractPackageSpec >> configMethodCascadeOn: aStream member: aMember last: lastCascade indent: indent [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>configMethodOn: aStream for: aValue selector: selector cascading: cascading cascade: cascade indent: indent [
+{ #category : #printing }
+MetacelloAbstractPackageSpec >> configMethodOn: aStream for: aValue selector: selector cascading: cascading cascade: cascade indent: indent [
 
 	| valuePrintString |
 	aValue == nil ifTrue: [ ^self ].
@@ -120,63 +98,42 @@ MetacelloAbstractPackageSpec>>configMethodOn: aStream for: aValue selector: sele
 	cascade ifTrue: [ aStream nextPut: $; ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>hasRepository [
+{ #category : #testing }
+MetacelloAbstractPackageSpec >> hasRepository [
     ^ false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>includeSpecNamesForPackageOrdering: aVersionSpec [
+{ #category : #private }
+MetacelloAbstractPackageSpec >> includeSpecNamesForPackageOrdering: aVersionSpec [
   ^ self specs: self includesForPackageOrdering forPackageOrdering: aVersionSpec
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>includes [
+{ #category : #querying }
+MetacelloAbstractPackageSpec >> includes [
 
 	includes == nil ifTrue: [ includes := #() ].
 	^includes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>includes: aCollection [
+{ #category : #accessing }
+MetacelloAbstractPackageSpec >> includes: aCollection [
 
 	aCollection setIncludesInMetacelloPackage: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>includesForPackageOrdering [
+{ #category : #private }
+MetacelloAbstractPackageSpec >> includesForPackageOrdering [
   ^ #()
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>label [
+{ #category : #printing }
+MetacelloAbstractPackageSpec >> label [
 
 	^self name
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>mergeIntoMetacelloPackages: aMetacelloPackagesSpec [
+{ #category : #merging }
+MetacelloAbstractPackageSpec >> mergeIntoMetacelloPackages: aMetacelloPackagesSpec [
 
 	aMetacelloPackagesSpec addMember: 
 		(aMetacelloPackagesSpec mergeMember 
@@ -185,11 +142,8 @@ MetacelloAbstractPackageSpec>>mergeIntoMetacelloPackages: aMetacelloPackagesSpec
 			yourself)
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>mergeMap [
+{ #category : #merging }
+MetacelloAbstractPackageSpec >> mergeMap [
 
 	| map |
 	map := super mergeMap.
@@ -199,11 +153,8 @@ MetacelloAbstractPackageSpec>>mergeMap [
 	^map
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>mergeSpec: anotherSpec [
+{ #category : #merging }
+MetacelloAbstractPackageSpec >> mergeSpec: anotherSpec [
 
 	| newSpec map anotherRequires anotherIncludes anotherAnswers |
 	newSpec := super mergeSpec: anotherSpec.
@@ -219,39 +170,27 @@ MetacelloAbstractPackageSpec>>mergeSpec: anotherSpec [
 	^newSpec
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>name [
+{ #category : #querying }
+MetacelloAbstractPackageSpec >> name [
 
 	^name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>name: aString [
+{ #category : #accessing }
+MetacelloAbstractPackageSpec >> name: aString [
     ((aString at: 1) isSeparator or: [ (aString at: aString size) isSeparator ])
         ifTrue: [ self error: 'Names are not allowed to have leading or trailing blanks: ' , aString printString ].
     name := aString
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>nonOverridable [
+{ #category : #merging }
+MetacelloAbstractPackageSpec >> nonOverridable [
 
 	^#( includes requires answers )
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>postCopy [
+{ #category : #copying }
+MetacelloAbstractPackageSpec >> postCopy [
 
 	super postCopy.
 	requires := requires copy.
@@ -259,29 +198,20 @@ MetacelloAbstractPackageSpec>>postCopy [
 	answers := answers copy.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
+{ #category : #visiting }
+MetacelloAbstractPackageSpec >> projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>referencedSpec [
+{ #category : #accessing }
+MetacelloAbstractPackageSpec >> referencedSpec [
 
 	^self
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>removeFromMetacelloPackages: aMetacelloPackagesSpec [
+{ #category : #removing }
+MetacelloAbstractPackageSpec >> removeFromMetacelloPackages: aMetacelloPackagesSpec [
 
 	aMetacelloPackagesSpec addMember: 
 		(aMetacelloPackagesSpec removeMember 
@@ -290,90 +220,60 @@ MetacelloAbstractPackageSpec>>removeFromMetacelloPackages: aMetacelloPackagesSpe
 			yourself)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>requiredSpecNamesForPackageOrdering: aVersionSpec [
+{ #category : #private }
+MetacelloAbstractPackageSpec >> requiredSpecNamesForPackageOrdering: aVersionSpec [
   ^ (self requiredSpecsForPackageOrdering: aVersionSpec)
     collect: [ :spec | spec name ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>requiredSpecsForPackageOrdering: aVersionSpec [
+{ #category : #private }
+MetacelloAbstractPackageSpec >> requiredSpecsForPackageOrdering: aVersionSpec [
   ^ self specs: self requires forPackageOrdering: aVersionSpec
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>requires [
+{ #category : #querying }
+MetacelloAbstractPackageSpec >> requires [
 
 	requires == nil ifTrue: [ requires := #() ].
 	^requires
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>requires: aCollection [
+{ #category : #accessing }
+MetacelloAbstractPackageSpec >> requires: aCollection [
 
 	aCollection setRequiresInMetacelloPackage: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>requiresSpecsForPackageOrdering: aVersionSpec [
+{ #category : #private }
+MetacelloAbstractPackageSpec >> requiresSpecsForPackageOrdering: aVersionSpec [
   ^ {self}
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>resolveSpecsForPackageOrdering: aVersionSpec [
+{ #category : #private }
+MetacelloAbstractPackageSpec >> resolveSpecsForPackageOrdering: aVersionSpec [
   ^ {self}
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>setAnswers: aCollection [
+{ #category : #private }
+MetacelloAbstractPackageSpec >> setAnswers: aCollection [
 
 	answers := aCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>setIncludes: aCollection [
+{ #category : #private }
+MetacelloAbstractPackageSpec >> setIncludes: aCollection [
 
 	includes := aCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>setRequires: aCollection [
+{ #category : #private }
+MetacelloAbstractPackageSpec >> setRequires: aCollection [
 
 	requires := aCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractPackageSpec>>specs: specNames forPackageOrdering: aVersionSpec [
+{ #category : #private }
+MetacelloAbstractPackageSpec >> specs: specNames forPackageOrdering: aVersionSpec [
   | packageOrProjectSpecs |
   packageOrProjectSpecs := Set new.
   specNames

@@ -4,33 +4,23 @@ Checks for repeated literal equalitity tests that should rather be implemented a
 Class {
 	#name : #RBSearchingLiteralRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 23:05'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSearchingLiteralRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBSearchingLiteralRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'SearchingLiteralRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSearchingLiteralRule>>group [
+{ #category : #accessing }
+RBSearchingLiteralRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSearchingLiteralRule>>initialize [
+{ #category : #initialization }
+RBSearchingLiteralRule >> initialize [
 	super initialize.
 	self matcher
 		matchesAnyOf: #(
@@ -51,11 +41,8 @@ RBSearchingLiteralRule>>initialize [
 				ifFalse: [ answer ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSearchingLiteralRule>>isSearchingLiteralExpression: aMessageNode  [
+{ #category : #private }
+RBSearchingLiteralRule >> isSearchingLiteralExpression: aMessageNode [ 
 	| equalNode expressionNode |
 	equalNode := aMessageNode selector = #| 
 				ifTrue: [aMessageNode arguments first]
@@ -66,11 +53,8 @@ RBSearchingLiteralRule>>isSearchingLiteralExpression: aMessageNode  [
 	^self isSearchingLiteralExpression: aMessageNode for: expressionNode
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSearchingLiteralRule>>isSearchingLiteralExpression: aSearchingNode for: anObjectNode  [
+{ #category : #private }
+RBSearchingLiteralRule >> isSearchingLiteralExpression: aSearchingNode for: anObjectNode [ 
 	| argument arguments |
 	aSearchingNode isMessage ifFalse: [^false].
 	arguments := aSearchingNode arguments.
@@ -96,10 +80,7 @@ RBSearchingLiteralRule>>isSearchingLiteralExpression: aSearchingNode for: anObje
 					for: anObjectNode]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSearchingLiteralRule>>name [
+{ #category : #accessing }
+RBSearchingLiteralRule >> name [
 	^ 'Uses or''s instead of a searching literal'
 ]

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnBivalentWriteStreamTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBivalentWriteStreamTests>>testByteWriting [
+{ #category : #testing }
+ZnBivalentWriteStreamTests >> testByteWriting [
 	| string |
 	string := String streamContents: [ :stream | | writeStream |
 		writeStream := ZnBivalentWriteStream on: stream.
@@ -20,11 +13,8 @@ ZnBivalentWriteStreamTests>>testByteWriting [
 	self assert: string asByteArray = #(97 98 99) asByteArray
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBivalentWriteStreamTests>>testCharacterWriting [
+{ #category : #testing }
+ZnBivalentWriteStreamTests >> testCharacterWriting [
 	| bytes |
 	bytes := ByteArray streamContents: [ :stream | | writeStream |
 		writeStream := ZnBivalentWriteStream on: stream.

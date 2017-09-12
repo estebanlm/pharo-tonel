@@ -17,38 +17,25 @@ Class {
 		'deviceId',
 		'timestamp'
 	],
-	#category : #OSWindow-Core-Events-Touch,
-	#timestamp : 'jeanbaptistearnaud 2/26/2015 17:12'
+	#category : #OSWindow-Core-Events-Touch
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchEvent>>deviceId [
+{ #category : #accessing }
+OSTouchEvent >> deviceId [
 	^ deviceId
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchEvent>>deviceId: anObject [
+{ #category : #accessing }
+OSTouchEvent >> deviceId: anObject [
 	deviceId := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchEvent>>timestamp [
+{ #category : #accessing }
+OSTouchEvent >> timestamp [
 	^timestamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchEvent>>timestamp: anObject [
+{ #category : #accessing }
+OSTouchEvent >> timestamp: anObject [
 	timestamp := anObject
 ]

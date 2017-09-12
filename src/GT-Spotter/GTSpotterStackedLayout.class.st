@@ -1,82 +1,54 @@
-"
-
-"
 Class {
 	#name : #GTSpotterStackedLayout,
 	#superclass : #GLMVerticalLinearLayout,
 	#instVars : [
 		'allowedBounds'
 	],
-	#category : #GT-Spotter-UI,
-	#timestamp : ''
+	#category : #GT-Spotter-UI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>allowedBounds [
+{ #category : #accessing }
+GTSpotterStackedLayout >> allowedBounds [
 	^ allowedBounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>allowedBounds: anObject [
+{ #category : #accessing }
+GTSpotterStackedLayout >> allowedBounds: anObject [
 	allowedBounds := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>cutAllowedBoundsBottom: aBrick [
+{ #category : #'as yet unclassified' }
+GTSpotterStackedLayout >> cutAllowedBoundsBottom: aBrick [
 
 	self allowedBounds: (self shrinkBottom: self allowedBounds with: aBrick )
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>cutAllowedBoundsTop: aBrick [
+{ #category : #'as yet unclassified' }
+GTSpotterStackedLayout >> cutAllowedBoundsTop: aBrick [
 
 	self allowedBounds: (self shrinkTop: self allowedBounds with: aBrick )
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>decreaseZindex: aBrick [
+{ #category : #'as yet unclassified' }
+GTSpotterStackedLayout >> decreaseZindex: aBrick [
 
 	aBrick layoutProperties zIndex: 1.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>deltaBottom: aBrick [
+{ #category : #'as yet unclassified' }
+GTSpotterStackedLayout >> deltaBottom: aBrick [
 
 	^ aBrick globalOuterBounds corner y -  self allowedBounds corner y
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>deltaTop: aBrick [
+{ #category : #'as yet unclassified' }
+GTSpotterStackedLayout >> deltaTop: aBrick [
 
 	^ self allowedBounds origin y - aBrick globalOuterBounds origin y
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>gatherStacked: aBrick [
+{ #category : #'as yet unclassified' }
+GTSpotterStackedLayout >> gatherStacked: aBrick [
 	|list|
 	
 	list := DoubleLinkedList new.
@@ -84,93 +56,63 @@ GTSpotterStackedLayout>>gatherStacked: aBrick [
 	^ list
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>increaseZindex: aBrick [
+{ #category : #'as yet unclassified' }
+GTSpotterStackedLayout >> increaseZindex: aBrick [
 
 	aBrick layoutProperties zIndex: 2.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>isAbove: aBrick [
+{ #category : #testing }
+GTSpotterStackedLayout >> isAbove: aBrick [
 
 	^ aBrick globalOuterBounds origin <= self allowedBounds origin
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>isAbove: aBrick in: aRectangle [
+{ #category : #testing }
+GTSpotterStackedLayout >> isAbove: aBrick in: aRectangle [
 
 	^ aBrick globalOuterBounds origin <= aRectangle origin
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>isFullyVisible: aBrick [
+{ #category : #testing }
+GTSpotterStackedLayout >> isFullyVisible: aBrick [
 	
 	^ self allowedBounds containsRect: aBrick globalOuterBounds
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>isFullyVisible: aBrick in: aRectangle [
+{ #category : #testing }
+GTSpotterStackedLayout >> isFullyVisible: aBrick in: aRectangle [
 	
 	^ aRectangle containsRect: aBrick globalOuterBounds
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>isPartiallyVisibleAbove: aBrick [
+{ #category : #testing }
+GTSpotterStackedLayout >> isPartiallyVisibleAbove: aBrick [
 
 	^ (self isFullyVisible: aBrick) not & (self isAbove: aBrick)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>isVisible: aBrick [
+{ #category : #testing }
+GTSpotterStackedLayout >> isVisible: aBrick [
 	
 	^ self allowedBounds containsRect: aBrick globalOuterBounds
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>isVisible: aBrick in: aRectangle [
+{ #category : #testing }
+GTSpotterStackedLayout >> isVisible: aBrick in: aRectangle [
 	
 	^ aRectangle intersects: aBrick globalOuterBounds
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>layout: aBrick in: newBounds [
+{ #category : #layout }
+GTSpotterStackedLayout >> layout: aBrick in: newBounds [
 	
 	^ super layout: aBrick in: newBounds.
 	"^ self layoutStacked: aBrick in: newBounds"
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>layoutAllowedBottom: aBrick [
+{ #category : #'as yet unclassified' }
+GTSpotterStackedLayout >> layoutAllowedBottom: aBrick [
 
 	self
 		translate: aBrick by: (self deltaBottom: aBrick) negated;
@@ -178,11 +120,8 @@ GTSpotterStackedLayout>>layoutAllowedBottom: aBrick [
 		cutAllowedBoundsBottom: aBrick
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>layoutAllowedTop: aBrick [
+{ #category : #'as yet unclassified' }
+GTSpotterStackedLayout >> layoutAllowedTop: aBrick [
 
 	self
 		translate: aBrick by: (self deltaTop: aBrick);
@@ -190,11 +129,8 @@ GTSpotterStackedLayout>>layoutAllowedTop: aBrick [
 		cutAllowedBoundsTop: aBrick
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>layoutProportional: aCollection in: aBrick position: aSymbol [
+{ #category : #'as yet unclassified' }
+GTSpotterStackedLayout >> layoutProportional: aCollection in: aBrick position: aSymbol [
 	| fullWidth eachWidth index |
 	aCollection isEmpty ifTrue: [ ^ self ].
 	
@@ -221,11 +157,8 @@ GTSpotterStackedLayout>>layoutProportional: aCollection in: aBrick position: aSy
 		leftOffset + layoutBounds outerBounds width ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>layoutStacked: aBrick in: newBounds [
+{ #category : #'as yet unclassified' }
+GTSpotterStackedLayout >> layoutStacked: aBrick in: newBounds [
 	| origStackedBricks stackedBricks forward stackedTopBricks stackedBottomBricks stackedTopHeight stackedBottomHeight|
 	self flag: 'refactor me'.
 	self allowedBounds: newBounds.
@@ -281,20 +214,14 @@ GTSpotterStackedLayout>>layoutStacked: aBrick in: newBounds [
 	^ allowedBounds
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>shrinkBottom: aRectangle with: aBrick [
+{ #category : #'as yet unclassified' }
+GTSpotterStackedLayout >> shrinkBottom: aRectangle with: aBrick [
 
 	^ aRectangle bottom: (aRectangle bottom - aBrick globalOuterBounds height)
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStackedLayout>>shrinkTop: aRectangle with: aBrick [
+{ #category : #'as yet unclassified' }
+GTSpotterStackedLayout >> shrinkTop: aRectangle with: aBrick [
 
 	^ aRectangle top: (aRectangle top + aBrick globalOuterBounds height)
 ]

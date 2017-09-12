@@ -1,11 +1,6 @@
-Extension {
-	#name : #MCRepositoryGroup
-}
+Extension { #name : #MCRepositoryGroup }
 
-{
-	#category : #'*Komitter-Models',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCRepositoryGroup>>remotes [
+{ #category : #'*Komitter-Models' }
+MCRepositoryGroup >> remotes [
 	^ self repositories reject: [ :each | each isCache ]
 ]

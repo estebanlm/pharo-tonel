@@ -1,12 +1,7 @@
-Extension {
-	#name : #TextModel
-}
+Extension { #name : #TextModel }
 
-{
-	#category : #'*Spec-MorphicAdapters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>pendingText [
+{ #category : #'*Spec-MorphicAdapters' }
+TextModel >> pendingText [
 	"<api: #inspect>"
 	"Return the current pending text"
 
@@ -15,11 +10,8 @@ TextModel>>pendingText [
 		ifNone: [ self getText ]
 ]
 
-{
-	#category : #'*Spec-MorphicAdapters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>pendingText: aText [
+{ #category : #'*Spec-MorphicAdapters' }
+TextModel >> pendingText: aText [
 	"<api: #string getter: #pendingText>"
 	"Set the pending text. Do no accept it"
 

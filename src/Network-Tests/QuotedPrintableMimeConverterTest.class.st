@@ -7,39 +7,26 @@ Class {
 	#instVars : [
 		'coder'
 	],
-	#category : #Network-Tests-MIME,
-	#timestamp : 'TorstenBergmann 2/5/2014 10:12'
+	#category : #Network-Tests-MIME
 }
 
-{
-	#category : #accesing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>decode: string [
+{ #category : #accesing }
+QuotedPrintableMimeConverterTest >> decode: string [
 	^ coder mimeDecode: string as: String
 ]
 
-{
-	#category : #accesing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>encode: string [
+{ #category : #accesing }
+QuotedPrintableMimeConverterTest >> encode: string [
 	^ coder mimeEncode: string
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>setUp [
+{ #category : #running }
+QuotedPrintableMimeConverterTest >> setUp [
 	coder := QuotedPrintableMimeConverter
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>testDecodeCRLF [
+{ #category : #testing }
+QuotedPrintableMimeConverterTest >> testDecodeCRLF [
 
 	self 
 		assert: (self decode: 'This is the first line=0D=0A and this is the second')
@@ -47,11 +34,8 @@ QuotedPrintableMimeConverterTest>>testDecodeCRLF [
  and this is the second'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>testDecodeCustomNewline [
+{ #category : #testing }
+QuotedPrintableMimeConverterTest >> testDecodeCustomNewline [
 	| decoder output |
 	decoder := coder new.
 	output := String new writeStream.
@@ -66,22 +50,16 @@ QuotedPrintableMimeConverterTest>>testDecodeCustomNewline [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>testDecodeDecodedStrings [
+{ #category : #testing }
+QuotedPrintableMimeConverterTest >> testDecodeDecodedStrings [
 
 	self 
 		assert: (self decode: 'Hätten Hüte ein ß im Namen, wären sie möglicherweise keine Hüte mehr')
 		equals: 'Hätten Hüte ein ß im Namen, wären sie möglicherweise keine Hüte mehr'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>testDecodeSimpleStrings [
+{ #category : #testing }
+QuotedPrintableMimeConverterTest >> testDecodeSimpleStrings [
 
 	self 
 		assert: (self decode: 'Z=FCrich') 
@@ -91,11 +69,8 @@ QuotedPrintableMimeConverterTest>>testDecodeSimpleStrings [
 		equals: 'Hätten Hüte ein ß im Namen, wären sie möglicherweise keine Hüte mehr'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>testDecodeSoftLinebreak [
+{ #category : #testing }
+QuotedPrintableMimeConverterTest >> testDecodeSoftLinebreak [
 
 	self 
 		assert: (self decode: 'This is text may not be=
@@ -103,66 +78,48 @@ QuotedPrintableMimeConverterTest>>testDecodeSoftLinebreak [
 		equals: 'This is text may not be decoded as two lines'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>testDecodeSoftLinebreakCR [
+{ #category : #testing }
+QuotedPrintableMimeConverterTest >> testDecodeSoftLinebreakCR [
 
 	self 
 		assert: (self decode: 'This is text may not be=', String cr, ' decoded as two lines')
 		equals: 'This is text may not be decoded as two lines'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>testDecodeSoftLinebreakCRLF [
+{ #category : #testing }
+QuotedPrintableMimeConverterTest >> testDecodeSoftLinebreakCRLF [
 
 	self 
 		assert: (self decode: 'This is text may not be=', String crlf, ' decoded as two lines')
 		equals: 'This is text may not be decoded as two lines'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>testDecodeSoftLinebreakLF [
+{ #category : #testing }
+QuotedPrintableMimeConverterTest >> testDecodeSoftLinebreakLF [
 
 	self 
 		assert: (self decode: 'This is text may not be=', String lf, ' decoded as two lines')
 		equals: 'This is text may not be decoded as two lines'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>testEncodeCR [
+{ #category : #testing }
+QuotedPrintableMimeConverterTest >> testEncodeCR [
 
 	self 
 		assert: (self encode: 'This is the first line', String cr, 'and this is the second')
 		equals: 'This is the first line=0D=0Aand this is the second'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>testEncodeCRLF [
+{ #category : #testing }
+QuotedPrintableMimeConverterTest >> testEncodeCRLF [
 
 	self 
 		assert: (self encode: 'This is the first line', String crlf, 'and this is the second')
 		equals: 'This is the first line=0D=0Aand this is the second'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>testEncodeEncodedStrings [
+{ #category : #testing }
+QuotedPrintableMimeConverterTest >> testEncodeEncodedStrings [
 
 	"An = becomes =3D and is then not decodable any more (only if you know you have to do it twice ;-) )"
 	self
@@ -170,22 +127,16 @@ QuotedPrintableMimeConverterTest>>testEncodeEncodedStrings [
 		equals: 'Z=3DFCrich'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>testEncodeLF [
+{ #category : #testing }
+QuotedPrintableMimeConverterTest >> testEncodeLF [
 
 	self 
 		assert: (self encode: 'This is the first line', String lf, 'and this is the second')
 		equals: 'This is the first line=0D=0Aand this is the second'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>testEncodeLongLine [
+{ #category : #testing }
+QuotedPrintableMimeConverterTest >> testEncodeLongLine [
 	| input output |
 	
 	input := (String new: 74 withAll: $A), (String new: 47 withAll: $B).
@@ -198,11 +149,8 @@ QuotedPrintableMimeConverterTest>>testEncodeLongLine [
 		equals: output
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>testEncodeSimpleStrings [
+{ #category : #testing }
+QuotedPrintableMimeConverterTest >> testEncodeSimpleStrings [
 
 	self 
 		assert: (self encode: 'Zürich')
@@ -212,11 +160,8 @@ QuotedPrintableMimeConverterTest>>testEncodeSimpleStrings [
 		equals: '=DCber die F=E4hrverbindungen nach F=F6hr w=FC=DFte ich nicht viel'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>testEncodeSoftLinebreak [
+{ #category : #testing }
+QuotedPrintableMimeConverterTest >> testEncodeSoftLinebreak [
 
 	| original encoded |
 
@@ -240,11 +185,8 @@ d, will come when it will come'.
 	self assert: (self decode: encoded) equals: original
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-QuotedPrintableMimeConverterTest>>testLongLine [
+{ #category : #testing }
+QuotedPrintableMimeConverterTest >> testLongLine [
 	| input output |
 	
 	input := (String new: 74 withAll: $A), (String new: 47 withAll: $B).

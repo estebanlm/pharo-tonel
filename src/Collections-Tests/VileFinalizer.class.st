@@ -8,23 +8,16 @@ Class {
 	#instVars : [
 		'weakRegistry'
 	],
-	#category : #Collections-Tests-Weak,
-	#timestamp : '<historical>'
+	#category : #Collections-Tests-Weak
 }
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-VileFinalizer>>finalize [
+{ #category : #finalization }
+VileFinalizer >> finalize [
 	weakRegistry remove: self ifAbsent: [].
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-VileFinalizer>>initialize: registry [
+{ #category : #initialize-release }
+VileFinalizer >> initialize: registry [
 	weakRegistry := registry.
 	weakRegistry add: self.
 ]

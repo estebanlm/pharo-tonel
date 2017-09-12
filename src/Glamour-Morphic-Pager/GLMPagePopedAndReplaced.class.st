@@ -1,28 +1,18 @@
-"
-
-"
 Class {
 	#name : #GLMPagePopedAndReplaced,
 	#superclass : #Announcement,
 	#instVars : [
 		'brick'
 	],
-	#category : #Glamour-Morphic-Pager-Announcement,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Pager-Announcement
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagePopedAndReplaced>>brick [
+{ #category : #accessing }
+GLMPagePopedAndReplaced >> brick [
 	^ brick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagePopedAndReplaced>>brick: anObject [
+{ #category : #accessing }
+GLMPagePopedAndReplaced >> brick: anObject [
 	brick := anObject
 ]

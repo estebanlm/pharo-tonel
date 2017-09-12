@@ -4,23 +4,16 @@ A MCTraitParser extracts an MCTraitDefinition from the source.
 Class {
 	#name : #MCTraitParser,
 	#superclass : #MCDoItParser,
-	#category : #'Monticello-Chunk Format',
-	#timestamp : '<historical>'
+	#category : #'Monticello-Chunk Format'
 }
 
-{
-	#category : #'factory identification hook',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCTraitParser class>>pattern [
+{ #category : #'factory identification hook' }
+MCTraitParser class >> pattern [
 	^ 'Trait named:*'
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCTraitParser>>addDefinitionsTo: aCollection [
+{ #category : #actions }
+MCTraitParser >> addDefinitionsTo: aCollection [
 	| tokens  definition traitCompositionString |
 	tokens := source parseLiterals.
 	traitCompositionString := (source readStream

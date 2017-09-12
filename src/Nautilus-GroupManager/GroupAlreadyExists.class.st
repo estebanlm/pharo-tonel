@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'groupName'
 	],
-	#category : #Nautilus-GroupManager,
-	#timestamp : '<historical>'
+	#category : #Nautilus-GroupManager
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupAlreadyExists class>>groupName: groupName [
+{ #category : #'instance creation' }
+GroupAlreadyExists class >> groupName: groupName [
 
 	^ self new
 		groupName: groupName;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupAlreadyExists>>groupName [
+{ #category : #accessing }
+GroupAlreadyExists >> groupName [
 	^ groupName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupAlreadyExists>>groupName: anObject [
+{ #category : #accessing }
+GroupAlreadyExists >> groupName: anObject [
 	groupName := anObject
 ]

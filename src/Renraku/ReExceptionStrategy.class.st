@@ -7,33 +7,23 @@ Class {
 	#classInstVars : [
 		'current'
 	],
-	#category : #Renraku-Utility,
-	#timestamp : 'YuriyTymchuk 7/16/2017 15:35'
+	#category : #Renraku-Utility
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReExceptionStrategy class>>current [
+{ #category : #accessing }
+ReExceptionStrategy class >> current [
 
 	^ current ifNil: [ current := ReLogExceptionStrategy ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReExceptionStrategy class>>current: aStrategy [
+{ #category : #accessing }
+ReExceptionStrategy class >> current: aStrategy [
 
 	^ current := aStrategy
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReExceptionStrategy class>>exceptionStrategySettingsOn: aBuilder [
+{ #category : #settings }
+ReExceptionStrategy class >> exceptionStrategySettingsOn: aBuilder [
 	<systemsettings>
 	
 	(aBuilder pickOne: #current)
@@ -46,22 +36,16 @@ ReExceptionStrategy class>>exceptionStrategySettingsOn: aBuilder [
 				c strategyTitle -> c ])
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReExceptionStrategy class>>handle: anException about: anEntity forProppertiesDo: aBlock [
+{ #category : #'error handling' }
+ReExceptionStrategy class >> handle: anException about: anEntity forProppertiesDo: aBlock [
 	"do something with anException that occured during anEntity validation.
 	in case you want to produce a new renraku property evaluate aBlock with it"
 	
 	self subclassResponsibility 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReExceptionStrategy class>>settingDescription [
+{ #category : #settings }
+ReExceptionStrategy class >> settingDescription [
 	
 	^ String streamContents: [ :stream |
 		stream nextPutAll: 'The selected strategy defines how to handle exceptions that occur during a renraku validation of an entity.'.
@@ -75,21 +59,15 @@ ReExceptionStrategy class>>settingDescription [
 				nextPutAll: cls strategyDescription ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReExceptionStrategy class>>strategyDescription [
+{ #category : #accessing }
+ReExceptionStrategy class >> strategyDescription [
 	"a string that will be used as a part of the setting explenation"
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReExceptionStrategy class>>strategyTitle [
+{ #category : #accessing }
+ReExceptionStrategy class >> strategyTitle [
 	"a string the will be displayed for the setting option"
 
 	^ self subclassResponsibility

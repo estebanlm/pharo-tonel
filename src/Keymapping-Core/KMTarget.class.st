@@ -11,92 +11,61 @@ Class {
 		'directKeymaps',
 		'perInstanceCategories'
 	],
-	#category : #Keymapping-Core,
-	#timestamp : 'GuillermoPolito 2/24/2011 23:44'
+	#category : #Keymapping-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMTarget class>>for: aTarget in: aMorph [
+{ #category : #'instance creation' }
+KMTarget class >> for: aTarget in: aMorph [
 	^ (self new)
 		targetSelector: aTarget;
 		morph: aMorph;
 		yourself
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMTarget>>announcer [
+{ #category : #protocol }
+KMTarget >> announcer [
 
 	^ self morph announcer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMTarget>>dispatch: buffer [
+{ #category : #accessing }
+KMTarget >> dispatch: buffer [
 
 	morph kmDispatcher dispatch: buffer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMTarget>>morph [
+{ #category : #accessing }
+KMTarget >> morph [
 	^morph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMTarget>>morph: aMorph [
+{ #category : #accessing }
+KMTarget >> morph: aMorph [
 	morph := aMorph
 ]
 
-{
-	#category : #iterating,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMTarget>>nextForKmChain: aKMDispatchChain  [
+{ #category : #iterating }
+KMTarget >> nextForKmChain: aKMDispatchChain [ 
 	^self ownerTarget
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMTarget>>ownerTarget [
+{ #category : #accessing }
+KMTarget >> ownerTarget [
 	morph owner ifNil: [ ^nil ].
 	^morph owner kmDispatcher target.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMTarget>>realTarget [
+{ #category : #accessing }
+KMTarget >> realTarget [
 	^morph perform: self targetSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMTarget>>targetSelector [
+{ #category : #accessing }
+KMTarget >> targetSelector [
 	^targetSelector ifNil: [ #yourself ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMTarget>>targetSelector: aTargetSelector [
+{ #category : #accessing }
+KMTarget >> targetSelector: aTargetSelector [
 	targetSelector := aTargetSelector
 ]

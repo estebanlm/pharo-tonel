@@ -4,15 +4,11 @@ A FinderNode is an abstract class used by the tree of FinderUI
 Class {
 	#name : #FinderNode,
 	#superclass : #MorphTreeNodeModel,
-	#category : #Tool-Finder,
-	#timestamp : '<historical>'
+	#category : #Tool-Finder
 }
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderNode>>addInspectMenuItem: menu [
+{ #category : #'events handling' }
+FinderNode >> addInspectMenuItem: menu [
 
 	menu
 		add: 'Inspect (i)'
@@ -20,72 +16,48 @@ FinderNode>>addInspectMenuItem: menu [
 		selector: #inspectItem.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderNode>>browse [
+{ #category : #private }
+FinderNode >> browse [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderNode>>browseClass [
+{ #category : #private }
+FinderNode >> browseClass [
 
 	^ Smalltalk tools browser openOnClass: self item
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderNode>>displayString [
+{ #category : #private }
+FinderNode >> displayString [
 	
 	^ self item asString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderNode>>doubleClick [
+{ #category : #private }
+FinderNode >> doubleClick [
 	self browse
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderNode>>hasParentNode [
+{ #category : #testing }
+FinderNode >> hasParentNode [
 	^ self parentNode isNil not
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderNode>>inspectItem [
+{ #category : #private }
+FinderNode >> inspectItem [
 	self item inspect
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderNode>>keyStroke: anEvent [
+{ #category : #'events handling' }
+FinderNode >> keyStroke: anEvent [
 	(anEvent controlKeyPressed or: [ anEvent commandKeyPressed ]) ifFalse: [ ^ false ].
 	anEvent keyCharacter == $b ifTrue: [ ^ self browse ].
 	anEvent keyCharacter == $i ifTrue: [ ^ self inspectItem ].
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderNode>>menu: menu shifted: aBoolean [
+{ #category : #'events handling' }
+FinderNode >> menu: menu shifted: aBoolean [
 	menu
 		add: 'Browse (b)'
 		target: self

@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'maxLength'
 	],
-	#category : #Morphic-Widgets-Pluggable,
-	#timestamp : 'gvc 5/18/2007 12:28'
+	#category : #Morphic-Widgets-Pluggable
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>editorClass [
+{ #category : #private }
+TextMorphForFieldView >> editorClass [
 	^ TextEditor
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>isEditEvent: anEvent [
+{ #category : #testing }
+TextMorphForFieldView >> isEditEvent: anEvent [
 	"Answer whether the given event is a key stroke that
 	should be allowed despite the max length."
 
@@ -40,11 +33,8 @@ TextMorphForFieldView>>isEditEvent: anEvent [
 			anEvent commandKeyPressed and: [key = $a]]]]]]]]]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>keyStroke: evt [
+{ #category : #'event handling' }
+TextMorphForFieldView >> keyStroke: evt [
 	"Don't allow editing keys if the edit view is disabled.
 	Do the key if max length has not been reached.
 	Don't allow tabs." 
@@ -55,11 +45,8 @@ TextMorphForFieldView>>keyStroke: evt [
 	super keyStroke: evt
 ]
 
-{
-	#category : #changed,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>keyboardFocusChange: aBoolean  [
+{ #category : #changed }
+TextMorphForFieldView >> keyboardFocusChange: aBoolean [ 
 	"If we are losing focus and have acceptOnFocusChange then accept."
 	aBoolean
 		ifTrue: [self editView selectAll]
@@ -67,11 +54,8 @@ TextMorphForFieldView>>keyboardFocusChange: aBoolean  [
 	super keyboardFocusChange: aBoolean
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>localHandleKeystroke: evt [
+{ #category : #events }
+TextMorphForFieldView >> localHandleKeystroke: evt [
 	"Answer whether we locally handle the keyStroke event.
 	Disregard tabs for now."
 	
@@ -92,31 +76,22 @@ TextMorphForFieldView>>localHandleKeystroke: evt [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>maxLength [
+{ #category : #accessing }
+TextMorphForFieldView >> maxLength [
 	"Answer the value of maxLength"
 
 	^ maxLength
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>maxLength: anObject [
+{ #category : #accessing }
+TextMorphForFieldView >> maxLength: anObject [
 	"Set the value of maxLength"
 
 	maxLength := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>minExtent [
+{ #category : #accessing }
+TextMorphForFieldView >> minExtent [
 	"Overridden to allow text to shrink to minimum extent rather than being (incorrectly)
 	treated as rigid. Should be the same for other morphs too. Bah!"
 
@@ -147,31 +122,22 @@ TextMorphForFieldView>>minExtent [
 	^minExtent
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>minHeight [
+{ #category : #layout }
+TextMorphForFieldView >> minHeight [
 	"Answer the height of one line."
 
 	^self minimumExtent y max: super minHeight
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>minWidth [
+{ #category : #layout }
+TextMorphForFieldView >> minWidth [
 	"Answer the minimum width."
 
 	^self minimumExtent x max: super minWidth
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>minimumExtent [
+{ #category : #geometry }
+TextMorphForFieldView >> minimumExtent [
 	"Use the actual paragraph line to take font changes into account."
 	
 	| minExt |
@@ -181,11 +147,8 @@ TextMorphForFieldView>>minimumExtent [
 	^ ((0@0 extent: minExt) expandBy: margins) extent
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>mouseMove: evt [
+{ #category : #'event handling' }
+TextMorphForFieldView >> mouseMove: evt [
 	"Allow auto scroll in any direction.
 	Something else is preventing the left/right case."
 	
@@ -204,11 +167,8 @@ TextMorphForFieldView>>mouseMove: evt [
 	].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>paragraph [
+{ #category : #private }
+TextMorphForFieldView >> paragraph [
 	"Paragraph instantiation is lazy -- create it only when needed.
 	Don't adjust rightX (as in TexMorph>>paragraph)
 	since wrapFlag must be false for layout to work."
@@ -236,34 +196,22 @@ self removeProperty: #CreatingParagraph.
 	^ paragraph
 ]
 
-{
-	#category : #find-replace,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>sharesFindReplace [
+{ #category : #find-replace }
+TextMorphForFieldView >> sharesFindReplace [
 	^ false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>useFindReplaceSelection [
+{ #category : #private }
+TextMorphForFieldView >> useFindReplaceSelection [
 	^ false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>useSecondarySelection [
+{ #category : #private }
+TextMorphForFieldView >> useSecondarySelection [
 	^ false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TextMorphForFieldView>>useSelectionBar [
+{ #category : #private }
+TextMorphForFieldView >> useSelectionBar [
 	^ false
 ]

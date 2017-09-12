@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCFileBasedRepository
-}
+Extension { #name : #MCFileBasedRepository }
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MCFileBasedRepository>>versionInfoFromVersionNamed: aString [
+{ #category : #'*metacello-mc' }
+MCFileBasedRepository >> versionInfoFromVersionNamed: aString [
 
 	| versions |
 	versions := self allVersionNames

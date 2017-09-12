@@ -31,45 +31,32 @@ Class {
 		'actionButton',
 		'actionBlock'
 	],
-	#category : #Morphic-Widgets-FastTable-Functions,
-	#timestamp : 'CyrilFerlicot 10/27/2015 14:59'
+	#category : #Morphic-Widgets-FastTable-Functions
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunctionWithAction class>>table: aFTTableMorph action: aBlockClosure named: aString [
+{ #category : #'instance creation' }
+FTFilterFunctionWithAction class >> table: aFTTableMorph action: aBlockClosure named: aString [
 	^ (self table: aFTTableMorph)
 		action: aBlockClosure named: aString;
 		yourself
 ]
 
-{
-	#category : #option,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunctionWithAction>>action: aBlockClosure named: aString [
+{ #category : #option }
+FTFilterFunctionWithAction >> action: aBlockClosure named: aString [
 	actionBlock := aBlockClosure.
 	self initializeActionButtonNamed: aString 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunctionWithAction>>beExplicite [
+{ #category : #accessing }
+FTFilterFunctionWithAction >> beExplicite [
 	super beExplicite.
 	table addMorph: actionButton.
 	table selectedRowIndex = 0
 		ifTrue: [ table selectRowIndex: 1 ]
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunctionWithAction>>execute [
+{ #category : #execute }
+FTFilterFunctionWithAction >> execute [
 	actionBlock
 		cull: table dataSource
 		cull: field getTextFromModel asString
@@ -79,11 +66,8 @@ FTFilterFunctionWithAction>>execute [
 				ifTrue: [ nil ])
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunctionWithAction>>initializeActionButtonNamed: aString [
+{ #category : #initialization }
+FTFilterFunctionWithAction >> initializeActionButtonNamed: aString [
 	actionButton := PluggableButtonMorph
 		newButtonFor: self
 		action: #execute
@@ -91,11 +75,8 @@ FTFilterFunctionWithAction>>initializeActionButtonNamed: aString [
 		help: nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunctionWithAction>>resizeButton [
+{ #category : #private }
+FTFilterFunctionWithAction >> resizeButton [
 	| topLeft bottomRight |
 	self flag: #TODO.	"Maybe it could be cool to let the user choose if the field need to be at the top or the bottom."
 	bottomRight := (table bounds right - table verticalScrollBarWidth) @ table bottom.
@@ -103,11 +84,8 @@ FTFilterFunctionWithAction>>resizeButton [
 	actionButton bounds: (topLeft corner: bottomRight)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunctionWithAction>>resizeField [
+{ #category : #private }
+FTFilterFunctionWithAction >> resizeField [
 	| topLeft bottomRight |
 	self flag: #TODO.	"Maybe it could be cool to let the user choose if the field need to be at the top or the bottom."
 	topLeft := table bounds left @ (table bounds bottom - self fieldHeigh).
@@ -116,20 +94,14 @@ FTFilterFunctionWithAction>>resizeField [
 	field bounds: (topLeft corner: bottomRight)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunctionWithAction>>resizeWidget [
+{ #category : #private }
+FTFilterFunctionWithAction >> resizeWidget [
 	self resizeField.
 	self resizeButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunctionWithAction>>showWidget [
+{ #category : #accessing }
+FTFilterFunctionWithAction >> showWidget [
 	super showWidget.
 	table addMorph: actionButton.
 	table selectedRowIndex = 0

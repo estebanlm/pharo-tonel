@@ -13,23 +13,16 @@ The event can be used by any Morph implementing:
 Class {
 	#name : #DropFilesEvent,
 	#superclass : #DropEvent,
-	#category : #Morphic-Base-Events,
-	#timestamp : 'HenrikNergaard 11/24/2015 18:07'
+	#category : #Morphic-Base-Events
 }
 
-{
-	#category : #dispatching,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-DropFilesEvent>>sentTo: anObject [
+{ #category : #dispatching }
+DropFilesEvent >> sentTo: anObject [
 	"Dispatch the receiver into anObject"
 	^anObject handleDropFiles: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-DropFilesEvent>>type [
+{ #category : #accessing }
+DropFilesEvent >> type [
 	^#dropFilesEvent
 ]

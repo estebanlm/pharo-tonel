@@ -32,15 +32,11 @@ Class {
 		'SecondaryBytecodeSetEncoderClass',
 		'SmallFrame'
 	],
-	#category : #Kernel-Methods,
-	#timestamp : 'ClementBera 5/23/2016 11:00'
+	#category : #Kernel-Methods
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode class>>newMethod: numberOfBytes header: headerWord [
+{ #category : #'instance creation' }
+CompiledCode class >> newMethod: numberOfBytes header: headerWord [
 	"Primitive. Answer an instance of me. The number of literals (and other 
 	 information) is specified by the headerWord (see my class comment).
 	 The first argument specifies the number of fields for bytecodes in the
@@ -55,11 +51,8 @@ CompiledCode class>>newMethod: numberOfBytes header: headerWord [
 	^self primitiveFailed
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>= aCompiledMethod [
+{ #category : #comparing }
+CompiledCode >> = aCompiledMethod [
 	"Answer whether the receiver implements the same code as aCompiledMethod."
 
 	self == aCompiledMethod
@@ -78,22 +71,16 @@ CompiledCode>>= aCompiledMethod [
 	^ true
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>abstractBytecodeMessageAt: pc [
+{ #category : #scanning }
+CompiledCode >> abstractBytecodeMessageAt: pc [
 	"Answer the abstract bytecode message at pc in the receiver."
 	^[(InstructionStream new method: self pc: pc) interpretNextInstructionFor: nil]
 		on: MessageNotUnderstood
 		do: [:ex| ex message]
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>abstractBytecodeMessagesDo: aBlock [
+{ #category : #scanning }
+CompiledCode >> abstractBytecodeMessagesDo: aBlock [
 	"Evaluate aBlock with the sequence of abstract bytecodes in the receiver"
 	self abstractBytecodeMessagesFrom: self initialPC
 		to: self endPC
@@ -106,11 +93,8 @@ CompiledCode>>abstractBytecodeMessagesDo: aBlock [
 	 msgs"
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>abstractBytecodeMessagesFrom: startpc to: endpc do: aBlock [
+{ #category : #scanning }
+CompiledCode >> abstractBytecodeMessagesFrom: startpc to: endpc do: aBlock [
 	"Evaluate aBlock with the sequence of abstract bytecodes from startpc through endpc in the receiver"
 	| scanner |
 	scanner := InstructionStream new method: self pc: startpc.
@@ -128,11 +112,8 @@ CompiledCode>>abstractBytecodeMessagesFrom: startpc to: endpc do: aBlock [
 	 msgs"
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>accessesSlot: aSlot [
+{ #category : #scanning }
+CompiledCode >> accessesSlot: aSlot [
 	self ast nodesDo: [ :node | 
 		node isVariable and: [
 			node isInstance and: [ 
@@ -142,47 +123,32 @@ CompiledCode>>accessesSlot: aSlot [
 	
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>allLiterals [
+{ #category : #literals }
+CompiledCode >> allLiterals [
 	^self literals
 ]
 
-{
-	#category : #'source code management',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>argumentNames [
+{ #category : #'source code management' }
+CompiledCode >> argumentNames [
 	^self ast argumentNames
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>asOrderedCollection [
+{ #category : #converting }
+CompiledCode >> asOrderedCollection [
 	"We should override it because most of collection methods are not working for CompiledMethod. And it can't be normally converted into OrderedCollection.	
 	It is special class which needs to be ByteArray by VM. But it is not behaves like ByteArray from user perspective"
 	
 	^OrderedCollection with: self
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>asString [
+{ #category : #printing }
+CompiledCode >> asString [
 
 	  ^self sourceCode
 ]
 
-{
-	#category : #'source code management',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>author [
+{ #category : #'source code management' }
+CompiledCode >> author [
 	"Answer the author of the current version of the receiver. retrieved from the sources or changes file. Answer the empty string if no time stamp is available."
 
 	"(CompiledMethod compiledMethodAt: #author) author"
@@ -194,11 +160,8 @@ CompiledCode>>author [
 	^''
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>bytecode [
+{ #category : #accessing }
+CompiledCode >> bytecode [
 	"Answer an ByteArray of the btyecode of the method."
 
 	| start stop bytecode |
@@ -212,21 +175,15 @@ CompiledCode>>bytecode [
 	^bytecode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>clearFlag [
+{ #category : #accessing }
+CompiledCode >> clearFlag [
 	"Clear the user-level flag bit"
 
 	self objectAt: 1 put: (self header bitAnd: (1 << 29) bitInvert)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>clearSignFlag [
+{ #category : #accessing }
+CompiledCode >> clearSignFlag [
 	"Clear the sign flag bit.  The sign flag bit may be
 	 used by the VM to select an alternate bytecode set."
 
@@ -234,61 +191,43 @@ CompiledCode>>clearSignFlag [
 		[self objectAt: 1 put: self header - SmallInteger minVal]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>comment [
+{ #category : #accessing }
+CompiledCode >> comment [
 	"Return the first comment of the receiver"
 	"(self>>#comment) comment"
 	
 	^ self methodClass firstPrecodeCommentFor: self selector
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>containsHalt [
+{ #category : #testing }
+CompiledCode >> containsHalt [
 
 	^ self sendsAnySelectorOf: #( halt halt: haltIf: haltIfNil haltOnCount: haltOnce)
 ]
 
-{
-	#category : #'source code management',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>definition [
+{ #category : #'source code management' }
+CompiledCode >> definition [
 	"Polymorphic to class definition"
 	
 	^ self sourceCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>encoderClass [
+{ #category : #accessing }
+CompiledCode >> encoderClass [
 	^ self signFlag 
 		ifTrue: [ SecondaryBytecodeSetEncoderClass ]
 		ifFalse: [ PrimaryBytecodeSetEncoderClass ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>endPC [
+{ #category : #accessing }
+CompiledCode >> endPC [
 	"Answer the index of the last bytecode."
 	^ self trailer endPC
 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>equivalentTo: aCompiledMethod [
+{ #category : #comparing }
+CompiledCode >> equivalentTo: aCompiledMethod [
 	^self = aCompiledMethod
 	or: [self class == aCompiledMethod class
 		and: [self numArgs = aCompiledMethod numArgs
@@ -296,21 +235,15 @@ CompiledCode>>equivalentTo: aCompiledMethod [
 		and: [self methodNode = aCompiledMethod methodNode ]]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>flag [
+{ #category : #accessing }
+CompiledCode >> flag [
 	"Answer the user-level flag bit"
 
 	^((self header bitShift: -29) bitAnd: 1) = 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>frameSize [
+{ #category : #accessing }
+CompiledCode >> frameSize [
 	"Answer the size of temporary frame needed to run the receiver."
 	"NOTE:  Versions 2.7 and later use two sizes of contexts."
 
@@ -320,20 +253,14 @@ CompiledCode>>frameSize [
 
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>hasInstVarRef [
+{ #category : #scanning }
+CompiledCode >> hasInstVarRef [
 	self localHasInstVarRef ifTrue: [ ^ true ].
 	^ self innerCompiledBlocksAnySatisfy: [ :cb | cb hasInstVarRef ]
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>hasLiteral: literal [
+{ #category : #literals }
+CompiledCode >> hasLiteral: literal [
 	"Answer whether the receiver references the argument, literal."
 	2 to: self numLiterals - 1 do: "exclude superclass + selector/properties"
 		[:index |
@@ -343,11 +270,8 @@ CompiledCode>>hasLiteral: literal [
 	^false
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>hasLiteralSuchThat: litBlock [
+{ #category : #literals }
+CompiledCode >> hasLiteralSuchThat: litBlock [
 	"Answer true if litBlock returns true for any literal in this method, even if embedded in array structure."
 	(self penultimateLiteral isMethodProperties
 	 and: [self penultimateLiteral hasLiteralSuchThat: litBlock]) ifTrue:
@@ -362,11 +286,8 @@ CompiledCode>>hasLiteralSuchThat: litBlock [
 	^false
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>hasLiteralThorough: literal [
+{ #category : #literals }
+CompiledCode >> hasLiteralThorough: literal [
 	"Answer true if any literal in this method is literal,
 	even if embedded in array structure."
 
@@ -381,20 +302,14 @@ CompiledCode>>hasLiteralThorough: literal [
 	^ false 
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>hasSelector: selector [
+{ #category : #literals }
+CompiledCode >> hasSelector: selector [ 
 	"Answers true if the method refers to the selector"
 	^ self hasSelector: selector specialSelectorIndex: (Smalltalk specialSelectorIndexOrNil: selector)
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>hasSelector: selector specialSelectorIndex: specialOrNil [
+{ #category : #literals }
+CompiledCode >> hasSelector: selector specialSelectorIndex: specialOrNil [
 	"Answers true if the method refers to the selector.
 	 If you don't know what's a special selector, use #hasSelector:.
 	 If you do, you may call this method directly to avoid recomputing 
@@ -405,11 +320,8 @@ CompiledCode>>hasSelector: selector specialSelectorIndex: specialOrNil [
 		ifNotNil: [ self scanFor: self encoderClass firstSpecialSelectorByte + specialOrNil ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>hash [
+{ #category : #comparing }
+CompiledCode >> hash [
 	"CompiledMethod>>#= compares code, i.e. same literals and same bytecode.
 	 So we look at the header, methodClass and some bytes between initialPC and endPC,
 	 but /not/ the selector because the equal method does not compare selectors.
@@ -429,22 +341,16 @@ CompiledCode>>hash [
 
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>header [
+{ #category : #literals }
+CompiledCode >> header [
 	"Answer the word containing the information about the form of the 
 	receiver and the form of the context needed to run the receiver."
 
 	^self objectAt: 1
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>headerDescription [
+{ #category : #literals }
+CompiledCode >> headerDescription [
 	"Answer a description containing the information about the form of the 
 	receiver and the form of the context needed to run the receiver."
 
@@ -470,11 +376,8 @@ CompiledCode>>headerDescription [
 	^ s contents
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>indexOfLiteral: literal [
+{ #category : #literals }
+CompiledCode >> indexOfLiteral: literal [
 	"Answer the literal index of the argument, literal, or zero if none."
 	2 to: self numLiterals - 1 "exclude superclass + selector/properties"
 	   do:
@@ -483,30 +386,21 @@ CompiledCode>>indexOfLiteral: literal [
 	^0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>initialPC [
+{ #category : #accessing }
+CompiledCode >> initialPC [
 	"Answer the program counter for the receiver's first bytecode."
 
 	^ (self numLiterals + 1) * Smalltalk wordSize + 1
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>innerCompiledBlocksAnySatisfy: aBlock [
+{ #category : #literals }
+CompiledCode >> innerCompiledBlocksAnySatisfy: aBlock [
 	self innerCompiledBlocksDo: [ :cb | (aBlock value: cb) ifTrue: [ ^ true ] ].
 	^ false
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>innerCompiledBlocksDo: aBlock [
+{ #category : #literals }
+CompiledCode >> innerCompiledBlocksDo: aBlock [
 	"We ignore the enclosing compiled code in compiled block by ignoring the last literal"
 	1 to: self numLiterals - 1 do:
 		[:index | | lit |
@@ -514,84 +408,57 @@ CompiledCode>>innerCompiledBlocksDo: aBlock [
 		(lit isMemberOf: CompiledBlock) ifTrue: [ aBlock value: lit ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>isCollection [
+{ #category : #testing }
+CompiledCode >> isCollection [
 	"We should override it because most of collection methods are not working for CompiledMethod. It is special class which needs to be ByteArray by VM. But it is not behaves like ByteArray from user perspective.
 	And some tools uses isCollection check for specific behaviour which will fail for CompiledMethod"
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>isExternalCallPrimitive [
+{ #category : #testing }
+CompiledCode >> isExternalCallPrimitive [
 	^self primitive = 120
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>isNamedPrimitive [
+{ #category : #testing }
+CompiledCode >> isNamedPrimitive [
 	^self primitive = 117
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>isPrimitive [
+{ #category : #testing }
+CompiledCode >> isPrimitive [
 	^self primitive > 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>isQuick [
+{ #category : #testing }
+CompiledCode >> isQuick [
 	"Answer whether the receiver is a quick return (of self or of an instance 
 	variable)."
 	^ self primitive between: 256 and: 519
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>isRealPrimitive [
+{ #category : #testing }
+CompiledCode >> isRealPrimitive [
 	^self isPrimitive and: [ self isQuick not ]
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>literalAt: index [
+{ #category : #literals }
+CompiledCode >> literalAt: index [ 
 	"Answer the literal indexed by the argument."
 
 	^self objectAt: index + 1
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>literalAt: index put: value [
+{ #category : #literals }
+CompiledCode >> literalAt: index put: value [ 
 	"Replace the literal indexed by the first argument with the second 
 	argument. Answer the second argument."
 
 	^self objectAt: index + 1 put: value
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>literalStrings [
+{ #category : #literals }
+CompiledCode >> literalStrings [
 	"Return a list of strings or symbols corresponding to the class references and message sent.
 	The result also contains the name of the class"
 	
@@ -607,11 +474,8 @@ CompiledCode>>literalStrings [
 	^ litStrs
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>literals [
+{ #category : #literals }
+CompiledCode >> literals [
 	"Answer an Array of the literals referenced by the receiver."
 	| literals numberLiterals |
 	literals := Array new: (numberLiterals := self numLiterals).
@@ -620,22 +484,16 @@ CompiledCode>>literals [
 	^literals
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>literalsDo: aBlock [
+{ #category : #literals }
+CompiledCode >> literalsDo: aBlock [
 	"Evaluate aBlock for each of the literals referenced by the receiver."
 	1 to: self numLiterals do:
 		[:index |
 		aBlock value: (self objectAt: index + 1)]
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>localHasInstVarRef [
+{ #category : #scanning }
+CompiledCode >> localHasInstVarRef [
 	"Answer whether the method references an instance variable."
 
 	| scanner end printer |
@@ -650,11 +508,8 @@ CompiledCode>>localHasInstVarRef [
 	^false
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>localMessages [
+{ #category : #scanning }
+CompiledCode >> localMessages [
 	"Answer a Set of all the message selectors sent by this method."
 
 	| scanner aSet |
@@ -666,11 +521,8 @@ CompiledCode>>localMessages [
 	^aSet
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>localReadsRef: literalAssociation [
+{ #category : #scanning }
+CompiledCode >> localReadsRef: literalAssociation [ 
 	"Answer whether the receiver loads the argument."
 	| litIndex scanner |
 	(litIndex := self indexOfLiteral: literalAssociation) = 0 ifTrue:
@@ -679,11 +531,8 @@ CompiledCode>>localReadsRef: literalAssociation [
 	^(scanner := InstructionStream on: self) scanFor: (self encoderClass bindingReadScanBlockFor: litIndex using: scanner)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>localSendsAnySelectorOf: aCollection [
+{ #category : #testing }
+CompiledCode >> localSendsAnySelectorOf: aCollection [
 	
 	self literalsDo: [ :lit |
 		(lit isSymbol and: [ aCollection includes: lit ]) 
@@ -694,19 +543,13 @@ CompiledCode>>localSendsAnySelectorOf: aCollection [
 
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>localSendsToSuper [
+{ #category : #scanning }
+CompiledCode >> localSendsToSuper [
 	^ self encoderClass sendsToSuperFor: self
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>localWritesRef: literalAssociation [
+{ #category : #scanning }
+CompiledCode >> localWritesRef: literalAssociation [ 
 	"Answer whether the receiver stores into the argument."
 	| litIndex scanner |
 	(litIndex := self indexOfLiteral: literalAssociation) = 0 ifTrue:
@@ -715,11 +558,8 @@ CompiledCode>>localWritesRef: literalAssociation [
 	^(scanner := InstructionStream on: self) scanFor: (self encoderClass bindingWriteScanBlockFor: litIndex using: scanner)
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>longPrintOn: aStream [
+{ #category : #printing }
+CompiledCode >> longPrintOn: aStream [
 	"List of all the byte codes in a method with a short description of each" 
 
 	self isQuick ifTrue: 
@@ -735,11 +575,8 @@ CompiledCode>>longPrintOn: aStream [
 
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>messages [
+{ #category : #scanning }
+CompiledCode >> messages [
 	"Answer a Set of all the message selectors sent by this method."
 	| aSet |
 	aSet := self localMessages.
@@ -747,11 +584,8 @@ CompiledCode>>messages [
 	^ aSet 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>needsFrameSize: newFrameSize [
+{ #category : #initialize-release }
+CompiledCode >> needsFrameSize: newFrameSize [
 	"Set the largeFrameBit to accomodate the newFrameSize"
 	(self numTemps + newFrameSize) > LargeFrame ifTrue:
 		[^ self error: 'Cannot compile -- stack including temps is too deep'].
@@ -759,40 +593,28 @@ CompiledCode>>needsFrameSize: newFrameSize [
 		or: [ self primitive = 84 "perform:withArguments:"])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>numArgs [
+{ #category : #accessing }
+CompiledCode >> numArgs [
 	"Answer the number of arguments the receiver takes."
 
 	^ (self header bitShift: -24) bitAnd: 16r0F
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>numLiterals [
+{ #category : #accessing }
+CompiledCode >> numLiterals [
 	"Answer the number of literals used by the receiver."
 	^self header bitAnd: 16r7FFF
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>numTemps [
+{ #category : #accessing }
+CompiledCode >> numTemps [
 	"Answer the number of temporary variables used by the receiver."
 	
 	^ (self header bitShift: -18) bitAnd: 16r3F
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>objectAt: index [
+{ #category : #literals }
+CompiledCode >> objectAt: index [ 
 	"Primitive. Answer the method header (if index=1) or a literal (if index 
 	>1) from the receiver. Essential. See Object documentation 
 	whatIsAPrimitive."
@@ -801,11 +623,8 @@ CompiledCode>>objectAt: index [
 	self primitiveFailed
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>objectAt: index put: value [
+{ #category : #literals }
+CompiledCode >> objectAt: index put: value [ 
 	"Primitive. Store the value argument into a literal in the receiver. An 
 	index of 2 corresponds to the first literal. Fails if the index is less than 2 
 	or greater than the number of literals. Answer the value as the result. 
@@ -817,11 +636,8 @@ CompiledCode>>objectAt: index put: value [
 	self primitiveFailed
 ]
 
-{
-	#category : #'debugger support',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>pcPreviousTo: pc [
+{ #category : #'debugger support' }
+CompiledCode >> pcPreviousTo: pc [
 	| scanner client prevPc |
 	pc > self endPC ifTrue: [^self endPC].
 	scanner := InstructionStream on: self.
@@ -832,11 +648,8 @@ CompiledCode>>pcPreviousTo: pc [
 	^prevPc
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>primitiveErrorVariableName [
+{ #category : #printing }
+CompiledCode >> primitiveErrorVariableName [
 	"Answer the primitive error code temp name, or nil if none."
 	self isPrimitive ifTrue:
 		[self pragmas do:
@@ -847,11 +660,8 @@ CompiledCode>>primitiveErrorVariableName [
 	^nil
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>readsField: varIndex [
+{ #category : #scanning }
+CompiledCode >> readsField: varIndex [ 
 	"Answer whether the receiver loads the instance variable indexed by the argument."
 	| varIndexCode scanner |
 	varIndexCode := varIndex - 1.
@@ -859,21 +669,15 @@ CompiledCode>>readsField: varIndex [
 	^ self innerCompiledBlocksAnySatisfy: [ :cb | cb readsField: varIndex ]
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>readsRef: literalAssociation [
+{ #category : #scanning }
+CompiledCode >> readsRef: literalAssociation [ 
 	"Answer whether the receiver loads the argument."
 	(self localReadsRef: literalAssociation) ifTrue: [ ^ true ].
 	^ self innerCompiledBlocksAnySatisfy: [ :cb | cb readsRef: literalAssociation ]
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>readsSlot: aSlot [
+{ #category : #scanning }
+CompiledCode >> readsSlot: aSlot [
 	| nodes |
 	nodes := self ast allChildren.
 	nodes := nodes select: #isVariable.
@@ -882,11 +686,8 @@ CompiledCode>>readsSlot: aSlot [
 	^ nodes anySatisfy: [ :node | node binding slot == aSlot ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>referredInstVars [
+{ #category : #accessing }
+CompiledCode >> referredInstVars [
 	| allInstVarNames instVarNames |
 	allInstVarNames := self methodClass allInstVarNames.
 	self isReturnField ifTrue:
@@ -903,11 +704,8 @@ CompiledCode>>referredInstVars [
 	"Dictionary fromPairs: (Point selectors collect: [:s| { s. (Point >> s) referredInstVars}])".
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>refersToLiteral: aLiteral [
+{ #category : #literals }
+CompiledCode >> refersToLiteral: aLiteral [ 
 	"Answer true if any literal in this method is literal, even if embedded in array structure or within its pragmas."
 	"only iterate to numLiterals - 1, as the last has the classBinding and the last-but-one needs special treatment"
 	
@@ -915,11 +713,8 @@ CompiledCode>>refersToLiteral: aLiteral [
 	^ self hasLiteralThorough: aLiteral.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>sameLiteralsAs: method [
+{ #category : #comparing }
+CompiledCode >> sameLiteralsAs: method [
 	"Compare my literals to those of method. This is needed to compare compiled methods."
 
 	| numLits literal1 literal2 |
@@ -958,11 +753,8 @@ CompiledCode>>sameLiteralsAs: method [
 	                ifFalse: [literal1 = literal2]]
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>scanFor: byte [
+{ #category : #scanning }
+CompiledCode >> scanFor: byte [ 
 	"Answer whether the receiver contains the argument as a bytecode."
 
 	^ (InstructionStream on: self) scanFor: [:instr | instr = byte]
@@ -971,49 +763,34 @@ Smalltalk browseAllSelect: [:m | m scanFor: 134]
 "
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>scanner [
+{ #category : #accessing }
+CompiledCode >> scanner [
 
 	^ InstructionStream on: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>sendsAnySelectorOf: aCollection [
+{ #category : #testing }
+CompiledCode >> sendsAnySelectorOf: aCollection [
 	
 	(self localSendsAnySelectorOf: aCollection) ifTrue: [ ^ true ].
 	^ self innerCompiledBlocksAnySatisfy: [ :cb | cb sendsAnySelectorOf: aCollection ]
 
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>sendsSelector: aSymbol [
+{ #category : #literals }
+CompiledCode >> sendsSelector: aSymbol [ 	
 	"Answer whether the method sends a particular selector"
 	^ self messages includes: aSymbol
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>sendsToSuper [
+{ #category : #scanning }
+CompiledCode >> sendsToSuper [
 	self localSendsToSuper ifTrue: [ ^ true ].
 	^ self innerCompiledBlocksAnySatisfy: [ :cb | cb sendsToSuper ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>setFrameBit: boolean [
+{ #category : #initialize-release }
+CompiledCode >> setFrameBit: boolean [ 
 	"true for large frame, else false"
 	| largeFrameBit newHeader |
 	largeFrameBit := 16r20000.
@@ -1022,11 +799,8 @@ CompiledCode>>setFrameBit: boolean [
 	self objectAt: 1 put: newHeader.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>setSignFlag [
+{ #category : #accessing }
+CompiledCode >> setSignFlag [
 	"Set the sign flag bit.  The sign flag bit may be
 	 used by the VM to select an alternate bytecode set."
 
@@ -1034,88 +808,61 @@ CompiledCode>>setSignFlag [
 		[self objectAt: 1 put: self header + SmallInteger minVal]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>signFlag [
+{ #category : #accessing }
+CompiledCode >> signFlag [
 	"Answer the sign flag bit.  The sign flag bit may be
 	 used by the VM to select an alternate bytecode set."
 
 	^ self header < 0
 ]
 
-{
-	#category : #'source code management',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>stamp [
+{ #category : #'source code management' }
+CompiledCode >> stamp [
 
 	^ self timeStamp
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>symbolic [
+{ #category : #printing }
+CompiledCode >> symbolic [
 	"Answer a String that contains a list of all the byte codes in a method with a short description of each."
 
 	^self longPrintString.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>symbolicBytecodes [
+{ #category : #printing }
+CompiledCode >> symbolicBytecodes [
 	"Answer Collection that contains of all the byte codes in a method as an instance of SymbolicInstruction"
 
 	^SymbolicBytecodeBuilder decode: self
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>timeStamp [
+{ #category : #printing }
+CompiledCode >> timeStamp [
 	"Answer the authoring time-stamp for the given method, retrieved from the sources or changes file. Answer the empty string if no time stamp is available."
 	"(CompiledMethod compiledMethodAt: #timeStamp) timeStamp"
 
 	^ SourceFiles timeStampAt: self sourcePointer.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>trailer [
+{ #category : #accessing }
+CompiledCode >> trailer [
 	"Answer the receiver's trailer"
 	^ CompiledMethodTrailer new method: self
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>usesPrimaryBytecodeSet [
+{ #category : #testing }
+CompiledCode >> usesPrimaryBytecodeSet [
 	^ self header >= 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>usesSecondaryBytecodeSet [
+{ #category : #testing }
+CompiledCode >> usesSecondaryBytecodeSet [
 	^ self header < 0
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>voidCogVMState [
+{ #category : #cleaning }
+CompiledCode >> voidCogVMState [
 	"Tell the VM to remove all references to any machine code form of the method.
 	 This primitive must be called whenever a method is in use and modified.  This is
 	 more aggressive (and *much* more costly) than flushCache since it must search
@@ -1127,11 +874,8 @@ CompiledCode>>voidCogVMState [
 	^self flushCache
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>writesField: varIndex [
+{ #category : #scanning }
+CompiledCode >> writesField: varIndex [
 	"Answer whether the receiver stores into the instance variable indexed by the argument."
 
 	| varIndexCode scanner |
@@ -1140,21 +884,15 @@ CompiledCode>>writesField: varIndex [
 	^ self innerCompiledBlocksAnySatisfy: [ :cb | cb writesField: varIndex ]
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>writesRef: literalAssociation [
+{ #category : #scanning }
+CompiledCode >> writesRef: literalAssociation [ 
 	"Answer whether the receiver stores into the argument."
 	(self localWritesRef: literalAssociation) ifTrue: [ ^ true ].
 	^ self innerCompiledBlocksAnySatisfy: [ :cb | cb writesRef: literalAssociation ]
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledCode>>writesSlot: aSlot [
+{ #category : #scanning }
+CompiledCode >> writesSlot: aSlot [
 	self ast nodesDo: [ :node | 
 		node isVariable and: [
 			node parent isAssignment and: [  

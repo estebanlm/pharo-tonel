@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RubSurfaceSelectionShape,
 	#superclass : #Object,
@@ -13,15 +10,11 @@ Class {
 		'tag',
 		'vertices'
 	],
-	#category : #Rubric-Editing-Core,
-	#timestamp : ''
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSurfaceSelectionShape class>>vertices: aCollectionOfPoints firstIndex: firstCharBlock lastIndex: lastCharBlock color: aColor borderWidth: aBorderWidth borderColor: aBorderColor [
+{ #category : #'instance creation' }
+RubSurfaceSelectionShape class >> vertices: aCollectionOfPoints firstIndex: firstCharBlock lastIndex: lastCharBlock color: aColor borderWidth: aBorderWidth borderColor: aBorderColor [
 	^ self new
 		vertices: aCollectionOfPoints
 		firstIndex: firstCharBlock
@@ -32,51 +25,33 @@ RubSurfaceSelectionShape class>>vertices: aCollectionOfPoints firstIndex: firstC
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSurfaceSelectionShape>>backgroundColor [
+{ #category : #accessing }
+RubSurfaceSelectionShape >> backgroundColor [
 	^ color
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSurfaceSelectionShape>>borderColor [
+{ #category : #accessing }
+RubSurfaceSelectionShape >> borderColor [
 	^ borderColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSurfaceSelectionShape>>borderWidth [
+{ #category : #accessing }
+RubSurfaceSelectionShape >> borderWidth [
 	^ borderWidth
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSurfaceSelectionShape>>bounds [
+{ #category : #drawing }
+RubSurfaceSelectionShape >> bounds [
 	^ self polygon bounds
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSurfaceSelectionShape>>drawOn: aCanvas  [
+{ #category : #drawing }
+RubSurfaceSelectionShape >> drawOn: aCanvas [ 
 	aCanvas drawPolygon: self vertices color: self backgroundColor borderWidth: borderWidth borderColor:  borderColor
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSurfaceSelectionShape>>drawOnAthensCanvas: aCanvas [
+{ #category : #drawing }
+RubSurfaceSelectionShape >> drawOnAthensCanvas: aCanvas [
 	| path |
 	path := aCanvas
 		createPath: [ :builder | 
@@ -96,43 +71,28 @@ RubSurfaceSelectionShape>>drawOnAthensCanvas: aCanvas [
 			aCanvas draw ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSurfaceSelectionShape>>firstIndex [
+{ #category : #accessing }
+RubSurfaceSelectionShape >> firstIndex [
 	^ firstIndex 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSurfaceSelectionShape>>lastIndex [
+{ #category : #accessing }
+RubSurfaceSelectionShape >> lastIndex [
 	^ lastIndex
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSurfaceSelectionShape>>polygon [
+{ #category : #drawing }
+RubSurfaceSelectionShape >> polygon [
 	^ Polygon vertices: self vertices
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSurfaceSelectionShape>>vertices [
+{ #category : #drawing }
+RubSurfaceSelectionShape >> vertices [
 	^ vertices
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSurfaceSelectionShape>>vertices: aCollectionOfPoints firstIndex: firstCharIndex lastIndex: lastCharIndex color: aColor borderWidth: aBorderWidth borderColor: aBorderColor [
+{ #category : #initialize-release }
+RubSurfaceSelectionShape >> vertices: aCollectionOfPoints firstIndex: firstCharIndex lastIndex: lastCharIndex color: aColor borderWidth: aBorderWidth borderColor: aBorderColor [
 	firstIndex := firstCharIndex.
 	lastIndex := lastCharIndex.
 	vertices := aCollectionOfPoints.

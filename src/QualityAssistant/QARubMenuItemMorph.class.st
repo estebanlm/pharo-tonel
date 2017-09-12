@@ -4,65 +4,41 @@ I simulate the functionality of MenuItemMorph while providing more sophisticated
 Class {
 	#name : #QARubMenuItemMorph,
 	#superclass : #Morph,
-	#category : #QualityAssistant,
-	#timestamp : 'YuriyTymchuk 6/21/2016 20:54'
+	#category : #QualityAssistant
 }
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QARubMenuItemMorph>>activateSubmenu: evt [
+{ #category : #events }
+QARubMenuItemMorph >> activateSubmenu: evt [
 
 	^ false
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QARubMenuItemMorph>>deselect: sth [
-
+{ #category : #selecting }
+QARubMenuItemMorph >> deselect: sth [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QARubMenuItemMorph>>hasIconOrMarker [
+{ #category : #accessing }
+QARubMenuItemMorph >> hasIconOrMarker [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QARubMenuItemMorph>>hasSubMenu [
+{ #category : #accessing }
+QARubMenuItemMorph >> hasSubMenu [
 
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QARubMenuItemMorph>>isEnabled [
+{ #category : #accessing }
+QARubMenuItemMorph >> isEnabled [
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QARubMenuItemMorph>>isMenuItemMorph [
+{ #category : #testing }
+QARubMenuItemMorph >> isMenuItemMorph [
 	^ true
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QARubMenuItemMorph>>select: sth [
-
+{ #category : #selecting }
+QARubMenuItemMorph >> select: sth [
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #RBCompositeLintRule
-}
+Extension { #name : #RBCompositeLintRule }
 
-{
-	#category : #'*Manifest-Core',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-RBCompositeLintRule class>>allGoodRules [
+{ #category : #'*Manifest-Core' }
+RBCompositeLintRule class >> allGoodRules [
 	| rules |
 	rules := self rules: (self rulesClassifiedFor: RBLintRule) name: 'All Rules'.
 	self removedRules do: [ :r | rules removeRule: r ].
@@ -15,11 +10,8 @@ RBCompositeLintRule class>>allGoodRules [
 	^ rules
 ]
 
-{
-	#category : #'*Manifest-Core',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-RBCompositeLintRule class>>removedRules [
+{ #category : #'*Manifest-Core' }
+RBCompositeLintRule class >> removedRules [
 	^ {(RBCompositeLintRule new name: 'Spelling').  
 		RBMissingTranslationsInMenusRule new.
 		RBAssignmentWithoutEffectRule new.
@@ -29,11 +21,8 @@ RBCompositeLintRule class>>removedRules [
 
 ]
 
-{
-	#category : #'*Manifest-Core',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-RBCompositeLintRule class>>rulesClassifiedFor: aRuleClass [
+{ #category : #'*Manifest-Core' }
+RBCompositeLintRule class >> rulesClassifiedFor: aRuleClass [
 	| groups rules |
 	groups := Dictionary new.
 	(self rulesFor: aRuleClass) do: [ :each |

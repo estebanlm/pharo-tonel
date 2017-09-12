@@ -15,15 +15,11 @@ Class {
 		'end',
 		'type'
 	],
-	#category : #Shout-Parsing,
-	#timestamp : 'StephaneDucasse 11/29/2011 22:28'
+	#category : #Shout-Parsing
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange class>>start: s end: e type: aSymbol  [
+{ #category : #'instance creation' }
+SHRange class >> start: s end: e type: aSymbol [ 
 	^ self new
 		start: s
 		end: e
@@ -31,11 +27,8 @@ SHRange class>>start: s end: e type: aSymbol  [
 		 yourself
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>asType [
+{ #category : #tests }
+SHRange >> asType [
 
 	type == #symbol ifTrue: [ ^Symbol ].
 	type == #character ifTrue: [ ^Character ].
@@ -49,272 +42,179 @@ SHRange>>asType [
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>end [
+{ #category : #accessing }
+SHRange >> end [
 	^ end
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>end: anInteger  [
+{ #category : #accessing }
+SHRange >> end: anInteger [ 
 	end := anInteger
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>includesPosition: anInteger [
+{ #category : #tests }
+SHRange >> includesPosition: anInteger [
 	^ anInteger between: start and: end
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isArgument [
+{ #category : #tests }
+SHRange >> isArgument [
 
 	^type == #methodArg
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isAssignment [
+{ #category : #tests }
+SHRange >> isAssignment [
 
 	^type == #assignment or: [ type == #ansiAssignment ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isBinary [
+{ #category : #tests }
+SHRange >> isBinary [
 	^type == #binary
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isBlockEnd [
+{ #category : #tests }
+SHRange >> isBlockEnd [
 	^ type beginsWith: 'blockEnd'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isBlockStart [
+{ #category : #tests }
+SHRange >> isBlockStart [
 	^type beginsWith: 'blockStart'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isBlockTemporary [
+{ #category : #tests }
+SHRange >> isBlockTemporary [
 	
 	^type == #blockPatternTempVar or: [ type == #blockPatternArg ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isClassVariable [
+{ #category : #tests }
+SHRange >> isClassVariable [
 
 	^type == #classVar
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isComment [
+{ #category : #tests }
+SHRange >> isComment [
 	^ type == #comment
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isConstant [
+{ #category : #tests }
+SHRange >> isConstant [
 	
 	^self asType notNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isGlobal [
+{ #category : #tests }
+SHRange >> isGlobal [
 
 	^type == #globalVar
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isInstanceVariable [
+{ #category : #tests }
+SHRange >> isInstanceVariable [
 	
 	^type == #instVar
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isKeyword [
+{ #category : #tests }
+SHRange >> isKeyword [
 	^ type == #keyword or:[type == #undefinedKeyword]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isOpening [
+{ #category : #tests }
+SHRange >> isOpening [
 	
 	^(type beginsWith: 'blockStart') or: [
 		type beginsWith: 'leftParenthesis' ]
 		
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isSelf [
+{ #category : #tests }
+SHRange >> isSelf [
 	
 	^type == #self
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isSeparator [
+{ #category : #tests }
+SHRange >> isSeparator [
 	
 	^#(#methodTempBar #statementSeparator #patternUnary #patternArg #blockPatternArg #blockArgsBar #return #primitiveOrExternalCallEnd) identityIncludes: type
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isSuper [
+{ #category : #tests }
+SHRange >> isSuper [
 	
 	^type == #super
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isTemporaryVariable [
+{ #category : #tests }
+SHRange >> isTemporaryVariable [
 	
 	^#(#tempVar #blockTempVar workspaceVar ) identityIncludes: type
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isUnfinished [
+{ #category : #tests }
+SHRange >> isUnfinished [
 	
 	^#(#unfinishedString #unfinishedComment ) identityIncludes: type
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isVariable [
+{ #category : #tests }
+SHRange >> isVariable [
 	^ self isTemporaryVariable
 		or: [self isInstanceVariable
 				or: [self isSelf or:[self isSuper]]]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>isVariablesOnly [
+{ #category : #tests }
+SHRange >> isVariablesOnly [
 	^ self isAssignment
 		or: [self isVariable
 				or: [self isConstant
 						or: [self isSeparator or:[self isBinary]]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>length [
+{ #category : #accessing }
+SHRange >> length [
 	^ end - start + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>start [
+{ #category : #accessing }
+SHRange >> start [
 	^ start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>start: anInteger  [
+{ #category : #accessing }
+SHRange >> start: anInteger [ 
 	start := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>start: startInteger end: endInteger type: typeSymbol  [
+{ #category : #accessing }
+SHRange >> start: startInteger end: endInteger type: typeSymbol [ 
 	start := startInteger.
 	end := endInteger.
 	type := typeSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>stringIn: aText [
+{ #category : #accessing }
+SHRange >> stringIn: aText [
 	^ (self textIn: aText) asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>textIn: aText [
+{ #category : #accessing }
+SHRange >> textIn: aText [
 	^ aText copyFrom: self start to: self end
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>type [
+{ #category : #accessing }
+SHRange >> type [
 	^ type
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRange>>type: aSymbol  [
+{ #category : #accessing }
+SHRange >> type: aSymbol [ 
 	type := aSymbol
 ]

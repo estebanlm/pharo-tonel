@@ -18,49 +18,33 @@ Class {
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : #RecentSubmissions-Core,
-	#timestamp : 'BenjaminVanRyseghem 11/29/2010 11:31'
+	#category : #RecentSubmissions-Core
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList class>>cleanUp [
+{ #category : #cleanup }
+RecentMessageList class >> cleanUp [
 
 	self resetUniqueInstance.
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList class>>icon  [
+{ #category : #icons }
+RecentMessageList class >> icon [ 
 	^ self iconNamed: #recentMessagesIcon
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList class>>new [
+{ #category : #'instance creation' }
+RecentMessageList class >> new [
 	^ self uniqueInstance
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList class>>open [
+{ #category : #'instance creation' }
+RecentMessageList class >> open [
 	
 	self new open.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList class>>resetUniqueInstance [
+{ #category : #'instance creation' }
+RecentMessageList class >> resetUniqueInstance [
 	"Reset the singleton of the recentMessageBrowser model, so if you execute it you will lose all the history of the recent messages."
 	"self resetUniqueInstance"
 	
@@ -70,47 +54,32 @@ RecentMessageList class>>resetUniqueInstance [
 	
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList class>>stopNotifications [
+{ #category : #events }
+RecentMessageList class >> stopNotifications [
 	SystemAnnouncer uniqueInstance unsubscribe: self uniqueInstance
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList class>>uniqueInstance [
+{ #category : #'instance creation' }
+RecentMessageList class >> uniqueInstance [
 
 	^UniqueInstance ifNil: [UniqueInstance := self basicNew initialize]
 ]
 
-{
-	#category : #'event handler',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>aClassHasBeenCommented: anEvent [
+{ #category : #'event handler' }
+RecentMessageList >> aClassHasBeenCommented: anEvent [
 
 	anEvent newStamp ifNil: [ ^self ].
 	self addMethodReference: (self createAClassReference: anEvent)
 ]
 
-{
-	#category : #'event handler',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>aClassHasBeenRemoved: anEvent [
+{ #category : #'event handler' }
+RecentMessageList >> aClassHasBeenRemoved: anEvent [
 
 	self removeAClass: anEvent
 ]
 
-{
-	#category : #'event handler',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>aClassHasBeenRenamed: anEvent [
+{ #category : #'event handler' }
+RecentMessageList >> aClassHasBeenRenamed: anEvent [
 
 	| toChangeList |
 	toChangeList := self methodReferenceList select: [:each | each className = anEvent oldName asSymbol].
@@ -118,62 +87,44 @@ RecentMessageList>>aClassHasBeenRenamed: anEvent [
 	self updateView.
 ]
 
-{
-	#category : #'event handler',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>aMethodHasBeenAdded: aMethodEvent [
+{ #category : #'event handler' }
+RecentMessageList >> aMethodHasBeenAdded: aMethodEvent [
 
 	self addMethodReference: (self createTheMethodReference: aMethodEvent)
 
 ]
 
-{
-	#category : #'event handler',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>aMethodHasBeenModified: aMethodEvent [
+{ #category : #'event handler' }
+RecentMessageList >> aMethodHasBeenModified: aMethodEvent [
 
 	self addMethodReference: (self createTheMethodReference: aMethodEvent)
 
 ]
 
-{
-	#category : #'event handler',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>aMethodHasBeenRemoved: aMethodEvent [
+{ #category : #'event handler' }
+RecentMessageList >> aMethodHasBeenRemoved: aMethodEvent [
 
 	self removeAMethod: aMethodEvent
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>addMethodReference: aMethodReference. [
+{ #category : #actions }
+RecentMessageList >> addMethodReference: aMethodReference. [
 
 	self addMethodReferenceSilently: aMethodReference.
 	self checkSize.
 	self updateView
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>addMethodReferenceSilently: aMethodReference [
+{ #category : #actions }
+RecentMessageList >> addMethodReferenceSilently: aMethodReference [
 
 	self methodReferenceList add: aMethodReference.
 	lastEntry := aMethodReference.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>checkSize [
+{ #category : #actions }
+RecentMessageList >> checkSize [
 
 	| result |
 	result := false.
@@ -185,30 +136,21 @@ RecentMessageList>>checkSize [
 	^result
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>clearAll [
+{ #category : #actions }
+RecentMessageList >> clearAll [
 
 	self methodReferenceList: OrderedCollection new.
 	self updateView.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>createAClassReference: aCommentedEvent [
+{ #category : #private }
+RecentMessageList >> createAClassReference: aCommentedEvent [
 
 	^RGCommentDefinition realClass: aCommentedEvent classCommented
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>createTheMethodReference: aModifiedMethodEvent [
+{ #category : #private }
+RecentMessageList >> createTheMethodReference: aModifiedMethodEvent [
 	
 	| method |
 	method := aModifiedMethodEvent method.
@@ -218,20 +160,14 @@ RecentMessageList>>createTheMethodReference: aModifiedMethodEvent [
 		selector: method selector) asHistorical
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>defaultMaxListSize [
+{ #category : #accessing }
+RecentMessageList >> defaultMaxListSize [
 
 	^100
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>initialize  [
+{ #category : #initialization }
+RecentMessageList >> initialize [ 
 	"Initialization"
 	
 	super initialize.
@@ -240,58 +176,40 @@ RecentMessageList>>initialize  [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>lastEntry  [
+{ #category : #accessing }
+RecentMessageList >> lastEntry [ 
 
 	^lastEntry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>maxListSize [
+{ #category : #accessing }
+RecentMessageList >> maxListSize [
 
 	^maxListSize ifNil: [maxListSize := self defaultMaxListSize]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>maxListSize: aNumber [
+{ #category : #accessing }
+RecentMessageList >> maxListSize: aNumber [
 
 	maxListSize := aNumber negative ifTrue: [0] ifFalse:[aNumber].
 	self checkSize
 		ifTrue: [self updateView]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>methodReferenceList [
+{ #category : #accessing }
+RecentMessageList >> methodReferenceList [
 
 	^ methodReferenceList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>methodReferenceList: anObject [
+{ #category : #accessing }
+RecentMessageList >> methodReferenceList: anObject [
 
 	methodReferenceList := anObject
 ]
 
-{
-	#category : #userinterface,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>open [
+{ #category : #userinterface }
+RecentMessageList >> open [
 	"opens the system window for recent messages"
 
 	^ MessageBrowser new
@@ -302,11 +220,8 @@ RecentMessageList>>open [
 		open
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>registerToAnnouncements [
+{ #category : #initialization }
+RecentMessageList >> registerToAnnouncements [
 
 	SystemAnnouncer uniqueInstance unsubscribe: self.
 	SystemAnnouncer uniqueInstance weak
@@ -320,22 +235,16 @@ RecentMessageList>>registerToAnnouncements [
 		when: MethodRemoved send: #aMethodHasBeenRemoved: to: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>removeAClass: anEvent [
+{ #category : #private }
+RecentMessageList >> removeAClass: anEvent [
 	
 	| tempList |
 	tempList := self methodReferenceList select:[:each | each className = anEvent classRemoved name asSymbol].
 	tempList do: [:each | self removeMethodReference: each]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>removeAMethod: aRemovedEvent [
+{ #category : #private }
+RecentMessageList >> removeAMethod: aRemovedEvent [
 	
 	| method list |
 	method := aRemovedEvent method.
@@ -346,21 +255,15 @@ RecentMessageList>>removeAMethod: aRemovedEvent [
 	self updateView.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>removeMethodReference: aMethodReference [
+{ #category : #actions }
+RecentMessageList >> removeMethodReference: aMethodReference [
 
 	self methodReferenceList remove: aMethodReference.
 	self updateView.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>revertLastMethodSubmission [
+{ #category : #actions }
+RecentMessageList >> revertLastMethodSubmission [
 	"If the most recent method submission was a method change, revert
 	that change, and if it was a submission of a brand-new method, 
 	remove that method."
@@ -379,11 +282,8 @@ RecentMessageList>>revertLastMethodSubmission [
 		ifFalse: [ changeRecords second fileIn ]
 ]
 
-{
-	#category : #userinterface,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RecentMessageList>>updateView [
+{ #category : #userinterface }
+RecentMessageList >> updateView [
 	
 	self triggerEvent: #changed.
 ]

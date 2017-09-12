@@ -22,15 +22,11 @@ Internal Representation and Key Implementation Points.
 Class {
 	#name : #MetacelloRepositorySqueakCommonTestCase,
 	#superclass : #TestCase,
-	#category : #Metacello-TestsPlatform,
-	#timestamp : 'PavelKrivanek 3/7/2017 11:41'
+	#category : #Metacello-TestsPlatform
 }
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloRepositorySqueakCommonTestCase>>baseline10: spec [
+{ #category : #baselines }
+MetacelloRepositorySqueakCommonTestCase >> baseline10: spec [
     <version: '1.0-baseline'>
     spec
         for: #'common'
@@ -45,11 +41,8 @@ MetacelloRepositorySqueakCommonTestCase>>baseline10: spec [
 
 ]
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloRepositorySqueakCommonTestCase>>baseline13: spec [
+{ #category : #baselines }
+MetacelloRepositorySqueakCommonTestCase >> baseline13: spec [
     <version: '1.3-baseline'>
     spec
         for: #'squeakCommon'
@@ -63,11 +56,8 @@ MetacelloRepositorySqueakCommonTestCase>>baseline13: spec [
                         repository: 'ftp://ftp.example.com/examples' ] ]
 ]
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloRepositorySqueakCommonTestCase>>baseline14: spec [
+{ #category : #baselines }
+MetacelloRepositorySqueakCommonTestCase >> baseline14: spec [
     <version: '1.4-baseline'>
     spec
         for: #'common'
@@ -81,11 +71,8 @@ MetacelloRepositorySqueakCommonTestCase>>baseline14: spec [
                         repository: 'http://example.com/examples' ] ]
 ]
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloRepositorySqueakCommonTestCase>>baseline15: spec [
+{ #category : #baselines }
+MetacelloRepositorySqueakCommonTestCase >> baseline15: spec [
     <version: '1.5-baseline'>
     spec
         for: #'common'
@@ -99,11 +86,8 @@ MetacelloRepositorySqueakCommonTestCase>>baseline15: spec [
                         repository: 'dictionary://Metacello_Platform_Test_GlobalDictionary' ] ]
 ]
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloRepositorySqueakCommonTestCase>>baseline16: spec [
+{ #category : #baselines }
+MetacelloRepositorySqueakCommonTestCase >> baseline16: spec [
   <version: '1.6-baseline'>
   spec
     for: #'common'
@@ -120,11 +104,8 @@ MetacelloRepositorySqueakCommonTestCase>>baseline16: spec [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloRepositorySqueakCommonTestCase>>project [
+{ #category : #accessing }
+MetacelloRepositorySqueakCommonTestCase >> project [
      "force new version as workaround for https://code.google.com/p/smalltalk-hub/issues/detail?id=21"
 
 	| constructor project |
@@ -135,11 +116,8 @@ MetacelloRepositorySqueakCommonTestCase>>project [
 	^project
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloRepositorySqueakCommonTestCase>>setUp [
+{ #category : #running }
+MetacelloRepositorySqueakCommonTestCase >> setUp [
     super setUp.
     Smalltalk
         at: #'Metacello_Platform_Test_GlobalDictionary'
@@ -149,20 +127,14 @@ MetacelloRepositorySqueakCommonTestCase>>setUp [
                 yourself)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloRepositorySqueakCommonTestCase>>tearDown [
+{ #category : #running }
+MetacelloRepositorySqueakCommonTestCase >> tearDown [
     super tearDown.
     Smalltalk removeKey: #'Metacello_Platform_Test_GlobalDictionary' ifAbsent: [  ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloRepositorySqueakCommonTestCase>>testAsRepositorySpecFor [
+{ #category : #tests }
+MetacelloRepositorySqueakCommonTestCase >> testAsRepositorySpecFor [
     | project testBlock |
     project := self project.
     testBlock := [ :pkg :expectedType1 :expectedType2 | 
@@ -192,11 +164,8 @@ MetacelloRepositorySqueakCommonTestCase>>testAsRepositorySpecFor [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloRepositorySqueakCommonTestCase>>testDictionaryRepository [
+{ #category : #tests }
+MetacelloRepositorySqueakCommonTestCase >> testDictionaryRepository [
     | project pkg repoSpec repo |
     project := self project.
     pkg := (project version: '1.5-baseline') packageNamed: 'Example-Core'.
@@ -207,11 +176,8 @@ MetacelloRepositorySqueakCommonTestCase>>testDictionaryRepository [
     self assert: repo dictionary == (Smalltalk at: #'Metacello_Platform_Test_GlobalDictionary') dictionary
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloRepositorySqueakCommonTestCase>>testDirectoryRepository [
+{ #category : #tests }
+MetacelloRepositorySqueakCommonTestCase >> testDirectoryRepository [
     | project pkg repoSpec repo |
     project := self project.
     pkg := (project version: '1.0-baseline') packageNamed: 'Example-Core'.
@@ -222,11 +188,8 @@ MetacelloRepositorySqueakCommonTestCase>>testDirectoryRepository [
     self assert: repo description asFileReference = '/opt/mcexamples' asFileReference
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloRepositorySqueakCommonTestCase>>testFileTreeRepository [
+{ #category : #tests }
+MetacelloRepositorySqueakCommonTestCase >> testFileTreeRepository [
   "must create repository against an existing directory"
 
   | project pkg repoSpec repo fileUtils workingDir tempDir repoDir |
@@ -255,11 +218,8 @@ MetacelloRepositorySqueakCommonTestCase>>testFileTreeRepository [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloRepositorySqueakCommonTestCase>>testFtpRepository [
+{ #category : #tests }
+MetacelloRepositorySqueakCommonTestCase >> testFtpRepository [
     | project pkg repoSpec repo |
     project := self project.
     pkg := (project version: '1.3-baseline') packageNamed: 'Example-Core'.
@@ -271,11 +231,8 @@ MetacelloRepositorySqueakCommonTestCase>>testFtpRepository [
     self assert: repo directory = 'examples'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloRepositorySqueakCommonTestCase>>testHttpRepository [
+{ #category : #tests }
+MetacelloRepositorySqueakCommonTestCase >> testHttpRepository [
     | project pkg repoSpec repo |
     project := self project.
     pkg := (project version: '1.4-baseline') packageNamed: 'Example-Core'.

@@ -15,113 +15,76 @@ Class {
 		'oldValue',
 		'transmissionContext'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'tg 12/19/2009 00:12'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortEvent class>>on: aPort previouslyValued: anObject  [
+{ #category : #'instance creation' }
+GLMPortEvent class >> on: aPort previouslyValued: anObject [ 
 	^ self new 
 		initializeOn: aPort
 		previouslyValued: anObject
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortEvent class>>on: aPort previouslyValued: anObject in: aTransmissionContext  [
+{ #category : #'instance creation' }
+GLMPortEvent class >> on: aPort previouslyValued: anObject in: aTransmissionContext [ 
 	^self new initializeOn: aPort previouslyValued: anObject in: aTransmissionContext 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortEvent>>hasChanged [
+{ #category : #testing }
+GLMPortEvent >> hasChanged [
 	"Answer whether the port value changed due to the event."
 
 	^ self value ~~ self oldValue
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortEvent>>initializeOn: aPort previouslyValued: anObject  [
+{ #category : #initialize-release }
+GLMPortEvent >> initializeOn: aPort previouslyValued: anObject [ 
 	self initializeOn: aPort previouslyValued: anObject in: OrderedCollection new
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortEvent>>initializeOn: aPort previouslyValued: anObject in: aTransmissionContext  [
+{ #category : #initialize-release }
+GLMPortEvent >> initializeOn: aPort previouslyValued: anObject [ in: aTransmissionContext 
 	port := aPort.
 	oldValue := anObject.
 	transmissionContext := aTransmissionContext
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortEvent>>isEntityPort [
+{ #category : #testing }
+GLMPortEvent >> isEntityPort [
 	^ self port isEntityPort
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortEvent>>isSelectionPort [
+{ #category : #testing }
+GLMPortEvent >> isSelectionPort [
 	^ self port isSelectionPort
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortEvent>>oldValue  [
+{ #category : #accessing }
+GLMPortEvent >> oldValue [ 
 	 
 	^oldValue
 ]
 
-{
-	#category : #accessing-convenience,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortEvent>>pane  [
+{ #category : #accessing-convenience }
+GLMPortEvent >> pane [ 
 	 
 	^self port pane
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortEvent>>port  [
+{ #category : #accessing }
+GLMPortEvent >> port [ 
 	 
 	^port
 ]
 
-{
-	#category : #accessing-convenience,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortEvent>>portName  [
+{ #category : #accessing-convenience }
+GLMPortEvent >> portName [ 
 	 
 	^self port name
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortEvent>>printOn: aStream [
+{ #category : #printing }
+GLMPortEvent >> printOn: aStream [
 	super printOn: aStream.
 	aStream 
 		nextPutAll: '(port='.
@@ -130,19 +93,13 @@ GLMPortEvent>>printOn: aStream [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortEvent>>transmissionContext [
+{ #category : #accessing }
+GLMPortEvent >> transmissionContext [
 	^ transmissionContext
 ]
 
-{
-	#category : #accessing-convenience,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortEvent>>value  [
+{ #category : #accessing-convenience }
+GLMPortEvent >> value [ 
 	 
 	^self port value
 ]

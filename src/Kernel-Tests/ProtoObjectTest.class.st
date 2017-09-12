@@ -7,23 +7,16 @@ This is the unit test for the class ProtoObject. Unit tests are a good way to ex
 Class {
 	#name : #ProtoObjectTest,
 	#superclass : #ClassTestCase,
-	#category : #Kernel-Tests-Objects,
-	#timestamp : '<historical>'
+	#category : #Kernel-Tests-Objects
 }
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProtoObjectTest>>testFlag [
+{ #category : #'tests - testing' }
+ProtoObjectTest >> testFlag [
 	ProtoObject new flag: #hallo
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProtoObjectTest>>testIfNil [
+{ #category : #'tests - testing' }
+ProtoObjectTest >> testIfNil [
 	| object block |
 	object := ProtoObject new.
 	object ifNil: [ self halt ].
@@ -34,11 +27,8 @@ ProtoObjectTest>>testIfNil [
 	self assert: (object ifNil: block) == object
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProtoObjectTest>>testIfNilIfNotNil [
+{ #category : #'tests - testing' }
+ProtoObjectTest >> testIfNilIfNotNil [
 
 	| object returnValue block |
 	object := ProtoObject new.
@@ -61,11 +51,8 @@ ProtoObjectTest>>testIfNilIfNotNil [
 	self assert: (object ifNil: [ nil ] ifNotNil: block) = returnValue
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProtoObjectTest>>testIfNotNil [
+{ #category : #'tests - testing' }
+ProtoObjectTest >> testIfNotNil [
 
 	| object returnValue block |
 	object := ProtoObject new.
@@ -88,11 +75,8 @@ ProtoObjectTest>>testIfNotNil [
 	self assert: (object ifNotNil: block) = returnValue
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProtoObjectTest>>testIfNotNilIfNil [
+{ #category : #'tests - testing' }
+ProtoObjectTest >> testIfNotNilIfNil [
 
 	| object returnValue block |
 	object := ProtoObject new.
@@ -115,20 +99,14 @@ ProtoObjectTest>>testIfNotNilIfNil [
 	self assert: (object ifNotNil: block ifNil: [ false ]) == returnValue
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProtoObjectTest>>testIsNil [
+{ #category : #'tests - testing' }
+ProtoObjectTest >> testIsNil [
 
 	self deny: ProtoObject new isNil
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProtoObjectTest>>testNotTheSame [
+{ #category : #'tests - testing' }
+ProtoObjectTest >> testNotTheSame [
 
 	| object1 object2 |
 	object1 := ProtoObject new.

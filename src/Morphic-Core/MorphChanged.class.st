@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'selector'
 	],
-	#category : #Morphic-Core-Announcements,
-	#timestamp : '<historical>'
+	#category : #Morphic-Core-Announcements
 }
 
-{
-	#category : #delivering,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphChanged>>deliverTo: aHandler [
+{ #category : #delivering }
+MorphChanged >> deliverTo: aHandler [
 
 	^ aHandler update: selector
 
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphChanged>>selector [
+{ #category : #accessing }
+MorphChanged >> selector [
 	^ selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphChanged>>selector: anObject [
+{ #category : #accessing }
+MorphChanged >> selector: anObject [
 	selector := anObject
 ]

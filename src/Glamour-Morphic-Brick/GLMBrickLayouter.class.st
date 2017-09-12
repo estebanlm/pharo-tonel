@@ -34,15 +34,11 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #Glamour-Morphic-Brick-Layouts-Utils,
-	#timestamp : 'AliakseiSyrel 1/28/2015 13:09'
+	#category : #Glamour-Morphic-Brick-Layouts-Utils
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayouter class>>example [
+{ #category : #examples }
+GLMBrickLayouter class >> example [
 
 	|bricks|
 	
@@ -130,28 +126,19 @@ GLMBrickLayouter class>>example [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayouter class>>uniqueInstance [
+{ #category : #accessing }
+GLMBrickLayouter class >> uniqueInstance [
 	^ uniqueInstance ifNil: [ uniqueInstance := self new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayouter>>heightTraverser [
+{ #category : #accessing }
+GLMBrickLayouter >> heightTraverser [
 
 	^ GLMBrickHeightTraverser uniqueInstance
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayouter>>layout: aBrick [
+{ #category : #private }
+GLMBrickLayouter >> layout: aBrick [
 
 	aBrick isWidthDirty
 		ifTrue: [ self widthTraverser layoutAround: aBrick inContext: nil ].
@@ -159,22 +146,16 @@ GLMBrickLayouter>>layout: aBrick [
 		ifTrue: [ self heightTraverser layoutAround: aBrick inContext: nil ]
 ]
 
-{
-	#category : #layouting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayouter>>layoutIn: aBrick [
+{ #category : #layouting }
+GLMBrickLayouter >> layoutIn: aBrick [
 
 	self
 		markDependent: aBrick;
 		layout: aBrick
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayouter>>markDependent: aBrick [
+{ #category : #private }
+GLMBrickLayouter >> markDependent: aBrick [
 
 	(aBrick isWidthDirty | aBrick isHeightDirty)
 		ifTrue: [
@@ -190,11 +171,8 @@ GLMBrickLayouter>>markDependent: aBrick [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayouter>>widthTraverser [
+{ #category : #accessing }
+GLMBrickLayouter >> widthTraverser [
 
 	^ GLMBrickWidthTraverser uniqueInstance
 ]

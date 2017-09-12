@@ -12,15 +12,11 @@ Class {
 	#classInstVars : [
 		'specials'
 	],
-	#category : #MonticelloFileTree-Core,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:57'
+	#category : #MonticelloFileTree-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter class>>fileNameForSelector: selector [
+{ #category : #accessing }
+MCFileTreeStCypressWriter class >> fileNameForSelector: selector [
   ^ (selector includes: $:)
     ifTrue: [ 
       selector
@@ -48,11 +44,8 @@ MCFileTreeStCypressWriter class>>fileNameForSelector: selector [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter class>>initialize [
+{ #category : #initialization }
+MCFileTreeStCypressWriter class >> initialize [
     "self initialize"
 
     "force initialization of specials ..."
@@ -60,11 +53,8 @@ MCFileTreeStCypressWriter class>>initialize [
     specials := nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter class>>initializeSpecials [
+{ #category : #private }
+MCFileTreeStCypressWriter class >> initializeSpecials [
     | map |
     map := Dictionary new.
     map
@@ -88,36 +78,24 @@ MCFileTreeStCypressWriter class>>initializeSpecials [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter class>>monticelloMetaDirName [
+{ #category : #accessing }
+MCFileTreeStCypressWriter class >> monticelloMetaDirName [
     ^ 'monticello.meta'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter class>>specials [
+{ #category : #accessing }
+MCFileTreeStCypressWriter class >> specials [
     ^ specials ifNil: [ specials := self initializeSpecials ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>fileNameForSelector: selector [
+{ #category : #private }
+MCFileTreeStCypressWriter >> fileNameForSelector: selector [
   ^ self class fileNameForSelector: selector
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>fileNameMapFor: aMethodDefinitionCollection [
+{ #category : #private }
+MCFileTreeStCypressWriter >> fileNameMapFor: aMethodDefinitionCollection [
   "https://github.com/dalehenrich/filetree/issues/92"
 
   "answer a dictionary that maps each definition selector to a filename that is guaranteed unique on case insensitive file systems.
@@ -168,36 +146,24 @@ MCFileTreeStCypressWriter>>fileNameMapFor: aMethodDefinitionCollection [
   ^ filenameMetaMap
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>propertyFileExtension [
+{ #category : #initialize-release }
+MCFileTreeStCypressWriter >> propertyFileExtension [
   ^ self repository propertyFileExtension
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>setFileStream: aStream [
+{ #category : #private }
+MCFileTreeStCypressWriter >> setFileStream: aStream [
     super setFileStream: aStream.
     fileStream := aStream
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>writeClassComment: definition [
+{ #category : #writing }
+MCFileTreeStCypressWriter >> writeClassComment: definition [
     fileStream nextPutAll: definition comment withUnixLineEndings
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>writeClassDefinition: definition [
+{ #category : #writing }
+MCFileTreeStCypressWriter >> writeClassDefinition: definition [
     | properties |
     properties := Dictionary new.
     properties at: 'name' put: definition className.
@@ -222,11 +188,8 @@ MCFileTreeStCypressWriter>>writeClassDefinition: definition [
     STON put: properties asJsonOnStreamPretty: fileStream
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>writeClassDefinition: definition to: classPath [
+{ #category : #writing }
+MCFileTreeStCypressWriter >> writeClassDefinition: definition to: classPath [
   self
     writeInDirectoryName: classPath
     fileName: 'README'
@@ -247,11 +210,8 @@ MCFileTreeStCypressWriter>>writeClassDefinition: definition to: classPath [
           (self methodDefinitions at: definition className ifAbsent: [ #() ]) ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>writeDefinitions: aCollection [
+{ #category : #initialize-release }
+MCFileTreeStCypressWriter >> writeDefinitions: aCollection [
   | classDirExtension extensionClasses extensionMethodDefinitions extensionMethodMap methodHolders |
   self writeBasicDefinitions: aCollection.
   extensionClasses := OrderedCollection new.
@@ -316,22 +276,16 @@ MCFileTreeStCypressWriter>>writeDefinitions: aCollection [
 
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>writeExtensionClassDefinition: definition [
+{ #category : #writing }
+MCFileTreeStCypressWriter >> writeExtensionClassDefinition: definition [
     | properties |
     properties := Dictionary new.
     properties at: 'name' put: definition className.
     STON put: properties asJsonOnStreamPretty: fileStream
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>writeExtensionClassDefinition: definition to: classPath [
+{ #category : #writing }
+MCFileTreeStCypressWriter >> writeExtensionClassDefinition: definition to: classPath [
   self
     writeInDirectoryName: classPath
     fileName: 'properties'
@@ -339,30 +293,21 @@ MCFileTreeStCypressWriter>>writeExtensionClassDefinition: definition to: classPa
     visit: [ self writeExtensionClassDefinition: definition ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>writeMethodDefinition: definition [
+{ #category : #writing }
+MCFileTreeStCypressWriter >> writeMethodDefinition: definition [
     fileStream
         nextPutAll: definition category;
         lf;
         nextPutAll: definition source withUnixLineEndings
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>writeMethodDefinition: methodDefinition to: methodPath [
+{ #category : #writing }
+MCFileTreeStCypressWriter >> writeMethodDefinition: methodDefinition to: methodPath [
   self shouldNotImplement
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>writeMethodDefinition: methodDefinition to: methodPath filename: filename [
+{ #category : #writing }
+MCFileTreeStCypressWriter >> writeMethodDefinition: methodDefinition to: methodPath filename: filename [
   self
     writeInDirectoryName: methodPath
     fileName: filename
@@ -370,11 +315,8 @@ MCFileTreeStCypressWriter>>writeMethodDefinition: methodDefinition to: methodPat
     visit: [ self writeMethodDefinition: methodDefinition ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>writeMethodProperties: classMethodDefinitions [
+{ #category : #initialize-release }
+MCFileTreeStCypressWriter >> writeMethodProperties: classMethodDefinitions [
     "Issue 33: https://github.com/dalehenrich/filetree/issues/33"
 
     | properties classMethodsMap instanceMethodMap |
@@ -389,11 +331,8 @@ MCFileTreeStCypressWriter>>writeMethodProperties: classMethodDefinitions [
     STON put: properties asJsonOnStreamPretty: fileStream
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>writePropertiesFile [
+{ #category : #initialize-release }
+MCFileTreeStCypressWriter >> writePropertiesFile [
   | properties |
   properties := Dictionary new.
   properties at: 'noMethodMetaData' put: true.
@@ -411,11 +350,8 @@ MCFileTreeStCypressWriter>>writePropertiesFile [
     visit: [ STON put: (Dictionary new) asJsonOnStreamPretty: fileStream ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>writeTraitDefinition: definition [
+{ #category : #writing }
+MCFileTreeStCypressWriter >> writeTraitDefinition: definition [
     | properties compositionString |
     properties := Dictionary new.
     properties at: 'name' put: definition className.
@@ -434,11 +370,8 @@ MCFileTreeStCypressWriter>>writeTraitDefinition: definition [
     STON put: properties asJsonOnStreamPretty: fileStream
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressWriter>>writeTraitDefinition: definition to: classPath [
+{ #category : #writing }
+MCFileTreeStCypressWriter >> writeTraitDefinition: definition to: classPath [
   self
     writeInDirectoryName: classPath
     fileName: 'README'

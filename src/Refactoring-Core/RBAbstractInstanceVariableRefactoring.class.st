@@ -11,15 +11,11 @@ Class {
 	#instVars : [
 		'accessorsRefactoring'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 19:53'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractInstanceVariableRefactoring>>abstractReferences [
+{ #category : #transforming }
+RBAbstractInstanceVariableRefactoring >> abstractReferences [
 	| replacer |
 	replacer := RBParseTreeRewriter 
 				variable: variableName
@@ -37,11 +33,8 @@ RBAbstractInstanceVariableRefactoring>>abstractReferences [
 		using: replacer
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractInstanceVariableRefactoring>>accessorsRefactoring [
+{ #category : #private-accessing }
+RBAbstractInstanceVariableRefactoring >> accessorsRefactoring [
 	^accessorsRefactoring isNil 
 		ifTrue: 
 			[accessorsRefactoring := RBCreateAccessorsForVariableRefactoring 
@@ -52,27 +45,18 @@ RBAbstractInstanceVariableRefactoring>>accessorsRefactoring [
 		ifFalse: [accessorsRefactoring]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractInstanceVariableRefactoring>>createAccessors [
+{ #category : #transforming }
+RBAbstractInstanceVariableRefactoring >> createAccessors [
 	self performComponentRefactoring: self accessorsRefactoring
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractInstanceVariableRefactoring>>preconditions [
+{ #category : #preconditions }
+RBAbstractInstanceVariableRefactoring >> preconditions [
 	^RBCondition directlyDefinesInstanceVariable: variableName in: class
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractInstanceVariableRefactoring>>transform [
+{ #category : #transforming }
+RBAbstractInstanceVariableRefactoring >> transform [
 	self createAccessors.
 	self abstractReferences
 ]

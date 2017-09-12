@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicAccordionRenderer,
 	#superclass : #GLMMorphicCompositeRenderer,
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicAccordionRenderer>>render: aPresentation [
+{ #category : #rendering }
+GLMMorphicAccordionRenderer >> render: aPresentation [
 	| presentations container expander |
 	presentations := aPresentation matchingPresentations.
 	presentations isEmpty

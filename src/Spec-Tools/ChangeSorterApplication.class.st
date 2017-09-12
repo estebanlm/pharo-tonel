@@ -18,15 +18,11 @@ Class {
 		'prettyButton',
 		'diffButton'
 	],
-	#category : #Spec-Tools-ChangeSorter,
-	#timestamp : '<historical>'
+	#category : #Spec-Tools-ChangeSorter
 }
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication class>>changeSetMenu1: aBuilder [
+{ #category : #menu }
+ChangeSorterApplication class >> changeSetMenu1: aBuilder [
 	<contextMenu>
 	<changeSorterChangeSetList1Menu>
 	
@@ -62,11 +58,8 @@ ChangeSorterApplication class>>changeSetMenu1: aBuilder [
 		
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication class>>changeSetMenu2: aBuilder [
+{ #category : #menu }
+ChangeSorterApplication class >> changeSetMenu2: aBuilder [
 	<contextMenu>
 	<changeSorterChangeSetList2Menu>
 	
@@ -104,11 +97,8 @@ ChangeSorterApplication class>>changeSetMenu2: aBuilder [
 		
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication class>>classListMenu: aBuilder [
+{ #category : #menu }
+ChangeSorterApplication class >> classListMenu: aBuilder [
 	<contextMenu>
 	<changeSorterClassListMenu>
 	
@@ -130,11 +120,8 @@ ChangeSorterApplication class>>classListMenu: aBuilder [
 
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication class>>defaultSpec [
+{ #category : #specs }
+ChangeSorterApplication class >> defaultSpec [
 	<spec>
 	
 	^ SpecLayout composed
@@ -150,11 +137,8 @@ ChangeSorterApplication class>>defaultSpec [
 					add: #textModel ].
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication class>>messageListMenu: aBuilder [
+{ #category : #menu }
+ChangeSorterApplication class >> messageListMenu: aBuilder [
 	<contextMenu>
 	<changeSorterMessageListMenu>
 
@@ -185,21 +169,15 @@ ChangeSorterApplication class>>messageListMenu: aBuilder [
 
 ]
 
-{
-	#category : #'menu - change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>addPreamble [
+{ #category : #'menu - change set' }
+ChangeSorterApplication >> addPreamble [
 
 	self model addPreambleTo: self selectedChangeSet.
 	changesListModel setSelectedItem: self selectedChangeSet
 ]
 
-{
-	#category : #'menu - change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>browseChangeSet [
+{ #category : #'menu - change set' }
+ChangeSorterApplication >> browseChangeSet [
 	"Open a message list browser on methods in the current change set"
 
 	| messages |
@@ -209,40 +187,28 @@ ChangeSorterApplication>>browseChangeSet [
 		title: 'Methods in Change Set ', self selectedChangeSet name .
 ]
 
-{
-	#category : #'menu - message',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>browseImplementorsOfMessages [
+{ #category : #'menu - message' }
+ChangeSorterApplication >> browseImplementorsOfMessages [
 
 	self model browseMessagesFrom: self selectedSelector
 ]
 
-{
-	#category : #'menu - message',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>browseMethodFull [
+{ #category : #'menu - message' }
+ChangeSorterApplication >> browseMethodFull [
 	"Create and schedule a full Browser and then select the current class and message."
 
 	self selectedClass ifNotNil:
 		[:myClass | Smalltalk tools browser openOnClass: myClass selector: self selectedSelector ]
 ]
 
-{
-	#category : #'menu - message',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>browseSendersOfMessages [
+{ #category : #'menu - message' }
+ChangeSorterApplication >> browseSendersOfMessages [
 
 	self model browseSendersOfMessagesFrom: self selectedSelector
 ]
 
-{
-	#category : #'menu - message',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>browseVersions [
+{ #category : #'menu - message' }
+ChangeSorterApplication >> browseVersions [
 	"Create and schedule a changelist browser on the versions of the 
 	selected message."
 	
@@ -252,22 +218,16 @@ ChangeSorterApplication>>browseVersions [
 			self model browseVersionsFrom: method ]]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>changeSetMenu1: aMenu shifted: isShifted  [
+{ #category : #menu }
+ChangeSorterApplication >> changeSetMenu1: aMenu shifted: isShifted [ 
 	"Set up aMenu to hold commands for the change-set-list pane.  This could be for a single or double changeSorter"
 	
 	aMenu addAllFromPragma: 'changeSorterChangeSetList1Menu' target: self.
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>changeSetMenu2: aMenu shifted: isShifted  [
+{ #category : #menu }
+ChangeSorterApplication >> changeSetMenu2: aMenu shifted: isShifted [ 
 	"Set up aMenu to hold commands for the change-set-list pane.  This could be for a single or double changeSorter"
 
 	aMenu addAllFromPragma: 'changeSorterChangeSetList2Menu' target: self.
@@ -275,11 +235,8 @@ ChangeSorterApplication>>changeSetMenu2: aMenu shifted: isShifted  [
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>changeSetMenu: aMenu shifted: isShifted [
+{ #category : #menu }
+ChangeSorterApplication >> changeSetMenu: aMenu shifted: isShifted [
 	"Set up aMenu to hold commands for the change-set-list pane.  This could be for a single or double changeSorter"
 
 	aMenu addTitle: 'Change Set'.
@@ -288,11 +245,8 @@ ChangeSorterApplication>>changeSetMenu: aMenu shifted: isShifted [
 	^ aMenu
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>changeSetShortcuts: event from: aMorph [
+{ #category : #shortcuts }
+ChangeSorterApplication >> changeSetShortcuts: event from: aMorph [
 
 	self selectedChangeSet
 		ifNotNil:[
@@ -309,47 +263,32 @@ ChangeSorterApplication>>changeSetShortcuts: event from: aMorph [
 		
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>changeSets [
+{ #category : #api }
+ChangeSorterApplication >> changeSets [
 
 	^ self changesListModel listItems
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>changesListModel [
+{ #category : #accessing }
+ChangeSorterApplication >> changesListModel [
 
 	^ changesListModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>changesMenu: aBlock [
+{ #category : #api }
+ChangeSorterApplication >> changesMenu: aBlock [
 
 	changesListModel menu: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>changesModelOn: aShortcut do: aBlock [
+{ #category : #api }
+ChangeSorterApplication >> changesModelOn: aShortcut do: aBlock [
 
 	changesListModel bindKeyCombination: aShortcut toAction: aBlock
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>classMenu: aMenu shifted: shifted [
+{ #category : #menu }
+ChangeSorterApplication >> classMenu: aMenu shifted: shifted [
 	"Fill aMenu with items appropriate for the class list"
 
 	self selectedClass ifNil: [ ^ nil ].
@@ -358,11 +297,8 @@ ChangeSorterApplication>>classMenu: aMenu shifted: shifted [
 	^ aMenu
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>classShortcuts: event from: aMorph [
+{ #category : #shortcuts }
+ChangeSorterApplication >> classShortcuts: event from: aMorph [
 
 	self selectedClass
 		ifNotNil:[
@@ -371,38 +307,26 @@ ChangeSorterApplication>>classShortcuts: event from: aMorph [
 			event keyString = '<Cmd-x>' 		ifTrue: [ ^ self removeClass ]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>classesListModel [
+{ #category : #accessing }
+ChangeSorterApplication >> classesListModel [
 
 	^ classesListModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>classesMenu: aBlock [
+{ #category : #api }
+ChangeSorterApplication >> classesMenu: aBlock [
 
 	classesListModel menu: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>classesOn: aShortcut do: aBlock [
+{ #category : #api }
+ChangeSorterApplication >> classesOn: aShortcut do: aBlock [
 
 	classesListModel bindKeyCombination: aShortcut toAction: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>createRingMethodForRemovedSelector: aSelector inClass: aClass [
+{ #category : #private }
+ChangeSorterApplication >> createRingMethodForRemovedSelector: aSelector inClass: aClass [
 	"Create RingMethod from the	removealinfo"
 
 	| removalInfo method |
@@ -412,49 +336,34 @@ ChangeSorterApplication>>createRingMethodForRemovedSelector: aSelector inClass: 
 	^ method
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>createRingMethodForSelector: aSelector inClass: aClass [
+{ #category : #private }
+ChangeSorterApplication >> createRingMethodForSelector: aSelector inClass: aClass [
 	"Create RingMethod from the class compiledMethod or if it was removed from the
 	removealinfo"
 	(aClass includesSelector: aSelector) ifTrue:[ ^ aClass compiledMethodAt: aSelector].
 	^ self createRingMethodForRemovedSelector: aSelector inClass: aClass.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>currentText [
+{ #category : #api }
+ChangeSorterApplication >> currentText [
 
 	 ^ textModel getText
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>defaultTitle [
+{ #category : #private }
+ChangeSorterApplication >> defaultTitle [
 	
 	^  'Change Sorter'
 ]
 
-{
-	#category : #'menu - change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>editPostscript [
+{ #category : #'menu - change set' }
+ChangeSorterApplication >> editPostscript [
 	
 	self selectedChangeSet editPostscript
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>ensureKeyBindingsFor: aWidget [
+{ #category : #shortcuts }
+ChangeSorterApplication >> ensureKeyBindingsFor: aWidget [
 
 	super ensureKeyBindingsFor: aWidget.
 	
@@ -463,29 +372,20 @@ ChangeSorterApplication>>ensureKeyBindingsFor: aWidget [
 	self registerMethodShortcuts: methodsListModel.
 ]
 
-{
-	#category : #'menu - change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>fileOut [
+{ #category : #'menu - change set' }
+ChangeSorterApplication >> fileOut [
 
 	self selectedChangeSet fileOut
 ]
 
-{
-	#category : #'menu - class',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>fileOutClass [
+{ #category : #'menu - class' }
+ChangeSorterApplication >> fileOutClass [
 
 	self model fileOutClass: self selectedClass from: self selectedChangeSet
 ]
 
-{
-	#category : #'menu - message',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>fileOutMessage [
+{ #category : #'menu - message' }
+ChangeSorterApplication >> fileOutMessage [
 	"Put a description of the selected message on a file"
 
 	self selectedSelector ifNotNil: [:selector |
@@ -493,22 +393,16 @@ ChangeSorterApplication>>fileOutMessage [
 			[ self model fileOutSelector: selector from: self selectedClass ]]
 ]
 
-{
-	#category : #'menu - change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>findChangeSet [
+{ #category : #'menu - change set' }
+ChangeSorterApplication >> findChangeSet [
 
 	| set |
 	set := self model findChangeSetIn: self changeSets.
 	changesListModel setSelectedItem: set.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>forceChangesListRefresh [
+{ #category : #private }
+ChangeSorterApplication >> forceChangesListRefresh [
 	| sel |
 	
 	sel := self selectedChangeSet.
@@ -516,11 +410,8 @@ ChangeSorterApplication>>forceChangesListRefresh [
 	changesListModel setSelectedItem: sel.
 ]
 
-{
-	#category : #'menu - class',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>forgetClass [
+{ #category : #'menu - class' }
+ChangeSorterApplication >> forgetClass [
 	"Remove all mention of this class from the changeSet"
 
 	self okToChange ifFalse: [^ self].
@@ -530,11 +421,8 @@ ChangeSorterApplication>>forgetClass [
 
 ]
 
-{
-	#category : #'menu - message',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>forgetMessage [
+{ #category : #'menu - message' }
+ChangeSorterApplication >> forgetMessage [
 
 	self okToChange ifFalse: [^ self].
 	self selectedSelector ifNotNil: [:selector | 
@@ -546,11 +434,8 @@ ChangeSorterApplication>>forgetMessage [
 		self setSelectedClassIndex: self selectedClassIndex ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>initialize [
+{ #category : #initialization }
+ChangeSorterApplication >> initialize [
 
 	prettyPrint := false.
 	showDiff := false.
@@ -564,11 +449,8 @@ ChangeSorterApplication>>initialize [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>initializeAnnouncements [
+{ #category : #initialization }
+ChangeSorterApplication >> initializeAnnouncements [
 	SystemAnnouncer uniqueInstance weak 
 		when:
 			ClassAdded , ClassCommented , ClassRecategorized , ClassModifiedClassDefinition , ClassRemoved , ClassRenamed
@@ -578,11 +460,8 @@ ChangeSorterApplication>>initializeAnnouncements [
 		to: self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>initializePresenter [
+{ #category : #initialization }
+ChangeSorterApplication >> initializePresenter [
 
 	prettyButton activationAction: [ 
 		prettyPrint := true.
@@ -601,11 +480,8 @@ ChangeSorterApplication>>initializePresenter [
 	self registerSelectorActions.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>initializeWidgets [
+{ #category : #initialization }
+ChangeSorterApplication >> initializeWidgets [
 
 	methodsListModel := self instantiate: FastTableModel.
 	classesListModel := self instantiate: FastTableModel.
@@ -626,11 +502,8 @@ ChangeSorterApplication>>initializeWidgets [
 	
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>messageMenu: aMenu shifted: shifted [
+{ #category : #menu }
+ChangeSorterApplication >> messageMenu: aMenu shifted: shifted [
 	"Fill aMenu with items appropriate for the message list; could be for a single or double changeSorter"
 
 	self selectedSelector ifNil: [ ^ nil ].
@@ -639,11 +512,8 @@ ChangeSorterApplication>>messageMenu: aMenu shifted: shifted [
 	^ aMenu
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>methodShortcuts: event from: aMorph [
+{ #category : #shortcuts }
+ChangeSorterApplication >> methodShortcuts: event from: aMorph [
 
 	self selectedSelector
 		ifNotNil:[
@@ -655,47 +525,32 @@ ChangeSorterApplication>>methodShortcuts: event from: aMorph [
 			event keyString = '<Cmd-x>' 		ifTrue: [ ^ self removeMessage ]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>methodsListModel [
+{ #category : #accessing }
+ChangeSorterApplication >> methodsListModel [
 
 	^ methodsListModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>methodsMenu: aBlock [
+{ #category : #api }
+ChangeSorterApplication >> methodsMenu: aBlock [
 
 	methodsListModel menu: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>methodsOn: aShortcut do: aBlock [
+{ #category : #api }
+ChangeSorterApplication >> methodsOn: aShortcut do: aBlock [
 
 	methodsListModel bindKeyCombination: aShortcut toAction: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>model [
+{ #category : #accessing }
+ChangeSorterApplication >> model [
 
 	^ model
 ]
 
-{
-	#category : #'menu - change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>newSet [
+{ #category : #'menu - change set' }
+ChangeSorterApplication >> newSet [
 
 	| aSet |
 	self okToChange ifFalse: [ ^ self ].
@@ -705,22 +560,16 @@ ChangeSorterApplication>>newSet [
 			changesListModel setSelectedItem: aSet ]
 ]
 
-{
-	#category : #'menu - change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>openChangeSetBrowser [
+{ #category : #'menu - change set' }
+ChangeSorterApplication >> openChangeSetBrowser [
 	| cs |
 	
 	cs := self selectedChangeSet ifNil: [^self].
 	^Smalltalk tools browser openInEnvironment: (RBBrowserEnvironment new forClasses: cs changedClasses)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>registerChangeActions [
+{ #category : #initialization }
+ChangeSorterApplication >> registerChangeActions [
 	
 	changesListModel
 		whenSelectedItemChanged: [:change | 
@@ -737,11 +586,8 @@ ChangeSorterApplication>>registerChangeActions [
 	
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>registerChangeSetShortcuts: aWidget [
+{ #category : #shortcuts }
+ChangeSorterApplication >> registerChangeSetShortcuts: aWidget [
 
 	aWidget bindKeyCombination: PharoShortcuts current browseShortcut toAction: [ self selectedChangeSet ifNotNil:[ self browseChangeSet ]].
 	aWidget bindKeyCombination: $b meta shift toAction: [ self selectedChangeSet ifNotNil:[ self openChangeSetBrowser ]].
@@ -755,11 +601,8 @@ ChangeSorterApplication>>registerChangeSetShortcuts: aWidget [
 		
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>registerClassActions [
+{ #category : #initialization }
+ChangeSorterApplication >> registerClassActions [
 	
 	classesListModel whenSelectedItemChanged: [:class | 
 		methodsListModel resetSelection.
@@ -771,22 +614,16 @@ ChangeSorterApplication>>registerClassActions [
 			ifNotNil: [ methodsListModel items: (self selectedChangeSet selectorsInClass: class name) sort ]].
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>registerClassShortcuts: aWidget [
+{ #category : #shortcuts }
+ChangeSorterApplication >> registerClassShortcuts: aWidget [
 
 	aWidget bindKeyCombination: PharoShortcuts current browseShortcut toAction: [ self selectedClass ifNotNil:[ self browseMethodFull ]].
 	aWidget bindKeyCombination: $d meta toAction: [ self selectedClass ifNotNil:[ self forgetClass ]].
 	aWidget bindKeyCombination: PharoShortcuts current removeShortcut toAction: [ self selectedClass ifNotNil:[ self removeClass ]].
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>registerMethodShortcuts: aWidget [
+{ #category : #shortcuts }
+ChangeSorterApplication >> registerMethodShortcuts: aWidget [
 
 	aWidget bindKeyCombination: PharoShortcuts current browseShortcut toAction: [ self selectedSelector ifNotNil:[ self browseMethodFull ]].
 	aWidget bindKeyCombination: $d meta toAction: [ self selectedSelector ifNotNil:[ self forgetMessage ]].
@@ -796,21 +633,15 @@ ChangeSorterApplication>>registerMethodShortcuts: aWidget [
 	aWidget bindKeyCombination: PharoShortcuts current removeShortcut toAction: [ self selectedSelector ifNotNil:[ self removeMessage ]].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>registerSelectorActions [
+{ #category : #initialization }
+ChangeSorterApplication >> registerSelectorActions [
 
 	methodsListModel whenSelectedItemChanged: [:selector |
 		self updateTextContents ]
 ]
 
-{
-	#category : #'menu - change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>remove [
+{ #category : #'menu - change set' }
+ChangeSorterApplication >> remove [
 	"Completely destroy my change set.  Check if it's OK first"
 
 	self okToChange ifFalse: [^ self].
@@ -819,22 +650,16 @@ ChangeSorterApplication>>remove [
 	changesListModel resetSelection
 ]
 
-{
-	#category : #'menu - class',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>removeClass [
+{ #category : #'menu - class' }
+ChangeSorterApplication >> removeClass [
 	"Remove the selected class from the system, at interactive user request.  Make certain the user really wants to do this, since it is not reversible.  Answer true if removal actually happened."
 
 	(self model removeClass: self selectedClass)
 		ifTrue: [ self setSelectedChangeSet: self selectedChangeSet ]
 ]
 
-{
-	#category : #'menu - message',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>removeMessage [
+{ #category : #'menu - message' }
+ChangeSorterApplication >> removeMessage [
 	"Remove the selected message from the system."
 	
 	self okToChange
@@ -848,31 +673,22 @@ ChangeSorterApplication>>removeMessage [
 					ifTrue: [ self updateMessagesList ]]
 ]
 
-{
-	#category : #'menu - change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>removePostscript [
+{ #category : #'menu - change set' }
+ChangeSorterApplication >> removePostscript [
 
 	self model removePostscriptFrom: self selectedChangeSet.
 	changesListModel setSelectedItem: self selectedChangeSet
 ]
 
-{
-	#category : #'menu - change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>removePreamble [
+{ #category : #'menu - change set' }
+ChangeSorterApplication >> removePreamble [
 
 	self selectedChangeSet removePreamble.
 	changesListModel setSelectedItem: self selectedChangeSet
 ]
 
-{
-	#category : #'menu - change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>rename [
+{ #category : #'menu - change set' }
+ChangeSorterApplication >> rename [
 
 	| set |
 	set := self model rename: self selectedChangeSet.
@@ -882,74 +698,50 @@ ChangeSorterApplication>>rename [
 		setSelectedItem: set
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>selectedChangeSet [
+{ #category : #api }
+ChangeSorterApplication >> selectedChangeSet [
 
 	 ^ changesListModel selectedItem
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>selectedChangeSetIndex [
+{ #category : #api }
+ChangeSorterApplication >> selectedChangeSetIndex [
 
 	 ^ changesListModel selectedIndex
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>selectedClass [
+{ #category : #api }
+ChangeSorterApplication >> selectedClass [
 
 	 ^ classesListModel selectedItem
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>selectedClassIndex [
+{ #category : #api }
+ChangeSorterApplication >> selectedClassIndex [
 
 	 ^ classesListModel selectedIndex
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>selectedSelector [
+{ #category : #api }
+ChangeSorterApplication >> selectedSelector [
 
 	 ^ methodsListModel selectedItem
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>selectorsMenu: aBlock [
+{ #category : #api }
+ChangeSorterApplication >> selectorsMenu: aBlock [
 
 	methodsListModel menu: aBlock
 ]
 
-{
-	#category : #'menu - change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>setCurrentChangeSet [
+{ #category : #'menu - change set' }
+ChangeSorterApplication >> setCurrentChangeSet [
 
 	self model setCurrentChangeSet: self selectedChangeSet.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>setFocus [
+{ #category : #initialization }
+ChangeSorterApplication >> setFocus [
 
 	self focusOrder
 		add: changesListModel;
@@ -958,65 +750,44 @@ ChangeSorterApplication>>setFocus [
 		add: textModel.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>setSelectedChangeSet: aChangeSet [
+{ #category : #api }
+ChangeSorterApplication >> setSelectedChangeSet: aChangeSet [
 
 	 ^ changesListModel setSelectedItem: aChangeSet
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>setSelectedChangeSetIndex: anIndex [
+{ #category : #api }
+ChangeSorterApplication >> setSelectedChangeSetIndex: anIndex [
 
 	 ^ changesListModel setSelectedIndex: anIndex
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>setSelectedClass: aClass [
+{ #category : #api }
+ChangeSorterApplication >> setSelectedClass: aClass [
 
 	 ^ classesListModel setSelectedItem: aClass
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>setSelectedClassIndex: anIndex [
+{ #category : #api }
+ChangeSorterApplication >> setSelectedClassIndex: anIndex [
 
 	 ^ classesListModel setSelectedIndex: anIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>textModel [
+{ #category : #accessing }
+ChangeSorterApplication >> textModel [
 
 	^ textModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>title [
+{ #category : #api }
+ChangeSorterApplication >> title [
 
 	^ super title, ' on: ', self model currentChangeSet name. 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>updateChangesList [
+{ #category : #api }
+ChangeSorterApplication >> updateChangesList [
 
 	| sel |
 	sel := self selectedChangeSet.
@@ -1024,11 +795,8 @@ ChangeSorterApplication>>updateChangesList [
 	changesListModel setSelectedItem: sel.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>updateClassesList [
+{ #category : #api }
+ChangeSorterApplication >> updateClassesList [
 	
 	| sel |
 	sel := self selectedClass.
@@ -1040,11 +808,8 @@ ChangeSorterApplication>>updateClassesList [
 	classesListModel setSelectedItem: sel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>updateClassesListAndMessagesList [
+{ #category : #api }
+ChangeSorterApplication >> updateClassesListAndMessagesList [
 	| sel |
 	sel := methodsListModel selectedItem.
 	
@@ -1053,11 +818,8 @@ ChangeSorterApplication>>updateClassesListAndMessagesList [
 	self updateMessagesList.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>updateMessagesList [
+{ #category : #api }
+ChangeSorterApplication >> updateMessagesList [
 	| sel |
 	sel := methodsListModel selectedItem.
 	
@@ -1068,11 +830,8 @@ ChangeSorterApplication>>updateMessagesList [
 	methodsListModel setSelectedItem: sel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>updateTextContents [
+{ #category : #private }
+ChangeSorterApplication >> updateTextContents [
 
 	| text |
 	text :=  (self model 
@@ -1087,11 +846,8 @@ ChangeSorterApplication>>updateTextContents [
 	textModel text: text.
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterApplication>>whenChangesListChanges: aBlock [
+{ #category : #api-events }
+ChangeSorterApplication >> whenChangesListChanges: aBlock [
 
 	changesListModel whenListChanged: aBlock
 ]

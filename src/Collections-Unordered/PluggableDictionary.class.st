@@ -13,23 +13,16 @@ Class {
 		'hashBlock',
 		'equalBlock'
 	],
-	#category : #Collections-Unordered,
-	#timestamp : 'monty 10/14/2015 07:16'
+	#category : #Collections-Unordered
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableDictionary class>>integerDictionary [
+{ #category : #'as yet unclassified' }
+PluggableDictionary class >> integerDictionary [
 	^ self new hashBlock: [:integer | integer hash \\ 1064164 * 1009]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableDictionary>>= aDictionary [
+{ #category : #comparing }
+PluggableDictionary >> = aDictionary [
 	"Two dictionaries are equal if
 	 (a) they are the same 'kind' of thing.
 	 (b) they have the same set of keys.
@@ -47,67 +40,46 @@ PluggableDictionary>>= aDictionary [
 	^true
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableDictionary>>copyEmpty [
+{ #category : #copying }
+PluggableDictionary >> copyEmpty [
 	^super copyEmpty
 		hashBlock: hashBlock;
 		equalBlock: equalBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableDictionary>>equalBlock [
+{ #category : #accessing }
+PluggableDictionary >> equalBlock [
 	"Return the block used for comparing the elements in the receiver."
 	^equalBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableDictionary>>equalBlock: aBlock [
+{ #category : #accessing }
+PluggableDictionary >> equalBlock: aBlock [
 	"Set a new equality block. The block must accept two arguments and return true if the argumets are considered to be equal, false otherwise"
 	equalBlock := aBlock.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableDictionary>>hash [
+{ #category : #comparing }
+PluggableDictionary >> hash [
 	"hashBlock is used to hash keys for lookup, not the dictionary itself, but its hash is still
 	considered."
 	^ (super hash bitXor: self equalBlock hash) bitXor: self hashBlock hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableDictionary>>hashBlock [
+{ #category : #accessing }
+PluggableDictionary >> hashBlock [
 	"Return the block used for hashing the keys in the receiver."
 	^hashBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableDictionary>>hashBlock: aBlock [
+{ #category : #accessing }
+PluggableDictionary >> hashBlock: aBlock [
 	"Set a new hash block. The block must accept one argument and must return the hash value of the given argument."
 	hashBlock := aBlock.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableDictionary>>scanFor: anObject  [
+{ #category : #private }
+PluggableDictionary >> scanFor: anObject [ 
 	"Scan the key array for the first slot containing either a nil
 (indicating 
 	  an empty slot) or an element that matches anObject. Answer the index 
@@ -135,11 +107,8 @@ overridden
 	^ 0"No match AND no empty slot"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableDictionary>>scanForEmptySlotFor: aKey [
+{ #category : #private }
+PluggableDictionary >> scanForEmptySlotFor: aKey [
 	"Scan the key array for the first slot containing an empty slot (indicated by a nil). Answer the index of that slot. This method will be overridden in various subclasses that have different interpretations for matching elements."
 	
 	| index start |

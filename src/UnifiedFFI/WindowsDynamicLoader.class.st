@@ -4,47 +4,31 @@ I'm a windows platform dynamic library loader.
 Class {
 	#name : #WindowsDynamicLoader,
 	#superclass : #DynamicLoader,
-	#category : #UnifiedFFI-Libraries,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Libraries
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-WindowsDynamicLoader class>>isAvailable [
+{ #category : #testing }
+WindowsDynamicLoader class >> isAvailable [
 	^ Smalltalk os isWindows
 ]
 
-{
-	#category : #misc,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-WindowsDynamicLoader>>lastError [
+{ #category : #misc }
+WindowsDynamicLoader >> lastError [
 	^ self ffiCall: #(int32 GetLastError(void))
 ]
 
-{
-	#category : #misc,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-WindowsDynamicLoader>>loadLibrary: lpFileName [
+{ #category : #misc }
+WindowsDynamicLoader >> loadLibrary: lpFileName [
 	^ self ffiCall: #(void *LoadLibrary(String lpFileName))
 ]
 
-{
-	#category : #misc,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-WindowsDynamicLoader>>loadSymbolFrom: hModule name: lpProcName [
+{ #category : #misc }
+WindowsDynamicLoader >> loadSymbolFrom: hModule name: lpProcName [
 	^ self ffiCall: #(void *GetProcAddress(void *hModule, String lpProcName))
 
 ]
 
-{
-	#category : #'accessing platform',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-WindowsDynamicLoader>>win32ModuleName [
+{ #category : #'accessing platform' }
+WindowsDynamicLoader >> win32ModuleName [
 	^ 'Kernel32.dll'
 ]

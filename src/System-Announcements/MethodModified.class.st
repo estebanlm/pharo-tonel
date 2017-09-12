@@ -10,15 +10,11 @@ Class {
 		'oldMethod',
 		'oldProtocol'
 	],
-	#category : #System-Announcements-System-Methods,
-	#timestamp : 'BenjaminVanRyseghem 4/1/2011 16:04'
+	#category : #System-Announcements-System-Methods
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodModified class>>methodChangedFrom: oldMethod to: newMethod oldProtocol: oldProtocol  [
+{ #category : #'instance creation' }
+MethodModified class >> methodChangedFrom: oldMethod to: newMethod oldProtocol: oldProtocol [ 
 	^ self new
 		method: newMethod;
 		oldMethod: oldMethod;
@@ -26,54 +22,36 @@ MethodModified class>>methodChangedFrom: oldMethod to: newMethod oldProtocol: ol
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodModified>>newMethod [
+{ #category : #accessing }
+MethodModified >> newMethod [
 
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodModified>>newProtocol [
+{ #category : #accessing }
+MethodModified >> newProtocol [
 	
 	^ self protocol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodModified>>oldMethod [
+{ #category : #accessing }
+MethodModified >> oldMethod [
 	^ oldMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodModified>>oldMethod: aCompiledMethod [
+{ #category : #accessing }
+MethodModified >> oldMethod: aCompiledMethod [
 	oldMethod := aCompiledMethod.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodModified>>oldProtocol [
+{ #category : #accessing }
+MethodModified >> oldProtocol [
 	
 	^ oldProtocol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodModified>>oldProtocol: anObject [
+{ #category : #accessing }
+MethodModified >> oldProtocol: anObject [
 	
 	oldProtocol := anObject
 ]

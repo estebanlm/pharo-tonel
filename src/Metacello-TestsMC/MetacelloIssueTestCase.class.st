@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloIssueTestCase,
 	#superclass : #TestCase,
@@ -8,25 +5,18 @@ Class {
 		'gofer',
 		'initialWorkingCopyList'
 	],
-	#category : #Metacello-TestsMC,
-	#timestamp : ''
+	#category : #Metacello-TestsMC
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloIssueTestCase>>configurationRepository [
+{ #category : #running }
+MetacelloIssueTestCase >> configurationRepository [
 	"MetacelloConfigurationResource reset"
 
 	^ MetacelloConfigurationResource current monticelloRepository
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloIssueTestCase>>hasPackage: aString [
+{ #category : #utilities }
+MetacelloIssueTestCase >> hasPackage: aString [
 	| package |
 	package := MCWorkingCopy allManagers
 		detect: [ :each | each packageName = aString ]
@@ -34,45 +24,30 @@ MetacelloIssueTestCase>>hasPackage: aString [
 	^ package notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloIssueTestCase>>monticelloRepository [
+{ #category : #accessing }
+MetacelloIssueTestCase >> monticelloRepository [
 	"MetacelloMonticelloResource reset"
 	^ MetacelloMonticelloResource current monticelloRepository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloIssueTestCase>>project [
+{ #category : #accessing }
+MetacelloIssueTestCase >> project [
 
 	^self projectWith: #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloIssueTestCase>>projectClass [
+{ #category : #accessing }
+MetacelloIssueTestCase >> projectClass [
     ^ Smalltalk at: self projectName asSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloIssueTestCase>>projectName [
+{ #category : #accessing }
+MetacelloIssueTestCase >> projectName [
     ^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloIssueTestCase>>projectWith: projectAttributes [
+{ #category : #accessing }
+MetacelloIssueTestCase >> projectWith: projectAttributes [
     | project |
     "Construct Metacello project"
     project := MetacelloMCProject new.
@@ -83,11 +58,8 @@ MetacelloIssueTestCase>>projectWith: projectAttributes [
     ^ project
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloIssueTestCase>>runCase [
+{ #category : #running }
+MetacelloIssueTestCase >> runCase [
 	| original |
 	original := MetacelloPlatform current bypassGoferLoadUpdateCategories.
 	[ 
@@ -96,11 +68,8 @@ MetacelloIssueTestCase>>runCase [
 		ensure: [ MetacelloPlatform current bypassGoferLoadUpdateCategories: original ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloIssueTestCase>>setUp [
+{ #category : #running }
+MetacelloIssueTestCase >> setUp [
   | repo |
   super setUp.
   MetacelloPlatform current clearPackageCache.
@@ -116,11 +85,8 @@ MetacelloIssueTestCase>>setUp [
     collect: [ :each | each packageName ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloIssueTestCase>>tearDown [
+{ #category : #running }
+MetacelloIssueTestCase >> tearDown [
   | aGofer finalWorkingCopyList diff |
   super tearDown.
   aGofer := Gofer new.
@@ -150,10 +116,7 @@ MetacelloIssueTestCase>>tearDown [
   self assert: diff isEmpty
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloIssueTestCase>>tearDownPackageNames [
+{ #category : #running }
+MetacelloIssueTestCase >> tearDownPackageNames [
     ^ {(self projectName)}
 ]

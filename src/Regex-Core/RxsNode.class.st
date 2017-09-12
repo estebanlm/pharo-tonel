@@ -6,15 +6,11 @@ A generic syntax tree node, provides some common responses to the standard tests
 Class {
 	#name : #RxsNode,
 	#superclass : #Object,
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:14'
+	#category : #Regex-Core
 }
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsNode>>indentCharacter [
+{ #category : #constants }
+RxsNode >> indentCharacter [
 	"Normally, #printOn:withIndent: method in subclasses
 	print several characters returned by this method to indicate
 	the tree structure."
@@ -22,11 +18,8 @@ RxsNode>>indentCharacter [
 	^$+
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsNode>>isAtomic [
+{ #category : #testing }
+RxsNode >> isAtomic [
 	"Answer whether the node is atomic, i.e. matches exactly one 
 	constant predefined normal character.  A matcher may decide to 
 	optimize matching of a sequence of atomic nodes by glueing them 
@@ -35,11 +28,8 @@ RxsNode>>isAtomic [
 	^false "tentatively"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsNode>>isNullable [
+{ #category : #testing }
+RxsNode >> isNullable [
 	"True if the node can match an empty sequence of characters."
 
 	^false "for most nodes"

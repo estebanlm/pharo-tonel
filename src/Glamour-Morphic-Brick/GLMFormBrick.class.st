@@ -5,26 +5,19 @@ A GLMFormBrick is scriptable html-like form with possibility to submit it.
 Class {
 	#name : #GLMFormBrick,
 	#superclass : #GLMBandBrick,
-	#category : #Glamour-Morphic-Brick-Widgets-Basic,
-	#timestamp : 'AliakseiSyrel 2/26/2015 23:27'
+	#category : #Glamour-Morphic-Brick-Widgets-Basic
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick class>>exampleOpen [
+{ #category : #examples }
+GLMFormBrick class >> exampleOpen [
 
 	self gtExample
 		when: GLMFormSubmitted do: [ :ann | ann result brickAlert ];
 		openCenteredInBrickWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick class>>gtExample [
+{ #category : #examples }
+GLMFormBrick class >> gtExample [
 	<gtExample>
 	<label: 'Input form with title, two labels, four checkboxes, text and submit button'>
 	
@@ -56,11 +49,8 @@ GLMFormBrick class>>gtExample [
 		yourself
 ]
 
-{
-	#category : #brick-structure-converting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>asFormValue [
+{ #category : #brick-structure-converting }
+GLMFormBrick >> asFormValue [
 	|result|
 	result := OrderedCollection new.
 	self subbricks do: [ :each |
@@ -68,30 +58,21 @@ GLMFormBrick>>asFormValue [
 	^ result
 ]
 
-{
-	#category : #form-scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>checkbox [
+{ #category : #form-scripting }
+GLMFormBrick >> checkbox [
 
 	^ self addBrickBack: self newCheckbox
 ]
 
-{
-	#category : #form-scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>checkbox: aBlock [
+{ #category : #form-scripting }
+GLMFormBrick >> checkbox: aBlock [
 
 	aBlock cull: self checkbox
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>initialize [
+{ #category : #initialization }
+GLMFormBrick >> initialize [
 	super initialize.
 	
 	self
@@ -102,57 +83,39 @@ GLMFormBrick>>initialize [
 		padding: #(4 7)
 ]
 
-{
-	#category : #form-scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>label [
+{ #category : #form-scripting }
+GLMFormBrick >> label [
 
 	^ self addBrickBack: self newLabel
 ]
 
-{
-	#category : #form-scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>label: aBlock [
+{ #category : #form-scripting }
+GLMFormBrick >> label: aBlock [
 
 	aBlock cull: self label
 	
 ]
 
-{
-	#category : #form-brick-creation,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>newButton [
+{ #category : #form-brick-creation }
+GLMFormBrick >> newButton [
 
 	^ GLMButtonBrick new margin: #(3 0)
 ]
 
-{
-	#category : #form-brick-creation,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>newCheckbox [
+{ #category : #form-brick-creation }
+GLMFormBrick >> newCheckbox [
 
 	^ GLMCheckboxBrick new margin: #(3 0)
 ]
 
-{
-	#category : #form-brick-creation,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>newLabel [
+{ #category : #form-brick-creation }
+GLMFormBrick >> newLabel [
 
 	^ GLMLabelBrick new margin: #(3 0)
 ]
 
-{
-	#category : #form-brick-creation,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>newText [
+{ #category : #form-brick-creation }
+GLMFormBrick >> newText [
 
 	^ GLMRubTextAreaBrick new
 		width: 200;
@@ -161,11 +124,8 @@ GLMFormBrick>>newText [
 		rubricTextFamilyName: StandardFonts defaultFont familyName
 ]
 
-{
-	#category : #form-scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>submit [
+{ #category : #form-scripting }
+GLMFormBrick >> submit [
 
 	^ self addBrickBack: (
 		self newButton
@@ -173,56 +133,38 @@ GLMFormBrick>>submit [
 			when: #onClicked do: [ self submitForm ])
 ]
 
-{
-	#category : #form-scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>submit: aBlock [
+{ #category : #form-scripting }
+GLMFormBrick >> submit: aBlock [
 
 	aBlock cull: self submit
 ]
 
-{
-	#category : #form-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>submitForm [
+{ #category : #form-actions }
+GLMFormBrick >> submitForm [
 
 	self announce: (GLMFormSubmitted new result: self asFormValue)
 ]
 
-{
-	#category : #form-scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>text [
+{ #category : #form-scripting }
+GLMFormBrick >> text [
 
 	^ self addBrickBack: self newText
 ]
 
-{
-	#category : #form-scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>text: aBlock [
+{ #category : #form-scripting }
+GLMFormBrick >> text: aBlock [
 
 	aBlock cull: self text
 ]
 
-{
-	#category : #form-scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>title [
+{ #category : #form-scripting }
+GLMFormBrick >> title [
 
 	^ self addBrickBack: (self newLabel hAlign: #center)
 ]
 
-{
-	#category : #form-scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormBrick>>title: aBlock [
+{ #category : #form-scripting }
+GLMFormBrick >> title: aBlock [
 
 	aBlock cull: self title
 ]

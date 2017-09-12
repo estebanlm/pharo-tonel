@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloAllowConflictingProjectUpgrade,
 	#superclass : #MetacelloResolveProjectUpgrade,
-	#category : #Metacello-Core-Scripts,
-	#timestamp : ''
+	#category : #Metacello-Core-Scripts
 }
 
-{
-	#category : #'exception handling',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAllowConflictingProjectUpgrade>>defaultAction [
+{ #category : #'exception handling' }
+MetacelloAllowConflictingProjectUpgrade >> defaultAction [
   self existingProjectRegistration locked
     ifTrue: [ 
       "https://github.com/dalehenrich/metacello-work/issues/263"
@@ -23,18 +16,12 @@ MetacelloAllowConflictingProjectUpgrade>>defaultAction [
         , ' and ' , self newProjectRegistration printString
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAllowConflictingProjectUpgrade>>handleResolutionFor: aScriptEngine [
+{ #category : #handlers }
+MetacelloAllowConflictingProjectUpgrade >> handleResolutionFor: aScriptEngine [
     ^ aScriptEngine handleConflict: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAllowConflictingProjectUpgrade>>operationString [
+{ #category : #accessing }
+MetacelloAllowConflictingProjectUpgrade >> operationString [
   ^ 'load with conflicts'
 ]

@@ -77,26 +77,19 @@ Class {
 		'encoderClass',
 		'inBlock'
 	],
-	#category : #OpalCompiler-Core-Bytecode,
-	#timestamp : 'ClementBera 1/27/2015 13:07'
+	#category : #OpalCompiler-Core-Bytecode
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator class>>newWithEncoderClass: class [
+{ #category : #'instance creation' }
+IRBytecodeGenerator class >> newWithEncoderClass: class [
 	^ self basicNew 
 		encoderClass: class;
 		initialize;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>addLastLiteral: object [
+{ #category : #private }
+IRBytecodeGenerator >> addLastLiteral: object [
 	lastLiteral ifNil: [ ^ lastLiteral := object ].
 	((lastLiteral literalEqual: object)
 		or: [ 
@@ -105,20 +98,14 @@ IRBytecodeGenerator>>addLastLiteral: object [
 		ifFalse: [ self error: 'there can only be one last literal' ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>addLiteral: object [
+{ #category : #private }
+IRBytecodeGenerator >> addLiteral: object [
 	literals add: object.
 	^ literals identityIndexOf: object
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>addPragma: aPragma [
+{ #category : #private }
+IRBytecodeGenerator >> addPragma: aPragma [
 	properties ifNil: [ properties := AdditionalMethodState new ].
 	properties := properties copyWith: aPragma. 
 
@@ -126,11 +113,8 @@ IRBytecodeGenerator>>addPragma: aPragma [
 	
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>addProperties: cm [
+{ #category : #results }
+IRBytecodeGenerator >> addProperties: cm [
 	"set the properties of cm according to properties saved"
 	properties ifNotNil: [
 		cm penultimateLiteral: properties.
@@ -138,29 +122,20 @@ IRBytecodeGenerator>>addProperties: cm [
 		properties  pragmas do: [:each | each setMethod: cm] ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>additionalLiterals: aSet [
+{ #category : #accessing }
+IRBytecodeGenerator >> additionalLiterals: aSet [
 	additionalLiterals := aSet.
 	
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>blockReturnTop [
+{ #category : #instructions }
+IRBytecodeGenerator >> blockReturnTop [
 	encoder genReturnTopToCaller
 
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>bytecodes [
+{ #category : #results }
+IRBytecodeGenerator >> bytecodes [
 	| stream |
 	self updateJumpOffsets.
 	stream := (ByteArray new: 100) writeStream. 
@@ -179,11 +154,8 @@ IRBytecodeGenerator>>bytecodes [
 	^ stream contents
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>closureFrom: fromSeqId to: toSeqId copyNumCopiedValues: numCopied numArgs: numArgs2 [
+{ #category : #instructions }
+IRBytecodeGenerator >> closureFrom: fromSeqId to: toSeqId copyNumCopiedValues: numCopied numArgs: numArgs2 [
 	| distance from to |
 	from := seqOrder at: fromSeqId.
 	to := seqOrder at: toSeqId ifAbsent: [ ^ self ].	"not done yet"
@@ -191,11 +163,8 @@ IRBytecodeGenerator>>closureFrom: fromSeqId to: toSeqId copyNumCopiedValues: num
 	encoder genPushClosureCopyNumCopiedValues: numCopied numArgs: numArgs2 jumpSize: distance. 
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>compiledBlockWith: trailer [
+{ #category : #results }
+IRBytecodeGenerator >> compiledBlockWith: trailer [
 	| lits header cb |
 	lits := self literals allButLast "1 free only for compiledBlock".
 	header := self spurVMHeader: lits size.
@@ -209,20 +178,14 @@ IRBytecodeGenerator>>compiledBlockWith: trailer [
 	^ cb
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>compiledMethod [
+{ #category : #results }
+IRBytecodeGenerator >> compiledMethod [
 
 	^ self compiledMethodWith: CompiledMethodTrailer empty
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>compiledMethodWith: trailer [
+{ #category : #results }
+IRBytecodeGenerator >> compiledMethodWith: trailer [
 	| lits header quickPrimitive |
 	lits := self literals.
 	quickPrimitive := self quickMethodPrim.
@@ -238,11 +201,8 @@ IRBytecodeGenerator>>compiledMethodWith: trailer [
 	^ self compiledMethodWith: trailer header: header literals: lits
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>compiledMethodWith: trailer header: header literals: lits [
+{ #category : #results }
+IRBytecodeGenerator >> compiledMethodWith: trailer header: header literals: lits [
 	| cm |
 	cm := trailer createMethod: self bytecodes size class: CompiledMethod header: header.
 	(WriteStream with: cm)
@@ -255,46 +215,31 @@ IRBytecodeGenerator>>compiledMethodWith: trailer header: header literals: lits [
 	^ cm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>encoderClass [
+{ #category : #accessing }
+IRBytecodeGenerator >> encoderClass [
 	^ encoderClass  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>encoderClass: class [
+{ #category : #accessing }
+IRBytecodeGenerator >> encoderClass: class [
 	encoderClass := class  
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>endPrimNumber [
+{ #category : #results }
+IRBytecodeGenerator >> endPrimNumber [
 	"primitive number including quick return. Only valid at the end of generation"
 	^ primNumber > 0
 			ifTrue: [ primNumber ]
 			ifFalse: [ self quickMethodPrim ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>forceLongForm: aBoolean [
+{ #category : #accessing }
+IRBytecodeGenerator >> forceLongForm: aBoolean [
 	forceLongForm := aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>from: fromSeqId goto: toSeqId [
+{ #category : #private }
+IRBytecodeGenerator >> from: fromSeqId goto: toSeqId [
 
 	| distance from to |
 	from := seqOrder at: fromSeqId.
@@ -314,11 +259,8 @@ IRBytecodeGenerator>>from: fromSeqId goto: toSeqId [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>from: fromSeqId if: bool goto: toSeqId otherwise: otherwiseSeqId [
+{ #category : #private }
+IRBytecodeGenerator >> from: fromSeqId if: bool goto: toSeqId otherwise: otherwiseSeqId [
 
 	| distance from to otherwise |
 	from := seqOrder at: fromSeqId.
@@ -333,11 +275,8 @@ IRBytecodeGenerator>>from: fromSeqId if: bool goto: toSeqId otherwise: otherwise
 
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>goto: seqId [
+{ #category : #instructions }
+IRBytecodeGenerator >> goto: seqId [
 	stacks at: seqId put: (stack linkTo: (stacks at: seqId ifAbsentPut: [ nil ])).
 	self
 		saveLastJump:
@@ -349,32 +288,23 @@ IRBytecodeGenerator>>goto: seqId [
 	self from: currentSeqId goto: seqId
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>hasPrimitive [
+{ #category : #results }
+IRBytecodeGenerator >> hasPrimitive [
 	"do I have a primitive? Both normal primitive and quick return"
 	primNumber > 0 ifTrue: [ ^true ].
 	^ self endPrimNumber > 0
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>if: bool goto: seqId [
+{ #category : #instructions }
+IRBytecodeGenerator >> if: bool goto: seqId [
 	| otherwiseSeqId |
 	otherwiseSeqId := self newDummySeqId.
 	self if: bool goto: seqId otherwise: otherwiseSeqId.
 	self label: otherwiseSeqId
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>if: bool goto: seqId1 otherwise: seqId2 [
+{ #category : #instructions }
+IRBytecodeGenerator >> if: bool goto: seqId1 otherwise: seqId2 [
 	stack pop.
 	stacks at: seqId1 put: (stack linkTo: (stacks at: seqId1 ifAbsentPut: [ nil ])).
 	stacks at: seqId2 put: (stack linkTo: (stacks at: seqId2 ifAbsentPut: [ nil ])).
@@ -394,19 +324,13 @@ IRBytecodeGenerator>>if: bool goto: seqId1 otherwise: seqId2 [
 		otherwise: seqId2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>inBlock: bool [
+{ #category : #accessing }
+IRBytecodeGenerator >> inBlock: bool [
 	inBlock := bool.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>initialize [
+{ #category : #initialize }
+IRBytecodeGenerator >> initialize [
 
 	super initialize.
 
@@ -435,11 +359,8 @@ IRBytecodeGenerator>>initialize [
 	
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>irPrimitive: anIrPrimitive [
+{ #category : #initialize }
+IRBytecodeGenerator >> irPrimitive: anIrPrimitive [
 	literals isEmpty ifFalse: [self error: 'init prim before adding instructions'].
 	anIrPrimitive spec ifNotNil: [literals add: anIrPrimitive spec].
 	primNumber := anIrPrimitive num.
@@ -448,11 +369,8 @@ IRBytecodeGenerator>>irPrimitive: anIrPrimitive [
 	encoder genCallPrimitive: primNumber
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>jump: distance if: condition [
+{ #category : #instructions }
+IRBytecodeGenerator >> jump: distance if: condition [
 	distance = 0
 		ifTrue: [ ^ encoder genPop ].
 	condition
@@ -461,31 +379,22 @@ IRBytecodeGenerator>>jump: distance if: condition [
 		
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>jumpBackward: distance [
+{ #category : #instructions }
+IRBytecodeGenerator >> jumpBackward: distance [
 
 	encoder genJumpLong: distance negated - self encoderClass backJumpBytecodeSize
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>jumpForward: distance [
+{ #category : #instructions }
+IRBytecodeGenerator >> jumpForward: distance [
 
 	distance = 0 ifTrue: [^ self].  
 	encoder genJump: distance.
 
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>label: seqId [
+{ #category : #instructions }
+IRBytecodeGenerator >> label: seqId [
 	lastSpecialReturn := nil.
 	currentSeqId := seqId.
 	currentSeqNum := currentSeqNum + 1.
@@ -500,11 +409,8 @@ IRBytecodeGenerator>>label: seqId [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>literalIndexOf: object [
+{ #category : #private }
+IRBytecodeGenerator >> literalIndexOf: object [
 
 	| index |
 	
@@ -515,11 +421,8 @@ IRBytecodeGenerator>>literalIndexOf: object [
 	^ index - 1
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>literals [
+{ #category : #results }
+IRBytecodeGenerator >> literals [
 	literals := literals asArray.	"Put the optimized selectors in literals so as to browse senders more easily"
 	additionalLiterals := additionalLiterals asArray reject: [ :e | literals hasLiteral: e ].
 	additionalLiterals isEmpty
@@ -533,116 +436,77 @@ IRBytecodeGenerator>>literals [
 	^ lastLiteral ifNil: [ literals copyWith: nil ] ifNotNil: [ literals copyWith: lastLiteral ]
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>mapBytesTo: instr [
+{ #category : #mapping }
+IRBytecodeGenerator >> mapBytesTo: instr [
 	"Record the current byte offset in instruction sequence as start of instr. 
 	This is later used to calculate the total byte offset of instruction in generated code,
 	see #bytecodes"
 	instrMap add: instr -> (bytes size + 1)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>newDummySeqId [
+{ #category : #private }
+IRBytecodeGenerator >> newDummySeqId [
 
 	^ Object new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>nextPut: byte [
+{ #category : #private }
+IRBytecodeGenerator >> nextPut: byte [
 	bytes add: byte
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>numArgs [
+{ #category : #accessing }
+IRBytecodeGenerator >> numArgs [
 
 	^ numArgs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>numArgs: n [
+{ #category : #accessing }
+IRBytecodeGenerator >> numArgs: n [
 
 	numArgs := n
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>numTemps [
+{ #category : #accessing }
+IRBytecodeGenerator >> numTemps [
 
 	^ numberOfTemps
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>numTemps: anInteger [
+{ #category : #accessing }
+IRBytecodeGenerator >> numTemps: anInteger [
 
 	numberOfTemps := anInteger
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>popTop [
+{ #category : #instructions }
+IRBytecodeGenerator >> popTop [
 	stack pop.
 	encoder genPop
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>pragmas: aCollection [
+{ #category : #private }
+IRBytecodeGenerator >> pragmas: aCollection [
 	aCollection do: [:each | self addPragma: each]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>primNum [
+{ #category : #accessing }
+IRBytecodeGenerator >> primNum [
 	^ primNumber 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>properties [
+{ #category : #accessing }
+IRBytecodeGenerator >> properties [
 	^ properties
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>properties: propDict [
+{ #category : #accessing }
+IRBytecodeGenerator >> properties: propDict [
 	properties := propDict.
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>pushClosureCopyNumCopiedValues: numCopied numArgs: numArgs2 to: toSeqId [
+{ #category : #instructions }
+IRBytecodeGenerator >> pushClosureCopyNumCopiedValues: numCopied numArgs: numArgs2 to: toSeqId [
 	| blockSeqId |
 	blockSeqId := self newDummySeqId.
 	stack pop: numCopied.
@@ -666,30 +530,21 @@ IRBytecodeGenerator>>pushClosureCopyNumCopiedValues: numCopied numArgs: numArgs2
 	self label: blockSeqId
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>pushConsArray: size [
+{ #category : #instructions }
+IRBytecodeGenerator >> pushConsArray: size [
 	stack push.
 	stack pop: size.
 	encoder genPushConsArray: size
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>pushDup [
+{ #category : #instructions }
+IRBytecodeGenerator >> pushDup [
 	stack push.
 	encoder genDup
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>pushFullBlockClosure: fullBlock [
+{ #category : #instructions }
+IRBytecodeGenerator >> pushFullBlockClosure: fullBlock [
 	fullBlock copiedValues size timesRepeat: [ stack pop ].
 	stack push.
 	encoder 
@@ -699,22 +554,16 @@ IRBytecodeGenerator>>pushFullBlockClosure: fullBlock [
 		outerContextNeeded: true
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>pushInstVar: instVarIndex [
+{ #category : #instructions }
+IRBytecodeGenerator >> pushInstVar: instVarIndex [
 	stack push.
 	forceLongForm
 		ifTrue: [ encoder genPushInstVarLong: instVarIndex - 1 ]
 		ifFalse: [ encoder genPushInstVar: instVarIndex - 1 ]
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>pushLiteral: object [
+{ #category : #instructions }
+IRBytecodeGenerator >> pushLiteral: object [
 	stack push.
 	"identity includes else 0.0 = 0 whereas it's a Float" 
 	(self encoderClass specialLiterals identityIncludes: object) ifTrue: [ 
@@ -723,76 +572,52 @@ IRBytecodeGenerator>>pushLiteral: object [
 
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>pushLiteralVariable: object  [
+{ #category : #instructions }
+IRBytecodeGenerator >> pushLiteralVariable: object [ 
 	stack push.
 	encoder genPushLiteralVar: (self literalIndexOf: object).
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>pushNClosureTemps: n [
+{ #category : #instructions }
+IRBytecodeGenerator >> pushNClosureTemps: n [
 	n = 0 ifTrue: [ ^ self ].
 	n timesRepeat:[ stack push].
 	encoder genPushNClosureTemps: n.
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>pushNewArray: size [
+{ #category : #instructions }
+IRBytecodeGenerator >> pushNewArray: size [
 	stack push.
 	encoder genPushNewArray: size
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>pushReceiver [
+{ #category : #instructions }
+IRBytecodeGenerator >> pushReceiver [
 	stack push.
 	encoder genPushReceiver 
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>pushRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
+{ #category : #instructions }
+IRBytecodeGenerator >> pushRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 	stack push.
 	encoder genPushRemoteTemp: tempIndex - 1 inVectorAt: tempVectorIndex - 1
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>pushTemp: index [
+{ #category : #instructions }
+IRBytecodeGenerator >> pushTemp: index [
 	stack push.
 	encoder genPushTemp: index - 1
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>pushThisContext [
+{ #category : #instructions }
+IRBytecodeGenerator >> pushThisContext [
 
 	stack push.
 	encoder genPushThisContext 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>quickMethodPrim [
+{ #category : #private }
+IRBytecodeGenerator >> quickMethodPrim [
 
 	| index |
 	self numArgs = 0 ifFalse: [^ 0].
@@ -814,11 +639,8 @@ IRBytecodeGenerator>>quickMethodPrim [
 	
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>returnConstant: constant [
+{ #category : #instructions }
+IRBytecodeGenerator >> returnConstant: constant [
 	bytes ifEmpty: [ lastSpecialReturn := Message selector: #returnConstant: argument: constant ].
 	(#(nil true false) includes: constant) ifTrue: 
 		[ ^ encoder genReturnSpecialLiteral:constant ].
@@ -826,11 +648,8 @@ IRBytecodeGenerator>>returnConstant: constant [
 	self returnTop
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>returnInstVar: index  [
+{ #category : #instructions }
+IRBytecodeGenerator >> returnInstVar: index [ 
 	bytes ifEmpty: [
 		lastSpecialReturn := Message selector: #returnInstVar: argument: index].
 	self pushInstVar: index.
@@ -838,39 +657,27 @@ IRBytecodeGenerator>>returnInstVar: index  [
 
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>returnReceiver [
+{ #category : #instructions }
+IRBytecodeGenerator >> returnReceiver [
 	bytes ifEmpty: [ lastSpecialReturn := Message selector: #returnReceiver].
 	encoder genReturnReceiver.
 
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>returnTop [
+{ #category : #instructions }
+IRBytecodeGenerator >> returnTop [
 	stack pop.
 	encoder genReturnTop
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>saveLastJump: message [
+{ #category : #private }
+IRBytecodeGenerator >> saveLastJump: message [
 	jumps at: currentSeqId put: {bytes size. message}.
  
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>send: selector [
+{ #category : #instructions }
+IRBytecodeGenerator >> send: selector [
 	| nArgs |
 	nArgs := selector numArgs.
 	stack pop: nArgs.
@@ -879,11 +686,8 @@ IRBytecodeGenerator>>send: selector [
 	encoder genSend: (self literalIndexOf: selector) numArgs: nArgs
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>send: selector toSuperOf: behavior [
+{ #category : #instructions }
+IRBytecodeGenerator >> send: selector toSuperOf: behavior [
 
 	(encoder class = OpalEncoderForSistaV1 and: [ inBlock ])
 		ifTrue: [ 
@@ -907,11 +711,8 @@ IRBytecodeGenerator>>send: selector toSuperOf: behavior [
 
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>spurVMHeader: literalsSize [
+{ #category : #results }
+IRBytecodeGenerator >> spurVMHeader: literalsSize [
 	^ (CompiledMethod headerFlagForEncoder: self encoderClass) +
 		(self numArgs bitShift: 24) +
 		( self numTemps bitShift: 18) +
@@ -919,92 +720,62 @@ IRBytecodeGenerator>>spurVMHeader: literalsSize [
 		(self hasPrimitive asBit bitShift: 16)
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>stackFrameSize [
+{ #category : #results }
+IRBytecodeGenerator >> stackFrameSize [
 	^ (stacks collect: [:s | s length]) max
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>storeInstVar: index  [
+{ #category : #instructions }
+IRBytecodeGenerator >> storeInstVar: index [ 
 	forceLongForm 
 		ifTrue: [ encoder genStoreInstVarLong: index - 1 ]
 		ifFalse: [ encoder genStoreInstVar: index - 1 ]
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>storeIntoLiteralVariable: object  [
+{ #category : #instructions }
+IRBytecodeGenerator >> storeIntoLiteralVariable: object [ 
 	encoder genStoreLiteralVar: (self literalIndexOf: object). 
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>storePopInstVar: index  [
+{ #category : #instructions }
+IRBytecodeGenerator >> storePopInstVar: index [ 
 	stack pop.
 	forceLongForm 
 		ifTrue: [ encoder genStorePopInstVarLong: index - 1 ]
 		ifFalse: [ encoder genStorePopInstVar: index - 1 ]
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>storePopIntoLiteralVariable: assoc [
+{ #category : #instructions }
+IRBytecodeGenerator >> storePopIntoLiteralVariable: assoc [
 
 	encoder genStorePopLiteralVar: (self literalIndexOf: assoc).
 	stack pop
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>storePopRemoteTemp: tempIndex inVectorAt: tempVectorIndex  [
+{ #category : #instructions }
+IRBytecodeGenerator >> storePopRemoteTemp: tempIndex inVectorAt: tempVectorIndex [ 
 	stack pop.
 	encoder genStorePopRemoteTemp: tempIndex - 1 inVectorAt: tempVectorIndex - 1
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>storePopTemp: index [
+{ #category : #instructions }
+IRBytecodeGenerator >> storePopTemp: index [
 	stack pop. 
 	encoder genStorePopTemp: index - 1
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>storeRemoteTemp: tempIndex inVectorAt: tempVectorIndex  [
+{ #category : #instructions }
+IRBytecodeGenerator >> storeRemoteTemp: tempIndex inVectorAt: tempVectorIndex [ 
 	encoder genStoreRemoteTemp: tempIndex - 1 inVectorAt: tempVectorIndex - 1
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>storeTemp: index [
+{ #category : #instructions }
+IRBytecodeGenerator >> storeTemp: index [
 	encoder genStoreTemp: index - 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>updateJump: seqId [
+{ #category : #private }
+IRBytecodeGenerator >> updateJump: seqId [
 	"Recalculate final jump bytecodes.  Return true if jump bytecodes SIZE has changed, otherwise return false"
 	| pair s1 |
 	pair := jumps at: seqId.
@@ -1016,33 +787,24 @@ IRBytecodeGenerator>>updateJump: seqId [
 	^ s1 ~= bytes size.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>updateJumpOffsets [
+{ #category : #private }
+IRBytecodeGenerator >> updateJumpOffsets [
 	[ orderSeq 
 		inject: false 
 		into: [ :changed :seqId | (self updateJump: seqId) or: [ changed ]] 
 	] whileTrue
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>updateLiterals: code [
+{ #category : #results }
+IRBytecodeGenerator >> updateLiterals: code [
 	"Add back pointer from compiled block to outer code"
 	code literals do: [ :each |
 		(each isKindOf: CompiledBlock) ifTrue: 
 			[ each outerCode: code. ] ] 
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeGenerator>>v3VMHeader: literalsSize [
+{ #category : #results }
+IRBytecodeGenerator >> v3VMHeader: literalsSize [
 	| header primBits endPrimNumber |
 	self encoderClass name = #OpalEncoderForSistaV1 ifTrue: [ 
 		self error: 'SistaV1 non supported in non spur VM'].

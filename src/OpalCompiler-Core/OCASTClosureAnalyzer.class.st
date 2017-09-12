@@ -7,45 +7,32 @@ Class {
 	#instVars : [
 		'scope'
 	],
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : 'MarcusDenker 8/11/2014 10:10'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #variables,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTClosureAnalyzer>>doCopying [
+{ #category : #variables }
+OCASTClosureAnalyzer >> doCopying [
 	| copying |
 	copying := scope tempVars select: [ :each | each isEscapingRead].	
 	copying do: [ :each | scope addCopyingTemp: each]
 ]
 
-{
-	#category : #variables,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTClosureAnalyzer>>doRemotes [
+{ #category : #variables }
+OCASTClosureAnalyzer >> doRemotes [
 	| remotes |
 	remotes := scope tempVars select: [ :each | each isEscapingWrite].
 	remotes do: [ :each | scope moveToVectorTemp: each].	
 	
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTClosureAnalyzer>>visitArgumentNode: aVariableNode [
+{ #category : #visiting }
+OCASTClosureAnalyzer >> visitArgumentNode: aVariableNode [
 
 	aVariableNode adaptToSemanticNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTClosureAnalyzer>>visitBlockNode: aBlockNode [
+{ #category : #visiting }
+OCASTClosureAnalyzer >> visitBlockNode: aBlockNode [
 	"here look at the temps and make copying vars / tempVector out of them"
 	self visitArgumentNodes: aBlockNode arguments.
 	scope := aBlockNode scope.	
@@ -54,11 +41,8 @@ OCASTClosureAnalyzer>>visitBlockNode: aBlockNode [
 	scope := scope popScope.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTClosureAnalyzer>>visitMethodNode: aMethodNode [
+{ #category : #visiting }
+OCASTClosureAnalyzer >> visitMethodNode: aMethodNode [
 	"here look at the temps and make copying vars / tempVector out of them"
 	self visitArgumentNodes: aMethodNode arguments.
 	scope := aMethodNode scope.	
@@ -67,11 +51,8 @@ OCASTClosureAnalyzer>>visitMethodNode: aMethodNode [
 	scope := scope popScope.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTClosureAnalyzer>>visitVariableNode: aVariableNode [
+{ #category : #visiting }
+OCASTClosureAnalyzer >> visitVariableNode: aVariableNode [
 	"re-lookup the temorary variables..."
 	
 	| var |

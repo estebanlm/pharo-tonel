@@ -10,58 +10,39 @@ Class {
 	#instVars : [
 		'wrappedNode'
 	],
-	#category : #AST-Core-Pattern,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Pattern
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternWrapperBlockNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visitor }
+RBPatternWrapperBlockNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^aProgramNodeVisitor visitPatternWrapperBlockNode: self
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternWrapperBlockNode>>copyInContext: aDictionary  [
+{ #category : #matching }
+RBPatternWrapperBlockNode >> copyInContext: aDictionary [ 
 	"I don't know what this would mean, so ignore it."
 
 	^ wrappedNode copyInContext: aDictionary
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternWrapperBlockNode>>match: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBPatternWrapperBlockNode >> match: aNode inContext: aDictionary [ 
 	(wrappedNode match: aNode inContext: aDictionary) ifFalse: [^false].
 	^super match: aNode inContext: aDictionary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternWrapperBlockNode>>precedence [
+{ #category : #accessing }
+RBPatternWrapperBlockNode >> precedence [
 	^1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternWrapperBlockNode>>wrappedNode [
+{ #category : #accessing }
+RBPatternWrapperBlockNode >> wrappedNode [
 	^wrappedNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternWrapperBlockNode>>wrappedNode: aRBProgramNode  [
+{ #category : #accessing }
+RBPatternWrapperBlockNode >> wrappedNode: aRBProgramNode [ 
 	wrappedNode := aRBProgramNode.
 	aRBProgramNode parent: self
 ]

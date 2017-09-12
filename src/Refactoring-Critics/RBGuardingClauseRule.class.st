@@ -4,33 +4,23 @@ Checks for ifTrue: or ifFalse: conditions at end of methods that have two or mor
 Class {
 	#name : #RBGuardingClauseRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:44'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBGuardingClauseRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBGuardingClauseRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'GuardingClauseRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBGuardingClauseRule>>group [
+{ #category : #accessing }
+RBGuardingClauseRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBGuardingClauseRule>>initialize [
+{ #category : #initialization }
+RBGuardingClauseRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyMethodOf: #(
@@ -48,18 +38,12 @@ RBGuardingClauseRule>>initialize [
 				ifFalse: [ answer ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBGuardingClauseRule>>name [
+{ #category : #accessing }
+RBGuardingClauseRule >> name [
 	^ 'Guarding clauses'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBGuardingClauseRule>>rationale [
+{ #category : #accessing }
+RBGuardingClauseRule >> rationale [
 	^ 'Checks for ifTrue: or ifFalse: conditions at end of methods that have two or more statements inside their blocks. Such code might better represent the true meaning of the code if they returned self instead.'
 ]

@@ -4,24 +4,17 @@ I know how to move a method from instance side to class side and the oposit, dep
 Class {
 	#name : #SugsSwapMethod,
 	#superclass : #SugsSuggestion,
-	#category : #SmartSuggestions-Suggestion,
-	#timestamp : '<historical>'
+	#category : #SmartSuggestions-Suggestion
 }
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSwapMethod>>execute [
+{ #category : #execution }
+SugsSwapMethod >> execute [
 	^(NautilusRefactoring model: context) 
 		swapMethodFor: (OrderedCollection with: context selectedMethod).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSwapMethod>>label [
+{ #category : #accessing }
+SugsSwapMethod >> label [
 	
 	^ context selectedMethod 
 		ifNil: ['Swap method' translated] 

@@ -4,38 +4,25 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestCollectionsSequenceable,
 	#superclass : #PackageManifest,
-	#category : #Collections-Sequenceable,
-	#timestamp : '<historical>'
+	#category : #Collections-Sequenceable
 }
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-ManifestCollectionsSequenceable class>>dependencies [
+{ #category : #meta-data }
+ManifestCollectionsSequenceable class >> dependencies [
 	^ #(#'Collections-Strings' #'Collections-Streams' #'Collections-Unordered' #Kernel #'Collections-Abstract')
 ]
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-ManifestCollectionsSequenceable class>>description [
+{ #category : #meta-data }
+ManifestCollectionsSequenceable class >> description [
 	^ 'Sequenceable collections: arrays, intervals, ordered collections and dictionaries, etc.'
 ]
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-ManifestCollectionsSequenceable class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestCollectionsSequenceable class >> manuallyResolvedDependencies [
 	^ #(#'System-Support' #'Collections-Support' #Traits)
 ]
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-ManifestCollectionsSequenceable class>>packageName [
+{ #category : #meta-data }
+ManifestCollectionsSequenceable class >> packageName [
 	^ #'Collections-Sequenceable'
 ]

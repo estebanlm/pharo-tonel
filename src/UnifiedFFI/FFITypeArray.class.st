@@ -27,23 +27,16 @@ Class {
 		'type',
 		'numberOfElements'
 	],
-	#category : #UnifiedFFI-Types,
-	#timestamp : 'EstebanLorenzano 2/16/2017 16:37'
+	#category : #UnifiedFFI-Types
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArray class>>asExternalTypeOn: generator  [
+{ #category : #converting }
+FFITypeArray class >> asExternalTypeOn: generator [ 
 	^ FFITypeArrayType objectClass: self
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArray class>>externalNew  [
+{ #category : #'instance creation' }
+FFITypeArray class >> externalNew [ 
 	"Create a new array in the C heap. 
 	 This array needs to be disposed (using #free method)... or you can declare it #autoRelease"
 	^ self basicNew 
@@ -51,57 +44,39 @@ FFITypeArray class>>externalNew  [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArray class>>fromHandle: aHandle [
+{ #category : #'instance creation' }
+FFITypeArray class >> fromHandle: aHandle [
 	^ self basicNew 
 		initializeHandle: aHandle type: self type size: self numberOfElements;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArray class>>new  [
+{ #category : #'instance creation' }
+FFITypeArray class >> new [ 
 	^ self basicNew 
 		initializeType: self type size: self numberOfElements;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArray class>>numberOfElements [
+{ #category : #private }
+FFITypeArray class >> numberOfElements [
 	^ numberOfElements
 ]
 
-{
-	#category : #'class factory',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArray class>>ofType: aTypeName size: elements [
+{ #category : #'class factory' }
+FFITypeArray class >> ofType: aTypeName size: elements [
 	^ FFITypeArray newAnonymousSubclass 
 		type: (FFIExternalType resolveType: aTypeName)	
 		size: elements
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArray class>>type  [
+{ #category : #private }
+FFITypeArray class >> type [ 
 	^ type
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArray class>>type: aType 	size: elements [
+{ #category : #private }
+FFITypeArray class >> type: aType 	size: elements [
 	type := aType.
 	numberOfElements := elements
 		

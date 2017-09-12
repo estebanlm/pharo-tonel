@@ -8,33 +8,23 @@ Class {
 		'a',
 		'b'
 	],
-	#category : #Collections-Tests-Support,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:19'
+	#category : #Collections-Tests-Support
 }
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-AssociationTest>>setUp [
+{ #category : #setup }
+AssociationTest >> setUp [
 
 	a := 1 -> 'one'.
 	b := 1 -> 'een'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-AssociationTest>>testComparison [
+{ #category : #tests }
+AssociationTest >> testComparison [
 	self assert: ((#a -> 'foo') < (#b -> 'zork'))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-AssociationTest>>testEquality [
+{ #category : #tests }
+AssociationTest >> testEquality [
 	
 	self 
 		assert: (a key = b key);
@@ -44,22 +34,16 @@ AssociationTest>>testEquality [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-AssociationTest>>testHash [
+{ #category : #tests }
+AssociationTest >> testHash [
 
 	self 
 		assert: (a hash = a copy hash);
 		assert: (a hash = b hash)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-AssociationTest>>testIsSelfEvaluating [
+{ #category : #tests }
+AssociationTest >> testIsSelfEvaluating [
 	| anotherAssociation |
 	self assert: (a isSelfEvaluating).
 	

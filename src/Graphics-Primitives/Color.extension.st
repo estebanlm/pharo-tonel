@@ -1,12 +1,7 @@
-Extension {
-	#name : #Color
-}
+Extension { #name : #Color }
 
-{
-	#category : #'*Graphics-Primitives',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Color>>bitPatternForDepth: depth  [
+{ #category : #'*Graphics-Primitives' }
+Color >> bitPatternForDepth: depth [ 
 	"Return a Bitmap, possibly containing a stipple pattern, that best represents this color at the given depth. BitBlt calls this method to convert colors into Bitmaps. The resulting Bitmap may be multiple words to represent a stipple pattern of several lines.  "
 	"See also:	pixelValueAtDepth:	-- value for single pixel
 				pixelWordAtDepth:	-- a 32-bit word filled with the pixel value"
@@ -22,11 +17,8 @@ Color>>bitPatternForDepth: depth  [
 	depth = 2 ifTrue: [ ^ cachedBitPattern := self halfTonePattern2 ]
 ]
 
-{
-	#category : #'*Graphics-Primitives',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Color class>>cachedColormapFrom: sourceDepth to: destDepth  [
+{ #category : #'*Graphics-Primitives' }
+Color class >> cachedColormapFrom: sourceDepth to: destDepth [ 
 	"Return a cached colormap for mapping between the given depths. Always return a real colormap, not nil; this allows the client to get an identity colormap that can then be copied and modified to do color transformations."
 	"Note: This method returns a shared, cached colormap to save time and space. Clients that need to modify a colormap returned by this method should make a copy and modify that!"
 	"Note: The colormap cache may be cleared by evaluating 'Color shutDown'."
@@ -44,11 +36,8 @@ Color class>>cachedColormapFrom: sourceDepth to: destDepth  [
 	^ map
 ]
 
-{
-	#category : #'*Graphics-Primitives',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Color class>>colorMapIfNeededFrom: sourceDepth to: destDepth [
+{ #category : #'*Graphics-Primitives' }
+Color class >> colorMapIfNeededFrom: sourceDepth to: destDepth [
 	"Return a colormap for mapping between the given depths, or nil if no colormap is needed."
 	"Note: This method returns a shared, cached colormap to save time and space. Clients that need to modify a colormap returned by this method should make a copy and modify that!"
 
@@ -62,11 +51,8 @@ Color class>>colorMapIfNeededFrom: sourceDepth to: destDepth [
 
 ]
 
-{
-	#category : #'*Graphics-Primitives',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Color class>>computeColorConvertingMap: targetColor from: sourceDepth to: destDepth keepSubPixelAA: keepSubPix [
+{ #category : #'*Graphics-Primitives' }
+Color class >> computeColorConvertingMap: targetColor from: sourceDepth to: destDepth keepSubPixelAA: keepSubPix [
 
 	sourceDepth < 16 ifTrue: [
 		"source is 1-, 2-, 4-, or 8-bit indexed color.
@@ -79,11 +65,8 @@ Color class>>computeColorConvertingMap: targetColor from: sourceDepth to: destDe
 	]
 ]
 
-{
-	#category : #'*Graphics-Primitives',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Color class>>computeColormapFrom: sourceDepth to: destDepth  [
+{ #category : #'*Graphics-Primitives' }
+Color class >> computeColormapFrom: sourceDepth to: destDepth [ 
 	"Compute a colorMap for translating between the given depths. A colormap is a Bitmap whose entries contain the pixel values for the destination depth. Typical clients use cachedColormapFrom:to: instead."
 	| map bitsPerColor |
 	sourceDepth < 16 
@@ -110,11 +93,8 @@ Color class>>computeColormapFrom: sourceDepth to: destDepth  [
 	^ map
 ]
 
-{
-	#category : #'*Graphics-Primitives',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Color class>>computeIndexedColorConvertingMap: targetColor from: sourceDepth to: destDepth  [
+{ #category : #'*Graphics-Primitives' }
+Color class >> computeIndexedColorConvertingMap: targetColor from: sourceDepth to: destDepth [ 
 	| map |
 	map := (IndexedColors 
 		copyFrom: 1
@@ -140,11 +120,8 @@ Color class>>computeIndexedColorConvertingMap: targetColor from: sourceDepth to:
 	^ map
 ]
 
-{
-	#category : #'*Graphics-Primitives',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Color class>>computeRGBColorConvertingMap: targetColor to: destDepth keepSubPixelAA: keepSubPix  [
+{ #category : #'*Graphics-Primitives' }
+Color class >> computeRGBColorConvertingMap: targetColor to: destDepth keepSubPixelAA: keepSubPix [ 
 	"Builds a colormap intended to convert from subpixelAA black values to targetColor values.
 	keepSubPix
 		ifTrue: [ Answer colors that also include subpixelAA ]
@@ -201,11 +178,8 @@ Color class>>computeRGBColorConvertingMap: targetColor to: destDepth keepSubPixe
 	^ map
 ]
 
-{
-	#category : #'*Graphics-Primitives',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Color class>>computeRGBColormapFor: destDepth bitsPerColor: bitsPerColor  [
+{ #category : #'*Graphics-Primitives' }
+Color class >> computeRGBColormapFor: destDepth bitsPerColor: bitsPerColor [ 
 	"Compute a colorMap for translating from 16-bit or 32-bit RGB color to the given depth, using the given number of of bits per color component."
 	| mask map c |
 	(#(3 4 5 ) includes: bitsPerColor) ifFalse: 
@@ -230,11 +204,8 @@ Color class>>computeRGBColormapFor: destDepth bitsPerColor: bitsPerColor  [
 	^ map
 ]
 
-{
-	#category : #'*Graphics-Primitives',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Color>>halfTonePattern1 [
+{ #category : #'*Graphics-Primitives' }
+Color >> halfTonePattern1 [
 	"Return a halftone-pattern to approximate luminance levels on 1-bit deep Forms."
 	| lum |
 	lum := self luminance.
@@ -254,11 +225,8 @@ Color>>halfTonePattern1 [
 	^ Bitmap with: 0	"1-bit white"
 ]
 
-{
-	#category : #'*Graphics-Primitives',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Color>>halfTonePattern2 [
+{ #category : #'*Graphics-Primitives' }
+Color >> halfTonePattern2 [
 	"Return a halftone-pattern to approximate luminance levels on 2-bit deep Forms."
 	| lum |
 	lum := self luminance.
@@ -307,11 +275,8 @@ Array with: (Compiler evaluate: w1) with: (Compiler evaluate: w2)
 "
 ]
 
-{
-	#category : #'*Graphics-Primitives',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Color class>>maskingMap: depth  [
+{ #category : #'*Graphics-Primitives' }
+Color class >> maskingMap: depth [ 
 	"Return a color map that maps all colors except transparent to words of all ones. Used to create a mask for a Form whose transparent pixel value is zero. Cache the most recently used map."
 	| sizeNeeded |
 	depth <= 8 
@@ -327,11 +292,8 @@ Color class>>maskingMap: depth  [
 	^ MaskingMap
 ]
 
-{
-	#category : #'*Graphics-Primitives',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Color class>>pixelScreenForDepth: depth  [
+{ #category : #'*Graphics-Primitives' }
+Color class >> pixelScreenForDepth: depth [ 
 	"Return a 50% stipple containing alternating pixels of all-zeros and all-ones to be used as a mask at the given depth."
 	| mask bits |
 	mask := (1 bitShift: depth) - 1.

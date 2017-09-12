@@ -1,56 +1,37 @@
-"
-
-"
 Class {
 	#name : #MetacelloCopyMemberSpec,
 	#superclass : #MetacelloMemberSpec,
 	#instVars : [
 		'sourceName'
 	],
-	#category : #Metacello-Core-Members,
-	#timestamp : ''
+	#category : #Metacello-Core-Members
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloCopyMemberSpec>>applyAdd: addBlock copy: copyBlock merge: mergeBlock remove: removeBlock [
+{ #category : #actions }
+MetacelloCopyMemberSpec >> applyAdd: addBlock copy: copyBlock merge: mergeBlock remove: removeBlock [
     copyBlock value: self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloCopyMemberSpec>>applyToList: aListSpec [
+{ #category : #actions }
+MetacelloCopyMemberSpec >> applyToList: aListSpec [
 
 	aListSpec copy: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloCopyMemberSpec>>methodUpdateSelector [
+{ #category : #accessing }
+MetacelloCopyMemberSpec >> methodUpdateSelector [
 
 	^#copy:
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloCopyMemberSpec>>sourceName [
+{ #category : #accessing }
+MetacelloCopyMemberSpec >> sourceName [
 
 	^sourceName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloCopyMemberSpec>>sourceName: aString [
+{ #category : #accessing }
+MetacelloCopyMemberSpec >> sourceName: aString [
 
 	sourceName := aString
 ]

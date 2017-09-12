@@ -4,23 +4,16 @@ This class represents an identity dictionary with weak keys.
 Class {
 	#name : #WeakIdentityKeyDictionary,
 	#superclass : #WeakKeyDictionary,
-	#category : #Collections-Weak,
-	#timestamp : '<historical>'
+	#category : #Collections-Weak
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakIdentityKeyDictionary>>compare: object1 to: object2 [
+{ #category : #private }
+WeakIdentityKeyDictionary >> compare: object1 to: object2 [
 	^ object1 == object2
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakIdentityKeyDictionary>>scanForEmptySlotFor: aKey [
+{ #category : #private }
+WeakIdentityKeyDictionary >> scanForEmptySlotFor: aKey [
 	"Scan the key array for the first slot containing an empty slot (indicated by a nil). Answer the index of that slot. This method will be overridden in various subclasses that have different interpretations for matching elements."
 	
 	| index start |
@@ -31,21 +24,15 @@ WeakIdentityKeyDictionary>>scanForEmptySlotFor: aKey [
 	self errorNoFreeSpace
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakIdentityKeyDictionary>>startIndexFor: anObject [
+{ #category : #private }
+WeakIdentityKeyDictionary >> startIndexFor: anObject [
 	"Return the index at which the scan for anObject should start."
 	
 	^(anObject identityHash \\ array size) + 1
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakIdentityKeyDictionary>>valuesDo: aBlock  [
+{ #category : #enumeration }
+WeakIdentityKeyDictionary >> valuesDo: aBlock [ 
 	"See comments in Dictionary>>valuesDo:.  The code keeps the key so it's
 	not collected during the evaluation of aBlock"
 

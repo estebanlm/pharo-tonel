@@ -25,116 +25,76 @@ Class {
 	#name : #VMCallbackContext64,
 	#superclass : #Alien,
 	#type : #bytes,
-	#category : #Alien-Core,
-	#timestamp : 'eem 9/7/2016 18:34'
+	#category : #Alien-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-VMCallbackContext64 class>>dataSize [
+{ #category : #'instance creation' }
+VMCallbackContext64 class >> dataSize [
 	"We only access the fields before trampoline, so this is fine."
 	^64
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-VMCallbackContext64>>floatResult: aFloat [
+{ #category : #accessing }
+VMCallbackContext64 >> floatResult: aFloat [
 	self doubleAt: 49 put: aFloat.
 	^3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-VMCallbackContext64>>floatregargsp [
+{ #category : #accessing }
+VMCallbackContext64 >> floatregargsp [
 	^Alien forPointer: (self unsignedLongLongAt: 25)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-VMCallbackContext64>>intregargsp [
+{ #category : #accessing }
+VMCallbackContext64 >> intregargsp [
 	^Alien forPointer: (self unsignedLongLongAt: 17)
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-VMCallbackContext64>>primReturnAs: typeCode "<SmallInteger>" fromContext: context "<MethodContext>" [
+{ #category : #primitives }
+VMCallbackContext64 >> primReturnAs: typeCode "<SmallInteger>" fromContext: context [ "<MethodContext>"
 	<primitive: 'primReturnAsFromContextThrough' module: 'IA32ABI' error: ec>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-VMCallbackContext64>>primSignal: aSemaphore "<Semaphore>" andReturnAs: typeCode "<SmallInteger>" fromContext: context "<MethodContext>" [
+{ #category : #primitives }
+VMCallbackContext64 >> primSignal: aSemaphore "<Semaphore>" andReturnAs: typeCode "<SmallInteger>" fromContext: context [ "<MethodContext>"
 	<primitive: 'primReturnAsFromContextThrough' module: 'IA32ABI' error: ec>
 	^ self primitiveFailed
 ]
 
-{
-	#category : #accessing-legacy,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-VMCallbackContext64>>rawStackp [
+{ #category : #accessing-legacy }
+VMCallbackContext64 >> rawStackp [
 	^self unsignedLongAt: 9
 ]
 
-{
-	#category : #accessing-legacy,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-VMCallbackContext64>>returnDouble: f [
+{ #category : #accessing-legacy }
+VMCallbackContext64 >> returnDouble: f [
 	^self floatResult: f
 ]
 
-{
-	#category : #accessing-legacy,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-VMCallbackContext64>>returnInteger: n [
+{ #category : #accessing-legacy }
+VMCallbackContext64 >> returnInteger: n [
 	^self wordResult: n
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-VMCallbackContext64>>singleFloatResult: aFloat [
+{ #category : #accessing }
+VMCallbackContext64 >> singleFloatResult: aFloat [
 	self floatAt: 49 put: aFloat.
 	^3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-VMCallbackContext64>>stackp [
+{ #category : #accessing }
+VMCallbackContext64 >> stackp [
 	^Alien forPointer: (self unsignedLongLongAt: 9)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-VMCallbackContext64>>thunkp [
+{ #category : #accessing }
+VMCallbackContext64 >> thunkp [
 	^self unsignedLongLongAt: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-VMCallbackContext64>>wordResult: aValue [
+{ #category : #accessing }
+VMCallbackContext64 >> wordResult: aValue [
 	"Accept any value in the -2^63 to 2^64-1 range or booleans."
 	| anInteger |
 	anInteger := aValue isInteger
@@ -147,10 +107,7 @@ VMCallbackContext64>>wordResult: aValue [
 	^1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-VMCallbackContext64>>wordSize [
+{ #category : #accessing }
+VMCallbackContext64 >> wordSize [
 	^8
 ]

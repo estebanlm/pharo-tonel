@@ -16,33 +16,23 @@ Class {
 		'readOnlyQueue',
 		'flushChanges'
 	],
-	#category : #System-Sources,
-	#timestamp : '<historical>'
+	#category : #System-Sources
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray class>>initialize [
+{ #category : #'class initialization' }
+SourceFileArray class >> initialize [
 
 	SessionManager default registerSystemClassNamed: self name.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray class>>startUp: resuming [
+{ #category : #'class initialization' }
+SourceFileArray class >> startUp: resuming [
 
 	resuming ifTrue: [ Smalltalk openSourceFiles ]
 ]
 
-{
-	#category : #'public - string reading',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>changeRecordsFor: aMethodDefinition [
+{ #category : #'public - string reading' }
+SourceFileArray >> changeRecordsFor: aMethodDefinition [
 
 	^ self 
 		changeRecordsFrom: aMethodDefinition sourcePointer 
@@ -50,11 +40,8 @@ SourceFileArray>>changeRecordsFor: aMethodDefinition [
 		isMeta: aMethodDefinition methodClass isMeta
 ]
 
-{
-	#category : #'public - string reading',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>changeRecordsFor: aMethodDefinition detect: aUnaryBlock [
+{ #category : #'public - string reading' }
+SourceFileArray >> changeRecordsFor: aMethodDefinition detect: aUnaryBlock [
 	"Try to detect the most recent ChangeRecord that satisfies aUnaryBlock. Answer nil if none satisfies."
 
 	self
@@ -65,11 +52,8 @@ SourceFileArray>>changeRecordsFor: aMethodDefinition detect: aUnaryBlock [
 	^ nil
 ]
 
-{
-	#category : #'public - string reading',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>changeRecordsFor: aMethodDefinition do: aUnaryBlock [
+{ #category : #'public - string reading' }
+SourceFileArray >> changeRecordsFor: aMethodDefinition do: aUnaryBlock [
 	"Evaluate aUnaryBlock with each of the ChangeRecords of aMethodDefinition. Most recent changes are evaluated first."
 
 	^ self 
@@ -79,11 +63,8 @@ SourceFileArray>>changeRecordsFor: aMethodDefinition do: aUnaryBlock [
 		do: aUnaryBlock
 ]
 
-{
-	#category : #'public - string reading',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>changeRecordsFrom: initialSourcePointer className: theNonMetaClassName isMeta: classIsMeta [
+{ #category : #'public - string reading' }
+SourceFileArray >> changeRecordsFrom: initialSourcePointer className: theNonMetaClassName isMeta: classIsMeta [
 	"Answer the ChangeRecords of a method or class comment, starting from the initialSourcePointer. 
 	Most recent changes go first."
 	
@@ -99,11 +80,8 @@ SourceFileArray>>changeRecordsFrom: initialSourcePointer className: theNonMetaCl
 	^ changeRecords
 ]
 
-{
-	#category : #'public - string reading',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>changeRecordsFrom: initialSourcePointer className: theNonMetaClassName isMeta: classIsMeta do: aUnaryBlock [
+{ #category : #'public - string reading' }
+SourceFileArray >> changeRecordsFrom: initialSourcePointer className: theNonMetaClassName isMeta: classIsMeta do: aUnaryBlock [
 	"Evaluate aUnaryBlock with each of the ChangeRecords of a method or class comment, starting from the initialSourcePointer. 
 	Most recent changes are evaluated first."
 
@@ -192,30 +170,21 @@ SourceFileArray>>changeRecordsFrom: initialSourcePointer className: theNonMetaCl
 						ifAbsent: [ ^ self ] ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>changesFileStream [
+{ #category : #accessing }
+SourceFileArray >> changesFileStream [
 	"Answer the master .changes FileStream, with writing permissions."
 
 	^ files at: 2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>changesFileStream: aStream [
+{ #category : #accessing }
+SourceFileArray >> changesFileStream: aStream [
 
 	^ files at: 2 put: aStream
 ]
 
-{
-	#category : #'public - string writing',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>changesWriteStreamDo: aBlock [
+{ #category : #'public - string writing' }
+SourceFileArray >> changesWriteStreamDo: aBlock [
 
 	| changesFile |
 	changesFile := self changesFileStream.
@@ -226,11 +195,8 @@ SourceFileArray>>changesWriteStreamDo: aBlock [
 	^ aBlock value: changesFile
 ]
 
-{
-	#category : #'public - file system operations',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>close [
+{ #category : #'public - file system operations' }
+SourceFileArray >> close [
 		
 	| oldFiles oldQueue | 
 	
@@ -244,11 +210,8 @@ SourceFileArray>>close [
 	oldQueue flushAllSuchThat: [ :each | self closeFileArray: each. true]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>closeFileArray: anArray [
+{ #category : #private }
+SourceFileArray >> closeFileArray: anArray [
 
 	anArray 
 		reject: [ :file | file isNil ] 
@@ -256,11 +219,8 @@ SourceFileArray>>closeFileArray: anArray [
 		
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>createReadOnlyFiles [
+{ #category : #private }
+SourceFileArray >> createReadOnlyFiles [
 
 	| readOnly failed |
 	
@@ -276,11 +236,8 @@ SourceFileArray>>createReadOnlyFiles [
 	^ failed ifFalse: [ readOnly ] ifTrue: [ self closeFileArray: readOnly. nil ]
 ]
 
-{
-	#category : #'public - string writing',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>deferFlushDuring: aBlock [
+{ #category : #'public - string writing' }
+SourceFileArray >> deferFlushDuring: aBlock [
 
 	"defer flusing the filestream until a block has been executed"
 	
@@ -291,11 +248,8 @@ SourceFileArray>>deferFlushDuring: aBlock [
 	^ [ aBlock value ] ensure: [ flushChanges := true . self flushChangesFile ]
 ]
 
-{
-	#category : #'public - file system operations',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>ensureOpen [
+{ #category : #'public - file system operations' }
+SourceFileArray >> ensureOpen [
 	"Ensure that the source and changes files are opened."
 
 	files := Array
@@ -305,27 +259,18 @@ SourceFileArray>>ensureOpen [
 	readOnlyQueue := SharedQueue new.
 ]
 
-{
-	#category : #'private - accessing file streams',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>fileAt: index [
+{ #category : #'private - accessing file streams' }
+SourceFileArray >> fileAt: index [
 	^ files at: index
 ]
 
-{
-	#category : #'private - accessing file streams',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>fileAt: index ifAbsent: aBlock [
+{ #category : #'private - accessing file streams' }
+SourceFileArray >> fileAt: index ifAbsent: aBlock [
 	^ files at: index ifAbsent: aBlock
 ]
 
-{
-	#category : #'private - sourcepointer conversion',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>fileIndexFromSourcePointer: anInteger [
+{ #category : #'private - sourcepointer conversion' }
+SourceFileArray >> fileIndexFromSourcePointer: anInteger [
 	"Return the index of the source file which contains the source chunk addressed by anInteger"
 
 	(anInteger bitAnd: 16r1000000) ~= 0
@@ -335,11 +280,8 @@ SourceFileArray>>fileIndexFromSourcePointer: anInteger [
 			ifFalse: [^0 "compatibility with StandardSourceFileArray"]]
 ]
 
-{
-	#category : #'private - sourcepointer conversion',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>filePositionFromSourcePointer: anInteger  [
+{ #category : #'private - sourcepointer conversion' }
+SourceFileArray >> filePositionFromSourcePointer: anInteger [ 
 	"Return the position of the source chunk addressed by anInteger"
 
 	| hi lo |
@@ -351,33 +293,24 @@ SourceFileArray>>filePositionFromSourcePointer: anInteger  [
 		ifFalse: [^ hi - 1 * 16777216 + lo"changes file"]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>finishedReading: aReadOnlyFileArray from: aQueue [
+{ #category : #private }
+SourceFileArray >> finishedReading: aReadOnlyFileArray from: aQueue [
 
 	(aQueue == readOnlyQueue and: [ aQueue size < self readOnlyQueueLimit ]) 
 		ifTrue: [ aQueue nextPut: aReadOnlyFileArray ]
 		ifFalse: [ self closeFileArray: aReadOnlyFileArray ]
 ]
 
-{
-	#category : #'public - file system operations',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>flushChangesFile [
+{ #category : #'public - file system operations' }
+SourceFileArray >> flushChangesFile [
 	
 	flushChanges ifFalse: [ ^ self ].
 	
 	self changesFileStream ifNotNil: [:f | f flush ]
 ]
 
-{
-	#category : #'public - file system operations',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>forceChangesToDisk [
+{ #category : #'public - file system operations' }
+SourceFileArray >> forceChangesToDisk [
 	"Ensure that the changes file has been fully written to disk by closing and re-opening it. This makes the system more robust in the face of a power failure or hard-reboot."
 
 	| changesFile |
@@ -388,11 +321,8 @@ SourceFileArray>>forceChangesToDisk [
 	changesFile setToEnd.
 ]
 
-{
-	#category : #'public - string reading',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>getPreambleFrom: aFileStream at: position [
+{ #category : #'public - string reading' }
+SourceFileArray >> getPreambleFrom: aFileStream at: position [
 	"To read preamble of method we need read back characters until $!.
 	But given aFileStream can have UTF8 encoding which make it a bit tricky to scan stream in reverse order.
 	First we need to move back in stream using byte reading without encoding. It performed by basicNext.
@@ -408,11 +338,8 @@ SourceFileArray>>getPreambleFrom: aFileStream at: position [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>initialize [
+{ #category : #initialization }
+SourceFileArray >> initialize [
 
 	files := Array new: 2.
 	
@@ -420,21 +347,15 @@ SourceFileArray>>initialize [
 	flushChanges := true
 ]
 
-{
-	#category : #'public - string reading',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>protocolAt: sourcePointer [
+{ #category : #'public - string reading' }
+SourceFileArray >> protocolAt: sourcePointer [
 	"Answer the protocol for a given method, retrieved from the sources or changes file. Answer unfound protocol if no protocol is available"
 				
 	^ self protocolAt: sourcePointer for: self sourceDataPointers
 ]
 
-{
-	#category : #'public - string reading',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>protocolAt: sourcePointer for: sourceDataPointers [
+{ #category : #'public - string reading' }
+SourceFileArray >> protocolAt: sourcePointer for: sourceDataPointers [
 	"Answer the protocol for a given method, retrieved from the sources or changes file. Answer unfound protocol if no protocol is available."
 
 	| preamble protocol tokens protocolPosition |
@@ -453,11 +374,8 @@ SourceFileArray>>protocolAt: sourcePointer for: sourceDataPointers [
 	^ protocol
 ]
 
-{
-	#category : #'private - copying',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>readOnlyCopy [
+{ #category : #'private - copying' }
+SourceFileArray >> readOnlyCopy [
 	"Answer a read only copy of self. The caller is responsible of closing it."
 
 	^ self species new
@@ -466,11 +384,8 @@ SourceFileArray>>readOnlyCopy [
 		yourself
 ]
 
-{
-	#category : #'private - copying',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>readOnlyDo: aBlock [
+{ #category : #'private - copying' }
+SourceFileArray >> readOnlyDo: aBlock [
 	"Value a block with a read only copy of self."
 
 	| copy |
@@ -479,22 +394,16 @@ SourceFileArray>>readOnlyDo: aBlock [
 	^ [ aBlock value: copy ] ensure: [ copy close ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>readOnlyQueueLimit [
+{ #category : #private }
+SourceFileArray >> readOnlyQueueLimit [
 
 	"maximum number of read only file arrays to be held by the readOnlyQueue(SharedQueue)"
 
 	^ 7
 ]
 
-{
-	#category : #'private - accessing file streams',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>readStreamAt: sourcePointer ifPresent: presentBlock ifAbsent: absentBlock [
+{ #category : #'private - accessing file streams' }
+SourceFileArray >> readStreamAt: sourcePointer ifPresent: presentBlock ifAbsent: absentBlock [
 
 	| index position |
 	sourcePointer ifNil: [ ^ absentBlock value ].
@@ -512,11 +421,8 @@ SourceFileArray>>readStreamAt: sourcePointer ifPresent: presentBlock ifAbsent: a
 		ifAbsent: absentBlock
 ]
 
-{
-	#category : #'private - accessing file streams',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>readStreamAtFileIndex: index atPosition: position ifPresent: presentBlock ifAbsent: absentBlock [
+{ #category : #'private - accessing file streams' }
+SourceFileArray >> readStreamAtFileIndex: index atPosition: position ifPresent: presentBlock ifAbsent: absentBlock [
  
    | queue stream rofa result |
        
@@ -541,11 +447,8 @@ SourceFileArray>>readStreamAtFileIndex: index atPosition: position ifPresent: pr
 
 ]
 
-{
-	#category : #'public - string reading',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>remoteStringAt: sourcePointer [
+{ #category : #'public - string reading' }
+SourceFileArray >> remoteStringAt: sourcePointer [
 
 	| filePosition fileIndex |
 	fileIndex := self fileIndexFromSourcePointer: sourcePointer.
@@ -554,20 +457,14 @@ SourceFileArray>>remoteStringAt: sourcePointer [
 	^ RemoteString newFileNumber: fileIndex position: filePosition
 ]
 
-{
-	#category : #'public - string writing',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>remoteStringForNewString: aString [
+{ #category : #'public - string writing' }
+SourceFileArray >> remoteStringForNewString: aString [
 
 	^ RemoteString newString: aString
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>reportString [
+{ #category : #printing }
+SourceFileArray >> reportString [
 
 	^ String streamContents: [ :aStream | 
 		{ self sourcesFileStream. self changesFileStream } 
@@ -575,11 +472,8 @@ SourceFileArray>>reportString [
 				aStream nextPutAll: each printString; cr ] ] ]
 ]
 
-{
-	#category : #'public - string reading',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>sourceCodeAt: sourcePointer  [
+{ #category : #'public - string reading' }
+SourceFileArray >> sourceCodeAt: sourcePointer [ 
 	"Retrieves the source code for the pointer received as argument"
 	
 	^ self
@@ -588,11 +482,8 @@ SourceFileArray>>sourceCodeAt: sourcePointer  [
 		ifAbsent: [ '' ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>sourceDataPointers [
+{ #category : #private }
+SourceFileArray >> sourceDataPointers [
 	"Retrieves the combination key to look for information of the receiver in the source file"
 
 	"'Point methodsFor: ''point functions'' stamp: ''lr 7/4/2009 10:42'''."
@@ -600,11 +491,8 @@ SourceFileArray>>sourceDataPointers [
 	^ 'methodsFor:' -> #stamp:
 ]
 
-{
-	#category : #'private - sourcepointer conversion',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>sourcePointerFromFileIndex: index andPosition: position [
+{ #category : #'private - sourcepointer conversion' }
+SourceFileArray >> sourcePointerFromFileIndex: index andPosition: position [
 	"Return a sourcePointer encoding the given file index and position"
 
 	| hi lo |
@@ -617,11 +505,8 @@ SourceFileArray>>sourcePointerFromFileIndex: index andPosition: position [
 
 ]
 
-{
-	#category : #'public - string reading',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>sourcedDataAt: sourcePointer [
+{ #category : #'public - string reading' }
+SourceFileArray >> sourcedDataAt: sourcePointer [
 
 	^ self 
 		readStreamAt: sourcePointer 
@@ -632,40 +517,28 @@ SourceFileArray>>sourcedDataAt: sourcePointer [
 		ifAbsent: [ '' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>sourcesFileStream [
+{ #category : #accessing }
+SourceFileArray >> sourcesFileStream [
 	"Answer the master .sources FileStream, with writing permissions."
 
 	^ files at: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>sourcesFileStream: aStream [
+{ #category : #accessing }
+SourceFileArray >> sourcesFileStream: aStream [
 
 	^ files at: 1 put: aStream
 ]
 
-{
-	#category : #'public - string reading',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>timeStampAt: sourcePointer [
+{ #category : #'public - string reading' }
+SourceFileArray >> timeStampAt: sourcePointer [
 	"Answer the authoring time-stamp for the given method, retrieved from the sources or changes file. Answer the empty string if no time stamp is available."
 
 	^ self timeStampAt: sourcePointer for: self sourceDataPointers
 ]
 
-{
-	#category : #'public - string reading',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>timeStampAt: sourcePointer for: sourceDataPointers [
+{ #category : #'public - string reading' }
+SourceFileArray >> timeStampAt: sourcePointer for: sourceDataPointers [
 	"Answer the authoring time-stamp for the given method, retrieved from the sources or changes file. Answer the empty string if no time stamp is available."
 
 	| preamble stamp tokens stampPosition |
@@ -682,11 +555,8 @@ SourceFileArray>>timeStampAt: sourcePointer for: sourceDataPointers [
 	^ stamp
 ]
 
-{
-	#category : #'public - string writing',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SourceFileArray>>writeSource: aString preamble: preamble onSuccess: successBlock onFail: failBlock [
+{ #category : #'public - string writing' }
+SourceFileArray >> writeSource: aString preamble: preamble onSuccess: successBlock onFail: failBlock [
 
 	| file position |
 	file := self changesFileStream.

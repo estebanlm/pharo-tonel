@@ -34,14 +34,10 @@ self ffiCall: #(int sqlite3_open(String filename, sqlite3 **handle)).
 Class {
 	#name : #FFIOpaqueObject,
 	#superclass : #FFIExternalReference,
-	#category : #UnifiedFFI-Objects,
-	#timestamp : 'EstebanLorenzano 3/17/2016 13:36'
+	#category : #UnifiedFFI-Objects
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIOpaqueObject class>>asExternalTypeOn: generator [
+{ #category : #converting }
+FFIOpaqueObject class >> asExternalTypeOn: generator [
 	^ FFIOpaqueObjectType objectClass: self
 ]

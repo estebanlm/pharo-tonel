@@ -3,44 +3,29 @@ A trait for test purposes
 "
 Trait {
 	#name : #TRemoveByIndexTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:35'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveByIndexTest>>collectionWith5Elements [
+{ #category : #requirements }
+TRemoveByIndexTest >> collectionWith5Elements [
 " return a collection of size 5 including 5 elements"
 self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveByIndexTest>>empty [
+{ #category : #requirements }
+TRemoveByIndexTest >> empty [
 " return an empty collection"
 self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveByIndexTest>>test0FixtureRemoveByIndexTest [
+{ #category : #'tests - fixture' }
+TRemoveByIndexTest >> test0FixtureRemoveByIndexTest [
 	self collectionWith5Elements.
 	self assert: self collectionWith5Elements size = 5
 ]
 
-{
-	#category : #'tests - removing by index',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveByIndexTest>>testRemoveAt [
+{ #category : #'tests - removing by index' }
+TRemoveByIndexTest >> testRemoveAt [
 
 | collection element result oldSize |
 collection := self collectionWith5Elements .
@@ -52,21 +37,15 @@ self assert: result = element .
 self assert: collection size = (oldSize - 1).
 ]
 
-{
-	#category : #'tests - removing by index',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveByIndexTest>>testRemoveAtNotPresent [
+{ #category : #'tests - removing by index' }
+TRemoveByIndexTest >> testRemoveAtNotPresent [
 
 | |
 self should: [self empty removeAt: 2] raise: Error.
 ]
 
-{
-	#category : #'tests - removing by index',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveByIndexTest>>testRemoveFirst [
+{ #category : #'tests - removing by index' }
+TRemoveByIndexTest >> testRemoveFirst [
 
 | collection element result oldSize |
 collection := self collectionWith5Elements .
@@ -78,11 +57,8 @@ self assert: result = element .
 self assert: collection size = (oldSize - 1).
 ]
 
-{
-	#category : #'tests - removing by index',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveByIndexTest>>testRemoveFirstNElements [
+{ #category : #'tests - removing by index' }
+TRemoveByIndexTest >> testRemoveFirstNElements [
 
 | collection elements result oldSize |
 collection := self collectionWith5Elements .
@@ -94,29 +70,20 @@ self assert: result = elements .
 self assert: collection size = (oldSize - 2).
 ]
 
-{
-	#category : #'tests - removing by index',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveByIndexTest>>testRemoveFirstNElementsNotPresent [
+{ #category : #'tests - removing by index' }
+TRemoveByIndexTest >> testRemoveFirstNElementsNotPresent [
 
 self should: [self empty removeFirst: 2] raise: Error.
 ]
 
-{
-	#category : #'tests - removing by index',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveByIndexTest>>testRemoveFirstNotPresent [
+{ #category : #'tests - removing by index' }
+TRemoveByIndexTest >> testRemoveFirstNotPresent [
 
 self should: [self empty removeFirst] raise: Error.
 ]
 
-{
-	#category : #'tests - removing by index',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveByIndexTest>>testRemoveLast [
+{ #category : #'tests - removing by index' }
+TRemoveByIndexTest >> testRemoveLast [
 
 | collection element result oldSize |
 collection := self collectionWith5Elements .
@@ -128,11 +95,8 @@ self assert: result = element .
 self assert: collection size = (oldSize - 1).
 ]
 
-{
-	#category : #'tests - removing by index',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveByIndexTest>>testRemoveLastNElements [
+{ #category : #'tests - removing by index' }
+TRemoveByIndexTest >> testRemoveLastNElements [
 
 | collection  result oldSize elements |
 collection := self collectionWith5Elements .
@@ -145,20 +109,14 @@ self assert: result = elements.
 self assert: collection size = (oldSize - 2).
 ]
 
-{
-	#category : #'tests - removing by index',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveByIndexTest>>testRemoveLastNElementsNElements [
+{ #category : #'tests - removing by index' }
+TRemoveByIndexTest >> testRemoveLastNElementsNElements [
 
 self should: [self empty removeLast: 2] raise: Error.
 ]
 
-{
-	#category : #'tests - removing by index',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveByIndexTest>>testRemoveLastNotPresent [
+{ #category : #'tests - removing by index' }
+TRemoveByIndexTest >> testRemoveLastNotPresent [
 
 self should: [self empty removeLast] raise: Error.
 ]

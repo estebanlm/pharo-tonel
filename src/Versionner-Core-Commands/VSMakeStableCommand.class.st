@@ -4,23 +4,16 @@ I'm a command to declare versions as stable.
 Class {
 	#name : #VSMakeStableCommand,
 	#superclass : #VSMakeVersionCommand,
-	#category : #Versionner-Core-Commands,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSMakeStableCommand>>canBeApplied [
+{ #category : #testing }
+VSMakeStableCommand >> canBeApplied [
 	^ target isStable not and: [ target isBaseline not ]
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSMakeStableCommand>>execute [
+{ #category : #execute }
+VSMakeStableCommand >> execute [
 	"I expect that target is an MCVersion"
 	(MetacelloToolBox configurationNamed: self configurationClass name)
 		symbolicVersionMethod: #stable;
@@ -31,18 +24,12 @@ VSMakeStableCommand>>execute [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSMakeStableCommand>>symbolicVersion  [
+{ #category : #accessing }
+VSMakeStableCommand >> symbolicVersion [ 
 	^ #stable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSMakeStableCommand>>title [
+{ #category : #accessing }
+VSMakeStableCommand >> title [
 	^ 'make stable version'
 ]

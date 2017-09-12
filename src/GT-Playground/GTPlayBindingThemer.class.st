@@ -1,99 +1,65 @@
-"
-
-"
 Class {
 	#name : #GTPlayBindingThemer,
 	#superclass : #GLMBrickThemerModule,
-	#category : #GT-Playground,
-	#timestamp : ''
+	#category : #GT-Playground
 }
 
-{
-	#category : #rows,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBindingThemer>>borderColor [
+{ #category : #rows }
+GTPlayBindingThemer >> borderColor [
 
 	^ self themer popupThemer borderColor
 ]
 
-{
-	#category : #rows,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBindingThemer>>borderWidth [
+{ #category : #rows }
+GTPlayBindingThemer >> borderWidth [
 
 	^ 1
 ]
 
-{
-	#category : #empty-text,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBindingThemer>>emptyTextColor [
+{ #category : #empty-text }
+GTPlayBindingThemer >> emptyTextColor [
 
 	^ self themer textLightColor
 ]
 
-{
-	#category : #empty-text,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBindingThemer>>emptyTextFontSize [
+{ #category : #empty-text }
+GTPlayBindingThemer >> emptyTextFontSize [
 
 	^ Smalltalk ui theme textFont pointSize
 ]
 
-{
-	#category : #empty-text,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBindingThemer>>emptyTextPadding [
+{ #category : #empty-text }
+GTPlayBindingThemer >> emptyTextPadding [
 
 	^ 15
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBindingThemer>>goIcon [
+{ #category : #icons }
+GTPlayBindingThemer >> goIcon [
 
 	^ GLMUIThemeExtraIcons glamorousGo
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBindingThemer>>inspectIcon [
+{ #category : #icons }
+GTPlayBindingThemer >> inspectIcon [
 
 	^ GLMUIThemeExtraIcons glamorousInspect
 ]
 
-{
-	#category : #rows,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBindingThemer>>padding [
+{ #category : #rows }
+GTPlayBindingThemer >> padding [
 
 	^ 5
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBindingThemer>>removeIcon [
+{ #category : #icons }
+GTPlayBindingThemer >> removeIcon [
 
 	^ GLMUIThemeExtraIcons glamorousRemove
 ]
 
-{
-	#category : #rows,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBindingThemer>>selectedColor [
+{ #category : #rows }
+GTPlayBindingThemer >> selectedColor [
 
 	^ Color veryVeryLightGray alpha: 0.5
 ]

@@ -12,15 +12,11 @@ Class {
 		'byteString',
 		'wideString'
 	],
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : '<historical>'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnByteStringBecameWideString class>>convert: byteString [
+{ #category : #convenience }
+ZnByteStringBecameWideString class >> convert: byteString [
 	"Convert byteString to a wideString, signalling a resumable error"
 	
 	| wideString |
@@ -32,52 +28,34 @@ ZnByteStringBecameWideString class>>convert: byteString [
 	^ wideString
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnByteStringBecameWideString>>becomeForward [
+{ #category : #convenience }
+ZnByteStringBecameWideString >> becomeForward [
 	"Switch the identities of byteString and wideString using #becomeForward:"
 
 	byteString becomeForward: wideString 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnByteStringBecameWideString>>byteString [
+{ #category : #accessing }
+ZnByteStringBecameWideString >> byteString [
 	^ byteString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnByteStringBecameWideString>>byteString: anObject [
+{ #category : #accessing }
+ZnByteStringBecameWideString >> byteString: anObject [
 	byteString := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnByteStringBecameWideString>>isResumable [
+{ #category : #testing }
+ZnByteStringBecameWideString >> isResumable [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnByteStringBecameWideString>>wideString [
+{ #category : #accessing }
+ZnByteStringBecameWideString >> wideString [
 	^ wideString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnByteStringBecameWideString>>wideString: anObject [
+{ #category : #accessing }
+ZnByteStringBecameWideString >> wideString: anObject [
 	wideString := anObject
 ]

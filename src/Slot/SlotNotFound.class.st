@@ -8,67 +8,45 @@ Class {
 		'name',
 		'targetClass'
 	],
-	#category : #Slot-Exception,
-	#timestamp : '<historical>'
+	#category : #Slot-Exception
 }
 
-{
-	#category : #signalling,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotNotFound class>>signalForName: aSymbol [
+{ #category : #signalling }
+SlotNotFound class >> signalForName: aSymbol [
 	self new
 		name: aSymbol;
 		signal
 ]
 
-{
-	#category : #signalling,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotNotFound class>>signalForName: aSymbol inClass: aClass [
+{ #category : #signalling }
+SlotNotFound class >> signalForName: aSymbol inClass: aClass [
 	self new
 		name: aSymbol;
 		targetClass: aClass;
 		signal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotNotFound>>messageText [
+{ #category : #accessing }
+SlotNotFound >> messageText [
 	^ 'Slot ''', name asString, ''' not found', (targetClass ifNil: [''] ifNotNil:[' in ', targetClass name])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotNotFound>>name [
+{ #category : #accessing }
+SlotNotFound >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotNotFound>>name: anObject [
+{ #category : #accessing }
+SlotNotFound >> name: anObject [
 	name := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotNotFound>>targetClass [
+{ #category : #accessing }
+SlotNotFound >> targetClass [
 	^ targetClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotNotFound>>targetClass: aClass [
+{ #category : #accessing }
+SlotNotFound >> targetClass: aClass [
 	targetClass := aClass
 ]

@@ -7,15 +7,11 @@ Class {
 	#classVars : [
 		'HighLightBitmaps'
 	],
-	#category : #'Graphics-Display Objects',
-	#timestamp : '<historical>'
+	#category : #'Graphics-Display Objects'
 }
 
-{
-	#category : #bordering,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>border: aRectangle width: borderWidth  [
+{ #category : #bordering }
+DisplayMedium >> border: aRectangle width: borderWidth [ 
 	"Paint a border whose rectangular area is defined by aRectangle. The 
 	width of the border of each side is borderWidth. Uses theme borderColor for 
 	drawing the border."
@@ -27,11 +23,8 @@ DisplayMedium>>border: aRectangle width: borderWidth  [
 
 ]
 
-{
-	#category : #bordering,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>border: aRectangle width: borderWidth fillColor: aHalfTone  [
+{ #category : #bordering }
+DisplayMedium >> border: aRectangle width: borderWidth fillColor: aHalfTone [ 
 	"Paint a border whose rectangular area is defined by aRectangle. The 
 	width of the border of each side is borderWidth. Uses aHalfTone for 
 	drawing the border."
@@ -47,11 +40,8 @@ DisplayMedium>>border: aRectangle width: borderWidth fillColor: aHalfTone  [
 		fillColor: aHalfTone
 ]
 
-{
-	#category : #bordering,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>border: aRectangle width: borderWidth rule: combinationRule fillColor: aHalfTone  [
+{ #category : #bordering }
+DisplayMedium >> border: aRectangle width: borderWidth rule: combinationRule fillColor: aHalfTone [ 
 	"Paint a border whose rectangular area is defined by aRectangle. The 
 	width of the border of each side is borderWidth. Uses aHalfTone for 
 	drawing the border."
@@ -67,11 +57,8 @@ DisplayMedium>>border: aRectangle width: borderWidth rule: combinationRule fillC
 		fillColor: aHalfTone
 ]
 
-{
-	#category : #bordering,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>border: aRectangle widthRectangle: insets rule: combinationRule fillColor: aHalfTone [
+{ #category : #bordering }
+DisplayMedium >> border: aRectangle widthRectangle: insets rule: combinationRule fillColor: aHalfTone [
 	"Paint a border whose rectangular area is defined by aRectangle. The 
 	width of each edge of the border is determined by the four coordinates 
 	of insets. Uses aHalfTone and combinationRule for drawing the border."
@@ -80,30 +67,21 @@ DisplayMedium>>border: aRectangle widthRectangle: insets rule: combinationRule f
 		[:edgeStrip | self fill: edgeStrip rule: combinationRule fillColor: aHalfTone]
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>copyBits: sourceRect from: sourceForm at: destOrigin clippingBox: clipRect rule: rule fillColor: aForm  [
+{ #category : #displaying }
+DisplayMedium >> copyBits: sourceRect from: sourceForm at: destOrigin clippingBox: clipRect rule: rule fillColor: aForm [ 
 	"Make up a BitBlt table and copy the bits."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>deferUpdatesIn: aRectangle while: aBlock [
+{ #category : #displaying }
+DisplayMedium >> deferUpdatesIn: aRectangle while: aBlock [
 	"DisplayScreen overrides with something more involved..."
 	^aBlock value
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>drawLine: sourceForm from: beginPoint to: endPoint clippingBox: clipRect rule: anInteger fillColor: aForm  [
+{ #category : #displaying }
+DisplayMedium >> drawLine: sourceForm from: beginPoint to: endPoint clippingBox: clipRect rule: anInteger fillColor: aForm [ 
 	"Draw line by copying the argument, sourceForm, starting at location 
 	beginPoint and ending at endPoint, clipped by the rectangle, clipRect. 
 	The rule and mask for copying are the arguments anInteger and aForm."
@@ -111,93 +89,66 @@ DisplayMedium>>drawLine: sourceForm from: beginPoint to: endPoint clippingBox: c
 	self subclassResponsibility
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>fill: aRectangle fillColor: aForm  [
+{ #category : #coloring }
+DisplayMedium >> fill: aRectangle fillColor: aForm [ 
 	"Replace a rectangular area of the receiver with the pattern described by 
 	aForm according to the rule over."
 
 	self fill: aRectangle rule: Form over fillColor: aForm
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>fill: aRectangle rule: anInteger fillColor: aForm  [
+{ #category : #coloring }
+DisplayMedium >> fill: aRectangle rule: anInteger fillColor: aForm [ 
 	"Replace a rectangular area of the receiver with the pattern described by 
 	aForm according to the rule anInteger."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>fillBlack [
+{ #category : #coloring }
+DisplayMedium >> fillBlack [
 	"Set all bits in the receiver to black (ones)."
 
 	self fill: self boundingBox fillColor: Color black
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>fillBlack: aRectangle  [
+{ #category : #coloring }
+DisplayMedium >> fillBlack: aRectangle [ 
 	"Set all bits in the receiver's area defined by aRectangle to black (ones)."
 
 	self fill: aRectangle rule: Form over fillColor: Color black
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>fillColor: aColor [
+{ #category : #coloring }
+DisplayMedium >> fillColor: aColor [
 	"Set all pixels in the receiver to the color.  Must be a correct color for this depth of medium.  TK 1 Jun 96"
 
 	self fill: self boundingBox fillColor: aColor
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>fillGray [
+{ #category : #coloring }
+DisplayMedium >> fillGray [
 	"Set all bits in the receiver to gray."
 
 	self fill: self boundingBox fillColor: Color gray
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>fillGray: aRectangle [
+{ #category : #coloring }
+DisplayMedium >> fillGray: aRectangle [
 	"Set all bits in the receiver's area defined by aRectangle to the gray mask."
 
 	self fill: aRectangle rule: Form over fillColor: Color gray
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>fillShape: aShapeForm fillColor: aColor [
+{ #category : #coloring }
+DisplayMedium >> fillShape: aShapeForm fillColor: aColor [
 	"Fill a region corresponding to 1 bits in aShapeForm with aColor"
 
 	^ self fillShape: aShapeForm fillColor: aColor at: 0@0
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>fillShape: aShapeForm fillColor: aColor at: location [
+{ #category : #coloring }
+DisplayMedium >> fillShape: aShapeForm fillColor: aColor at: location [
 	"Fill a region corresponding to 1 bits in aShapeForm with aColor"
 
 	((BitBlt destForm: self sourceForm: aShapeForm fillColor: aColor
@@ -208,54 +159,39 @@ DisplayMedium>>fillShape: aShapeForm fillColor: aColor at: location [
 		copyBits
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>fillWhite [
+{ #category : #coloring }
+DisplayMedium >> fillWhite [
 	"Set all bits in the form to white."
 
 	self fill: self boundingBox fillColor: Color white.
 
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>fillWhite: aRectangle [
+{ #category : #coloring }
+DisplayMedium >> fillWhite: aRectangle [
 	"Set all bits in the receiver's area defined by aRectangle to white."
 
 	self fill: aRectangle rule: Form over fillColor: Color white.
 
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>fillWithColor: aColor [
+{ #category : #coloring }
+DisplayMedium >> fillWithColor: aColor [
 	"Fill the receiver's bounding box with the given color."
 
 	self fill: self boundingBox fillColor: aColor.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>highLightBitmaps [
+{ #category : #private }
+DisplayMedium >> highLightBitmaps [
 	"Quickly return a Bitblt-ready raw colorValue for highlighting areas."
 	^HighLightBitmaps ifNil: [self initializeHighLights ].
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>initializeHighLights  [
+{ #category : #private }
+DisplayMedium >> initializeHighLights [ 
 	
 	"Create a set of Bitmaps for quickly reversing areas of the screen without converting colors. "
 	
@@ -271,19 +207,13 @@ DisplayMedium>>initializeHighLights  [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>quickHighLight: aDepth [
+{ #category : #private }
+DisplayMedium >> quickHighLight: aDepth [
 	^ self highLightBitmaps at: aDepth
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>reverse [
+{ #category : #coloring }
+DisplayMedium >> reverse [
 	"Change all the bits in the receiver that are white to black, and the ones 
 	that are black to white."
 
@@ -294,22 +224,16 @@ Display reverse: (10@10 extent: 100@100)
 	self fill: self boundingBox rule: Form reverse fillColor: (self quickHighLight: self depth)
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>reverse: aRectangle [
+{ #category : #coloring }
+DisplayMedium >> reverse: aRectangle [
 	"Change all the bits in the receiver's area that intersects with aRectangle 
 	that are white to black, and the ones that are black to white."
 
 	self fill: aRectangle rule: Form reverse fillColor: (self quickHighLight: self depth)
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayMedium>>reverse: aRectangle fillColor: aMask	 [
+{ #category : #coloring }
+DisplayMedium >> reverse: aRectangle fillColor: aMask [	
 	"Change all the bits in the receiver's area that intersects with aRectangle 
 	according to the mask. Black does not necessarily turn to white, rather it 
 	changes with respect to the rule and the bit in a corresponding mask 

@@ -12,23 +12,16 @@ Class {
 	#classInstVars : [
 		'externalStructureAlignment'
 	],
-	#category : #UnifiedFFI-Objects,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Objects
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>asExternalTypeOn: generator [
+{ #category : #converting }
+FFIExternalStructure class >> asExternalTypeOn: generator [
 	^ FFIExternalStructureType objectClass: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>compileFields: specArray withAccessors: defineBoolean [
+{ #category : #private }
+FFIExternalStructure class >> compileFields: specArray withAccessors: defineBoolean [
 	| offset fieldSpec |
 	
 	fieldSpec := self fieldSpec.
@@ -54,11 +47,8 @@ FFIExternalStructure class>>compileFields: specArray withAccessors: defineBoolea
 	^ compiledSpec
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>defineFieldAccessorsFor: fieldName startingAt: byteOffset type: type [
+{ #category : #private }
+FFIExternalStructure class >> defineFieldAccessorsFor: fieldName startingAt: byteOffset type: type [
 	"Define read/write accessors for the given field. 
 	 This method is equivallent to his parent, but it changes a couple of things: 
 	 - type is FFIExternalType and not ExternalType
@@ -82,11 +72,8 @@ FFIExternalStructure class>>defineFieldAccessorsFor: fieldName startingAt: byteO
 		classified: self generatedFieldProtocolName.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>defineFieldAccessorsFor: fieldName type: type [
+{ #category : #private }
+FFIExternalStructure class >> defineFieldAccessorsFor: fieldName type: type [
 	"Define read/write accessors for the given field. 
 	 This method is equivallent to his parent, but it changes a couple of things: 
 	 - type is FFIExternalType and not ExternalType
@@ -110,11 +97,8 @@ FFIExternalStructure class>>defineFieldAccessorsFor: fieldName type: type [
 		classified: self generatedFieldProtocolName.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>defineFieldOffset: fieldName value: offset [
+{ #category : #private }
+FFIExternalStructure class >> defineFieldOffset: fieldName value: offset [
 	"Add offset values to classPool."
 	| offsetVarName |
 	offsetVarName := self offsetVariableNameFor: fieldName.
@@ -126,11 +110,8 @@ FFIExternalStructure class>>defineFieldOffset: fieldName value: offset [
 			self classVarNamed: offsetVarName put: offset ].
 ]
 
-{
-	#category : #'register marshalling',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>emitFlatStructureLayoutInto: flatStructureLayout [
+{ #category : #'register marshalling' }
+FFIExternalStructure class >> emitFlatStructureLayoutInto: flatStructureLayout [
 	flatStructureLayout alignTo: self structureAlignment.
 	self fieldSpec fieldsAndTypesDo: [ :field :type |
 		type emitFlatStructureLayoutFieldInto: flatStructureLayout
@@ -138,38 +119,26 @@ FFIExternalStructure class>>emitFlatStructureLayoutInto: flatStructureLayout [
 	flatStructureLayout alignTo: self structureAlignment.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>externalNew [
+{ #category : #'instance creation' }
+FFIExternalStructure class >> externalNew [
 	"Create an instance of the receiver on the external heap"
 	^self fromHandle: (ExternalAddress allocate: self structureSize)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>fieldSpec [
+{ #category : #private }
+FFIExternalStructure class >> fieldSpec [
 	^ FFIExternalStructureFieldParser new  
 		parseFields: self fieldsDesc structure: self.
 
 ]
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>fields [
+{ #category : #'field definition' }
+FFIExternalStructure class >> fields [
 	^ self fieldsDesc
 ]
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>fieldsDesc [
+{ #category : #'field definition' }
+FFIExternalStructure class >> fieldsDesc [
 	"override this method in a subclass to get an automatically generated
 	field accessors.
 	
@@ -184,22 +153,16 @@ FFIExternalStructure class>>fieldsDesc [
 	^ #()
 ]
 
-{
-	#category : #'register marshalling',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>flatStructureLayout [
+{ #category : #'register marshalling' }
+FFIExternalStructure class >> flatStructureLayout [
 	| result |
 	result := FFIExternalStructureFlatLayout new.
 	self emitFlatStructureLayoutInto: result.
 	^ result
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>fromHandle: aHandle [
+{ #category : #'instance creation' }
+FFIExternalStructure class >> fromHandle: aHandle [
 	"Offsets are calculated when specs are compiled, but sometimes there is a possibility that 
 	 user access them before actually using the compiled spec, so I need to be sure they are 
 	 initialised before anything. This is why I send #compiledSpec here."
@@ -207,54 +170,36 @@ FFIExternalStructure class>>fromHandle: aHandle [
 	^ (super fromHandle: aHandle) initialize 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>generatedFieldProtocolName [
+{ #category : #private }
+FFIExternalStructure class >> generatedFieldProtocolName [
 	^ 'accessing structure variables'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>isNormalAlignedStructure [
+{ #category : #testing }
+FFIExternalStructure class >> isNormalAlignedStructure [
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>offsetFieldPrefix [
+{ #category : #private }
+FFIExternalStructure class >> offsetFieldPrefix [
 	^ 'OFFSET'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>offsetVariableNameFor: fieldName [
+{ #category : #private }
+FFIExternalStructure class >> offsetVariableNameFor: fieldName [
 	^ (self offsetFieldPrefix, '_', fieldName asUppercase) asSymbol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>rebuildFieldAccessors [
+{ #category : #private }
+FFIExternalStructure class >> rebuildFieldAccessors [
 	self removeAllOffsetVariables. 
 	self 
 		compileFields: self fields 
 		withAccessors: true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>removeAllMethodsInProtocol: protocolName [
+{ #category : #private }
+FFIExternalStructure class >> removeAllMethodsInProtocol: protocolName [
 	| protocol |
 	
 	protocol := self organization protocolNamed: protocolName.
@@ -263,65 +208,44 @@ FFIExternalStructure class>>removeAllMethodsInProtocol: protocolName [
 	protocol methods do: [ :each | self removeSelector: each ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>removeAllOffsetVariables [
+{ #category : #private }
+FFIExternalStructure class >> removeAllOffsetVariables [
 	self classPool keys 
 		select: [ :each | each beginsWith: 'OFFSET_' ]
 		thenDo: [ :each | self removeClassVarNamed: each ]
 ]
 
-{
-	#category : #'class management',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>reset  [
+{ #category : #'class management' }
+FFIExternalStructure class >> reset [ 
 	compiledSpec := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>structureAlignment [
+{ #category : #accessing }
+FFIExternalStructure class >> structureAlignment [
 	externalStructureAlignment ifNil: [ self compileFields ].
 	^ externalStructureAlignment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure class>>structureSize [
+{ #category : #accessing }
+FFIExternalStructure class >> structureSize [
 	^ self byteSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure>>address [
+{ #category : #accessing }
+FFIExternalStructure >> address [
 	self deprecated: 'Use #getHandle' on: '27 October 2015' in: 'Pharo5'. 
 	^ self getHandle
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure>>pointer [
+{ #category : #converting }
+FFIExternalStructure >> pointer [
 	self getHandle isExternalAddress 
 		ifFalse: [ self error: 'Structures need to be moved to external memory space before passing them as pointers.' ].
 	^ self getHandle pointer
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructure>>printOn: aStream  [
+{ #category : #printing }
+FFIExternalStructure >> printOn: aStream [ 
 	"Append to the argument, aStream, the names and values of all the record's variables."
 	aStream nextPutAll: self class name; nextPutAll: ' ( '; cr.
 	self class fieldSpec fieldNames do: [ :field |

@@ -5,15 +5,11 @@ My sublcasses implement different strategies to update affected methods.
 Class {
 	#name : #AbstractMethodUpdateStrategy,
 	#superclass : #Object,
-	#category : #Slot-ClassBuilder,
-	#timestamp : '<historical>'
+	#category : #Slot-ClassBuilder
 }
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractMethodUpdateStrategy>>transform: oldClass to: newClass using: aMethodModification [
+{ #category : #updating }
+AbstractMethodUpdateStrategy >> transform: oldClass to: newClass using: aMethodModification [
 
 	self subclassResponsibility 
 ]

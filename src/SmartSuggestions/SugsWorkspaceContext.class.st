@@ -5,30 +5,20 @@ a basic  Workspace.
 Class {
 	#name : #SugsWorkspaceContext,
 	#superclass : #SugsAbstractContext,
-	#category : #SmartSuggestions-Menu,
-	#timestamp : 'NicolaiHess 1/23/2016 23:44'
+	#category : #SmartSuggestions-Menu
 }
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsWorkspaceContext>>selectedClass [
+{ #category : #selection }
+SugsWorkspaceContext >> selectedClass [
 	^model selectedClassOrMetaClass
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsWorkspaceContext>>selectedMethod [
+{ #category : #selection }
+SugsWorkspaceContext >> selectedMethod [
 	^ model selectedMethod.
 ]
 
-{
-	#category : #refactoring,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsWorkspaceContext>>sourceTextArea [
+{ #category : #refactoring }
+SugsWorkspaceContext >> sourceTextArea [
 	^ model sourceTextArea
 ]

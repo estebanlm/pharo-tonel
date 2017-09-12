@@ -7,31 +7,21 @@ Class {
 	#instVars : [
 		'target'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 14:34'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientFollowingRedirectEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnClientFollowingRedirectEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream << ' Following Redirect '; print: target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientFollowingRedirectEvent>>target [
+{ #category : #accessing }
+ZnClientFollowingRedirectEvent >> target [
 	^ target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientFollowingRedirectEvent>>target: anObject [
+{ #category : #accessing }
+ZnClientFollowingRedirectEvent >> target: anObject [
 	target := anObject
 ]

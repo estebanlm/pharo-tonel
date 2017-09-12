@@ -11,15 +11,11 @@ Class {
 		'listOfOpenedInspectors',
 		'toolbar'
 	],
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator class>>debuggerSpec [
+{ #category : #specs }
+InspectorNavigator class >> debuggerSpec [
 	<spec: #default>
 	
 	^ SpecLayout composed
@@ -28,19 +24,13 @@ InspectorNavigator class>>debuggerSpec [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator class>>inspect: anObject [
+{ #category : #'instance creation' }
+InspectorNavigator class >> inspect: anObject [
 	^ self openInspector: anObject inspector
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator class>>inspectorSpec [
+{ #category : #specs }
+InspectorNavigator class >> inspectorSpec [
 	<spec>
 	
 	^ SpecLayout composed
@@ -51,20 +41,14 @@ InspectorNavigator class>>inspectorSpec [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator class>>openExplorer: inspector [
+{ #category : #'instance creation' }
+InspectorNavigator class >> openExplorer: inspector [
 
 	^ (self openInspector: inspector) useTreeInspector
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator class>>openInspector: inspector [
+{ #category : #'instance creation' }
+InspectorNavigator class >> openInspector: inspector [
 
 	^ self new
 		inspector: inspector;
@@ -72,11 +56,8 @@ InspectorNavigator class>>openInspector: inspector [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>basicInspector: anEyeInspector [
+{ #category : #accessing }
+InspectorNavigator >> basicInspector: anEyeInspector [
 	inspector value 
 		ifNotNil: [ :inspect | 
 			inspect owner: nil ].
@@ -87,27 +68,18 @@ InspectorNavigator>>basicInspector: anEyeInspector [
 		ownerChanged.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>canBeRefreshed [
+{ #category : #accessing }
+InspectorNavigator >> canBeRefreshed [
 	^ canBeRefreshed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>canBeRefreshed: anObject [
+{ #category : #accessing }
+InspectorNavigator >> canBeRefreshed: anObject [
 	canBeRefreshed := anObject
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>customMenuActions [
+{ #category : #menu }
+InspectorNavigator >> customMenuActions [
 	^ [:aMenu :currentGroup |
 		currentGroup addItem: [ :item |
 			item
@@ -133,11 +105,8 @@ InspectorNavigator>>customMenuActions [
 								shortcut: $] meta  ] ] ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>defaultWindowModelClass [
+{ #category : #accessing }
+InspectorNavigator >> defaultWindowModelClass [
 	| stdout |
 	FileStream stdout wantsLineEndConversion: true; converter.
 	stdout := VTermOutputDriver stdout.
@@ -146,44 +115,29 @@ InspectorNavigator>>defaultWindowModelClass [
 	^ TickingWindowModel 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>diveInto: anObject [
+{ #category : #actions }
+InspectorNavigator >> diveInto: anObject [
 	self inspect: anObject.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>diveIntoSelectedObject [
+{ #category : #actions }
+InspectorNavigator >> diveIntoSelectedObject [
 	self inspector diveIntoSelectedObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>history [
+{ #category : #accessing }
+InspectorNavigator >> history [
 	^ history
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>initialExtent [
+{ #category : #initialization }
+InspectorNavigator >> initialExtent [
 	^ self inspector initialExtent
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>initialize [
+{ #category : #initialization }
+InspectorNavigator >> initialize [
 
 	super initialize.
 	
@@ -201,11 +155,8 @@ InspectorNavigator>>initialize [
 		w whenClosedDo: [ self inspector close ] ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>initializeShortcuts [
+{ #category : #initialization }
+InspectorNavigator >> initializeShortcuts [
 	self bindKeyCombination: $[ meta toAction: [ self inspectPrevious ].
 	self bindKeyCombination: $] meta toAction: [ self inspectNext ].
 
@@ -227,21 +178,15 @@ InspectorNavigator>>initializeShortcuts [
 	self bindKeyCombination: $9 meta toAction: [ self useInspectorAt: 9 ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>initializeWidgets [
+{ #category : #initialization }
+InspectorNavigator >> initializeWidgets [
 
 	
 	toolbar := self instantiate: EyeInspectorToolBar.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>inspect: anObject [
+{ #category : #actions }
+InspectorNavigator >> inspect: anObject [
 	| oldInspectorType |
 	oldInspectorType := self inspectorType.
 	self 
@@ -250,66 +195,45 @@ InspectorNavigator>>inspect: anObject [
 
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>inspectHistoryItem: historyItem [
+{ #category : #history }
+InspectorNavigator >> inspectHistoryItem: historyItem [
 	"self inspect: historyItem key .
 	self selectedIndex: historyItem value."
 	self inspector: historyItem key
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>inspectNext [
+{ #category : #actions }
+InspectorNavigator >> inspectNext [
 	history hasNext
 		ifFalse: [ ^ self ].
 	self inspectHistoryItem: history next
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>inspectPrevious [
+{ #category : #actions }
+InspectorNavigator >> inspectPrevious [
 	history hasPrevious
 		ifFalse: [ ^ self ].
 	self inspectHistoryItem: history previous
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>inspector [
+{ #category : #accessing }
+InspectorNavigator >> inspector [
 	^ inspector value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>inspector: anEyeInspector [
+{ #category : #accessing }
+InspectorNavigator >> inspector: anEyeInspector [
 	self basicInspector: anEyeInspector.
 	self pushHistory.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>inspectorType [
+{ #category : #accessing }
+InspectorNavigator >> inspectorType [
 	^ self inspector class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>inspectorType: anInspectorClass [
+{ #category : #accessing }
+InspectorNavigator >> inspectorType: anInspectorClass [
 	"Use a new inspector type. Instantiate the given inspector class and replace the current view"
 	| oldScriptAreaTextModel |
 	
@@ -335,19 +259,13 @@ InspectorNavigator>>inspectorType: anInspectorClass [
 	self toolbar update.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>inspectorTypes [
+{ #category : #accessing }
+InspectorNavigator >> inspectorTypes [
 	^ self inspector variants
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>nextInspectorType [
+{ #category : #accessing }
+InspectorNavigator >> nextInspectorType [
 	| index types |
 	types := self inspectorTypes.
 	index := types 
@@ -356,19 +274,13 @@ InspectorNavigator>>nextInspectorType [
 	^types atWrap: index + 1.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>object [
+{ #category : #accessing }
+InspectorNavigator >> object [
 	^ self inspector object
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>previousInspectorType [
+{ #category : #accessing }
+InspectorNavigator >> previousInspectorType [
 	| index types |
 	types := self inspectorTypes.
 	index := types 
@@ -377,112 +289,73 @@ InspectorNavigator>>previousInspectorType [
 	^types atWrap: index - 1.
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>pushHistory [
+{ #category : #history }
+InspectorNavigator >> pushHistory [
 	history add: self inspector.
 	self toolbar update.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>selectedIndex [
+{ #category : #accessing }
+InspectorNavigator >> selectedIndex [
 	^ self inspector selectedIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>selectedIndex: anInteger [
+{ #category : #accessing }
+InspectorNavigator >> selectedIndex: anInteger [
 	self inspector selectedIndex: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>selectedObject [
+{ #category : #accessing }
+InspectorNavigator >> selectedObject [
 	^ self inspector selectedObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>setRefreshedToTrue [
+{ #category : #private }
+InspectorNavigator >> setRefreshedToTrue [
 	"introduced because we should not use weak announcer with on:do:."
 	
 	canBeRefreshed := true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>step [
+{ #category : #initialization }
+InspectorNavigator >> step [
 	self inspector step.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>stepTime [
+{ #category : #initialization }
+InspectorNavigator >> stepTime [
 	^ 1500
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>takeKeyboardFocus [
+{ #category : #updating }
+InspectorNavigator >> takeKeyboardFocus [
 	^ self inspector takeKeyboardFocus
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>taskbarIcon [
+{ #category : #accessing }
+InspectorNavigator >> taskbarIcon [
 	^ self inspector 
 		ifNil: [ super taskbarIcon ]
 		ifNotNil: [ :anInspector | anInspector taskbarIcon ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>title [
+{ #category : #accessing }
+InspectorNavigator >> title [
 	^ self inspector title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>toolbar [
+{ #category : #accessing }
+InspectorNavigator >> toolbar [
 	^ toolbar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>toolbar: anObject  [
+{ #category : #accessing }
+InspectorNavigator >> toolbar: anObject [ 
 	toolbar := anObject 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>updateInspectorFrom: oldInspector [
+{ #category : #updating }
+InspectorNavigator >> updateInspectorFrom: oldInspector [
 
 	self updateTitle.
 	self inspector ifNil: [ ^ self ].
@@ -496,27 +369,18 @@ InspectorNavigator>>updateInspectorFrom: oldInspector [
 	oldInspector close. "kill the update process"
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>useBasicInspector [
+{ #category : #actions }
+InspectorNavigator >> useBasicInspector [
 	self inspectorType: EyeBasicInspector
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>useDefaultInspector [
+{ #category : #actions }
+InspectorNavigator >> useDefaultInspector [
 	self inspectorType: self object class inspectorClass
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>useInspectorAt: index [
+{ #category : #actions }
+InspectorNavigator >> useInspectorAt: index [
 	"choose an inspector at the given index from the given inspectorTypes.
 	If the index is out of bounds, simply crop it to the neares value"
 	| types |
@@ -524,26 +388,17 @@ InspectorNavigator>>useInspectorAt: index [
 	self inspectorType: (types at: (index min: types size max: 1))
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>useNextInspectorType [
+{ #category : #actions }
+InspectorNavigator >> useNextInspectorType [
 	self inspectorType: self nextInspectorType
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>usePreviousInspectorType [
+{ #category : #actions }
+InspectorNavigator >> usePreviousInspectorType [
 	self inspectorType: self previousInspectorType
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InspectorNavigator>>useTreeInspector [
+{ #category : #actions }
+InspectorNavigator >> useTreeInspector [
 	self inspectorType: EyeTreeInspector
 ]

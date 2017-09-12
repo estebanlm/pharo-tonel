@@ -26,15 +26,11 @@ Class {
 		'bytes',
 		'boolean'
 	],
-	#category : #STON-Tests,
-	#timestamp : 'SvenVanCaekenberghe 2/10/2012 20:25'
+	#category : #STON-Tests
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject class>>dummy [
+{ #category : #'instance creation' }
+STONTestDomainObject class >> dummy [
 	^ self new
 		integer: 999999 atRandom;
 		float: 999 atRandom / Float pi;
@@ -50,19 +46,13 @@ STONTestDomainObject class>>dummy [
 
 ]
 
-{
-	#category : #ston-core,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject class>>stonName [
+{ #category : #ston-core }
+STONTestDomainObject class >> stonName [
 	^ #TestDomainObject
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>= anObject [
+{ #category : #comparing }
+STONTestDomainObject >> = anObject [
 	"Answer whether the receiver and anObject represent the same object."
 
 	self == anObject
@@ -88,107 +78,68 @@ STONTestDomainObject>>= anObject [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>boolean [
+{ #category : #accessing }
+STONTestDomainObject >> boolean [
 	^ boolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>boolean: anObject [
+{ #category : #accessing }
+STONTestDomainObject >> boolean: anObject [
 	boolean := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>bytes [
+{ #category : #accessing }
+STONTestDomainObject >> bytes [
 	^ bytes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>bytes: anObject [
+{ #category : #accessing }
+STONTestDomainObject >> bytes: anObject [
 	bytes := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>color [
+{ #category : #accessing }
+STONTestDomainObject >> color [
 	^ color
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>color: anObject [
+{ #category : #accessing }
+STONTestDomainObject >> color: anObject [
 	color := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>created [
+{ #category : #accessing }
+STONTestDomainObject >> created [
 	^ created
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>created: anObject [
+{ #category : #accessing }
+STONTestDomainObject >> created: anObject [
 	created := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>description [
+{ #category : #accessing }
+STONTestDomainObject >> description [
 	^ description
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>description: anObject [
+{ #category : #accessing }
+STONTestDomainObject >> description: anObject [
 	description := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>float [
+{ #category : #accessing }
+STONTestDomainObject >> float [
 	^ float
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>float: anObject [
+{ #category : #accessing }
+STONTestDomainObject >> float: anObject [
 	float := anObject
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>hash [
+{ #category : #comparing }
+STONTestDomainObject >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
 
 	^ color hash
@@ -201,58 +152,37 @@ STONTestDomainObject>>hash [
 								bitXor: (boolean hash bitXor: (float hash bitXor: (bytes hash bitXor: (integer hash bitXor: tags hash)))))))
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>initialize [
+{ #category : #initialize-release }
+STONTestDomainObject >> initialize [
 	created := modified := DateAndTime now.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>integer [
+{ #category : #accessing }
+STONTestDomainObject >> integer [
 	^ integer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>integer: anObject [
+{ #category : #accessing }
+STONTestDomainObject >> integer: anObject [
 	integer := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>modified [
+{ #category : #accessing }
+STONTestDomainObject >> modified [
 	^ modified
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>modified: anObject [
+{ #category : #accessing }
+STONTestDomainObject >> modified: anObject [
 	modified := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>tags [
+{ #category : #accessing }
+STONTestDomainObject >> tags [
 	^ tags
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestDomainObject>>tags: anObject [
+{ #category : #accessing }
+STONTestDomainObject >> tags: anObject [
 	tags := anObject
 ]

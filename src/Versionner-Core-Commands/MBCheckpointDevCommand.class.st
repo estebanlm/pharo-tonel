@@ -4,23 +4,16 @@ Command for a check point in Versionner
 Class {
 	#name : #MBCheckpointDevCommand,
 	#superclass : #MBDevCycleCommands,
-	#category : #Versionner-Core-Commands,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:10'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCheckpointDevCommand>>documentation [
+{ #category : #documentation }
+MBCheckpointDevCommand >> documentation [
 	^ 'Save modified packages in their respective repository, update the configuration and save a version of the configuration in it''s repository.'
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCheckpointDevCommand>>execute [
+{ #category : #execute }
+MBCheckpointDevCommand >> execute [
 	| message configClass |
 	configClass := self configurationClass.
 	message := self uiManager
@@ -34,11 +27,8 @@ MBCheckpointDevCommand>>execute [
 
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCheckpointDevCommand>>executeWithMessage: message [
+{ #category : #execute }
+MBCheckpointDevCommand >> executeWithMessage: message [
 	| configClass |
 	configClass := self configurationClass.
 	self checkUserInRepositoryOfPackage: configClass name asString.
@@ -46,19 +36,13 @@ MBCheckpointDevCommand>>executeWithMessage: message [
 
 ]
 
-{
-	#category : #ordering,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCheckpointDevCommand>>order [
+{ #category : #ordering }
+MBCheckpointDevCommand >> order [
 
 	^'50'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCheckpointDevCommand>>title [
+{ #category : #accessing }
+MBCheckpointDevCommand >> title [
 	^ 'checkpoint dev'
 ]

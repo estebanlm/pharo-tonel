@@ -7,38 +7,25 @@ Class {
 	#instVars : [
 		'timestamp'
 	],
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'IgorStasenko 7/30/2014 17:32'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowExposeEvent>>accept: aVisitor [
+{ #category : #visitor }
+OSWindowExposeEvent >> accept: aVisitor [
 	^ aVisitor visitWindowExposeEvent: self
 ]
 
-{
-	#category : #'default actions',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowExposeEvent>>defaultAction [
+{ #category : #'default actions' }
+OSWindowExposeEvent >> defaultAction [
 	window renderer ifNotNil: [ window renderer exposed: timestamp ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowExposeEvent>>timestamp [
+{ #category : #accessing }
+OSWindowExposeEvent >> timestamp [
 	^ timestamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowExposeEvent>>timestamp: anObject [
+{ #category : #accessing }
+OSWindowExposeEvent >> timestamp: anObject [
 	timestamp := anObject
 ]

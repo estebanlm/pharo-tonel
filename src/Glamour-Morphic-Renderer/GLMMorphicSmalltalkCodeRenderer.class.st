@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicSmalltalkCodeRenderer,
 	#superclass : #GLMMorphicTextRenderer,
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSmalltalkCodeRenderer>>actOnCompileText: ann  [
+{ #category : #callbacks }
+GLMMorphicSmalltalkCodeRenderer >> actOnCompileText: ann [ 
 	
 	"The current compiler wants to notify a text morph object in case of errors. 
 	The compilation is delagated to the renderer, as the renderer has access
@@ -24,11 +17,8 @@ GLMMorphicSmalltalkCodeRenderer>>actOnCompileText: ann  [
 	
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSmalltalkCodeRenderer>>actOnEvaluateSelection: ann  [
+{ #category : #callbacks }
+GLMMorphicSmalltalkCodeRenderer >> actOnEvaluateSelection: ann [ 
 
 	"We get here as a result of an announcement.
 	If we do not defer the execution and an exception is triggered by the execution of the code
@@ -37,58 +27,40 @@ GLMMorphicSmalltalkCodeRenderer>>actOnEvaluateSelection: ann  [
 		textMorph evaluateSelectionAndDo: ann action ]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSmalltalkCodeRenderer>>actOnVariableBindingsUpdated: ann  [
+{ #category : #callbacks }
+GLMMorphicSmalltalkCodeRenderer >> actOnVariableBindingsUpdated: ann [ 
 
 	textModel variableBindings: nil.
 	self addVariableBindingsOn: textModel from: ann presentation.
 	textModel changed: #text. self flag: 'update just the style here'
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSmalltalkCodeRenderer>>addVariableBindingsOn: aTextModel from: aPresentation [
+{ #category : #rendering }
+GLMMorphicSmalltalkCodeRenderer >> addVariableBindingsOn: aTextModel from: aPresentation [
 
 	aPresentation variableBindings do: [ :each | aTextModel addVariableBinding: each ].
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSmalltalkCodeRenderer>>debugSelection [
+{ #category : #callbacks }
+GLMMorphicSmalltalkCodeRenderer >> debugSelection [
 
 	textMorph debugIt
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSmalltalkCodeRenderer>>evaluateAndPrintSelection [
+{ #category : #callbacks }
+GLMMorphicSmalltalkCodeRenderer >> evaluateAndPrintSelection [
 
 	UIManager default defer: [ textMorph printIt ]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSmalltalkCodeRenderer>>profileSelection [
+{ #category : #callbacks }
+GLMMorphicSmalltalkCodeRenderer >> profileSelection [
 
 	textMorph tallyIt
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSmalltalkCodeRenderer>>registerEventsForPresentation: aPresentation [
+{ #category : #rendering }
+GLMMorphicSmalltalkCodeRenderer >> registerEventsForPresentation: aPresentation [
 	super registerEventsForPresentation: aPresentation.
 	aPresentation when: GLMVariableBindingsChanged send: #actOnVariableBindingsUpdated: to: self.
 	aPresentation when: GLMEvaluateSelection send: #actOnEvaluateSelection: to: self.
@@ -98,11 +70,8 @@ GLMMorphicSmalltalkCodeRenderer>>registerEventsForPresentation: aPresentation [
 	aPresentation when: GLMPrintSelection send: #evaluateAndPrintSelection to: self
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSmalltalkCodeRenderer>>textModelFor: aPresentation [
+{ #category : #rendering }
+GLMMorphicSmalltalkCodeRenderer >> textModelFor: aPresentation [
 	| tm |
 	tm := GLMSmalltalkCodeModel new
 		text: aPresentation formatedDisplayValue;
@@ -115,11 +84,8 @@ GLMMorphicSmalltalkCodeRenderer>>textModelFor: aPresentation [
 	^ tm
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSmalltalkCodeRenderer>>textMorphForModel: aTextModel [
+{ #category : #rendering }
+GLMMorphicSmalltalkCodeRenderer >> textMorphForModel: aTextModel [
 	| morph  |
 	morph := GLMPluggableTextMorph new.
 	morph styler workspace: aTextModel.
@@ -141,11 +107,8 @@ GLMMorphicSmalltalkCodeRenderer>>textMorphForModel: aTextModel [
 	^ morph
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSmalltalkCodeRenderer>>workspaceBindingsStrategy [
+{ #category : #private }
+GLMMorphicSmalltalkCodeRenderer >> workspaceBindingsStrategy [
 
 	^ [ :currentBindings :aString |
 		(currentBindings includesKey: aString)

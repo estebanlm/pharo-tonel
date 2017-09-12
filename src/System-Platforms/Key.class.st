@@ -14,15 +14,11 @@ Class {
 		'UnixVirtualKeyTable',
 		'WindowsVirtualKeyTable'
 	],
-	#category : #System-Platforms,
-	#timestamp : '<historical>'
+	#category : #System-Platforms
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key class>>initialize [
+{ #category : #'class initialization' }
+Key class >> initialize [
 	self
 		initializeKeyTable;
 		initializeMacOSVirtualKeyTable;
@@ -30,11 +26,8 @@ Key class>>initialize [
 		initializeWindowsVirtualKeyTable
 ]
 
-{
-	#category : #'key table',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key class>>initializeKeyTable [
+{ #category : #'key table' }
+Key class >> initializeKeyTable [
 	KeyTable := Dictionary new.
 	#(
 		16r08f6 Function "XK_function"
@@ -267,11 +260,8 @@ Key class>>initializeKeyTable [
 			pairsDo: [ :keyCode :keyname | KeyTable at: keyCode put: (self basicNew withValue: keyCode andName: keyname asUppercase) ].
 ]
 
-{
-	#category : #macos,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key class>>initializeMacOSVirtualKeyTable [
+{ #category : #macos }
+Key class >> initializeMacOSVirtualKeyTable [
 	MacosVirtualKeyTable := Dictionary new.
 	MacosVirtualKeyTable
 		at: 16r24 put: (self value: 16rff0d); " kVK_Return                    = 0x24"
@@ -382,11 +372,8 @@ Key class>>initializeMacOSVirtualKeyTable [
 		at: 16r5C put: (self value: 16rffb9) "  kVK_ANSI_Keypad9              = 0x5C"
 ]
 
-{
-	#category : #unix,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key class>>initializeUnixVirtualKeyTable [
+{ #category : #unix }
+Key class >> initializeUnixVirtualKeyTable [
 	UnixVirtualKeyTable := Dictionary new.
 	UnixVirtualKeyTable
 		at: Character cr asciiValue put: (self value: 16rff0d); " kVK_Return                    = 0x24"
@@ -498,11 +485,8 @@ Key class>>initializeUnixVirtualKeyTable [
 		at: 1 put: (self value: 16rffb9) "  kVK_ANSI_Keypad9              = 0x5C"
 ]
 
-{
-	#category : #windows,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key class>>initializeWindowsVirtualKeyTable [
+{ #category : #windows }
+Key class >> initializeWindowsVirtualKeyTable [
 	WindowsVirtualKeyTable := Dictionary new.
 	WindowsVirtualKeyTable
 		at: 16r0d put: (self value: 16rff0d); " kVK_Return                    = 0x24"
@@ -614,97 +598,64 @@ Key class>>initializeWindowsVirtualKeyTable [
 		at: 16r69 put: (self value: 16rffb9) "  kVK_ANSI_Keypad9              = 0x5C"
 ]
 
-{
-	#category : #macos,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key class>>macOSVirtualKeyTable [
+{ #category : #macos }
+Key class >> macOSVirtualKeyTable [
 	MacosVirtualKeyTable ifNil: [ self initializeMacOSVirtualKeyTable. ].
 	^MacosVirtualKeyTable
 ]
 
-{
-	#category : #unix,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key class>>unixVirtualKeyTable [
+{ #category : #unix }
+Key class >> unixVirtualKeyTable [
 	^KeyTable
 ]
 
-{
-	#category : #unknownKeys,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key class>>unknownKeyName [
+{ #category : #unknownKeys }
+Key class >> unknownKeyName [
 	^#Unknown
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key class>>value: aKeyValue [
+{ #category : #'instance creation' }
+Key class >> value: aKeyValue [
 	^KeyTable at: aKeyValue
 ]
 
-{
-	#category : #macos,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key class>>valueForMacOSXPlatform: aKeyValue [
+{ #category : #macos }
+Key class >> valueForMacOSXPlatform: aKeyValue [
 
 	^self macOSVirtualKeyTable at: aKeyValue ifAbsent: [ (self basicNew withValue: aKeyValue andName: #Unknown) ] 
 ]
 
-{
-	#category : #unix,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key class>>valueForUnixPlatform: aKeyValue [
+{ #category : #unix }
+Key class >> valueForUnixPlatform: aKeyValue [
 
 	^self unixVirtualKeyTable at: aKeyValue ifAbsent: [ (self basicNew withValue: aKeyValue) ] 
 ]
 
-{
-	#category : #windows,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key class>>valueForWindowsPlatform: aKeyCode [
+{ #category : #windows }
+Key class >> valueForWindowsPlatform: aKeyCode [
 
 	^self windowsVirtualKeyTable at: aKeyCode ifAbsent: [ (self basicNew withValue: aKeyCode andName: #Unknown) ] 
 ]
 
-{
-	#category : #windows,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key class>>windowsVirtualKeyTable [
+{ #category : #windows }
+Key class >> windowsVirtualKeyTable [
 
 	WindowsVirtualKeyTable ifNil: [ self initializeWindowsVirtualKeyTable. ].
 	^WindowsVirtualKeyTable
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key>>isUnkownKey [
+{ #category : #testing }
+Key >> isUnkownKey [
 	 ^self name == self class unknownKeyName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key>>name [
+{ #category : #accessing }
+Key >> name [
 	^name
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key>>printOn: aStream [
+{ #category : #printing }
+Key >> printOn: aStream [
 	aStream
 		nextPutAll: 'Key ';
 		nextPutAll: name;
@@ -713,19 +664,13 @@ Key>>printOn: aStream [
 		nextPutAll: ')'.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key>>withValue: aValue [
+{ #category : #initialize-release }
+Key >> withValue: aValue [
 	self withValue: aValue andName: self class unknownKeyName
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Key>>withValue: aValue andName: aName [
+{ #category : #initialize-release }
+Key >> withValue: aValue andName: aName [
 	value := aValue.
 	name := aName
 ]

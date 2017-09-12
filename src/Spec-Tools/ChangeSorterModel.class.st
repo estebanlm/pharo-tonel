@@ -4,44 +4,31 @@ A ChangeSorterModel is a model used by Change Sorter UIs for computation
 Class {
 	#name : #ChangeSorterModel,
 	#superclass : #AbstractTool,
-	#category : #Spec-Tools-ChangeSorter,
-	#timestamp : '<historical>'
+	#category : #Spec-Tools-ChangeSorter
 }
 
-{
-	#category : #'change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>addPreambleTo: aChangeSet [
+{ #category : #'change set' }
+ChangeSorterModel >> addPreambleTo: aChangeSet [
 
 	aChangeSet assurePreambleExists
 ]
 
-{
-	#category : #environment,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>allChanges [
+{ #category : #environment }
+ChangeSorterModel >> allChanges [
 
 	^ ChangeSet allChangeSets reverse
 ]
 
-{
-	#category : #text,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>buildChangeSetDescriptionFor: changeSet [
+{ #category : #text }
+ChangeSorterModel >> buildChangeSetDescriptionFor: changeSet [
 		
 	^ changeSet
 		ifNil: [ '' ] 
 		ifNotNil: [ changeSet preambleString ifNil: ['']]
 ]
 
-{
-	#category : #text,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>buildClassDescriptionFor: changeSet class: class [
+{ #category : #text }
+ChangeSorterModel >> buildClassDescriptionFor: changeSet class: class [
 	| stream |
 
 	stream := (String new: 100) writeStream.
@@ -64,11 +51,8 @@ ChangeSorterModel>>buildClassDescriptionFor: changeSet class: class [
 		^ stream contents
 ]
 
-{
-	#category : #text,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>buildSelectorDescriptionFor: changeSet class: class selector: selector prettyPrint: prettyPrint showDiff: showDiff [
+{ #category : #text }
+ChangeSorterModel >> buildSelectorDescriptionFor: changeSet class: class selector: selector prettyPrint: prettyPrint showDiff: showDiff [
 
 	| changeType code |
 	changeType := changeSet atSelector: selector class: class.
@@ -90,29 +74,20 @@ ChangeSorterModel>>buildSelectorDescriptionFor: changeSet class: class selector:
 	^ code asText
 ]
 
-{
-	#category : #'change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>copyAllChangesFrom: source to: destination [
+{ #category : #'change set' }
+ChangeSorterModel >> copyAllChangesFrom: source to: destination [
 
 	destination assimilateAllChangesFoundIn: source
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>copyClass: aClass from: source to: destination [
+{ #category : #class }
+ChangeSorterModel >> copyClass: aClass from: source to: destination [
 
 	destination absorbClass: aClass name from: source.
 ]
 
-{
-	#category : #message,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>copySelector: selector inClass: class from: source to: destination [
+{ #category : #message }
+ChangeSorterModel >> copySelector: selector inClass: class from: source [ to: destination
 
 	destination
 		absorbMethod: selector 
@@ -120,29 +95,20 @@ ChangeSorterModel>>copySelector: selector inClass: class from: source to: destin
 		from:source
 ]
 
-{
-	#category : #'change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>createNewSet [
+{ #category : #'change set' }
+ChangeSorterModel >> createNewSet [
 
 	^ ChangeSet newChangeSet.
 ]
 
-{
-	#category : #'change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>currentChangeSet [
+{ #category : #'change set' }
+ChangeSorterModel >> currentChangeSet [
 
 	^ ChangeSet current 
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>fileOutClass: aClass from: aChangeSet [
+{ #category : #class }
+ChangeSorterModel >> fileOutClass: aClass from: aChangeSet [
 	"this is a hack!! makes a new change set, called the class name, adds author initials to try to make a unique change set name, files it out and removes it. kfr 16 june 2000"
 	"Method copied from ChangeSorter"
 	
@@ -154,20 +120,14 @@ ChangeSorterModel>>fileOutClass: aClass from: aChangeSet [
 	ChangeSet removeChangeSet: aSet.
 ]
 
-{
-	#category : #message,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>fileOutSelector: selector from: aClass [
+{ #category : #message }
+ChangeSorterModel >> fileOutSelector: selector from: aClass [
 	
 	aClass fileOutMethod: selector
 ]
 
-{
-	#category : #'change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>findChangeSetIn: aCollectionOfChangeSets [
+{ #category : #'change set' }
+ChangeSorterModel >> findChangeSetIn: aCollectionOfChangeSets [
 	"Search for a changeSet by name.  Pop up a menu of all changeSets whose name contains the string entered by the user.  If only one matches, then the pop-up menu is bypassed"
 	| index pattern candidates nameList |
 	self okToChange ifFalse: [^ self].
@@ -183,22 +143,16 @@ ChangeSorterModel>>findChangeSetIn: aCollectionOfChangeSets [
 	index = 0 ifFalse: [ ^ (candidates at: index) ].
 ]
 
-{
-	#category : #message,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>forgetSelector: selector inClass: aClass fromChangeSet: aChangeSet [
+{ #category : #message }
+ChangeSorterModel >> forgetSelector: selector inClass: aClass fromChangeSet: aChangeSet [
 
 	aChangeSet
 			removeSelectorChanges: selector 
 			class: aClass
 ]
 
-{
-	#category : #'change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>removeChangeSet: aChangeSet prompting: doPrompt [
+{ #category : #'change set' }
+ChangeSorterModel >> removeChangeSet: aChangeSet prompting: doPrompt [
 	"Completely destroy my change set.  Check if it's OK first, and if doPrompt is true, get the user to confirm his intentions first."
 
 	| message aName changeSetNumber msg |
@@ -237,20 +191,14 @@ Do you really want to go ahead with this?') ifFalse: [^ self]]].
 	ChangeSet removeChangeSet: aChangeSet.
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>removeClass: class from: changeSet [
+{ #category : #class }
+ChangeSorterModel >> removeClass: class from: changeSet [
 
 	changeSet removeClassChanges: class.
 ]
 
-{
-	#category : #'change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>removePostscriptFrom: aChange [
+{ #category : #'change set' }
+ChangeSorterModel >> removePostscriptFrom: aChange [
 
 	(aChange hasPostscript and: [ aChange postscriptHasDependents ]) ifTrue:
 		[^ self inform:
@@ -262,11 +210,8 @@ Close that window and try again.'].
 	aChange removePostscript.
 ]
 
-{
-	#category : #'change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>rename: aChangeSet [
+{ #category : #'change set' }
+ChangeSorterModel >> rename: aChangeSet [
 	"Store a new name string into the selected ChangeSet.  reject duplicate name; allow user to back out"
 
 	| newName |
@@ -283,11 +228,8 @@ ChangeSorterModel>>rename: aChangeSet [
 	^ aChangeSet
 ]
 
-{
-	#category : #text,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>setContentsOfChangeSet: changeSet forClass: class andSelector: selector prettyPrint: prettyPrint showDiff: showDiff  [
+{ #category : #text }
+ChangeSorterModel >> setContentsOfChangeSet: changeSet forClass: class andSelector: selector prettyPrint: prettyPrint showDiff: showDiff [ 
 	"return the source code that shows in the bottom pane"
 
 	class
@@ -303,21 +245,15 @@ ChangeSorterModel>>setContentsOfChangeSet: changeSet forClass: class andSelector
 			^ self buildSelectorDescriptionFor: changeSet class: class selector: selector prettyPrint: prettyPrint showDiff: showDiff ]
 ]
 
-{
-	#category : #'change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>setCurrentChangeSet: aChangeSet [
+{ #category : #'change set' }
+ChangeSorterModel >> setCurrentChangeSet: aChangeSet [
 
 	ChangeSet newChanges: aChangeSet.
 	
 ]
 
-{
-	#category : #'change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>submerge: source into: destination [
+{ #category : #'change set' }
+ChangeSorterModel >> submerge: source into: destination [
 	"Copy the contents of the receiver to the other side, then remove the receiver -- all after checking that all is well."
 	|   message |
 	source == destination
@@ -348,11 +284,8 @@ Do you really want to go ahead with this?') ifFalse: [^ false]].
 	^ true
 ]
 
-{
-	#category : #'change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ChangeSorterModel>>subtractFrom: source to: destination [
+{ #category : #'change set' }
+ChangeSorterModel >> subtractFrom: source to: destination [
 
 	source forgetAllChangesFoundIn: destination.
 ]

@@ -4,15 +4,11 @@ SUnit tests for UUIDPrimitives
 Class {
 	#name : #UUIDPrimitivesTest,
 	#superclass : #TestCase,
-	#category : #Tests-UUID,
-	#timestamp : 'TorstenBergmann 2/5/2014 10:11'
+	#category : #Tests-UUID
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDPrimitivesTest>>testComparison [
+{ #category : #tests }
+UUIDPrimitivesTest >> testComparison [
 	"self debug: #testComparison"
 	|a b|
 	a := UUID fromString: '0608b9dc-02e4-4dd0-9f8a-ea45160df641'.
@@ -30,11 +26,8 @@ UUIDPrimitivesTest>>testComparison [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDPrimitivesTest>>testCreation [
+{ #category : #tests }
+UUIDPrimitivesTest >> testCreation [
 	| uuid |
 	uuid := UUID new.
 	self should: [uuid size = 16].
@@ -43,11 +36,8 @@ UUIDPrimitivesTest>>testCreation [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDPrimitivesTest>>testCreationEquality [
+{ #category : #tests }
+UUIDPrimitivesTest >> testCreationEquality [
 	| uuid1 uuid2 |
 	uuid1 := UUID new.
 	uuid2 := UUID new.
@@ -58,11 +48,8 @@ UUIDPrimitivesTest>>testCreationEquality [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDPrimitivesTest>>testCreationFromString [
+{ #category : #tests }
+UUIDPrimitivesTest >> testCreationFromString [
 	| uuid string |
 	string := UUID nilUUID asString.
 	uuid := UUID fromString: string.
@@ -75,22 +62,16 @@ UUIDPrimitivesTest>>testCreationFromString [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDPrimitivesTest>>testCreationFromString36NotNil [
+{ #category : #tests }
+UUIDPrimitivesTest >> testCreationFromString36NotNil [
 	| uuid uuid36 |
 	uuid := UUID fromString: 'fedcba98-7654-3210-0123-456789abcdef'.
 	uuid36 := UUID fromString36: 'e738i8a5the1f87mrh14o6vi6'.
 	self should: [uuid = uuid36]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDPrimitivesTest>>testCreationFromString36With0 [
+{ #category : #tests }
+UUIDPrimitivesTest >> testCreationFromString36With0 [
 	| uuid |
 	uuid := UUID fromString36: '0'.
 	self assert: (uuid isNilUUID).
@@ -98,20 +79,14 @@ UUIDPrimitivesTest>>testCreationFromString36With0 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDPrimitivesTest>>testCreationFromString36WithNillUUID [
+{ #category : #tests }
+UUIDPrimitivesTest >> testCreationFromString36WithNillUUID [
 	
 	UUID fromString36: (UUID nilUUID asString36).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDPrimitivesTest>>testCreationFromStringNotNil [
+{ #category : #tests }
+UUIDPrimitivesTest >> testCreationFromStringNotNil [
 	| uuid string |
 	string := UUID new asString.
 	uuid := UUID fromString: string.
@@ -121,11 +96,8 @@ UUIDPrimitivesTest>>testCreationFromStringNotNil [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDPrimitivesTest>>testCreationNil [
+{ #category : #tests }
+UUIDPrimitivesTest >> testCreationNil [
 	| uuid |
 	uuid := UUID nilUUID.
 	self should: [uuid size = 16].
@@ -136,11 +108,8 @@ UUIDPrimitivesTest>>testCreationNil [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDPrimitivesTest>>testCreationNodeBased [
+{ #category : #tests }
+UUIDPrimitivesTest >> testCreationNodeBased [
 	
 
 	(UUID new asString last: 12) = (UUID new asString last: 12) ifFalse: [^self].
@@ -151,11 +120,8 @@ UUIDPrimitivesTest>>testCreationNodeBased [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDPrimitivesTest>>testDuplicationsKinda [
+{ #category : #tests }
+UUIDPrimitivesTest >> testDuplicationsKinda [
 	| check size |
 
 	size := 5000.
@@ -167,11 +133,8 @@ UUIDPrimitivesTest>>testDuplicationsKinda [
 		
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDPrimitivesTest>>testOrder [
+{ #category : #tests }
+UUIDPrimitivesTest >> testOrder [
 	
 	100 timesRepeat:
 		[ | uuid1 uuid2 |uuid1 := UUID new.
@@ -183,11 +146,8 @@ UUIDPrimitivesTest>>testOrder [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDPrimitivesTest>>testUniqueness  [
+{ #category : #tests }
+UUIDPrimitivesTest >> testUniqueness [ 
 	"Test uniqueness for a given number of generated values"
 	
 	|maxTestValue|

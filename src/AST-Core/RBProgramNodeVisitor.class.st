@@ -6,223 +6,145 @@ RBProgramNodeVisitor is an abstract visitor for the RBProgramNodes.
 Class {
 	#name : #RBProgramNodeVisitor,
 	#superclass : #Object,
-	#category : #AST-Core-Visitors,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Visitors
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitArgumentNode: anArgumentNode [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitArgumentNode: anArgumentNode [
 	"Sent *each time* an argument node is found"
 	^ self visitVariableNode: anArgumentNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitArgumentNodes: aNodeCollection  [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitArgumentNodes: aNodeCollection [ 
 	"Sent *once* when visiting method and block nodes"
 	^aNodeCollection do: [ :each | self visitArgumentNode: each ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitArrayNode: anArrayNode  [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitArrayNode: anArrayNode [ 
 
 	anArrayNode children do: [:each | self visitNode: each]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitAssignmentNode: anAssignmentNode [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitAssignmentNode: anAssignmentNode [
 
 	self visitNode: anAssignmentNode variable.
 	self visitNode: anAssignmentNode value
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitBlockNode: aBlockNode  [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitBlockNode: aBlockNode [ 
 	self visitArgumentNodes: aBlockNode arguments.
 	self visitNode: aBlockNode body
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitCascadeNode: aCascadeNode  [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitCascadeNode: aCascadeNode [ 
 	aCascadeNode messages do: [:each | self visitNode: each]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitGlobalNode: aSelfNode [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitGlobalNode: aSelfNode [
 	^ self visitVariableNode: aSelfNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitInstanceVariableNode: aSelfNode [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitInstanceVariableNode: aSelfNode [
 	^ self visitVariableNode: aSelfNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitLiteralArrayNode: aRBLiteralArrayNode  [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitLiteralArrayNode: aRBLiteralArrayNode [ 
 	aRBLiteralArrayNode contents do: [:each | self visitNode: each]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitLiteralNode: aLiteralNode [
-
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitLiteralNode: aLiteralNode [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitMessageNode: aMessageNode  [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitMessageNode: aMessageNode [ 
 	(aMessageNode isCascaded not or: [aMessageNode isFirstCascaded]) 
 		ifTrue: [self visitNode: aMessageNode receiver].
 	aMessageNode arguments do: [:each | self visitNode: each]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitMethodNode: aMethodNode  [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitMethodNode: aMethodNode [ 
 	self visitArgumentNodes: aMethodNode arguments.
 	aMethodNode pragmas
 		do: [ :each | self visitNode: each ].
 	self visitNode: aMethodNode body
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitNode: aNode  [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitNode: aNode [ 
 	^aNode acceptVisitor: self
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitParseErrorNode: anErrorNode [
-
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitParseErrorNode: anErrorNode [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitPatternBlockNode: aRBPatternBlockNode  [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitPatternBlockNode: aRBPatternBlockNode [ 
 	self visitArgumentNodes: aRBPatternBlockNode arguments.
 	self visitNode: aRBPatternBlockNode body
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitPatternWrapperBlockNode: aRBPatternWrapperBlockNode  [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitPatternWrapperBlockNode: aRBPatternWrapperBlockNode [ 
 	self visitNode: aRBPatternWrapperBlockNode wrappedNode.
 	self visitArgumentNodes: aRBPatternWrapperBlockNode arguments.
 	self visitNode: aRBPatternWrapperBlockNode body
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitPragmaNode: aPragmaNode [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitPragmaNode: aPragmaNode [
 	aPragmaNode arguments do: [ :each | self visitNode: each ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitReturnNode: aReturnNode  [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitReturnNode: aReturnNode [ 
 	^ self visitNode: aReturnNode value
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitSelfNode: aSelfNode [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitSelfNode: aSelfNode [
 	^ self visitVariableNode: aSelfNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitSequenceNode: aSequenceNode  [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitSequenceNode: aSequenceNode [ 
 	self visitTemporaryNodes: aSequenceNode temporaries.
 	aSequenceNode statements do: [:each | self visitNode: each]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitSuperNode: aSuperNode [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitSuperNode: aSuperNode [
 	^ self visitVariableNode: aSuperNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitTemporaryNode: aNode  [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitTemporaryNode: aNode [ 
 	"Sent *each time* a temporary node is found"
 	^ self visitVariableNode: aNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitTemporaryNodes: aNodeCollection  [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitTemporaryNodes: aNodeCollection [ 
 	"This is triggered when defining the temporaries between the pipes"
 	^self visitArgumentNodes: aNodeCollection
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitThisContextNode: aThisContextNode [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitThisContextNode: aThisContextNode [
 	^ self visitVariableNode: aThisContextNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBProgramNodeVisitor>>visitVariableNode: aVariableNode [
+{ #category : #visiting }
+RBProgramNodeVisitor >> visitVariableNode: aVariableNode [
 	^ aVariableNode
 ]

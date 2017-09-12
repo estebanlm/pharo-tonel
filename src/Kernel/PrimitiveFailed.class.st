@@ -4,15 +4,11 @@ I am PrimitiveFailed, an exception signaled when a primitive fails.
 Class {
 	#name : #PrimitiveFailed,
 	#superclass : #SelectorException,
-	#category : #Kernel-Exceptions,
-	#timestamp : 'SvenVanCaekenberghe 4/21/2011 12:31'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-PrimitiveFailed>>standardMessageText [
+{ #category : #printing }
+PrimitiveFailed >> standardMessageText [
 	"Generate a standard textual description"
 	
 	^ String streamContents: [ :stream |

@@ -17,33 +17,23 @@ Class {
 		'groups',
 		'infoList'
 	],
-	#category : #Versionner-Core-Model,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Model
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractInfoList>>calculateInfoList [
+{ #category : #private }
+MBAbstractInfoList >> calculateInfoList [
 
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractInfoList>>fullRecalculate [
+{ #category : #updating }
+MBAbstractInfoList >> fullRecalculate [
 
 	self recalculate
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractInfoList>>groups [
+{ #category : #accessing-computed }
+MBAbstractInfoList >> groups [
 	"Return the list of groups for the configuration"
 
 	| groupSpecs |
@@ -63,40 +53,28 @@ MBAbstractInfoList>>groups [
 	^ groups
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractInfoList>>infoList [
+{ #category : #accessing-computed }
+MBAbstractInfoList >> infoList [
 	infoList ~~ nil ifTrue: [ ^infoList ].
 	^ infoList := self calculateInfoList
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractInfoList>>infos [
+{ #category : #accessing-computed }
+MBAbstractInfoList >> infos [
 	"Return the list of info that are displayed"
 	^self infoList
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractInfoList>>interestedInPackage: operation [
+{ #category : #updating }
+MBAbstractInfoList >> interestedInPackage: operation [
 	"potential currentVersion change"
 	
 	self fullRecalculate.
 	^true
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractInfoList>>interestedInPackageNamed: packageName [
+{ #category : #updating }
+MBAbstractInfoList >> interestedInPackageNamed: packageName [
 	packages notNil
 		ifTrue: [ 
 			(self packages detect: [ :info | info interestedInPackageNamed: packageName ] ifNone: [  ]) notNil
@@ -104,19 +82,13 @@ MBAbstractInfoList>>interestedInPackageNamed: packageName [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractInfoList>>isDirty [
+{ #category : #testing }
+MBAbstractInfoList >> isDirty [
 	^ self packages anySatisfy: [:each | each isDirty ]
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractInfoList>>packages [
+{ #category : #accessing-computed }
+MBAbstractInfoList >> packages [
 	"Return the list of dependent packages for the last baseline"
 
 	| packageSpecs |
@@ -138,11 +110,8 @@ MBAbstractInfoList>>packages [
 	^ packages
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractInfoList>>projects [
+{ #category : #accessing-computed }
+MBAbstractInfoList >> projects [
 	"Return the list of dependent packages for the last baseline"
 
 	| projectSpecs |
@@ -162,11 +131,8 @@ MBAbstractInfoList>>projects [
 	^ projects
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractInfoList>>recalculate [
+{ #category : #updating }
+MBAbstractInfoList >> recalculate [
 
 	text := groups := validationResult := validationIcon := projects:= packages := nil.
 	infoList == nil ifTrue: [ ^self ].
@@ -174,11 +140,8 @@ MBAbstractInfoList>>recalculate [
 	infoList := nil
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractInfoList>>recalculateIfInterestedInPackageNamed: packageName for: operation [
+{ #category : #updating }
+MBAbstractInfoList >> recalculateIfInterestedInPackageNamed: packageName for: operation [
 	"keep projects separate, since I'm the only one interested in projects."
 	(self interestedInPackageNamed: packageName)
 		ifTrue: [ ^self interestedInPackage: operation ].
@@ -189,21 +152,15 @@ MBAbstractInfoList>>recalculateIfInterestedInPackageNamed: packageName for: oper
 	^false
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractInfoList>>release [
+{ #category : #initialize-release }
+MBAbstractInfoList >> release [
 
 	packages := projects := groups := infoList := nil.
 	super release.	
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractInfoList>>versionForInfoList [
+{ #category : #accessing-computed }
+MBAbstractInfoList >> versionForInfoList [
 
 	^self subclassResponsibility 
 ]

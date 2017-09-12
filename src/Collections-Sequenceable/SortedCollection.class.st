@@ -71,26 +71,19 @@ Class {
 	#instVars : [
 		'sortBlock'
 	],
-	#category : #Collections-Sequenceable,
-	#timestamp : 'VincentBlondeau 4/1/2016 18:39'
+	#category : #Collections-Sequenceable
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection class>>sortBlock: aBlock  [
+{ #category : #'instance creation' }
+SortedCollection class >> sortBlock: aBlock [ 
 	"Answer an instance of me such that its elements are sorted according to 
 	the criterion specified in aBlock."
 
 	^(super new: 10) sortBlock: aBlock
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>= aSortedCollection [
+{ #category : #comparing }
+SortedCollection >> = aSortedCollection [
 	"Answer true if my and aSortedCollection's species are the same,
 	and if our blocks are the same, and if our elements are the same."
 
@@ -100,19 +93,13 @@ SortedCollection>>= aSortedCollection [
 		ifFalse: [^ false]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>add: newObject [
+{ #category : #adding }
+SortedCollection >> add: newObject [
 	^ super insert: newObject before: (self indexForInserting: newObject)
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>addAll: aCollection [
+{ #category : #adding }
+SortedCollection >> addAll: aCollection [
 	aCollection size > (self size // 3)
 		ifTrue:
 			[aCollection do: [:each | self addLast: each].
@@ -121,27 +108,18 @@ SortedCollection>>addAll: aCollection [
 	^ aCollection
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>addFirst: newObject [
+{ #category : #adding }
+SortedCollection >> addFirst: newObject [
 	self shouldNotImplement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>at: anInteger put: anObject [
+{ #category : #accessing }
+SortedCollection >> at: anInteger put: anObject [
 	self shouldNotImplement
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>collect: aBlock  [
+{ #category : #enumerating }
+SortedCollection >> collect: aBlock [ 
 	"Evaluate aBlock with each of my elements as the argument. Collect the 
 	resulting values into an OrderedCollection. Answer the new collection. 
 	Override the superclass in order to produce an OrderedCollection instead
@@ -153,21 +131,15 @@ SortedCollection>>collect: aBlock  [
 	^ newCollection
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>copyEmpty [
+{ #category : #adding }
+SortedCollection >> copyEmpty [
 	"Answer a copy of the receiver without any of the receiver's elements."
 
 	^self species sortBlock: sortBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>defaultSort: i to: j  [
+{ #category : #private }
+SortedCollection >> defaultSort: i to: j [ 
 	"Sort elements i through j of self to be nondescending according to
 	sortBlock."	"Assume the default sort block ([:x :y | x <= y])."
 
@@ -215,11 +187,8 @@ SortedCollection>>defaultSort: i to: j  [
 				self defaultSort: k to: j]]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>flatCollect: aBlock  [
+{ #category : #enumerating }
+SortedCollection >> flatCollect: aBlock [ 
 	"Evaluate aBlock for each of the receiver's elements and answer the
 	list of all resulting values flatten one level. Assumes that aBlock returns some kind
 	of collection for each element. Equivalent to the lisp's mapcan"
@@ -227,11 +196,8 @@ SortedCollection>>flatCollect: aBlock  [
 	^ self flatCollect: aBlock as: OrderedCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>indexForInserting: newObject [
+{ #category : #private }
+SortedCollection >> indexForInserting: newObject [
 
 	| index low high |
 	low := firstIndex.
@@ -250,47 +216,32 @@ SortedCollection>>indexForInserting: newObject [
 	^low
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>insert: anObject before: spot [
+{ #category : #private }
+SortedCollection >> insert: anObject before: spot [
 	self shouldNotImplement
 ]
 
-{
-	#category : #splitjoin,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>join: aCollection  [
+{ #category : #splitjoin }
+SortedCollection >> join: aCollection [ 
 	"Curiously addAllLast: does not trigger a reSort, so we must do it here."
 	^ (super join: aCollection) reSort; yourself
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>median [
+{ #category : #accessing }
+SortedCollection >> median [
 	"Return the middle element, or as close as we can get."
 
 	^ self at: self size + 1 // 2
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>reSort [
+{ #category : #private }
+SortedCollection >> reSort [
 	self sort: firstIndex to: lastIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>sort: aSortBlock  [
+{ #category : #accessing }
+SortedCollection >> sort: aSortBlock [ 
 	"Sort this array using aSortBlock. The block should take two arguments
 	and return true if the first element should preceed the second one."
  
@@ -298,11 +249,8 @@ SortedCollection>>sort: aSortBlock  [
  	sortBlock := aSortBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>sort: i to: j  [
+{ #category : #private }
+SortedCollection >> sort: i to: j [ 
 	"Sort elements i through j of self to be nondescending according to
 	sortBlock."
 
@@ -351,22 +299,16 @@ SortedCollection>>sort: i to: j  [
 				self sort: k to: j]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>sortBlock [
+{ #category : #accessing }
+SortedCollection >> sortBlock [
 	"Answer the blockContext which is the criterion for sorting elements of 
 	the receiver."
 
 	^sortBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SortedCollection>>sortBlock: aBlock  [
+{ #category : #accessing }
+SortedCollection >> sortBlock: aBlock [ 
 	"Make the argument, aBlock, be the criterion for ordering elements of the 
 	receiver."
 

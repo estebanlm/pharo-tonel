@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #MetacelloRepositoriesSpecTestCase,
 	#superclass : #MetacelloSpecTestCase,
-	#category : #Metacello-TestsMCCore,
-	#timestamp : ''
+	#category : #Metacello-TestsMCCore
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositoriesSpecTestCase>>projectClass [
+{ #category : #accessing }
+MetacelloRepositoriesSpecTestCase >> projectClass [
     ^ MetacelloMCProject
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositoriesSpecTestCase>>testAddA [
+{ #category : #tests }
+MetacelloRepositoriesSpecTestCase >> testAddA [
     | repositories repository |
     repositories := self repositoriesSpec.
     repositories
@@ -43,11 +33,8 @@ MetacelloRepositoriesSpecTestCase>>testAddA [
     self assert: repository password = 'secret'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositoriesSpecTestCase>>testAddB [
+{ #category : #tests }
+MetacelloRepositoriesSpecTestCase >> testAddB [
     | repositories repository |
     repositories := self repositoriesSpec.
     repositories
@@ -68,11 +55,8 @@ MetacelloRepositoriesSpecTestCase>>testAddB [
     self assert: repository type = 'directory'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositoriesSpecTestCase>>testAddC [
+{ #category : #tests }
+MetacelloRepositoriesSpecTestCase >> testAddC [
     | repositories repository |
     repositories := self repositoriesSpec.
     repositories add: #('http://example.com/repository' '/opt/gemstone/repository').
@@ -84,11 +68,8 @@ MetacelloRepositoriesSpecTestCase>>testAddC [
     self assert: repository type = 'directory'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositoriesSpecTestCase>>testAddE [
+{ #category : #tests }
+MetacelloRepositoriesSpecTestCase >> testAddE [
     | repositories repository |
     repositories := self repositoriesSpec.
     repositories
@@ -102,11 +83,8 @@ MetacelloRepositoriesSpecTestCase>>testAddE [
     self assert: repository type = 'directory'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositoriesSpecTestCase>>testAddF [
+{ #category : #tests }
+MetacelloRepositoriesSpecTestCase >> testAddF [
     | repositories repository |
     repositories := self repositoriesSpec.
     repositories
@@ -129,11 +107,8 @@ MetacelloRepositoriesSpecTestCase>>testAddF [
     self assert: repository password = 'secret'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositoriesSpecTestCase>>testCopyTo [
+{ #category : #tests }
+MetacelloRepositoriesSpecTestCase >> testCopyTo [
     | repositories |
     repositories := self repositoriesSpec.
     repositories
@@ -154,11 +129,8 @@ MetacelloRepositoriesSpecTestCase>>testCopyTo [
         raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositoriesSpecTestCase>>testMergeA [
+{ #category : #tests }
+MetacelloRepositoriesSpecTestCase >> testMergeA [
     | repositories repository |
     repositories := self repositoriesSpec.
     repositories
@@ -181,11 +153,8 @@ MetacelloRepositoriesSpecTestCase>>testMergeA [
     self assert: repository password = 'secret'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositoriesSpecTestCase>>testMergeB [
+{ #category : #tests }
+MetacelloRepositoriesSpecTestCase >> testMergeB [
     | repositories repository |
     repositories := self repositoriesSpec.
     repositories
@@ -203,11 +172,8 @@ MetacelloRepositoriesSpecTestCase>>testMergeB [
     self assert: repository password = 'password'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositoriesSpecTestCase>>testMergeC [
+{ #category : #tests }
+MetacelloRepositoriesSpecTestCase >> testMergeC [
     | repositories repository |
     repositories := self repositoriesSpec.
     repositories
@@ -233,11 +199,8 @@ MetacelloRepositoriesSpecTestCase>>testMergeC [
     self assert: repository password = 'secret'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositoriesSpecTestCase>>testRemoveA [
+{ #category : #tests }
+MetacelloRepositoriesSpecTestCase >> testRemoveA [
     | repositories removed |
     repositories := self repositoriesSpec.
     repositories
@@ -257,11 +220,8 @@ MetacelloRepositoriesSpecTestCase>>testRemoveA [
     self assert: removed
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositoriesSpecTestCase>>testRemoveB [
+{ #category : #tests }
+MetacelloRepositoriesSpecTestCase >> testRemoveB [
     | repositories removed |
     repositories := self repositoriesSpec.
     repositories
@@ -281,11 +241,8 @@ MetacelloRepositoriesSpecTestCase>>testRemoveB [
     self assert: removed
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositoriesSpecTestCase>>testRemoveC [
+{ #category : #tests }
+MetacelloRepositoriesSpecTestCase >> testRemoveC [
     | repositories removed |
     repositories := self repositoriesSpec.
     repositories
@@ -301,11 +258,8 @@ MetacelloRepositoriesSpecTestCase>>testRemoveC [
     self assert: removed
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositoriesSpecTestCase>>testRemoveD [
+{ #category : #tests }
+MetacelloRepositoriesSpecTestCase >> testRemoveD [
     | repositories removed |
     repositories := self repositoriesSpec.
     repositories

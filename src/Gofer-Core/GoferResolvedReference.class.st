@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'repository'
 	],
-	#category : #Gofer-Core,
-	#timestamp : 'lr 1/30/2010 14:38'
+	#category : #Gofer-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferResolvedReference class>>name: aString repository: aRepository [
+{ #category : #'instance creation' }
+GoferResolvedReference class >> name: aString repository: aRepository [
 	^ self basicNew initializeName: aString repository: aRepository
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferResolvedReference>><= aResolvedReference [
+{ #category : #comparing }
+GoferResolvedReference >> <= aResolvedReference [
 	"Sort versions according to:
 
 		1. package name
@@ -47,20 +40,14 @@ GoferResolvedReference>><= aResolvedReference [
 	^ true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferResolvedReference>>initializeName: aString repository: aRepository [
+{ #category : #initialization }
+GoferResolvedReference >> initializeName: aString repository: aRepository [
 	self initializeName: aString.
 	repository := aRepository
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferResolvedReference>>merge [
+{ #category : #actions }
+GoferResolvedReference >> merge [
 	"Merge-in the changes of this refence"
 	Gofer new
 		repository: self repository;
@@ -69,21 +56,15 @@ GoferResolvedReference>>merge [
 		merge
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferResolvedReference>>repository [
+{ #category : #accessing }
+GoferResolvedReference >> repository [
 	"Answer the repository of the receiver."
 	
 	^ repository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferResolvedReference>>version [
+{ #category : #accessing }
+GoferResolvedReference >> version [
 	"Answer a Monticello version of the receiver."
 
 	^ self repository versionFrom: self name

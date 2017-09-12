@@ -3,53 +3,35 @@ I'm a style module related to a checkbox and its componenets
 "
 Trait {
 	#name : #GLMBrickCheckBoxStyle,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Glamour-Morphic-Brick-Theme,
-	#timestamp : 'AliakseiSyrel 3/17/2015 22:55'
+	#category : #Glamour-Morphic-Brick-Theme
 }
 
-{
-	#category : #brick-checkbox,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickCheckBoxStyle>>checkboxBorderColor [
+{ #category : #brick-checkbox }
+GLMBrickCheckBoxStyle >> checkboxBorderColor [
 
 	^ Color lightGray
 ]
 
-{
-	#category : #brick-checkbox,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickCheckBoxStyle>>checkboxBorderWidth [
+{ #category : #brick-checkbox }
+GLMBrickCheckBoxStyle >> checkboxBorderWidth [
 
 	^ 2
 ]
 
-{
-	#category : #brick-checkbox,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickCheckBoxStyle>>checkboxCheckedImage [
+{ #category : #brick-checkbox }
+GLMBrickCheckBoxStyle >> checkboxCheckedImage [
 
 	^ GLMUIThemeExtraIcons glamorousAccept
 ]
 
-{
-	#category : #brick-checkbox,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickCheckBoxStyle>>checkboxHeight [
+{ #category : #brick-checkbox }
+GLMBrickCheckBoxStyle >> checkboxHeight [
 
 	^ 18
 ]
 
-{
-	#category : #brick-checkbox,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickCheckBoxStyle>>checkboxWidth [
+{ #category : #brick-checkbox }
+GLMBrickCheckBoxStyle >> checkboxWidth [
 
 	^ 18
 ]

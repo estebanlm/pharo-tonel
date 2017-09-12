@@ -8,23 +8,16 @@ Class {
 		'iVar',
 		'collection'
 	],
-	#category : #OpalCompiler-Tests-AST,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Tests-AST
 }
 
-{
-	#category : #compiler,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples class>>compilerClass [
+{ #category : #compiler }
+OCOpalExamples class >> compilerClass [
 	^OpalCompiler
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>doubleRemoteAnidatedBlocks [
+{ #category : #examples }
+OCOpalExamples >> doubleRemoteAnidatedBlocks [
 	| val last |	
 	val := 0. 
 	1 to: 10 do: [ :i |
@@ -40,77 +33,56 @@ OCOpalExamples>>doubleRemoteAnidatedBlocks [
 
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleAndOr [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleAndOr [
 	| t1 t2 |
 	t1 := true.
 	t2 := false.
 	t1 and: [ t2. '1' logCr ]. "effect"   
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleAndOr2 [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleAndOr2 [
 	| t1 t2 |
 	t1 := true.
 	t2 := false.  
 	t2 or: [ t1. '2' logCr ]. "effect" 
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleAndOr3 [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleAndOr3 [
 	| t1 t2 |
 	t1 := true.
 	t2 := false.  
 	^ t1 and: [ t2 ] "value" 
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleAndOr4 [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleAndOr4 [
 	| t1 t2 |
 	t1 := true.
 	t2 := false.  
 	^ t2 or: [ t1 ] "value"  
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleAndOr5 [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleAndOr5 [
 	| t1 t2 |
 	t1 := true.
 	t2 := false.  
 	^ t2 or: [ t1 and: [ t2 ] ]
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleAndOr6 [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleAndOr6 [
 	| t1 t2 |
 	t1 := true.
 	t2 := false.  
 	^ t1 and: [ t2 or: [ t1 ] ]
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleBlockArgument [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleBlockArgument [
 	| block block1 block2 |
 	block := [ :arg | | temp | temp := arg. [ temp ] ].
 	block1 := block value: 1.
@@ -120,187 +92,126 @@ OCOpalExamples>>exampleBlockArgument [
 	^block1 value + block2 value.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleBlockExternal [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleBlockExternal [
 	| t |
 	t := 1.
 	^[t] value.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleBlockExternal2 [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleBlockExternal2 [
 	| t1 t2 |
 	t1 :=  t2 := 1.
 	^[t1 + t2] value.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleBlockExternalArg [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleBlockExternalArg [
 	| t  |
 	t := 1.
 	^[:a | t + a] value: 1.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleBlockExternalNested [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleBlockExternalNested [
 	| t s |
 	t := s := 1.
 	^[[s] value +   t   ] value.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleBlockInternal [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleBlockInternal [
 	
 	^[ | t | t := 1. t] value
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleBlockMethodArgument: arg [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleBlockMethodArgument: arg [
 	|  block |
 	block := [ :blockarg | blockarg + arg].
 	self assert: ((block value: 2) = (arg + 2)).
 	^block value: 2
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleBlockNested [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleBlockNested [
 	
 	^[ [1] value] value
 ]
 
-{
-	#category : #examples-pragmas,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleDoublePrimitive [
+{ #category : #examples-pragmas }
+OCOpalExamples >> exampleDoublePrimitive [
 	<primitive: 1>
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleEffectValues [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleEffectValues [
 	#getMe.
 	#( got that ? ).
 	Class.
 	
 ]
 
-{
-	#category : #examples-simple,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleEmptyMethod [
-
+{ #category : #examples-simple }
+OCOpalExamples >> exampleEmptyMethod [
 ]
 
-{
-	#category : #examples-variables,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleForBlockArgument [
+{ #category : #examples-variables }
+OCOpalExamples >> exampleForBlockArgument [
 	|b|
 	b:= [ :blockArg | 1 ].
 	^ b
 ]
 
-{
-	#category : #examples-variables,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleForInlinedBlockArgument [
+{ #category : #examples-variables }
+OCOpalExamples >> exampleForInlinedBlockArgument [
 	
 	1 ifNotNil:[ :value | ^ value ].
 
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleIfFalse [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleIfFalse [
 	true ifFalse: [^1].
 	^2
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleIfFalseIfTrue [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleIfFalseIfTrue [
 	true ifFalse: [^1] ifTrue: [^2].
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleIfNotNilArg [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleIfNotNilArg [
 	^1 even ifNotNil: [ :arg | arg not ]
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleIfNotNilReturnNil [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleIfNotNilReturnNil [
 	^nil ifNotNil: [ :arg | arg not ]
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleIfTrue [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleIfTrue [
 	 1  < 2 ifTrue: [^'result']. 
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleIfTrueAssign [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleIfTrueAssign [
 	| a |
 	a := 1 <2 ifTrue: [1] ifFalse: [2].
 	^a 
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleIfTrueIfFalse [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleIfTrueIfFalse [
 	 1 <2 ifTrue: [^'result'] ifFalse: [2].
 	
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleInlineBlockCollectionLR3 [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleInlineBlockCollectionLR3 [
 	| col |
 	col := OrderedCollection new.
 	1 to: 11 do: [ :each | | i | i := each. col add: [ i ]. i := i + 1 ].
@@ -308,11 +219,8 @@ OCOpalExamples>>exampleInlineBlockCollectionLR3 [
 
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleMethodTempInNestedBlock [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleMethodTempInNestedBlock [
 	| temp block |
 	temp := 0.
 	block := [ [ temp ] ].
@@ -323,11 +231,8 @@ OCOpalExamples>>exampleMethodTempInNestedBlock [
 	^block value.
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleMethodWithOptimizedBlocksA [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleMethodWithOptimizedBlocksA [
 	| s c |
 	s := self isNil
 			ifTrue: [| a | a := 'isNil'. a]
@@ -338,11 +243,8 @@ OCOpalExamples>>exampleMethodWithOptimizedBlocksA [
 	^c. "notNil"
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleNestedBlockScoping [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleNestedBlockScoping [
 
 	| b c z |
 	b := [:a | 
@@ -353,11 +255,8 @@ OCOpalExamples>>exampleNestedBlockScoping [
 	^ (b value: 2) + (c value: 1)
 ]
 
-{
-	#category : #examples-simple,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleNewArray [
+{ #category : #examples-simple }
+OCOpalExamples >> exampleNewArray [
 
 	| temp |
 	
@@ -365,11 +264,8 @@ OCOpalExamples>>exampleNewArray [
 	^temp
 ]
 
-{
-	#category : #examples-pragmas,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>examplePrimitiveErrorCode [
+{ #category : #examples-pragmas }
+OCOpalExamples >> examplePrimitiveErrorCode [
 	
 	<primitive: 60 error: code >
 	
@@ -378,11 +274,8 @@ OCOpalExamples>>examplePrimitiveErrorCode [
 
 ]
 
-{
-	#category : #examples-pragmas,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>examplePrimitiveErrorCodeModule [
+{ #category : #examples-pragmas }
+OCOpalExamples >> examplePrimitiveErrorCodeModule [
 	"Primitive. Attempt to load a module of the given name.
 	Fail if module cannot be found, or cannot be loaded,
 	or failed to initialize"
@@ -391,52 +284,37 @@ OCOpalExamples>>examplePrimitiveErrorCodeModule [
 	^ self primitiveFailed
 ]
 
-{
-	#category : #examples-pragmas,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>examplePrimitiveErrorModule [
+{ #category : #examples-pragmas }
+OCOpalExamples >> examplePrimitiveErrorModule [
 	
 	<primitive: 'primFunction' error: errorCode module: 'primModule'>
 	^ errorCode
 ]
 
-{
-	#category : #examples-pragmas,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>examplePrimitiveModuleError [
+{ #category : #examples-pragmas }
+OCOpalExamples >> examplePrimitiveModuleError [
 	
 	<primitive: 'primFunction'  module: 'primModule' error: errorCode >
 	^ errorCode
 ]
 
-{
-	#category : #examples-misc,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>examplePushArray [
+{ #category : #examples-misc }
+OCOpalExamples >> examplePushArray [
 	| t |
 
 	{1 .t:=1}.
 	^t
 ]
 
-{
-	#category : #examples-misc,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>examplePushBigArray [
+{ #category : #examples-misc }
+OCOpalExamples >> examplePushBigArray [
 	"This array should have a size more than 127 elements"
 	{ 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 .  255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 }.
 	^ 1
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleRepeatEffect [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleRepeatEffect [
 	<compilerOptions: #(#+ #optionInlineRepeat)>
 	| i |
 	i := 1.
@@ -446,11 +324,8 @@ OCOpalExamples>>exampleRepeatEffect [
 		ifTrue: [ ^ true ] ] repeat
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleRepeatValue [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleRepeatValue [
 	<compilerOptions: #(#+ #optionInlineRepeat)>
 	| i |
 	i := 1.
@@ -460,135 +335,87 @@ OCOpalExamples>>exampleRepeatValue [
 		ifTrue: [ ^ true ] ] repeat 
 ]
 
-{
-	#category : #examples-simple,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleReturn1 [
+{ #category : #examples-simple }
+OCOpalExamples >> exampleReturn1 [
 	^1
 ]
 
-{
-	#category : #examples-simple,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleReturn1plus2 [
+{ #category : #examples-simple }
+OCOpalExamples >> exampleReturn1plus2 [
 	^1+2
 ]
 
-{
-	#category : #examples-simple,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleReturn42 [
+{ #category : #examples-simple }
+OCOpalExamples >> exampleReturn42 [
 	^42
 ]
 
-{
-	#category : #examples-variables,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleSelf [
+{ #category : #examples-variables }
+OCOpalExamples >> exampleSelf [
 	| t |
 	t := self.
 	^self.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleSimpleBlock [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleSimpleBlock [
 	^[1].
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleSimpleBlockArgument1 [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleSimpleBlockArgument1 [
 	^[:a | a ] value: 1.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleSimpleBlockArgument2 [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleSimpleBlockArgument2 [
 	^[:a :b | a + b ] value: 1 value: 1.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleSimpleBlockArgument3 [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleSimpleBlockArgument3 [
 	^[:a :b :c | a + b + c ] value: 1 value: 1 value: 1.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleSimpleBlockArgument4 [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleSimpleBlockArgument4 [
 	^[:a :b :c :d | a + b + c  + d] value: 1 value: 1 value: 1 value: 1. 
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleSimpleBlockArgument5 [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleSimpleBlockArgument5 [
 	^[:a :b :c :d :e| a + b + c  + d + e] valueWithArguments: #(1 1 1 1 1). 
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleSimpleBlockEmpty [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleSimpleBlockEmpty [
 	^[] value.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleSimpleBlockLocal [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleSimpleBlockLocal [
 	^[ :each | | t |  t:= each. t   ] value: 5.
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleSimpleBlockLocalIf [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleSimpleBlockLocalIf [
 	^true ifTrue: [ | hallo |  hallo := 1 . hallo].
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleSimpleBlockLocalIfNested [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleSimpleBlockLocalIfNested [
 	^true ifTrue: [| hallo |  [  hallo := 1 . hallo] value] .
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleSimpleBlockLocalWhile [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleSimpleBlockLocalWhile [
 	|a|
 	a := true.
 	^[: b | [a] whileTrue: [ | hallo |  a := false. hallo := 1 . hallo]]value: 1.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleSimpleBlockNested [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleSimpleBlockNested [
 	| a match dict | 
 
 	a  := #(a b c d).
@@ -602,66 +429,45 @@ OCOpalExamples>>exampleSimpleBlockNested [
 	^ dict.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleSimpleBlockReturn [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleSimpleBlockReturn [
 	[^1] value.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleSimpleBlockiVar [
+{ #category : #examples-blocks }
+OCOpalExamples >> exampleSimpleBlockiVar [
 	^[iVar] value.
 ]
 
-{
-	#category : #examples-variables,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleSuper [
+{ #category : #examples-variables }
+OCOpalExamples >> exampleSuper [
 	| t |
 	t := super.
 	^super.
 ]
 
-{
-	#category : #examples-variables,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleThisContext [
+{ #category : #examples-variables }
+OCOpalExamples >> exampleThisContext [
 	| t |
 	t := thisContext.
 	^thisContext.
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleTimesRepeatEffect [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleTimesRepeatEffect [
 	| foo |
 	foo := 1.
 	5 timesRepeat: [ foo := foo + 3 ] . 
 	^ foo
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleTimesRepeatValue [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleTimesRepeatValue [
 	^ 5 timesRepeat: [ 1 + 2 ]   
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleToDoArgument [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleToDoArgument [
 	collection := OrderedCollection new.
 	1 to: 5 do: [ :index |
 		collection add:  [index]  ].
@@ -669,11 +475,8 @@ OCOpalExamples>>exampleToDoArgument [
 	"#(1 2 3 4 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleToDoArgumentLimitIsExpression [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleToDoArgumentLimitIsExpression [
 	| count sum |
 	count := 10.
 	sum := 0.
@@ -681,11 +484,8 @@ OCOpalExamples>>exampleToDoArgumentLimitIsExpression [
 	^sum
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleToDoArgumentNotInlined [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleToDoArgumentNotInlined [
 	| block |
 	block := [ :index |
 		collection add: [ index ] ].
@@ -693,11 +493,8 @@ OCOpalExamples>>exampleToDoArgumentNotInlined [
 	^collection "#(1 2 3 4 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleToDoInsideTemp [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleToDoInsideTemp [
 	1 to: 5 do: [ :index | 
 		| temp | 
 		temp := index. 
@@ -705,11 +502,8 @@ OCOpalExamples>>exampleToDoInsideTemp [
 	^collection "#(1 2 3 4 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleToDoInsideTempNotInlined [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleToDoInsideTempNotInlined [
 	| block |
 	block := [ :index | 
 		| temp | 
@@ -719,11 +513,8 @@ OCOpalExamples>>exampleToDoInsideTempNotInlined [
 	^collection "#(1 2 3 4 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleToDoOutsideTemp [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleToDoOutsideTemp [
 	| temp |
 	1 to: 5 do: [ :index | 
 		temp := index. 
@@ -731,11 +522,8 @@ OCOpalExamples>>exampleToDoOutsideTemp [
 	^collection "#(5 5 5 5 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleToDoOutsideTempNotInlined [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleToDoOutsideTempNotInlined [
 	| block temp |
 	block := [ :index | 
 		temp := index. 
@@ -744,33 +532,24 @@ OCOpalExamples>>exampleToDoOutsideTempNotInlined [
 	^collection "#(5 5 5 5 5)"
 ]
 
-{
-	#category : #examples-misc,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleToDoValue [
+{ #category : #examples-misc }
+OCOpalExamples >> exampleToDoValue [
 
 	^ 1 to: 2 do: [:each | each]
 	
 
 ]
 
-{
-	#category : #examples-misc,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleToDoValueLimitExpression [
+{ #category : #examples-misc }
+OCOpalExamples >> exampleToDoValueLimitExpression [
 
 	^ 2 to: 3+4 do: [:each | each]
 	
 
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleWhileModificationAfterNotInlined [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleWhileModificationAfterNotInlined [
 	| index block |
 	index := 0.
 	block := [ 
@@ -780,11 +559,8 @@ OCOpalExamples>>exampleWhileModificationAfterNotInlined [
 	^collection "#(5 5 5 5 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleWhileModificationBefore [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleWhileModificationBefore [
 	| index |
 	collection := OrderedCollection new.
 	index := 0.
@@ -795,11 +571,8 @@ OCOpalExamples>>exampleWhileModificationBefore [
 	"#(5 5 5 5 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleWhileModificationBeforeNotInlined [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleWhileModificationBeforeNotInlined [
 	| index block |
 	index := 0.
 	block := [ 
@@ -810,11 +583,8 @@ OCOpalExamples>>exampleWhileModificationBeforeNotInlined [
 	"#(5 5 5 5 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleWhileNoModification [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleWhileNoModification [
 	"tempvars aren't modified in the loop, therefore they don't need to be in a indirection vector.
 	  number of temps = declared temps "
 
@@ -829,11 +599,8 @@ OCOpalExamples>>exampleWhileNoModification [
 			  c class ]	"<- block in optimized loop" ]
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleWhileWithTemp [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleWhileWithTemp [
 	| index |
 	index := 0.
 	[ index < 5 ] whileTrue: [
@@ -843,11 +610,8 @@ OCOpalExamples>>exampleWhileWithTemp [
 	^collection "#(1 2 3 4 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleWhileWithTempNotInlined [
+{ #category : #examples-blocks-optimized }
+OCOpalExamples >> exampleWhileWithTempNotInlined [
 	| index block |
 	index := 0.
 	block := [
@@ -858,69 +622,48 @@ OCOpalExamples>>exampleWhileWithTempNotInlined [
 	^collection "#(1 2 3 4 5)"
 ]
 
-{
-	#category : #examples-variables,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleWithArgument: anArg [
+{ #category : #examples-variables }
+OCOpalExamples >> exampleWithArgument: anArg [
 	^ anArg
 ]
 
-{
-	#category : #examples-variables,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>exampleiVar [
+{ #category : #examples-variables }
+OCOpalExamples >> exampleiVar [
 	iVar := 1.
 	^iVar.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>initialize [
+{ #category : #initialization }
+OCOpalExamples >> initialize [
 	collection := OrderedCollection new
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>nestedBlocksRemoteInBlockCase1 [
+{ #category : #examples }
+OCOpalExamples >> nestedBlocksRemoteInBlockCase1 [
 	| block |
 	block := [ | a b |
 		[ a := b ].
 		[ b := a ] ]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>nestedBlocksRemoteInBlockCase2 [
+{ #category : #examples }
+OCOpalExamples >> nestedBlocksRemoteInBlockCase2 [
 	| block |
 	block := [ 
 		[ |a| [ a := 1] ].
 		[ |b| [ b := 2] ] ]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>nestedBlocksRemoteInBlockCase3 [
+{ #category : #examples }
+OCOpalExamples >> nestedBlocksRemoteInBlockCase3 [
 	| block |
 	block := [ 
 		[ |a| block := [ a := 1] ].
 		[ |b| block := [ b := 2] ] ].
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>noRemoteBlockArgument [
+{ #category : #examples }
+OCOpalExamples >> noRemoteBlockArgument [
 	| block block1 block2 |
 	block := [ :arg | | temp | temp := arg. [ temp ] ].
 	block1 := block value: 1.
@@ -929,22 +672,16 @@ OCOpalExamples>>noRemoteBlockArgument [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>noRemoteBlockReturn [
+{ #category : #examples }
+OCOpalExamples >> noRemoteBlockReturn [
 	(self announcements at: self index ifAbsent: [ ^ self ]) 
 		open.
 
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>noRemoteBlockTemp [
+{ #category : #examples }
+OCOpalExamples >> noRemoteBlockTemp [
 	| block block1 block2 |
 	block := [ :arg | [ arg ] ].
 	block1 := block value: 1.
@@ -954,11 +691,8 @@ OCOpalExamples>>noRemoteBlockTemp [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>noRemoteMethodTemp [
+{ #category : #examples }
+OCOpalExamples >> noRemoteMethodTemp [
 	| block1 block2 |
 	block1 := self methodArgument: 1.
 	block2 := self methodArgument: 2.
@@ -966,11 +700,8 @@ OCOpalExamples>>noRemoteMethodTemp [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>noRemoteReadInBlock [
+{ #category : #examples }
+OCOpalExamples >> noRemoteReadInBlock [
 	| a |
 	a := 1.
 	[ a ]
@@ -978,91 +709,64 @@ OCOpalExamples>>noRemoteReadInBlock [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>noRemoteReadNestedBlocks    [
+{ #category : #examples }
+OCOpalExamples >> noRemoteReadNestedBlocks [   
 	 [ |a| a := 1.
        [ a ]]
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>optimizedBlockReadInBlock [
+{ #category : #examples }
+OCOpalExamples >> optimizedBlockReadInBlock [
 	| t1 |
 	[ t1 < 5 ] whileTrue: [ [ t1 ] ].
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>optimizedBlockWriteInBlock [
+{ #category : #examples }
+OCOpalExamples >> optimizedBlockWriteInBlock [
 	| t1 |
 	[ t1 < 5 ] whileTrue: [ t1 := 1 ].
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>optimizedBlockWriteInNestedBlock [
+{ #category : #examples }
+OCOpalExamples >> optimizedBlockWriteInNestedBlock [
 	| t1 |
 	^[ [ t1 < 5 ] whileTrue: [ t1 := 1 ] ]
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>optimizedBlockWriteInNestedBlockCase2 [
+{ #category : #examples }
+OCOpalExamples >> optimizedBlockWriteInNestedBlockCase2 [
 	| t1 |
 	(true) ifTrue: [ [ t1 < 5 ] whileTrue: [ t1 := 1 ] ]
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>optimizedBlockWriteInNestedBlockCase3 [
+{ #category : #examples }
+OCOpalExamples >> optimizedBlockWriteInNestedBlockCase3 [
 	| t1 |
 	[(true) ifTrue: [ [ t1 < 5 ] whileTrue: [ t1 := 1 ] ] ]
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>optimizedBlockWriteInNestedBlockCase4 [
+{ #category : #examples }
+OCOpalExamples >> optimizedBlockWriteInNestedBlockCase4 [
 	| t1 |
 	[(true) whileTrue: [ [ t1 < 5 ] whileTrue: [ t1 := 1 ] ] ]
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>optimizedBlockWriteReadInBlock [
+{ #category : #examples }
+OCOpalExamples >> optimizedBlockWriteReadInBlock [
 	| t1 |
 	[ t1 < 5 ] whileTrue: [ t1 := 1. [ t1 ] ].
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>optimizedBlockWrittenAfterClosedOverCase1 [
+{ #category : #examples }
+OCOpalExamples >> optimizedBlockWrittenAfterClosedOverCase1 [
 	| index |
 	index := 0.
 	[ index < 5 ] whileTrue: [
@@ -1073,11 +777,8 @@ OCOpalExamples>>optimizedBlockWrittenAfterClosedOverCase1 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>optimizedBlockWrittenAfterClosedOverCase2 [
+{ #category : #examples }
+OCOpalExamples >> optimizedBlockWrittenAfterClosedOverCase2 [
 	| index |
 	index := 0.
 	[ index < 5 ] whileTrue: [
@@ -1087,11 +788,8 @@ OCOpalExamples>>optimizedBlockWrittenAfterClosedOverCase2 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>optimizedBlocksAndSameNameTemps [
+{ #category : #examples }
+OCOpalExamples >> optimizedBlocksAndSameNameTemps [
 	| s c |
 	s := self isNil
 			ifTrue: [| a | a := 1. a]
@@ -1102,11 +800,8 @@ OCOpalExamples>>optimizedBlocksAndSameNameTemps [
 	^c
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>singleRemoteDifferentBlocksSameArgumentName [
+{ #category : #examples }
+OCOpalExamples >> singleRemoteDifferentBlocksSameArgumentName [
 	| b c z |
 	b := [:a | 
 		z := 2.
@@ -1118,11 +813,8 @@ OCOpalExamples>>singleRemoteDifferentBlocksSameArgumentName [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>singleRemoteMethodArgument [
+{ #category : #examples }
+OCOpalExamples >> singleRemoteMethodArgument [
 	| temp block |
 	temp := 0.
 	block := [ [ temp ] ].
@@ -1132,22 +824,16 @@ OCOpalExamples>>singleRemoteMethodArgument [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>singleRemoteReadNestedBlocks    [
+{ #category : #examples }
+OCOpalExamples >> singleRemoteReadNestedBlocks [   
 	|a| 
 	[  a := 1.
        [ a ]]
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>singleRemoteTempVar [
+{ #category : #examples }
+OCOpalExamples >> singleRemoteTempVar [
 	| index block theCollection |
 	index := 0.
 	block := [ 
@@ -1157,11 +843,8 @@ OCOpalExamples>>singleRemoteTempVar [
 	self assertValues: #(5 5 5 5 5)
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>singleRemoteTempVarWrittenAfterClosedOver [
+{ #category : #examples }
+OCOpalExamples >> singleRemoteTempVarWrittenAfterClosedOver [
 	| index block |
 	index := 0.
 	block := [ index ].
@@ -1169,11 +852,8 @@ OCOpalExamples>>singleRemoteTempVarWrittenAfterClosedOver [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCOpalExamples>>writtenAfterClosedOver [
+{ #category : #examples }
+OCOpalExamples >> writtenAfterClosedOver [
 	| a |      
 	[ a ].
 	a := 1

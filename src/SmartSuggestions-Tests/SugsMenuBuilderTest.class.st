@@ -4,15 +4,11 @@ SUnit tests for the Smart suggestions menu builder
 Class {
 	#name : #SugsMenuBuilderTest,
 	#superclass : #TestCase,
-	#category : #SmartSuggestions-Tests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:43'
+	#category : #SmartSuggestions-Tests
 }
 
-{
-	#category : #nodes,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testFindBestNodeForClassItsRBVariable [
+{ #category : #nodes }
+SugsMenuBuilderTest >> testFindBestNodeForClassItsRBVariable [
 	| node |
 
 	node :=SugsMenuBuilder findBestNodeFor:  SugsMockContext classContext.
@@ -21,11 +17,8 @@ SugsMenuBuilderTest>>testFindBestNodeForClassItsRBVariable [
 	self assert:( node binding isLiteralVariable and: [Smalltalk globals  includesAssociation: node binding assoc ]).
 ]
 
-{
-	#category : #nodes,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testFindBestNodeForClassVarItsRBVariable [
+{ #category : #nodes }
+SugsMenuBuilderTest >> testFindBestNodeForClassVarItsRBVariable [
 	| node |
 
 	node :=SugsMenuBuilder findBestNodeFor:  SugsMockContext classVariableContext .
@@ -34,11 +27,8 @@ SugsMenuBuilderTest>>testFindBestNodeForClassVarItsRBVariable [
 	self assert:( node binding isLiteralVariable and: [(Smalltalk globals  includesAssociation: node binding assoc ) not]).
 ]
 
-{
-	#category : #nodes,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testFindBestNodeForInstanceVariableItsRBVariable [
+{ #category : #nodes }
+SugsMenuBuilderTest >> testFindBestNodeForInstanceVariableItsRBVariable [
 	| node |
 
 	node := SugsMenuBuilder findBestNodeFor: SugsMockContext instVarContext .
@@ -46,44 +36,32 @@ SugsMenuBuilderTest>>testFindBestNodeForInstanceVariableItsRBVariable [
 	self assert: (node binding isInstance).
 ]
 
-{
-	#category : #nodes,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testFindBestNodeForLiteralItsRBLiteral [
+{ #category : #nodes }
+SugsMenuBuilderTest >> testFindBestNodeForLiteralItsRBLiteral [
 	| node |
 
 	node :=SugsMenuBuilder findBestNodeFor:  SugsMockContext literalContext.
 	self assert: node class equals: RBLiteralValueNode .
 ]
 
-{
-	#category : #nodes,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testFindBestNodeForMessageNodeItsRBMessageSend [
+{ #category : #nodes }
+SugsMenuBuilderTest >> testFindBestNodeForMessageNodeItsRBMessageSend [
 	| node |
 
 	node :=SugsMenuBuilder findBestNodeFor:  SugsMockContext mesageContext  .
 	self assert: node class equals: RBMessageNode .
 ]
 
-{
-	#category : #nodes,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testFindBestNodeForMethodNodeItsRBMehod [
+{ #category : #nodes }
+SugsMenuBuilderTest >> testFindBestNodeForMethodNodeItsRBMehod [
 	| node |
 
 	node :=SugsMenuBuilder findBestNodeFor:  SugsMockContext methodContext .
 	self assert: node class equals: RBMethodNode.
 ]
 
-{
-	#category : #nodes,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testFindBestNodeForMultilineItsRBSequence [
+{ #category : #nodes }
+SugsMenuBuilderTest >> testFindBestNodeForMultilineItsRBSequence [
 	| node |
 
 	node :=SugsMenuBuilder findBestNodeFor:  SugsMockContext sourceContext .
@@ -91,44 +69,32 @@ SugsMenuBuilderTest>>testFindBestNodeForMultilineItsRBSequence [
 
 ]
 
-{
-	#category : #nodes,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testFindBestNodeForSelfNodeItsRBSelf [
+{ #category : #nodes }
+SugsMenuBuilderTest >> testFindBestNodeForSelfNodeItsRBSelf [
 	| node |
 
 	node :=SugsMenuBuilder findBestNodeFor:  SugsMockContext selfContext.
 	self assert: node class equals: RBSelfNode.
 ]
 
-{
-	#category : #nodes,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testFindBestNodeForSelfNodeItsRBSuper [
+{ #category : #nodes }
+SugsMenuBuilderTest >> testFindBestNodeForSelfNodeItsRBSuper [
 	| node |
 
 	node :=SugsMenuBuilder findBestNodeFor:  SugsMockContext superContext.
 	self assert: node class equals: RBSuperNode 
 ]
 
-{
-	#category : #nodes,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testFindBestNodeForTemporaryVariableItsRBVariable [
+{ #category : #nodes }
+SugsMenuBuilderTest >> testFindBestNodeForTemporaryVariableItsRBVariable [
 	| node |
 
 	node :=SugsMenuBuilder findBestNodeFor:  SugsMockContext tempVarContext .
 	self assert: node isTemp.
 ]
 
-{
-	#category : #suggstions-by-selection,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testNoSuggestionForSelfNode [
+{ #category : #suggstions-by-selection }
+SugsMenuBuilderTest >> testNoSuggestionForSelfNode [
 	| suggestions expected |
 
 	suggestions :=SugsMenuBuilder findSuggestionsFor: SugsMockContext selfContext.
@@ -136,11 +102,8 @@ SugsMenuBuilderTest>>testNoSuggestionForSelfNode [
 	self assert: (expected allSatisfy:[:expect | suggestions includes: expect]).
 ]
 
-{
-	#category : #suggstions-by-selection,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testNoSuggestionForSuperNode [
+{ #category : #suggstions-by-selection }
+SugsMenuBuilderTest >> testNoSuggestionForSuperNode [
 	| suggestions expected |
 
 	suggestions :=SugsMenuBuilder findSuggestionsFor: SugsMockContext superContext.
@@ -148,11 +111,8 @@ SugsMenuBuilderTest>>testNoSuggestionForSuperNode [
 	self assert: (expected allSatisfy:[:expect | suggestions includes: expect]).
 ]
 
-{
-	#category : #suggstions-by-selection,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testSuggestionForAAssigmentNodeIncludesAllDeclared [
+{ #category : #suggstions-by-selection }
+SugsMenuBuilderTest >> testSuggestionForAAssigmentNodeIncludesAllDeclared [
 	| suggestions expected|
 
 	suggestions :=SugsMenuBuilder findSuggestionsFor: SugsMockContext assigmentContext.
@@ -161,11 +121,8 @@ SugsMenuBuilderTest>>testSuggestionForAAssigmentNodeIncludesAllDeclared [
 	self assert: (expected allSatisfy:[:expect | suggestions includes: expect]).
 ]
 
-{
-	#category : #suggstions-by-selection,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testSuggestionForAClassNodeIncludesAllDeclared [
+{ #category : #suggstions-by-selection }
+SugsMenuBuilderTest >> testSuggestionForAClassNodeIncludesAllDeclared [
 	| suggestions expected|
 
 	suggestions :=SugsMenuBuilder findSuggestionsFor: SugsMockContext classContext.
@@ -174,11 +131,8 @@ SugsMenuBuilderTest>>testSuggestionForAClassNodeIncludesAllDeclared [
 	self assert: (expected allSatisfy:[:expect | suggestions includes: expect]).
 ]
 
-{
-	#category : #suggstions-by-selection,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testSuggestionForAClassVariableNodeIncludesAllDeclared [
+{ #category : #suggstions-by-selection }
+SugsMenuBuilderTest >> testSuggestionForAClassVariableNodeIncludesAllDeclared [
 	| suggestions expected|
 
 	suggestions :=SugsMenuBuilder findSuggestionsFor: SugsMockContext classVariableContext.
@@ -187,11 +141,8 @@ SugsMenuBuilderTest>>testSuggestionForAClassVariableNodeIncludesAllDeclared [
 	self assert: (expected allSatisfy:[:expect | suggestions includes: expect]).
 ]
 
-{
-	#category : #suggstions-by-selection,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testSuggestionForAMehodNodeIncludesAllValid [
+{ #category : #suggstions-by-selection }
+SugsMenuBuilderTest >> testSuggestionForAMehodNodeIncludesAllValid [
 	| suggestions expected context |
 
 	context := SugsMockContext methodContext.
@@ -200,11 +151,8 @@ SugsMenuBuilderTest>>testSuggestionForAMehodNodeIncludesAllValid [
 	self assert: (expected allSatisfy: [ :expect | suggestions includes: expect ])
 ]
 
-{
-	#category : #suggstions-by-selection,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testSuggestionForAMessageNodeIncludesAllDeclared [
+{ #category : #suggstions-by-selection }
+SugsMenuBuilderTest >> testSuggestionForAMessageNodeIncludesAllDeclared [
 	| suggestions expected|
 
 	suggestions :=SugsMenuBuilder findSuggestionsFor: SugsMockContext mesageContext.
@@ -213,11 +161,8 @@ SugsMenuBuilderTest>>testSuggestionForAMessageNodeIncludesAllDeclared [
 	self assert: (expected allSatisfy:[:expect | suggestions includes: expect]).
 ]
 
-{
-	#category : #suggstions-by-selection,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testSuggestionForATemporaryVariableNodeIncludesAllDeclared [
+{ #category : #suggstions-by-selection }
+SugsMenuBuilderTest >> testSuggestionForATemporaryVariableNodeIncludesAllDeclared [
 	| suggestions expected|
 
 	suggestions :=SugsMenuBuilder findSuggestionsFor: SugsMockContext tempVarContext.
@@ -226,11 +171,8 @@ SugsMenuBuilderTest>>testSuggestionForATemporaryVariableNodeIncludesAllDeclared 
 	self assert: (expected allSatisfy:[:expect | suggestions includes: expect]).
 ]
 
-{
-	#category : #suggstions-by-selection,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testSuggestionForAnInstanceVariableNodeIncludesAllDeclared [
+{ #category : #suggstions-by-selection }
+SugsMenuBuilderTest >> testSuggestionForAnInstanceVariableNodeIncludesAllDeclared [
 	| suggestions expected|
 
 	suggestions :=SugsMenuBuilder findSuggestionsFor: SugsMockContext instVarContext.
@@ -239,11 +181,8 @@ SugsMenuBuilderTest>>testSuggestionForAnInstanceVariableNodeIncludesAllDeclared 
 	self assert: (expected allSatisfy:[:expect | suggestions includes: expect]).
 ]
 
-{
-	#category : #suggstions-by-selection,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testSuggestionForLiteralNodeIncludesAllExpected [
+{ #category : #suggstions-by-selection }
+SugsMenuBuilderTest >> testSuggestionForLiteralNodeIncludesAllExpected [
 	| suggestions expected |
 
 	suggestions :=SugsMenuBuilder findSuggestionsFor: SugsMockContext literalContext.
@@ -251,11 +190,8 @@ SugsMenuBuilderTest>>testSuggestionForLiteralNodeIncludesAllExpected [
 	self assert:(expected allSatisfy:[:expect | suggestions includes: expect]).
 ]
 
-{
-	#category : #suggstions-by-selection,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMenuBuilderTest>>testSuggestionForSourceNodeIncludesAllValid [
+{ #category : #suggstions-by-selection }
+SugsMenuBuilderTest >> testSuggestionForSourceNodeIncludesAllValid [
 	| suggestions expected context |
 	context := SugsMockContext sourceContext.
 	suggestions :=SugsMenuBuilder findSuggestionsFor: context.

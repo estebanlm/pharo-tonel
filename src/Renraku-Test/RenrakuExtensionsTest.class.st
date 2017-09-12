@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RenrakuExtensionsTest,
 	#superclass : #TestCase,
-	#category : #Renraku-Test,
-	#timestamp : ''
+	#category : #Renraku-Test
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuExtensionsTest>>testBanLevelCandidatesForClass [
+{ #category : #tests }
+RenrakuExtensionsTest >> testBanLevelCandidatesForClass [
 	| class candidates |
 	class := self class.
 	candidates := class banLevelCandidates.
@@ -22,11 +15,8 @@ RenrakuExtensionsTest>>testBanLevelCandidatesForClass [
 	self assert: (candidates includes: RePersistentImageRuleBaner).	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuExtensionsTest>>testBanLevelCandidatesForMethod [
+{ #category : #tests }
+RenrakuExtensionsTest >> testBanLevelCandidatesForMethod [
 	| method candidates |
 	method := thisContext  method.
 	candidates := method banLevelCandidates.
@@ -37,11 +27,8 @@ RenrakuExtensionsTest>>testBanLevelCandidatesForMethod [
 	self assert: (candidates includes: RePersistentImageRuleBaner).	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuExtensionsTest>>testBanLevelCandidatesForPackage [
+{ #category : #tests }
+RenrakuExtensionsTest >> testBanLevelCandidatesForPackage [
 	| package candidates |
 	package := self class package.
 	candidates := package banLevelCandidates.

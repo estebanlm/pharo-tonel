@@ -15,32 +15,22 @@ Class {
 		'migrations',
 		'globalEnvironment'
 	],
-	#category : #Fuel-Core,
-	#timestamp : 'MartinDias 8/29/2011 19:06'
+	#category : #Fuel-Core
 }
 
-{
-	#category : #protected,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer class>>currentVersion [
+{ #category : #protected }
+FLMaterializer class >> currentVersion [
 	"If you change this method, you should also create a version in ConfigurationOfFuel and FLSerializer >> currentVersion"
 	^ 194
 ]
 
-{
-	#category : #protected,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer class>>defaultSignature [
+{ #category : #protected }
+FLMaterializer class >> defaultSignature [
 	^ 'FUEL'
 ]
 
-{
-	#category : #materializing-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer class>>materializationFromFileNamed: aFilename [
+{ #category : #materializing-shortcuts }
+FLMaterializer class >> materializationFromFileNamed: aFilename [
 	^ FLPlatform current
 		fileNamed: aFilename 
 		readStreamDo: [ :aFileStream | 
@@ -48,11 +38,8 @@ FLMaterializer class>>materializationFromFileNamed: aFilename [
 
 ]
 
-{
-	#category : #materializing-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer class>>materializationHeaderFromFileNamed: aFilename [
+{ #category : #materializing-shortcuts }
+FLMaterializer class >> materializationHeaderFromFileNamed: aFilename [
 
 	^ FLPlatform current
 		fileNamed: aFilename 
@@ -61,49 +48,34 @@ FLMaterializer class>>materializationHeaderFromFileNamed: aFilename [
 
 ]
 
-{
-	#category : #materializing-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer class>>materializeFromByteArray: byteArray [
+{ #category : #materializing-shortcuts }
+FLMaterializer class >> materializeFromByteArray: byteArray [
 
 	^(self newDefault materializeFrom: byteArray readStream) root
 ]
 
-{
-	#category : #materializing-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer class>>materializeFromFileNamed: aFilename [
+{ #category : #materializing-shortcuts }
+FLMaterializer class >> materializeFromFileNamed: aFilename [
 
 	^ (self materializationFromFileNamed: aFilename) root
 
 ]
 
-{
-	#category : #materializing-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer class>>materializeHeaderFromFileNamed: aFilename [
+{ #category : #materializing-shortcuts }
+FLMaterializer class >> materializeHeaderFromFileNamed: aFilename [
 
 	^ self materializationHeaderFromFileNamed: aFilename
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer class>>newDefault [
+{ #category : #'instance creation' }
+FLMaterializer class >> newDefault [
 
 	^self new
 ]
 
-{
-	#category : #protected,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>decodeHeaderWith: aDecoder [
+{ #category : #protected }
+FLMaterializer >> decodeHeaderWith: aDecoder [
 	"See FLSerializer>>encodeHeaderWith:"
 	
 	"todo: fix"
@@ -113,39 +85,27 @@ FLMaterializer>>decodeHeaderWith: aDecoder [
 		ifFalse: [ (self class newDefault materializationFactory value: aDecoder) root ]
 ]
 
-{
-	#category : #hooks,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>fuelAccept: aGeneralMapper [
+{ #category : #hooks }
+FLMaterializer >> fuelAccept: aGeneralMapper [
 	^ aGeneralMapper visitSubstitution: self by: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>globalEnvironment [
+{ #category : #accessing }
+FLMaterializer >> globalEnvironment [
 	"Answer a dictionary where the look up for global symbols will be done during materialization."
 	
 	^ globalEnvironment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>globalEnvironment: aDictionary [
+{ #category : #accessing }
+FLMaterializer >> globalEnvironment: aDictionary [
 	"Set the dictionary where the look up for global symbols will be done during materialization."
 	
 	globalEnvironment := aDictionary
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>initialize [
+{ #category : #initialization }
+FLMaterializer >> initialize [
 
 	super initialize.
 	self setDefaultMaterialization.
@@ -155,19 +115,13 @@ FLMaterializer>>initialize [
 	globalEnvironment := self class environment.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>materializationFactory [
+{ #category : #accessing }
+FLMaterializer >> materializationFactory [
 	^ materializationFactory
 ]
 
-{
-	#category : #materializing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>materializeFrom: aStream [
+{ #category : #materializing }
+FLMaterializer >> materializeFrom: aStream [
 
 	| aDecoder materialization header |
 	aDecoder := 
@@ -189,11 +143,8 @@ FLMaterializer>>materializeFrom: aStream [
 	
 ]
 
-{
-	#category : #materializing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>materializeHeaderFrom: aStream [
+{ #category : #materializing }
+FLMaterializer >> materializeHeaderFrom: aStream [
 
 	| aDecoder |
 	aDecoder := 
@@ -206,11 +157,8 @@ FLMaterializer>>materializeHeaderFrom: aStream [
 	^ self decodeHeaderWith: aDecoder
 ]
 
-{
-	#category : #configuring-migration,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>migrateClassNamed: aSymbol toClass: aClass [
+{ #category : #configuring-migration }
+FLMaterializer >> migrateClassNamed: aSymbol toClass: aClass [
 
 	self 
 		migrateClassNamed: aSymbol 
@@ -218,22 +166,16 @@ FLMaterializer>>migrateClassNamed: aSymbol toClass: aClass [
 		variables: #()
 ]
 
-{
-	#category : #configuring-migration,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>migrateClassNamed: aSymbol toClass: aClass variables: aDictionary  [
+{ #category : #configuring-migration }
+FLMaterializer >> migrateClassNamed: aSymbol toClass: aClass variables: aDictionary [ 
 
 	migrations
 		at: aSymbol
 		put: (FLMigration fromClassNamed: aSymbol toClass: aClass variables: aDictionary)
 ]
 
-{
-	#category : #configuring-migration,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>migrateClassNamed: aSymbol variables: aDictionary  [
+{ #category : #configuring-migration }
+FLMaterializer >> migrateClassNamed: aSymbol variables: aDictionary [ 
 
 	self 
 		migrateClassNamed: aSymbol 
@@ -241,11 +183,8 @@ FLMaterializer>>migrateClassNamed: aSymbol variables: aDictionary  [
 		variables: aDictionary
 ]
 
-{
-	#category : #protected,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>setDefaultMaterialization [
+{ #category : #protected }
+FLMaterializer >> setDefaultMaterialization [
 
 	materializationFactory := [:aDecoder | 
 		(FLMaterialization 
@@ -257,27 +196,18 @@ FLMaterializer>>setDefaultMaterialization [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>signature [
+{ #category : #accessing }
+FLMaterializer >> signature [
 	^ signature
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>signature: anObject [
+{ #category : #accessing }
+FLMaterializer >> signature: anObject [
 	signature := anObject
 ]
 
-{
-	#category : #protected,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>verifySignatureFrom: aDecoder [
+{ #category : #protected }
+FLMaterializer >> verifySignatureFrom: aDecoder [
 
 	| streamSignature |
 	streamSignature := ByteArray new: self signature size.
@@ -289,11 +219,8 @@ FLMaterializer>>verifySignatureFrom: aDecoder [
 
 ]
 
-{
-	#category : #protected,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>verifyVersionFrom: aDecoder [
+{ #category : #protected }
+FLMaterializer >> verifyVersionFrom: aDecoder [
 
 	| streamVersion |
 	streamVersion := aDecoder nextEncodedUint16.
@@ -304,18 +231,12 @@ FLMaterializer>>verifyVersionFrom: aDecoder [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>version [
+{ #category : #accessing }
+FLMaterializer >> version [
 	^ version
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterializer>>version: anObject [
+{ #category : #accessing }
+FLMaterializer >> version: anObject [
 	version := anObject
 ]

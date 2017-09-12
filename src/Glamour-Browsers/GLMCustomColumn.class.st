@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMCustomColumn,
 	#superclass : #GLMCustomCell,
-	#category : #Glamour-Browsers-Tabulator,
-	#timestamp : ''
+	#category : #Glamour-Browsers-Tabulator
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomColumn>>addRow: aBlockOrSymbol  [
+{ #category : #accessing }
+GLMCustomColumn >> addRow: aBlockOrSymbol [ 
 	 
 	| newRow cell | 
 	cell := aBlockOrSymbol isSymbol 
@@ -30,56 +23,38 @@ GLMCustomColumn>>addRow: aBlockOrSymbol  [
 	^cell
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomColumn>>addRow: aBlockOrSymbol size: anInteger  [
+{ #category : #accessing }
+GLMCustomColumn >> addRow: aBlockOrSymbol size: anInteger [ 
 	 
 	^(self addRow: aBlockOrSymbol) size: anInteger; span: 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomColumn>>addRow: aBlockOrSymbol span: anInteger  [
+{ #category : #accessing }
+GLMCustomColumn >> addRow: aBlockOrSymbol span: anInteger [ 
 	 
 	^(self addRow: aBlockOrSymbol) span: anInteger; size: 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomColumn>>isColumn  [
+{ #category : #testing }
+GLMCustomColumn >> isColumn [ 
 	 
 	^true
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomColumn>>row: aBlockOrSymbol  [
+{ #category : #scripting }
+GLMCustomColumn >> row: aBlockOrSymbol [ 
 	 
 	^self addRow: aBlockOrSymbol
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomColumn>>row: aBlockOrSymbol size: anInteger  [
+{ #category : #scripting }
+GLMCustomColumn >> row: aBlockOrSymbol size: anInteger [ 
 	 
 	^self addRow: aBlockOrSymbol size: anInteger
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomColumn>>row: aBlockOrSymbol span: anInteger  [
+{ #category : #scripting }
+GLMCustomColumn >> row: aBlockOrSymbol span: anInteger [ 
 	 
 	^self addRow: aBlockOrSymbol span: anInteger
 ]

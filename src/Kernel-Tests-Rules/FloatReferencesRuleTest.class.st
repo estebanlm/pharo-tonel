@@ -1,39 +1,26 @@
-"
-
-"
 Class {
 	#name : #FloatReferencesRuleTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'testClass'
 	],
-	#category : #Kernel-Tests-Rules,
-	#timestamp : ''
+	#category : #Kernel-Tests-Rules
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-FloatReferencesRuleTest>>setUp [
+{ #category : #running }
+FloatReferencesRuleTest >> setUp [
 
 	testClass := Object newAnonymousSubclass.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-FloatReferencesRuleTest>>tearDown [
+{ #category : #running }
+FloatReferencesRuleTest >> tearDown [
 
 	testClass := nil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-FloatReferencesRuleTest>>testBasicCheck [
+{ #category : #tests }
+FloatReferencesRuleTest >> testBasicCheck [
 
 	| testMethod |
 	testMethod := testClass >> (testClass compile: 'testMethod BoxedFloat64').
@@ -42,11 +29,8 @@ FloatReferencesRuleTest>>testBasicCheck [
 	 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-FloatReferencesRuleTest>>testBasicCheck1 [
+{ #category : #tests }
+FloatReferencesRuleTest >> testBasicCheck1 [
 
 	| testMethod |
 	testMethod := testClass >> (testClass compile: 'testMethod SmallFloat64').  
@@ -55,11 +39,8 @@ FloatReferencesRuleTest>>testBasicCheck1 [
 	 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-FloatReferencesRuleTest>>testBasicCheck2 [
+{ #category : #tests }
+FloatReferencesRuleTest >> testBasicCheck2 [
 
 	| testMethod |
 	testMethod := testClass >> (testClass compile: 'testMethod').  

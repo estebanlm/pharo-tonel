@@ -27,168 +27,113 @@ Class {
 		'needsSeparatorAfter',
 		'actionSelector'
 	],
-	#category : #DebuggerActions,
-	#timestamp : '<historical>'
+	#category : #DebuggerActions
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction class>>asDebugAction [
+{ #category : #accessing }
+DebugAction class >> asDebugAction [
 
 	^ self new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction class>>defaultIcon [
+{ #category : #accessing }
+DebugAction class >> defaultIcon [
 
 	^ nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction class>>forDebugger: aDebugger [
+{ #category : #'instance creation' }
+DebugAction class >> forDebugger: aDebugger [
 
 	^ self new forDebugger: aDebugger
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>actionSelector [
+{ #category : #actions }
+DebugAction >> actionSelector [
 
 	^ actionSelector ifNil: [ self defaultActionSelector ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>appliesToContext: aContext [
+{ #category : #testing }
+DebugAction >> appliesToContext: aContext [
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>appliesToCurrentContext [
+{ #category : #testing }
+DebugAction >> appliesToCurrentContext [
 
 	^ self appliesToContext: self currentContext 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>appliesToDebugger: aDebugger [
+{ #category : #testing }
+DebugAction >> appliesToDebugger: aDebugger [
 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>asDebugAction [
+{ #category : #accessing }
+DebugAction >> asDebugAction [
 
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>category [
+{ #category : #accessing }
+DebugAction >> category [
 	"Return the kind of debugger action. It has nothing to do with class category or the old method category now method protocol."
 	^ category ifNil: [ self defaultCategory ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>category: anObject [
+{ #category : #accessing }
+DebugAction >> category: anObject [
 	"Set the kind of debugger action. It has nothing to do with class category or the old method category now method protocol."
 	category := anObject
 ]
 
-{
-	#category : #accessing-context,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>currentContext [
+{ #category : #accessing-context }
+DebugAction >> currentContext [
 
 	^ self debugger currentContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>debugger [
+{ #category : #accessing }
+DebugAction >> debugger [
 
 	^ debugger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>debugger: anObject [
+{ #category : #accessing }
+DebugAction >> debugger: anObject [
 
 	debugger := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>defaultActionSelector [
+{ #category : #actions }
+DebugAction >> defaultActionSelector [
 
 	^ #executeAction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>defaultCategory [
+{ #category : #accessing }
+DebugAction >> defaultCategory [
 	"Return the default kind of debugger action. It has nothing to do with class category or the old method category now method protocol."
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>defaultHelp [
+{ #category : #accessing }
+DebugAction >> defaultHelp [
 
 	^ 'No help, sorry.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>defaultIcon [
+{ #category : #accessing }
+DebugAction >> defaultIcon [
 
 	^ self class defaultIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>defaultKeyText [
+{ #category : #accessing }
+DebugAction >> defaultKeyText [
 	"I return a string based on which a default shortcut is created for this action.
 	
 	I am still present to ensure backwards compatibility.
@@ -203,47 +148,32 @@ DebugAction>>defaultKeyText [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>defaultKeymap [
+{ #category : #accessing }
+DebugAction >> defaultKeymap [
 
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>defaultLabel [
+{ #category : #accessing }
+DebugAction >> defaultLabel [
 
 	^ ''
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>defaultOrder [
+{ #category : #accessing }
+DebugAction >> defaultOrder [
 
 	^ 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>enabled [
+{ #category : #accessing }
+DebugAction >> enabled [
 
 	^ true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>execute [
+{ #category : #actions }
+DebugAction >> execute [
 
 	self precondition ifTrue: [ 
 		self preAction.
@@ -251,75 +181,51 @@ DebugAction>>execute [
 		self postAction ] 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>executeAction [
+{ #category : #actions }
+DebugAction >> executeAction [
 	"By default do nothing."
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>forDebugger: aDebugger [
+{ #category : #initialization }
+DebugAction >> forDebugger: aDebugger [
 
 	self debugger: aDebugger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>help [
+{ #category : #accessing }
+DebugAction >> help [
 
 	^ self defaultHelp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>icon [
+{ #category : #accessing }
+DebugAction >> icon [
 
 	^ icon ifNil: [ self defaultIcon ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>icon: anObject [
+{ #category : #accessing }
+DebugAction >> icon: anObject [
 
 	icon := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>id [
+{ #category : #accessing }
+DebugAction >> id [
 
 	^ nil
 ]
 
-{
-	#category : #accessing-context,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>interruptedContext [
+{ #category : #accessing-context }
+DebugAction >> interruptedContext [
 	
 	^ self debugger interruptedContext
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>keyText [
+{ #category : #accessing }
+DebugAction >> keyText [
 	"I return the character associated with this shortcut.
 	I return an uppercase character if the keymap has shift as a modifier."
 
@@ -335,11 +241,8 @@ DebugAction>>keyText [
 				ifFalse: [ currentCharacter asString ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>keymap [
+{ #category : #accessing }
+DebugAction >> keymap [
 
 	^ keymap ifNil: [ 
 		self defaultKeymap ifNil: [ 
@@ -351,174 +254,117 @@ DebugAction>>keymap [
 					ifFalse: [ aString first meta ] ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>keymap: aKeymap [
+{ #category : #accessing }
+DebugAction >> keymap: aKeymap [
 
 	keymap := aKeymap
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>label [
+{ #category : #accessing }
+DebugAction >> label [
 
 	^ label ifNil: [ self defaultLabel ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>label: aString [
+{ #category : #accessing }
+DebugAction >> label: aString [
 
 	label := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>needsSeparatorAfter [
+{ #category : #accessing }
+DebugAction >> needsSeparatorAfter [
 
 	^ needsSeparatorAfter ifNil: [ false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>needsSeparatorAfter: aBoolean [
+{ #category : #accessing }
+DebugAction >> needsSeparatorAfter: aBoolean [
 
 	needsSeparatorAfter := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>needsUpdate [
+{ #category : #accessing }
+DebugAction >> needsUpdate [
 
 	^ needsUpdate ifNil: [ true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>needsUpdate: aBoolean [
+{ #category : #accessing }
+DebugAction >> needsUpdate: aBoolean [
 
 	needsUpdate := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>needsValidation [
+{ #category : #accessing }
+DebugAction >> needsValidation [
 
 	^ needsValidation ifNil: [ true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>needsValidation: anObject [
+{ #category : #accessing }
+DebugAction >> needsValidation: anObject [
 
 	needsValidation := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>notifyDebuggingActionAboutToExecute [
+{ #category : #actions }
+DebugAction >> notifyDebuggingActionAboutToExecute [
 	
 	self debugger announce: (DebugActionAboutToExecute forDebuggingAction: self)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>notifyDebuggingActionExecuted [
+{ #category : #actions }
+DebugAction >> notifyDebuggingActionExecuted [
 	
 	self debugger announce: (DebugActionExecuted forDebuggingAction: self)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>order [
+{ #category : #accessing }
+DebugAction >> order [
 
 	^ order ifNil: [ self defaultOrder ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>order: anInteger [
+{ #category : #accessing }
+DebugAction >> order: anInteger [
 
 	order := anInteger
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>postAction [
+{ #category : #actions }
+DebugAction >> postAction [
 
 	self notifyDebuggingActionExecuted
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>preAction [
+{ #category : #actions }
+DebugAction >> preAction [
 
 	self notifyDebuggingActionAboutToExecute
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>precondition [
+{ #category : #actions }
+DebugAction >> precondition [
 
 	^ self needsValidation not or: [ self debugger okToChange ]
 ]
 
-{
-	#category : #accessing-context,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>selectedContext [
+{ #category : #accessing-context }
+DebugAction >> selectedContext [
 	
 	^ self debugger selectedContext
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>session [
+{ #category : #accessing }
+DebugAction >> session [
 
 	^ self debugger session
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugAction>>withSeparatorAfter [
+{ #category : #accessing }
+DebugAction >> withSeparatorAfter [
 
 	self needsSeparatorAfter: true
 ]

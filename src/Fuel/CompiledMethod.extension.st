@@ -1,12 +1,7 @@
-Extension {
-	#name : #CompiledMethod
-}
+Extension { #name : #CompiledMethod }
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-CompiledMethod>>abstractBytecodeMessagesFrom: startpc to: endpc [
+{ #category : #'*Fuel' }
+CompiledMethod >> abstractBytecodeMessagesFrom: startpc to: endpc [
 	"Answer an OrderedCollection of the abstract bytecodes sent in the receiver."
 	| scanner abstractBytecodes |
 	scanner := InstructionStream new method: self pc: startpc.
@@ -21,11 +16,8 @@ CompiledMethod>>abstractBytecodeMessagesFrom: startpc to: endpc [
 	"| m | (m := CompiledMethod >> #abstractBytecodeMessagesFrom:to:) abstractBytecodeMessagesFrom: m initialPC to: m endPC"
 ]
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-CompiledMethod>>bytecodesHash [
+{ #category : #'*Fuel' }
+CompiledMethod >> bytecodesHash [
 	"Answer a 16-bit checksum of the bytecodes."
 
 	^ CRC crc16FromCollection: (ByteArray 
@@ -36,20 +28,14 @@ CompiledMethod>>bytecodesHash [
 			do: [ :byte | stream nextPut: byte ] ])
 ]
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-CompiledMethod>>fuelAccept: aGeneralMapper [
+{ #category : #'*Fuel' }
+CompiledMethod >> fuelAccept: aGeneralMapper [
 
 	^aGeneralMapper visitCompiledMethod: self
 ]
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-CompiledMethod>>fuelPrepare [
+{ #category : #'*Fuel' }
+CompiledMethod >> fuelPrepare [
 	"Prepare for Fuel serialization."
 	
 	self isNamedPrimitive ifTrue: [self literals first at: 4 put: 0].

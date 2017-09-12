@@ -9,15 +9,11 @@ By default the informations provided on the receiver class are converted into he
 Class {
 	#name : #CustomHelp,
 	#superclass : #Model,
-	#category : #HelpSystem-Core-Utilities,
-	#timestamp : 'tbn 3/29/2010 13:23'
+	#category : #HelpSystem-Core-Utilities
 }
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>accept: aSelector title: title contents: text [
+{ #category : #editing }
+CustomHelp class >> accept: aSelector title: title contents: text [
 	"Accept edited text. Compile it into a HelpTopic"
 
 	| code |
@@ -38,63 +34,45 @@ CustomHelp class>>accept: aSelector title: title contents: text [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>asHelpTopic [
+{ #category : #converting }
+CustomHelp class >> asHelpTopic [
 	"Convert the receiver to a help topic"
 	<systemHelp>
 	
 	^self builder buildHelpTopicFrom: self
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>bold: aString [
+{ #category : #formatting }
+CustomHelp class >> bold: aString [
 	"Return Text object with bold emphasis."
 	aString ifEmpty: [ self errorEmptyString ].
 	^ aString asText addAttribute: TextEmphasis bold from: 1 to: aString size.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>bookDescription [
+{ #category : #accessing }
+CustomHelp class >> bookDescription [
 	"return description of the book that will be visible when one selects the book node"
 	^ ''
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>bookName [
+{ #category : #accessing }
+CustomHelp class >> bookName [
 	"Returns the name of the custom help book"
 	
 	^'Help'
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>builder [
+{ #category : #defaults }
+CustomHelp class >> builder [
 	"Returns the builder that is used to build the given help book from the receiver. You can override this method
 	 in a subclass to provide an own builder".
 	
 	^CustomHelpHelpBuilder
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>doItFrom: aString [
+{ #category : #formatting }
+CustomHelp class >> doItFrom: aString [
 	"Return Text object with a specific color and mouse click action
 	that executes aString; aString should be a Smalltalk script that is possible to evaluate."
 	| color |
@@ -111,11 +89,8 @@ CustomHelp class>>doItFrom: aString [
 
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>doItScriptFrom: aString [
+{ #category : #formatting }
+CustomHelp class >> doItScriptFrom: aString [
 	"Return Text object with a specific color and mouse click action
 	that executes aString; aString should be a Smalltalk script that is possible to evaluate.
 	After the script, a copy to clipboard and run action appears."
@@ -131,11 +106,8 @@ CustomHelp class>>doItScriptFrom: aString [
 	^ text , '  ' asText , clipboard, '  ' asText, run
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>edit: aSelector [
+{ #category : #editing }
+CustomHelp class >> edit: aSelector [
 	"Open a Workspace on the text in the given selector.
 	When accepted, compile the result as a help topic."
 
@@ -154,20 +126,14 @@ To change the topic title, edit the window label.'].
 
 ]
 
-{
-	#category : #errors,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>errorEmptyString [
+{ #category : #errors }
+CustomHelp class >> errorEmptyString [
 
 	self error: 'Expected a non empty string'
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>heading: aString [
+{ #category : #formatting }
+CustomHelp class >> heading: aString [
 	"Return Text object with heading formating attributes."
 
 	| font color |
@@ -184,42 +150,30 @@ CustomHelp class>>heading: aString [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>icon [
+{ #category : #accessing }
+CustomHelp class >> icon [
 	"Returns an icon used for displaying the custom help book"
 
 	^ self iconNamed: #bookIcon
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>isUsed [
+{ #category : #testing }
+CustomHelp class >> isUsed [
 	"all my sublasses are used"
 	^self name = 'CustomHelp'
 		ifTrue: [ super isUsed ]
 		ifFalse: [ true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>key [
+{ #category : #accessing }
+CustomHelp class >> key [
 	"Returns a unique key identifying the receiver in the help system"
 	
 	^''
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>newColoredText: color withClipboardAction: aString [
+{ #category : #'instance creation' }
+CustomHelp class >> newColoredText: color withClipboardAction: aString [
 	"Return new Text object with copy icon and copy to clipboard action."
 	| text icon |
 	icon := Text
@@ -240,11 +194,8 @@ CustomHelp class>>newColoredText: color withClipboardAction: aString [
 	^ icon, text
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>newColoredText: color withRunAction: aString [
+{ #category : #'instance creation' }
+CustomHelp class >> newColoredText: color withRunAction: aString [
 	"Return new Text object with copy icon and run action."
 	| run icon |
 	icon := Text
@@ -263,21 +214,15 @@ CustomHelp class>>newColoredText: color withRunAction: aString [
 	^ icon, run
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>pages  [
+{ #category : #accessing }
+CustomHelp class >> pages [ 
 	"Returns a collection of method selectors to return the pages of the custom help book"
 		
 	^#()
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>subheading: aString [
+{ #category : #formatting }
+CustomHelp class >> subheading: aString [
 	"Return Text object with subheading formating attributes."
 
 	| text font color |
@@ -294,11 +239,8 @@ CustomHelp class>>subheading: aString [
 
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>underlined: aString [
+{ #category : #formatting }
+CustomHelp class >> underlined: aString [
 	"Return Text object with underlined emphasis."
 	aString ifEmpty: [ self errorEmptyString ].
 	
@@ -306,11 +248,8 @@ CustomHelp class>>underlined: aString [
 
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelp class>>url: aString [
+{ #category : #formatting }
+CustomHelp class >> url: aString [
 	"Return Text object with copy aString to the clipboard after mouse click."
 	| color clickBlock |
 	

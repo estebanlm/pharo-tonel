@@ -6,14 +6,10 @@ This event is generated when a joystick is disconnected from the computer.
 Class {
 	#name : #OSJoyDeviceRemovedEvent,
 	#superclass : #OSJoyDeviceEvent,
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'RonieSalgado 4/10/2016 01:43'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyDeviceRemovedEvent>>accept: aVisitor [
+{ #category : #visitor }
+OSJoyDeviceRemovedEvent >> accept: aVisitor [
 	^ aVisitor visitJoyDeviceRemovedEvent: self
 ]

@@ -6,24 +6,17 @@ Shapes do not have to inherit directly from me, for example Rectangle implements
 Class {
 	#name : #AthensShape,
 	#superclass : #AthensAbstractShape,
-	#category : #Athens-Core,
-	#timestamp : '<historical>'
+	#category : #Athens-Core
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensShape>>asAthensShapeOn: canvas [
+{ #category : #converting }
+AthensShape >> asAthensShapeOn: canvas [
 	"Receiver is a shape, no conversion is needed."
 	^ self
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensShape>>paintFillsUsing: aPaint on: anAthensCanvas  [
+{ #category : #drawing }
+AthensShape >> paintFillsUsing: aPaint on: anAthensCanvas [ 
 	"This method is a part of rendering dispatch  Canvas->receiver->paint"
 	
 	self subclassResponsibility

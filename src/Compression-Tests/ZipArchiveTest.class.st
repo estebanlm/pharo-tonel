@@ -11,15 +11,11 @@ Class {
 		'zipFile',
 		'fileSystem'
 	],
-	#category : #Compression-Tests-Archive,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:04'
+	#category : #Compression-Tests-Archive
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipArchiveTest>>setUp [
+{ #category : #tests }
+ZipArchiveTest >> setUp [
 
 	| now |
 	now := DateAndTime now asString replaceAll: $: with: $_.
@@ -32,11 +28,8 @@ ZipArchiveTest>>setUp [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipArchiveTest>>tearDown [
+{ #category : #tests }
+ZipArchiveTest >> tearDown [
 
 	fileToZip ensureDelete.
 	zip close.	
@@ -44,20 +37,14 @@ ZipArchiveTest>>tearDown [
 	zipFile ensureDelete.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipArchiveTest>>testAddNonExistentFile [
+{ #category : #tests }
+ZipArchiveTest >> testAddNonExistentFile [
 	
 	self should: [ zip addFile: 'it_would_be_crazy_if_this_file_existed.ext' ] raise: FileDoesNotExistException.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipArchiveTest>>testCreateWithRelativeNames [
+{ #category : #tests }
+ZipArchiveTest >> testCreateWithRelativeNames [
 	"Test creating a zip with a relative tree of files, so that the tree will
 	be created whereever the ."
 	
@@ -175,11 +162,8 @@ ZipArchiveTest>>testCreateWithRelativeNames [
 		self assert: str atEnd ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipArchiveTest>>testDate29Feb2000 [
+{ #category : #tests }
+ZipArchiveTest >> testDate29Feb2000 [
 	"Ensure that dates with leap years don't screw up in the conversion"
 
 	| archive member theDate |
@@ -190,11 +174,8 @@ ZipArchiveTest>>testDate29Feb2000 [
 	self assert: member lastModTime equals: theDate.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipArchiveTest>>testFilePermissions [
+{ #category : #tests }
+ZipArchiveTest >> testFilePermissions [
 
 	| nestedFileToZip fileModified folderModified folderMember fileMember |
 	nestedFileToZip := subdir / '_test-zip-file'.
@@ -213,11 +194,8 @@ ZipArchiveTest>>testFilePermissions [
 	self assert: folderMember unixFileAttributes equals: 8r40755.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipArchiveTest>>testParseSqueakZipTimestamp [
+{ #category : #tests }
+ZipArchiveTest >> testParseSqueakZipTimestamp [
 	"Issue 6054. We're testing a private method. Eventually, the zip timestamp handling should be refactored; maybe a ZipTimestamp subclass of DosTimestamp"
 
 	| squeakDosTimestamp dateAndTime |
@@ -227,11 +205,8 @@ ZipArchiveTest>>testParseSqueakZipTimestamp [
 	self assert: dateAndTime equals: '2011-09-29T04:01:06+00:00' asDateAndTime.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipArchiveTest>>testSetLastModification [
+{ #category : #tests }
+ZipArchiveTest >> testSetLastModification [
 
 	| aDateAndTime member |
 	aDateAndTime := '15 January, 2000T13:23:55'.
@@ -240,11 +215,8 @@ ZipArchiveTest>>testSetLastModification [
 	self assert: member lastModTime equals: aDateAndTime.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipArchiveTest>>testZip [
+{ #category : #tests }
+ZipArchiveTest >> testZip [
 	
 	| localFileHeaderSignature versionNeededToExtract bitFlag deflateCompressionMethod realModificationStamp expectedCrc32 expectedCompressedSize expectedUncompressedSize centralDirectoryOffset centralDirectoryEnd |
 	

@@ -6,35 +6,25 @@ Class {
 	#name : #Cubic,
 	#superclass : #Array,
 	#type : #variable,
-	#category : #Morphic-Base-Basic,
-	#timestamp : 'wiz 6/17/2004 20:31'
+	#category : #Morphic-Base-Basic
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Cubic class>>with: pt1 with: pt2  with: pt3 with: pt4 [
+{ #category : #'instance creation' }
+Cubic class >> with: pt1 [ with: pt2  with: pt3 with: pt4
 	"a cubic object is composed of 4 points"
 	
 	^ self withAll: {pt1 . pt2 . pt3 . pt4}
 ]
 
-{
-	#category : #'cubic support',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Cubic>>bestSegments [
+{ #category : #'cubic support' }
+Cubic >> bestSegments [
 	"Return the smallest integer number of segments that give the best curve."
 	
 	^ self honeIn: self calcEnoughSegments
 ]
 
-{
-	#category : #'cubic support',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Cubic>>calcEnoughSegments [
+{ #category : #'cubic support' }
+Cubic >> calcEnoughSegments [
 	"Find the power of two that represents a sufficient number of  segments for this cubic.  
 	The measure is the sum of distances for the segments.  
 	We want this to be close enough not affect the straightness of  
@@ -46,11 +36,8 @@ Cubic>>calcEnoughSegments [
 		withIn: self leeway
 ]
 
-{
-	#category : #'cubic support',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Cubic>>enough: nTry withMeasure: lastMeasure withIn: closeEnough [
+{ #category : #'cubic support' }
+Cubic >> enough: nTry withMeasure: lastMeasure withIn: closeEnough [
 	"See comment in calcEnoughSegments for which I am a helper"
 	
 	| measure |
@@ -63,11 +50,8 @@ Cubic>>enough: nTry withMeasure: lastMeasure withIn: closeEnough [
 		withIn: closeEnough
 ]
 
-{
-	#category : #'cubic support',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Cubic>>honeIn: enough  [
+{ #category : #'cubic support' }
+Cubic >> honeIn: enough [ 
 	"Find if there is a smaller n than enough that give the same  
 	measure for n."
 	
@@ -80,11 +64,8 @@ Cubic>>honeIn: enough  [
 		withIn: self leeway
 ]
 
-{
-	#category : #'cubic support',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Cubic>>honeIn: centerN step: step measure: measure withIn: closeEnough  [
+{ #category : #'cubic support' }
+Cubic >> honeIn: centerN step: step measure: measure withIn: closeEnough [ 
 	"Pick the best n by binary search."
 	
 	| nTry |
@@ -104,21 +85,15 @@ Cubic>>honeIn: centerN step: step measure: measure withIn: closeEnough  [
 				withIn: closeEnough]
 ]
 
-{
-	#category : #'cubic support',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Cubic>>leeway [
+{ #category : #'cubic support' }
+Cubic >> leeway [
 	"How close can measure be"
 	
 	^ 0.1
 ]
 
-{
-	#category : #'cubic support',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Cubic>>measureFor: n  [
+{ #category : #'cubic support' }
+Cubic >> measureFor: n [ 
 	"Return a distance measure for cubic curve with n segments. 
 	For convienence and accuracy we use the sum of the distances. "
 	"The first point is poly of 0."

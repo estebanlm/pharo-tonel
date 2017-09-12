@@ -8,158 +8,103 @@ Class {
 		'identifier',
 		'name'
 	],
-	#category : #Keymapping-KeyCombinations,
-	#timestamp : '<historical>'
+	#category : #Keymapping-KeyCombinations
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier class>>alt [
+{ #category : #'instance creation' }
+KMModifier class >> alt [
 	^ KMAltModifier new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier class>>command [
+{ #category : #'instance creation' }
+KMModifier class >> command [
 	^ KMCommandModifier new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier class>>control [
+{ #category : #'instance creation' }
+KMModifier class >> control [
 	^ KMCtrlModifier new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier class>>ctrl [
+{ #category : #'instance creation' }
+KMModifier class >> ctrl [
 	^ KMCtrlModifier new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier class>>meta [
+{ #category : #'instance creation' }
+KMModifier class >> meta [
 	^ KMMetaModifier new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier class>>shift [
+{ #category : #'instance creation' }
+KMModifier class >> shift [
 	^ KMShiftModifier new
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier>>+ modifier [
+{ #category : #combining }
+KMModifier >> + modifier [
 	^ modifier asKeyCombination modifiedBy: self
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier>>= aShortcut [
+{ #category : #comparing }
+KMModifier >> = aShortcut [
 	super = aShortcut
 		ifFalse: [ ^ false ].
 	^ aShortcut eventCode = self eventCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier>>eventCode [
+{ #category : #accessing }
+KMModifier >> eventCode [
 	"No modifiers"
 	
 	^ 0.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier>>hash [
+{ #category : #comparing }
+KMModifier >> hash [
 	^ self eventCode hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier>>identifier [
+{ #category : #accessing }
+KMModifier >> identifier [
 	^ identifier
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier>>matches: aKeyboardEvent [
+{ #category : #matching }
+KMModifier >> matches: aKeyboardEvent [
 	self shouldNotImplement
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier>>matchesEvent: aKeyboardEvent [
+{ #category : #matching }
+KMModifier >> matchesEvent: aKeyboardEvent [
 	self subclassResponsibility
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier>>modifiedBy: modifier [
+{ #category : #combining }
+KMModifier >> modifiedBy: modifier [
 	^ KMComposedModifier new
 		modifiedBy: modifier;
 		modifiedBy: self;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier>>name [
+{ #category : #accessing }
+KMModifier >> name [
 	^ name
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier>>printOn: aStream [
+{ #category : #printing }
+KMModifier >> printOn: aStream [
 	aStream << name
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier>>species [
+{ #category : #comparing }
+KMModifier >> species [
 
 	^ KMModifier
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifier>>symbol [
+{ #category : #printing }
+KMModifier >> symbol [
 	^ '⌘'
 ]

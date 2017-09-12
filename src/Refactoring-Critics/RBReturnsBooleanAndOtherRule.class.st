@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'matcher'
 	],
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 20:26'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBReturnsBooleanAndOtherRule class>>checksMethod [
+{ #category : #testing }
+RBReturnsBooleanAndOtherRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBReturnsBooleanAndOtherRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBReturnsBooleanAndOtherRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'ReturnsBooleanAndOtherRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBReturnsBooleanAndOtherRule>>basicCheck: aMethod  [
+{ #category : #running }
+RBReturnsBooleanAndOtherRule >> basicCheck: aMethod [ 
 	| hasBool hasSelf |
 	hasBool := false.
 	hasSelf := aMethod parseTree lastIsReturn not.
@@ -47,28 +37,19 @@ RBReturnsBooleanAndOtherRule>>basicCheck: aMethod  [
 	^ (hasSelf and: [ hasBool ])
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBReturnsBooleanAndOtherRule>>checkMethod: aMethod  [
+{ #category : #running }
+RBReturnsBooleanAndOtherRule >> checkMethod: aMethod [ 
 	(self basicCheck: aMethod) 
 		ifTrue: [ result addMethod: aMethod ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBReturnsBooleanAndOtherRule>>group [
+{ #category : #accessing }
+RBReturnsBooleanAndOtherRule >> group [
 	^ 'Potential Bugs'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBReturnsBooleanAndOtherRule>>initialize [
+{ #category : #initialization }
+RBReturnsBooleanAndOtherRule >> initialize [
 	super initialize.
 	matcher := RBParseTreeSearcher new.
 	matcher 
@@ -76,10 +57,7 @@ RBReturnsBooleanAndOtherRule>>initialize [
 		do: [ :node :answer | answer add: node value; yourself ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBReturnsBooleanAndOtherRule>>name [
+{ #category : #accessing }
+RBReturnsBooleanAndOtherRule >> name [
 	^ 'Returns a boolean and non boolean'
 ]

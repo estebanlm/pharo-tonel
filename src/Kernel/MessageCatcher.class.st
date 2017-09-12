@@ -10,34 +10,24 @@ Class {
 	#instVars : [
 		'accumulator'
 	],
-	#category : #Kernel-Methods,
-	#timestamp : '<historical>'
+	#category : #Kernel-Methods
 }
 
-{
-	#category : #'reflective operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MessageCatcher>>doesNotUnderstand: aMessage [
+{ #category : #'reflective operations' }
+MessageCatcher >> doesNotUnderstand: aMessage [
 
 	accumulator ifNotNil: [accumulator add: aMessage].
 	^ aMessage
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MessageCatcher>>privAccumulator [
+{ #category : #private }
+MessageCatcher >> privAccumulator [
 
 	^ accumulator
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MessageCatcher>>privAccumulator: collection [
+{ #category : #private }
+MessageCatcher >> privAccumulator: collection [
 
 	accumulator := collection
 ]

@@ -12,56 +12,37 @@ Class {
 	#instVars : [
 		'condition'
 	],
-	#category : #Refactoring-Core-Conditions,
-	#timestamp : 'NicolaiHess 5/19/2016 16:43'
+	#category : #Refactoring-Core-Conditions
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNegationCondition class>>on: aCondition [
+{ #category : #'instance creation' }
+RBNegationCondition class >> on: aCondition [
 	^self new condition: aCondition
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNegationCondition>>check [
+{ #category : #checking }
+RBNegationCondition >> check [
 	^condition check not
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNegationCondition>>condition: aCondition  [
+{ #category : #initialize-release }
+RBNegationCondition >> condition: aCondition [ 
 	condition := aCondition.
 	self errorMacro: condition errorMacro
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNegationCondition>>errorBlockFor: aBoolean  [
+{ #category : #private }
+RBNegationCondition >> errorBlockFor: aBoolean [ 
 	^condition errorBlockFor: aBoolean not
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNegationCondition>>errorStringFor: aBoolean  [
+{ #category : #private }
+RBNegationCondition >> errorStringFor: aBoolean [ 
 	^condition errorStringFor: aBoolean not
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNegationCondition>>printOn: aStream  [
+{ #category : #printing }
+RBNegationCondition >> printOn: aStream [ 
 	aStream nextPutAll: 'NOT ';
 		print: condition
 ]

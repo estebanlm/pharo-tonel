@@ -4,33 +4,23 @@ Checks for unconditional recursion that might cause the image to hang when execu
 Class {
 	#name : #RBUnconditionalRecursionRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 22:55'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnconditionalRecursionRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBUnconditionalRecursionRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'UnconditionalRecursionRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnconditionalRecursionRule>>group [
+{ #category : #accessing }
+RBUnconditionalRecursionRule >> group [
 	^ 'Potential Bugs'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnconditionalRecursionRule>>initialize [
+{ #category : #initialization }
+RBUnconditionalRecursionRule >> initialize [
 	super initialize.
 	self matcher
 		matchesMethod: '`@message: `@args
@@ -48,18 +38,12 @@ RBUnconditionalRecursionRule>>initialize [
 					ifFalse: [ node ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnconditionalRecursionRule>>name [
+{ #category : #accessing }
+RBUnconditionalRecursionRule >> name [
 	^ 'Unconditional recursion'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnconditionalRecursionRule>>severity [
+{ #category : #accessing }
+RBUnconditionalRecursionRule >> severity [
 	^ #error
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #EpRenameMethodRefactoring
-}
+Extension { #name : #EpRenameMethodRefactoring }
 
-{
-	#category : #'*EpiceaBrowsers',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRenameMethodRefactoring>>summaryOn: aWriteStream [
+{ #category : #'*EpiceaBrowsers' }
+EpRenameMethodRefactoring >> summaryOn: aWriteStream [
 	"Write a string summarizing myself."
 	
 	aWriteStream

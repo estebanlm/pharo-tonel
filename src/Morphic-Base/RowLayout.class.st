@@ -8,25 +8,18 @@ Class {
 		'cachedMinExtent',
 		'cachedMinExtents'
 	],
-	#category : #Morphic-Base-Layouts,
-	#timestamp : 'gvc 5/31/2007 16:12'
+	#category : #Morphic-Base-Layouts
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-RowLayout>>flushLayoutCache [
+{ #category : #'as yet unclassified' }
+RowLayout >> flushLayoutCache [
 	"Flush any cached information associated with the receiver."
 	
 	cachedMinExtent := nil
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-RowLayout>>layout: aMorph in: layoutBounds [
+{ #category : #'as yet unclassified' }
+RowLayout >> layout: aMorph in: layoutBounds [
 	"Compute the layout for the given morph based on the new bounds.
 	Supports submorph hResizing, vResizing, cellInset, cellPositioning
 	(top, *center, bottom*) and listCentering."
@@ -81,11 +74,8 @@ RowLayout>>layout: aMorph in: layoutBounds [
 		x := x + width + inset]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-RowLayout>>minExtentOf: aMorph in: newBounds [
+{ #category : #'as yet unclassified' }
+RowLayout >> minExtentOf: aMorph [ in: newBounds
 	"Return the minimal size aMorph's children would require given the new bounds"
 	
 	| props extent|

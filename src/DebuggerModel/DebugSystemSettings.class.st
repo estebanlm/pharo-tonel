@@ -4,15 +4,11 @@ Settings for debugging
 Class {
 	#name : #DebugSystemSettings,
 	#superclass : #Object,
-	#category : #DebuggerModel,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:30'
+	#category : #DebuggerModel
 }
 
-{
-	#category : #'private - settings',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSystemSettings class>>addDebugFilterSessingsOn: aBuilder [
+{ #category : #'private - settings' }
+DebugSystemSettings class >> addDebugFilterSessingsOn: aBuilder [
 	| stackWidgetClass |
 	
 	stackWidgetClass := Smalltalk tools debugger stackWidgetClass.
@@ -46,11 +42,8 @@ DebugSystemSettings class>>addDebugFilterSessingsOn: aBuilder [
 				].
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSystemSettings class>>debugSettingsOn: aBuilder [
+{ #category : #settings }
+DebugSystemSettings class >> debugSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #debugging)
 		label: 'Debugging';

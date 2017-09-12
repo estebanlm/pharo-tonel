@@ -19,15 +19,11 @@ Class {
 		'buttonMakeDiff',
 		'relationGraph'
 	],
-	#category : #Tool-DependencyAnalyser-UI-Core,
-	#timestamp : 'BaptisteQuide 6/12/2014 15:49'
+	#category : #Tool-DependencyAnalyser-UI-Core
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel class>>defaultSpec [
+{ #category : #specs }
+DAPackageAnalyzerTreeModel class >> defaultSpec [
 	<spec: #default>
 	^ SpecLayout composed
 		newColumn:
@@ -58,59 +54,41 @@ DAPackageAnalyzerTreeModel class>>defaultSpec [
 					  yourself
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel class>>onPackages: aCollection [
+{ #category : #instance-creation }
+DAPackageAnalyzerTreeModel class >> onPackages: aCollection [
 	^ self new
 		initializeWithRPackageSet: aCollection;
 		yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel class>>onPackagesMatch: match [
+{ #category : #examples }
+DAPackageAnalyzerTreeModel class >> onPackagesMatch: match [
 	^ (self onPackagesNamed:
 			(RPackageOrganizer default packages
 				select: [ :package | match match: package packageName asString ]
 				thenCollect: [ :package | package packageName ]) )
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel class>>onPackagesNamed: aCollection [
+{ #category : #instance-creation }
+DAPackageAnalyzerTreeModel class >> onPackagesNamed: aCollection [
 	^ self onPackages: (aCollection collect: [ :each | RPackageSet named: each ])
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>actionOnAddPackage [
+{ #category : #protocol }
+DAPackageAnalyzerTreeModel >> actionOnAddPackage [
 	self buttonAddPackage action: [ (DAAddPackageModel 
 					new 
 					packageAnalyzerTreeModel: self)
 					open ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>actionOnBrowseCycles [
+{ #category : #protocol }
+DAPackageAnalyzerTreeModel >> actionOnBrowseCycles [
 	buttonBrowseCycles action: [ self actionOnFindCycles ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>actionOnButtons [
+{ #category : #protocol }
+DAPackageAnalyzerTreeModel >> actionOnButtons [
 
 	self
 		actionOnBrowseCycles;
@@ -123,22 +101,16 @@ DAPackageAnalyzerTreeModel>>actionOnButtons [
 		actionOnSave.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>actionOnDefaultSettings [
+{ #category : #protocol }
+DAPackageAnalyzerTreeModel >> actionOnDefaultSettings [
 	self buttonDefault
 		action: [ 
 			self resetDefaultSettings.
 			self buildRoots ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>actionOnFindCycles [
+{ #category : #protocol }
+DAPackageAnalyzerTreeModel >> actionOnFindCycles [
 	| selectedPackages selectedItems |
 	selectedItems := self selectedItemsFromTree.
 	(self arePackageNodes: selectedItems)
@@ -151,11 +123,8 @@ DAPackageAnalyzerTreeModel>>actionOnFindCycles [
 				open ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>actionOnGenerateGraphViz [
+{ #category : #protocol }
+DAPackageAnalyzerTreeModel >> actionOnGenerateGraphViz [
 	| graphvizGenerator |
 	buttonGenerateGraphViz
 		action: [  
@@ -164,11 +133,8 @@ DAPackageAnalyzerTreeModel>>actionOnGenerateGraphViz [
 			self saveGraphAndOpenWith: graphvizGenerator ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>actionOnRemovePackage [
+{ #category : #protocol }
+DAPackageAnalyzerTreeModel >> actionOnRemovePackage [
 	| packagesToRemove |
 	self buttonRemovePackage
 		action: [ 
@@ -179,31 +145,22 @@ DAPackageAnalyzerTreeModel>>actionOnRemovePackage [
 					self buildRoots ] ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>actionOnReverseAnalysis [
+{ #category : #protocol }
+DAPackageAnalyzerTreeModel >> actionOnReverseAnalysis [
 	buttonReverseAnalysis action: [ 
 		(DAPackageAnalyzerPackageDependenciesWindow new 
 						initializeWithRelationGraph: self relationGraph) 
 					open ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>actionOnSave [
+{ #category : #protocol }
+DAPackageAnalyzerTreeModel >> actionOnSave [
 	self buttonSave 
 		action: [ self saveCurrentRelationGraph ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>actionWhenTextFieldChanged [
+{ #category : #protocol }
+DAPackageAnalyzerTreeModel >> actionWhenTextFieldChanged [
 	textPackageField
 		whenTextChanged: [ 
 			textPackageField text 
@@ -212,11 +169,8 @@ DAPackageAnalyzerTreeModel>>actionWhenTextFieldChanged [
 			self buildRoots ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>buildRoots [
+{ #category : #actions }
+DAPackageAnalyzerTreeModel >> buildRoots [
 	| matching roots |
 	self filter
 		ifNotNil: [ 
@@ -227,125 +181,80 @@ DAPackageAnalyzerTreeModel>>buildRoots [
 	self updatePackageLabel.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>buttonAddPackage [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> buttonAddPackage [
 	^ buttonAddPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>buttonBrowseCycles [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> buttonBrowseCycles [
 	^ buttonBrowseCycles
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>buttonDefault [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> buttonDefault [
 	^ buttonDefault
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>buttonGenerateGraphViz [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> buttonGenerateGraphViz [
 	^ buttonGenerateGraphViz
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>buttonMakeDiff [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> buttonMakeDiff [
 	^ buttonMakeDiff
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>buttonRemovePackage [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> buttonRemovePackage [
 	^ buttonRemovePackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>buttonReverseAnalysis [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> buttonReverseAnalysis [
 	^ buttonReverseAnalysis
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>buttonSave [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> buttonSave [
 	^ buttonSave
 ]
 
-{
-	#category : #saving,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>createDirectoryForSaving [
+{ #category : #saving }
+DAPackageAnalyzerTreeModel >> createDirectoryForSaving [
 	| dir |
 	dir := FileSystem workingDirectory / self defaultDirectory.
 	dir ensureCreateDirectory
 ]
 
-{
-	#category : #saving,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>defaultDirectory [
+{ #category : #saving }
+DAPackageAnalyzerTreeModel >> defaultDirectory [
 	^ 'saving'
 ]
 
-{
-	#category : #saving,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>defaultName [
+{ #category : #saving }
+DAPackageAnalyzerTreeModel >> defaultName [
 	^ self defaultDirectory, '/relationGraph.FL'
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>extent [
+{ #category : #protocol }
+DAPackageAnalyzerTreeModel >> extent [
 	^ 700@500
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>filter [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> filter [
 	^ filter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>filter: aString [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> filter: aString [
 	filter := aString
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>initializeButtons [
+{ #category : #initialization }
+DAPackageAnalyzerTreeModel >> initializeButtons [
 	buttonBrowseCycles := self newButton
 		help: 'Find all the cycles where the package is in the system';
 		label: 'Find cycles'.
@@ -373,11 +282,8 @@ DAPackageAnalyzerTreeModel>>initializeButtons [
 		label: 'Make diff'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>initializePresenter [
+{ #category : #initialization }
+DAPackageAnalyzerTreeModel >> initializePresenter [
 	super initializePresenter.
 	self actionOnButtons.
 	tree
@@ -390,11 +296,8 @@ DAPackageAnalyzerTreeModel>>initializePresenter [
 					self tree selectedItem browseInNautilus ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>initializeWidgets [
+{ #category : #initialization }
+DAPackageAnalyzerTreeModel >> initializeWidgets [
 	super initializeWidgets.
 	
 	packageLabel := self newLabel label: 'Analysis of packages'.
@@ -406,19 +309,13 @@ DAPackageAnalyzerTreeModel>>initializeWidgets [
 	self initializeButtons
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>initializeWithRPackageSet: aCollection [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> initializeWithRPackageSet: aCollection [
 	self relationGraph: (DAPackageRelationGraph onPackages: (aCollection collect: [ :each | DAPackage on: each ]))
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>nodesFor: anItemList  [
+{ #category : #private }
+DAPackageAnalyzerTreeModel >> nodesFor: anItemList [ 
 	^ anItemList sorted collect: 
 		[ :each | 
 		DAPackageUnderAnalysisNode new
@@ -430,19 +327,13 @@ DAPackageAnalyzerTreeModel>>nodesFor: anItemList  [
 			yourself ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>packageLabel [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> packageLabel [
 	^ packageLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>packagesEntryCompletion [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> packagesEntryCompletion [
 	| applicants |
 	applicants := (RPackageOrganizer default packages collect: [ :package | package packageName asString ]).
 
@@ -452,38 +343,26 @@ DAPackageAnalyzerTreeModel>>packagesEntryCompletion [
 						and: [currApplicant asUppercase includesSubstring: currText asString asUppercase]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>pdPackagesFrom: selectedItems [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> pdPackagesFrom: selectedItems [
 	^ selectedItems collect: [ :item | DAPackage on: (RPackageSet named: item content packageName asString) ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>refresh [
+{ #category : #actions }
+DAPackageAnalyzerTreeModel >> refresh [
 	self isOpen ifTrue: [  
 			self relationGraph refreshGraph.
 			self buildRoots].
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>relationGraph [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> relationGraph [
 	^ relationGraph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>relationGraph: anObject [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> relationGraph: anObject [
 	| warnings alertMessage |
 	warnings := Set new.
 	relationGraph := anObject.
@@ -501,86 +380,56 @@ DAPackageAnalyzerTreeModel>>relationGraph: anObject [
 			title: 'Potential outdated dependencies' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>relationGraphOnReverse: anObject [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> relationGraphOnReverse: anObject [
 	relationGraph := anObject.
 	self relationGraph build.
 	self buildReverseRoots
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>resetDefaultSettings [
+{ #category : #actions }
+DAPackageAnalyzerTreeModel >> resetDefaultSettings [
 	self resetFilter.
 	self textPackageField text: ''
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>resetFilter [
+{ #category : #actions }
+DAPackageAnalyzerTreeModel >> resetFilter [
 	^ self filter: nil
 ]
 
-{
-	#category : #saving,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>saveCurrentRelationGraph [
+{ #category : #saving }
+DAPackageAnalyzerTreeModel >> saveCurrentRelationGraph [
 	self createDirectoryForSaving.
 	^  FLSerializer serialize: relationGraph toFileNamed: self defaultName. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>seenPackagesName [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> seenPackagesName [
 	^ self relationGraph seenPackagesName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>sizeOfRoots [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> sizeOfRoots [
 	^ self treeRoots size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>textPackageField [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> textPackageField [
 	^ textPackageField
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>title [
+{ #category : #protocol }
+DAPackageAnalyzerTreeModel >> title [
 	^ 'Dependencies analysis'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>treeRoots [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> treeRoots [
 	^ self tree roots
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerTreeModel>>updatePackageLabel [
+{ #category : #accessing }
+DAPackageAnalyzerTreeModel >> updatePackageLabel [
 	self packageLabel label: 'Analysis of ' , self sizeOfRoots asString , ' package(s)'
 ]

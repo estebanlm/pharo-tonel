@@ -4,46 +4,30 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestCollectionsStreams,
 	#superclass : #PackageManifest,
-	#category : #Collections-Streams,
-	#timestamp : '<historical>'
+	#category : #Collections-Streams
 }
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ManifestCollectionsStreams class>>dependencies [
+{ #category : #meta-data }
+ManifestCollectionsStreams class >> dependencies [
 	^ #(#'Collections-Strings' #'Multilingual-TextConversion' #'Collections-Support' #'Collections-Sequenceable' #Kernel #'Collections-Native')
 ]
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ManifestCollectionsStreams class>>description [
+{ #category : #meta-data }
+ManifestCollectionsStreams class >> description [
 	^ 'All Stream hierarchy: read/write stream'
 ]
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ManifestCollectionsStreams class>>ignoredDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestCollectionsStreams class >> ignoredDependencies [
 	^ #(#'Tool-Transcript')
 ]
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ManifestCollectionsStreams class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestCollectionsStreams class >> manuallyResolvedDependencies [
 	^ #(#UIManager #'Tool-Transcript' #Transcript #Traits #'Collections-Abstract' #Jobs)
 ]
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ManifestCollectionsStreams class>>packageName [
+{ #category : #meta-data }
+ManifestCollectionsStreams class >> packageName [
 	^ #'Collections-Streams'
 ]

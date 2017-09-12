@@ -37,98 +37,67 @@ Class {
 	#pools : [
 		'TextConstants'
 	],
-	#category : #Graphics-Fonts,
-	#timestamp : '<historical>'
+	#category : #Graphics-Fonts
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>actualFamilyNames [
+{ #category : #accessing }
+StrikeFont class >> actualFamilyNames [
 	"Answer a sorted list of actual family names, without the Default aliases"
 
 	^(self familyNames copyWithoutAll: TextStyle defaultFamilyNames) asOrderedCollection
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>cleanUp: aggressive [
+{ #category : #cleanup }
+StrikeFont class >> cleanUp: aggressive [
 	"Flush synthesized strike fonts"
 
 	self allInstancesDo: [:sf| sf reset].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>default [
+{ #category : #accessing }
+StrikeFont class >> default [
 	^TextStyle default defaultFont
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>defaultFallbackFontKeys [
+{ #category : #accessing }
+StrikeFont class >> defaultFallbackFontKeys [
 	^ Array with: self defaultFontKey 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>defaultFontKey [
+{ #category : #accessing }
+StrikeFont class >> defaultFontKey [
 	^ self dejaVuKey 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>defaultFontSize [
+{ #category : #accessing }
+StrikeFont class >> defaultFontSize [
 	^ 9
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>dejaVuKey [
+{ #category : #accessing }
+StrikeFont class >> dejaVuKey [
 	^ 'Bitmap DejaVu Sans'
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>familyName: aName pointSize: aSize [
+{ #category : #accessing }
+StrikeFont class >> familyName: aName pointSize: aSize [
 	"Answer a font (or the default font if the name is unknown) in the specified size."
 
 	^ ((TextStyle named: aName asSymbol) ifNil: [TextStyle default]) fontOfPointSize: aSize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>familyName: aName pointSize: aSize emphasized: emphasisCode [
+{ #category : #'instance creation' }
+StrikeFont class >> familyName: aName pointSize: aSize emphasized: emphasisCode [
 	"Create the font with this emphasis"
 
 	^ (self familyName: aName pointSize: aSize) emphasized: emphasisCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>familyName: aName size: aSize [
+{ #category : #accessing }
+StrikeFont class >> familyName: aName size: aSize [
 	"Answer a font (or the default font if the name is unknown) in the specified size."
 	| style |
 	style := TextStyle named: aName asSymbol.
@@ -137,29 +106,20 @@ StrikeFont class>>familyName: aName size: aSize [
 	^style fontOfSize: aSize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>familyName: aName size: aSize emphasized: emphasisCode [
+{ #category : #'instance creation' }
+StrikeFont class >> familyName: aName size: aSize emphasized: emphasisCode [
 	"Create the font with this emphasis"
 
 	^ (self familyName: aName size: aSize) emphasized: emphasisCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>familyNames [
+{ #category : #accessing }
+StrikeFont class >> familyNames [
 	^ (TextSharedInformation select: [:each | each isKindOf: TextStyle]) keys asSortedCollection
 ]
 
-{
-	#category : #'font creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>fromHostFont: fontName size: fontSize flags: fontFlags weight: fontWeight  [
+{ #category : #'font creation' }
+StrikeFont class >> fromHostFont: fontName size: fontSize flags: fontFlags weight: fontWeight [ 
 	"
 		^StrikeFont fromHostFont: (StrikeFont hostFontFromUser)
 					size: 12 flags: 0 weight: 4.
@@ -224,40 +184,28 @@ StrikeFont class>>fromHostFont: fontName size: fontSize flags: fontFlags weight:
 		with: xTable
 ]
 
-{
-	#category : #'font creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>fromStrike: fileName  [
+{ #category : #'font creation' }
+StrikeFont class >> fromStrike: fileName [ 
 	"Read a font from disk in the old ST-80 'strike' format.
 	Note: this is an old format; use strike2 format instead"
 
 	^self new newFromStrike: fileName
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>fromUser [
+{ #category : #'instance creation' }
+StrikeFont class >> fromUser [
 	"StrikeFont fromUser"
 	^self fromUser: TextStyle defaultFont
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>fromUser: priorFont [
+{ #category : #'instance creation' }
+StrikeFont class >> fromUser: priorFont [
 	
 	^ UIManager default fontFromUser: priorFont.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>fromUser: priorFont allowKeyboard: aBoolean  [
+{ #category : #'instance creation' }
+StrikeFont class >> fromUser: priorFont allowKeyboard: aBoolean [ 
 	"Present a menu of available fonts, and if one is chosen, return it. Otherwise return nil."
 	"StrikeFont fromUser"
 	| fontList fontMenu spec font style |
@@ -298,11 +246,8 @@ StrikeFont class>>fromUser: priorFont allowKeyboard: aBoolean  [
 	^ font
 ]
 
-{
-	#category : #'font creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>hostFontFromUser [
+{ #category : #'font creation' }
+StrikeFont class >> hostFontFromUser [
 	"StrikeFont hostFontFromUser"
 	| fontNames index labels |
 	fontNames := self listFontNames asSortedCollection.
@@ -317,19 +262,13 @@ StrikeFont class>>hostFontFromUser [
 	^ fontNames at: index
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>initialize [
+{ #category : #initialize-release }
+StrikeFont class >> initialize [
 	SessionManager default registerGuiClassNamed: self name
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>limitTo16Bits [
+{ #category : #removing }
+StrikeFont class >> limitTo16Bits [
 	"Limit glyph depth to 16 bits (it is usually 16 or 32).
 	
 	StrikeFont limitTo16Bits
@@ -338,20 +277,14 @@ StrikeFont class>>limitTo16Bits [
 		setGlyphsDepthAtMost: 16 ].
 ]
 
-{
-	#category : #'font creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>listFont: index [
+{ #category : #'font creation' }
+StrikeFont class >> listFont: index [
 	<primitive:'primitiveListFont' module:'FontPlugin'>
 	^nil
 ]
 
-{
-	#category : #'font creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>listFontNames [
+{ #category : #'font creation' }
+StrikeFont class >> listFontNames [
 	"StrikeFont listFontNames"
 	"List all the OS font names"
 	| font fontNames index |
@@ -365,19 +298,13 @@ StrikeFont class>>listFontNames [
 	^ fontNames contents
 ]
 
-{
-	#category : #'font creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>localeChanged [
+{ #category : #'font creation' }
+StrikeFont class >> localeChanged [
 	self setupDefaultFallbackFont
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>makeControlCharsVisible [
+{ #category : #'character shapes' }
+StrikeFont class >> makeControlCharsVisible [
 	"
 	Make normally not visible characters, visible
 	StrikeFont makeControlCharsVisible
@@ -385,11 +312,8 @@ StrikeFont class>>makeControlCharsVisible [
 	self allInstances do: [ :font | font makeControlCharsVisible ]
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>makeLfInvisible [
+{ #category : #'character shapes' }
+StrikeFont class >> makeLfInvisible [
 	"
 	Make line feed characters invisible
 	StrikeFont makeLfInvisible
@@ -397,11 +321,8 @@ StrikeFont class>>makeLfInvisible [
 	self allInstances do: [ :font | font makeLfInvisible ]
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>makeLfVisible [
+{ #category : #'character shapes' }
+StrikeFont class >> makeLfVisible [
 	"
 	Make line feed characters visible
 	StrikeFont makeLfVisible
@@ -409,11 +330,8 @@ StrikeFont class>>makeLfVisible [
 	self allInstances do: [ :font | font makeLfVisible ]
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>makeTabInvisible [
+{ #category : #'character shapes' }
+StrikeFont class >> makeTabInvisible [
 	"
 	Make tab characters invisible
 	StrikeFont makeTabInvisible
@@ -421,11 +339,8 @@ StrikeFont class>>makeTabInvisible [
 	self allInstances do: [ :font | font makeTabInvisible ]
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>makeTabVisible [
+{ #category : #'character shapes' }
+StrikeFont class >> makeTabVisible [
 	"
 	Make tab characters visible
 	StrikeFont makeTabVisible
@@ -433,91 +348,61 @@ StrikeFont class>>makeTabVisible [
 	self allInstances do: [ :font | font makeTabVisible ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>passwordFontSize: aSize  [
+{ #category : #'instance creation' }
+StrikeFont class >> passwordFontSize: aSize [ 
 	^ FixedFaceFont new passwordFont fontSize: aSize
 ]
 
-{
-	#category : #'font creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>primitiveCreateFont: fontName size: fontSize flags: fontFlags weight: fontWeight [
+{ #category : #'font creation' }
+StrikeFont class >> primitiveCreateFont: fontName size: fontSize flags: fontFlags weight: fontWeight [
 	<primitive:'primitiveCreateFont' module:'FontPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #'font creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>primitiveDestroyFont: fontHandle [
+{ #category : #'font creation' }
+StrikeFont class >> primitiveDestroyFont: fontHandle [
 	<primitive:'primitiveDestroyFont' module:'FontPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #'font creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>primitiveFont: fontHandle glyphOfChar: charIndex into: glyphForm [
+{ #category : #'font creation' }
+StrikeFont class >> primitiveFont: fontHandle glyphOfChar: charIndex into: glyphForm [
 	<primitive:'primitiveFontGlyphOfChar' module:'FontPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #'font creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>primitiveFont: fontHandle widthOfChar: charIndex [
+{ #category : #'font creation' }
+StrikeFont class >> primitiveFont: fontHandle widthOfChar: charIndex [
 	<primitive:'primitiveFontWidthOfChar' module:'FontPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #'font creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>primitiveFontAscent: fontHandle [
+{ #category : #'font creation' }
+StrikeFont class >> primitiveFontAscent: fontHandle [
 	<primitive:'primitiveFontAscent' module:'FontPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #'font creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>primitiveFontDescent: fontHandle [
+{ #category : #'font creation' }
+StrikeFont class >> primitiveFontDescent: fontHandle [
 	<primitive:'primitiveFontDescent' module:'FontPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #'font creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>primitiveFontEncoding: fontHandle [
+{ #category : #'font creation' }
+StrikeFont class >> primitiveFontEncoding: fontHandle [
 	<primitive:'primitiveFontEncoding' module:'FontPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>readStrikeFont2Family: familyName  [
+{ #category : #examples }
+StrikeFont class >> readStrikeFont2Family: familyName [ 
 	"StrikeFont readStrikeFont2Family: 'Lucida'"
 	^self readStrikeFont2Family: familyName fromDirectory: FileSystem workingDirectory
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>readStrikeFont2Family: familyName fromDirectory: aDirectory  [
+{ #category : #examples }
+StrikeFont class >> readStrikeFont2Family: familyName fromDirectory: aDirectory [ 
 	"StrikeFont readStrikeFont2Family: 'Lucida' fromDirectory: FileDirectory default"
 	"This utility reads all available .sf2 StrikeFont files for a given family from  
 	the current directory. It returns an Array, sorted by size, suitable for handing 
@@ -535,11 +420,8 @@ StrikeFont class>>readStrikeFont2Family: familyName fromDirectory: aDirectory  [
 	readStrikeFont2Family: 'Lucida'))."
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>saveSpace [
+{ #category : #removing }
+StrikeFont class >> saveSpace [
 	"Removes glyphs over 128, leaving only lower ascii.
 	Also limit glyph depth to 4 bits (it is usually 16 or 32).
 	This effectively turns off subpixel rendering, as glyphs will only have 16 shades of gray.
@@ -551,11 +433,8 @@ StrikeFont class>>saveSpace [
 		setGlyphsDepthAtMost: 4 ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>setupDefaultFallbackFont [
+{ #category : #accessing }
+StrikeFont class >> setupDefaultFallbackFont [
 	"
 	StrikeFont setupDefaultFallbackFont
 	"
@@ -570,11 +449,8 @@ StrikeFont class>>setupDefaultFallbackFont [
 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>shutDown [
+{ #category : #'system startup' }
+StrikeFont class >> shutDown [
 	"StrikeFont shutDown"
 	"Deallocate synthetically derived copies of base fonts to save space"
 	self allSubInstancesDo: [ :sf | sf reset ].
@@ -582,11 +458,8 @@ StrikeFont class>>shutDown [
 
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont class>>useUnderscoreIfOver1bpp [
+{ #category : #'character shapes' }
+StrikeFont class >> useUnderscoreIfOver1bpp [
 	"Sets underscore and caret glyphs for chars 95 and 94. 
 	Only for enhanced StrikeFonts, i.e. those with glyphs of more than 1bpp.
 	ASCII standard glyphs"
@@ -596,30 +469,21 @@ StrikeFont class>>useUnderscoreIfOver1bpp [
 	self allInstances do: [ :font | font useUnderscoreIfOver1bpp ]
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>alter: char formBlock: formBlock [
+{ #category : #'character shapes' }
+StrikeFont >> alter: char formBlock: formBlock [
 	self characterFormAt: char 
 		put: (formBlock value: (self characterFormAt: char))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>ascent [
+{ #category : #accessing }
+StrikeFont >> ascent [
 	"Answer the receiver's maximum extent of characters above the baseline."
 
 	^ascent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>ascentKern [
+{ #category : #accessing }
+StrikeFont >> ascentKern [
 	"Return the kern delta for ascenders."
 	(emphasis noMask: 2) ifTrue: [^ 0].
 	^ (self ascent-5+4)//4 max: 0  "See makeItalicGlyphs"
@@ -627,11 +491,8 @@ StrikeFont>>ascentKern [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>ascentOf: aCharacter [
+{ #category : #accessing }
+StrikeFont >> ascentOf: aCharacter [
 
 	(self hasGlyphOf: aCharacter) ifFalse: [
 		fallbackFont ifNotNil: [
@@ -642,11 +503,8 @@ StrikeFont>>ascentOf: aCharacter [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>baseKern [
+{ #category : #accessing }
+StrikeFont >> baseKern [
 	"Return the base kern value to be used for all characters."
 	
 	| italic |
@@ -663,11 +521,8 @@ StrikeFont>>baseKern [
 		+ (((self ascent-5+4)//4 max: 0))
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>bonk: glyphForm with: bonkForm  [
+{ #category : #emphasis }
+StrikeFont >> bonk: glyphForm with: bonkForm [ 
 	"Bonking means to run through the glyphs clearing out black pixels
 	between characters to prevent them from straying into an adjacent
 	character as a result of, eg, bolding or italicizing"
@@ -700,11 +555,8 @@ StrikeFont>>bonk: glyphForm with: bonkForm  [
 						copyBits ] ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>buildFromForm: allGlyphs data: data name: aString  [
+{ #category : #building }
+StrikeFont >> buildFromForm: allGlyphs data: data name: aString [ 
 	| x |
 	pointSize := data first.
 	ascent := data second.
@@ -735,11 +587,8 @@ StrikeFont>>buildFromForm: allGlyphs data: data name: aString  [
 	derivativeFonts := Array new: 32
 ]
 
-{
-	#category : #'file in/out',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>buildfontNamed: nm fromForms: forms startingAtAscii: startAscii ascent: a descent: d maxWid: m  [
+{ #category : #'file in/out' }
+StrikeFont >> buildfontNamed: nm fromForms: forms startingAtAscii: startAscii ascent: a descent: d maxWid: m [ 
 	"This builds a StrikeFont instance from existing forms."
 	| lastAscii width ascii charForm missingForm tempGlyphs |
 	name := nm.
@@ -823,11 +672,8 @@ StrikeFont>>buildfontNamed: nm fromForms: forms startingAtAscii: startAscii asce
 	characterToGlyphMap := nil
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>characterForm: char pixelValueAt: pt put: val  [
+{ #category : #'character shapes' }
+StrikeFont >> characterForm: char pixelValueAt: pt put: val [ 
 	| f |
 	f := self characterFormAt: char.
 	f 
@@ -838,11 +684,8 @@ StrikeFont>>characterForm: char pixelValueAt: pt put: val  [
 		put: val
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>characterFormAt: character  [
+{ #category : #'character shapes' }
+StrikeFont >> characterFormAt: character [ 
 	"Answer a Form copied out of the glyphs for the argument, character."
 	| ascii leftX rightX |
 	ascii := character charCode.
@@ -855,11 +698,8 @@ StrikeFont>>characterFormAt: character  [
 	^ glyphs copy: (leftX @ 0 corner: rightX @ self height)
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>characterFormAt: character put: characterForm  [
+{ #category : #'character shapes' }
+StrikeFont >> characterFormAt: character put: characterForm [ 
 	"Copy characterForm over the glyph for the argument, character."
 	| ascii leftX rightX widthDif newGlyphs |
 	ascii := character asciiValue.
@@ -908,11 +748,8 @@ f characterFormAt: $  put: (Form extent: (f widthOf: $ )+10@f height)
 "
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>characterFormAtMulti: character  [
+{ #category : #'character shapes' }
+StrikeFont >> characterFormAtMulti: character [ 
 	"Answer a Form copied out of the glyphs for the argument, character."
 	| ascii leftX rightX |
 	ascii := character charCode.
@@ -924,27 +761,18 @@ StrikeFont>>characterFormAtMulti: character  [
 	^ glyphs copy: (leftX @ 0 corner: rightX @ self height)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>characterToGlyphMap [
+{ #category : #accessing }
+StrikeFont >> characterToGlyphMap [
 	^ characterToGlyphMap ifNil: [ characterToGlyphMap := self createCharacterToGlyphMap ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>characterToGlyphMap: anArray  [
+{ #category : #accessing }
+StrikeFont >> characterToGlyphMap: anArray [ 
 	characterToGlyphMap := anArray
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>characters: anInterval in: sourceString displayAt: aPoint clippedBy: clippingRectangle rule: ruleInteger fillColor: aForm kernDelta: kernDelta on: aBitBlt  [
+{ #category : #displaying }
+StrikeFont >> characters: anInterval in: sourceString displayAt: aPoint clippedBy: clippingRectangle rule: ruleInteger fillColor: aForm kernDelta: kernDelta on: aBitBlt [ 
 	"Simple, slow, primitive method for displaying a line of characters.
 	No wrap-around is provided."
 	| destPoint |
@@ -967,11 +795,8 @@ StrikeFont>>characters: anInterval in: sourceString displayAt: aPoint clippedBy:
 	^ destPoint
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>checkCharacter: character  [
+{ #category : #testing }
+StrikeFont >> checkCharacter: character [ 
 	"Answer a Character that is within the ascii range of the receiver--either 
 	character or the last character in the receiver."
 	| ascii |
@@ -981,11 +806,8 @@ StrikeFont>>checkCharacter: character  [
 		ifFalse: [ ^ character ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>createCharacterToGlyphMap [
+{ #category : #private }
+StrikeFont >> createCharacterToGlyphMap [
         "Private. Create the character to glyph mapping for a font that didn't have any before. This is basically equivalent to what the former setStopCondition did, only based on indexes."
 
         maxAscii < 256 ifTrue: [^ (1 to: 256) collect: [:i | i - 1]].
@@ -993,20 +815,14 @@ StrikeFont>>createCharacterToGlyphMap [
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>deepCopy [
+{ #category : #copying }
+StrikeFont >> deepCopy [
  " there is a circular reference from the derivative fonts back to the receiver. It is therefore not possible to make a deep copy. We make a sahllow copy. The method postCopy can be used to modify the shallow copy. " 
   ^self copy
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>derivativeFont: aStrikeFont at: index [
+{ #category : #emphasis }
+StrikeFont >> derivativeFont: aStrikeFont [ at: index
 
 	| newDeriv |
 	(aStrikeFont isNil and: [ index = 0 ]) 
@@ -1020,19 +836,13 @@ StrikeFont>>derivativeFont: aStrikeFont at: index [
 	derivativeFonts at: index put: aStrikeFont.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>derivativeFonts [
+{ #category : #accessing }
+StrikeFont >> derivativeFonts [
 	^derivativeFonts copyWithout: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>descent [
+{ #category : #accessing }
+StrikeFont >> descent [
 	"Answer the receiver's maximum extent of characters below the baseline."
 
 	^pointSize < 9
@@ -1040,11 +850,8 @@ StrikeFont>>descent [
 		ifFalse: [descent]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>descentKern [
+{ #category : #accessing }
+StrikeFont >> descentKern [
 	"Return the kern delta for descenders."
 	(emphasis noMask: 2) ifTrue: [^ 0].
 	^ (self height-1-self ascent+4)//4 max: 0  "See makeItalicGlyphs"
@@ -1052,11 +859,8 @@ StrikeFont>>descentKern [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>descentOf: aCharacter [
+{ #category : #accessing }
+StrikeFont >> descentOf: aCharacter [
 
 	(self hasGlyphOf: aCharacter) ifFalse: [
 		fallbackFont ifNotNil: [
@@ -1067,11 +871,8 @@ StrikeFont>>descentOf: aCharacter [
 
 ]
 
-{
-	#category : #'file in/out',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>displayChar: ascii form: charForm  [
+{ #category : #'file in/out' }
+StrikeFont >> displayChar: ascii form: charForm [ 
 	"Convenience utility used during conversion of BitFont files"
 	| m bigForm |
 	Display fillBlack: (0 @ 0 extent: 20 @ 14).
@@ -1088,11 +889,8 @@ StrikeFont>>displayChar: ascii form: charForm  [
 		Display fillBlack: (50 @ 2 + ((m * charForm width) @ 0) extent: 1 @ (m * self height)) ]
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>displayLine: aString at: aPoint  [
+{ #category : #displaying }
+StrikeFont >> displayLine: aString at: aPoint [ 
 	"Display the characters in aString, starting at position aPoint."
 
 	self characters: (1 to: aString size)
@@ -1106,11 +904,8 @@ StrikeFont>>displayLine: aString at: aPoint  [
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>displayMultiString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY  [
+{ #category : #displaying }
+StrikeFont >> displayMultiString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY [ 
 	| nextWide destX leftX rightX glyphInfo char destY gfont charIndex |
 	destX := aPoint x.
 	charIndex := startIndex.
@@ -1149,11 +944,8 @@ StrikeFont>>displayMultiString: aString on: aBitBlt from: startIndex to: stopInd
 		with: aPoint + (destX @ 0)
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta [
+{ #category : #displaying }
+StrikeFont >> displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta [
 	"Draw the given string from startIndex to stopIndex 
 	at aPoint on the (already prepared) BitBlt."
 	
@@ -1169,11 +961,8 @@ StrikeFont>>displayString: aString on: aBitBlt from: startIndex to: stopIndex at
 			kern: kernDelta.
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY [
+{ #category : #displaying }
+StrikeFont >> displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY [
 	"Draw the given string from startIndex to stopIndex 
 	at aPoint on the (already prepared) BitBlt."
 	
@@ -1195,32 +984,23 @@ StrikeFont>>displayString: aString on: aBitBlt from: startIndex to: stopIndex at
 			kern: kernDelta.
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>emphasis [
+{ #category : #emphasis }
+StrikeFont >> emphasis [
 	"Answer the integer code for synthetic bold, italic, underline, and 
 	strike-out."
 
 	^emphasis
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>emphasis: code  [
+{ #category : #emphasis }
+StrikeFont >> emphasis: code [ 
 	"Set the integer code for synthetic bold, itallic, underline, and strike-out, 
 	where bold=1, italic=2, underlined=4, and struck out=8."
 	emphasis := code
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>emphasized: code  [
+{ #category : #emphasis }
+StrikeFont >> emphasized: code [ 
 	"Answer a copy of the receiver with emphasis set to include code."
 	| derivative addedEmphasis base safeCode |
 	code = 0 ifTrue: [ ^ self ].
@@ -1253,11 +1033,8 @@ StrikeFont>>emphasized: code  [
 	^ derivative
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>ensureCleanBold [
+{ #category : #'character shapes' }
+StrikeFont >> ensureCleanBold [
 	"This ensures that all character glyphs have at least one pixel of white space on the right
 	so as not to cause artifacts in neighboring characters in bold or italic."
 	| wider glyph |
@@ -1283,11 +1060,8 @@ StrikeFont shutDown.  'Flush synthetic fonts'.
 "
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>extendMaxAsciiTo: newMax  [
+{ #category : #'character shapes' }
+StrikeFont >> extendMaxAsciiTo: newMax [ 
 	"Extend the range of this font so that it can display glyphs up to newMax."
 	newMax + 3 <= xTable size ifTrue: [ ^ self ].	"No need to extend."
 	xTable size = (maxAscii + 3) ifFalse: [ ^ self error: 'This font is not well-formed.' ].
@@ -1301,27 +1075,18 @@ StrikeFont>>extendMaxAsciiTo: newMax  [
 	characterToGlyphMap := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>fallbackFont [
+{ #category : #accessing }
+StrikeFont >> fallbackFont [
 	^ fallbackFont ifNil: [ fallbackFont := FixedFaceFont new errorFont fontSize: self height ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>fallbackFont: aFontSetOrNil  [
+{ #category : #accessing }
+StrikeFont >> fallbackFont: aFontSetOrNil [ 
 	fallbackFont := aFontSetOrNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>familyName [
+{ #category : #accessing }
+StrikeFont >> familyName [
 	| nameString firstDigit |
 	nameString := self name.
 	firstDigit := nameString findFirst: [ :m | m isDigit ].
@@ -1330,11 +1095,8 @@ StrikeFont>>familyName [
 		ifFalse: [ nameString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>familySizeFace [
+{ #category : #accessing }
+StrikeFont >> familySizeFace [
 	"Answer an array with familyName, a String, pointSize, an Integer, and
 	faceCode, an Integer."
 
@@ -1345,11 +1107,8 @@ StrikeFont>>familySizeFace [
 	"(1 to: 12) collect: [:x | (TextStyle default fontAt: x) familySizeFace]"
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>fillZeroWidthSlots [
+{ #category : #'character shapes' }
+StrikeFont >> fillZeroWidthSlots [
 	"Note: this is slow because it copies the font once for every replacement."
 	| nullGlyph |
 	nullGlyph := (Form extent: 1 @ glyphs height) fillGray.
@@ -1364,11 +1123,8 @@ StrikeFont>>fillZeroWidthSlots [
 					put: nullGlyph ] ]
 ]
 
-{
-	#category : #'multibyte character methods',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>fixAscent: a andDescent: d head: h  [
+{ #category : #'multibyte character methods' }
+StrikeFont >> fixAscent: a andDescent: d head: h [ 
 	"(a + d) = (ascent + descent) ifTrue: ["
 	| bb newGlyphs |
 	ascent := a.
@@ -1385,11 +1141,8 @@ StrikeFont>>fixAscent: a andDescent: d head: h  [
 	"]."
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>fixOneWideChars [
+{ #category : #'character shapes' }
+StrikeFont >> fixOneWideChars [
 	"This fixes all 1-wide characters to be 2 wide with blank on the right
 	so as not to cause artifacts in neighboring characters in bold or italic."
 	| twoWide |
@@ -1411,11 +1164,8 @@ StrikeFont shutDown.  'Flush synthetic fonts'.
 "
 ]
 
-{
-	#category : #'multibyte character methods',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>fixXTable [
+{ #category : #'multibyte character methods' }
+StrikeFont >> fixXTable [
 	| newXTable val |
 	xTable size >= 258 ifTrue: [ ^ self ].
 	newXTable := Array new: 258.
@@ -1439,19 +1189,13 @@ StrikeFont>>fixXTable [
 	xTable := newXTable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>fontNameWithPointSize [
+{ #category : #accessing }
+StrikeFont >> fontNameWithPointSize [
 	^self name withoutTrailingDigits, ' ', self pointSize printString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>glyphInfoOf: aCharacter into: glyphInfoArray [
+{ #category : #accessing }
+StrikeFont >> glyphInfoOf: aCharacter into: glyphInfoArray [
 	"Answer the width of the argument as a character in the receiver."
 
 	| code |
@@ -1474,11 +1218,8 @@ StrikeFont>>glyphInfoOf: aCharacter into: glyphInfoArray [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>glyphOf: aCharacter  [
+{ #category : #accessing }
+StrikeFont >> glyphOf: aCharacter [ 
 	"Answer the width of the argument as a character in the receiver."
 	| code |
 	(self hasGlyphOf: aCharacter) ifFalse: 
@@ -1488,22 +1229,16 @@ StrikeFont>>glyphOf: aCharacter  [
 	^ glyphs copy: ((xTable at: code + 1) @ 0 corner: (xTable at: code + 2) @ self height)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>glyphs [
+{ #category : #accessing }
+StrikeFont >> glyphs [
 	"Answer a Form containing the bits representing the characters of the 
 	receiver."
 
 	^glyphs
 ]
 
-{
-	#category : #'multibyte character methods',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>hasGlyphOf: aCharacter [
+{ #category : #'multibyte character methods' }
+StrikeFont >> hasGlyphOf: aCharacter [
 	| code |
 	code := aCharacter charCode.
 	(code between: self minAscii and: self maxAscii)
@@ -1514,22 +1249,16 @@ StrikeFont>>hasGlyphOf: aCharacter [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>height [
+{ #category : #accessing }
+StrikeFont >> height [
 	"Answer the height of the receiver, total of maximum extents of 
 	characters above and below the baseline."
 
 	^self ascent + self descent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>heightOf: aCharacter [
+{ #category : #accessing }
+StrikeFont >> heightOf: aCharacter [
 
 	(self hasGlyphOf: aCharacter) ifFalse: [
 		fallbackFont ifNotNil: [
@@ -1540,76 +1269,52 @@ StrikeFont>>heightOf: aCharacter [
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>installOn: aDisplayContext [
+{ #category : #displaying }
+StrikeFont >> installOn: aDisplayContext [
 
 	^aDisplayContext installStrikeFont: self.
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>installOn: aDisplayContext foregroundColor: foregroundColor backgroundColor: backgroundColor [
+{ #category : #displaying }
+StrikeFont >> installOn: aDisplayContext foregroundColor: foregroundColor backgroundColor: backgroundColor [
 	^aDisplayContext 
 		installStrikeFont: self
 		foregroundColor: foregroundColor 
 		backgroundColor: backgroundColor
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>isSynthetic [
+{ #category : #emphasis }
+StrikeFont >> isSynthetic [
 	^type > 0
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>isSynthetic: aBoolean  [
+{ #category : #emphasis }
+StrikeFont >> isSynthetic: aBoolean [ 
 	type := aBoolean 
 		ifTrue: [ 3 ]
 		ifFalse: [ 0 ]
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>isSyntheticItalic [
+{ #category : #emphasis }
+StrikeFont >> isSyntheticItalic [
 	^type = 5
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>isSyntheticItalic: aBoolean  [
+{ #category : #emphasis }
+StrikeFont >> isSyntheticItalic: aBoolean [ 
 	aBoolean 
 		ifTrue: [type :=  5]
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>lineGrid [
+{ #category : #accessing }
+StrikeFont >> lineGrid [
 	^ ascent + descent
 ]
 
-{
-	#category : #'make arrows',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>makeAssignArrow [
+{ #category : #'make arrows' }
+StrikeFont >> makeAssignArrow [
 	"Replace the underline character with an arrow for this font"
 	| arrowForm arrowCanvas arrowY arrowLeft arrowRight arrowHeadLength |
 	arrowForm := (self characterFormAt: $_) copy.
@@ -1639,11 +1344,8 @@ StrikeFont>>makeAssignArrow [
 		put: arrowForm
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>makeBoldGlyphs [
+{ #category : #emphasis }
+StrikeFont >> makeBoldGlyphs [
 	"Make a bold set of glyphs with same widths by ORing 1 bit to the right
 		(requires at least 1 pixel of intercharacter space)"
 	| g bonkForm |
@@ -1681,11 +1383,8 @@ StrikeFont>>makeBoldGlyphs [
 	fallbackFont ifNotNil: [ fallbackFont := fallbackFont emphasized: 1 ]
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>makeCarriageReturnsWhite [
+{ #category : #'character shapes' }
+StrikeFont >> makeCarriageReturnsWhite [
 	"Some larger fonts have a gray carriage return (from the zero wide fixup) make it white so it doesn't show"
 	| crForm |
 	crForm := self characterFormAt: 13 asCharacter.
@@ -1695,11 +1394,8 @@ StrikeFont>>makeCarriageReturnsWhite [
 		put: crForm
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>makeCondensedGlyphs [
+{ #category : #emphasis }
+StrikeFont >> makeCondensedGlyphs [
 	"Make a condensed set of glyphs with same widths.
 	NOTE: this has been superceded by kerning -- should not get called"
 	| g newXTable x x1 w |
@@ -1735,11 +1431,8 @@ StrikeFont>>makeCondensedGlyphs [
 "
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>makeControlCharsVisible [
+{ #category : #'character shapes' }
+StrikeFont >> makeControlCharsVisible [
 	| glyph |
 	self characterToGlyphMap.
 	glyph := self characterFormAt: Character space.
@@ -1789,11 +1482,8 @@ StrikeFont>>makeControlCharsVisible [
 			put: 133 ]
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>makeItalicGlyphs [
+{ #category : #emphasis }
+StrikeFont >> makeItalicGlyphs [
 	"Make an italic set of glyphs with same widths by skewing left and right.
 	In the process, characters would overlap, so we widen them all first.
 	"
@@ -1851,20 +1541,14 @@ StrikeFont>>makeItalicGlyphs [
 	fallbackFont ifNotNil: [ fallbackFont := fallbackFont emphasized: 2 ]
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>makeLfInvisible [
+{ #category : #'character shapes' }
+StrikeFont >> makeLfInvisible [
 	self characterToGlyphMap.
 	characterToGlyphMap at: 11 put: (11 < minAscii ifFalse: [11] ifTrue: [maxAscii+1])
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>makeLfVisible [
+{ #category : #'character shapes' }
+StrikeFont >> makeLfVisible [
 	| glyph |
 	self characterToGlyphMap.
 	glyph := self characterFormAt: (Character value: 163).
@@ -1881,11 +1565,8 @@ StrikeFont>>makeLfVisible [
 		put: 132
 ]
 
-{
-	#category : #'make arrows',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>makeReturnArrow [
+{ #category : #'make arrows' }
+StrikeFont >> makeReturnArrow [
 	"Replace the caret character with an arrow"
 	| arrowForm arrowCanvas arrowHeadLength arrowX arrowTop arrowBottom |
 	arrowForm := (self characterFormAt: $^) copy.
@@ -1917,11 +1598,8 @@ StrikeFont>>makeReturnArrow [
 		put: arrowForm
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>makeStruckOutGlyphs [
+{ #category : #emphasis }
+StrikeFont >> makeStruckOutGlyphs [
 	"Make a struck-out set of glyphs with same widths"
 	| g |
 	g := glyphs deepCopy.
@@ -1931,29 +1609,20 @@ StrikeFont>>makeStruckOutGlyphs [
 	fallbackFont ifNotNil: [ fallbackFont := fallbackFont emphasized: 16 ]
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>makeTabInvisible [
+{ #category : #'character shapes' }
+StrikeFont >> makeTabInvisible [
 	self characterToGlyphMap.
 	characterToGlyphMap at: 10 put: (10 < minAscii ifFalse: [10] ifTrue:[maxAscii+1])
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>makeTabVisible [
+{ #category : #'character shapes' }
+StrikeFont >> makeTabVisible [
 	self characterToGlyphMap.
 	characterToGlyphMap at: 10 put: 172
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>makeUnderlinedGlyphs [
+{ #category : #emphasis }
+StrikeFont >> makeUnderlinedGlyphs [
 	"Make an underlined set of glyphs with same widths"
 	| g |
 	g := glyphs deepCopy.
@@ -1963,60 +1632,42 @@ StrikeFont>>makeUnderlinedGlyphs [
 	fallbackFont ifNotNil: [ fallbackFont := fallbackFont emphasized: 4 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>maxAscii [
+{ #category : #accessing }
+StrikeFont >> maxAscii [
 	"Answer the integer that is the last Ascii character value of the receiver."
 
 	^maxAscii
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>maxWidth [
+{ #category : #accessing }
+StrikeFont >> maxWidth [
 	"Answer the integer that is the width of the receiver's widest character."
 
 	^maxWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>minAscii [
+{ #category : #accessing }
+StrikeFont >> minAscii [
 	"Answer the integer that is the first Ascii character value of the receiver."
 
 	^minAscii
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>name [
+{ #category : #accessing }
+StrikeFont >> name [
 	"Answer the receiver's name."
 
 	^name ifNil: ['(unnamed)']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>name: aString  [
+{ #category : #accessing }
+StrikeFont >> name: aString [ 
 	"Set the receiver's name."
 	name := aString
 ]
 
-{
-	#category : #'file in/out',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>newFromStrike: fileName  [
+{ #category : #'file in/out' }
+StrikeFont >> newFromStrike: fileName [ 
 	"Build an instance from the strike font file name. The '.strike' extension
 	is optional."
 	| strike startName raster16  |
@@ -2070,27 +1721,18 @@ StrikeFont>>newFromStrike: fileName  [
 	characterToGlyphMap := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>pointSize [
+{ #category : #accessing }
+StrikeFont >> pointSize [
 	^ pointSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>pointSize: anInteger  [
+{ #category : #accessing }
+StrikeFont >> pointSize: anInteger [ 
 	pointSize := anInteger
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>postCopy [
+{ #category : #copying }
+StrikeFont >> postCopy [
  " the receiver is a just created shallow copy. This method gives it the final touch. " 
  
     glyphs := glyphs copy.
@@ -2100,11 +1742,8 @@ StrikeFont>>postCopy [
     self reset.  " takes care of the derivative fonts "
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>printOn: aStream [
+{ #category : #printing }
+StrikeFont >> printOn: aStream [
 	super printOn: aStream.
 	aStream
 		nextPut: $(;
@@ -2114,21 +1753,15 @@ StrikeFont>>printOn: aStream [
 		nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>raster [
+{ #category : #accessing }
+StrikeFont >> raster [
 	"Answer an integer that specifies the layout of the glyphs' form."
 
 	^raster
 ]
 
-{
-	#category : #'file in/out',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>readBFHeaderFrom: f  [
+{ #category : #'file in/out' }
+StrikeFont >> readBFHeaderFrom: f [ 
 	name := self 
 		restOfLine: 'Font name = '
 		from: f.
@@ -2155,11 +1788,8 @@ StrikeFont>>readBFHeaderFrom: f  [
 	type := 0	"ignored for now"
 ]
 
-{
-	#category : #'multibyte character methods',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>readCharacter: aBits from: aStream  [
+{ #category : #'multibyte character methods' }
+StrikeFont >> readCharacter: aBits from: aStream [ 
 	| pos |
 	pos := 0.
 	12 timesRepeat: 
@@ -2173,11 +1803,8 @@ StrikeFont>>readCharacter: aBits from: aStream  [
 		pos := pos + 4 ]
 ]
 
-{
-	#category : #'file in/out',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>readFromBitFont: fileName  [
+{ #category : #'file in/out' }
+StrikeFont >> readFromBitFont: fileName [ 
 	"This builds a StrikeFont instance by reading the data file format
 	produced by BitFont, a widely available font conversion utility
 	written by Peter DiCamillo at Brown University"
@@ -2306,11 +1933,8 @@ StrikeFont>>readFromBitFont: fileName  [
 	characterToGlyphMap := nil
 ]
 
-{
-	#category : #'file in/out',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>readFromStrike2: fileName  [
+{ #category : #'file in/out' }
+StrikeFont >> readFromStrike2: fileName [ 
 	"StrikeFont new readFromStrike2: 'Palatino14.sf2'"
 	"Build an instance from the strike font stored in strike2 format.
 	fileName is of the form: <family name><pointSize>.sf2"
@@ -2322,11 +1946,8 @@ StrikeFont>>readFromStrike2: fileName  [
 	[ self readFromStrike2Stream: file ] ensure: [ file close ]
 ]
 
-{
-	#category : #'file in/out',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>readFromStrike2Stream: file  [
+{ #category : #'file in/out' }
+StrikeFont >> readFromStrike2Stream: file [ 
 	"Build an instance from the supplied binary stream on data in strike2 format"
 	type := file nextInt32.
 	type = 2 ifFalse: 
@@ -2361,20 +1982,14 @@ StrikeFont>>readFromStrike2Stream: file  [
 	characterToGlyphMap := nil
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>releaseCachedState [
+{ #category : #emphasis }
+StrikeFont >> releaseCachedState [
 
 	self reset.
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>reset [
+{ #category : #emphasis }
+StrikeFont >> reset [
 	"Reset the cache of derivative emphasized fonts"
 	fallbackFont class = FixedFaceFont ifTrue: [ fallbackFont := nil ].
 	derivativeFonts notNil ifTrue: 
@@ -2395,11 +2010,8 @@ StrikeFont>>reset [
 	"
 ]
 
-{
-	#category : #'file in/out',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>restOfLine: leadString from: file  [
+{ #category : #'file in/out' }
+StrikeFont >> restOfLine: leadString from: file [ 
 	"Utility method to assist reading of BitFont data files"
 	| line |
 	
@@ -2412,28 +2024,19 @@ StrikeFont>>restOfLine: leadString from: file  [
 		to: line size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>setGlyphs: newGlyphs  [
+{ #category : #accessing }
+StrikeFont >> setGlyphs: newGlyphs [ 
 	"Replace the glyphs form.  Used to make a synthetic bold or italic font quickly."
 	glyphs := newGlyphs
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>setGlyphsDepthAtMost: aNumber  [
+{ #category : #building }
+StrikeFont >> setGlyphsDepthAtMost: aNumber [ 
 	glyphs depth > aNumber ifTrue: [ glyphs := glyphs asFormOfDepth: aNumber ]
 ]
 
-{
-	#category : #'multibyte character methods',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>setupDefaultFallbackFont [
+{ #category : #'multibyte character methods' }
+StrikeFont >> setupDefaultFallbackFont [
 	| fonts f |
 	fonts := TextStyle default fontArray.
 	f := fonts first.
@@ -2444,11 +2047,8 @@ StrikeFont>>setupDefaultFallbackFont [
 	self reset
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>stripHighGlyphs [
+{ #category : #building }
+StrikeFont >> stripHighGlyphs [
 	"Remove glyphs for characters above 128"
 	| i |
 	maxAscii := 127.
@@ -2471,62 +2071,44 @@ StrikeFont>>stripHighGlyphs [
 	self reset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>subscript [
+{ #category : #accessing }
+StrikeFont >> subscript [
 	"Answer an integer that is the further vertical offset relative to the 
 	baseline for positioning characters as subscripts."
 
 	^subscript
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>superscript [
+{ #category : #accessing }
+StrikeFont >> superscript [
 	"Answer an integer that is the further vertical offset relative to the 
 	baseline for positioning characters as superscripts."
 
 	^superscript
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>textStyle [
+{ #category : #accessing }
+StrikeFont >> textStyle [
 	^ TextStyle actualTextStyles detect:
 		[:aStyle | aStyle fontArray includes: self] ifNone: [nil]
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>useLeftArrow [
+{ #category : #'character shapes' }
+StrikeFont >> useLeftArrow [
 	self characterToGlyphMap.
 	characterToGlyphMap at: 96 put: 95.
 	characterToGlyphMap at: 95 put: 94
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>useUnderscore [
+{ #category : #'character shapes' }
+StrikeFont >> useUnderscore [
 	self characterToGlyphMap.
 	characterToGlyphMap at: 96 put: 129.
 	characterToGlyphMap at: 95 put: 128
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>useUnderscoreIfOver1bpp [
+{ #category : #'character shapes' }
+StrikeFont >> useUnderscoreIfOver1bpp [
 
 	glyphs depth = 1 ifTrue: [
 		characterToGlyphMap ifNotNil: [	
@@ -2539,19 +2121,13 @@ StrikeFont>>useUnderscoreIfOver1bpp [
 	characterToGlyphMap at: 95 put: 128
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>veryDeepCopyWith: deepCopier [
+{ #category : #copying }
+StrikeFont >> veryDeepCopyWith: deepCopier [
 	"Return self.  I am shared.  Do not record me."
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>widen: char by: delta  [
+{ #category : #'character shapes' }
+StrikeFont >> widen: char by: delta [ 
 	
 	^ self 
 		alter: char
@@ -2563,11 +2139,8 @@ StrikeFont>>widen: char by: delta  [
 			newForm	"and substitute it in the font" ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>widthOf: aCharacter  [
+{ #category : #accessing }
+StrikeFont >> widthOf: aCharacter [ 
 	"Answer the width of the argument as a character in the receiver."
 	| code |
 	code := aCharacter charCode.
@@ -2579,20 +2152,14 @@ StrikeFont>>widthOf: aCharacter  [
 	^ (xTable at: code + 2) - (xTable at: code + 1)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>xTable [
+{ #category : #accessing }
+StrikeFont >> xTable [
 	"Answer an Array of the left x-coordinate of characters in glyphs."
 
 	^xTable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFont>>xTable: anObject  [
+{ #category : #accessing }
+StrikeFont >> xTable: anObject [ 
 	xTable := anObject
 ]

@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #SlotTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'ivarForTesting'
 	],
-	#category : #Slot-Tests,
-	#timestamp : ''
+	#category : #Slot-Tests
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotTest>>testAsSlotCollection [
+{ #category : #'as yet unclassified' }
+SlotTest >> testAsSlotCollection [
 	
  	self assert: 'a b' asSlotCollection = {#a => InstanceVariableSlot. #b => InstanceVariableSlot}.
 	
@@ -35,50 +28,35 @@ ivarH ivarE
 ' asSlotCollection collect: #name) = #(#ivarA #ivarB #ivarC #ivarD #iv2arF #ivarG #ivarH #ivarE)
 ]
 
-{
-	#category : #'testing - properties',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotTest>>testIsReadInMethod [
+{ #category : #'testing - properties' }
+SlotTest >> testIsReadInMethod [
 	
 	ivarForTesting printString.
 	self assert: ((self class slotNamed: #ivarForTesting) isReadIn: self class >> testSelector)
 ]
 
-{
-	#category : #'testing - properties',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotTest>>testIsWrittenInMethod [
+{ #category : #'testing - properties' }
+SlotTest >> testIsWrittenInMethod [
 	
 	ivarForTesting := #test.
 	self assert: ((self class slotNamed: #ivarForTesting) isWrittenIn: self class >> testSelector)
 ]
 
-{
-	#category : #'testing - properties',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotTest>>testNotReadInMethod [
+{ #category : #'testing - properties' }
+SlotTest >> testNotReadInMethod [
 	
 	self deny: ((self class slotNamed: #ivarForTesting) isReadIn: self class >> testSelector)
 ]
 
-{
-	#category : #'testing - properties',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotTest>>testNotWrittenInMethodWhenItIsOnlyRead [
+{ #category : #'testing - properties' }
+SlotTest >> testNotWrittenInMethodWhenItIsOnlyRead [
 	
 	ivarForTesting printString.
 	self deny: ((self class slotNamed: #ivarForTesting) isWrittenIn: self class >> testSelector)
 ]
 
-{
-	#category : #'testing - properties',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotTest>>testPropertyAtPut [
+{ #category : #'testing - properties' }
+SlotTest >> testPropertyAtPut [
 
 	| testValue ivar |
 	
@@ -93,11 +71,8 @@ SlotTest>>testPropertyAtPut [
 	self assert: ivar properties isNil.
 ]
 
-{
-	#category : #'testing - properties',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotTest>>testRemoveProperty [
+{ #category : #'testing - properties' }
+SlotTest >> testRemoveProperty [
 	| ivar | 
 	ivar := self class slotNamed: #ivarForTesting.
 	

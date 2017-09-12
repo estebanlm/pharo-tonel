@@ -71,15 +71,11 @@ Class {
 	#classVars : [
 		'SearchStrategies'
 	],
-	#category : #Morphic-Widgets-FastTable-Tree,
-	#timestamp : 'CyrilFerlicot 11/2/2015 14:33'
+	#category : #Morphic-Widgets-FastTable-Tree
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource class>>defaultSearchStrategies [
+{ #category : #accessing }
+FTTreeDataSource class >> defaultSearchStrategies [
 	^ Dictionary new
 		at: #rootsOnly put: FTRootItemsStrategy;
 		at: #default put: FTVisibleItemsStrategy;
@@ -87,32 +83,23 @@ FTTreeDataSource class>>defaultSearchStrategies [
 		yourself
 ]
 
-{
-	#category : #'utils - morph creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource class>>emptyMorph [
+{ #category : #'utils - morph creation' }
+FTTreeDataSource class >> emptyMorph [
 	| icon |
 	icon := (Smalltalk ui icons iconNamed: #emptyIcon) asMorph.
 	icon form: (icon form scaledToSize: 16 @ 16).
 	^ icon
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource class>>initialize [
+{ #category : #'class initialization' }
+FTTreeDataSource class >> initialize [
 	"self initialize"
 
 	SearchStrategies := nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource class>>root: aRootItem children: aBlock [
+{ #category : #'instance creation' }
+FTTreeDataSource class >> root: aRootItem children: aBlock [
 	^ self new
 		rootItem: aRootItem;
 		childrenBlock: aBlock;
@@ -120,71 +107,47 @@ FTTreeDataSource class>>root: aRootItem children: aBlock [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource class>>rootItemFor: aCollection [
+{ #category : #accessing }
+FTTreeDataSource class >> rootItemFor: aCollection [
 	^ FTRootItem new
 		data: aCollection;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource class>>roots: aCollection children: aBlock [
+{ #category : #'instance creation' }
+FTTreeDataSource class >> roots: aCollection children: aBlock [
 	^ self root: (self rootItemFor: aCollection) children: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource class>>searchStrategies [
+{ #category : #accessing }
+FTTreeDataSource class >> searchStrategies [
 	^ SearchStrategies ifNil: [ SearchStrategies := self defaultSearchStrategies ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource class>>searchStrategies: anObject [
+{ #category : #accessing }
+FTTreeDataSource class >> searchStrategies: anObject [
 	SearchStrategies := anObject
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>addSourceToRootItem [
+{ #category : #updating }
+FTTreeDataSource >> addSourceToRootItem [
 	rootItem dataSource: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>buttonFor: item [
+{ #category : #accessing }
+FTTreeDataSource >> buttonFor: item [
 	^ ( (self canDisplayChildrenOf: item) and: [item children isNotEmpty])
 		ifTrue: [ item generateButton ]
 		ifFalse: [ self class emptyMorph ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>canDisplayChildrenOf: item [
+{ #category : #testing }
+FTTreeDataSource >> canDisplayChildrenOf: item [
 	^ self maxDepth ifNil: [ true ] ifNotNil: [ self maxDepth > item depth ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>cellColumn: column row: rowIndex [
+{ #category : #accessing }
+FTTreeDataSource >> cellColumn: column row: rowIndex [
 	| item cell |
 	item := self elementAt: rowIndex.
 	cell := FTIndentedCellMorph new.
@@ -195,70 +158,46 @@ FTTreeDataSource>>cellColumn: column row: rowIndex [
 	^ cell
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>childrenBlock [
+{ #category : #accessing }
+FTTreeDataSource >> childrenBlock [
 	^ childrenBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>childrenBlock: aBlockClosure [
+{ #category : #accessing }
+FTTreeDataSource >> childrenBlock: aBlockClosure [
 	childrenBlock := aBlockClosure
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>collapseAll [
+{ #category : #expanding-collapsing }
+FTTreeDataSource >> collapseAll [
 	rootItem collapseAll.
 	self tableRefresh
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>elementAt: index [
+{ #category : #accessing }
+FTTreeDataSource >> elementAt: index [
 	^ rootItem childAt: index
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>expandAll [
+{ #category : #expanding-collapsing }
+FTTreeDataSource >> expandAll [
 	rootItem expandAll.
 	self tableRefresh
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>expandAllTo: aDepth [
+{ #category : #expanding-collapsing }
+FTTreeDataSource >> expandAllTo: aDepth [
 	self rootItem expandAllTo: aDepth
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>expandRoots [
+{ #category : #expanding-collapsing }
+FTTreeDataSource >> expandRoots [
 	self rootsItems do: #expand.
 	self tableRefresh
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>indexOfChangedItem [
+{ #category : #updating }
+FTTreeDataSource >> indexOfChangedItem [
 	"I should be call when the user of the Fast Tree collapse or extand an Item. I return the index of the changed item. I should not be used by an other method than #updateSelectionWithCollectBlock:."
 
 	1 to: self numberOfRows do: [ :index | 
@@ -268,27 +207,18 @@ FTTreeDataSource>>indexOfChangedItem [
 	^ self errorSubscriptBounds: self numberOfRows + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>maxDepth [
+{ #category : #accessing }
+FTTreeDataSource >> maxDepth [
 	^ maxDepth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>maxDepth: anObject [
+{ #category : #accessing }
+FTTreeDataSource >> maxDepth: anObject [
 	maxDepth := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>menuColumn: column row: rowIndex [
+{ #category : #accessing }
+FTTreeDataSource >> menuColumn: column row: rowIndex [
 	rowIndex = 0
 		ifTrue: [ ^ nil ].	"I could answer a menu without selection, but in this case I will just answer nil, which means 'no menu'"
 			
@@ -298,102 +228,69 @@ FTTreeDataSource>>menuColumn: column row: rowIndex [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>newDataSourceMatching: aFTFilter [
+{ #category : #accessing }
+FTTreeDataSource >> newDataSourceMatching: aFTFilter [
 	"I delegate the filter to a FTTreeFunctionStrategy."
 
 	^ (self class searchStrategies at: self searchStrategy ifAbsent: [ self class searchStrategies at: #default ]) filterWith: aFTFilter pattern dataSource: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>numberOfRows [
+{ #category : #accessing }
+FTTreeDataSource >> numberOfRows [
 	^ self rootItem numberOfVisibleChildren 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>realElementAt: anIndex [
+{ #category : #accessing }
+FTTreeDataSource >> realElementAt: anIndex [
 	^ (super realElementAt: anIndex) data
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>rootItem [
+{ #category : #accessing }
+FTTreeDataSource >> rootItem [
 	^ rootItem 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>rootItem: anObject [
+{ #category : #accessing }
+FTTreeDataSource >> rootItem: anObject [
 	rootItem := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : 'EstebanLorenzano 9/6/2017 15:23'
-}
-FTTreeDataSource>>rootsItems [
+{ #category : #accessing }
+FTTreeDataSource >> rootsItems [
 	^ rootItem 
 		ifNotNil: #children
 		ifNil: [ #() ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>searchStrategy [
+{ #category : #accessing }
+FTTreeDataSource >> searchStrategy [
 	^ searchStrategy ifNil: [ #default ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>searchStrategy: anObject [
+{ #category : #accessing }
+FTTreeDataSource >> searchStrategy: anObject [
 	"Can be #default, #rootsOnly or #allItems. Use #allItems ONLY if the tree have not an infinit number of children, else you will get an infinit loop."
 
 	searchStrategy := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>searchText: aString [
+{ #category : #accessing }
+FTTreeDataSource >> searchText: aString [
 	"I delegate the search to a FTTreeFunctionStrategy."
 
 	^ (self class searchStrategies at: self searchStrategy ifAbsent: [ self class searchStrategies at: #default ]) searchWith: aString dataSource: self
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>updateData [
+{ #category : #updating }
+FTTreeDataSource >> updateData [
 	"I am here to reset the items in case someone updated them."
 
 	self rootItem updateData.
 	self tableRefresh
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeDataSource>>updateSelectionWithCollectBlock: aBlock [
+{ #category : #updating }
+FTTreeDataSource >> updateSelectionWithCollectBlock: aBlock [
 	"I take a block with two parameters, the index of a selected element and 
 	the index of the item that collapsed/expanded. This block needs to return 
 	the index of the new selected element. I do not ensure that any of the

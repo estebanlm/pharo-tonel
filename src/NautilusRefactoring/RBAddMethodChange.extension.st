@@ -1,12 +1,7 @@
-Extension {
-	#name : #RBAddMethodChange
-}
+Extension { #name : #RBAddMethodChange }
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAddMethodChange>>accept: aText notifying: aController [
+{ #category : #'*NautilusRefactoring' }
+RBAddMethodChange >> accept: aText notifying: aController [
 	"Just to make sure that it compiles, try with the standard compiler."
 	
 	| compiler |
@@ -30,11 +25,8 @@ RBAddMethodChange>>accept: aText notifying: aController [
 	^ true
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAddMethodChange>>oldVersionTextToDisplay [
+{ #category : #'*NautilusRefactoring' }
+RBAddMethodChange >> oldVersionTextToDisplay [
 	| class |
 	
 	class := Smalltalk 
@@ -49,11 +41,8 @@ RBAddMethodChange>>oldVersionTextToDisplay [
 			ifAbsent: [ super oldVersionTextToDisplay ]
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAddMethodChange>>textToDisplay [
+{ #category : #'*NautilusRefactoring' }
+RBAddMethodChange >> textToDisplay [
 
 	^ self source
 ]

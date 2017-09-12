@@ -4,15 +4,11 @@ I represent an error produced during materialization when the serialized version
 Class {
 	#name : #FLBadVersion,
 	#superclass : #FLMaterializationError,
-	#category : #Fuel-Errors,
-	#timestamp : 'MarianoMartinezPeck 10/23/2011 14:33'
+	#category : #Fuel-Errors
 }
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBadVersion class>>signalCurrentVersion: currentVersion streamVersion: streamVersion [
+{ #category : #signaling }
+FLBadVersion class >> signalCurrentVersion: currentVersion streamVersion: streamVersion [
 
 	^ self signal: 'Unexpected stream version ', streamVersion asString, ' where it should be ', currentVersion asString, '.'
 

@@ -5,57 +5,38 @@ I have no test fixtures.
 Class {
 	#name : #ReadStreamTest,
 	#superclass : #TestCase,
-	#category : #Collections-Tests-Streams,
-	#timestamp : 'tlk 12/5/2004 14:36'
+	#category : #Collections-Tests-Streams
 }
 
-{
-	#category : #'accessing - defaults',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadStreamTest>>emptyStream [
+{ #category : #'accessing - defaults' }
+ReadStreamTest >> emptyStream [
 	^ ReadStream on: String new.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadStreamTest>>streamOn: collection upToAll: subcollection  [
+{ #category : #tests }
+ReadStreamTest >> streamOn: collection upToAll: subcollection [ 
 	^ collection readStream upToAll: subcollection
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadStreamTest>>streamOn: collection upToAll: subcollection1 upToAll: subcollection2  [
+{ #category : #tests }
+ReadStreamTest >> streamOn: collection upToAll: subcollection1 [ upToAll: subcollection2 
 	^ collection readStream
 		upToAll: subcollection1;
 		upToAll: subcollection2
 ]
 
-{
-	#category : #'accessing - defaults',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadStreamTest>>streamOnArray [
+{ #category : #'accessing - defaults' }
+ReadStreamTest >> streamOnArray [
 	^ ReadStream on: (Array with: 1 with: #(a b c) with: false).
 ]
 
-{
-	#category : #'accessing - defaults',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadStreamTest>>streamOnString [
+{ #category : #'accessing - defaults' }
+ReadStreamTest >> streamOnString [
 	^ ReadStream on: 'abcde'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadStreamTest>>testBack [
+{ #category : #tests }
+ReadStreamTest >> testBack [
 	|stream|
 	stream := 'abc' readStream.
 	stream setToEnd.
@@ -63,11 +44,8 @@ ReadStreamTest>>testBack [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadStreamTest>>testBackOnPosition1 [
+{ #category : #tests }
+ReadStreamTest >> testBackOnPosition1 [
 	"Test the new implementation of the method back."
 	|stream|
 	stream := 'abc' readStream.
@@ -76,11 +54,8 @@ ReadStreamTest>>testBackOnPosition1 [
 
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadStreamTest>>testIsEmpty [
+{ #category : #'tests - testing' }
+ReadStreamTest >> testIsEmpty [
 	| stream |
 	self assert: self emptyStream isEmpty.
 	
@@ -97,11 +72,8 @@ ReadStreamTest>>testIsEmpty [
 	self deny: stream isEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadStreamTest>>testOldBack [
+{ #category : #tests }
+ReadStreamTest >> testOldBack [
 	"Test the old behavior of the method back. The method #oldBack is a misconception about what a stream is. A stream contains a pointer *between* elements with past and future elements. The method #oldBack considers that the pointer is *on* an element. (Damien Cassou - 1 August 2007)"
 	|stream|
 	stream := 'abc' readStream.
@@ -110,11 +82,8 @@ ReadStreamTest>>testOldBack [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadStreamTest>>testOldBackOnPosition1 [
+{ #category : #tests }
+ReadStreamTest >> testOldBackOnPosition1 [
 	"Test the old behavior of the method back. The method #oldBack is a misconception about what a stream is. A stream contains a pointer *between* elements with past and future elements. The method #oldBack considers that the pointer is *on* an element. (Damien Cassou - 1 August 2007)"
 
 	| stream |
@@ -123,11 +92,8 @@ ReadStreamTest>>testOldBackOnPosition1 [
 	self assert: stream oldBack isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadStreamTest>>testOldPeekBack [
+{ #category : #tests }
+ReadStreamTest >> testOldPeekBack [
 	"Test the old behavior of the method peekBack. The method #oldBack is a misconception about what a stream is. A stream contains a pointer *between* elements with past and future elements. The method #oldBack considers that the pointer is *on* an element. (Damien Cassou - 1 August 2007)"
 	|stream|
 	stream := 'abc' readStream.
@@ -136,11 +102,8 @@ ReadStreamTest>>testOldPeekBack [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadStreamTest>>testPeekBack [
+{ #category : #tests }
+ReadStreamTest >> testPeekBack [
 	"Test the new implementation of the method peekBack due to changing #back."
 	|stream|
 	stream := 'abc' readStream.
@@ -149,11 +112,8 @@ ReadStreamTest>>testPeekBack [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadStreamTest>>testPositionOfSubCollection [
+{ #category : #tests }
+ReadStreamTest >> testPositionOfSubCollection [
 	
 	self assert: ('xyz' readStream positionOfSubCollection: 'q' ) = 0.
 	self assert: ('xyz' readStream positionOfSubCollection: 'x' ) = 1.
@@ -162,11 +122,8 @@ ReadStreamTest>>testPositionOfSubCollection [
 	self assert: ('xyz' readStream positionOfSubCollection: 'z' ) = 3.
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadStreamTest>>testUpTo3 [
+{ #category : #'tests - accessing' }
+ReadStreamTest >> testUpTo3 [
 	| stream string |
 	string := 'XYZabcdUVW'.
 	stream := ReadStream on: string from: (string indexOf: $a) to: (string indexOf: $d).
@@ -180,11 +137,8 @@ ReadStreamTest>>testUpTo3 [
 	self assert: stream atEnd.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadStreamTest>>testUpToAll [
+{ #category : #tests }
+ReadStreamTest >> testUpToAll [
 
 	self assert: (self streamOn: 'abcdefgh' upToAll: 'cd') = 'ab'.
 	self assert: (self streamOn: 'abcdefgh' upToAll: 'cd' upToAll: 'gh') = 'ef'.

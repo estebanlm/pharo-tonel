@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #FileDialogWindowTest,
 	#superclass : #TestCase,
-	#category : #Tool-FileList-Tests,
-	#timestamp : ''
+	#category : #Tool-FileList-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-FileDialogWindowTest>>testIssue6406 [
+{ #category : #tests }
+FileDialogWindowTest >> testIssue6406 [
 
 	| aFolder dialog file invalidFolder |
 	aFolder := (FileSystem workingDirectory / 'folder') ensureCreateDirectory.

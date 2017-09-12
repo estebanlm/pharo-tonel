@@ -4,51 +4,35 @@ A GLMRenderer is the abstract class for the renderer hierarchy. This should be s
 Class {
 	#name : #GLMRenderer,
 	#superclass : #Object,
-	#category : #Glamour-Core,
-	#timestamp : 'tg 9/20/2009 12:43'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMRenderer>>doOpen: aUI  [
+{ #category : #rendering }
+GLMRenderer >> doOpen: aUI [ 
 	 
 	^self subclassResponsibility
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMRenderer>>open: aRenderable  [
+{ #category : #rendering }
+GLMRenderer >> open: aRenderable [ 
 	 
 	^self doOpen: (self render: aRenderable)
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMRenderer>>render: aRenderable  [
+{ #category : #rendering }
+GLMRenderer >> render: aRenderable [ 
 	 
 	^aRenderable renderGlamorouslyOn: self
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMRenderer>>renderPane: aPane  [
+{ #category : #rendering }
+GLMRenderer >> renderPane: aPane [ 
 	 
 	^nil
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMRenderer>>renderPresentation: aPresentation  [
+{ #category : #rendering }
+GLMRenderer >> renderPresentation: aPresentation [ 
 
 	^ nil
 ]

@@ -7,105 +7,68 @@ Class {
 	#instVars : [
 		'root'
 	],
-	#category : #FileSystem-Memory,
-	#timestamp : '<historical>'
+	#category : #FileSystem-Memory
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore class>>delimiter [
+{ #category : #public }
+MemoryStore class >> delimiter [
 	^ $/
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore class>>isCaseSensitive [
+{ #category : #public }
+MemoryStore class >> isCaseSensitive [
 	^ true
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore class>>separator  [
+{ #category : #public }
+MemoryStore class >> separator [ 
 	^ $:
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>basenameFromEntry: aMemoryFileSystemEntry [
+{ #category : #public }
+MemoryStore >> basenameFromEntry: aMemoryFileSystemEntry [
 	^ aMemoryFileSystemEntry basename
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>basicCreationTimeOf: aMemoryFileSystemEntry [
+{ #category : #private }
+MemoryStore >> basicCreationTimeOf: aMemoryFileSystemEntry [
 	"Returns the creation date of aMemoryFileSystemEntry"
 	^ aMemoryFileSystemEntry creationTime
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>basicEntry: entry nodesDo: aBlock [
+{ #category : #private }
+MemoryStore >> basicEntry: entry nodesDo: aBlock [
 	entry fileEntriesDo: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>basicEntry: directoryEntry path: aPath nodesDo: aBlock [
+{ #category : #private }
+MemoryStore >> basicEntry: directoryEntry path: aPath nodesDo: aBlock [
 	directoryEntry fileEntriesDo: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>basicIsDirectory: aMemoryFileSystemEntry [
+{ #category : #private }
+MemoryStore >> basicIsDirectory: aMemoryFileSystemEntry [
 	^ aMemoryFileSystemEntry isDirectory
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>basicIsFile: aMemoryFileSystemEntry [
+{ #category : #private }
+MemoryStore >> basicIsFile: aMemoryFileSystemEntry [
 	^ aMemoryFileSystemEntry isFile
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>basicIsSymlink: aNode [
+{ #category : #private }
+MemoryStore >> basicIsSymlink: aNode [
 	^false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>basicModificationTimeOf: aMemoryFileSystemEntry [
+{ #category : #private }
+MemoryStore >> basicModificationTimeOf: aMemoryFileSystemEntry [
 	"Return the basic modification time of aMemoryFileSystemEntry"
 	^ aMemoryFileSystemEntry modificationTime
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>basicOpen: path writable: aBoolean [
+{ #category : #private }
+MemoryStore >> basicOpen: path writable: aBoolean [
 	^ self
 		nodeAt: path
 		ifPresent: [ :aMemoryFileSystemEntry | aMemoryFileSystemEntry ]
@@ -115,37 +78,25 @@ MemoryStore>>basicOpen: path writable: aBoolean [
 				ifTrue: [ self createFile: path ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>basicPosixPermissions: anEntry [
+{ #category : #private }
+MemoryStore >> basicPosixPermissions: anEntry [
 	^ 8r777
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>basicSizeOf: aMemoryFileSystemEntry [
+{ #category : #private }
+MemoryStore >> basicSizeOf: aMemoryFileSystemEntry [
 	"Return the basic size of aMemoryFileSystemEntry"
 	^ aMemoryFileSystemEntry fileSize
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>checkName: aString fixErrors: fixErrors [
+{ #category : #public }
+MemoryStore >> checkName: aString fixErrors: fixErrors [
 	aString ifEmpty: [ self error: 'zero length file name' ].
 	^ aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>copy: sourcePath ifAbsent: absentBlock to: destinationPath ifPresent: presentBlock fileSystem: aFilesystem [
+{ #category : #private }
+MemoryStore >> copy: sourcePath ifAbsent: absentBlock to: destinationPath ifPresent: presentBlock fileSystem: aFilesystem [
         | sourceNode destinationNode |
 
         sourceNode := self
@@ -175,11 +126,8 @@ MemoryStore>>copy: sourcePath ifAbsent: absentBlock to: destinationPath ifPresen
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>createDirectory: path [
+{ #category : #public }
+MemoryStore >> createDirectory: path [
 	| parent |
 	parent := path parent.
 	^ self
@@ -195,11 +143,8 @@ MemoryStore>>createDirectory: path [
 		ifAbsent: [ self signalDirectoryDoesNotExist: parent ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>createFile: aPath [
+{ #category : #private }
+MemoryStore >> createFile: aPath [
 	^ self
 		nodeAt: aPath parent
 		ifPresent: [ :entry | 
@@ -208,11 +153,8 @@ MemoryStore>>createFile: aPath [
 		ifAbsent: [ self signalDirectoryDoesNotExist: aPath parent ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>delete: path [
+{ #category : #public }
+MemoryStore >> delete: path [
 	self 
 		nodeAt: path parent
 		ifPresent: [ :dict | 
@@ -220,43 +162,28 @@ MemoryStore>>delete: path [
 		ifAbsent: [ DirectoryDoesNotExist signalWith: path parent ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>forReferencePrintOn: aStream [
+{ #category : #printing }
+MemoryStore >> forReferencePrintOn: aStream [
 	aStream nextPutAll: 'memory://'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>handleClass [
+{ #category : #accessing }
+MemoryStore >> handleClass [
 	^ MemoryHandle 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>initialize  [
+{ #category : #initialization }
+MemoryStore >> initialize [ 
 	root := MemoryFileSystemDirectory new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>isMemoryFileSystem [
+{ #category : #testing }
+MemoryStore >> isMemoryFileSystem [
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>nodeAt: aPath ifPresent: presentBlock ifAbsent: absentBlock [
+{ #category : #private }
+MemoryStore >> nodeAt: aPath ifPresent: presentBlock ifAbsent: absentBlock [
 	| current |
 	current := self root.
 	aPath do: [ :segment | 
@@ -266,11 +193,8 @@ MemoryStore>>nodeAt: aPath ifPresent: presentBlock ifAbsent: absentBlock [
 	^ presentBlock value: current
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>openFileStream: path writable: isWriteStream [
+{ #category : #public }
+MemoryStore >> openFileStream: path writable: isWriteStream [
 	| entry |
 	entry := self basicOpen: path writable: isWriteStream.
 	^ isWriteStream 
@@ -278,11 +202,8 @@ MemoryStore>>openFileStream: path writable: isWriteStream [
 		ifFalse: [ entry readStream ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>rename: sourcePath to: destinationPath [
+{ #category : #public }
+MemoryStore >> rename: sourcePath to: destinationPath [
 	| sourceEntry destinationParentEntry newName |
 	
 	sourceEntry := self nodeAt: sourcePath.
@@ -307,11 +228,8 @@ MemoryStore>>rename: sourcePath to: destinationPath [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>replaceFile: path in: aBlock [
+{ #category : #private }
+MemoryStore >> replaceFile: path in: aBlock [
 	^ self
 		nodeAt: path parent
 		ifPresent: [ :entry | | old new |
@@ -323,10 +241,7 @@ MemoryStore>>replaceFile: path in: aBlock [
 		ifAbsent: [ self signalFileDoesNotExist: path ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryStore>>root [
+{ #category : #accessing }
+MemoryStore >> root [
 	^ root
 ]

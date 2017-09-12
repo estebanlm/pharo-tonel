@@ -52,91 +52,63 @@ Class {
 		'ThreePi',
 		'Twopi'
 	],
-	#category : #Kernel-Numbers,
-	#timestamp : 'VeronicaUquillas 6/11/2010 14:51'
+	#category : #Kernel-Numbers
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>basicNew [
+{ #category : #'as yet unclassified' }
+Float class >> basicNew [
 	^BoxedFloat64 basicNew: 2
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>basicNew: anInteger [
+{ #category : #'as yet unclassified' }
+Float class >> basicNew: anInteger [
 	^BoxedFloat64 basicNew: 2
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>denormalized [
+{ #category : #constants }
+Float class >> denormalized [
 	"Answer whether implementation supports denormalized numbers (also known as gradual underflow)."
 	
 	^true
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>e [
+{ #category : #constants }
+Float class >> e [
 	"Answer the constant, E."
 
 	^E
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>emax [
+{ #category : #constants }
+Float class >> emax [
 	"Answer exponent of maximal representable value"
 	
 	^1023
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>emin [
+{ #category : #constants }
+Float class >> emin [
 	"Answer exponent of minimal normalized representable value"
 	
 	^-1022
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>epsilon [
+{ #category : #constants }
+Float class >> epsilon [
 	"Answer difference between 1.0 and previous representable value"
 	
 	^1.0 timesTwoPower: 1 - self precision
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>fmax [
+{ #category : #constants }
+Float class >> fmax [
 	"Answer the maximum finite floating point value representable."
 	
 	^MaxVal
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>fmin [
+{ #category : #constants }
+Float class >> fmin [
 	"Answer minimum positive representable value."
 	
 	^self denormalized
@@ -144,31 +116,22 @@ Float class>>fmin [
 		ifFalse: [self fminNormalized]
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>fminDenormalized [
+{ #category : #constants }
+Float class >> fminDenormalized [
 	"Answer the minimum denormalized value representable."
 	
 	^1.0 timesTwoPower: MinValLogBase2
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>fminNormalized [
+{ #category : #constants }
+Float class >> fminNormalized [
 	"Answer the minimum normalized value representable."
 	
 	^1.0 timesTwoPower: -1022
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>fromIEEE32Bit: word [
+{ #category : #'instance creation' }
+Float class >> fromIEEE32Bit: word [
 	"Convert the given 32 bit word (which is supposed to be a positive 32-bit value) from
 	 a 32 bit IEEE floating point representation into an actual Squeak float object (being
 	 64 bits wide). Should only be used for conversion in FloatArrays or likewise objects."
@@ -207,38 +170,26 @@ Float class>>fromIEEE32Bit: word [
 		* 1.0 "reduce to SmallFloat64 if possible"
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>fromIEEE64Bit: doubleWord [
+{ #category : #'instance creation' }
+Float class >> fromIEEE64Bit: doubleWord [
 
     ^ (self new: 2) basicAt: 1 put: (doubleWord bitShift: -32); basicAt: 2 put: (doubleWord bitAnd: 16rFFFFFFFF); yourself
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>halfPi [
+{ #category : #constants }
+Float class >> halfPi [
 	^ Halfpi
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>infinity [
+{ #category : #constants }
+Float class >> infinity [
 	"Answer the value used to represent an infinite magnitude"
 
 	^ Infinity
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>initialize [
+{ #category : #'class initialization' }
+Float class >> initialize [
 	"Float initialize"
 	"Constants from Computer Approximations, pp. 182-183:
 		Pi = 3.14159265358979323846264338327950288
@@ -272,68 +223,47 @@ Float class>>initialize [
 
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>maxExactInteger [
+{ #category : #constants }
+Float class >> maxExactInteger [
 	"Answer the biggest integer such that it is exactly represented in a float, and all smaller integers also are"
 	^1 bitShift: self precision
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>nan [
+{ #category : #constants }
+Float class >> nan [
 	"Answer the canonical value used to represent Not-A-Number"
 
 	^ NaN
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>negativeInfinity [
+{ #category : #constants }
+Float class >> negativeInfinity [
 	"Answer the value used to represent a negative infinite magnitude"
 
 	^ NegativeInfinity
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>negativeZero [
+{ #category : #constants }
+Float class >> negativeZero [
 
 	^ NegativeZero
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>one [
+{ #category : #constants }
+Float class >> one [
 	
 	^1.0
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>pi [
+{ #category : #constants }
+Float class >> pi [
 	"Answer the constant, Pi."
 
 	^Pi
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>precision [
+{ #category : #constants }
+Float class >> precision [
 	"Answer the apparent precision of the floating point representation.
 	That is the maximum number of radix-based digits (bits if radix=2) representable in floating point without round off error.
 	Technically, 52 bits are stored in the representation, and normalized numbers have an implied leading 1 that does not need to be stored.
@@ -343,80 +273,56 @@ Float class>>precision [
 	^53
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>radix [
+{ #category : #constants }
+Float class >> radix [
 	"Answer the radix used for internal floating point representation."
 	
 	^2
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>readFrom: aStream [
+{ #category : #'instance creation' }
+Float class >> readFrom: aStream [ 
 	"Answer a new Float as described on the stream, aStream."
 
 	^(super readFrom: aStream) asFloat
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>readFrom: aStream ifFail: aBlock [
+{ #category : #'instance creation' }
+Float class >> readFrom: aStream ifFail: aBlock [
 	"Answer a new Float as described on the stream, aStream."
 
 	^(super readFrom: aStream ifFail: [^aBlock value]) asFloat
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>threePi [
+{ #category : #constants }
+Float class >> threePi [
 
 	^ ThreePi
 
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>twoPi [
+{ #category : #constants }
+Float class >> twoPi [
 
 	^ Twopi
 
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float class>>zero [
+{ #category : #constants }
+Float class >> zero [
 	^ 0.0
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>abs [
+{ #category : #arithmetic }
+Float >> abs [
 	"This is faster than using Number abs and works for negativeZero."
 	self <= 0.0
 		ifTrue: [^ 0.0 - self]
 		ifFalse: [^ self]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>absPrintExactlyOn: aStream base: base [
+{ #category : #printing }
+Float >> absPrintExactlyOn: aStream base: base [
 	"Print my value on a stream in the given base.  Assumes that my value is strictly
 	positive; negative numbers, zero, and NaNs have already been handled elsewhere.
 	Based upon the algorithm outlined in:
@@ -503,11 +409,8 @@ Float>>absPrintExactlyOn: aStream base: base [
 		aStream nextPutAll: (baseExpEstimate - 1) printString]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>absPrintInexactlyOn: aStream base: base [
+{ #category : #printing }
+Float >> absPrintInexactlyOn: aStream base: base [
 	"Print my value on a stream in the given base.  Assumes that my value is strictly
 	positive; negative numbers, zero, and NaNs have already been handled elsewhere.
 	Based upon the algorithm outlined in:
@@ -591,11 +494,8 @@ Float>>absPrintInexactlyOn: aStream base: base [
 		aStream nextPutAll: (baseExpEstimate - 1) printString]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>absPrintOn: aStream base: base digitCount: digitCount [
+{ #category : #private }
+Float >> absPrintOn: aStream base: base digitCount: digitCount [ 
 	"Print me in the given base, using digitCount significant figures."
 
 	| fuzz x exp q fBase scale logScale xi |
@@ -648,11 +548,8 @@ at: i)]]]
 			q printOn: aStream]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>adaptToFraction: rcvr andCompare: selector [
+{ #category : #converting }
+Float >> adaptToFraction: rcvr andCompare: selector [ 
 	"If I am involved in comparison with a Fraction, convert myself to a
 	Fraction. This way, no bit is lost and comparison is exact."
 	
@@ -676,20 +573,14 @@ Float>>adaptToFraction: rcvr andCompare: selector [
 	^ rcvr perform: selector with: self asTrueFraction
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>adaptToFraction: rcvr andSend: selector [
+{ #category : #converting }
+Float >> adaptToFraction: rcvr andSend: selector [
 	"If I am involved in arithmetic with a Fraction, convert it to a Float."
 	^ rcvr asFloat perform: selector with: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>adaptToInteger: rcvr andCompare: selector [
+{ #category : #converting }
+Float >> adaptToInteger: rcvr andCompare: selector [ 
 	"If I am involved in comparison with an Integer, convert myself to a
 	Fraction. This way, no bit is lost and comparison is exact."
 	
@@ -713,30 +604,21 @@ Float>>adaptToInteger: rcvr andCompare: selector [
 	^ rcvr perform: selector with: self asTrueFraction
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>adaptToInteger: rcvr andSend: selector [
+{ #category : #converting }
+Float >> adaptToInteger: rcvr andSend: selector [
 	"If I am involved in arithmetic with an Integer, convert it to a Float."
 	^ rcvr asFloat perform: selector with: self
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>arcCos [
+{ #category : #'mathematical functions' }
+Float >> arcCos [
 	"Answer the angle in radians."
 
 	^ Halfpi - self arcSin
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>arcSin [
+{ #category : #'mathematical functions' }
+Float >> arcSin [
 	"Answer the angle in radians."
 
 	((self < -1.0) or: [self > 1.0]) ifTrue: [^DomainError signal: 'Value out of range' from: -1 to: 1].
@@ -745,11 +627,8 @@ Float>>arcSin [
 		ifFalse: [^ (self / (1.0 - (self * self)) sqrt) arcTan]
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>arcTan: denominator [
+{ #category : #'mathematical functions' }
+Float >> arcTan: denominator [
 	"Answer the angle in radians.
 	 Optional. See Object documentation whatIsAPrimitive.
 	Implementation note: use sign in order to catch cases of negativeZero"
@@ -771,22 +650,16 @@ Float>>arcTan: denominator [
 					ifFalse: [ ((self / denominator) arcTan) - Pi ]]]]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>asApproximateFraction [
+{ #category : #converting }
+Float >> asApproximateFraction [
 	"Answer a Fraction approximating the receiver. This conversion uses the 
 	continued fraction method to approximate a floating point number."
 
 	^ self asApproximateFractionAtOrder: 0
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>asApproximateFractionAtOrder: maxOrder [
+{ #category : #converting }
+Float >> asApproximateFractionAtOrder: maxOrder [
 	"Answer a Fraction approximating the receiver. This conversion uses the 
 	continued fraction method to approximate a floating point number. If maxOrder
 	is zero, use maximum order"
@@ -828,29 +701,20 @@ Float>>asApproximateFractionAtOrder: maxOrder [
 				^ Fraction numerator: num1 denominator: denom1]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>asFloat [
+{ #category : #converting }
+Float >> asFloat [
 	"Answer the receiver itself."
 
 	^self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>asFraction [
+{ #category : #converting }
+Float >> asFraction [
 	^ self asTrueFraction 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>asIEEE32BitWord [
+{ #category : #converting }
+Float >> asIEEE32BitWord [
 	"Convert the receiver into a 32 bit Integer value representing the same number in IEEE 32 bit format.
 	Used for conversion in FloatArrays only."
 	
@@ -913,11 +777,8 @@ Float>>asIEEE32BitWord [
 	^ destWord
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>asMinimalDecimalFraction [
+{ #category : #printing }
+Float >> asMinimalDecimalFraction [
 	"Answer the shortest decimal Fraction that will equal self when converted back asFloat.
 	A decimal Fraction has only powers of 2 and 5 as decnominator.
 	For example, 0.1 asMinimalDecimalFraction = (1/10)."
@@ -1002,11 +863,8 @@ Float>>asMinimalDecimalFraction [
 	^numerator / denominator
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>asTrueFraction [
+{ #category : #converting }
+Float >> asTrueFraction [
 	" Answer a fraction that EXACTLY represents self,
 	  a double precision IEEE floating point number.
 	  Floats are stored in the same form on all platforms.
@@ -1065,27 +923,18 @@ exp) ] ].
 	^ result 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>at: index [
+{ #category : #accessing }
+Float >> at: index [ 
 	^self basicAt: index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>at: index put: value [
+{ #category : #accessing }
+Float >> at: index put: value [ 
 	^self basicAt: index put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>basicAt: index [
+{ #category : #accessing }
+Float >> basicAt: index [
 	"Primitive. Assumes receiver is indexable. Answer the value of an 
 	indexable element in the receiver. Fail if the argument index is not an 
 	Integer or is out of bounds. Essential. Do not override in a subclass. See 
@@ -1101,11 +950,8 @@ Float>>basicAt: index [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>basicAt: index put: value [
+{ #category : #accessing }
+Float >> basicAt: index put: value [
 	"Primitive. Assumes receiver is indexable. Store the second argument 
 	value in the indexable element of the receiver indicated by index. Fail 
 	if the index is not an Integer or is out of bounds. Or fail if the value is 
@@ -1122,46 +968,31 @@ Float>>basicAt: index put: value [
 	^super basicAt: index put: value
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>basicNew [
+{ #category : #'instance creation' }
+Float >> basicNew [ 
 		^ Float basicNew: 2
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>basicNew: anInteger [
+{ #category : #'instance creation' }
+Float >> basicNew: anInteger [ 
 		^ Float basicNew: 2
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>binaryLiteralString [
+{ #category : #printing }
+Float >> binaryLiteralString [
 
 	^ String streamContents: [ :stream | self printBinaryLiteralOn: stream ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>closeTo: num [
+{ #category : #comparing }
+Float >> closeTo: num [
  	"Tell whether the receiver and arguments are close from each."
 	
 	^ self closeTo: num precision: 0.0001
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>closeTo: num precision: aPrecision [
+{ #category : #comparing }
+Float >> closeTo: num precision: aPrecision [
  	"Tell whether the receiver and arguments are close from each other given a precision"
 	
 	num isNumber ifFalse: [ ^ [self = num] ifError: [false]].
@@ -1171,11 +1002,8 @@ Float>>closeTo: num precision: aPrecision [
 		or: [(self - num) abs / (self abs max: num abs) < aPrecision]
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>copySignTo: aNumber [
+{ #category : #'mathematical functions' }
+Float >> copySignTo: aNumber [
 	"Return a number with same magnitude as aNumber and same sign as self.
 	Implementation note: take care of Float negativeZero, which is considered as having a negative sign."
 
@@ -1183,62 +1011,44 @@ Float>>copySignTo: aNumber [
 	^aNumber withNegativeSign
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>cos [
+{ #category : #'mathematical functions' }
+Float >> cos [
 	"Answer the cosine of the receiver taken as an angle in radians."
 
 	^ (self + Halfpi) sin
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>deepCopy [
+{ #category : #copying }
+Float >> deepCopy [
 
 	^self copy
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>degreeCos [
+{ #category : #'mathematical functions' }
+Float >> degreeCos [
 	"Take care of exceptional values"
 	
 	self isFinite ifTrue: [^super degreeCos].
 	^self degreesToRadians cos
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>degreeSin [
+{ #category : #'mathematical functions' }
+Float >> degreeSin [
 	"Take care of exceptional values"
 	
 	self isFinite ifTrue: [^super degreeSin].
 	^self degreesToRadians sin
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>degreesToRadians [
+{ #category : #converting }
+Float >> degreesToRadians [
 	"Answer the receiver in radians. Assumes the receiver is in degrees."
 
 	^self * RadiansPerDegree
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>floorLog: radix [
+{ #category : #'mathematical functions' }
+Float >> floorLog: radix [
 	"Answer the floor of the log base radix of the receiver.
 	The result may be off by one due to rounding errors, except in base 2."
 
@@ -1247,11 +1057,8 @@ Float>>floorLog: radix [
 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>hash [
+{ #category : #comparing }
+Float >> hash [
 	"Hash is reimplemented because = is implemented. Both words of the float are used; 8 bits are removed from each end to clear most of the exponent regardless of the byte ordering. (The bitAnd:'s ensure that the intermediate results do not become a large integer.) Slower than the original version in the ratios 12:5 to 2:1 depending on values. (DNS, 11 May, 1997)"
 
 	(self isFinite and: [self fractionPart = 0.0]) ifTrue: [^self truncated hash].
@@ -1260,11 +1067,8 @@ Float>>hash [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>hex [
+{ #category : #printing }
+Float >> hex [  
 
 	^ String streamContents:
 		[:strm | | word nibble |
@@ -1278,50 +1082,35 @@ Float>>hex [
 "
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>integerPart [
+{ #category : #'truncation and round off' }
+Float >> integerPart [
 	"Answer a Float whose value is the receiver's truncated value."
 
 	^self - self fractionPart
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>isFinite [
+{ #category : #testing }
+Float >> isFinite [
 	"simple, byte-order independent test for rejecting Not-a-Number and (Negative)Infinity"
 
 	^(self - self) = 0.0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>isFloat [
+{ #category : #testing }
+Float >> isFloat [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>isInfinite [
+{ #category : #testing }
+Float >> isInfinite [
 	"Return true if the receiver is positive or negative infinity."
 
 	^ self = Infinity or: [self = NegativeInfinity]
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>isLiteral [
+{ #category : #testing }
+Float >> isLiteral [
 	"There is no literal representation of NaN.
 	However, there are literal representations of Infinity, like 1.0e1000.
 	But since they are not able to print properly, only case of finite Float is considered."
@@ -1329,77 +1118,53 @@ Float>>isLiteral [
 	^self isFinite
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>isNaN [
+{ #category : #testing }
+Float >> isNaN [
 	"simple, byte-order independent test for Not-a-Number"
 
 	^ self ~= self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>isPowerOfTwo [
+{ #category : #testing }
+Float >> isPowerOfTwo [
 	"Return true if the receiver is an integral power of two.
 	Floats never return true here."
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>isSelfEvaluating [
+{ #category : #testing }
+Float >> isSelfEvaluating [
     ^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>isZero [
+{ #category : #testing }
+Float >> isZero [
 	^self = 0.0
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>literalEqual: other [
+{ #category : #comparing }
+Float >> literalEqual: other [
 
 	^ (super literalEqual: other) and: [ self isZero not or: [ self sign = other sign ] ]
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>log [
+{ #category : #'mathematical functions' }
+Float >> log [
 	"Answer the base 10 logarithm of the receiver."
 
 	^ self ln / Ln10
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>negated [
+{ #category : #arithmetic }
+Float >> negated [
 	"Answer a Number that is the negation of the receiver.
 	Implementation note: this version cares of negativeZero."
 
 	^-1.0 * self
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>nthRoot: aPositiveInteger [
+{ #category : #'mathematical functions' }
+Float >> nthRoot: aPositiveInteger [
 	"Answer the nth root of the receiver."
 	aPositiveInteger = 2 ifTrue: [
 		^self sqrt ].
@@ -1415,11 +1180,8 @@ Float>>nthRoot: aPositiveInteger [
 		ifFalse: [ self raisedTo: 1.0 / aPositiveInteger ]
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>predecessor [
+{ #category : #'truncation and round off' }
+Float >> predecessor [
 	| ulp |
 	self isFinite ifFalse: [
 		(self isNaN or: [self negative]) ifTrue: [^self].
@@ -1431,11 +1193,8 @@ Float>>predecessor [
 		ifFalse: [self - (0.5 * ulp)]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>printBinaryLiteralOn: stream [
+{ #category : #printing }
+Float >> printBinaryLiteralOn: stream [
 
 	"Floats represent those numbers that can be written in Pharo notation as literals of the form {sign}2r1.{fraction}e{exponent} -- where {sign} is the minus
 	sign or is empty, {fraction} is a sequence of 52 bits and {exponent} is an integer from -1022 to 1023 -- as well as those numbers that can be written
@@ -1478,11 +1237,8 @@ Float>>printBinaryLiteralOn: stream [
 	(exponentBits - 1023) printOn: stream base: 10.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>printOn: stream base: base [
+{ #category : #printing }
+Float >> printOn: stream base: base [
 	"Handle sign, zero, and NaNs; all other values passed to FloatPrintPolicy" 
 
 	self isNaN ifTrue: [ ^ stream nextPutAll: 'Float nan' ]. "check for NaN before sign"
@@ -1499,11 +1255,8 @@ Float>>printOn: stream base: base [
 				ifFalse: [ FloatPrintPolicy absPrint: self negated on: stream base: base ] ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>printPaddedWith: aCharacter to: aNumber [
+{ #category : #printing }
+Float >> printPaddedWith: aCharacter to: aNumber [ 
 	"Answer the string containing the ASCII representation of the receiver 
 	padded on the left with aCharacter to be at least on aNumber 
 	integerPart characters and padded the right with aCharacter to be at 
@@ -1534,31 +1287,22 @@ Float>>printPaddedWith: aCharacter to: aNumber [
 	^ iPadding , digits , fPadding
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>printShowingDecimalPlaces: placesDesired [
+{ #category : #printing }
+Float >> printShowingDecimalPlaces: placesDesired [
 	"This implementation avoids any rounding error caused by rounded or roundTo:"
 	
 	^self asTrueFraction printShowingDecimalPlaces: placesDesired
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>radiansToDegrees [
+{ #category : #converting }
+Float >> radiansToDegrees [
 	"Answer the receiver in degrees. Assumes the receiver is in radians."
 
 	^self / RadiansPerDegree
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>reciprocal [
+{ #category : #arithmetic }
+Float >> reciprocal [
 
 	"Returns the reciprocal.
 	If self is 0.0 the / signals a ZeroDivide"
@@ -1566,11 +1310,8 @@ Float>>reciprocal [
 	^1.0 / self
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>reciprocalFloorLog: radix [
+{ #category : #'mathematical functions' }
+Float >> reciprocalFloorLog: radix [ 
 	"Quick computation of (self log: radix) floor, when self < 1.0.
 	Avoids infinite recursion problems with denormalized numbers"
 
@@ -1584,11 +1325,8 @@ Float>>reciprocalFloorLog: radix [
 	^ ((n floorLog: radix) + adjust) negated
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>reciprocalLogBase2 [
+{ #category : #'mathematical functions' }
+Float >> reciprocalLogBase2 [
 	"optimized for self = 10, for use in conversion for printing"
 
 	^ self = 10.0
@@ -1596,21 +1334,15 @@ Float>>reciprocalLogBase2 [
 		ifFalse: [Ln2 / self ln]
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>reduce [
+{ #category : #'truncation and round off' }
+Float >> reduce [
     "If self is close to an integer, return that integer"
 
     (self closeTo: self rounded) ifTrue: [^ self rounded]
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>round: numberOfWishedDecimal [
+{ #category : #'truncation and round off' }
+Float >> round: numberOfWishedDecimal [
 	"Round the decimal part of the receiver to be limited to the number of wished decimal. Only leave a fixed amount of decimal"
    < expr: 10.12345 round: 2 result: 10.12 >
         
@@ -1620,11 +1352,8 @@ Float>>round: numberOfWishedDecimal [
 
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>rounded [
+{ #category : #'truncation and round off' }
+Float >> rounded [
 	"Answer the integer nearest the receiver.
 	Implementation note: super would not handle tricky inexact arithmetic"
 	
@@ -1635,31 +1364,22 @@ Float>>rounded [
 		ifFalse: [^self truncated + self sign rounded]
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>safeArcCos [
+{ #category : #'mathematical functions' }
+Float >> safeArcCos [
 	"Answer the angle in radians."
 	(self between: -1.0 and: 1.0)
 		ifTrue: [^ self arcCos]
 		ifFalse: [^ self sign arcCos]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>shallowCopy [
+{ #category : #copying }
+Float >> shallowCopy [
 
 	^self - 0.0
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>sign [
+{ #category : #'mathematical functions' }
+Float >> sign [
 	"Answer 1 if the receiver is greater than 0, -1 if less than 0, else 0.
 	Handle IEEE-754 negative-zero by reporting a sign of -1"
 
@@ -1668,20 +1388,14 @@ Float>>sign [
 	^ 0
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>significand [
+{ #category : #'truncation and round off' }
+Float >> significand [
 
 	^ self timesTwoPower: (self exponent negated)
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>significandAsInteger [
+{ #category : #'truncation and round off' }
+Float >> significandAsInteger [
 	"Answer the mantissa of a Float shifted so as to have the ulp equal to 1.
 	For exceptional values, infinity and nan, just answer the bit pattern."
 
@@ -1690,21 +1404,15 @@ Float>>significandAsInteger [
 	^(((self basicAt: 1) bitAnd: 16r000FFFFF) bitShift: 32) bitOr: (self basicAt: 2)
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>storeOn: aStream [
+{ #category : #printing }
+Float >> storeOn: aStream [ 
 	"Print the Number exactly so it can be interpreted back unchanged"
 	
 	self storeOn: aStream base: 10
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>storeOn: aStream base: base [
+{ #category : #printing }
+Float >> storeOn: aStream base: base [ 
 	"Print the Number exactly so it can be interpreted back unchanged"
 	self isFinite
 		ifTrue: [self sign = -1 ifTrue: [aStream nextPutAll: '-'].
@@ -1719,11 +1427,8 @@ Float>>storeOn: aStream base: base [
 						ifFalse: [aStream nextPutAll: 'Float infinity negated']]]
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>successor [
+{ #category : #'truncation and round off' }
+Float >> successor [
 	| ulp |
 	self isFinite ifFalse: [
 		(self isNaN or: [self positive]) ifTrue: [^self].
@@ -1735,21 +1440,15 @@ Float>>successor [
 		ifFalse: [self + (0.5 * ulp)]
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>tan [
+{ #category : #'mathematical functions' }
+Float >> tan [
 	"Answer the tangent of the receiver taken as an angle in radians."
 
 	^ self sin / self cos
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>ulp [
+{ #category : #'truncation and round off' }
+Float >> ulp [
 	"Answer the unit of least precision of self (the power of two corresponding to last bit of mantissa)"
 	
 	| exponent |
@@ -1763,21 +1462,15 @@ Float>>ulp [
  		ifFalse: [Float epsilon timesTwoPower: exponent]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>veryDeepCopyWith: deepCopier [
+{ #category : #copying }
+Float >> veryDeepCopyWith: deepCopier [
 	"Return self.  Do not record me."
 
 	^ self shallowCopy
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Float>>withNegativeSign [
+{ #category : #converting }
+Float >> withNegativeSign [
 	"Same as super, but handle the subtle case of Float negativeZero"
 	
 	self = 0.0 ifTrue: [^self class negativeZero].  

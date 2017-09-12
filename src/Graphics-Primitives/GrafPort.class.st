@@ -11,31 +11,21 @@ Class {
 		'lastFontForegroundColor',
 		'lastFontBackgroundColor'
 	],
-	#category : #Graphics-Primitives,
-	#timestamp : 'TorstenBergmann 2/20/2014 18:35'
+	#category : #Graphics-Primitives
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-GrafPort>>alphaBits: a [
+{ #category : #accessing }
+GrafPort >> alphaBits: a [
 	alpha := a
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-GrafPort>>clippedBy: aRectangle [
+{ #category : #copying }
+GrafPort >> clippedBy: aRectangle [
 	^ self copy clipBy: aRectangle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-GrafPort>>contentsOfArea: aRectangle into: aForm [
+{ #category : #accessing }
+GrafPort >> contentsOfArea: aRectangle into: aForm [
 	destForm 
 		displayOn: aForm 
 		at:  aRectangle origin
@@ -43,11 +33,8 @@ GrafPort>>contentsOfArea: aRectangle into: aForm [
 	^aForm
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-GrafPort>>copyBits [
+{ #category : #copying }
+GrafPort >> copyBits [
 	"Override copybits to do translucency if desired"
 
 	(combinationRule between: 30 and: 31)
@@ -55,11 +42,8 @@ GrafPort>>copyBits [
 		ifFalse: [ super copyBits ]
 ]
 
-{
-	#category : #'drawing support',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-GrafPort>>fillOval: rect [
+{ #category : #'drawing support' }
+GrafPort >> fillOval: rect [
 	| centerX centerY nextY yBias xBias outer nextOuterX |
 	rect area <= 0 ifTrue: [^ self].
 	height := 1.
@@ -87,20 +71,14 @@ GrafPort>>fillOval: rect [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-GrafPort>>fillPattern: anObject [
+{ #category : #accessing }
+GrafPort >> fillPattern: anObject [
 	fillPattern := anObject.
 	self fillColor: anObject.
 ]
 
-{
-	#category : #'drawing support',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-GrafPort>>fillRect: rect offset: aPoint [
+{ #category : #'drawing support' }
+GrafPort >> fillRect: rect offset: aPoint [
 	"The offset is really just for stupid InfiniteForms."
 	| fc |
 	fillPattern class == InfiniteForm ifTrue:[
@@ -119,11 +97,8 @@ GrafPort>>fillRect: rect offset: aPoint [
 	self copyBits.
 ]
 
-{
-	#category : #'drawing support',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-GrafPort>>frameOval: rect borderWidth: borderWidth [
+{ #category : #'drawing support' }
+GrafPort >> frameOval: rect borderWidth: borderWidth [
 	| centerX centerY nextY yBias xBias wp outer inner nextOuterX nextInnerX |
 	rect area <= 0 ifTrue: [^ self].
 	height := 1.
@@ -171,11 +146,8 @@ GrafPort>>frameOval: rect borderWidth: borderWidth [
 
 ]
 
-{
-	#category : #'drawing support',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-GrafPort>>frameRect: rect borderWidth: borderWidth [
+{ #category : #'drawing support' }
+GrafPort >> frameRect: rect borderWidth: borderWidth [
 	sourceX := 0.
 	sourceY := 0.
 	(rect areasOutside: (rect insetBy: borderWidth)) do:
@@ -183,11 +155,8 @@ GrafPort>>frameRect: rect borderWidth: borderWidth [
 
 ]
 
-{
-	#category : #'drawing support',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-GrafPort>>frameRectBottom: rect height: h [
+{ #category : #'drawing support' }
+GrafPort >> frameRectBottom: rect height: h [
 
 	destX := rect left + 1.
 	destY := rect bottom - 1.
@@ -201,11 +170,8 @@ GrafPort>>frameRectBottom: rect height: h [
 
 ]
 
-{
-	#category : #'drawing support',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-GrafPort>>frameRectRight: rect width: w [
+{ #category : #'drawing support' }
+GrafPort >> frameRectRight: rect width: w [
 
 	width := 1.
 	height := rect height - 1.
@@ -219,11 +185,8 @@ GrafPort>>frameRectRight: rect width: w [
 
 ]
 
-{
-	#category : #'drawing support',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-GrafPort>>image: aForm at: aPoint sourceRect: sourceRect rule: rule [
+{ #category : #'drawing support' }
+GrafPort >> image: aForm at: aPoint sourceRect: sourceRect rule: rule [
 	"Draw the portion of the given Form defined by sourceRect at the given point using the given BitBlt combination rule."
 
 	sourceForm := aForm.
@@ -233,11 +196,8 @@ GrafPort>>image: aForm at: aPoint sourceRect: sourceRect rule: rule [
 	self copyBits
 ]
 
-{
-	#category : #'drawing support',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-GrafPort>>image: aForm at: aPoint sourceRect: sourceRect rule: rule alpha: sourceAlpha [
+{ #category : #'drawing support' }
+GrafPort >> image: aForm at: aPoint sourceRect: sourceRect rule: rule alpha: sourceAlpha [
 	"Draw the portion of the given Form defined by sourceRect at the given point using the given BitBlt combination rule."
 
 	sourceForm := aForm.
@@ -247,19 +207,13 @@ GrafPort>>image: aForm at: aPoint sourceRect: sourceRect rule: rule alpha: sourc
 	self copyBitsTranslucent: (alpha := (sourceAlpha * 255) truncated min: 255 max: 0).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-GrafPort>>lastFontForegroundColor [
+{ #category : #accessing }
+GrafPort >> lastFontForegroundColor [
 	^lastFontForegroundColor
 ]
 
-{
-	#category : #'drawing support',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-GrafPort>>stencil: stencilForm at: aPoint sourceRect: aRect [
+{ #category : #'drawing support' }
+GrafPort >> stencil: stencilForm at: aPoint sourceRect: aRect [
 	"Paint using aColor wherever stencilForm has non-zero pixels"
 	self sourceForm: stencilForm;
 		destOrigin: aPoint;

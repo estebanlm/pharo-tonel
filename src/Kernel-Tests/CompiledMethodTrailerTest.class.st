@@ -4,15 +4,11 @@ SUnit tests for CompiledMethodTrailer
 Class {
 	#name : #CompiledMethodTrailerTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Methods,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:32'
+	#category : #Kernel-Tests-Methods
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTrailerTest>>testEmbeddingCompressedSourceCode [
+{ #category : #tests }
+CompiledMethodTrailerTest >> testEmbeddingCompressedSourceCode [
 
 	| trailer newTrailer code |
 	
@@ -49,11 +45,8 @@ CompiledMethodTrailerTest>>testEmbeddingCompressedSourceCode [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTrailerTest>>testEmbeddingSourceCode [
+{ #category : #tests }
+CompiledMethodTrailerTest >> testEmbeddingSourceCode [
 
 	self testEmbeddingSourceCode: 'foo'.
 	
@@ -72,11 +65,8 @@ CompiledMethodTrailerTest>>testEmbeddingSourceCode [
 	self testEmbeddingSourceCode: (String loremIpsum: 30000).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTrailerTest>>testEmbeddingSourceCode: sourceCode [
+{ #category : #tests }
+CompiledMethodTrailerTest >> testEmbeddingSourceCode: sourceCode [
 
 	| trailer newTrailer |
 	
@@ -91,11 +81,8 @@ CompiledMethodTrailerTest>>testEmbeddingSourceCode: sourceCode [
 	self assert: (newTrailer endPC = 0).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTrailerTest>>testEncodingNoTrailer [
+{ #category : #tests }
+CompiledMethodTrailerTest >> testEncodingNoTrailer [
 
 	| trailer |
 	
@@ -114,11 +101,8 @@ CompiledMethodTrailerTest>>testEncodingNoTrailer [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTrailerTest>>testEncodingSourcePointer [
+{ #category : #tests }
+CompiledMethodTrailerTest >> testEncodingSourcePointer [
 
 	| trailer |
 	
@@ -133,11 +117,8 @@ CompiledMethodTrailerTest>>testEncodingSourcePointer [
 	 ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTrailerTest>>testEncodingVarLengthSourcePointer [
+{ #category : #tests }
+CompiledMethodTrailerTest >> testEncodingVarLengthSourcePointer [
 
 	| trailer newTrailer |
 	
@@ -156,11 +137,8 @@ CompiledMethodTrailerTest>>testEncodingVarLengthSourcePointer [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTrailerTest>>testEncodingZeroSourcePointer [
+{ #category : #tests }
+CompiledMethodTrailerTest >> testEncodingZeroSourcePointer [
 
 	| trailer |
 	

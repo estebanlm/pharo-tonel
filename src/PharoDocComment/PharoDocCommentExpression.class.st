@@ -8,75 +8,50 @@ Class {
 		'expressionInterval',
 		'source'
 	],
-	#category : #PharoDocComment,
-	#timestamp : 'NicolaiHess 11/1/2016 21:45'
+	#category : #PharoDocComment
 }
 
-{
-	#category : #operation,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentExpression>>evaluate [
+{ #category : #operation }
+PharoDocCommentExpression >> evaluate [
 
 	^ Smalltalk compiler evaluate: self expression
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentExpression>>expression [
+{ #category : #accessing }
+PharoDocCommentExpression >> expression [
 	^ self source copyFrom: expressionInterval first to: expressionInterval last
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentExpression>>expressionCode [
+{ #category : #accessing }
+PharoDocCommentExpression >> expressionCode [
 	^ (RBParser parseFaultyExpression: self expression) doSemanticAnalysis; yourself
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentExpression>>expressionInterval [
+{ #category : #accessing }
+PharoDocCommentExpression >> expressionInterval [
 	^ expressionInterval
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentExpression>>expressionInterval: anObject [
+{ #category : #accessing }
+PharoDocCommentExpression >> expressionInterval: anObject [
 	expressionInterval := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentExpression>>printOn: aStream [
+{ #category : #printing }
+PharoDocCommentExpression >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPutAll: '('.
 	aStream nextPutAll: self expression. 
 	aStream nextPutAll: ')'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentExpression>>source [
+{ #category : #accessing }
+PharoDocCommentExpression >> source [
 	^ source
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentExpression>>source: anObject [
+{ #category : #accessing }
+PharoDocCommentExpression >> source: anObject [
 	source := anObject
 ]

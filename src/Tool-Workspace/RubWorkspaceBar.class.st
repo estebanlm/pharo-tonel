@@ -10,31 +10,21 @@ Class {
 		'editingModeMorph',
 		'lineNumbersDisplayMorph'
 	],
-	#category : #Tool-Workspace,
-	#timestamp : 'StephaneDucasse 7/4/2015 23:17'
+	#category : #Tool-Workspace
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar class>>key [
+{ #category : #querying }
+RubWorkspaceBar class >> key [
 	^ #workspaceBar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>backgroundColor [
+{ #category : #accessing }
+RubWorkspaceBar >> backgroundColor [
 	^ self paragraphProvider backgroundColor darker
 ]
 
-{
-	#category : #'managing line numbers',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>changeLineNumbersDisplay [
+{ #category : #'managing line numbers' }
+RubWorkspaceBar >> changeLineNumbersDisplay [
 	self paragraphProvider lineNumbersRuler 
 		ifNil: [ self paragraphProvider withLineNumbers ]
 		ifNotNil: [ self paragraphProvider withoutLineNumbers ].
@@ -42,11 +32,8 @@ RubWorkspaceBar>>changeLineNumbersDisplay [
 	self updateContents
 ]
 
-{
-	#category : #'managing wrapping policy',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>changeWrappingPolicy [
+{ #category : #'managing wrapping policy' }
+RubWorkspaceBar >> changeWrappingPolicy [
 	self paragraphProvider wrapped 
 		ifTrue: [ self paragraphProvider beNotWrapped  ]
 		ifFalse: [ self paragraphProvider beWrapped ].
@@ -54,111 +41,75 @@ RubWorkspaceBar>>changeWrappingPolicy [
 	self paragraphProvider changed
 ]
 
-{
-	#category : #'managing editing mode',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>chooseEditingMode: anEvent [
+{ #category : #'managing editing mode' }
+RubWorkspaceBar >> chooseEditingMode: anEvent [
 	self modeListMenu invokeAt: anEvent position in: self world.
 	self updateContents
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>computedHeightFrom: aRectangle [
+{ #category : #geometry }
+RubWorkspaceBar >> computedHeightFrom: aRectangle [
 	^ row ifNil: [0] ifNotNil: [row height]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>computedWidthFrom: aRectangle [
+{ #category : #geometry }
+RubWorkspaceBar >> computedWidthFrom: aRectangle [
 	^ aRectangle width
 ]
 
-{
-	#category : #'managing editing mode',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>editingModeLabel [
+{ #category : #'managing editing mode' }
+RubWorkspaceBar >> editingModeLabel [
 	^ self paragraphProvider editingMode label
 ]
 
-{
-	#category : #'managing editing mode',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>editingModeLabelMorph [
+{ #category : #'managing editing mode' }
+RubWorkspaceBar >> editingModeLabelMorph [
 	^ StringMorph
 		contents: self editingModeLabel
 		font: self fontToUse
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>fontToUse [
+{ #category : #accessing }
+RubWorkspaceBar >> fontToUse [
 	^ RubAbstractTextArea lineNumbersFont 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>initialize [
+{ #category : #initialize-release }
+RubWorkspaceBar >> initialize [
 	super initialize.
 	self side: #bottom.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>level [
+{ #category : #accessing }
+RubWorkspaceBar >> level [
 	^ 1
 ]
 
-{
-	#category : #'managing line numbers',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>lineNumbersDisplayLabel [
+{ #category : #'managing line numbers' }
+RubWorkspaceBar >> lineNumbersDisplayLabel [
 	^ self paragraphProvider lineNumbersRuler  
 		ifNil: [ '+L' ]
 		ifNotNil: [ 'L' ]
 ]
 
-{
-	#category : #'managing line numbers',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>lineNumbersDisplayLabelMorph [
+{ #category : #'managing line numbers' }
+RubWorkspaceBar >> lineNumbersDisplayLabelMorph [
 	^ StringMorph
 		contents: self lineNumbersDisplayLabel
 		font: self fontToUse
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>manageLayoutInBounds: aRectangle [
+{ #category : #geometry }
+RubWorkspaceBar >> manageLayoutInBounds: aRectangle [
 	| ret |
 	ret := super manageLayoutInBounds: aRectangle.
 	self updateContents.
 	^ ret
 ]
 
-{
-	#category : #'managing editing mode',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>modeListMenu [
+{ #category : #'managing editing mode' }
+RubWorkspaceBar >> modeListMenu [
 	"Answer the menu to be presented to select an editing mode"
 
 	| menu |
@@ -168,11 +119,8 @@ RubWorkspaceBar>>modeListMenu [
 	^ menu
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>noteNewOwner: aMorph [
+{ #category : #submorphs-accessing }
+RubWorkspaceBar >> noteNewOwner: aMorph [
 	super noteNewOwner: aMorph.
 	self color: self backgroundColor.
 	self paragraphProvider beForSmalltalkScripting.
@@ -197,47 +145,32 @@ RubWorkspaceBar>>noteNewOwner: aMorph [
 	self addMorph: row
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>spacer: anInteger [
+{ #category : #private }
+RubWorkspaceBar >> spacer: anInteger [
 	^ Morph new
 		borderWidth: 0;
 		color: Color transparent;
 		extent: anInteger@3
 ]
 
-{
-	#category : #'managing editing mode',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>switchToPlainTextMode [
+{ #category : #'managing editing mode' }
+RubWorkspaceBar >> switchToPlainTextMode [
 	self paragraphProvider beForPlainText 
 ]
 
-{
-	#category : #'managing editing mode',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>switchToSmalltalkScriptingMode [
+{ #category : #'managing editing mode' }
+RubWorkspaceBar >> switchToSmalltalkScriptingMode [
 	self paragraphProvider beForSmalltalkScripting 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>textColor [
+{ #category : #accessing }
+RubWorkspaceBar >> textColor [
 	^ self textArea lineNumbersTextColor muchDarker
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>updateContents [
+{ #category : #'event handling' }
+RubWorkspaceBar >> updateContents [
 	row ifNil: [ ^self ].
 	wrappingPolicyMorph contents: self wrappingPolicyLabel.
 	editingModeMorph contents: self editingModeLabel.
@@ -245,21 +178,15 @@ RubWorkspaceBar>>updateContents [
 	row bounds: self innerBounds
 ]
 
-{
-	#category : #'managing wrapping policy',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>wrappingPolicyLabel [
+{ #category : #'managing wrapping policy' }
+RubWorkspaceBar >> wrappingPolicyLabel [
 	^ self paragraphProvider wrapped
 				ifTrue: [ 'W' ]
 				ifFalse: [ 'NW' ]
 ]
 
-{
-	#category : #'managing wrapping policy',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RubWorkspaceBar>>wrappingPolicyLabelMorph [
+{ #category : #'managing wrapping policy' }
+RubWorkspaceBar >> wrappingPolicyLabelMorph [
 	^ StringMorph
 		contents: self wrappingPolicyLabel
 		font: self fontToUse

@@ -23,15 +23,11 @@ Class {
 	#instVars : [
 		'pointer'
 	],
-	#category : #OSWindow-SDL2,
-	#timestamp : 'EstebanLorenzano 2/27/2017 13:29'
+	#category : #OSWindow-SDL2
 }
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2ExternalForm>>allocateSpace [
+{ #category : #initialize }
+OSSDL2ExternalForm >> allocateSpace [
 	"Convenient way to allocate space for the pixels.  This isn't done by default, because it is common to use a pointer obtained from elsewhere."
 	| addr |
 	pointer ifNotNil: [self error: 'space is already allocated'].
@@ -39,11 +35,8 @@ OSSDL2ExternalForm>>allocateSpace [
 	self setManualSurfacePointer: addr.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2ExternalForm>>destroySurface [
+{ #category : #initialize }
+OSSDL2ExternalForm >> destroySurface [
 	"Users must call this explicitly when this object is no longer needed; otherwise, resource-leakage will occur in the SurfacePlugin"
 	bits ifNotNil: [:surfaceID |
 		bits := nil.
@@ -51,60 +44,42 @@ OSSDL2ExternalForm>>destroySurface [
 	].
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2ExternalForm>>initialize [
+{ #category : #initialize }
+OSSDL2ExternalForm >> initialize [
 	super initialize.
 	pointer := nil.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2ExternalForm>>pointer [
+{ #category : #accessing }
+OSSDL2ExternalForm >> pointer [
 	^pointer
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2ExternalForm>>primCreateManualSurfaceWidth: width height: height rowPitch: rowPitch depth: depth isMSB: isMSB [
+{ #category : #primitives }
+OSSDL2ExternalForm >> primCreateManualSurfaceWidth: width height: height rowPitch: rowPitch depth: depth isMSB: isMSB [
 	<primitive: 'primitiveCreateManualSurface' module: 'SqueakFFIPrims'>
 	self primitiveFailed
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2ExternalForm>>primDestroyManualSurface: surfaceID [
+{ #category : #primitives }
+OSSDL2ExternalForm >> primDestroyManualSurface: surfaceID [
 	<primitive: 'primitiveDestroyManualSurface' module: 'SqueakFFIPrims'>
 	self primitiveFailed
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2ExternalForm>>primManualSurface: surfaceID setPointer: pointer [
+{ #category : #primitives }
+OSSDL2ExternalForm >> primManualSurface: surfaceID setPointer: pointer [
 	"The 'surfaceID' is a handle returned by #primitiveCreateManualSurface from SurfacePlugin. The pointer is a 32-bit unsigned integer that SurfacePlugin casts to a void*."
 	<primitive: 'primitiveSetManualSurfacePointer' module: 'SqueakFFIPrims'>
 	self primitiveFailed
 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2ExternalForm>>setExtent: extent depth: bitsPerPixel [
+{ #category : #initialize }
+OSSDL2ExternalForm >> setExtent: extent depth: bitsPerPixel [
 	bits ifNotNil: [self error: 'bits are already set'].
 	bitsPerPixel == 32 ifFalse: [self error: 'only 32 bits for now'.  "see 'rowPitch' below"].
 	width := extent x asInteger.
@@ -120,20 +95,14 @@ OSSDL2ExternalForm>>setExtent: extent depth: bitsPerPixel [
 		isMSB: true.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2ExternalForm>>setExtent: extent depth: bitsPerPixel bits: pointer [
+{ #category : #initialize }
+OSSDL2ExternalForm >> setExtent: extent depth: bitsPerPixel [ bits: pointer
 	self setExtent: extent depth: bitsPerPixel.
 	self setManualSurfacePointer: pointer.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2ExternalForm>>setManualSurfacePointer: newPointer "ExternalStructure, ExternalAddress, or nil" [
+{ #category : #initialize }
+OSSDL2ExternalForm >> setManualSurfacePointer: newPointer [ "ExternalStructure, ExternalAddress, or nil"
 	"Set the memory-location of the image data.  It is OK to set a NULL pointer;
 	 in this case, any attempt to BitBlt to or from the form will result in a primitive-failure."
 	pointer := newPointer.

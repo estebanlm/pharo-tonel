@@ -9,32 +9,22 @@ Class {
 	#instVars : [
 		'modifiedClass'
 	],
-	#category : #System-Announcements-System-Classes,
-	#timestamp : 'DenisKudryashov 11/10/2016 13:08'
+	#category : #System-Announcements-System-Classes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassModificationApplied class>>toClass: aClassOrTrait [
+{ #category : #'instance creation' }
+ClassModificationApplied class >> toClass: aClassOrTrait [
 
 	^self new 
 		modifiedClass: aClassOrTrait
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassModificationApplied>>classAffected [
+{ #category : #accessing }
+ClassModificationApplied >> classAffected [
 	^modifiedClass 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassModificationApplied>>modifiedClass: anObject [
+{ #category : #accessing }
+ClassModificationApplied >> modifiedClass: anObject [
 	modifiedClass := anObject
 ]

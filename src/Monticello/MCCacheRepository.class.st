@@ -14,44 +14,31 @@ Class {
 	#classInstVars : [
 		'default'
 	],
-	#category : #Monticello-Repositories,
-	#timestamp : '<historical>'
+	#category : #Monticello-Repositories
 }
 
-{
-	#category : #'accessing settings',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository class>>cacheDirectory [
+{ #category : #'accessing settings' }
+MCCacheRepository class >> cacheDirectory [
 	^self uniqueInstance directory asAbsolute
 	
 ]
 
-{
-	#category : #'accessing settings',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository class>>cacheDirectory: directory [
+{ #category : #'accessing settings' }
+MCCacheRepository class >> cacheDirectory: directory [
 	"directory - can be an absolutePathString (to interface with the settings framework), or aFileReference"
  
 	default := self new directory: directory asFileReference.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository class>>default [
+{ #category : #accessing }
+MCCacheRepository class >> default [
 	"This should be deleted as soon as Metacello is fixed"
 	self flag: #toBeDeleted.			
 	^ self uniqueInstance 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository class>>defaultDirectory [
+{ #category : #defaults }
+MCCacheRepository class >> defaultDirectory [
 	| directories |
 	directories := {
 		((FileLocator localDirectory / 'package-cache') asFileReference).	
@@ -64,62 +51,41 @@ MCCacheRepository class>>defaultDirectory [
 	Error signal: 'Can''t create a package-cache'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository class>>description [
+{ #category : #accessing }
+MCCacheRepository class >> description [
 	^ nil
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository class>>disableCacheDuring: aBlock [
+{ #category : #utility }
+MCCacheRepository class >> disableCacheDuring: aBlock [
 	self uniqueInstance disableCacheDuring: aBlock
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository class>>initialize [
+{ #category : #initialize-release }
+MCCacheRepository class >> initialize [
 	self resetIfInvalid
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository class>>reset [
+{ #category : #utility }
+MCCacheRepository class >> reset [
 
 	default := nil.
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository class>>resetIfInvalid [
+{ #category : #utility }
+MCCacheRepository class >> resetIfInvalid [
 
 	default notNil and: [default directory exists ifFalse: [default := nil]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository class>>uniqueInstance [
+{ #category : #accessing }
+MCCacheRepository class >> uniqueInstance [
 	self resetIfInvalid.
 	^ default ifNil: [default := self new directory: self defaultDirectory]
 ]
 
-{
-	#category : #storing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository>>basicStoreVersion: aVersion [
+{ #category : #storing }
+MCCacheRepository >> basicStoreVersion: aVersion [
 	"we store a version if it is cacheable and we don't have the file already"
 	
 	(aVersion isCacheable and: [(self includesFileNamed: aVersion fileName) not])
@@ -127,71 +93,47 @@ MCCacheRepository>>basicStoreVersion: aVersion [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository>>cacheForPackage: aPackage [
+{ #category : #accessing }
+MCCacheRepository >> cacheForPackage: aPackage [
 	packageCaches ifNil: [packageCaches := Dictionary new].
 	^ packageCaches at: aPackage ifAbsentPut: [MCPackageCache new]
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository>>disable [
+{ #category : #utility }
+MCCacheRepository >> disable [
 	cacheEnabled := false.
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository>>disableCacheDuring: aBlock [
+{ #category : #utility }
+MCCacheRepository >> disableCacheDuring: aBlock [
 	self disable.
 	aBlock ensure: [ self enable ].
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository>>enable [
+{ #category : #utility }
+MCCacheRepository >> enable [
 	cacheEnabled := true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository>>initialize [
+{ #category : #initialization }
+MCCacheRepository >> initialize [
 	cacheEnabled := true.
 	super initialize.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository>>loadVersionFromFileNamed: aString [
+{ #category : #private }
+MCCacheRepository >> loadVersionFromFileNamed: aString [
 	
 	^ self versionReaderForFileNamed: aString do: [:r | r version]
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository>>newFileNames  [
+{ #category : #instance-creation }
+MCCacheRepository >> newFileNames [ 
 	^ self allFileNames difference: self seenFileNames
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository>>rescan [
+{ #category : #accessing }
+MCCacheRepository >> rescan [
 	self newFileNames do:
 		[:ea |
 		self versionReaderForFileNamed: ea do:
@@ -203,38 +145,26 @@ MCCacheRepository>>rescan [
 		displayingProgress: 'Scanning cache...'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository>>seenFileNames [
+{ #category : #accessing }
+MCCacheRepository >> seenFileNames [
 	^ seenFiles ifNil: [seenFiles := OrderedCollection new]
 ]
 
-{
-	#category : #storing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository>>storeVersion: aVersion [
+{ #category : #storing }
+MCCacheRepository >> storeVersion: aVersion [
 	cacheEnabled == true ifFalse: [ ^ self ].
 	^ super storeVersion: aVersion.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository>>versionInfoForFileNamed: aString [
+{ #category : #accessing }
+MCCacheRepository >> versionInfoForFileNamed: aString [
 	^ self infoCache 
 		at: aString 
 		ifAbsentPut: [ self versionReaderForFileNamed: aString do: [:r | r info]]
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCCacheRepository>>versionWithInfo: aVersionInfo ifAbsent: errorBlock [
+{ #category : #interface }
+MCCacheRepository >> versionWithInfo: aVersionInfo ifAbsent: errorBlock [
 	(self allFileNamesForVersionNamed: aVersionInfo name) do: [:fileName | | version |
 			version := self versionFromFileNamed: fileName.
 			version info = aVersionInfo ifTrue: [^ version]].

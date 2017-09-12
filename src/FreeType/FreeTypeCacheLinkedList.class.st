@@ -4,15 +4,11 @@ A linked list for the FreeTypeCache
 Class {
 	#name : #FreeTypeCacheLinkedList,
 	#superclass : #LinkedList,
-	#category : #FreeType-Cache,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:09'
+	#category : #FreeType-Cache
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheLinkedList>>add: link after: otherLink [
+{ #category : #adding }
+FreeTypeCacheLinkedList >> add: link after: otherLink [
 	"Add otherLink  after link in the list. Answer aLink."
 
 	| savedLink |
@@ -27,11 +23,8 @@ FreeTypeCacheLinkedList>>add: link after: otherLink [
 	
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheLinkedList>>add: link before: otherLink [
+{ #category : #adding }
+FreeTypeCacheLinkedList >> add: link before: otherLink [
 	| savedLink |
 	firstLink == otherLink ifTrue: [^ self addFirst: link].
 	otherLink 
@@ -44,11 +37,8 @@ FreeTypeCacheLinkedList>>add: link before: otherLink [
 	^ self errorNotFound: otherLink
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheLinkedList>>addFirst: aLink  [
+{ #category : #adding }
+FreeTypeCacheLinkedList >> addFirst: aLink [ 
 	"Add aLink to the beginning of the receiver's list. Answer aLink."
 
 	self isEmpty 
@@ -60,11 +50,8 @@ FreeTypeCacheLinkedList>>addFirst: aLink  [
 	^aLink
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheLinkedList>>addLast: aLink  [
+{ #category : #adding }
+FreeTypeCacheLinkedList >> addLast: aLink [ 
 	"Add aLink to the end of the receiver's list. Answer aLink."
 
 	self isEmpty 
@@ -76,11 +63,8 @@ FreeTypeCacheLinkedList>>addLast: aLink  [
 	^aLink
 ]
 
-{
-	#category : #reordering,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheLinkedList>>moveDown: aLink [
+{ #category : #reordering }
+FreeTypeCacheLinkedList >> moveDown: aLink [
 	|  e1 e2 e3 e4  |
 	
 	(e3 := aLink nextLink) ifNil:[^self].
@@ -98,11 +82,8 @@ FreeTypeCacheLinkedList>>moveDown: aLink [
 	
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheLinkedList>>remove: aLink ifAbsent: aBlock   [
+{ #category : #removing }
+FreeTypeCacheLinkedList >> remove: aLink ifAbsent: aBlock [  
 	| prev next  |
 
 	prev := aLink previousLink.
@@ -116,11 +97,8 @@ FreeTypeCacheLinkedList>>remove: aLink ifAbsent: aBlock   [
 	^aLink
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheLinkedList>>removeFirst [
+{ #category : #removing }
+FreeTypeCacheLinkedList >> removeFirst [
 	"Remove the first element and answer it. If the receiver is empty, create 
 	an error notification."
 
@@ -141,11 +119,8 @@ FreeTypeCacheLinkedList>>removeFirst [
 	^oldLink
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheLinkedList>>removeLast [
+{ #category : #removing }
+FreeTypeCacheLinkedList >> removeLast [
 	"Remove the first element and answer it. If the receiver is empty, create 
 	an error notification."
 

@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'rootPane'
 	],
-	#category : #Glamour-Browsers-Other,
-	#timestamp : 'DamienCassou 7/26/2011 19:10'
+	#category : #Glamour-Browsers-Other
 }
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExpander>>addPaneFrom: aPort  [
+{ #category : #events }
+GLMExpander >> addPaneFrom: aPort [ 
 	self panes addLast: (GLMPane in: self).
 	self newTransmission
 		addActiveOrigin: aPort; 
@@ -28,11 +24,8 @@ GLMExpander>>addPaneFrom: aPort  [
 				inBrowser: self)
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExpander>>innerPortEvent: aPortEvent  [
+{ #category : #events }
+GLMExpander >> innerPortEvent: aPortEvent [ 
 	 
 	aPortEvent portName = #entity ifFalse: [
 		"We resend the value to the outer pane"
@@ -40,11 +33,8 @@ GLMExpander>>innerPortEvent: aPortEvent  [
 		(self pane port: aPortEvent portName) value: aPortEvent value]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExpander>>outerPortEvent: aPortEvent  [
+{ #category : #events }
+GLMExpander >> outerPortEvent: aPortEvent [ 
 	 
 	aPortEvent port name = #entity ifFalse: [^self]. 
 	panes := nil. 
@@ -54,10 +44,7 @@ GLMExpander>>outerPortEvent: aPortEvent  [
 			self addPaneFrom: (GLMSimplePort new value: each) ] ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMExpander>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMExpander >> renderGlamorouslyOn: aRenderer [ 
 	^ aRenderer renderExpander: self
 ]

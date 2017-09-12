@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'generator'
 	],
-	#category : #Network-Tests-UUID,
-	#timestamp : 'SvenVanCaekenberghe 7/10/2016 13:56'
+	#category : #Network-Tests-UUID
 }
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDGeneratorTests>>setUp [
+{ #category : #setup }
+UUIDGeneratorTests >> setUp [
 	generator := UUIDGenerator new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDGeneratorTests>>testCounterRollover [
+{ #category : #testing }
+UUIDGeneratorTests >> testCounterRollover [
 	| previousUuid uuid |
 	previousUuid := generator next.
 	"the internal counter inside generator will rollover at 16r10000,
@@ -36,41 +29,29 @@ UUIDGeneratorTests>>testCounterRollover [
 		previousUuid := uuid ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDGeneratorTests>>testDefault [
+{ #category : #testing }
+UUIDGeneratorTests >> testDefault [
 	self assert: UUIDGenerator default equals: UUIDGenerator default.
 	self deny: UUIDGenerator next isNilUUID 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDGeneratorTests>>testOne [
+{ #category : #testing }
+UUIDGeneratorTests >> testOne [
 	| uuid |
 	uuid := generator next.
 	self assert: (uuid isKindOf: UUID).
 	self deny: uuid isNilUUID
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDGeneratorTests>>testSpeed [
+{ #category : #testing }
+UUIDGeneratorTests >> testSpeed [
 	self 
 		should: [ 100000 timesRepeat: [ generator next ] ] 
 		notTakeMoreThan: 1 second
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDGeneratorTests>>testTwoDifferentGenerator [
+{ #category : #testing }
+UUIDGeneratorTests >> testTwoDifferentGenerator [
 	| generator1 generator2 uuid1 uuid2 time1 time2 |
 	generator1 := UUIDGenerator new.
 	generator2 := UUIDGenerator new.
@@ -86,11 +67,8 @@ UUIDGeneratorTests>>testTwoDifferentGenerator [
 	self assert: (time2 - time1) abs < (100 * 1000)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDGeneratorTests>>testTwoSameGenerator [
+{ #category : #testing }
+UUIDGeneratorTests >> testTwoSameGenerator [
 	| uuid1 uuid2 time1 time2 |
 	uuid1 := generator next.
 	uuid2 := generator next.
@@ -106,11 +84,8 @@ UUIDGeneratorTests>>testTwoSameGenerator [
 	self assert: (time2 - time1) abs < (100 * 1000)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDGeneratorTests>>testUniqueness [
+{ #category : #testing }
+UUIDGeneratorTests >> testUniqueness [
 	| uuids count |
 	count := 100000.
 	uuids := Set new: count.
@@ -118,11 +93,8 @@ UUIDGeneratorTests>>testUniqueness [
 	self assert: uuids size equals: count
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDGeneratorTests>>timeFromUUID: uuid [
+{ #category : #private }
+UUIDGeneratorTests >> timeFromUUID: uuid [
 	| bytes in |
 	in := uuid readStream.
 	bytes := ByteArray streamContents: [ :out |

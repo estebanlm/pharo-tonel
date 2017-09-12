@@ -4,14 +4,10 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestUnicodeInitialization,
 	#superclass : #PackageManifest,
-	#category : #Unicode-Initialization,
-	#timestamp : '<historical>'
+	#category : #Unicode-Initialization
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-ManifestUnicodeInitialization class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestUnicodeInitialization class >> manuallyResolvedDependencies [
 	^ #(#'Zinc-HTTP' #'Zinc-Resource-Meta-Core' #'AST-Core' #'Collections-Streams' #'Collections-Abstract')
 ]

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicDiffRenderer,
 	#superclass : #GLMMorphicWidgetRenderer,
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicDiffRenderer>>render: aPresentation [
+{ #category : #rendering }
+GLMMorphicDiffRenderer >> render: aPresentation [
 	| textMorph |
 	textMorph := (DiffMorph
 		from: aPresentation displayValue first

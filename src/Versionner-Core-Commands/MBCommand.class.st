@@ -9,33 +9,23 @@ Class {
 		'targetNode',
 		'requestor'
 	],
-	#category : #Versionner-Core-Commands,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand class>>isMorphicCommand [
+{ #category : #testing }
+MBCommand class >> isMorphicCommand [
 
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand class>>isOBCommand [
+{ #category : #testing }
+MBCommand class >> isOBCommand [
 
 	^true
 ]
 
-{
-	#category : #util,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand class>>newCommand [
+{ #category : #util }
+MBCommand class >> newCommand [
 	" 
 	MBCommand newCommand
 	"
@@ -76,22 +66,16 @@ MBCommand class>>newCommand [
 	^ ', newCommandName classified: 'commands'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand class>>target: target for: requestor [
+{ #category : #'instance creation' }
+MBCommand class >> target: target for: requestor [
 	^ self new
 		target: target;
 		requestor: requestor;
 		yourself
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>askForVersionNumber [
+{ #category : #versions }
+MBCommand >> askForVersionNumber [
 	"Return a new version number as a string"
 
 	| latestVersion newVersion versions |
@@ -103,11 +87,8 @@ MBCommand>>askForVersionNumber [
 	^ self uiManager  request: 'enter new version number' initialAnswer: newVersion
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>browseVersionHistory [
+{ #category : #versions }
+MBCommand >> browseVersionHistory [
 	"Used to browse version history of a Configuration package or a package"
 	
 	target workingCopy ancestors isEmpty
@@ -115,19 +96,13 @@ MBCommand>>browseVersionHistory [
 	(MCVersionHistoryBrowser new ancestry: target workingCopy ancestors first) perform: #show
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>canBeApplied [
+{ #category : #testing }
+MBCommand >> canBeApplied [
 	^ true
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>checkUserInRepository: repository [
+{ #category : #repositories }
+MBCommand >> checkUserInRepository: repository [
 	"Try to find the http repository of packageName. If it does not find one, then add one and ask for the username and password"
 
 	| answerUser |
@@ -141,11 +116,8 @@ MBCommand>>checkUserInRepository: repository [
 					repository password: self password ] ]
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>checkUserInRepositoryOfPackage: packageName [
+{ #category : #repositories }
+MBCommand >> checkUserInRepositoryOfPackage: packageName [
 	"Try to find the http repository of packageName. If it does not find one, then add one and ask for the username and password"
 
 	| repo |
@@ -154,11 +126,8 @@ MBCommand>>checkUserInRepositoryOfPackage: packageName [
 	^repo
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>chooseRepositoryFromList: repos [
+{ #category : #utility }
+MBCommand >> chooseRepositoryFromList: repos [
 	"Return the repository of the configuration. Create one (using UI) if necessary"
 
 	repos size > 1
@@ -170,11 +139,8 @@ MBCommand>>chooseRepositoryFromList: repos [
 	^ repos first
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>compiledMethodForVersion: aMetacelloVersion [
+{ #category : #versions }
+MBCommand >> compiledMethodForVersion: aMetacelloVersion [
 
 	| toolbox pragma |
 	toolbox := MetacelloToolBox new project: aMetacelloVersion project.
@@ -182,19 +148,13 @@ MBCommand>>compiledMethodForVersion: aMetacelloVersion [
 	^pragma method
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>configurationClass [
+{ #category : #accessing-computed }
+MBCommand >> configurationClass [
 	^ target
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>configurationReferencesFrom: aRepository [
+{ #category : #repositories }
+MBCommand >> configurationReferencesFrom: aRepository [
 
 	| map |
 	map := Dictionary new.
@@ -206,35 +166,23 @@ MBCommand>>configurationReferencesFrom: aRepository [
 	^map
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>documentation [
+{ #category : #documentation }
+MBCommand >> documentation [
 	self subclassResponsibility
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>execute [
+{ #category : #execute }
+MBCommand >> execute [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>executeWithDevWorkflow: devWorkflow [
+{ #category : #execute }
+MBCommand >> executeWithDevWorkflow: devWorkflow [
 	self execute
 ]
 
-{
-	#category : #changes,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>findChangesBetween: versionSnapshot toLabel: toLabel and: ancestorVersionSnapshot fromLabel: fromLabel [
+{ #category : #changes }
+MBCommand >> findChangesBetween: versionSnapshot toLabel: toLabel and: ancestorVersionSnapshot fromLabel: fromLabel [
 	"View changes between 2 versions."
 	| patch |
 	
@@ -251,11 +199,8 @@ MBCommand>>findChangesBetween: versionSnapshot toLabel: toLabel and: ancestorVer
 				title: 'Changes between ', fromLabel, ' and ', toLabel   ]
 ]
 
-{
-	#category : #changes,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>findChangesFor: workingCopy relativeToRepository: repository [
+{ #category : #changes }
+MBCommand >> findChangesFor: workingCopy relativeToRepository: repository [
 	| patch fromDescription |
 	repository isNil
 		ifTrue: [ ^ self ].
@@ -276,44 +221,29 @@ MBCommand>>findChangesFor: workingCopy relativeToRepository: repository [
 				title: ('Changes to {1}' translated format: {fromDescription}) ]
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>helpDocumentation [
+{ #category : #documentation }
+MBCommand >> helpDocumentation [
 	^self documentation
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>initialize [
+{ #category : #initialize-release }
+MBCommand >> initialize [
 	super initialize.
 
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>on: anObject for: aRequestor [
+{ #category : #utility }
+MBCommand >> on: anObject for: aRequestor [
 	^ self class on: anObject for: aRequestor
 ]
 
-{
-	#category : #ordering,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>order [
+{ #category : #ordering }
+MBCommand >> order [
 	^ self title
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>password [
+{ #category : #repositories }
+MBCommand >> password [
 	| password |
 	password := target configurationRoot password. 
 	password ifNotNil: [ ^ password ].
@@ -322,56 +252,38 @@ MBCommand>>password [
 	^ password
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>pickRepository [
+{ #category : #repositories }
+MBCommand >> pickRepository [
 	^ self pickRepositoryFrom: self repositories.
 
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>pickRepositoryFrom: repositories [
+{ #category : #repositories }
+MBCommand >> pickRepositoryFrom: repositories [
 
 	^self pickRepositoryFrom: repositories title: 'Choose repository'
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>pickRepositoryFrom: repositories title: title [
+{ #category : #repositories }
+MBCommand >> pickRepositoryFrom: repositories title: title [
 	| index |
 	index := self uiManager chooseFrom: (repositories collect: [ :ea | ea description ]) title: title.
 	^ index = 0
 		ifFalse: [ repositories at: index ] 
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>projectName [
+{ #category : #accessing-computed }
+MBCommand >> projectName [
 	^ self configurationClass name configurationBaseName
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>repositories [
+{ #category : #repositories }
+MBCommand >> repositories [
 	^MCRepositoryGroup default repositories
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>repositoryOfPackageNamed: packageName [
+{ #category : #repositories }
+MBCommand >> repositoryOfPackageNamed: packageName [
 	"Return the repository of the configuration. Create one (using UI) if necessary"
 
 	| mcPackage workingCopy repositories repository repositoryIndex username password |
@@ -407,20 +319,14 @@ MBCommand>>repositoryOfPackageNamed: packageName [
 	^ repository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>requestor: aRequestor [
+{ #category : #accessing }
+MBCommand >> requestor: aRequestor [
 
 	requestor := aRequestor 
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>selectRepositoryFromWorkingCopy: workingCopy [
+{ #category : #utility }
+MBCommand >> selectRepositoryFromWorkingCopy: workingCopy [
 	| repos repo |
 	repos := workingCopy repositoryGroup repositories.
 	repos size = 0
@@ -435,60 +341,39 @@ MBCommand>>selectRepositoryFromWorkingCopy: workingCopy [
 	^ repo
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>target [
+{ #category : #accessing }
+MBCommand >> target [
 	^ target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>target: anObject [
+{ #category : #accessing }
+MBCommand >> target: anObject [
 	target := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>targetNode [
+{ #category : #accessing }
+MBCommand >> targetNode [
 	^ targetNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>targetNode: anObject [
+{ #category : #accessing }
+MBCommand >> targetNode: anObject [
 	targetNode := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>title [
+{ #category : #accessing }
+MBCommand >> title [
 	^ 'Abstract Command'
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>uiManager [
+{ #category : #utility }
+MBCommand >> uiManager [
 
 	^ UIManager default
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>username [
+{ #category : #repositories }
+MBCommand >> username [
 	| username |
 	username := target configurationRoot username. 
 	username ifNotNil: [ ^ username ].
@@ -497,11 +382,8 @@ MBCommand>>username [
 	^ username
 ]
 
-{
-	#category : #changes,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommand>>viewChanges: patch from: fromDescription to: toDescription title: title [
+{ #category : #changes }
+MBCommand >> viewChanges: patch from: fromDescription to: toDescription title: title [
 	"Open a browser on the given patch."
 
 	^ ( PSMCPatchMorph forPatch:  patch)

@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #RenrakuGlobalBanningTest,
 	#superclass : #ReCodeBasedTestCase,
 	#instVars : [
 		'oldRulesSettings'
 	],
-	#category : #Renraku-Test,
-	#timestamp : ''
+	#category : #Renraku-Test
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuGlobalBanningTest>>setUp [
+{ #category : #initialization }
+RenrakuGlobalBanningTest >> setUp [
 	super setUp.
 	oldRulesSettings := Dictionary new.
 
@@ -23,21 +16,15 @@ RenrakuGlobalBanningTest>>setUp [
 		oldRulesSettings at: rule put: rule enabled ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuGlobalBanningTest>>tearDown [
+{ #category : #initialization }
+RenrakuGlobalBanningTest >> tearDown [
 	oldRulesSettings keysAndValuesDo: [ :rule :setting |
 		rule enabled: setting ].
 	super tearDown
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuGlobalBanningTest>>testForcedRuleOnClassWithGlobalBan [
+{ #category : #tests }
+RenrakuGlobalBanningTest >> testForcedRuleOnClassWithGlobalBan [
 	| criticToSkip |
 		
 	criticToSkip := testClass critiques detect: [ :critic |
@@ -56,11 +43,8 @@ RenrakuGlobalBanningTest>>testForcedRuleOnClassWithGlobalBan [
 		critic rule class = ScreamerRule ]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuGlobalBanningTest>>testForcedRuleOnClassWithPackageBan [
+{ #category : #tests }
+RenrakuGlobalBanningTest >> testForcedRuleOnClassWithPackageBan [
 	| criticToSkip |
 		
 	criticToSkip := testClass critiques detect: [ :critic |
@@ -79,11 +63,8 @@ RenrakuGlobalBanningTest>>testForcedRuleOnClassWithPackageBan [
 		critic rule class = ScreamerRule ]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuGlobalBanningTest>>testForcedRuleOnMethodWithGlobalBan [
+{ #category : #tests }
+RenrakuGlobalBanningTest >> testForcedRuleOnMethodWithGlobalBan [
 	| criticToSkip |
 		
 	criticToSkip := testMethod critiques detect: [ :critic |
@@ -102,11 +83,8 @@ RenrakuGlobalBanningTest>>testForcedRuleOnMethodWithGlobalBan [
 		critic rule class = ScreamerRule ]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuGlobalBanningTest>>testForcedRuleOnMethodWithPackageBan [
+{ #category : #tests }
+RenrakuGlobalBanningTest >> testForcedRuleOnMethodWithPackageBan [
 	| criticToSkip |
 		
 	criticToSkip := testMethod critiques detect: [ :critic |
@@ -125,11 +103,8 @@ RenrakuGlobalBanningTest>>testForcedRuleOnMethodWithPackageBan [
 		critic rule class = ScreamerRule ]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuGlobalBanningTest>>testGlobalBan [
+{ #category : #tests }
+RenrakuGlobalBanningTest >> testGlobalBan [
 	| criticToSkip |
 		
 	criticToSkip := testClass critiques detect: [ :critic |

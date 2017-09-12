@@ -7,90 +7,62 @@ Class {
 	#instVars : [
 		'method'
 	],
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 14:49'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodAddition class>>method: aCompiledMethod [
+{ #category : #'instance creation' }
+EpMethodAddition class >> method: aCompiledMethod [
 	
 	^ self basicNew
 		initializeMethod: aCompiledMethod;
 		yourself
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodAddition>>accept: aVisitor [
+{ #category : #visitor }
+EpMethodAddition >> accept: aVisitor [
 
 	^ aVisitor visitMethodAddition: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodAddition>>affectedPackageName [
+{ #category : #accessing }
+EpMethodAddition >> affectedPackageName [
 
 	^ method package
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodAddition>>initializeMethod: aCompiledMethod [
+{ #category : #initialization }
+EpMethodAddition >> initializeMethod: aCompiledMethod [
 
 	self initialize.
 	method := aCompiledMethod asEpiceaRingDefinition.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodAddition>>methodAdded [
+{ #category : #accessing }
+EpMethodAddition >> methodAdded [
 
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodAddition>>methodAffected [
+{ #category : #accessing }
+EpMethodAddition >> methodAffected [
 
 	^ self methodAdded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodAddition>>protocol [
+{ #category : #accessing }
+EpMethodAddition >> protocol [
 
 	^ method protocol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodAddition>>selector [
+{ #category : #accessing }
+EpMethodAddition >> selector [
 
 	^ method selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodAddition>>sourceCode [
+{ #category : #accessing }
+EpMethodAddition >> sourceCode [
 
 	^ method sourceCode
 ]

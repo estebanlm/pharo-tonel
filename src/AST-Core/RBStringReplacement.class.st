@@ -16,15 +16,11 @@ Class {
 		'stopPosition',
 		'string'
 	],
-	#category : #AST-Core-Nodes,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplacement class>>replaceFrom: startInteger to: stopInteger with: aString  [
+{ #category : #'instance creation' }
+RBStringReplacement class >> replaceFrom: startInteger to: stopInteger with: aString [ 
 	^(self new)
 		startPosition: startInteger;
 		stopPosition: stopInteger;
@@ -32,50 +28,32 @@ RBStringReplacement class>>replaceFrom: startInteger to: stopInteger with: aStri
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplacement>>startPosition [
+{ #category : #accessing }
+RBStringReplacement >> startPosition [
 	^startPosition
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplacement>>startPosition: anInteger  [
+{ #category : #initialize-release }
+RBStringReplacement >> startPosition: anInteger [ 
 	startPosition := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplacement>>stopPosition [
+{ #category : #accessing }
+RBStringReplacement >> stopPosition [
 	^stopPosition
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplacement>>stopPosition: anInteger  [
+{ #category : #initialize-release }
+RBStringReplacement >> stopPosition: anInteger [ 
 	stopPosition := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplacement>>string [
+{ #category : #accessing }
+RBStringReplacement >> string [
 	^string
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplacement>>string: aString  [
+{ #category : #initialize-release }
+RBStringReplacement >> string: aString [ 
 	string := aString
 ]

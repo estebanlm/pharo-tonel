@@ -12,15 +12,11 @@ Class {
 	#instVars : [
 		'index'
 	],
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:14'
+	#category : #Regex-Core
 }
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmMarker>>index: anIndex [
+{ #category : #initialize-release }
+RxmMarker >> index: anIndex [
 	"An index is a key that makes sense for the matcher.
 	This key can be passed to marker position getters and
 	setters to access position for this marker in the current
@@ -29,11 +25,8 @@ RxmMarker>>index: anIndex [
 	index := anIndex
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmMarker>>matchAgainst: aMatcher [
+{ #category : #matching }
+RxmMarker >> matchAgainst: aMatcher [
 	"If the rest of the link chain matches successfully, report the
 	position of the stream *before* the match started to the matcher."
 

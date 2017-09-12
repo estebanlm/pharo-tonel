@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterPreviewArrowBrick,
 	#superclass : #GLMBrick,
@@ -10,45 +7,32 @@ Class {
 		'spotterModel',
 		'isTriangleVisible'
 	],
-	#category : #GT-Spotter-UI,
-	#timestamp : ''
+	#category : #GT-Spotter-UI
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>hideTriangle [
+{ #category : #actions }
+GTSpotterPreviewArrowBrick >> hideTriangle [
 
 	isTriangleVisible := false.
 	self themer spotterThemer spotterPreviewArrowWidgetStyleFor: self triangleBrick.
 	self changed
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>initialize [
+{ #category : #initialization }
+GTSpotterPreviewArrowBrick >> initialize [
 	super initialize.
 	
 	self triangleBrick: self newTriangleBrick
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>isTriangleVisible [
+{ #category : #testing }
+GTSpotterPreviewArrowBrick >> isTriangleVisible [
 
 	^ isTriangleVisible ifNil: [ isTriangleVisible := false ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>moveTo: anItemBrick [
+{ #category : #actions }
+GTSpotterPreviewArrowBrick >> moveTo: anItemBrick [
 	|itemBounds delta selfBounds|
 	anItemBrick ifNil: [ ^ self ].
 	
@@ -64,48 +48,33 @@ GTSpotterPreviewArrowBrick>>moveTo: anItemBrick [
 	
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>newTriangleBrick [
+{ #category : #'instance creation' }
+GTSpotterPreviewArrowBrick >> newTriangleBrick [
 
 	^ GLMHintableActionButtonBrick new
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>onAllCandidatesRemoved [
+{ #category : #'event handling' }
+GTSpotterPreviewArrowBrick >> onAllCandidatesRemoved [
 
 	self selectedItemBrick: nil
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>onCandidateMoved [
+{ #category : #'event handling' }
+GTSpotterPreviewArrowBrick >> onCandidateMoved [
 
 	self moveTo: self selectedItemBrick
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>onCandidateSelected: ann [
+{ #category : #'event handling' }
+GTSpotterPreviewArrowBrick >> onCandidateSelected: ann [
 
 	self selectedItemBrick: ann itemBrick.
 	self moveTo: self selectedItemBrick
 ]
 
-{
-	#category : #brick-drawing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>onDraw: aCanvas [
+{ #category : #brick-drawing }
+GTSpotterPreviewArrowBrick >> onDraw: aCanvas [
 	super onDraw: aCanvas.
 	
 		aCanvas
@@ -117,80 +86,56 @@ GTSpotterPreviewArrowBrick>>onDraw: aCanvas [
 	
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>onHideHints [
+{ #category : #'event handling' }
+GTSpotterPreviewArrowBrick >> onHideHints [
 
 	self themer spotterThemer hintHideArrowStyleFor: self triangleBrick
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>onHidePreview [
+{ #category : #'event handling' }
+GTSpotterPreviewArrowBrick >> onHidePreview [
 
 	self triangleBrick renderer border: self themer spotterThemer outerBorderWidth.
 	self triangleBrick selectedColor: Color transparent.
 	self changed
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>onRevealHints [
+{ #category : #'event handling' }
+GTSpotterPreviewArrowBrick >> onRevealHints [
 
 	self themer spotterThemer hintRevealArrowStyleFor: self triangleBrick
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>onShowPreview [
+{ #category : #'event handling' }
+GTSpotterPreviewArrowBrick >> onShowPreview [
 
 	self triangleBrick renderer border: 0.
 	self triangleBrick selectedColor: self themer spotterThemer borderColor.
 	self changed
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>onStepAdded [
+{ #category : #'event handling' }
+GTSpotterPreviewArrowBrick >> onStepAdded [
 	
 	self selectedItemBrick: nil.
 	self spotterModel steps last candidates announcer when: GTSpotterAllCandidatesRemoved send: #onAllCandidatesRemoved to: self.
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>onThemerChanged [
+{ #category : #brick-properties-events }
+GTSpotterPreviewArrowBrick >> onThemerChanged [
 	super onThemerChanged.
 	
 	self themer spotterThemer spotterPreviewArrowWidgetStyleFor: self triangleBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>selectedItemBrick [
+{ #category : #accessing }
+GTSpotterPreviewArrowBrick >> selectedItemBrick [
 	
 	^ selectedItemBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>selectedItemBrick: aBrick [
+{ #category : #accessing }
+GTSpotterPreviewArrowBrick >> selectedItemBrick: aBrick [
 	
 	selectedItemBrick isNil & aBrick isNotNil ifTrue: [ self showTriangle ].
 	selectedItemBrick isNotNil & aBrick isNil ifTrue: [ self hideTriangle ].
@@ -198,31 +143,22 @@ GTSpotterPreviewArrowBrick>>selectedItemBrick: aBrick [
 	selectedItemBrick := aBrick
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>showTriangle [
+{ #category : #actions }
+GTSpotterPreviewArrowBrick >> showTriangle [
 
 	isTriangleVisible := true.
 	self themer spotterThemer spotterPreviewArrowWidgetStyleFor: self triangleBrick.
 	self changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>spotterModel [
+{ #category : #accessing }
+GTSpotterPreviewArrowBrick >> spotterModel [
 
 	^ spotterModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>spotterModel: aSpotterModel [
+{ #category : #accessing }
+GTSpotterPreviewArrowBrick >> spotterModel: aSpotterModel [
 
 	spotterModel := aSpotterModel.
 	
@@ -236,20 +172,14 @@ GTSpotterPreviewArrowBrick>>spotterModel: aSpotterModel [
 	self spotterModel announcer when: GTSpotterHideHints send: #onHideHints to: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>triangleBrick [
+{ #category : #accessing }
+GTSpotterPreviewArrowBrick >> triangleBrick [
 
 	^ triangleBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewArrowBrick>>triangleBrick: aBrick [
+{ #category : #accessing }
+GTSpotterPreviewArrowBrick >> triangleBrick: aBrick [
 
 	triangleBrick := aBrick.
 	self triangleBrick

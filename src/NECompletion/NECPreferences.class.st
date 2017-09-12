@@ -24,167 +24,109 @@ Class {
 		'smartCharactersWithDoubleSpace',
 		'overrideModel'
 	],
-	#category : #NECompletion-Model,
-	#timestamp : '<historical>'
+	#category : #NECompletion-Model
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>availableControllers [
+{ #category : #private }
+NECPreferences class >> availableControllers [
 	^NECController withAllSubclasses copyWithout: NECWorkspaceController
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>availablePopupShortcuts [
+{ #category : #accessing }
+NECPreferences class >> availablePopupShortcuts [
 	^ {
 		Character space shift. 
 		Character tab asKeyCombination}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>backgroundColor  [
+{ #category : #accessing }
+NECPreferences class >> backgroundColor [ 
 	^backgroundColor ifNil: [ 
 		backgroundColor := (Smalltalk ui theme settings menuColor ifNil: [ Color white ]) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>backgroundColor: aColor  [
+{ #category : #accessing }
+NECPreferences class >> backgroundColor: aColor [ 
 	backgroundColor := aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>captureNavigationKeys [
+{ #category : #accessing }
+NECPreferences class >> captureNavigationKeys [
 	^ captureNavigationKeys
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>captureNavigationKeys: aBoolean [
+{ #category : #accessing }
+NECPreferences class >> captureNavigationKeys: aBoolean [
 	captureNavigationKeys := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>caseSensitive [
+{ #category : #accessing }
+NECPreferences class >> caseSensitive [
 	^ caseSensitive
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>caseSensitive: aBoolean [
+{ #category : #accessing }
+NECPreferences class >> caseSensitive: aBoolean [
 	caseSensitive := aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>currentController  [
+{ #category : #private }
+NECPreferences class >> currentController [ 
 	^ (Smalltalk tools hasToolNamed: #codeCompletion)
 		ifTrue: [ Smalltalk tools codeCompletion ]
 		ifFalse: [ nil ]
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>defaultPopupDelay [
+{ #category : #defaults }
+NECPreferences class >> defaultPopupDelay [
 	^ 200
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>defaultPopupShortcut [
+{ #category : #defaults }
+NECPreferences class >> defaultPopupShortcut [
 	^Character tab asShortcut
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>defaultPopupShowAutomatic [
+{ #category : #defaults }
+NECPreferences class >> defaultPopupShowAutomatic [
 	^true
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>defaultSpaceAfterCompletion [
+{ #category : #defaults }
+NECPreferences class >> defaultSpaceAfterCompletion [
 	^true
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>defaultUseEnterToAccept [
+{ #category : #defaults }
+NECPreferences class >> defaultUseEnterToAccept [
 	
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>enabled [
+{ #category : #accessing }
+NECPreferences class >> enabled [
 	^ enabled
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>enabled: aBoolean [
+{ #category : #accessing }
+NECPreferences class >> enabled: aBoolean [
 	enabled := aBoolean.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>expandPrefixes [
+{ #category : #accessing }
+NECPreferences class >> expandPrefixes [
 	^ expandPrefixes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>expandPrefixes: aBoolean [
+{ #category : #accessing }
+NECPreferences class >> expandPrefixes: aBoolean [
 	expandPrefixes := aBoolean
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>initialize [
+{ #category : #'class initialization' }
+NECPreferences class >> initialize [
 	enabled := true.
 	overrideModel := false.
 	caseSensitive := true.
@@ -208,75 +150,48 @@ NECPreferences class>>initialize [
 	spaceAfterCompletion := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>overrideModel  [
+{ #category : #accessing }
+NECPreferences class >> overrideModel [ 
 	^overrideModel ifNil: [ overrideModel := false].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>overrideModel: aBoolean [
+{ #category : #accessing }
+NECPreferences class >> overrideModel: aBoolean [
 	overrideModel := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>popupAutomaticDelay [
+{ #category : #accessing }
+NECPreferences class >> popupAutomaticDelay [
 	^popupAutomaticDelay ifNil: [ popupAutomaticDelay := self defaultPopupDelay ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>popupAutomaticDelay: anObject [
+{ #category : #accessing }
+NECPreferences class >> popupAutomaticDelay: anObject [
 	popupAutomaticDelay := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>popupShowAutomatic [
+{ #category : #accessing }
+NECPreferences class >> popupShowAutomatic [
 	^ popupShowAutomatic ifNil: [ popupShowAutomatic := self defaultPopupShowAutomatic ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>popupShowAutomatic: aBoolean [
+{ #category : #accessing }
+NECPreferences class >> popupShowAutomatic: aBoolean [
 	popupShowAutomatic := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>popupShowWithShortcut [
+{ #category : #accessing }
+NECPreferences class >> popupShowWithShortcut [
 	^ popupShowWithShortcut ifNil: [ popupShowWithShortcut := self defaultPopupShortcut ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>popupShowWithShortcut: anObject [
+{ #category : #accessing }
+NECPreferences class >> popupShowWithShortcut: anObject [
 	popupShowWithShortcut := anObject
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>settingsOn: aBuilder [
+{ #category : #settings }
+NECPreferences class >> settingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #'Code Completion')
 		target: self;
@@ -334,106 +249,67 @@ NECPreferences class>>settingsOn: aBuilder [
 					 ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>smartCharacters [
+{ #category : #accessing }
+NECPreferences class >> smartCharacters [
 	^ smartCharacters
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>smartCharacters: aBoolean [
+{ #category : #accessing }
+NECPreferences class >> smartCharacters: aBoolean [
 	smartCharacters := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>smartCharactersMapping [
+{ #category : #accessing }
+NECPreferences class >> smartCharactersMapping [
 	^ smartCharactersMapping
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>smartCharactersMapping: aDictionary [
+{ #category : #accessing }
+NECPreferences class >> smartCharactersMapping: aDictionary [
 	smartCharactersMapping := aDictionary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>smartCharactersWithDoubleSpace [
+{ #category : #accessing }
+NECPreferences class >> smartCharactersWithDoubleSpace [
 	^ smartCharactersWithDoubleSpace
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>smartCharactersWithDoubleSpace: aString [
+{ #category : #accessing }
+NECPreferences class >> smartCharactersWithDoubleSpace: aString [
 	smartCharactersWithDoubleSpace := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>smartCharactersWithSingleSpace [
+{ #category : #accessing }
+NECPreferences class >> smartCharactersWithSingleSpace [
 	^ smartCharactersWithSingleSpace
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>smartCharactersWithSingleSpace: aString [
+{ #category : #accessing }
+NECPreferences class >> smartCharactersWithSingleSpace: aString [
 	smartCharactersWithSingleSpace := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>spaceAfterCompletion [
+{ #category : #accessing }
+NECPreferences class >> spaceAfterCompletion [
 	^ spaceAfterCompletion ifNil: [ spaceAfterCompletion := true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>spaceAfterCompletion: anObject [
+{ #category : #accessing }
+NECPreferences class >> spaceAfterCompletion: anObject [
 	spaceAfterCompletion := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>useController: aClass [
+{ #category : #private }
+NECPreferences class >> useController: aClass [
 	aClass registerToolsOn: Smalltalk tools
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>useEnterToAccept [
+{ #category : #accessing }
+NECPreferences class >> useEnterToAccept [
 	^ useEnterToAccept ifNil: [ useEnterToAccept := self defaultUseEnterToAccept ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECPreferences class>>useEnterToAccept: aBoolean [
+{ #category : #accessing }
+NECPreferences class >> useEnterToAccept: aBoolean [
 	useEnterToAccept := aBoolean
 ]

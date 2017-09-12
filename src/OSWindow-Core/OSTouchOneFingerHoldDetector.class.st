@@ -6,15 +6,11 @@ I send these event back to my handler:
 Class {
 	#name : #OSTouchOneFingerHoldDetector,
 	#superclass : #OSTouchHoldDetector,
-	#category : #OSWindow-Core-Gestures,
-	#timestamp : 'MerwanOuddane 7/22/2015 16:25'
+	#category : #OSWindow-Core-Gestures
 }
 
-{
-	#category : #creation,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchOneFingerHoldDetector>>createHoldEvent [
+{ #category : #creation }
+OSTouchOneFingerHoldDetector >> createHoldEvent [
 	^ OSTouchOneFingerHoldEvent new 
 		position: self centerOfAllFingers;
 		timestamp: eventHandler lastUpdateTimestamp ;
@@ -22,10 +18,7 @@ OSTouchOneFingerHoldDetector>>createHoldEvent [
 		yourself
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchOneFingerHoldDetector>>necessaryFingers [
+{ #category : #preconditions }
+OSTouchOneFingerHoldDetector >> necessaryFingers [
 	^ 1
 ]

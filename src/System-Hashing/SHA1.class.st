@@ -26,31 +26,21 @@ Class {
 		'K3',
 		'K4'
 	],
-	#category : #System-Hashing-SHA1,
-	#timestamp : '<historical>'
+	#category : #System-Hashing-SHA1
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1 class>>blockSize [
+{ #category : #accessing }
+SHA1 class >> blockSize [
 	^ 64
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1 class>>hashSize [
+{ #category : #accessing }
+SHA1 class >> hashSize [
 	^ 20
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1 class>>initialize [
+{ #category : #'class initialization' }
+SHA1 class >> initialize [
 	"SecureHashAlgorithm initialize"
 	"For the curious, here's where these constants come from:
 	  #(2 3 5 10) collect: [:x | ((x sqrt / 4.0) * (2.0 raisedTo: 32)) truncated hex]"
@@ -60,11 +50,8 @@ SHA1 class>>initialize [
 	K4 := ThirtyTwoBitRegister new load: 3395469782
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1>>constantForStep: i [
+{ #category : #private }
+SHA1 >> constantForStep: i [
 	"Answer the constant for the i-th step of the block hash loop. We number our steps 1-80, versus the 0-79 of the standard."
 
 	i <= 20 ifTrue: [^ K1].
@@ -74,11 +61,8 @@ SHA1>>constantForStep: i [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1>>expandedBlock: aByteArray  [
+{ #category : #private }
+SHA1 >> expandedBlock: aByteArray [ 
 	"Convert the given 64 byte buffer into 80 32-bit registers and answer the result."
 	| out src v |
 	out := Array new: 80.
@@ -109,11 +93,8 @@ SHA1>>expandedBlock: aByteArray  [
 	^ out
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1>>finalHash [
+{ #category : #private }
+SHA1 >> finalHash [
 	"Concatenate the final totals to build the 160-bit integer result."
 	"Details: If the primitives are supported, the results are in the totals array. Otherwise, they are in the instance variables totalA through totalE."
 	| r |
@@ -129,11 +110,8 @@ SHA1>>finalHash [
 	^ r
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1>>hashFunction: i of: x with: y with: z [
+{ #category : #private }
+SHA1 >> hashFunction: i of: x with: y [ with: z
 	"Compute the hash function for the i-th step of the block hash loop. We number our steps 1-80, versus the 0-79 of the standard."
 	"Details: There are four functions, one for each 20 iterations. The second and fourth are the same."
 
@@ -144,11 +122,8 @@ SHA1>>hashFunction: i of: x with: y with: z [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1>>hashInteger: aPositiveInteger  [
+{ #category : #accessing }
+SHA1 >> hashInteger: aPositiveInteger [ 
 	"Hash the given positive integer. The integer to be hashed should have 512 or fewer bits. This entry point is used in key generation."
 	| buffer dstIndex |
 	self initializeTotals.
@@ -171,11 +146,8 @@ SHA1>>hashInteger: aPositiveInteger  [
 	^ self finalHash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1>>hashInteger: aPositiveInteger seed: seedInteger  [
+{ #category : #accessing }
+SHA1 >> hashInteger: aPositiveInteger seed: seedInteger [ 
 	"Hash the given positive integer. The integer to be hashed should have 512 or fewer bits. This entry point is used in the production of random numbers"
 	"Initialize totalA through totalE to their seed values."
 	| buffer dstIndex |
@@ -203,11 +175,8 @@ SHA1>>hashInteger: aPositiveInteger seed: seedInteger  [
 	^ self finalHash
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1>>hashStream: aPositionableStream [
+{ #category : #public }
+SHA1 >> hashStream: aPositionableStream [
 	"Hash the contents of the given stream from the current position to the end using the Secure Hash Algorithm. The SHA algorithm is defined in FIPS PUB 180-1. It is also described on p. 442 of 'Applied Cryptography: Protocols, Algorithms, and Source Code in C' by Bruce Scheier, Wiley, 1996."
 	"http://en.wikipedia.org/wiki/Sha1#Example_hashes" 
 	"(SHA1 new hashStream: 'The quick brown fox jumps over the lazy dog' readStream) hex."
@@ -227,11 +196,8 @@ SHA1>>hashStream: aPositionableStream [
 	^ self finalHash asByteArrayOfSize: 20
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1>>initializeTotals [
+{ #category : #private }
+SHA1 >> initializeTotals [
 	"Initialize totalA through totalE to their seed values."
 	"total registers for use when primitives are absent"
 	totalA := ThirtyTwoBitRegister new load: 1732584193.
@@ -242,11 +208,8 @@ SHA1>>initializeTotals [
 	self initializeTotalsArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1>>initializeTotalsArray [
+{ #category : #private }
+SHA1 >> initializeTotalsArray [
 	"Initialize the totals array from the registers for use with the primitives."
 	totals := WordArray new: 5.
 	totals 
@@ -266,11 +229,8 @@ SHA1>>initializeTotalsArray [
 		put: totalE asInteger
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1>>primExpandBlock: aByteArray into: wordBitmap [
+{ #category : #primitives }
+SHA1 >> primExpandBlock: aByteArray into: wordBitmap [
 	"Expand the given 64-byte buffer into the given Bitmap of length 80."
 
 	<primitive: 'primitiveExpandBlock' module: 'DSAPrims'>
@@ -278,11 +238,8 @@ SHA1>>primExpandBlock: aByteArray into: wordBitmap [
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1>>primHasSecureHashPrimitive [
+{ #category : #primitives }
+SHA1 >> primHasSecureHashPrimitive [
 	"Answer true if this platform has primitive support for the Secure Hash Algorithm."
 
 	<primitive: 'primitiveHasSecureHashPrimitive' module: 'DSAPrims'>
@@ -290,11 +247,8 @@ SHA1>>primHasSecureHashPrimitive [
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1>>primHashBlock: blockBitmap using: workingTotalsBitmap [
+{ #category : #primitives }
+SHA1 >> primHashBlock: blockBitmap using: workingTotalsBitmap [
 	"Hash the given block (a Bitmap) of 80 32-bit words, using the given workingTotals."
 
 	<primitive: 'primitiveHashBlock' module: 'DSAPrims'>
@@ -302,11 +256,8 @@ SHA1>>primHashBlock: blockBitmap using: workingTotalsBitmap [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1>>processBuffer: aByteArray  [
+{ #category : #private }
+SHA1 >> processBuffer: aByteArray [ 
 	"Process given 64-byte buffer, accumulating the results in totalA through totalE."
 	| a b c d e w tmp |
 	self primHasSecureHashPrimitive 
@@ -349,11 +300,8 @@ SHA1>>processBuffer: aByteArray  [
 	totalE += e
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1>>processBufferUsingPrimitives: aByteArray  [
+{ #category : #private }
+SHA1 >> processBufferUsingPrimitives: aByteArray [ 
 	"Process given 64-byte buffer using the primitives, accumulating the results in totals."
 	"expand and process the buffer"
 	| w |
@@ -366,11 +314,8 @@ SHA1>>processBufferUsingPrimitives: aByteArray  [
 		using: totals
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1>>processFinalBuffer: buffer bitLength: bitLength  [
+{ #category : #private }
+SHA1 >> processFinalBuffer: buffer bitLength: bitLength [ 
 	"Process given buffer, whose length may be <= 64 bytes, accumulating the results in totalA through totalE. Also process the final padding bits and length."
 	| out |
 	out := ByteArray new: 64.
@@ -410,11 +355,8 @@ SHA1>>processFinalBuffer: buffer bitLength: bitLength  [
 	self processBuffer: out
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-SHA1>>storeLength: bitLength in: aByteArray  [
+{ #category : #private }
+SHA1 >> storeLength: bitLength in: aByteArray [ 
 	"Fill in the final 8 bytes of the given ByteArray with a 64-bit big-endian representation of the original message length in bits."
 	| n i |
 	n := bitLength.

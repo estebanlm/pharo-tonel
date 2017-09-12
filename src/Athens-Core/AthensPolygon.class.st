@@ -8,54 +8,38 @@ Class {
 		'contours',
 		'currentContour'
 	],
-	#category : #Athens-Core-Paths,
-	#timestamp : 'IgorStasenko 12/20/2011 18:38'
+	#category : #Athens-Core-Paths
 }
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPolygon>>finish [
+{ #category : #conversion }
+AthensPolygon >> finish [
 	"Finally convert contours to arrays"
 	
 	contours := contours collect: [:ea | ea asArray ]
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPolygon>>lineTo: aPoint  [
+{ #category : #conversion }
+AthensPolygon >> lineTo: aPoint [ 
 	currentContour add: aPoint
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPolygon>>moveTo: aPoint  [
+{ #category : #conversion }
+AthensPolygon >> moveTo: aPoint [ 
 	" create a new contour "
 	
 	self newContour.
 	currentContour add: aPoint.
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPolygon>>newContour [
+{ #category : #conversion }
+AthensPolygon >> newContour [
 	contours ifNil: [ contours := OrderedCollection new ].
 	
 	currentContour := contours add: OrderedCollection new.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPolygon>>paintFillsUsing: aPaint on: anAthensCanvas  [
+{ #category : #drawing }
+AthensPolygon >> paintFillsUsing: aPaint on: anAthensCanvas [ 
 	
 	"This method is a part of rendering dispatch  Canvas->receiver->paint"
 	

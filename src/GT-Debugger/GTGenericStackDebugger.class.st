@@ -15,31 +15,21 @@ Class {
 		'LogDebuggerStackToFile',
 		'LogFileName'
 	],
-	#category : #GT-Debugger-UI,
-	#timestamp : 'AndreiChis 12/30/2015 11:06'
+	#category : #GT-Debugger-UI
 }
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>alwaysOpenFullDebugger [
+{ #category : #'settings api' }
+GTGenericStackDebugger class >> alwaysOpenFullDebugger [
 	^ AlwaysOpenFullDebugger ifNil: [AlwaysOpenFullDebugger := false]
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>alwaysOpenFullDebugger: aBoolean [
+{ #category : #'settings api' }
+GTGenericStackDebugger class >> alwaysOpenFullDebugger: aBoolean [
 	AlwaysOpenFullDebugger := aBoolean.
 ]
 
-{
-	#category : #'utilities api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>closeAllDebuggers [
+{ #category : #'utilities api' }
+GTGenericStackDebugger class >> closeAllDebuggers [
 	"GTGenericStackDebugger closeAllDebuggers"
 	(SystemWindow allSubInstances select: [:w | 
 		 w model isKindOf: GTGenericStackDebugger])
@@ -47,259 +37,169 @@ GTGenericStackDebugger class>>closeAllDebuggers [
 	GTSpecPreDebugWindow allInstances do: #delete.
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>defaultLogFileName [
+{ #category : #'settings api' }
+GTGenericStackDebugger class >> defaultLogFileName [
 	^ 'PharoDebug.log'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>defaultTitle [
+{ #category : #accessing }
+GTGenericStackDebugger class >> defaultTitle [
 	^ 'GT'
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>filterCommonMessageSends [
+{ #category : #'settings api' }
+GTGenericStackDebugger class >> filterCommonMessageSends [
 	self flag: 'horrible hack not to break the setting browser'.
 	^ false
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>filterCommonMessageSends: aBoolean [
+{ #category : #'settings api' }
+GTGenericStackDebugger class >> filterCommonMessageSends: aBoolean [
 	FilterCommonMessageSends := aBoolean
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>filterDoItSelectors [
+{ #category : #'settings api' }
+GTGenericStackDebugger class >> filterDoItSelectors [
 	^ false
 ]
 
-{
-	#category : #'accessing - ancient preference selectors',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>filterDoItSelectors: aBoolean [
+{ #category : #'accessing - ancient preference selectors' }
+GTGenericStackDebugger class >> filterDoItSelectors: aBoolean [
 	self flag: 'just for backward compatibility'
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>filterKernelClasses [
+{ #category : #'settings api' }
+GTGenericStackDebugger class >> filterKernelClasses [
 	^ false
 ]
 
-{
-	#category : #'accessing - ancient preference selectors',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>filterKernelClasses: aBoolean [
+{ #category : #'accessing - ancient preference selectors' }
+GTGenericStackDebugger class >> filterKernelClasses: aBoolean [
 	self flag: 'just for backward compatibility'
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>filterLinkSelectors [
+{ #category : #'settings api' }
+GTGenericStackDebugger class >> filterLinkSelectors [
 	^ false
 ]
 
-{
-	#category : #'accessing - ancient preference selectors',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>filterLinkSelectors: aBoolean  [
+{ #category : #'accessing - ancient preference selectors' }
+GTGenericStackDebugger class >> filterLinkSelectors: aBoolean [ 
 	self flag: 'just for backward compatibility'
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>filterNilSelectors [
+{ #category : #'settings api' }
+GTGenericStackDebugger class >> filterNilSelectors [
 	^ false
 ]
 
-{
-	#category : #'accessing - ancient preference selectors',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>filterNilSelectors: aBoolean  [
+{ #category : #'accessing - ancient preference selectors' }
+GTGenericStackDebugger class >> filterNilSelectors: aBoolean [ 
 	self flag: 'just for backward compatibility'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>handlesContext: aContext [
+{ #category : #testing }
+GTGenericStackDebugger class >> handlesContext: aContext [
 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>helpClass [
+{ #category : #accessing }
+GTGenericStackDebugger class >> helpClass [
 
 	^ GTDebuggerHelp
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>logDebuggerStackToFile [
+{ #category : #'settings api' }
+GTGenericStackDebugger class >> logDebuggerStackToFile [
 	^ LogDebuggerStackToFile ifNil: [LogDebuggerStackToFile := true]
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>logDebuggerStackToFile: aBoolean [
+{ #category : #'settings api' }
+GTGenericStackDebugger class >> logDebuggerStackToFile: aBoolean [
 	 LogDebuggerStackToFile := aBoolean
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>logFileName [
+{ #category : #'settings api' }
+GTGenericStackDebugger class >> logFileName [
 	^ LogFileName ifNil: [ self defaultLogFileName ] 
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>logFileName: newName [
+{ #category : #'settings api' }
+GTGenericStackDebugger class >> logFileName: newName [
 	LogFileName := newName
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>register [
+{ #category : #'tools registry' }
+GTGenericStackDebugger class >> register [
 
 	self registerToolsOn: Smalltalk tools.
 	self registerExtraToolsOn: Smalltalk tools.
 
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>registerExtraToolsOn: registry [
+{ #category : #'tools registry' }
+GTGenericStackDebugger class >> registerExtraToolsOn: registry [
 	"This adds self in the list of tools that appears in the small debugger"
 	registry registerDebugger: self withRank: 3.
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>registerToolsOn: registry [
+{ #category : #'tools registry' }
+GTGenericStackDebugger class >> registerToolsOn: registry [
 	registry register: self as: #debugger.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>sessionClass [
+{ #category : #accessing }
+GTGenericStackDebugger class >> sessionClass [
 
 	^ DebugSession 
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>stackWidgetClass [
+{ #category : #'settings api' }
+GTGenericStackDebugger class >> stackWidgetClass [
 	self flag: 'horrible hack not to break the setting browser'.
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger class>>variablesBrowserClass [
+{ #category : #accessing }
+GTGenericStackDebugger class >> variablesBrowserClass [
 
 	^ GTDebuggerVariablesBrowser
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>actOnInspectorPaneRemoved: ann  [
+{ #category : #callbacks }
+GTGenericStackDebugger >> actOnInspectorPaneRemoved: ann [ 
 
 	ann browser panes size == 1 ifTrue: [ 
 		self selectedVariableName: nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>cache [
+{ #category : #accessing }
+GTGenericStackDebugger >> cache [
 	^ cache ifNil: [ cache := Dictionary new ]
 ]
 
-{
-	#category : #'building actions',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>codeActionsPragmas [
+{ #category : #'building actions' }
+GTGenericStackDebugger >> codeActionsPragmas [
 
 	^ #( codeDebuggingAction )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>codePane [
+{ #category : #accessing }
+GTGenericStackDebugger >> codePane [
 
 	^ self browser paneNamed: #code
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>codePresentation [
+{ #category : #accessing }
+GTGenericStackDebugger >> codePresentation [
 	
 	^ self codePane presentations first
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>debuggerStructureIn: browser [
+{ #category : #building }
+GTGenericStackDebugger >> debuggerStructureIn: browser [
 	
 	browser
 		row: #stack;
@@ -308,11 +208,8 @@ GTGenericStackDebugger>>debuggerStructureIn: browser [
 		
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>debuggerTransmissionsIn: browser [
+{ #category : #building }
+GTGenericStackDebugger >> debuggerTransmissionsIn: browser [
 
 	browser transmit
 		fromOutsideEntityPort;
@@ -336,20 +233,14 @@ GTGenericStackDebugger>>debuggerTransmissionsIn: browser [
 
 ]
 
-{
-	#category : #'building actions',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>debuggingActionsPragmas [
+{ #category : #'building actions' }
+GTGenericStackDebugger >> debuggingActionsPragmas [
 
 	^ #( debuggingAction )
 ]
 
-{
-	#category : #printing/formatting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>formatStackClassColumnForContext: aContext [
+{ #category : #printing/formatting }
+GTGenericStackDebugger >> formatStackClassColumnForContext: aContext [
 
 	^ Text 
 		string: (self printStackClassColumnForContext: aContext )
@@ -357,33 +248,24 @@ GTGenericStackDebugger>>formatStackClassColumnForContext: aContext [
 	 
 ]
 
-{
-	#category : #printing/formatting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>formatStackExtraColumnForContext: aContext  [
+{ #category : #printing/formatting }
+GTGenericStackDebugger >> formatStackExtraColumnForContext: aContext [ 
 
 	^ Text 
 		string: (self printStackExtraColumnForContext: aContext )
 		attributes: (self textAttributesForStackEntry: aContext) 
 ]
 
-{
-	#category : #printing/formatting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>formatStackMethodColumnForContext: aContext  [
+{ #category : #printing/formatting }
+GTGenericStackDebugger >> formatStackMethodColumnForContext: aContext [ 
 
 	^ Text 
 		string: (self printStackMethodColumnForContext: aContext )
 		attributes: (self textAttributesForStackEntry: aContext) 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>inspect: anObject [
+{ #category : #actions }
+GTGenericStackDebugger >> inspect: anObject [
 
 	"Use silentValue: instead of value: as just using value: causes the current inspector to refresh the content of it current presentations without rebuiling them (the dynamic presentation contained by the inspector does not rebuild its content)"
 	((self browser paneNamed: #inspector) port: #entity) silentValue: anObject.
@@ -392,33 +274,24 @@ GTGenericStackDebugger>>inspect: anObject [
 	
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>inspectorIn: aComposite [
+{ #category : #'building presentations' }
+GTGenericStackDebugger >> inspectorIn: aComposite [
 
 	^ aComposite dynamic 
 		display: [:anObject |
 			self inspectorIn: GLMCompositePresentation new on: anObject ]
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>inspectorIn: aComposite on: anObject [
+{ #category : #'building presentations' }
+GTGenericStackDebugger >> inspectorIn: aComposite on: anObject [
 				
 	^ anObject gtConstructDebuggerInspectorIn: aComposite for: self
 	
 	
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>installBindingsForDoItIn: aPresentation from: aContext [
+{ #category : #'building presentations' }
+GTGenericStackDebugger >> installBindingsForDoItIn: aPresentation from: aContext [
 
 	(aContext notNil and: [aContext method isDoIt and: [ aContext receiver isNil ] ]) ifTrue: [
 		aPresentation variableBindings: aContext gtDebuggerDoItBindings ]
@@ -426,40 +299,28 @@ GTGenericStackDebugger>>installBindingsForDoItIn: aPresentation from: aContext [
 	
 ]
 
-{
-	#category : #'building actions',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>installCodeActionsFor: aPresentation [
+{ #category : #'building actions' }
+GTGenericStackDebugger >> installCodeActionsFor: aPresentation [
 	
 	self installActionsForRootPragmas: self codeActionsPragmas in: aPresentation
 ]
 
-{
-	#category : #'building actions',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>installDebuggingActionsFor: aPresentation [
+{ #category : #'building actions' }
+GTGenericStackDebugger >> installDebuggingActionsFor: aPresentation [
 
 	self installActionsForRootPragmas: self debuggingActionsPragmas in: aPresentation
 ]
 
-{
-	#category : #'building actions',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>installStackDebuggingActionsFor: aPresentation [
+{ #category : #'building actions' }
+GTGenericStackDebugger >> installStackDebuggingActionsFor: aPresentation [
 
 	self 
 		installActionsForRootPragmas: self stackDebuggingActionsPragmas 
 		in: aPresentation
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>methodCodeIn: composite forContext: aContext [
+{ #category : #'building presentations' }
+GTGenericStackDebugger >> methodCodeIn: composite forContext: aContext [
 
 	(self methodCodeWidgetIn: composite forContext: aContext)
 		initialize: [ :code | 
@@ -468,11 +329,8 @@ GTGenericStackDebugger>>methodCodeIn: composite forContext: aContext [
 			self installCodeActionsFor: code ]
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>methodCodeWidgetIn: composite forContext: aContext [
+{ #category : #'building presentations' }
+GTGenericStackDebugger >> methodCodeWidgetIn: composite forContext: aContext [
 
 	^ composite pharoMethod
 		title: 'Source';
@@ -484,22 +342,16 @@ GTGenericStackDebugger>>methodCodeWidgetIn: composite forContext: aContext [
 			self installBindingsForDoItIn: codePresentation from: aContext ]
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>openWithFullView [
+{ #category : #opening }
+GTGenericStackDebugger >> openWithFullView [
 	"Create and schedule a full debugger with the given label. Do not
 	terminate the current active process."
 	
 	self open
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>openWithNotification: notificationString [
+{ #category : #opening }
+GTGenericStackDebugger >> openWithNotification: notificationString [
 	"Create and schedule a notifier view with the given label and message.
 	A notifier view shows just the message or the first several lines of the
 	stack, with a menu that allows the user to open a full debugger if so
@@ -516,11 +368,8 @@ GTGenericStackDebugger>>openWithNotification: notificationString [
 		debugger: self
 ]
 
-{
-	#category : #printing/formatting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>printStackClassColumnForContext: aContext [
+{ #category : #printing/formatting }
+GTGenericStackDebugger >> printStackClassColumnForContext: aContext [
 	| outer class methodClass |
 	
 	outer := aContext outerMostContext.
@@ -536,11 +385,8 @@ GTGenericStackDebugger>>printStackClassColumnForContext: aContext [
 						nextPut: $) ] ]  
 ]
 
-{
-	#category : #printing/formatting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>printStackExtraColumnForContext: aContext  [
+{ #category : #printing/formatting }
+GTGenericStackDebugger >> printStackExtraColumnForContext: aContext [ 
 
 	| selector |
 	^ aContext outerContext 
@@ -555,11 +401,8 @@ GTGenericStackDebugger>>printStackExtraColumnForContext: aContext  [
 		ifNotNil: [ aContext closure printString  ]
 ]
 
-{
-	#category : #printing/formatting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>printStackMethodColumnForContext: aContext  [
+{ #category : #printing/formatting }
+GTGenericStackDebugger >> printStackMethodColumnForContext: aContext [ 
 	| outer selector |
 	
 	outer := aContext outerMostContext.
@@ -568,63 +411,42 @@ GTGenericStackDebugger>>printStackMethodColumnForContext: aContext  [
 		aStream nextPutAll: selector ]
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>retrieveStackFrom: aSession [
+{ #category : #'building presentations' }
+GTGenericStackDebugger >> retrieveStackFrom: aSession [
 
 	^ aSession stack
 		
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>selectTopContext [
+{ #category : #updating }
+GTGenericStackDebugger >> selectTopContext [
 	((self browser paneNamed: #stack) port: #selection) value: self interruptedContext
 ]
 
-{
-	#category : #'accessing context',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>selectedContext [
+{ #category : #'accessing context' }
+GTGenericStackDebugger >> selectedContext [
 
 	^ ((self browser paneNamed: #stack) port: #selection) value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>selectedText [
+{ #category : #accessing }
+GTGenericStackDebugger >> selectedText [
 
 	^ (self codePane port: #selectedText) value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>selectedVariableName [
+{ #category : #accessing }
+GTGenericStackDebugger >> selectedVariableName [
 	^ self cache at: #selectedVariableName ifAbsent: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>selectedVariableName: anObject [
+{ #category : #accessing }
+GTGenericStackDebugger >> selectedVariableName: anObject [
 	self cache at: #selectedVariableName put: anObject
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>selectionChanged: aContext [
+{ #category : #updating }
+GTGenericStackDebugger >> selectionChanged: aContext [
 
 	aContext isNotNil ifTrue: [ self announce: (GTGenericStackDebuggerSelectionChanged forDebugger: self) ].
 
@@ -639,87 +461,60 @@ GTGenericStackDebugger>>selectionChanged: aContext [
 			self session interruptedProcess ifNotNil: [ p first update ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>selectionInterval [
+{ #category : #accessing }
+GTGenericStackDebugger >> selectionInterval [
 
 	^ self selectionIntervalForPane: #code
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>selectionInterval: anInterval [
+{ #category : #accessing }
+GTGenericStackDebugger >> selectionInterval: anInterval [
 
 	^ ((self browser paneNamed: #code) port: #selectionInterval) value: anInterval
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>selectionIntervalForPane: aSymbol [
+{ #category : #accessing }
+GTGenericStackDebugger >> selectionIntervalForPane: aSymbol [
 
 	^ ((self browser paneNamed: aSymbol) port: #selectionInterval) value ifNil: [ ^ 1 to: 0 ]
 ]
 
-{
-	#category : #'old api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>send [
+{ #category : #'old api' }
+GTGenericStackDebugger >> send [
 	
 	self session stepInto: self currentContext.
 	self updateBrowser.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>sourceCode: aString [
+{ #category : #accessing }
+GTGenericStackDebugger >> sourceCode: aString [
 
 	^ ((self browser paneNamed: #code) port: #text) value: aString
 ]
 
-{
-	#category : #'building actions',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>stackDebuggingActionsPragmas [
+{ #category : #'building actions' }
+GTGenericStackDebugger >> stackDebuggingActionsPragmas [
 
 	^ #( stackDebuggingAction )
 
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>stackIn: composite [
+{ #category : #'building presentations' }
+GTGenericStackDebugger >> stackIn: composite [
 
 	^ (self stackWidgetIn: composite)
 		with: [ :stackWidget | self installStackDebuggingActionsFor: stackWidget ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>stackPresentation [
+{ #category : #accessing }
+GTGenericStackDebugger >> stackPresentation [
 	
 	^ (self browser paneNamed: #stack) presentations first
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>stackWidgetIn: composite [
+{ #category : #'building presentations' }
+GTGenericStackDebugger >> stackWidgetIn: composite [
 
 	^ composite fastTable	
 		title: 'Stack';
@@ -735,19 +530,13 @@ GTGenericStackDebugger>>stackWidgetIn: composite [
 		hideHeader
 ]
 
-{
-	#category : #'old api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>sugsContext [
+{ #category : #'old api' }
+GTGenericStackDebugger >> sugsContext [
 	^SugsDebuggerContext model: self
 ]
 
-{
-	#category : #printing/formatting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>textAttributesForStackEntry: aContext [
+{ #category : #printing/formatting }
+GTGenericStackDebugger >> textAttributesForStackEntry: aContext [
 
 	(self selectedContext isNil or: self class enableStackColoring not) 
 		ifTrue: [ ^ {TextColor color: Smalltalk ui theme textColor} ].
@@ -755,31 +544,22 @@ GTGenericStackDebugger>>textAttributesForStackEntry: aContext [
 	^ Smalltalk ui theme styleContext: aContext from: self.
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>transmitFromStackToCodeIn: browser [
+{ #category : #building }
+GTGenericStackDebugger >> transmitFromStackToCodeIn: browser [
 	browser transmit
 		from: #stack port: #selection;
 		to: #code;
 		andShow: [ :composite :aContext | self methodCodeIn: composite forContext: aContext ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>updateCodeEditor [
+{ #category : #updating }
+GTGenericStackDebugger >> updateCodeEditor [
 	self codePane update.
 	self updateSelectionInterval.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebugger>>updateSelectionInterval [
+{ #category : #updating }
+GTGenericStackDebugger >> updateSelectionInterval [
 
 	self selectedContext ifNil: [ ^ self ].
 	self selectionInterval: (self session selectedCodeRangeForContext:  self selectedContext )

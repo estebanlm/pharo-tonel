@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MalWeightedHitsNode,
 	#superclass : #MalHitsNode,
@@ -10,33 +7,23 @@ Class {
 		'nextEdges',
 		'previousEdges'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalWeightedHitsNode>>label [
+{ #category : #printing }
+MalWeightedHitsNode >> label [
 
 	^ 'WH '
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalWeightedHitsNode>>nextEdges [
+{ #category : #accessing }
+MalWeightedHitsNode >> nextEdges [
 
 	^ nextEdges
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalWeightedHitsNode>>previousEdges [
+{ #category : #accessing }
+MalWeightedHitsNode >> previousEdges [
 
 	^ previousEdges
 ]

@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #MetacelloLoadingMCSpecLoader,
 	#superclass : #MetacelloCommonMCSpecLoader,
-	#category : #Metacello-MC-Loaders,
-	#timestamp : ''
+	#category : #Metacello-MC-Loaders
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>actionLabel [
+{ #category : #accessing }
+MetacelloLoadingMCSpecLoader >> actionLabel [
 
 	^'Loading '
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>copySpec: pkgSpec from: repositorySpecs to: repository [
+{ #category : #'development support' }
+MetacelloLoadingMCSpecLoader >> copySpec: pkgSpec from: repositorySpecs [ to: repository
 
 	| gofer |
 	gofer := MetacelloGofer new.
@@ -29,11 +19,8 @@ MetacelloLoadingMCSpecLoader>>copySpec: pkgSpec from: repositorySpecs to: reposi
 	^self copySpec: pkgSpec with: gofer to: repository
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>copySpec: pkgSpec with: gofer to: aRepository [
+{ #category : #'development support' }
+MetacelloLoadingMCSpecLoader >> copySpec: pkgSpec with: gofer to: aRepository [
 
 	| repository resolvedReference |
 	[resolvedReference := pkgSpec goferLoaderReference resolveWith: gofer]
@@ -46,19 +33,13 @@ MetacelloLoadingMCSpecLoader>>copySpec: pkgSpec with: gofer to: aRepository [
 	^resolvedReference repository
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>doLoad [
+{ #category : #actions }
+MetacelloLoadingMCSpecLoader >> doLoad [
 	"NOOP"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>fetchingSpecLoader [
+{ #category : #accessing }
+MetacelloLoadingMCSpecLoader >> fetchingSpecLoader [
 
 	^(MetacelloFetchingMCSpecLoader on: self spec)
 		shouldDisablePackageCache: self shouldDisablePackageCache;
@@ -66,11 +47,8 @@ MetacelloLoadingMCSpecLoader>>fetchingSpecLoader [
 		yourself
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>goferCommitBranchPackage: branchName using: repositorySpecs commitMessage: commitMessage [
+{ #category : #'development support' }
+MetacelloLoadingMCSpecLoader >> goferCommitBranchPackage: branchName using: repositorySpecs commitMessage: commitMessage [
 	| gofer repoSpecs wc |
 	repoSpecs := self spec repositorySpecs notEmpty
 		ifTrue: [ self spec repositorySpecs ]
@@ -103,11 +81,8 @@ MetacelloLoadingMCSpecLoader>>goferCommitBranchPackage: branchName using: reposi
 	^ true
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>goferCommitPackageUsing: repositorySpecs commitMessage: commitMessage [
+{ #category : #'development support' }
+MetacelloLoadingMCSpecLoader >> goferCommitPackageUsing: repositorySpecs commitMessage: commitMessage [
 
 	| gofer repoSpecs wc |
 	repoSpecs := self spec repositorySpecs notEmpty
@@ -126,11 +101,8 @@ MetacelloLoadingMCSpecLoader>>goferCommitPackageUsing: repositorySpecs commitMes
 	^true
 ]
 
-{
-	#category : #packages,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>latestPackage: aString fromRepository: repositorySpecs [
+{ #category : #packages }
+MetacelloLoadingMCSpecLoader >> latestPackage: aString fromRepository: repositorySpecs [
 
 	| gofer |
 	gofer := MetacelloGofer new.
@@ -141,11 +113,8 @@ MetacelloLoadingMCSpecLoader>>latestPackage: aString fromRepository: repositoryS
 		do: [:ignored | ^ nil ]) name
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>linearLoadPackageSpec: packageSpec gofer: gofer [
+{ #category : #private }
+MetacelloLoadingMCSpecLoader >> linearLoadPackageSpec: packageSpec gofer: gofer [
   MetacelloPlatform current
     do: [ 
       | loadBlock goferLoad answers resolvedReference repo |
@@ -182,11 +151,8 @@ MetacelloLoadingMCSpecLoader>>linearLoadPackageSpec: packageSpec gofer: gofer [
     displaying: 'Loading ' , packageSpec file
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>packagesNeedSavingUsing: repositorySpecs into: aCollection [
+{ #category : #'development support' }
+MetacelloLoadingMCSpecLoader >> packagesNeedSavingUsing: repositorySpecs into: aCollection [
 
 	| wc repoSpecs repo |
 	(wc := self spec workingCopy) == nil ifTrue: [ ^self ].
@@ -204,55 +170,40 @@ MetacelloLoadingMCSpecLoader>>packagesNeedSavingUsing: repositorySpecs into: aCo
 	aCollection add: self spec -> repo
 ]
 
-{
-	#category : #doits,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>postLoad: packageOrVersionSpec [
+{ #category : #doits }
+MetacelloLoadingMCSpecLoader >> postLoad: packageOrVersionSpec [
 
 	| block |
 	(block := packageOrVersionSpec postLoadDoItBlock) ~~ nil
 		ifTrue: [ block valueWithPossibleArgs: { self. packageOrVersionSpec. } ]
 ]
 
-{
-	#category : #doits,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>preLoad: packageOrVersionSpec [
+{ #category : #doits }
+MetacelloLoadingMCSpecLoader >> preLoad: packageOrVersionSpec [
 
 	| block |
 	(block := packageOrVersionSpec preLoadDoItBlock) ~~ nil
 		ifTrue: [ block valueWithPossibleArgs: { self. packageOrVersionSpec. } ]
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>repositoryFor: pkgSpec from: repositorySpecs [
+{ #category : #'development support' }
+MetacelloLoadingMCSpecLoader >> repositoryFor: pkgSpec from: repositorySpecs [
 
 	^([self resolveSpec: pkgSpec from: repositorySpecs]
 		on: Error
 		do: [:ignored | ^nil ]) repository
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>repositoryFor: pkgSpec with: gofer [
+{ #category : #'development support' }
+MetacelloLoadingMCSpecLoader >> repositoryFor: pkgSpec with: gofer [
 
 	^([self resolveSpec: pkgSpec with: gofer]
 		on: Error
 		do: [:ignored | ^nil ]) repository
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>resolveSpec: pkgSpec from: repositorySpecs [
+{ #category : #'development support' }
+MetacelloLoadingMCSpecLoader >> resolveSpec: pkgSpec from: repositorySpecs [
 
 	| gofer |
 	gofer := MetacelloGofer new.
@@ -262,20 +213,14 @@ MetacelloLoadingMCSpecLoader>>resolveSpec: pkgSpec from: repositorySpecs [
 	^self resolveSpec: pkgSpec with: gofer
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>resolveSpec: pkgSpec with: gofer [
+{ #category : #'development support' }
+MetacelloLoadingMCSpecLoader >> resolveSpec: pkgSpec with: gofer [
 
 	^pkgSpec goferLoaderReference resolveWith: gofer
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadingMCSpecLoader>>savePackageUsing: repositorySpecs [
+{ #category : #'development support' }
+MetacelloLoadingMCSpecLoader >> savePackageUsing: repositorySpecs [
 
 	| wc repo repoSpecs newVersion |
 	(wc := self spec workingCopy) == nil ifTrue: [ ^false ].

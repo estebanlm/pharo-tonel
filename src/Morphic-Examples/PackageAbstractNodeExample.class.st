@@ -7,55 +7,36 @@ Class {
 	#instVars : [
 		'contents'
 	],
-	#category : #Morphic-Examples-MorphTreeWidget,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:56'
+	#category : #Morphic-Examples-MorphTreeWidget
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PackageAbstractNodeExample>>browseItem [
+{ #category : #accessing }
+PackageAbstractNodeExample >> browseItem [
 	
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PackageAbstractNodeExample>>contents [
+{ #category : #menu }
+PackageAbstractNodeExample >> contents [
 	^ contents ifNil: [contents := super contents]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PackageAbstractNodeExample>>doubleClick [
+{ #category : #accessing }
+PackageAbstractNodeExample >> doubleClick [
 	self browseItem
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PackageAbstractNodeExample>>exploreItem [
+{ #category : #accessing }
+PackageAbstractNodeExample >> exploreItem [
 	self explore
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PackageAbstractNodeExample>>inspectItem [
+{ #category : #accessing }
+PackageAbstractNodeExample >> inspectItem [
 	self inspect
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PackageAbstractNodeExample>>keyStroke: anEvent from: aTreeMorph [
+{ #category : #accessing }
+PackageAbstractNodeExample >> keyStroke: anEvent from: aTreeMorph [
 	| c |
 	c := anEvent keyCharacter.
 	c = $b
@@ -68,11 +49,8 @@ PackageAbstractNodeExample>>keyStroke: anEvent from: aTreeMorph [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PackageAbstractNodeExample>>menu: menu shifted: b  [
+{ #category : #accessing }
+PackageAbstractNodeExample >> menu: menu shifted: b [ 
 	menu
 		add: 'Expand all' 
 		target: self

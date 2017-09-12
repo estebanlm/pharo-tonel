@@ -1,12 +1,7 @@
-Extension {
-	#name : #ChangesBrowser
-}
+Extension { #name : #ChangesBrowser }
 
-{
-	#category : #'*Epicea-Triggering',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>asEpiceaEvent [
+{ #category : #'*Epicea-Triggering' }
+ChangesBrowser >> asEpiceaEvent [
 
 	self flag: #todo. "This is a workaround for a problem found by RewriteTool"
 	(changes allSatisfy: [ :each | each respondsTo: #asEpiceaEvent ])
@@ -17,11 +12,8 @@ ChangesBrowser>>asEpiceaEvent [
 		ifFalse: [ changes anyOne asEpiceaEvent ].
 ]
 
-{
-	#category : #'*Epicea-Triggering',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>isEpiceaInterestingJobOwner [
+{ #category : #'*Epicea-Triggering' }
+ChangesBrowser >> isEpiceaInterestingJobOwner [
 
 	^ true
 ]

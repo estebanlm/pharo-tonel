@@ -5,79 +5,54 @@ A FullStackDebugAction displays the entire stack in the stack widget.
 Class {
 	#name : #FullStackDebugAction,
 	#superclass : #DebugAction,
-	#category : #DebuggerActions,
-	#timestamp : '<historical>'
+	#category : #DebuggerActions
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FullStackDebugAction class>>actionType [
+{ #category : #registration }
+FullStackDebugAction class >> actionType [
 	<debuggingAction>
 	<contextMenuDebuggingAction>
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FullStackDebugAction>>defaultLabel [
+{ #category : #accessing }
+FullStackDebugAction >> defaultLabel [
 
 	^ 'Full Stack'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FullStackDebugAction>>defaultOrder [
+{ #category : #accessing }
+FullStackDebugAction >> defaultOrder [
 
 	^ 30
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FullStackDebugAction>>enabled [
+{ #category : #accessing }
+FullStackDebugAction >> enabled [
 
 	^ self shouldEnableFullStackButton
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FullStackDebugAction>>executeAction [
+{ #category : #actions }
+FullStackDebugAction >> executeAction [
 	
 	self debugger stack expandBy: self expandedStackSize
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FullStackDebugAction>>expandedStackSize [
+{ #category : #accessing }
+FullStackDebugAction >> expandedStackSize [
 
 	^ 100000
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FullStackDebugAction>>id [
+{ #category : #accessing }
+FullStackDebugAction >> id [
 
 	^ #fullStack
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FullStackDebugAction>>shouldEnableFullStackButton [
+{ #category : #testing }
+FullStackDebugAction >> shouldEnableFullStackButton [
 
 	self debugger ifNil: [ ^ false ].  
 		

@@ -4,23 +4,16 @@ Explains help topics
 Class {
 	#name : #HelpHowToHelpTopics,
 	#superclass : #HelpOnHelp,
-	#category : #HelpSystem-Core-Help,
-	#timestamp : 'TorstenBergmann 2/4/2014 21:17'
+	#category : #HelpSystem-Core-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopics class>>bookName [
+{ #category : #accessing }
+HelpHowToHelpTopics class >> bookName [
 	^'Implementation'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopics class>>overview [
+{ #category : #pages }
+HelpHowToHelpTopics class >> overview [
 	^HelpTopic 
 		title: 'Overview'
 		contents:	
@@ -36,11 +29,8 @@ You can open this browser programmatically using:
 ' 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopics class>>page1 [
+{ #category : #pages }
+HelpHowToHelpTopics class >> page1 [
 	^HelpTopic 
 		title: '1. Simple help topics'
 		contents: 'The help browser usually operates on a hierarchy of help topics with one help topic at the root level. Evaluate the following expression in a workspace to contruct a simple help topic and open it as a root topic in the help browser.
@@ -57,11 +47,8 @@ Note that the help browser displays the contents of our topic in the right page 
 		'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopics class>>page2 [
+{ #category : #pages }
+HelpHowToHelpTopics class >> page2 [
 	^HelpTopic 
 		title: '2. Forming a hierarchy'
 		contents: 'To form a hierarchy we just have to add new subtopics on our root topic.
@@ -84,11 +71,8 @@ HelpHowToHelpTopics class>>page2 [
 		'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopics class>>page3 [
+{ #category : #pages }
+HelpHowToHelpTopics class >> page3 [
 	^HelpTopic 
 		title: '3. Adding icons'
 		contents: 'If you dont like the default icon you can add own custom icons to the topics. See the class HelpIcons for more details.
@@ -112,11 +96,8 @@ HelpHowToHelpTopics class>>page3 [
 		'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopics class>>page4 [
+{ #category : #pages }
+HelpHowToHelpTopics class >> page4 [
 	^HelpTopic 
 		title: '4. Own help objects'
 		contents:	
@@ -156,11 +137,8 @@ application that is written with the Smalltalk system.
 ' 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopics class>>page5 [
+{ #category : #pages }
+HelpHowToHelpTopics class >> page5 [
 	^HelpTopic 
 		title: '5. Help sources'
 		contents:	
@@ -183,10 +161,7 @@ HelpBrowser openOn: topic
 ' 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopics class>>pages [
+{ #category : #accessing }
+HelpHowToHelpTopics class >> pages [
 	^#(overview page1 page2 page3 page4 page5)
 ]

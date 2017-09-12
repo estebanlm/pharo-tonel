@@ -8,15 +8,11 @@ Class {
 		'theLog',
 		'headReference'
 	],
-	#category : #EpiceaBrowsers-UI-Graph,
-	#timestamp : 'MartinDias 1/20/2017 13:27'
+	#category : #EpiceaBrowsers-UI-Graph
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitorLogNode class>>for: anEpMonitor [
+{ #category : #'instance creation' }
+EpMonitorLogNode class >> for: anEpMonitor [
 
 	self flag: #fix.
 	
@@ -29,89 +25,59 @@ EpMonitorLogNode class>>for: anEpMonitor [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitorLogNode>>asMorph [
+{ #category : #converting }
+EpMonitorLogNode >> asMorph [
 
 	^ EpMorphFactory default emphasizedStringFor: self globalName, ' *'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitorLogNode>>globalName [
+{ #category : #accessing }
+EpMonitorLogNode >> globalName [
 
 	^ theLog store globalName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitorLogNode>>headReference [
+{ #category : #accessing }
+EpMonitorLogNode >> headReference [
 	^ headReference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitorLogNode>>headReference: anObject [
+{ #category : #accessing }
+EpMonitorLogNode >> headReference: anObject [
 	headReference := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitorLogNode>>isMonitor [
+{ #category : #testing }
+EpMonitorLogNode >> isMonitor [
 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitorLogNode>>log [
+{ #category : #accessing }
+EpMonitorLogNode >> log [
 	^ theLog
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitorLogNode>>modificationTime [
+{ #category : #accessing }
+EpMonitorLogNode >> modificationTime [
 
 	^ DateAndTime now
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitorLogNode>>referencedGlobalNamesIfEmptyLog [
+{ #category : #accessing }
+EpMonitorLogNode >> referencedGlobalNamesIfEmptyLog [
 
 	^ headReference isNull
 		ifTrue: [ #() ] 
 		ifFalse: [ { headReference globalName } ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitorLogNode>>theLog [
+{ #category : #accessing }
+EpMonitorLogNode >> theLog [
 	^ theLog
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitorLogNode>>theLog: anObject [
+{ #category : #accessing }
+EpMonitorLogNode >> theLog: anObject [
 	theLog := anObject
 ]

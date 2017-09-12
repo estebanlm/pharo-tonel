@@ -4,15 +4,11 @@ This test case collects examples for block uses that require full block closures
 Class {
 	#name : #BlockClosuresTestCase,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Methods,
-	#timestamp : '<historical>'
+	#category : #Kernel-Tests-Methods
 }
 
-{
-	#category : #'jensen device examples',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>comment [
+{ #category : #'jensen device examples' }
+BlockClosuresTestCase >> comment [
 
   "  The Jensen device was something very sophisticated in the days of Algol 60.
 Essentially it was tricky use of a parameter passing policy that was called 'call by name'. In modern terminology, a call by name parameter was a pair of blocks (in a system with full block closures, of course.)
@@ -46,21 +42,15 @@ The Jensen device was something for clever minds. I remember an artice written b
  "
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>constructCannotReturnBlockInDeadFrame [
+{ #category : #examples }
+BlockClosuresTestCase >> constructCannotReturnBlockInDeadFrame [
 
 	^ [:arg | ^arg].
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>constructFibonacciBlockInDeadFrame [
+{ #category : #examples }
+BlockClosuresTestCase >> constructFibonacciBlockInDeadFrame [
 
 	| fib |
 	fib := [:val | 
@@ -71,11 +61,8 @@ BlockClosuresTestCase>>constructFibonacciBlockInDeadFrame [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>constructFibonacciBlockWithBlockArgumentInDeadFrame [
+{ #category : #examples }
+BlockClosuresTestCase >> constructFibonacciBlockWithBlockArgumentInDeadFrame [
 
 	^ [:val :blk | 
 		(val <= 0) ifTrue: [self error: 'not a natural number'].
@@ -84,11 +71,8 @@ BlockClosuresTestCase>>constructFibonacciBlockWithBlockArgumentInDeadFrame [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>constructSharedClosureEnvironmentInDeadFrame [
+{ #category : #examples }
+BlockClosuresTestCase >> constructSharedClosureEnvironmentInDeadFrame [
 
 	|array result| 
 	result := 10.
@@ -99,11 +83,8 @@ BlockClosuresTestCase>>constructSharedClosureEnvironmentInDeadFrame [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>continuationExample1: aCollection [
+{ #category : #examples }
+BlockClosuresTestCase >> continuationExample1: aCollection [
 
   " see comment below.
     Here we simply collect the values of a value with continuation block "
@@ -153,11 +134,8 @@ use the collector block. "
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>continuationExample2: aCollection [
+{ #category : #examples }
+BlockClosuresTestCase >> continuationExample2: aCollection [
 
   " see comment in method continuationExample1:.
     The block named 'processor' takes a value with contiuation
@@ -202,11 +180,8 @@ BlockClosuresTestCase>>continuationExample2: aCollection [
                                            value: [:x | x * x]).
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>continuationExample3: aCollection [
+{ #category : #examples }
+BlockClosuresTestCase >> continuationExample3: aCollection [
 
   " see comment in method continuationExample1:.
     The block named 'processor' takes a value with contiuation
@@ -254,11 +229,8 @@ BlockClosuresTestCase>>continuationExample3: aCollection [
                                             value: [:x | x - 10]).
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>example1: anInteger [
+{ #category : #examples }
+BlockClosuresTestCase >> example1: anInteger [
 
   " this example is very simple. A named block recursively computes the factorial.
     The example tests whether the value of x is still available after the recursive call.
@@ -276,11 +248,8 @@ BlockClosuresTestCase>>example1: anInteger [
   
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>example2: anInteger [
+{ #category : #examples }
+BlockClosuresTestCase >> example2: anInteger [
 
   " BlockClosuresTestCase new example2: 6"
   " to complicate the example1, we set up a dynamic reference chain that is
@@ -310,11 +279,8 @@ BlockClosuresTestCase>>example2: anInteger [
   ^trace
 ]
 
-{
-	#category : #'jensen device examples',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>gpsExample1: aCollection [
+{ #category : #'jensen device examples' }
+BlockClosuresTestCase >> gpsExample1: aCollection [
 
    " BlockClosuresTestCase new gpsExample1: (1 to: 100) asArray"
 
@@ -340,11 +306,8 @@ BlockClosuresTestCase>>gpsExample1: aCollection [
 
 ]
 
-{
-	#category : #'jensen device examples',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>gpsExample2: aCollection [
+{ #category : #'jensen device examples' }
+BlockClosuresTestCase >> gpsExample2: aCollection [
 
    " BlockClosuresTestCase new 
        gpsExample2: #(#(1 2 3 4 5) #(6 7 8 9 10) #(11 12 13 14 15) #(16 17 18 19 20) #(21 22 23 24 25))"
@@ -381,11 +344,8 @@ BlockClosuresTestCase>>gpsExample2: aCollection [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>nestedLoopsExample: arrays [
+{ #category : #examples }
+BlockClosuresTestCase >> nestedLoopsExample: arrays [
 
  " A while ago, Hans Baveco asked for a way to
    dynamically nest loops. Better solutions than this one
@@ -432,11 +392,8 @@ block :=
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>testCannotReturn [
+{ #category : #testing }
+BlockClosuresTestCase >> testCannotReturn [
 
 	| blk |
 	blk := self constructCannotReturnBlockInDeadFrame.
@@ -446,11 +403,8 @@ BlockClosuresTestCase>>testCannotReturn [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>testContinuationExample1 [
+{ #category : #testing }
+BlockClosuresTestCase >> testContinuationExample1 [
 
    | array |
     array := (1 to: 20) asOrderedCollection.
@@ -458,11 +412,8 @@ BlockClosuresTestCase>>testContinuationExample1 [
   
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>testContinuationExample2 [
+{ #category : #testing }
+BlockClosuresTestCase >> testContinuationExample2 [
 
    | array |
     array := (1 to: 20) asOrderedCollection.
@@ -470,11 +421,8 @@ BlockClosuresTestCase>>testContinuationExample2 [
   
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>testContinuationExample3 [
+{ #category : #testing }
+BlockClosuresTestCase >> testContinuationExample3 [
 
    | array |
     array := (1 to: 20) asOrderedCollection.
@@ -482,31 +430,22 @@ BlockClosuresTestCase>>testContinuationExample3 [
   
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>testExample1 [
+{ #category : #testing }
+BlockClosuresTestCase >> testExample1 [
 
    self assert: ((self example1: 5) = 5 factorial)
   
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>testExample2 [
+{ #category : #testing }
+BlockClosuresTestCase >> testExample2 [
 
    self assert: ((self example2: 5) = (1 to: 5) asOrderedCollection)
   
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>testGpsExample1 [
+{ #category : #testing }
+BlockClosuresTestCase >> testGpsExample1 [
 
   | result array |
 
@@ -517,11 +456,8 @@ BlockClosuresTestCase>>testGpsExample1 [
   
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>testGpsExample2 [
+{ #category : #testing }
+BlockClosuresTestCase >> testGpsExample2 [
 
   | result array |
 
@@ -535,11 +471,8 @@ BlockClosuresTestCase>>testGpsExample2 [
   
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>testNestedLoopsExample1 [
+{ #category : #testing }
+BlockClosuresTestCase >> testNestedLoopsExample1 [
 
    | arrays result |
    arrays := OrderedCollection new.
@@ -554,11 +487,8 @@ BlockClosuresTestCase>>testNestedLoopsExample1 [
   
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>testReentrantBlock [
+{ #category : #testing }
+BlockClosuresTestCase >> testReentrantBlock [
 
 	| fib |
 	fib := [:val | 
@@ -579,11 +509,8 @@ BlockClosuresTestCase>>testReentrantBlock [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>testReentrantBlockOldEnvironment [
+{ #category : #testing }
+BlockClosuresTestCase >> testReentrantBlockOldEnvironment [
 
 	| fib |
 	fib := self constructFibonacciBlockInDeadFrame.
@@ -599,11 +526,8 @@ BlockClosuresTestCase>>testReentrantBlockOldEnvironment [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>testReentrantBlockOldEnvironmentWithBlockArguement [
+{ #category : #testing }
+BlockClosuresTestCase >> testReentrantBlockOldEnvironmentWithBlockArguement [
 
 	| fib |
 	fib := self constructFibonacciBlockWithBlockArgumentInDeadFrame.
@@ -619,11 +543,8 @@ BlockClosuresTestCase>>testReentrantBlockOldEnvironmentWithBlockArguement [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosuresTestCase>>testSharedClosureEnvironment [
+{ #category : #testing }
+BlockClosuresTestCase >> testSharedClosureEnvironment [
 	|blockArray|
 	blockArray := self constructSharedClosureEnvironmentInDeadFrame.
 	self assert: ((blockArray at: 2) value = 10).

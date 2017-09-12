@@ -4,44 +4,31 @@ Action when the method is abstract
 Class {
 	#name : #MethodIsAbstractAction,
 	#superclass : #AbstractMethodIconAction,
-	#category : #Nautilus-Widgets,
-	#timestamp : '<historical>'
+	#category : #Nautilus-Widgets
 }
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsAbstractAction>>actionOrder [
+{ #category : #order }
+MethodIsAbstractAction >> actionOrder [
 	"Return the priority of this action"
 	
 	^ 700
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsAbstractAction>>actionStateToCache [
+{ #category : #order }
+MethodIsAbstractAction >> actionStateToCache [
 	"Return the state of the icon for caching purpose"
 	
 	^ icon
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsAbstractAction>>isActionHandled [
+{ #category : #order }
+MethodIsAbstractAction >> isActionHandled [
 
 	^ method isAbstract
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsAbstractAction>>privateActionIcon [
+{ #category : #order }
+MethodIsAbstractAction >> privateActionIcon [
 	"Return the icon for this action"
 	
 	^ self iconNamed: #abstractIcon

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MCSerializationTest,
 	#superclass : #MCTestCase,
-	#category : #Monticello-Tests,
-	#timestamp : ''
+	#category : #Monticello-Tests
 }
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSerializationTest>>assertDependenciesMatchWith: writerClass [
+{ #category : #asserting }
+MCSerializationTest >> assertDependenciesMatchWith: writerClass [
 	| stream readerClass expected actual |
 	readerClass := writerClass readerClass.
 	expected := self mockVersionWithDependencies.
@@ -22,19 +15,13 @@ MCSerializationTest>>assertDependenciesMatchWith: writerClass [
 	self assert: actual = expected dependencies.
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSerializationTest>>assertExtensionProvidedBy: aClass [
+{ #category : #asserting }
+MCSerializationTest >> assertExtensionProvidedBy: aClass [
 	aClass readerClass extension
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSerializationTest>>assertSnapshotsMatchWith: writerClass [
+{ #category : #asserting }
+MCSerializationTest >> assertSnapshotsMatchWith: writerClass [
 	| readerClass expected stream actual |
 	readerClass := writerClass readerClass.
 	expected := self mockSnapshot.
@@ -44,11 +31,8 @@ MCSerializationTest>>assertSnapshotsMatchWith: writerClass [
 	self assertSnapshot: actual matches: expected.
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSerializationTest>>assertVersionInfosMatchWith: writerClass [
+{ #category : #asserting }
+MCSerializationTest >> assertVersionInfosMatchWith: writerClass [
 	| stream readerClass expected actual |
 	readerClass := writerClass readerClass.
 	expected := self mockVersion.
@@ -58,11 +42,8 @@ MCSerializationTest>>assertVersionInfosMatchWith: writerClass [
 	self assert: actual = expected info.
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSerializationTest>>assertVersionsMatchWith: writerClass [
+{ #category : #asserting }
+MCSerializationTest >> assertVersionsMatchWith: writerClass [
 	| stream readerClass expected actual |
 	readerClass := writerClass readerClass.
 	expected := self mockVersion.
@@ -72,11 +53,8 @@ MCSerializationTest>>assertVersionsMatchWith: writerClass [
 	self assertVersion: actual matches: expected.
 ]
 
-{
-	#category : #mocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSerializationTest>>mockDiffyVersion [
+{ #category : #mocks }
+MCSerializationTest >> mockDiffyVersion [
 	| repos workingCopy base next |
 	repos := MCDictionaryRepository new.
 	workingCopy := MCWorkingCopy forPackage: self mockPackage.
@@ -89,11 +67,8 @@ MCSerializationTest>>mockDiffyVersion [
 	^ next asDiffAgainst: base	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSerializationTest>>testMcdSerialization [
+{ #category : #testing }
+MCSerializationTest >> testMcdSerialization [
 	| stream expected actual |
 	expected := self mockDiffyVersion.
 	stream := RWBinaryOrTextStream on: String new.
@@ -102,21 +77,15 @@ MCSerializationTest>>testMcdSerialization [
 	self assertVersion: actual matches: expected.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSerializationTest>>testMczSerialization [
+{ #category : #testing }
+MCSerializationTest >> testMczSerialization [
 	self assertVersionsMatchWith: MCMczWriter.
 	self assertExtensionProvidedBy: MCMczWriter.
 	self assertVersionInfosMatchWith: MCMczWriter.
 	self assertDependenciesMatchWith: MCMczWriter.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSerializationTest>>testStSerialization [
+{ #category : #testing }
+MCSerializationTest >> testStSerialization [
 	self assertSnapshotsMatchWith: MCStWriter.
 ]

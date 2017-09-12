@@ -46,15 +46,11 @@ Class {
 		'enabled',
 		'getEnabledSelector'
 	],
-	#category : #Morphic-Widgets-Pluggable,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Pluggable
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph class>>on: anObject list: listSel primarySelection: getSelectionSel changePrimarySelection: setSelectionSel listSelection: getListSel changeListSelection: setListSel menu: getMenuSel [
+{ #category : #'instance creation' }
+PluggableListMorph class >> on: anObject list: listSel primarySelection: getSelectionSel changePrimarySelection: setSelectionSel listSelection: getListSel changeListSelection: setListSel menu: getMenuSel [
 	^ self new
 		on: anObject
 		list: listSel
@@ -66,11 +62,8 @@ PluggableListMorph class>>on: anObject list: listSel primarySelection: getSelect
 		keystroke: #arrowKey:from:		"default"
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph class>>on: anObject list: listSel primarySelection: getSelectionSel changePrimarySelection: setSelectionSel listSelection: getListSel changeListSelection: setListSel menu: getMenuSel keystroke: keyActionSel  [
+{ #category : #'instance creation' }
+PluggableListMorph class >> on: anObject list: listSel primarySelection: getSelectionSel changePrimarySelection: setSelectionSel listSelection: getListSel changeListSelection: setListSel menu: getMenuSel keystroke: keyActionSel [ 
 	^ self new
 		on: anObject
 		list: listSel
@@ -82,11 +75,8 @@ PluggableListMorph class>>on: anObject list: listSel primarySelection: getSelect
 		keystroke: keyActionSel
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph class>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel [
+{ #category : #'instance creation' }
+PluggableListMorph class >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel [
 	"Create a 'pluggable' list view on the given model parameterized by the given message selectors."
 
 	^ self new
@@ -98,11 +88,8 @@ PluggableListMorph class>>on: anObject list: getListSel selected: getSelectionSe
 		keystroke: #arrowKey:from:		"default"
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph class>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel [
+{ #category : #'instance creation' }
+PluggableListMorph class >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel [
 	"Create a 'pluggable' list view on the given model parameterized by the given message selectors."
 
 	^ self new
@@ -115,11 +102,8 @@ PluggableListMorph class>>on: anObject list: getListSel selected: getSelectionSe
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph class>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel [
+{ #category : #'instance creation' }
+PluggableListMorph class >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel [
 	"Create a 'pluggable' list view on the given model parameterized by the given message selectors."
 
 	^ self new
@@ -132,11 +116,8 @@ PluggableListMorph class>>on: anObject list: getListSel selected: getSelectionSe
 
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>acceptDroppingMorph: aMorph event: evt  [
+{ #category : #'drag and drop' }
+PluggableListMorph >> acceptDroppingMorph: aMorph event: evt [ 
 	"This message is sent when a morph is dropped onto a morph that has     
 	agreed to accept the dropped morph by responding 'true' to the     
 	wantsDroppedMorph:Event: message. The default implementation just     
@@ -160,11 +141,8 @@ PluggableListMorph>>acceptDroppingMorph: aMorph event: evt  [
 
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>addCustomMenuItems:  aMenu hand: aHandMorph [
+{ #category : #menus }
+PluggableListMorph >> addCustomMenuItems:  aMenu hand: aHandMorph [
 	"Add halo menu items to be handled by the invoking hand. The halo menu is invoked by clicking on the menu-handle of the receiver's halo."
 
 	super addCustomMenuItems: aMenu hand: aHandMorph.
@@ -174,11 +152,8 @@ PluggableListMorph>>addCustomMenuItems:  aMenu hand: aHandMorph [
 	aMenu add: 'copy selection to clipboard' target: self selector: #copySelectionToClipboard
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>adoptPaneColor: paneColor [
+{ #category : #drawing }
+PluggableListMorph >> adoptPaneColor: paneColor [
 	"Pass on to the border too."
 	
 	super adoptPaneColor: paneColor.
@@ -189,41 +164,29 @@ PluggableListMorph>>adoptPaneColor: paneColor [
 		self borderStyle: self borderStyleToUse]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>allSubmorphNamesDo: nameBlock [
+{ #category : #submorphs-accessing }
+PluggableListMorph >> allSubmorphNamesDo: nameBlock [
 	"Assume list morphs do not have named parts -- saves MUCH time"
 
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>autoDeselect [
+{ #category : #accessing }
+PluggableListMorph >> autoDeselect [
 
 	^ autoDeselect
 		ifNil: [ self resetListSelector notNil ]
 		ifNotNil: [ autoDeselect ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>autoDeselect: trueOrFalse [
+{ #category : #initialization }
+PluggableListMorph >> autoDeselect: trueOrFalse [
 	"Enable/disable autoDeselect (see class comment)"
 	autoDeselect := trueOrFalse.
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>backgroundColorFor: aRow [
+{ #category : #'background coloring' }
+PluggableListMorph >> backgroundColorFor: aRow [
 
 	| return |
 	aRow ifNil: [ ^ nil ].
@@ -249,39 +212,27 @@ PluggableListMorph>>backgroundColorFor: aRow [
 			ifFalse: [ nil ]
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>backgroundColoringBlockOrSelector [
+{ #category : #'background coloring' }
+PluggableListMorph >> backgroundColoringBlockOrSelector [
 
 	^ backgroundColoringBlockOrSelector 
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>backgroundColoringBlockOrSelector: aSelector [
+{ #category : #'background coloring' }
+PluggableListMorph >> backgroundColoringBlockOrSelector: aSelector [
 
 	backgroundColoringBlockOrSelector := aSelector
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>basicGetListElementSelector: aSymbol [
+{ #category : #initialization }
+PluggableListMorph >> basicGetListElementSelector: aSymbol [
 	"specify a selector that can be used to obtain a single element in the underlying list"
 	getListElementSelector := aSymbol.
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>basicKeyPressed: aChar [
+{ #category : #'event handling' }
+PluggableListMorph >> basicKeyPressed: aChar [
 	"Return the index of the element matching the keystrokes.
 	Returns 0 if nothing found"
 
@@ -306,37 +257,25 @@ PluggableListMorph>>basicKeyPressed: aChar [
 	^ nextSelection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>basicWrapSelector: aSymbol [
+{ #category : #accessing }
+PluggableListMorph >> basicWrapSelector: aSymbol [
 	wrapSelector := aSymbol.
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>beMultipleSelection [
+{ #category : #multi-selection }
+PluggableListMorph >> beMultipleSelection [
 
 	multipleSelection := true
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>beSingleSelection [
+{ #category : #multi-selection }
+PluggableListMorph >> beSingleSelection [
 
 	multipleSelection := false
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>borderStyleToUse [
+{ #category : #geometry }
+PluggableListMorph >> borderStyleToUse [
 	"Answer the borderStyle that should be used for the receiver."
 	
 	^self enabled
@@ -344,11 +283,8 @@ PluggableListMorph>>borderStyleToUse [
 		ifFalse: [self theme listDisabledBorderStyleFor: self]
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>changeModelSelection: anInteger [
+{ #category : #'model access' }
+PluggableListMorph >> changeModelSelection: anInteger [
 	"Change the model's selected item index to be anInteger."
 
 	setIndexSelector ifNotNil:
@@ -359,21 +295,15 @@ PluggableListMorph>>changeModelSelection: anInteger [
 			self listSelectionAt: anInteger put: true ]
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>commandKeyTypedIntoMenu: evt [
+{ #category : #'model access' }
+PluggableListMorph >> commandKeyTypedIntoMenu: evt [
 	"The user typed a command-key into a menu which has me as its command-key handler"
 
 	^ self modifierKeyPressed: evt
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>copyListToClipboard [
+{ #category : #menus }
+PluggableListMorph >> copyListToClipboard [
 	"Copy my items to the clipboard as a multi-line string"
 
 	| stream |
@@ -382,30 +312,21 @@ PluggableListMorph>>copyListToClipboard [
 	Clipboard clipboardText: stream contents
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>copySelectionToClipboard [
+{ #category : #menus }
+PluggableListMorph >> copySelectionToClipboard [
 	"Copy my selected item to the clipboard as a string"
 
 	self selection ifNotNil: [ Clipboard clipboardText: self selection asString ] ifNil: [ self flash ]
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>defaultMultipleSelectionValue [
+{ #category : #multi-selection }
+PluggableListMorph >> defaultMultipleSelectionValue [
 
 	^ false
 ]
 
-{
-	#category : #'scroll cache',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>deriveHScrollRange [
+{ #category : #'scroll cache' }
+PluggableListMorph >> deriveHScrollRange [
 
 	|  unadjustedRange totalRange |
 	(list isNil or: [list isEmpty]) 
@@ -423,31 +344,22 @@ PluggableListMorph>>deriveHScrollRange [
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>deselectAll [
+{ #category : #selection }
+PluggableListMorph >> deselectAll [
 
 	self isMultipleSelection ifFalse: [ ^ self ].
 	self resetListSelection
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>disable [
+{ #category : #configuration }
+PluggableListMorph >> disable [
 	"Disable the receiver."
 	
 	self enabled: false
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>doubleClick: event [
+{ #category : #events }
+PluggableListMorph >> doubleClick: event [
 	| index |
 	doubleClickSelector ifNil: [^super doubleClick: event].
 	index := self rowAtLocation: event position.
@@ -456,81 +368,54 @@ PluggableListMorph>>doubleClick: event [
 	^ self model perform: doubleClickSelector
 ]
 
-{
-	#category : #obsolete,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>doubleClick: event onItem: aMorph [
+{ #category : #obsolete }
+PluggableListMorph >> doubleClick: event onItem: aMorph [
 	self removeObsoleteEventHandlers.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>doubleClickSelector: aSymbol [
+{ #category : #initialization }
+PluggableListMorph >> doubleClickSelector: aSymbol [
 	doubleClickSelector := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>dragItemSelector [
+{ #category : #accessing }
+PluggableListMorph >> dragItemSelector [
 	^dragItemSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>dragItemSelector: aSymbol [
+{ #category : #accessing }
+PluggableListMorph >> dragItemSelector: aSymbol [
 	dragItemSelector := aSymbol.
 	aSymbol ifNotNil:[self dragEnabled: true].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>dropItemSelector [
+{ #category : #accessing }
+PluggableListMorph >> dropItemSelector [
 	^dropItemSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>dropItemSelector: aSymbol [
+{ #category : #accessing }
+PluggableListMorph >> dropItemSelector: aSymbol [
 	dropItemSelector := aSymbol.
 	aSymbol ifNotNil:[self dropEnabled: true].
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>enable [
+{ #category : #configuration }
+PluggableListMorph >> enable [
 	"Enable the receiver."
 	
 	self enabled: true
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>enabled [
+{ #category : #configuration }
+PluggableListMorph >> enabled [
 	"Answer the enablement state of the receiver."
 
 	^enabled ifNil: [true]
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>enabled: aBoolean [
+{ #category : #configuration }
+PluggableListMorph >> enabled: aBoolean [
 	"Set the enablement state of the receiver."
 
 	aBoolean = self enabled
@@ -539,11 +424,8 @@ PluggableListMorph>>enabled: aBoolean [
 					changed]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>extent: newExtent [
+{ #category : #geometry }
+PluggableListMorph >> extent: newExtent [
 	super extent: newExtent.
 	
 	"Change listMorph's bounds to the new width. It is either the size
@@ -552,11 +434,8 @@ PluggableListMorph>>extent: newExtent [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>fillStyleToUse [
+{ #category : #geometry }
+PluggableListMorph >> fillStyleToUse [
 	"Answer the fillStyle that should be used for the receiver."
 	
 	^self enabled
@@ -564,81 +443,57 @@ PluggableListMorph>>fillStyleToUse [
 		ifFalse: [self theme listDisabledFillStyleFor: self]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>focusBounds [
+{ #category : #geometry }
+PluggableListMorph >> focusBounds [
 	"Answer the bounds for drawing the focus indication."
 
 	^self theme listFocusBoundsFor: self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>font [
+{ #category : #initialization }
+PluggableListMorph >> font [
 
 	^ self listMorph font
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>font: aFontOrNil [
+{ #category : #initialization }
+PluggableListMorph >> font: aFontOrNil [
 	self listMorph font: aFontOrNil.
 
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>getCurrentSelectionIndex [
+{ #category : #'model access' }
+PluggableListMorph >> getCurrentSelectionIndex [
 	"Answer the index of the current selection."
 
 	getIndexSelector ifNil: [^0].
 	^model perform: getIndexSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>getEnabledSelector [
+{ #category : #accessing }
+PluggableListMorph >> getEnabledSelector [
 	"Answer the value of getEnabledSelector"
 
 	^ getEnabledSelector ifNil: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>getEnabledSelector: aSymbol [
+{ #category : #accessing }
+PluggableListMorph >> getEnabledSelector: aSymbol [
 	"Set the value of getEnabledSelector"
 
 	getEnabledSelector := aSymbol.
 	self updateEnabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>getIndexSelector: aSelector [
+{ #category : #accessing }
+PluggableListMorph >> getIndexSelector: aSelector [
 
 	getIndexSelector := aSelector
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>getList [
+{ #category : #'model access' }
+PluggableListMorph >> getList [
 	"Answer the list to be displayed.  Caches the returned list in the 'list' ivar"
 	getListSelector == nil ifTrue: [^ #()].
 	list := model perform: getListSelector.
@@ -647,31 +502,22 @@ PluggableListMorph>>getList [
 	^ list
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>getListElementSelector [
+{ #category : #accessing }
+PluggableListMorph >> getListElementSelector [
 
 	^ getListElementSelector
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>getListElementSelector: aSymbol [
+{ #category : #initialization }
+PluggableListMorph >> getListElementSelector: aSymbol [
 	"specify a selector that can be used to obtain a single element in the underlying list"
 	self basicGetListElementSelector: aSymbol.
 	list := nil.  "this cache will not be updated if getListElementSelector has been specified, so go ahead and remove it"
 	self updateList.
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>getListItem: index [
+{ #category : #'model access' }
+PluggableListMorph >> getListItem: index [
 	"get the index-th item in the displayed list"
 	| element |
 	getListElementSelector ifNotNil: [ ^ self wrapItem: (model perform: getListElementSelector with: index) index: index ].
@@ -681,19 +527,13 @@ PluggableListMorph>>getListItem: index [
 	^ self wrapItem: element index: index
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>getListSelector [
+{ #category : #selection }
+PluggableListMorph >> getListSelector [
 	^ getListSelector
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>getListSelector: sel [
+{ #category : #initialization }
+PluggableListMorph >> getListSelector: sel [
 	"Set the receiver's getListSelector as indicated, and trigger a recomputation of the list"
 
 	getListSelector := sel.
@@ -701,30 +541,21 @@ PluggableListMorph>>getListSelector: sel [
 	self updateList.
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>getListSize [
+{ #category : #'model access' }
+PluggableListMorph >> getListSize [
 	"return the current number of items in the displayed list"
 	getListSizeSelector ifNotNil: [ ^model perform: getListSizeSelector ].
 	^self getList size
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>getListSizeSelector: aSymbol [
+{ #category : #initialization }
+PluggableListMorph >> getListSizeSelector: aSymbol [
 	"specify a selector that can be used to specify the list's size"
 	getListSizeSelector := aSymbol
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>getMenu: shiftKeyState [
+{ #category : #menu }
+PluggableListMorph >> getMenu: shiftKeyState [
 	"Answer the menu for this text view, supplying an empty menu to be filled in. If the menu selector takes an extra argument, pass in the current state of the shift key."
 
 	| aMenu |
@@ -733,49 +564,34 @@ PluggableListMorph>>getMenu: shiftKeyState [
 	^ aMenu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>getSelectionListSelector: getListSel. [
+{ #category : #accessing }
+PluggableListMorph >> getSelectionListSelector: getListSel. [
 
 	getSelectionListSelector := getListSel
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>hExtraScrollRange [
+{ #category : #scrolling }
+PluggableListMorph >> hExtraScrollRange [
 	"Return the amount of extra blank space to include to the right of the scroll content."
 	^5 
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>hUnadjustedScrollRange [
+{ #category : #scrolling }
+PluggableListMorph >> hUnadjustedScrollRange [
 	"Return the entire scrolling range."
 
 	^self listMorph hUnadjustedScrollRange
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>handleBasicKeys: aBoolean [
+{ #category : #events }
+PluggableListMorph >> handleBasicKeys: aBoolean [
 	"set whether the list morph should handle basic keys like arrow keys, or whether everything should be passed to the model"
 	handlesBasicKeys := aBoolean
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>handleFocusEvent: anEvent [
+{ #category : #'event handling' }
+PluggableListMorph >> handleFocusEvent: anEvent [
 	"Handle the given event. This message is sent if the receiver currently has the focus and is therefore receiving events directly from some hand."
 	
 	self processEvent: anEvent. "give submorphs a chance"
@@ -786,11 +602,8 @@ PluggableListMorph>>handleFocusEvent: anEvent [
 		ifNotNil: [self eventHandler mouseDown: anEvent fromMorph: self]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>handleMouseMove: anEvent [
+{ #category : #'event handling' }
+PluggableListMorph >> handleMouseMove: anEvent [
 	"Reimplemented because we really want #mouseMove when a morph is dragged around"
 	anEvent wasHandled ifTrue:[^self]. "not interested"
 	(anEvent anyButtonPressed and:[anEvent hand mouseFocus == self]) ifFalse:[^self].
@@ -805,85 +618,57 @@ PluggableListMorph>>handleMouseMove: anEvent [
 
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>handlesBasicKeys [
+{ #category : #events }
+PluggableListMorph >> handlesBasicKeys [
 	" if ya don't want the list to automatically handle non-modifier key 
 	(excluding shift key) input, return false"
 	^ handlesBasicKeys ifNil: [ true ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>handlesKeyboard: evt [
+{ #category : #'event handling' }
+PluggableListMorph >> handlesKeyboard: evt [
 	^true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>handlesMouseOverDragging: evt [
+{ #category : #'event handling' }
+PluggableListMorph >> handlesMouseOverDragging: evt [
 	"Yes, for mouse down highlight."
 	
 	^true
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>highlightSelection [
-
+{ #category : #drawing }
+PluggableListMorph >> highlightSelection [
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>initForKeystrokes [
+{ #category : #initialization }
+PluggableListMorph >> initForKeystrokes [
 	canMove := true.
 	lastKeystrokeTime := 0.
 	lastKeystrokes := ''
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>initialize [
+{ #category : #initialization }
+PluggableListMorph >> initialize [
 
 	super initialize.
 	self initForKeystrokes.
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>isMultipleSelection [
+{ #category : #multi-selection }
+PluggableListMorph >> isMultipleSelection [
 
 	^ self multipleSelection
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>isSingleSelection [
+{ #category : #multi-selection }
+PluggableListMorph >> isSingleSelection [
 
 	^ self multipleSelection not
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>itemSelectedAmongMultiple: index [
+{ #category : #'model access' }
+PluggableListMorph >> itemSelectedAmongMultiple: index [
 	"return whether the index-th row is selected.  Always false in PluggableListMorph, but sometimes true in PluggableListMorphOfMany"
 
 	^ self isMultipleSelection
@@ -891,11 +676,8 @@ PluggableListMorph>>itemSelectedAmongMultiple: index [
 		ifFalse: [ false ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>keyStroke: event  [
+{ #category : #'event handling' }
+PluggableListMorph >> keyStroke: event [ 
 	"Process keys 
 	specialKeys are things like up, down, etc. ALWAYS HANDLED 
 	modifierKeys are regular characters either 1) accompanied with ctrl, 
@@ -917,22 +699,16 @@ PluggableListMorph>>keyStroke: event  [
 	^ self basicKeyPressed: aChar
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>keyboardFocusChange: aBoolean [
+{ #category : #'event handling' }
+PluggableListMorph >> keyboardFocusChange: aBoolean [
 	"The message is sent to a morph when its keyboard focus changes.
 	Update for focus feedback."
 	super keyboardFocusChange: aBoolean.
 	self focusChanged
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>keystrokeAction: event  [
+{ #category : #'model access' }
+PluggableListMorph >> keystrokeAction: event [ 
 	| returnValue |
 	
 	keystrokeSelector ifNil: [ ^ nil ].
@@ -944,38 +720,26 @@ PluggableListMorph>>keystrokeAction: event  [
 	^ returnValue = true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>keystrokeActionSelector: keyActionSel [
+{ #category : #initialization }
+PluggableListMorph >> keystrokeActionSelector: keyActionSel [
 	"Set the keystroke action selector as specified"
 
 	keystrokeActionSelector := keyActionSel
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>keystrokeSelector: aSymbol [
+{ #category : #'model access' }
+PluggableListMorph >> keystrokeSelector: aSymbol [
 	keystrokeSelector := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>lastNonZeroIndex [
+{ #category : #accessing }
+PluggableListMorph >> lastNonZeroIndex [
 
 	^ lastNonZeroIndex ifNil: [ lastNonZeroIndex := 0 ]
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>listForSearching [
+{ #category : #searching }
+PluggableListMorph >> listForSearching [
 
 	^ getListSelector
 		ifNotNil: [ self getList ]
@@ -986,20 +750,14 @@ PluggableListMorph>>listForSearching [
 			
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>listItemHeight [
+{ #category : #initialization }
+PluggableListMorph >> listItemHeight [
 	"This should be cleaned up.  The list should get spaced by this parameter."
 	^ 12
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>listMorph [
+{ #category : #accessing }
+PluggableListMorph >> listMorph [
 	listMorph ifNil: [
 		"crate this lazily, in case the morph is legacy"
 		listMorph := self listMorphClass new.
@@ -1015,57 +773,39 @@ PluggableListMorph>>listMorph [
 	^listMorph
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>listMorphClass [
+{ #category : #initialization }
+PluggableListMorph >> listMorphClass [
 	^LazyListMorph
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>listSelectionAt: index [
+{ #category : #multi-selection }
+PluggableListMorph >> listSelectionAt: index [
 
 	index isZero ifFalse:[ lastNonZeroIndex := index ].
 	getSelectionListSelector ifNil:[^false].
 	^model perform: getSelectionListSelector with: index
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>listSelectionAt: index put: value [
+{ #category : #multi-selection }
+PluggableListMorph >> listSelectionAt: index put: value [
 
 	self searchedElement: nil.
 	setSelectionListSelector ifNil:[^false].
 	^model perform: setSelectionListSelector with: index with: value
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>maximumSelection [
+{ #category : #selection }
+PluggableListMorph >> maximumSelection [
 	^ self getListSize
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>minimumSelection [
+{ #category : #selection }
+PluggableListMorph >> minimumSelection [
 	^ 1
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>modifierKeyPressed: event  [
+{ #category : #'model access' }
+PluggableListMorph >> modifierKeyPressed: event [ 
 	| args aChar |
 	aChar := event keyCharacter.
 	keystrokeActionSelector ifNil: [ ^ nil ].
@@ -1080,11 +820,8 @@ PluggableListMorph>>modifierKeyPressed: event  [
 	^self error: 'keystrokeActionSelector must be a 1- or 2-keyword symbol'
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseDown: evt [
+{ #category : #'event handling' }
+PluggableListMorph >> mouseDown: evt [
 	"Changed to only take focus if wanted."
 
 	| selectors row |
@@ -1127,19 +864,13 @@ PluggableListMorph>>mouseDown: evt [
 	super mouseDown: evt
 ]
 
-{
-	#category : #obsolete,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseDown: event onItem: aMorph [
+{ #category : #obsolete }
+PluggableListMorph >> mouseDown: event onItem: aMorph [
 	self removeObsoleteEventHandlers.
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseDownOnMultiple: event forRow: row [
+{ #category : #multi-selection }
+PluggableListMorph >> mouseDownOnMultiple: event forRow: row [
 
 	| anInteger oldIndex oldVal valueKeeper |
 	
@@ -1177,31 +908,22 @@ PluggableListMorph>>mouseDownOnMultiple: event forRow: row [
 		ifFalse: [self listSelectionAt: row put: valueKeeper].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseDownRow [
+{ #category : #accessing }
+PluggableListMorph >> mouseDownRow [
 	"Answer the mouse down row or nil if none."
 
 	^self listMorph mouseDownRow
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseDownRow: anIntegerOrNil [
+{ #category : #events }
+PluggableListMorph >> mouseDownRow: anIntegerOrNil [
 	"Set the mouse down row or nil if none."
 
 	self listMorph mouseDownRow: anIntegerOrNil
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseEnter: event [
+{ #category : #'event handling' }
+PluggableListMorph >> mouseEnter: event [
 	"Changed to take keyboardFocusOnMouseDown  into account."
 	
 	super mouseEnter: event.
@@ -1210,11 +932,8 @@ PluggableListMorph>>mouseEnter: event [
 		ifFalse: [self takeKeyboardFocus]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseEnterDragging: evt [
+{ #category : #'event handling' }
+PluggableListMorph >> mouseEnterDragging: evt [
 	"The mouse has entered with a button down.
 	Workaround for apparent flaw in MouseOverHandler constantly
 	sending this message when dragging.
@@ -1240,19 +959,13 @@ PluggableListMorph>>mouseEnterDragging: evt [
 				ifFalse: [potentialDropRow := 0]]
 ]
 
-{
-	#category : #obsolete,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseEnterDragging: anEvent onItem: aMorph  [
+{ #category : #obsolete }
+PluggableListMorph >> mouseEnterDragging: anEvent onItem: aMorph [ 
 	self removeObsoleteEventHandlers.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseLeaveDragging: anEvent [
+{ #category : #'event handling' }
+PluggableListMorph >> mouseLeaveDragging: anEvent [
 	"The mouse has left with a button down."
 	
 	(self dragEnabled or: [anEvent hand hasSubmorphs]) ifFalse: [
@@ -1264,30 +977,21 @@ PluggableListMorph>>mouseLeaveDragging: anEvent [
 	"above is ugly but necessary for now"
 ]
 
-{
-	#category : #obsolete,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseLeaveDragging: anEvent onItem: aMorph  [
+{ #category : #obsolete }
+PluggableListMorph >> mouseLeaveDragging: anEvent onItem: aMorph [ 
 	self removeObsoleteEventHandlers.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseMove: evt [
+{ #category : #'event handling' }
+PluggableListMorph >> mouseMove: evt [
 
 	self isMultipleSelection
 		ifTrue: [ self mouseMoveOnMultiple: evt ]
 		ifFalse: [ self mouseMoveOnSingle:evt ]
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseMoveOnMultiple: event [
+{ #category : #multi-selection }
+PluggableListMorph >> mouseMoveOnMultiple: event [
 
 	"The mouse has moved, as characterized by the event provided.  Adjust the scrollbar, and alter the selection as appropriate"
 	| oldIndex oldVal row |
@@ -1322,11 +1026,8 @@ PluggableListMorph>>mouseMoveOnMultiple: event [
 	row changed
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseMoveOnSingle: evt [
+{ #category : #multi-selection }
+PluggableListMorph >> mouseMoveOnSingle: evt [
 	"The mouse has moved with a button down.
 	Do nothing if disabled."
 
@@ -1345,30 +1046,21 @@ PluggableListMorph>>mouseMoveOnSingle: evt [
 		ifFalse: [self mouseLeaveDragging: evt]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseUp: evt [
+{ #category : #'event handling' }
+PluggableListMorph >> mouseUp: evt [
 
 	self isMultipleSelection
 		ifTrue: [ self mouseUpOnMultiple: evt ]
 		ifFalse: [ self mouseUpOnSingle: evt ]
 ]
 
-{
-	#category : #obsolete,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseUp: event onItem: aMorph  [
+{ #category : #obsolete }
+PluggableListMorph >> mouseUp: event onItem: aMorph [ 
 	self removeObsoleteEventHandlers.
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseUpOnMultiple: event [
+{ #category : #multi-selection }
+PluggableListMorph >> mouseUpOnMultiple: event [
 	"Reset the mouseDownRow."
 	
 	dragOnOrOff := nil.  "So improperly started drags will have not effect".
@@ -1376,11 +1068,8 @@ PluggableListMorph>>mouseUpOnMultiple: event [
 		self mouseDownRow: nil]
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>mouseUpOnSingle: event [
+{ #category : #multi-selection }
+PluggableListMorph >> mouseUpOnSingle: event [
 	"The mouse came up within the list; take appropriate action"
 	
 	| row mdr |
@@ -1403,20 +1092,14 @@ PluggableListMorph>>mouseUpOnSingle: event [
 	Cursor normal show
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>multipleSelection [
+{ #category : #multi-selection }
+PluggableListMorph >> multipleSelection [
 
 	^ multipleSelection ifNil: [ multipleSelection := self defaultMultipleSelectionValue ]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>navigationKey: anEvent [
+{ #category : #events }
+PluggableListMorph >> navigationKey: anEvent [
 
 	self isMultipleSelection
 		ifTrue: [ | keyString |
@@ -1433,11 +1116,8 @@ PluggableListMorph>>navigationKey: anEvent [
 	^ super navigationKey: anEvent
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>numSelectionsInView [
+{ #category : #scrolling }
+PluggableListMorph >> numSelectionsInView [
 	"Answer the scroller's height based on the average number of submorphs."
 		
 	"ugly hack, due to code smell.
@@ -1448,11 +1128,8 @@ PluggableListMorph>>numSelectionsInView [
 	^scroller numberOfItemsPotentiallyInViewWith: scroller submorphs last getListSize.
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>on: anObject list: listSel primarySelection: getSelectionSel changePrimarySelection: setSelectionSel listSelection: getListSel changeListSelection: setListSel menu: getMenuSel keystroke: keyActionSel [
+{ #category : #multi-selection }
+PluggableListMorph >> on: anObject list: listSel primarySelection: getSelectionSel changePrimarySelection: setSelectionSel listSelection: getListSel changeListSelection: setListSel menu: getMenuSel keystroke: keyActionSel [
 	"setup a whole load of pluggability options"
 	getSelectionListSelector := getListSel.
 	setSelectionListSelector := setListSel.
@@ -1462,11 +1139,8 @@ PluggableListMorph>>on: anObject list: listSel primarySelection: getSelectionSel
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel  [
+{ #category : #initialization }
+PluggableListMorph >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel [ 
 	self model: anObject.
 	getListSelector := getListSel.
 	getIndexSelector := getSelectionSel.
@@ -1480,61 +1154,43 @@ PluggableListMorph>>on: anObject list: getListSel selected: getSelectionSel chan
 	self initForKeystrokes
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>optimalExtent [
+{ #category : #geometry }
+PluggableListMorph >> optimalExtent [
 	"Answer the extent of the list morph."
 
 	^self listMorph extent + (self borderWidth * 2) + self scrollBarThickness
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>potentialDropItem [
+{ #category : #'drag and drop' }
+PluggableListMorph >> potentialDropItem [
 	"return the item that the most recent drop hovered over, or nil if there is no potential drop target"
 	self potentialDropRow = 0 ifTrue: [ ^self ].
 	^self getListItem: self potentialDropRow
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>potentialDropRow [
+{ #category : #'drag and drop' }
+PluggableListMorph >> potentialDropRow [
 	"return the row of the item that the most recent drop hovered over, or 0 if there is no potential drop target"
 	^potentialDropRow ifNil: [ 0 ].
 
 ]
 
-{
-	#category : #obsolete,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>removeObsoleteEventHandlers [
+{ #category : #obsolete }
+PluggableListMorph >> removeObsoleteEventHandlers [
 	scroller submorphs do:[:m|
 		m eventHandler: nil; highlightForMouseDown: false; resetExtension].
 ]
 
-{
-	#category : #'scroll cache',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>resetHScrollRange [
+{ #category : #'scroll cache' }
+PluggableListMorph >> resetHScrollRange [
 
 	hScrollRangeCache := nil.
 	self deriveHScrollRange.
 
 ]
 
-{
-	#category : #'scroll cache',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>resetHScrollRangeIfNecessary [
+{ #category : #'scroll cache' }
+PluggableListMorph >> resetHScrollRangeIfNecessary [
 
 	hScrollRangeCache ifNil: [ ^self deriveHScrollRange ].
 
@@ -1552,59 +1208,41 @@ PluggableListMorph>>resetHScrollRangeIfNecessary [
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>resetListSelection [
+{ #category : #selection }
+PluggableListMorph >> resetListSelection [
 
 	self resetListSelectionSilently.
 	self changed
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>resetListSelectionSilently [
+{ #category : #selection }
+PluggableListMorph >> resetListSelectionSilently [
 
 	self resetListSelector ifNotNil: [:sel | self model perform: sel ]
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>resetListSelector [
+{ #category : #multi-selection }
+PluggableListMorph >> resetListSelector [
 
 	^ resetListSelector
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>resetListSelector: aSelector [
+{ #category : #multi-selection }
+PluggableListMorph >> resetListSelector: aSelector [
 
 	resetListSelector := aSelector
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>resetPotentialDropRow [
+{ #category : #'drag and drop' }
+PluggableListMorph >> resetPotentialDropRow [
 	potentialDropRow ifNotNil: [
 	potentialDropRow ~= 0 ifTrue: [
 		potentialDropRow := 0.
 		self changed. ] ]
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>resizeScrollBars [
+{ #category : #scrolling }
+PluggableListMorph >> resizeScrollBars [
 	"Fixed to not use deferred message that incorrectly
 	sets scroll deltas/interval."
 
@@ -1612,73 +1250,52 @@ PluggableListMorph>>resizeScrollBars [
 		ifFalse: [super resizeScrollBars]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>rowAtLocation: aPoint [
+{ #category : #accessing }
+PluggableListMorph >> rowAtLocation: aPoint [
 	"Return the row at the given point or 0 if outside"
 	| pointInListMorphCoords |
 	pointInListMorphCoords := (self scroller transformFrom: self) transform: aPoint.
 	^self listMorph rowAtLocation: pointInListMorphCoords.
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>scrollDeltaHeight [
+{ #category : #geometry }
+PluggableListMorph >> scrollDeltaHeight [
 	"Return the increment in pixels which this pane should be scrolled."
 	^ self font height
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>scrollDeltaWidth [
+{ #category : #geometry }
+PluggableListMorph >> scrollDeltaWidth [
 "A guess -- assume that the width of a char is approx 1/2 the height of the font"
 	^ self scrollDeltaHeight // 2
 
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>scrollSelectionIntoView [
+{ #category : #selection }
+PluggableListMorph >> scrollSelectionIntoView [
 	"make sure that the current selection is visible"
 	| row |
 	row := self getCurrentSelectionIndex.
 	self scrollSelectionToRow: row
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>scrollSelectionToRow: row [
+{ #category : #selection }
+PluggableListMorph >> scrollSelectionToRow: row [
 	"make sure that the current selection is visible"
 
 	row = 0 ifTrue: [ ^ self ].
 	self scrollToShow: (self listMorph drawBoundsForRow: row)
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>searchedElement [
+{ #category : #searching }
+PluggableListMorph >> searchedElement [
 
 	^ searchedElement
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>searchedElement: anInteger [
+{ #category : #searching }
+PluggableListMorph >> searchedElement: anInteger [
 
 	searchedElement := anInteger.
 	anInteger
@@ -1688,29 +1305,20 @@ PluggableListMorph>>searchedElement: anInteger [
 		ifNotNil: [ self vScrollValue: ((anInteger-1)/self getListSize) ]
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>secondarySelectionColor [
+{ #category : #searching }
+PluggableListMorph >> secondarySelectionColor [
 	^ self theme secondarySelectionColor
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>selectAll [
+{ #category : #selection }
+PluggableListMorph >> selectAll [
 
 	self isMultipleSelection ifFalse: [ ^ self ].
 	1 to: self maximumSelection do: [: i | self listSelectionAt: i put: true ]
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>selectSearchedElement [
+{ #category : #searching }
+PluggableListMorph >> selectSearchedElement [
 
 	self searchedElement ifNotNil: [: index |	
 			 ActiveEvent commandKeyPressed	ifFalse: [ self resetListSelectionSilently ].
@@ -1720,50 +1328,35 @@ PluggableListMorph>>selectSearchedElement [
 			self vScrollValue: ((index-1)/self getListSize) ]
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>selectedMorph [
+{ #category : #selection }
+PluggableListMorph >> selectedMorph [
 	"this doesn't work with the LargeLists patch!  Use #selectionIndex and #selection instead."
 	^self scroller submorphs at: self selectionIndex
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>selection  [
+{ #category : #selection }
+PluggableListMorph >> selection [ 
 	self selectionIndex = 0 ifTrue: [ ^nil ].
 	list ifNotNil: [ ^list at: self selectionIndex ].
 	^ self getListItem: self selectionIndex
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>selection: item [
+{ #category : #selection }
+PluggableListMorph >> selection: item [
 	"Called from outside to request setting a new selection."
 
 	self selectionIndex: (self getList indexOf: item)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>selectionColor [
+{ #category : #accessing }
+PluggableListMorph >> selectionColor [
 	"Answer the colour to use for selected items."
 
 	^ selectionColor ifNil: [self theme selectionColor] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>selectionColor: aColor [
+{ #category : #accessing }
+PluggableListMorph >> selectionColor: aColor [
 	"Set the colour for selected items."
 
 	| w |
@@ -1775,21 +1368,15 @@ PluggableListMorph>>selectionColor: aColor [
 				ifFalse: [ self theme unfocusedSelectionColor ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>selectionColorToUse [
+{ #category : #accessing }
+PluggableListMorph >> selectionColorToUse [
 	"Answer the colour to use for selected items."
 
 	^ selectionColorToUse ifNil: [self theme settings selectionColor] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>selectionColorToUse: aColor [
+{ #category : #accessing }
+PluggableListMorph >> selectionColorToUse: aColor [
 	"Set the colour for selected items."
 
 	aColor = self selectionColorToUse ifTrue: [^self].
@@ -1797,20 +1384,14 @@ PluggableListMorph>>selectionColorToUse: aColor [
 	self listMorph selectionFrameChanged
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>selectionIndex [
+{ #category : #selection }
+PluggableListMorph >> selectionIndex [
 	"return the index we have currently selected, or 0 if none"
 	^self listMorph selectedRow ifNil: [ 0 ]
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>selectionIndex: index [
+{ #category : #selection }
+PluggableListMorph >> selectionIndex: index [
 	"Called internally to select the index-th item."
 	| row |
 	
@@ -1822,11 +1403,8 @@ PluggableListMorph>>selectionIndex: index [
 	self scrollSelectionToRow: row.
 ]
 
-{
-	#category : #separator,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>separatorAfterARow: aRow [
+{ #category : #separator }
+PluggableListMorph >> separatorAfterARow: aRow [
 
 	
 	
@@ -1850,100 +1428,67 @@ PluggableListMorph>>separatorAfterARow: aRow [
 	^ false
 ]
 
-{
-	#category : #separator,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>separatorBlockOrSelector [
+{ #category : #separator }
+PluggableListMorph >> separatorBlockOrSelector [
 
 	^ separatorBlockOrSelector
 ]
 
-{
-	#category : #separator,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>separatorBlockOrSelector: aBlockOrSelector [
+{ #category : #separator }
+PluggableListMorph >> separatorBlockOrSelector: aBlockOrSelector [
 
 	separatorBlockOrSelector := aBlockOrSelector
 ]
 
-{
-	#category : #separator,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>separatorColor [
+{ #category : #separator }
+PluggableListMorph >> separatorColor [
 
 	^ separatorColor ifNil: [ separatorColor := Color gray ]
 ]
 
-{
-	#category : #separator,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>separatorColor: aColor [
+{ #category : #separator }
+PluggableListMorph >> separatorColor: aColor [
 
 	separatorColor := aColor
 ]
 
-{
-	#category : #separator,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>separatorSize [
+{ #category : #separator }
+PluggableListMorph >> separatorSize [
 
 	^ separatorSize ifNil: [ separatorSize := 1 ]
 ]
 
-{
-	#category : #separator,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>separatorSize: anInteger [
+{ #category : #separator }
+PluggableListMorph >> separatorSize: anInteger [
 
 	separatorSize := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>setIndexSelector: aSelector [
+{ #category : #accessing }
+PluggableListMorph >> setIndexSelector: aSelector [
 
 	setIndexSelector := aSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>setMultipleSelection: aBoolean [
+{ #category : #accessing }
+PluggableListMorph >> setMultipleSelection: aBoolean [
 
 	multipleSelection := aBoolean
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>setSelectedMorph: aMorph [
+{ #category : #selection }
+PluggableListMorph >> setSelectedMorph: aMorph [
 	self changeModelSelection: (scroller submorphs indexOf: aMorph)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>setSelectionListSelector: getListSel. [
+{ #category : #accessing }
+PluggableListMorph >> setSelectionListSelector: getListSel. [
 
 	setSelectionListSelector := getListSel
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>specialKeyPressed: anEvent [
+{ #category : #events }
+PluggableListMorph >> specialKeyPressed: anEvent [
 	"A special key with the given ascii-value was pressed; dispatch it"
 	| keyString max nextSelection oldSelection howManyItemsShowing |
 	
@@ -2006,11 +1551,8 @@ PluggableListMorph>>specialKeyPressed: anEvent [
 	^ self changeModelSelection: nextSelection
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>startDrag: evt  [
+{ #category : #'drag and drop' }
+PluggableListMorph >> startDrag: evt [ 
 	| transferMorph draggedItem passenger |
 
 	dragItemSelector ifNotNil: [ ^self startDragExtended: evt ].
@@ -2036,19 +1578,13 @@ PluggableListMorph>>startDrag: evt  [
 			evt hand releaseMouseFocus: self] 
 ]
 
-{
-	#category : #obsolete,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>startDrag: evt onItem: itemMorph  [
+{ #category : #obsolete }
+PluggableListMorph >> startDrag: evt onItem: itemMorph [ 
 	self removeObsoleteEventHandlers.
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>startDragExtended: evt [
+{ #category : #'drag and drop' }
+PluggableListMorph >> startDragExtended: evt [
 	"This method was defined in PluggableListMorphPlus (a subclass that got merged)" 
 	
 	dragItemSelector ifNil: [^self].
@@ -2069,21 +1605,15 @@ PluggableListMorph>>startDragExtended: evt [
 			evt hand newMouseFocus: self]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>takesKeyboardFocus [
+{ #category : #'event handling' }
+PluggableListMorph >> takesKeyboardFocus [
 	"Answer whether the receiver can normally take keyboard focus."
 
 	^true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>textColor [
+{ #category : #initialization }
+PluggableListMorph >> textColor [
 	"Answer my default text color."
 	^ self 
 		valueOfProperty: #textColor 
@@ -2091,41 +1621,29 @@ PluggableListMorph>>textColor [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>textColor: aColor [
+{ #category : #initialization }
+PluggableListMorph >> textColor: aColor [
 	"Set my default text color."
 	self setProperty: #textColor toValue: aColor.
 	self listMorph color: aColor.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>textHighlightColor [
+{ #category : #initialization }
+PluggableListMorph >> textHighlightColor [
 	"Answer my default text highlight color."
 	^self valueOfProperty: #textHighlightColor ifAbsent: [ Color red ].
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>textHighlightColor: aColor [
+{ #category : #initialization }
+PluggableListMorph >> textHighlightColor: aColor [
 	"Set my default text highlight color."
 	self setProperty: #textHighlightColor toValue: aColor.
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>themeChanged [
+{ #category : #updating }
+PluggableListMorph >> themeChanged [
 
 	self setProperty: #textColor toValue: self theme textColor; updateList.
 	
@@ -2136,20 +1654,14 @@ PluggableListMorph>>themeChanged [
 	super themeChanged 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>unhighlightSelection [
+{ #category : #drawing }
+PluggableListMorph >> unhighlightSelection [
 
 	self searchedElement: nil.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>update: aParameter  [
+{ #category : #updating }
+PluggableListMorph >> update: aParameter [ 
 	"Refer to the comment in View|update:."
 
 	(aParameter == getListSelector or: [ aParameter == getListElementSelector ]) ifTrue: 
@@ -2168,11 +1680,8 @@ PluggableListMorph>>update: aParameter  [
 	aParameter first = #setMultipleSelection: ifTrue: [ self setMultipleSelection: aParameter second ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>updateEnabled [
+{ #category : #updating }
+PluggableListMorph >> updateEnabled [
 	"Update the enablement state."
 
 	self model ifNotNil: [
@@ -2180,11 +1689,8 @@ PluggableListMorph>>updateEnabled [
 			self enabled: (self model perform: self getEnabledSelector)]]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>updateList [
+{ #category : #updating }
+PluggableListMorph >> updateList [
 	| index |
 	"the list has changed -- update from the model"
 	self listMorph listChanged.
@@ -2201,11 +1707,8 @@ PluggableListMorph>>updateList [
 
 ]
 
-{
-	#category : #'debug and other',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>userString [
+{ #category : #'debug and other' }
+PluggableListMorph >> userString [
 	^list ifNotNil: [ 
 		String streamContents: [:strm |
 			list do: [:i |
@@ -2215,33 +1718,24 @@ PluggableListMorph>>userString [
 	]
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>vExtraScrollRange [
+{ #category : #scrolling }
+PluggableListMorph >> vExtraScrollRange [
 	"Return the amount of extra blank space to include below the bottom of the scroll content."
 
 	^8
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>vUnadjustedScrollRange [
+{ #category : #scrolling }
+PluggableListMorph >> vUnadjustedScrollRange [
 	"Return the height extent of the receiver's submorphs."
 	(scroller submorphs size > 0) ifFalse:[ ^0 ].
 	^(scroller submorphs last fullBounds bottom)
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>verifyContents [
+{ #category : #updating }
+PluggableListMorph >> verifyContents [
 	"Verify the contents of the receiver, reconstituting if necessary.  Called whenever window is reactivated, to react to possible structural changes.  Also called periodically in morphic if the smartUpdating setting is true"
 	| newList existingSelection oldList |
 	oldList := list ifNil: [ #() ].
@@ -2258,27 +1752,18 @@ PluggableListMorph>>verifyContents [
 		ifFalse:	[self changeModelSelection: 0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>wantsDropSelector [
+{ #category : #accessing }
+PluggableListMorph >> wantsDropSelector [
 	^wantsDropSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>wantsDropSelector: aSymbol [
+{ #category : #accessing }
+PluggableListMorph >> wantsDropSelector: aSymbol [
 	wantsDropSelector := aSymbol
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>wantsDroppedMorph: aMorph event: anEvent [
+{ #category : #'drag and drop' }
+PluggableListMorph >> wantsDroppedMorph: aMorph event: anEvent [
 	^ aMorph dragTransferType == #dragTransfer 
 		ifTrue: [ dropItemSelector ifNil: [^false].
 			wantsDropSelector ifNil: [^true].
@@ -2286,11 +1771,8 @@ PluggableListMorph>>wantsDroppedMorph: aMorph event: anEvent [
 		ifFalse: [ self model wantsDroppedMorph: aMorph event: anEvent inMorph: self]
 ]
 
-{
-	#category : #wrapping,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>wrapItem: anItem index: anIndex [
+{ #category : #wrapping }
+PluggableListMorph >> wrapItem: anItem index: anIndex [
 	"Use the wrapSelector to get the text or string representation of a list item."
 	
 	^ self wrapSelector 
@@ -2301,20 +1783,14 @@ PluggableListMorph>>wrapItem: anItem index: anIndex [
 				ifFalse: [ self model perform: selector withEnoughArguments: { anItem. anIndex } ]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>wrapSelector [
+{ #category : #accessing }
+PluggableListMorph >> wrapSelector [
 
 	^ wrapSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListMorph>>wrapSelector: aSymbol [
+{ #category : #accessing }
+PluggableListMorph >> wrapSelector: aSymbol [
 
 	self basicWrapSelector: aSymbol.
 	self updateList.

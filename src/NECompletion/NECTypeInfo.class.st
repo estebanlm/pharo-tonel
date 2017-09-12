@@ -9,37 +9,27 @@ Class {
 		'kind',
 		'temporaryOffset'
 	],
-	#category : #NECompletion-Model,
-	#timestamp : '<historical>'
+	#category : #NECompletion-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypeInfo class>>definedByLiteral: aClass  [
+{ #category : #'instance creation' }
+NECTypeInfo class >> definedByLiteral: aClass [ 
 	| newInstance |
 	newInstance := self new.
 	newInstance setType: aClass kind: 1.
 	^ newInstance
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypeInfo class>>definedByMessageSend: aClass  [
+{ #category : #'instance creation' }
+NECTypeInfo class >> definedByMessageSend: aClass [ 
 	| newInstance |
 	newInstance := self new.
 	newInstance setType: aClass kind: 2.
 	^ newInstance
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypeInfo class>>definedByTemporaryVar: anInteger [
+{ #category : #'instance creation' }
+NECTypeInfo class >> definedByTemporaryVar: anInteger [
 	| newInstance |
 	newInstance := self new.
 	newInstance setType: nil kind: 3.
@@ -47,67 +37,43 @@ NECTypeInfo class>>definedByTemporaryVar: anInteger [
 	^ newInstance
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypeInfo>>isDefinedByMessageSend [
+{ #category : #testing }
+NECTypeInfo >> isDefinedByMessageSend [
 	^kind == 2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypeInfo>>isDefinedByTemporary [
+{ #category : #testing }
+NECTypeInfo >> isDefinedByTemporary [
 	^ kind == 3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypeInfo>>priority [
+{ #category : #accessing }
+NECTypeInfo >> priority [
 	^kind
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypeInfo>>setType: aClass kind: anInteger  [
+{ #category : #accessing }
+NECTypeInfo >> setType: aClass kind: anInteger [ 
 	type := aClass.
 	kind := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypeInfo>>temporaryOffset [
+{ #category : #accessing }
+NECTypeInfo >> temporaryOffset [
 	^temporaryOffset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypeInfo>>temporaryOffset: anInteger  [
+{ #category : #accessing }
+NECTypeInfo >> temporaryOffset: anInteger [ 
 	temporaryOffset := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypeInfo>>type [
+{ #category : #accessing }
+NECTypeInfo >> type [
 	^type
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypeInfo>>type: aClass  [
+{ #category : #accessing }
+NECTypeInfo >> type: aClass [ 
 	type := aClass
 ]

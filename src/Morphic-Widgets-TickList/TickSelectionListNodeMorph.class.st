@@ -4,15 +4,11 @@ A TickSelectionListNodeMorph is the morph used to render the tree used to render
 Class {
 	#name : #TickSelectionListNodeMorph,
 	#superclass : #MorphTreeNodeMorph,
-	#category : #Morphic-Widgets-TickList,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-TickList
 }
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionListNodeMorph>>drawMouseDownHighlightOn: aCanvas [
+{ #category : #drawing }
+TickSelectionListNodeMorph >> drawMouseDownHighlightOn: aCanvas [
 	"Draw with a dotted border."
 
 	self highlightedForMouseDown 
@@ -27,29 +23,20 @@ TickSelectionListNodeMorph>>drawMouseDownHighlightOn: aCanvas [
 				dashes: #(1 1)]
 ]
 
-{
-	#category : #event,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionListNodeMorph>>pressed: anIndex  [
+{ #category : #event }
+TickSelectionListNodeMorph >> pressed: anIndex [ 
 
 	self complexContents pressed: anIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionListNodeMorph>>storeValue [
+{ #category : #accessing }
+TickSelectionListNodeMorph >> storeValue [
 
 	^ self owner owner storeValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionListNodeMorph>>storeValue: aValue [
+{ #category : #accessing }
+TickSelectionListNodeMorph >> storeValue: aValue [
 
 	^ self owner owner storeValue: aValue
 ]

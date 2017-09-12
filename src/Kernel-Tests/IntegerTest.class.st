@@ -4,24 +4,17 @@ SUnit tests for integers
 Class {
 	#name : #IntegerTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Numbers,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:37'
+	#category : #Kernel-Tests-Numbers
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>assert: a classAndValueEquals: b [
+{ #category : #private }
+IntegerTest >> assert: a classAndValueEquals: b [
 	self assert: a class = b class.
 	self assert: a = b
 ]
 
-{
-	#category : #'tests - basic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testAsLargerPowerOfTwo [
+{ #category : #'tests - basic' }
+IntegerTest >> testAsLargerPowerOfTwo [
 "Invalid input testing"
 	"LargeNegativeIntegers"
 	self should: [(2 raisedTo: 80) negated asLargerPowerOfTwo] raise: DomainError.
@@ -42,11 +35,8 @@ IntegerTest>>testAsLargerPowerOfTwo [
 	self assert: ((2 raisedTo: 80) - 1) asLargerPowerOfTwo equals: (2 raisedTo: 80)
 ]
 
-{
-	#category : #'tests - basic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testAsSmallerPowerOfTwo [
+{ #category : #'tests - basic' }
+IntegerTest >> testAsSmallerPowerOfTwo [
 "Invalid input testing"
 	"LargeNegativeIntegers"
 	self should: [(2 raisedTo: 80) negated asSmallerPowerOfTwo] raise: DomainError.
@@ -67,31 +57,22 @@ IntegerTest>>testAsSmallerPowerOfTwo [
 	self assert: ((2 raisedTo: 80) - 1) asSmallerPowerOfTwo equals: (2 raisedTo: 80 - 1)
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testAsStringWithCommas [
+{ #category : #'tests - printing' }
+IntegerTest >> testAsStringWithCommas [
 	self assert: 123456789 asStringWithCommas equals: '123,456,789'.
 	self assert: -123456789 asStringWithCommas equals: '-123,456,789'
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testBadBase [
+{ #category : #'tests - printing' }
+IntegerTest >> testBadBase [
 	"This used to get into an endless loop.
 	See Pharo #114"
 	
 	self should: [2 printStringBase: 1] raise: Error.
 ]
 
-{
-	#category : #'tests - benchmarks',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testBenchFib [
+{ #category : #'tests - benchmarks' }
+IntegerTest >> testBenchFib [
 
 	self assert: (0 benchFib = 1).
 	self assert: (1 benchFib = 1).
@@ -99,11 +80,8 @@ IntegerTest>>testBenchFib [
 	
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testBigReceiverInexactNthRoot [
+{ #category : #'tests - mathematical functions' }
+IntegerTest >> testBigReceiverInexactNthRoot [
 	"
 	IntegerTest new testBigReceiverInexactNthRoot
 	"
@@ -120,11 +98,8 @@ IntegerTest>>testBigReceiverInexactNthRoot [
 	self assert: 100 factorial asFloat = (100 factorial+1) asFloat
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testBigReceiverInexactSqrt [
+{ #category : #'tests - mathematical functions' }
+IntegerTest >> testBigReceiverInexactSqrt [
 	"
 	IntegerTest new testBigReceiverInexactSqrt
 	"
@@ -142,11 +117,8 @@ IntegerTest>>testBigReceiverInexactSqrt [
 	self assert: (result predecessor asFraction squared - bigNum) abs >= (result asFraction squared - bigNum) abs.
 ]
 
-{
-	#category : #'tests - bitLogic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testBitAnd [
+{ #category : #'tests - bitLogic' }
+IntegerTest >> testBitAnd [
 
 	self assert: (2r1100 bitAnd: 2r1010) equals: 2r1000.
 	self assert: (2r1100 & 2r1010) equals: 2r1000.
@@ -154,11 +126,8 @@ IntegerTest>>testBitAnd [
 	self assert: (-2 & 16rFFFFFFFF) equals: 16rFFFFFFFE.
 ]
 
-{
-	#category : #'tests - bitLogic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testBitAt [
+{ #category : #'tests - bitLogic' }
+IntegerTest >> testBitAt [
 	| trials bitSequence2 |
 
 	self assert: (2r10 bitAt: 1) equals: 0.
@@ -200,11 +169,8 @@ IntegerTest>>testBitAt [
 		self assert: bitSequence2 = bitSequence description: '-1-x is similar to a bitInvert operation in two complement']
 ]
 
-{
-	#category : #'tests - bitLogic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testBitClear [
+{ #category : #'tests - bitLogic' }
+IntegerTest >> testBitClear [
 
 	self assert: (2r1111 bitClear: 2r1000) equals: 2r0111.
 	self assert: (2r1111 bitClear: 2r0100) equals: 2r1011.
@@ -212,11 +178,8 @@ IntegerTest>>testBitClear [
 	self assert: (2r1111 bitClear: 2r0001) equals: 2r1110.
 ]
 
-{
-	#category : #'tests - bitLogic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testBitLogic   [
+{ #category : #'tests - bitLogic' }
+IntegerTest >> testBitLogic [  
 	"This little suite of tests is designed to verify correct operation of most of Pharo's bit manipulation code, including two's complement representation of negative values.  It was written in a hurry and is probably lacking several important checks."
 	"self run: #testBitLogic"
 	
@@ -249,11 +212,8 @@ IntegerTest>>testBitLogic   [
 					self assert: n negated = ((n bitXor: -1) + 1)].
 ]
 
-{
-	#category : #'tests - bitLogic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testBitMask [
+{ #category : #'tests - bitLogic' }
+IntegerTest >> testBitMask [
 
 	self assert: (2r11 allMask: 2r11).
 	self deny: (2r10 allMask: 2r11).
@@ -264,21 +224,15 @@ IntegerTest>>testBitMask [
 	self deny: (2r00 anyMask: 2r11).
 ]
 
-{
-	#category : #'tests - bitLogic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testBitOr [
+{ #category : #'tests - bitLogic' }
+IntegerTest >> testBitOr [
 
 	self assert: (2r0101 | 2r1010) equals: 2r1111.
 	self assert: (2r0101 bitOr: 2r1010) equals: 2r1111.
 ]
 
-{
-	#category : #'tests - bitLogic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testBitShift [
+{ #category : #'tests - bitLogic' }
+IntegerTest >> testBitShift [
 
 	self assert: 2r11 << 2 equals: 2r1100.
 	self assert: (2r11 bitShift: 2) equals: 2r1100.
@@ -286,11 +240,8 @@ IntegerTest>>testBitShift [
 	self assert: (2r1011 bitShift: -2) equals: 2r10.
 ]
 
-{
-	#category : #'tests - bitLogic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testBitString [
+{ #category : #'tests - bitLogic' }
+IntegerTest >> testBitString [
 	"self debug: #testBitString"
 	
 	Smalltalk vm wordSize = 4
@@ -310,20 +261,14 @@ IntegerTest>>testBitString [
 	self assert: 2 bitStringLength equals: (SmallInteger maxVal highBit + 1).
 ]
 
-{
-	#category : #'tests - bitLogic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testBitXor [
+{ #category : #'tests - bitLogic' }
+IntegerTest >> testBitXor [
 
 	self assert: (2r1100 bitXor: 2r1010) equals: 2r0110.
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testCreationFromBytes1 [
+{ #category : #'tests - instance creation' }
+IntegerTest >> testCreationFromBytes1 [
 	"self run: #testCreationFromBytes1"
 	"it is illegal for a LargeInteger to be less than SmallInteger maxVal." 
 	"here we test that Integer>>byte!byte2:byte3:byte4: resconstructs SmallInteger maxVal as an instance of SmallInteger. "
@@ -343,11 +288,8 @@ IntegerTest>>testCreationFromBytes1 [
 
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testCreationFromBytes2 [
+{ #category : #'tests - instance creation' }
+IntegerTest >> testCreationFromBytes2 [
  	"self run: #testCreationFromBytes2"
 
 	"it is illegal for a LargeInteger to be less than SmallInteger maxVal." 
@@ -367,11 +309,8 @@ IntegerTest>>testCreationFromBytes2 [
 
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testCreationFromBytes3 [
+{ #category : #'tests - instance creation' }
+IntegerTest >> testCreationFromBytes3 [
 	"self run: #testCreationFromBytes3"
 
 	"it is illegal for a LargeInteger to be less than SmallInteger maxVal." 
@@ -391,11 +330,8 @@ IntegerTest>>testCreationFromBytes3 [
 
 ]
 
-{
-	#category : #'testing - arithmetic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testCrossSumBase [
+{ #category : #'testing - arithmetic' }
+IntegerTest >> testCrossSumBase [
 	"self run: #testCrossSumBase"
 
 	self assert: (
@@ -407,11 +343,8 @@ IntegerTest>>testCrossSumBase [
 	self should: [10 crossSumBase: 1] raise: AssertionFailure
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testDegreeCos [
+{ #category : #'tests - mathematical functions' }
+IntegerTest >> testDegreeCos [
 	"self run: #testDegreeCos"
 
 	45 degreeCos.	"Following tests use approximate equality, because cosine are generally evaluated using inexact Floating point arithmetic"
@@ -426,11 +359,8 @@ IntegerTest>>testDegreeCos [
 		self assert: (k * 360) degreeCos - 1 = 0 ]
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testDegreeSin [
+{ #category : #'tests - mathematical functions' }
+IntegerTest >> testDegreeSin [
 	"self run: #testDegreeSin"
 
 	45 degreeSin.	"Following tests use approximate equality, because sine are generally evaluated using inexact Floating point arithmetic"
@@ -445,11 +375,8 @@ IntegerTest>>testDegreeSin [
 		self assert: (k * 360) degreeSin = 0 ]
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testDifferentBases [
+{ #category : #'tests - instance creation' }
+IntegerTest >> testDifferentBases [
 	"self run: #testDifferentBases"
 	"| value |
 	2 to: 36 do: [:each|
@@ -539,11 +466,8 @@ IntegerTest>>testDifferentBases [
 	self assert: -36rZYXWVUTSRQPONMLKJIHGFEDCBA9876543210 = -106300512100105327644605138221229898724869759421181854980.
 ]
 
-{
-	#category : #'tests - basic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testDigitsAccess [
+{ #category : #'tests - basic' }
+IntegerTest >> testDigitsAccess [
 
 	self assert: (42 digitAt: 2 base: 10) equals: 4.
 	self assert: (42 digitAt: 1 base: 10) equals: 2.
@@ -566,22 +490,16 @@ IntegerTest>>testDigitsAccess [
 	
 ]
 
-{
-	#category : #'tests - basic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testEven [
+{ #category : #'tests - basic' }
+IntegerTest >> testEven [
 	
 	self deny: (1073741825 even).
 	self assert: (1073741824  even).
 	
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testExactRaisedTo [
+{ #category : #'tests - mathematical functions' }
+IntegerTest >> testExactRaisedTo [
 	"
 	IntegerTest new testExactRaisedTo
 	"
@@ -631,11 +549,8 @@ IntegerTest>>testExactRaisedTo [
 		self assert: ((i negated raisedTo: 3) -1 raisedTo: 5/3) isFloat ].
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testExactSqrt [
+{ #category : #'tests - mathematical functions' }
+IntegerTest >> testExactSqrt [
 	"
 	IntegerTest new testExactSqrt
 	"
@@ -647,30 +562,21 @@ IntegerTest>>testExactSqrt [
 		self assert: i squared sqrt classAndValueEquals: i ]
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testFloorLog [
+{ #category : #'tests - mathematical functions' }
+IntegerTest >> testFloorLog [
 	self assert: (100 floorLog: 10) = 2.
 	self assert: (((2 raisedTo: Float emax + 3) floorLog: 10) = (2 log*(Float emax + 3)) floor) description: 'Integer>>floorLog: should not overflow'
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testHex [
+{ #category : #'tests - printing' }
+IntegerTest >> testHex [
 	self assert: 0 hex =  '16r0'.
 	self assert: 12 hex =  '16rC'.
 	self assert: 1234 hex =  '16r4D2'.
 ]
 
-{
-	#category : #'tests - bitLogic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testHighBit [
+{ #category : #'tests - bitLogic' }
+IntegerTest >> testHighBit [
 
 	| suite |
 	self assert: (2r1110 highBit) equals: 4.
@@ -688,11 +594,8 @@ IntegerTest>>testHighBit [
 		self assert: anInteger highBit = highBit].
 ]
 
-{
-	#category : #'tests - bitLogic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testHighBitOfMagnitude [
+{ #category : #'tests - bitLogic' }
+IntegerTest >> testHighBitOfMagnitude [
 	| suite |
 
 	suite := (0 to: 1024) asArray , #(16rFDFD 16rFFFF 16r1000 16r1000000 16r1000001 16r70000000 16r7AFAFAFA ) , {SmallInteger maxVal . SmallInteger maxVal+1}.
@@ -707,11 +610,8 @@ IntegerTest>>testHighBitOfMagnitude [
 		self assert: anInteger negated highBitOfMagnitude = highBit].
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testIntegerHex [
+{ #category : #'tests - printing' }
+IntegerTest >> testIntegerHex [
 	| result |
 	result := 15 asInteger hex.
 	self assert: result = '16rF'.
@@ -723,11 +623,8 @@ IntegerTest>>testIntegerHex [
 	self assert: result = '16r5A'
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testIntegerPadding [
+{ #category : #'tests - printing' }
+IntegerTest >> testIntegerPadding [
 	"self run: #testIntegerPadding"
 
 	self assert: (1 printStringBase: 10 length: 0 padded: false) = '1'.
@@ -804,32 +701,23 @@ IntegerTest>>testIntegerPadding [
 
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testIntegerReadsNotOkFromStream [
+{ #category : #'tests - instance creation' }
+IntegerTest >> testIntegerReadsNotOkFromStream [
 	self should: [Integer readFrom: 'a23' readStream] raise: Error.
 	self should: [Integer readFrom: '-a23' readStream] raise: Error.
 	self should: [Integer readFrom: 'a3' readStream base: 8] raise: Error.
 	self should: [Integer readFrom: '-a3' readStream base: 8] raise: Error.
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testIntegerReadsNotOkFromString [
+{ #category : #'tests - instance creation' }
+IntegerTest >> testIntegerReadsNotOkFromString [
 	self should: [Integer readFrom: 'aaa'] raise: Error.
 	self should: [Integer readFrom: '-aaa'] raise: Error.
 	self should: [Integer readFrom: 'a3' base: 8] raise: Error.
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testIntegerReadsOkFromStream [
+{ #category : #'tests - instance creation' }
+IntegerTest >> testIntegerReadsOkFromStream [
 	self assert: (Integer readFrom: '123' readStream) = 123.
 	self assert: (Integer readFrom: '-123' readStream) = -123.
 	self assert: (Integer readFrom: 'a3' readStream base: 16) = 163.
@@ -838,32 +726,23 @@ IntegerTest>>testIntegerReadsOkFromStream [
 	self assert: (Integer readFrom: '3a' readStream base: 10) = 3.
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testIntegerReadsOkFromString [
+{ #category : #'tests - instance creation' }
+IntegerTest >> testIntegerReadsOkFromString [
 	self assert: (Integer readFrom: '123') = 123.
 	self assert: (Integer readFrom: '-123') = -123.
 	self assert: (Integer readFrom: 'a3' base: 16) = 163.
 	self assert: (Integer readFrom: '-a3' base: 16) = -163.
 ]
 
-{
-	#category : #'tests - basic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testIsInteger [
+{ #category : #'tests - basic' }
+IntegerTest >> testIsInteger [
 
 	self assert: (0 isInteger).
 	
 ]
 
-{
-	#category : #'tests - basic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testIsPowerOfTwo [
+{ #category : #'tests - basic' }
+IntegerTest >> testIsPowerOfTwo [
 	"LargeNegativeIntegers"
 	self deny: (2 raisedTo: 80) negated isPowerOfTwo.
 	"Negative SmallIntegers"
@@ -882,22 +761,16 @@ IntegerTest>>testIsPowerOfTwo [
 	self deny: ((2 raisedTo: 80) + 1) isPowerOfTwo
 ]
 
-{
-	#category : #'tests - basic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testIsPowerOfTwoM6873 [
+{ #category : #'tests - basic' }
+IntegerTest >> testIsPowerOfTwoM6873 [
 	"This is a non regression test for http://bugs.squeak.org/view.php?id=6873"
 
 	self deny: ((1 to: 80) anySatisfy: [:n | (2 raisedTo: n) negated isPowerOfTwo])
 		description: 'A negative integer cannot be a power of two'.
 ]
 
-{
-	#category : #'tests - basic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testIsPrime [
+{ #category : #'tests - basic' }
+IntegerTest >> testIsPrime [
 
 	"The following tests should return 'true'"
 	self assert: 17 isPrime.
@@ -917,11 +790,8 @@ IntegerTest>>testIsPrime [
 	self deny: 29996224275831 isPrime.
 ]
 
-{
-	#category : #'tests - basic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testIsPrime2 [
+{ #category : #'tests - basic' }
+IntegerTest >> testIsPrime2 [
 
 	"Not primes:"
 	#(-100 -5 -3 -2 -1 0 1) do: [ :each |
@@ -936,11 +806,8 @@ IntegerTest>>testIsPrime2 [
 		self deny: each isPrime ].
 ]
 
-{
-	#category : #'tests - basic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testIsProbablyPrime [
+{ #category : #'tests - basic' }
+IntegerTest >> testIsProbablyPrime [
 
 	"Not primes:"
 	#(-100 -5 -3 -2 -1 0 1) do: [ :each |
@@ -955,11 +822,8 @@ IntegerTest>>testIsProbablyPrime [
 		self deny: each isProbablyPrime ].
 ]
 
-{
-	#category : #'tests - basic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testLargePrimesUpTo [
+{ #category : #'tests - basic' }
+IntegerTest >> testLargePrimesUpTo [
 
 	| nn | 
 	nn := (2 raisedTo: 17) - 1. 
@@ -970,29 +834,20 @@ IntegerTest>>testLargePrimesUpTo [
 
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testLn [
+{ #category : #'tests - mathematical functions' }
+IntegerTest >> testLn [
 	self assert: (100 ln closeTo: 10 ln*2).
 	self assert: ((2 raisedTo: Float emax + 3) ln closeTo: 2 ln*(Float emax + 3)) description: 'Integer>>ln should not overflow'
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testLog [
+{ #category : #'tests - mathematical functions' }
+IntegerTest >> testLog [
 	self assert: (100 log closeTo: 2).
 	self assert: ((2 raisedTo: Float emax + 3) log closeTo: 2 log*(Float emax + 3)) description: 'Integer>>log should not overflow'
 ]
 
-{
-	#category : #'tests - bitLogic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testLowBit [
+{ #category : #'tests - bitLogic' }
+IntegerTest >> testLowBit [
 
 	| suite |
 	"Simple examples"
@@ -1012,11 +867,8 @@ IntegerTest>>testLowBit [
 		self assert: anInteger negated lowBit = lowBit].
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testNegativeIntegerPrinting [
+{ #category : #'tests - printing' }
+IntegerTest >> testNegativeIntegerPrinting [
 	"self run: #testnegativeIntegerPrinting"
 
 	self assert: (-2 printStringBase: 2) = '-10'.
@@ -1196,28 +1048,19 @@ IntegerTest>>testNegativeIntegerPrinting [
 	self assert: -106300512100105327644605138221229898724869759421181854980 storeStringHex = '-16r455D441E55A37239AB4C303189576071AF5578FFCA80504'.
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testNew [
+{ #category : #'tests - instance creation' }
+IntegerTest >> testNew [
 	self should: [Integer new] raise: self defaultTestError. 
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testNthRoot [
+{ #category : #'tests - mathematical functions' }
+IntegerTest >> testNthRoot [
 	1 << 2000 nthRoot: 100.
 	self assert: (1 << 2000 nthRoot: 100) equals: 1 << 20
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testNthRootErrorConditions [
+{ #category : #'tests - mathematical functions' }
+IntegerTest >> testNthRootErrorConditions [
 	"
 	IntegerTest new testExactRaisedToErrorConditions
 	"
@@ -1226,22 +1069,16 @@ IntegerTest>>testNthRootErrorConditions [
 	self should: [ -2 nthRoot: 1.24 ] raise: ArithmeticError.
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testNthRootExactness [
+{ #category : #'tests - mathematical functions' }
+IntegerTest >> testNthRootExactness [
 	| inexactRoots largeExactPowersOf6 |
 	largeExactPowersOf6 := (2 to: 100) collect: [:k | k raisedTo: 66].
 	inexactRoots := largeExactPowersOf6 reject: [:e | (e nthRoot: 6) isInteger].
 	self assert: inexactRoots isEmpty description: 'Failed to find the exact 6th root of these numbers'
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testNthRootTruncated [
+{ #category : #'tests - mathematical functions' }
+IntegerTest >> testNthRootTruncated [
 	<timeout:  5 "seconds">
 	| tooBigToBeAFloat large |
 	tooBigToBeAFloat := 1 << 2000.
@@ -1262,11 +1099,8 @@ IntegerTest>>testNthRootTruncated [
 			self assert: (theTruncatedRoot + 1 raisedTo: thePower) > n]]
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testNumberOfDigits [
+{ #category : #'tests - printing' }
+IntegerTest >> testNumberOfDigits [
 	
 	2 to: 32 do: [:b |
 		1 to: 1000//b do: [:n |
@@ -1282,11 +1116,8 @@ IntegerTest>>testNumberOfDigits [
 
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testPositiveIntegerPrinting [
+{ #category : #'tests - printing' }
+IntegerTest >> testPositiveIntegerPrinting [
 	"self run: #testPositiveIntegerPrinting"
 
 	self assert: 0 printString = '0'.
@@ -1470,11 +1301,8 @@ IntegerTest>>testPositiveIntegerPrinting [
 	self assert: 106300512100105327644605138221229898724869759421181854980 storeStringHex = '16r455D441E55A37239AB4C303189576071AF5578FFCA80504'.
 ]
 
-{
-	#category : #'tests - basic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testPrimesUpTo [
+{ #category : #'tests - basic' }
+IntegerTest >> testPrimesUpTo [
 
 	| primes nn|
 	primes := Integer primesUpTo: 100.
@@ -1490,22 +1318,16 @@ IntegerTest>>testPrimesUpTo [
 	self assert: (Integer primesUpTo: nn + 1) last  = nn.
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testPrintOnBaseShowRadix [
+{ #category : #'tests - printing' }
+IntegerTest >> testPrintOnBaseShowRadix [
 	self assert: (String streamContents: [ :str | 123 printOn: str base: 10 showRadix: false ]) equals: '123'.
 	self assert: (String streamContents: [ :str | 123 printOn: str base: 10 showRadix: true ]) equals: '10r123'.
 	self assert: (String streamContents: [ :str | 123 printOn: str base: 8 showRadix: false ]) equals: '173'.
 	self assert: (String streamContents: [ :str | 123 printOn: str base: 8 showRadix: true ]) equals: '8r173'
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testPrintSeparatedByEverySignedOn [
+{ #category : #'tests - printing' }
+IntegerTest >> testPrintSeparatedByEverySignedOn [
 	| printer |
 	printer := [ :integer :printSigned | 
 		String streamContents: [ :stream | 
@@ -1520,11 +1342,8 @@ IntegerTest>>testPrintSeparatedByEverySignedOn [
 	self assert: (printer value: -123456789 value: true) equals: '-123.456.789'
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testPrintStringBase [
+{ #category : #'tests - printing' }
+IntegerTest >> testPrintStringBase [
 	
 	2 to: 32 do: [:b |
 		1 to: 1000//b do: [:n |
@@ -1538,22 +1357,16 @@ IntegerTest>>testPrintStringBase [
 
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testPrintStringHex [
+{ #category : #'tests - printing' }
+IntegerTest >> testPrintStringHex [
 	"self run: #testPrintStringHex"
 	self assert: 0 printStringHex = '0'.
 	self assert: 12 printStringHex = 'C'.
 	self assert: 1234 printStringHex = '4D2'.
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testRaisedToErrorConditions [
+{ #category : #'tests - mathematical functions' }
+IntegerTest >> testRaisedToErrorConditions [
 	"
 	IntegerTest new testRaisedToErrorConditions
 	"
@@ -1562,11 +1375,8 @@ IntegerTest>>testRaisedToErrorConditions [
 	self should: [ -2 raisedTo: 1.24 ] raise: ArithmeticError.
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testReadFrom [
+{ #category : #'tests - instance creation' }
+IntegerTest >> testReadFrom [
 	"Ensure remaining characters in a stream are not lost when parsing an integer."
 	| rs i s |
 	rs := '123s could be confused with a ScaledDecimal' readStream.
@@ -1581,22 +1391,16 @@ IntegerTest>>testReadFrom [
 	self assert: '.s could be confused with a ScaledDecimal' = s
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testReadFromWithError [
+{ #category : #'tests - instance creation' }
+IntegerTest >> testReadFromWithError [
 	"Ensure that a string that does not represent an integer raises an error."
 	
 	self should: [Integer readFrom: 'invalid'] raise: Error
 
 ]
 
-{
-	#category : #'testing - arithmetic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testReciprocalModulo [
+{ #category : #'testing - arithmetic' }
+IntegerTest >> testReciprocalModulo [
 	1 to: 512 do: [:a |
 		a + 1 to: 512 do: [:b |
 			| c |
@@ -1607,11 +1411,8 @@ IntegerTest>>testReciprocalModulo [
 				ifFalse: [self should: [ a reciprocalModulo: b ] raise: Error]]].
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testRomanPrinting [
+{ #category : #'tests - printing' }
+IntegerTest >> testRomanPrinting [
 	self assert: 0 printStringRoman = ''. "No symbol for zero"
 	self assert: 1 printStringRoman = 'I'.
 	self assert: 2 printStringRoman = 'II'.
@@ -1704,11 +1505,8 @@ IntegerTest>>testRomanPrinting [
 
 ]
 
-{
-	#category : #'test - rounding',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testRounding [
+{ #category : #'test - rounding' }
+IntegerTest >> testRounding [
         "
         self debug: #testRounding
         "
@@ -1716,11 +1514,8 @@ IntegerTest>>testRounding [
         self assert: (5 round: 2) equals: 5
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testSqrtErrorConditions [
+{ #category : #'tests - mathematical functions' }
+IntegerTest >> testSqrtErrorConditions [
 	"
 	IntegerTest new testSqrtErrorConditions
 	"
@@ -1728,11 +1523,8 @@ IntegerTest>>testSqrtErrorConditions [
 	self should: [ -1 sqrt ] raise: ArithmeticError
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testSqrtFloor [
+{ #category : #'tests - mathematical functions' }
+IntegerTest >> testSqrtFloor [
 
 	#(-1234567890123 -10 -5 -1) do: [ :each |
 		self should: [ each sqrtFloor ] raise: Error ].
@@ -1743,11 +1535,8 @@ IntegerTest>>testSqrtFloor [
 		
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testStringAsNumber [
+{ #category : #'tests - instance creation' }
+IntegerTest >> testStringAsNumber [
 	"This covers parsing in Number>>readFrom:
 	Trailing decimal points should be ignored."
 
@@ -1761,11 +1550,8 @@ IntegerTest>>testStringAsNumber [
 
 ]
 
-{
-	#category : #'tests - bitLogic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testTwoComplementBitLogicWithCarry [
+{ #category : #'tests - bitLogic' }
+IntegerTest >> testTwoComplementBitLogicWithCarry [
 	"This is non regression test for http://bugs.squeak.org/view.php?id=6874"
 	
 	"By property of two complement, following operation is:
@@ -1778,11 +1564,8 @@ IntegerTest>>testTwoComplementBitLogicWithCarry [
 	self assert: ((2 to: 80) allSatisfy: [:n | ((2 raisedTo: n) negated bitAnd: (2 raisedTo: n) negated - 1) = (2 raisedTo: n + 1) negated]).
 ]
 
-{
-	#category : #'tests - bitLogic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerTest>>testTwoComplementRightShift [
+{ #category : #'tests - bitLogic' }
+IntegerTest >> testTwoComplementRightShift [
 	"self run: #testTwoComplementRightShift"
 
 	| large small |

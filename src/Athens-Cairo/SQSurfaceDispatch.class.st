@@ -34,15 +34,11 @@ Class {
 		'OFFSET_SHOWSURFACEFN',
 		'OFFSET_UNLOCKSURFACEFN'
 	],
-	#category : #Athens-Cairo,
-	#timestamp : 'IgorStasenko 12/30/2011 12:35'
+	#category : #Athens-Cairo
 }
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SQSurfaceDispatch class>>fieldsDesc [
+{ #category : #'field definition' }
+SQSurfaceDispatch class >> fieldsDesc [
 
 " self rebuildFieldAccessors
 
@@ -73,28 +69,19 @@ typedef struct sqSurfaceDispatch {
 	)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SQSurfaceDispatch class>>rebuildFieldAccessors [
+{ #category : #private }
+SQSurfaceDispatch class >> rebuildFieldAccessors [
 	"Prevent rebuild, because methods are modified to ensure callbacks are not GCed"
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SQSurfaceDispatch>>getSurfaceFormatFn [
+{ #category : #'accessing structure variables' }
+SQSurfaceDispatch >> getSurfaceFormatFn [
 	"This method was automatically generated"
 	^FFICallback forAddress: ((handle pointerAt: OFFSET_GETSURFACEFORMATFN) asInteger)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SQSurfaceDispatch>>getSurfaceFormatFn: aCallback [
+{ #category : #'accessing structure variables' }
+SQSurfaceDispatch >> getSurfaceFormatFn: aCallback [
 	"This method was automatically generated"
 	getSurfaceFormatFn := aCallback.
 	handle 
@@ -102,31 +89,22 @@ SQSurfaceDispatch>>getSurfaceFormatFn: aCallback [
 		put: (ExternalAddress fromAddress: aCallback thunk address)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SQSurfaceDispatch>>initialize [
+{ #category : #initialize-release }
+SQSurfaceDispatch >> initialize [
 	super initialize.
 	self
 		majorVersion: 1; 
 		minorVersion: 0
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SQSurfaceDispatch>>lockSurfaceFn [
+{ #category : #'accessing structure variables' }
+SQSurfaceDispatch >> lockSurfaceFn [
 	"This method was automatically generated"
 	^FFICallback forAddress: ((handle pointerAt: OFFSET_LOCKSURFACEFN) asInteger)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SQSurfaceDispatch>>lockSurfaceFn: aCallback [
+{ #category : #'accessing structure variables' }
+SQSurfaceDispatch >> lockSurfaceFn: aCallback [
 	"This method was automatically generated"
 	lockSurfaceFn := aCallback.
 	handle 
@@ -134,56 +112,38 @@ SQSurfaceDispatch>>lockSurfaceFn: aCallback [
 		put: (ExternalAddress fromAddress: aCallback thunk address)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SQSurfaceDispatch>>majorVersion [
+{ #category : #'accessing structure variables' }
+SQSurfaceDispatch >> majorVersion [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_MAJORVERSION
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SQSurfaceDispatch>>majorVersion: anObject [
+{ #category : #'accessing structure variables' }
+SQSurfaceDispatch >> majorVersion: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_MAJORVERSION put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SQSurfaceDispatch>>minorVersion [
+{ #category : #'accessing structure variables' }
+SQSurfaceDispatch >> minorVersion [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_MINORVERSION
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SQSurfaceDispatch>>minorVersion: anObject [
+{ #category : #'accessing structure variables' }
+SQSurfaceDispatch >> minorVersion: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_MINORVERSION put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SQSurfaceDispatch>>showSurfaceFn [
+{ #category : #'accessing structure variables' }
+SQSurfaceDispatch >> showSurfaceFn [
 	"This method was automatically generated"
 	^FFICallback forAddress: ((handle pointerAt: OFFSET_SHOWSURFACEFN) asInteger)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SQSurfaceDispatch>>showSurfaceFn: aCallbackOrNil [
+{ #category : #'accessing structure variables' }
+SQSurfaceDispatch >> showSurfaceFn: aCallbackOrNil [
 	"This method was automatically generated"
 	showSurfaceFn := aCallbackOrNil.
 	handle 
@@ -193,20 +153,14 @@ SQSurfaceDispatch>>showSurfaceFn: aCallbackOrNil [
 			ifNil: [ ExternalAddress null ])
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SQSurfaceDispatch>>unlockSurfaceFn [
+{ #category : #'accessing structure variables' }
+SQSurfaceDispatch >> unlockSurfaceFn [
 	"This method was automatically generated"
 	^FFICallback forAddress: ((handle pointerAt: OFFSET_UNLOCKSURFACEFN) asInteger)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SQSurfaceDispatch>>unlockSurfaceFn: aCallbackOrNil [
+{ #category : #'accessing structure variables' }
+SQSurfaceDispatch >> unlockSurfaceFn: aCallbackOrNil [
 	"This method was automatically generated"
 	unlockSurfaceFn := aCallbackOrNil.
 	handle 

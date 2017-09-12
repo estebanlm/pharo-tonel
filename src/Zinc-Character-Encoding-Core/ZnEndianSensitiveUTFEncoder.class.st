@@ -10,25 +10,18 @@ Class {
 	#instVars : [
 		'endianness'
 	],
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : 'SvenVanCaekenberghe 1/7/2016 13:14'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEndianSensitiveUTFEncoder class>>handlesEncoding: string [
+{ #category : #accessing }
+ZnEndianSensitiveUTFEncoder class >> handlesEncoding: string [
 	"Return true when my instances handle the encoding described by string"
 	
 	^ false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEndianSensitiveUTFEncoder class>>newForEncoding: string [
+{ #category : #'instance creation' }
+ZnEndianSensitiveUTFEncoder class >> newForEncoding: string [
 	"Return a new character encoder object for an encoding described by string.
 	Try to infer endianness from string, defaulting to big endian."
 	
@@ -39,43 +32,28 @@ ZnEndianSensitiveUTFEncoder class>>newForEncoding: string [
 	^ encoder
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEndianSensitiveUTFEncoder>>= anObject [
+{ #category : #comparing }
+ZnEndianSensitiveUTFEncoder >> = anObject [
 	^ super = anObject and: [ self endianness == anObject endianness ]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEndianSensitiveUTFEncoder>>beBigEndian [
+{ #category : #initialize }
+ZnEndianSensitiveUTFEncoder >> beBigEndian [
 	endianness := #big
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEndianSensitiveUTFEncoder>>beLittleEndian [
+{ #category : #initialize }
+ZnEndianSensitiveUTFEncoder >> beLittleEndian [
 	endianness := #little
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEndianSensitiveUTFEncoder>>byteOrderMark [
+{ #category : #accessing }
+ZnEndianSensitiveUTFEncoder >> byteOrderMark [
 	^ 16rFEFF
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEndianSensitiveUTFEncoder>>encodeStringWithByteOrderMark: string [
+{ #category : #convenience }
+ZnEndianSensitiveUTFEncoder >> encodeStringWithByteOrderMark: string [
 	"Encode string and return the resulting byte array.
 	Always add a Unicode byte order mark (BOM) in front."
 	
@@ -84,70 +62,46 @@ ZnEndianSensitiveUTFEncoder>>encodeStringWithByteOrderMark: string [
 		self next: string size putAll: string startingAt: 1 toStream: stream ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEndianSensitiveUTFEncoder>>endianness [
+{ #category : #accessing }
+ZnEndianSensitiveUTFEncoder >> endianness [
 	^ endianness
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEndianSensitiveUTFEncoder>>hash [
+{ #category : #comparing }
+ZnEndianSensitiveUTFEncoder >> hash [
 	^ super hash bitXor: self endianness hash
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEndianSensitiveUTFEncoder>>initialize [
+{ #category : #initialize }
+ZnEndianSensitiveUTFEncoder >> initialize [
 	endianness := #big
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEndianSensitiveUTFEncoder>>isBigEndian [
+{ #category : #testing }
+ZnEndianSensitiveUTFEncoder >> isBigEndian [
 	^ endianness = #big
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEndianSensitiveUTFEncoder>>isLittleEndian [
+{ #category : #testing }
+ZnEndianSensitiveUTFEncoder >> isLittleEndian [
 	^ endianness = #little
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEndianSensitiveUTFEncoder>>nextPutByteOrderMarkToStream: stream [
+{ #category : #convenience }
+ZnEndianSensitiveUTFEncoder >> nextPutByteOrderMarkToStream: stream [
 	self write16BitWord: self byteOrderMark toStream: stream 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEndianSensitiveUTFEncoder>>printOn: stream [
+{ #category : #printing }
+ZnEndianSensitiveUTFEncoder >> printOn: stream [
 	super printOn: stream.
 	stream nextPut: $(.
 	stream nextPutAll: endianness; nextPutAll: ' endian'.
 	stream nextPut: $)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEndianSensitiveUTFEncoder>>swapEndianness [
+{ #category : #private }
+ZnEndianSensitiveUTFEncoder >> swapEndianness [
 	self isLittleEndian
 		ifTrue: [ self beBigEndian ]
 		ifFalse: [ self beLittleEndian ]

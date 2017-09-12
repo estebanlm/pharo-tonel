@@ -19,42 +19,29 @@ Class {
 		'shouldBeNil',
 		'arguments'
 	],
-	#category : #Kernel-Messaging,
-	#timestamp : 'tlk 5/5/2006 12:39'
+	#category : #Kernel-Messaging
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend class>>new [
+{ #category : #'instance creation' }
+WeakMessageSend class >> new [
 	^self new: 1
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend class>>receiver: anObject selector: aSymbol [
+{ #category : #'instance creation' }
+WeakMessageSend class >> receiver: anObject selector: aSymbol [
 	^ self receiver: anObject selector: aSymbol arguments: #()
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend class>>receiver: anObject selector: aSymbol argument: aParameter [
+{ #category : #'instance creation' }
+WeakMessageSend class >> receiver: anObject selector: aSymbol argument: aParameter [
 	^ self receiver: anObject selector: aSymbol arguments: (Array with: aParameter)
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend class>>receiver: anObject selector: aSymbol arguments: anArray [
+{ #category : #'instance creation' }
+WeakMessageSend class >> receiver: anObject selector: aSymbol arguments: anArray [
 	^ self new
 		receiver: anObject;
 		selector: aSymbol;
@@ -62,11 +49,8 @@ WeakMessageSend class>>receiver: anObject selector: aSymbol arguments: anArray [
 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>= anObject [
+{ #category : #comparing }
+WeakMessageSend >> = anObject [
 	"Compare equal to equivalent MessageSend"
 	^ anObject isMessageSend
 		and: [self receiver == anObject receiver
@@ -75,51 +59,36 @@ WeakMessageSend>>= anObject [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>arguments [
+{ #category : #accessing }
+WeakMessageSend >> arguments [
 	^arguments ifNil: [ Array new ]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>arguments: anArray [
+{ #category : #accessing }
+WeakMessageSend >> arguments: anArray [
 	arguments := WeakArray withAll: anArray.
 	"no reason this should be a WeakArray"
 	shouldBeNil := Array withAll: (anArray collect: [ :ea | ea isNil ]).
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>asMessageSend [
+{ #category : #converting }
+WeakMessageSend >> asMessageSend [
 	^MessageSend receiver: self receiver selector: selector arguments: (Array withAll: self arguments) 
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>asMinimalRepresentation [
+{ #category : #converting }
+WeakMessageSend >> asMinimalRepresentation [
 
 	self isReceiverOrAnyArgumentGarbage
 		ifTrue: [^nil]
 		ifFalse:[^self].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>collectArguments: anArgArray [
+{ #category : #private }
+WeakMessageSend >> collectArguments: anArgArray [
 	"Private"
     | staticArgs |
     staticArgs := self arguments.
@@ -136,41 +105,29 @@ WeakMessageSend>>collectArguments: anArgArray [
 
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>cull: arg [
+{ #category : #evaluating }
+WeakMessageSend >> cull: arg [
 	^ selector numArgs = 0 
 		ifTrue: [ self value ]
 		ifFalse: [ self value: arg ].
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>cull: arg1 cull: arg2 [
+{ #category : #evaluating }
+WeakMessageSend >> cull: arg1 [ cull: arg2
 	^ selector numArgs < 2 
 		ifTrue: [ self cull: arg1]
 		ifFalse: [ self value: arg1 value: arg2 ]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>cull: arg1 cull: arg2 cull: arg3 [
+{ #category : #evaluating }
+WeakMessageSend >> cull: arg1 [ cull: arg2 cull: arg3
 	^ selector numArgs < 3 
 		ifTrue: [ self cull: arg1 cull: arg2 ]
 		ifFalse: [ self value: arg1 value: arg2 value: arg3 ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>ensureArguments [
+{ #category : #private }
+WeakMessageSend >> ensureArguments [
 	"Return true if my arguments haven't gone away"
 	arguments ifNotNil: [
 		arguments with: shouldBeNil do: [ :arg :flag |
@@ -181,11 +138,8 @@ WeakMessageSend>>ensureArguments [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>ensureReceiver [
+{ #category : #private }
+WeakMessageSend >> ensureReceiver [
   "Return true if my receiver hasn't gone away"
   self receiver ifNil: [^ false].
   (self receiver class isObsolete) ifTrue: [^ false].
@@ -194,11 +148,8 @@ WeakMessageSend>>ensureReceiver [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>ensureReceiver: anObject [
+{ #category : #private }
+WeakMessageSend >> ensureReceiver: anObject [
   "Return true if my receiver hasn't gone away"
   anObject ifNil: [^ false].
   (anObject class isObsolete) ifTrue: [^ false].
@@ -207,11 +158,8 @@ WeakMessageSend>>ensureReceiver: anObject [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>ensureReceiverAndArguments [
+{ #category : #private }
+WeakMessageSend >> ensureReceiverAndArguments [
 
   "Return true if my receiver hasn't gone away"
   self receiver ifNil: [^ false].
@@ -229,11 +177,8 @@ WeakMessageSend>>ensureReceiverAndArguments [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>ensureReceiverAndArguments: aReceiver [
+{ #category : #private }
+WeakMessageSend >> ensureReceiverAndArguments: aReceiver [
 
   "Return true if my receiver hasn't gone away"
   aReceiver ifNil: [^ false].
@@ -251,21 +196,15 @@ WeakMessageSend>>ensureReceiverAndArguments: aReceiver [
 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>hash [
+{ #category : #comparing }
+WeakMessageSend >> hash [
 	"work like MessageSend>>hash"
 	^self receiver hash bitXor: selector hash
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>isAnyArgumentGarbage [
+{ #category : #private }
+WeakMessageSend >> isAnyArgumentGarbage [
 	"Make sure that my arguments haven't gone away"
 	arguments ifNotNil: [
 		arguments with: shouldBeNil do: [ :arg :flag |
@@ -277,50 +216,35 @@ WeakMessageSend>>isAnyArgumentGarbage [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>isMessageSend [
+{ #category : #testing }
+WeakMessageSend >> isMessageSend [
 	^true
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>isReceiverGarbage [
+{ #category : #private }
+WeakMessageSend >> isReceiverGarbage [
 	"Make sure that my receiver hasn't gone away"
 	^self receiver isNil
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>isReceiverOrAnyArgumentGarbage [
+{ #category : #private }
+WeakMessageSend >> isReceiverOrAnyArgumentGarbage [
 	"Make sure that my receiver hasn't gone away"
 	^self isReceiverGarbage 
 		or: [self isAnyArgumentGarbage]
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>isValid [
+{ #category : #testing }
+WeakMessageSend >> isValid [
 	^self isReceiverOrAnyArgumentGarbage not
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>printOn: aStream [
+{ #category : #printing }
+WeakMessageSend >> printOn: aStream [
 
 	super printOn: aStream.
 	
@@ -333,47 +257,32 @@ WeakMessageSend>>printOn: aStream [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>receiver [
+{ #category : #accessing }
+WeakMessageSend >> receiver [
 	^self at: 1
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>receiver: anObject [
+{ #category : #accessing }
+WeakMessageSend >> receiver: anObject [
 	self at: 1 put: anObject
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>selector [
+{ #category : #accessing }
+WeakMessageSend >> selector [
 	^selector
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>selector: aSymbol [
+{ #category : #accessing }
+WeakMessageSend >> selector: aSymbol [
 	selector := aSymbol
 
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>value [
+{ #category : #evaluating }
+WeakMessageSend >> value [
 
 	| strongReceiver |
 	
@@ -389,11 +298,8 @@ WeakMessageSend>>value [
 
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>value: anObject [
+{ #category : #evaluating }
+WeakMessageSend >> value: anObject [
 
 	| strongReceiver |
 	
@@ -406,11 +312,8 @@ WeakMessageSend>>value: anObject [
 		with: anObject
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>value: anObject1 value: anObject2 [
+{ #category : #evaluating }
+WeakMessageSend >> value: anObject1 [ value: anObject2 
 
 	| strongReceiver |
 	
@@ -424,11 +327,8 @@ WeakMessageSend>>value: anObject1 value: anObject2 [
 		with: anObject2
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>value: anObject1 value: anObject2 value: anObject3 [
+{ #category : #evaluating }
+WeakMessageSend >> value: anObject1 [ value: anObject2 value: anObject3
 
 	| strongReceiver |
 	
@@ -443,11 +343,8 @@ WeakMessageSend>>value: anObject1 value: anObject2 value: anObject3 [
 		with: anObject3
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>valueWithArguments: anArray [
+{ #category : #evaluating }
+WeakMessageSend >> valueWithArguments: anArray [
 
 	| strongReceiver |
 	
@@ -459,11 +356,8 @@ WeakMessageSend>>valueWithArguments: anArray [
 		withArguments: (self collectArguments: anArray)
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-WeakMessageSend>>valueWithEnoughArguments: anArray [
+{ #category : #evaluating }
+WeakMessageSend >> valueWithEnoughArguments: anArray [
 	"call the selector with enough arguments from arguments and anArray"
 	| args strongReceiver |
 	

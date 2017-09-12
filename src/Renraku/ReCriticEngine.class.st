@@ -7,51 +7,35 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #Renraku-Utility,
-	#timestamp : 'YuriyTymchuk 7/14/2017 11:36'
+	#category : #Renraku-Utility
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReCriticEngine class>>critiquesOf: anEntity [
+{ #category : #running }
+ReCriticEngine class >> critiquesOf: anEntity [
 
 	^ self uniqueInstance critiquesOf: anEntity
 ]
 
-{
-	#category : #banning,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReCriticEngine class>>guidedBy: anEntity ban: aCritique [
+{ #category : #banning }
+ReCriticEngine class >> guidedBy: anEntity ban: aCritique [
 
 	^ self uniqueInstance guidedBy: anEntity ban: aCritique
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReCriticEngine class>>nodeCritiquesOf: anEntity [
+{ #category : #running }
+ReCriticEngine class >> nodeCritiquesOf: anEntity [
 
 	^ self uniqueInstance nodeCritiquesOf: anEntity
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReCriticEngine class>>uniqueInstance [
+{ #category : #accessing }
+ReCriticEngine class >> uniqueInstance [
 
 	^ uniqueInstance ifNil: [ uniqueInstance := self new ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReCriticEngine>>critiquesOf: anEntity [
+{ #category : #running }
+ReCriticEngine >> critiquesOf: anEntity [
 	| rules critiques manifest builder |
 	
 	builder := TheManifestBuilder new.
@@ -85,11 +69,8 @@ ReCriticEngine>>critiquesOf: anEntity [
 	^ critiques 
 ]
 
-{
-	#category : #banning,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReCriticEngine>>guidedBy: anEntity ban: aCritique [
+{ #category : #banning }
+ReCriticEngine >> guidedBy: anEntity ban: aCritique [
 
 	| candidates |
 	
@@ -104,11 +85,8 @@ ReCriticEngine>>guidedBy: anEntity ban: aCritique [
 			ifNotNil: [ :entity | entity ban: aCritique ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReCriticEngine>>nodeCritiquesOf: aMethod [
+{ #category : #running }
+ReCriticEngine >> nodeCritiquesOf: aMethod [
 	"this method exists because we have rules that check
 	ast nodes, but we display their critiques together with
 	method critiques… And because we do not want to re-check

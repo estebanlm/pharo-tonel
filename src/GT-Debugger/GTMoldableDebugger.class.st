@@ -15,25 +15,18 @@ Class {
 		'EnableStackColoring',
 		'GTDebuggerEnabledStatus'
 	],
-	#category : #GT-Debugger-UI,
-	#timestamp : 'AndreiChis 12/30/2015 11:06'
+	#category : #GT-Debugger-UI
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>availableAutomatically [
+{ #category : #testing }
+GTMoldableDebugger class >> availableAutomatically [
 	"Should this debugger be taken into account when looking for a debugger to handle an exception."
 	
 	^ false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>debugSession: aSession [
+{ #category : #'instance creation' }
+GTMoldableDebugger class >> debugSession: aSession [
 
 	<primitive: 19> "simulation guard"
 
@@ -42,96 +35,63 @@ GTMoldableDebugger class>>debugSession: aSession [
 	"]"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>defaultTitle [
+{ #category : #accessing }
+GTMoldableDebugger class >> defaultTitle [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>enableDebuggerWindowDistinctColor [
+{ #category : #'settings api' }
+GTMoldableDebugger class >> enableDebuggerWindowDistinctColor [
 	^ EnableDebuggerWindowDistinctColor ifNil: [EnableDebuggerWindowDistinctColor := false]
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>enableDebuggerWindowDistinctColor: aBoolean [
+{ #category : #'settings api' }
+GTMoldableDebugger class >> enableDebuggerWindowDistinctColor: aBoolean [
 	EnableDebuggerWindowDistinctColor := aBoolean.
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>enableStackColoring [
+{ #category : #'settings api' }
+GTMoldableDebugger class >> enableStackColoring [
 	^ EnableStackColoring ifNil: [EnableStackColoring := false]
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>enableStackColoring: aBoolean [
+{ #category : #'settings api' }
+GTMoldableDebugger class >> enableStackColoring: aBoolean [
 	EnableStackColoring := aBoolean.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>handlesContext: aContext [
+{ #category : #testing }
+GTMoldableDebugger class >> handlesContext: aContext [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>helpClass [
+{ #category : #accessing }
+GTMoldableDebugger class >> helpClass [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>isGTDebuggerEnabled [
+{ #category : #'settings api' }
+GTMoldableDebugger class >> isGTDebuggerEnabled [
 
 	^ GTDebuggerEnabledStatus ifNil: [ GTDebuggerEnabledStatus := Smalltalk tools debugger = self ]
 ]
 
-{
-	#category : #'instance creation api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>on: aDebugSession [
+{ #category : #'instance creation api' }
+GTMoldableDebugger class >> on: aDebugSession [
 
 	^ self new 	
 			session: aDebugSession
 ]
 
-{
-	#category : #'opening api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>openOn: aDebugSession withFullView: aBool [
+{ #category : #'opening api' }
+GTMoldableDebugger class >> openOn: aDebugSession withFullView: aBool [
 	
 	self openOn: aDebugSession withFullView: aBool andNotification: nil
 ]
 
-{
-	#category : #'opening api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>openOn: aDebugSession withFullView: aBool andNotification: aString [
+{ #category : #'opening api' }
+GTMoldableDebugger class >> openOn: aDebugSession withFullView: aBool andNotification: aString [
 	
 	| debugger |
 	debugger := (Smalltalk tools 
@@ -149,30 +109,21 @@ GTMoldableDebugger class>>openOn: aDebugSession withFullView: aBool andNotificat
 		ifFalse: [ debugger openWithNotification: aString]
 ]
 
-{
-	#category : #'window color api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>patchworkUIThemeColor [
+{ #category : #'window color api' }
+GTMoldableDebugger class >> patchworkUIThemeColor [
 	"Answer a default color for UI themes that make use of different colors for Browser, MessageList etc..."
 
 	^ Color lightRed
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>sessionClass [
+{ #category : #accessing }
+GTMoldableDebugger class >> sessionClass [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'settings api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>setGTDebuggerEnabledStatus: aBoolean [
+{ #category : #'settings api' }
+GTMoldableDebugger class >> setGTDebuggerEnabledStatus: aBoolean [
 	| oldStatus |
 	
 	oldStatus := self isGTDebuggerEnabled.
@@ -185,21 +136,15 @@ GTMoldableDebugger class>>setGTDebuggerEnabledStatus: aBoolean [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>spanNewSessionForContext: aContext fromProcess: aProcess [
+{ #category : #private }
+GTMoldableDebugger class >> spanNewSessionForContext: aContext fromProcess: aProcess [
 
 	^ self sessionClass 
 		named: 'temporary name' on: aProcess startedAt: aContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>spanNewSessionFrom: anotherSession [
+{ #category : #accessing }
+GTMoldableDebugger class >> spanNewSessionFrom: anotherSession [
 
 	^ (self sessionClass 
 		named: anotherSession name 
@@ -209,45 +154,29 @@ GTMoldableDebugger class>>spanNewSessionFrom: anotherSession [
 			yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>spanNewSessionLabeled: aString forContext: aContext fromProcess: aProcess [
+{ #category : #private }
+GTMoldableDebugger class >> spanNewSessionLabeled: aString forContext: aContext fromProcess: aProcess [
 
 	^ self sessionClass 
 		named: aString on: aProcess startedAt: aContext
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger class>>taskbarIconName [
+{ #category : #icons }
+GTMoldableDebugger class >> taskbarIconName [
 	^ #smallDebugIcon
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>actOnBrowserClosing: ann [
+{ #category : #callbacks }
+GTMoldableDebugger >> actOnBrowserClosing: ann [
 	self session ifNotNil: [ :aSession | aSession terminate ]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>actOnInspectorPaneRemoved: ann [
-
+{ #category : #callbacks }
+GTMoldableDebugger >> actOnInspectorPaneRemoved: ann [
 ]
 
-{
-	#category : #'building actions',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>actionsForPragmas: aSymbolsCollection [
+{ #category : #'building actions' }
+GTMoldableDebugger >> actionsForPragmas: aSymbolsCollection [
 
 	self session interruptedContext ifNil: [ ^ #() ].
 	^ (self allActionsForPragmas: aSymbolsCollection)
@@ -255,11 +184,8 @@ GTMoldableDebugger>>actionsForPragmas: aSymbolsCollection [
 
 ]
 
-{
-	#category : #'building actions',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>allActionsForPragmas: aSymbolsCollection [
+{ #category : #'building actions' }
+GTMoldableDebugger >> allActionsForPragmas: aSymbolsCollection [
 	
 	^ (self session class 
 		debuggingActionsForPragmas: aSymbolsCollection 
@@ -269,29 +195,20 @@ GTMoldableDebugger>>allActionsForPragmas: aSymbolsCollection [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>browser  [
+{ #category : #accessing }
+GTMoldableDebugger >> browser [ 
 
 	^ self presentations first
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>close [
+{ #category : #actions }
+GTMoldableDebugger >> close [
 
 	self browser ifNotNil: [ :aBrowser | aBrowser close ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>compose [
+{ #category : #building }
+GTMoldableDebugger >> compose [
 	"give the window a dedicated reddish color to ensure it gets noticed"
 	self class enableDebuggerWindowDistinctColor ifTrue: [ 
 		self color: (Color r: 1.0 g: 0.3 b: 0.3) ].
@@ -302,30 +219,21 @@ GTMoldableDebugger>>compose [
 	self registerActions
 ]
 
-{
-	#category : #'accessing context',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>contextToSelectFrom: aSession [
+{ #category : #'accessing context' }
+GTMoldableDebugger >> contextToSelectFrom: aSession [
 	^ aSession interruptedContext
 ]
 
-{
-	#category : #'accessing context',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>currentContext [
+{ #category : #'accessing context' }
+GTMoldableDebugger >> currentContext [
 
 	^self selectedContext 
 		ifNil: [ self interruptedContext ] 
 		ifNotNil:  [ self selectedContext  ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>debug: aContext using: aDebuggerClass [
+{ #category : #actions }
+GTMoldableDebugger >> debug: aContext using: aDebuggerClass [
 	| currentSession newDebugger |
 	
 	currentSession := self session.
@@ -337,37 +245,25 @@ GTMoldableDebugger>>debug: aContext using: aDebuggerClass [
 		
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>debuggerStructureIn: browser [
+{ #category : #building }
+GTMoldableDebugger >> debuggerStructureIn: browser [
 	self subclassResponsibility
 		
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>debuggerTransmissionsIn: browser [
+{ #category : #building }
+GTMoldableDebugger >> debuggerTransmissionsIn: browser [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>detachSession [
+{ #category : #actions }
+GTMoldableDebugger >> detachSession [
 	self flag: 'why silent value?'.
 	(self browser pane port: #entity) silentValue: nil
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>initialExtent [
+{ #category : #protocol }
+GTMoldableDebugger >> initialExtent [
 "This code was taken from the standard debugger to get the same behavior. Fell free to refactor"
 
 	RealEstateAgent standardWindowExtent y < 400 "a tiny screen" 
@@ -381,11 +277,8 @@ GTMoldableDebugger>>initialExtent [
 		do: [ 850@600 ]
 ]
 
-{
-	#category : #'building actions',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>installActionsForRootPragmas: aSymbolsCollection in: aPresentation [
+{ #category : #'building actions' }
+GTMoldableDebugger >> installActionsForRootPragmas: aSymbolsCollection [ in: aPresentation
 
 	aPresentation dynamicActions: [ :presentation |
 		self actionsForPragmas: (aSymbolsCollection collect: [ :aSymbol | #gt, aSymbol capitalized ]) ] .
@@ -394,38 +287,26 @@ GTMoldableDebugger>>installActionsForRootPragmas: aSymbolsCollection in: aPresen
 		self actionsForPragmas: (aSymbolsCollection collect: [ :aSymbol | #gtContext, aSymbol capitalized ]) ] .
 ]
 
-{
-	#category : #'building actions',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>installDebuggingActionsFor: aPresentation [
+{ #category : #'building actions' }
+GTMoldableDebugger >> installDebuggingActionsFor: aPresentation [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #'accessing context',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>interruptedContext [
+{ #category : #'accessing context' }
+GTMoldableDebugger >> interruptedContext [
 
 	^ self session interruptedContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>interruptedProcess [
+{ #category : #accessing }
+GTMoldableDebugger >> interruptedProcess [
 
 	^ self session interruptedProcess
 ]
 
-{
-	#category : #'scripting opening',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>open		 [
+{ #category : #'scripting opening' }
+GTMoldableDebugger >> open [		
 	| window |
 	window := super open.
 	
@@ -435,11 +316,8 @@ GTMoldableDebugger>>open		 [
 	^ window.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>openAndInitialize: aNewDebugger [
+{ #category : #actions }
+GTMoldableDebugger >> openAndInitialize: aNewDebugger [
 	
 	aNewDebugger color: self color.
 	aNewDebugger openWithFullView.
@@ -449,11 +327,8 @@ GTMoldableDebugger>>openAndInitialize: aNewDebugger [
 	^ aNewDebugger
 ]
 
-{
-	#category : #'scripting opening',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>openOn: anObject [
+{ #category : #'scripting opening' }
+GTMoldableDebugger >> openOn: anObject [
 	
 	^ (super openOn: anObject)
 		extent: self initialExtent;
@@ -461,11 +336,8 @@ GTMoldableDebugger>>openOn: anObject [
 		yourself
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>registerActions [
+{ #category : #building }
+GTMoldableDebugger >> registerActions [
 
 	self when: GLMBrowserClosing send: #actOnBrowserClosing: to: self.
 	self when: DebugActionExecuted send: #updateBrowserFrom: to: self.
@@ -473,66 +345,45 @@ GTMoldableDebugger>>registerActions [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>removeSessionSilently [
+{ #category : #updating }
+GTMoldableDebugger >> removeSessionSilently [
 
 	(self browser pane port: #entity) silentValue: nil
 ]
 
-{
-	#category : #'accessing context',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>selectedContext [
+{ #category : #'accessing context' }
+GTMoldableDebugger >> selectedContext [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>session [
+{ #category : #accessing }
+GTMoldableDebugger >> session [
  
 	^ (self browser pane port: #entity) value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>session: aSession [
+{ #category : #accessing }
+GTMoldableDebugger >> session: aSession [
 
 	(self browser pane port: #entity) value: aSession.
 	self title: aSession name
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>taskbarIcon [
+{ #category : #building }
+GTMoldableDebugger >> taskbarIcon [
 	^ self iconNamed: #glamorousBug
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>title [
+{ #category : #accessing }
+GTMoldableDebugger >> title [
 	
 	^ super title 
 		ifNil: [ self class defaultTitle ] 
 		ifNotNil: [ :aString | aString ] 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>updateBrowser [
+{ #category : #updating }
+GTMoldableDebugger >> updateBrowser [
 	| browserPane session |
 	
 	session := self session.
@@ -541,11 +392,8 @@ GTMoldableDebugger>>updateBrowser [
 	(browserPane port: #entity) value: session.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>updateBrowserFrom: anAnnouncement [
+{ #category : #updating }
+GTMoldableDebugger >> updateBrowserFrom: anAnnouncement [
 	
 	anAnnouncement action needsUpdate ifTrue: [
 		self updateBrowser ].
@@ -553,11 +401,8 @@ GTMoldableDebugger>>updateBrowserFrom: anAnnouncement [
 	self announcer announce: ( GTDebuggerBrowserUpdateRequest from: anAnnouncement )
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTMoldableDebugger>>windowIsClosing  [
+{ #category : #callbacks }
+GTMoldableDebugger >> windowIsClosing [ 
 	self flag: 'bug here when an announcement is inspected?'.
 	self announce: (GLMBrowserClosing new presentation: self)
 ]

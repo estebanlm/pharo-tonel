@@ -12,44 +12,31 @@ Class {
 	#instVars : [
 		'character'
 	],
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:14'
+	#category : #Regex-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharacter class>>with: aCharacter [
+{ #category : #'instance creation' }
+RxsCharacter class >> with: aCharacter [
 
 	^self new initializeCharacter: aCharacter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharacter>>character [
+{ #category : #accessing }
+RxsCharacter >> character [
 
 	^character
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharacter>>dispatchTo: aMatcher [
+{ #category : #accessing }
+RxsCharacter >> dispatchTo: aMatcher [
 	"Inform the matcher of the kind of the node, and it
 	will do whatever it has to."
 
 	^aMatcher syntaxCharacter: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharacter>>enumerateTo: aSet ignoringCase: aBoolean [
+{ #category : #accessing }
+RxsCharacter >> enumerateTo: aSet ignoringCase: aBoolean [
 
 	aBoolean
 		ifTrue: 
@@ -59,31 +46,22 @@ RxsCharacter>>enumerateTo: aSet ignoringCase: aBoolean [
 		ifFalse: [aSet add: character]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharacter>>initializeCharacter: aCharacter [
+{ #category : #initialize-release }
+RxsCharacter >> initializeCharacter: aCharacter [
 	"See class comment for instance variable description."
 
 	character := aCharacter
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharacter>>isAtomic [
+{ #category : #testing }
+RxsCharacter >> isAtomic [
 	"A character is always atomic."
 
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharacter>>isEnumerable [
+{ #category : #testing }
+RxsCharacter >> isEnumerable [
 
 	^true
 ]

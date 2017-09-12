@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MCAncestryTest,
 	#superclass : #MCTestCase,
-	#category : #Monticello-Tests,
-	#timestamp : ''
+	#category : #Monticello-Tests
 }
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCAncestryTest>>assertCommonAncestorOf: leftName and: rightName in: options in: tree [
+{ #category : #asserting }
+MCAncestryTest >> assertCommonAncestorOf: leftName and: rightName in: options [ in: tree
 	| left right ancestor |
 	left := self versionForName: leftName in: tree.
 	right := self versionForName: rightName in: tree.
@@ -22,40 +15,28 @@ MCAncestryTest>>assertCommonAncestorOf: leftName and: rightName in: options in: 
 	self assert: (options includes: ancestor name)
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCAncestryTest>>assertCommonAncestorOf: leftName and: rightName is: ancestorName in: tree [
+{ #category : #asserting }
+MCAncestryTest >> assertCommonAncestorOf: leftName and: rightName is: ancestorName in: tree [
 	self assertCommonAncestorOf: leftName and: rightName in: (Array with: ancestorName) in: tree
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCAncestryTest>>assertNamesOf: versionInfoCollection are: nameArray [
+{ #category : #asserting }
+MCAncestryTest >> assertNamesOf: versionInfoCollection are: nameArray [
 	| names |
 	names := versionInfoCollection collect: [:ea | ea name].
 	
 	self assert: names asArray = nameArray
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCAncestryTest>>assertPathTo: aSymbol is: anArray [
+{ #category : #asserting }
+MCAncestryTest >> assertPathTo: aSymbol is: anArray [
 	self
 		assertNamesOf: (self tree allAncestorsOnPathTo: (self treeFrom: {aSymbol}))
 		are: anArray
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCAncestryTest>>testCommonAncestors [
+{ #category : #tests }
+MCAncestryTest >> testCommonAncestors [
 	self assertCommonAncestorOf: #a2 and: #e2 is: #a1 in: self tree.
 	self assertCommonAncestorOf: #e2 and: #b3 is: #a1 in: self tree.
 	self assertCommonAncestorOf: #b2 and: #e2 is: #'00' in: self tree.
@@ -68,11 +49,8 @@ MCAncestryTest>>testCommonAncestors [
 	self assertCommonAncestorOf: #a1 and: #b2 is: #a1 in: self twoPersonTree.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCAncestryTest>>testDescendants [
+{ #category : #tests }
+MCAncestryTest >> testDescendants [
 	| c1 a1 b3 q1 q2 c2 |
 	c1 := self tree.
 	a1 := self treeFrom: #(a1 (('00'))).
@@ -98,27 +76,18 @@ MCAncestryTest>>testDescendants [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCAncestryTest>>testLinearPath [
+{ #category : #tests }
+MCAncestryTest >> testLinearPath [
 	self assertPathTo: #b1 is: #(b3 b2)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCAncestryTest>>testPathToMissingAncestor [
+{ #category : #tests }
+MCAncestryTest >> testPathToMissingAncestor [
 	self assert: (self tree allAncestorsOnPathTo: MCVersionInfo new) isEmpty
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCAncestryTest>>tree [
+{ #category : #building }
+MCAncestryTest >> tree [
 	^ self treeFrom:
 		#(c1
 			((e2
@@ -138,11 +107,8 @@ MCAncestryTest>>tree [
 			(d1)))
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCAncestryTest>>twoPersonTree [
+{ #category : #building }
+MCAncestryTest >> twoPersonTree [
 	^ self treeFrom:
 		#(c1
 			((a4
@@ -155,11 +121,8 @@ MCAncestryTest>>twoPersonTree [
 					((a1)))))))
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCAncestryTest>>versionForName: name in: tree [
+{ #category : #building }
+MCAncestryTest >> versionForName: name in: tree [
 	(tree name = name) ifTrue: [^ tree].
 	
 	tree ancestors do: [:ea | (self versionForName: name in: ea) ifNotNil: [:v | ^ v]].

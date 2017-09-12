@@ -10,15 +10,11 @@ Class {
 	#classVars : [
 		'ClassVar'
 	],
-	#category : #OpalCompiler-Tests-Source,
-	#timestamp : 'kwl 10/14/2006 10:43'
+	#category : #OpalCompiler-Tests-Source
 }
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>compile2method: sourceStream  [
+{ #category : #compiling }
+OCSourceCode2BytecodeTest >> compile2method: sourceStream [ 
 			"Compile code without logging the source in the changes file"
 			^OpalCompiler new
 						source: sourceStream;
@@ -27,11 +23,8 @@ OCSourceCode2BytecodeTest>>compile2method: sourceStream  [
 		
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testDoDup [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testDoDup [
 	| selector method scanner |
 	method := self compile2method: 'duplicateTopBytecode 3 + 4; yourself'.
 	selector := method selector.
@@ -41,11 +34,8 @@ OCSourceCode2BytecodeTest>>testDoDup [
 	self assert: scanner peekInstruction selector == #doDup description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testDoPop [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testDoPop [
 	| selector method scanner |
 	selector := (method := self compile2method: 'popStackBytecode 3 + 4') selector.
 	scanner := InstructionStream on:  method.
@@ -54,11 +44,8 @@ OCSourceCode2BytecodeTest>>testDoPop [
 	self assert: scanner peekInstruction selector == #doPop description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimAdd [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimAdd [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimAdd 3 + 4') selector.
 	scanner := InstructionStream on:  method.
@@ -70,11 +57,8 @@ OCSourceCode2BytecodeTest>>testPrimAdd [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimAt [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimAt [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimAt self at: 3') selector.
 	scanner := InstructionStream on: method.
@@ -86,11 +70,8 @@ OCSourceCode2BytecodeTest>>testPrimAt [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimAtEnd [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimAtEnd [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimSize self atEnd') selector.
 	scanner := InstructionStream on:  method.
@@ -102,11 +83,8 @@ OCSourceCode2BytecodeTest>>testPrimAtEnd [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimAtPut [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimAtPut [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimAtPut self at: 3 put: 4') selector.
 	scanner := InstructionStream on:  method.
@@ -118,11 +96,8 @@ OCSourceCode2BytecodeTest>>testPrimAtPut [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimBitAnd [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimBitAnd [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimBitAnd 3 bitAnd: 4') selector.
 	scanner := InstructionStream on: method.
@@ -134,11 +109,8 @@ OCSourceCode2BytecodeTest>>testPrimBitAnd [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimBitOr [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimBitOr [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimBitOr 3 bitOr: 4') selector.
 	scanner := InstructionStream on:  method.
@@ -150,11 +122,8 @@ OCSourceCode2BytecodeTest>>testPrimBitOr [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimBitShift [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimBitShift [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimBitShift 3 bitShift: 4') selector.
 	scanner := InstructionStream on:  method.
@@ -166,11 +135,8 @@ OCSourceCode2BytecodeTest>>testPrimBitShift [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimDivide [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimDivide [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimDivide 3 / 4') selector.
 	scanner := InstructionStream on:  method.
@@ -182,11 +148,8 @@ OCSourceCode2BytecodeTest>>testPrimDivide [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimDoWith [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimDoWith [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodeDoWith self do: #something') selector.
 	scanner := InstructionStream on:  method.
@@ -198,11 +161,8 @@ OCSourceCode2BytecodeTest>>testPrimDoWith [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimEqual [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimEqual [
 	| selector method scanner did |
 	selector := (method  := self compile2method: 'bytecodePrimEqual 3 = 4') selector.
 	scanner := InstructionStream on:  method.
@@ -214,11 +174,8 @@ OCSourceCode2BytecodeTest>>testPrimEqual [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimGreaterOrEqual [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimGreaterOrEqual [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimGreaterOrEqual 3 >= 4') selector.
 	scanner := InstructionStream on:  method.
@@ -230,11 +187,8 @@ OCSourceCode2BytecodeTest>>testPrimGreaterOrEqual [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimGreaterThan [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimGreaterThan [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimGreaterThan 3 > 4') selector.
 	scanner := InstructionStream on:  method.
@@ -246,11 +200,8 @@ OCSourceCode2BytecodeTest>>testPrimGreaterThan [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimIdentity [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimIdentity [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimIdentity 3 == 4') selector.
 	scanner := InstructionStream on:  method.
@@ -262,11 +213,8 @@ OCSourceCode2BytecodeTest>>testPrimIdentity [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimLessOrEqual [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimLessOrEqual [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimLessOrEqual 3 <= 4') selector.
 	scanner := InstructionStream on:  method.
@@ -278,11 +226,8 @@ OCSourceCode2BytecodeTest>>testPrimLessOrEqual [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimLessThan [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimLessThan [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimLessThan 3 < 4') selector.
 	scanner := InstructionStream on:  method.
@@ -294,11 +239,8 @@ OCSourceCode2BytecodeTest>>testPrimLessThan [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimMakePoint [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimMakePoint [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimMakePoint 3 @ 4') selector.
 	scanner := InstructionStream on:  method.
@@ -310,11 +252,8 @@ OCSourceCode2BytecodeTest>>testPrimMakePoint [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimMod [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimMod [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimMod 3 \\ 4') selector.
 	scanner := InstructionStream on:  method.
@@ -326,11 +265,8 @@ OCSourceCode2BytecodeTest>>testPrimMod [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimMultiply [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimMultiply [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimMultiply 3 * 4') selector.
 	scanner := InstructionStream on:  method.
@@ -342,11 +278,8 @@ OCSourceCode2BytecodeTest>>testPrimMultiply [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimNew [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimNew [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimNew super new') selector.
 	scanner := InstructionStream on:  method.
@@ -358,11 +291,8 @@ OCSourceCode2BytecodeTest>>testPrimNew [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimNewWith [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimNewWith [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodeNewWith self new: 3') selector.
 	scanner := InstructionStream on:  method.
@@ -374,11 +304,8 @@ OCSourceCode2BytecodeTest>>testPrimNewWith [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimNext [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimNext [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimSize self next') selector.
 	scanner := InstructionStream on:  method.
@@ -390,11 +317,8 @@ OCSourceCode2BytecodeTest>>testPrimNext [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimNextPut [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimNextPut [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimNextPut self nextPut: 3') selector.
 	scanner := InstructionStream on: method.
@@ -406,11 +330,8 @@ OCSourceCode2BytecodeTest>>testPrimNextPut [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimNotEqual [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimNotEqual [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimNotEqual 3 ~= 4') selector.
 	scanner := InstructionStream on: method.
@@ -422,11 +343,8 @@ OCSourceCode2BytecodeTest>>testPrimNotEqual [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimPointX [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimPointX [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimPointX self x') selector.
 	scanner := InstructionStream on: method.
@@ -438,11 +356,8 @@ OCSourceCode2BytecodeTest>>testPrimPointX [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimPointY [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimPointY [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimPointY self y') selector.
 	scanner := InstructionStream on: method.
@@ -454,11 +369,8 @@ OCSourceCode2BytecodeTest>>testPrimPointY [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimQuo [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimQuo [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimQuo 3 // 4') selector.
 	scanner := InstructionStream on:  method.
@@ -470,11 +382,8 @@ OCSourceCode2BytecodeTest>>testPrimQuo [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimSize [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimSize [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimSize self size') selector.
 	scanner := InstructionStream on: method.
@@ -486,11 +395,8 @@ OCSourceCode2BytecodeTest>>testPrimSize [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimSubtract [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimSubtract [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimSubtract 3 - 4') selector.
 	scanner := InstructionStream on:  method.
@@ -502,11 +408,8 @@ OCSourceCode2BytecodeTest>>testPrimSubtract [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimValue [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimValue [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodePrimValue self value') selector.
 	scanner := InstructionStream on:  method.
@@ -518,11 +421,8 @@ OCSourceCode2BytecodeTest>>testPrimValue [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPrimValueWith [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPrimValueWith [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodeValueWith self value: 3') selector.
 	scanner := InstructionStream on: method.
@@ -534,11 +434,8 @@ OCSourceCode2BytecodeTest>>testPrimValueWith [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPushActiveContextBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPushActiveContextBytecode [
 	| selector method scanner |
 	selector := (method := self compile2method: 'pushActiveContextBytecode thisContext yourself') selector.
 	scanner := InstructionStream on: method.
@@ -546,11 +443,8 @@ OCSourceCode2BytecodeTest>>testPushActiveContextBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPushConstantFalseBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPushConstantFalseBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'pushConstantFalseBytecode false yourself') selector.
 	scanner := InstructionStream on: method.
@@ -560,11 +454,8 @@ OCSourceCode2BytecodeTest>>testPushConstantFalseBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPushConstantMinusOneBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPushConstantMinusOneBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'pushConstantMinusOneBytecode -1 yourself') selector.
 	scanner := InstructionStream on: method.
@@ -574,11 +465,8 @@ OCSourceCode2BytecodeTest>>testPushConstantMinusOneBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPushConstantNilBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPushConstantNilBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'pushConstantNilBytecode nil yourself') selector.
 	scanner := InstructionStream on: method.
@@ -588,11 +476,8 @@ OCSourceCode2BytecodeTest>>testPushConstantNilBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPushConstantOneBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPushConstantOneBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'pushConstantOneBytecode 1 yourself') selector.
 	scanner := InstructionStream on:  method.
@@ -602,11 +487,8 @@ OCSourceCode2BytecodeTest>>testPushConstantOneBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPushConstantTrueBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPushConstantTrueBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'pushConstantTrueBytecode true yourself') selector.
 	scanner := InstructionStream on: method.
@@ -615,11 +497,8 @@ OCSourceCode2BytecodeTest>>testPushConstantTrueBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPushConstantTwoBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPushConstantTwoBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'pushConstantTwoBytecode 2 yourself') selector.
 	scanner := InstructionStream on: method.
@@ -629,11 +508,8 @@ OCSourceCode2BytecodeTest>>testPushConstantTwoBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPushConstantZeroBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPushConstantZeroBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'pushConstantZeroBytecode 0 yourself') selector.
 	scanner := InstructionStream on: method.
@@ -643,11 +519,8 @@ OCSourceCode2BytecodeTest>>testPushConstantZeroBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPushLiteralConstantBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPushLiteralConstantBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'pushLiteralConstantBytecode #() yourself') selector.
 	scanner := InstructionStream on: method.
@@ -656,11 +529,8 @@ OCSourceCode2BytecodeTest>>testPushLiteralConstantBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPushLiteralVariableBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPushLiteralVariableBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'pushLiteralVariableBytecode ClassVar yourself') selector.
 	scanner := InstructionStream on: method.
@@ -669,11 +539,8 @@ OCSourceCode2BytecodeTest>>testPushLiteralVariableBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPushReceiverBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPushReceiverBytecode [
 	| selector method scanner |
 	selector := (method := self compile2method: 'pushReceiverBytecode ^ self yourself') selector.
 	scanner := InstructionStream on: method.
@@ -681,11 +548,8 @@ OCSourceCode2BytecodeTest>>testPushReceiverBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPushReceiverVariableBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPushReceiverVariableBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'pushReceiverVariableBytecode instVar yourself') selector.
 	scanner := InstructionStream on: method.
@@ -695,11 +559,8 @@ OCSourceCode2BytecodeTest>>testPushReceiverVariableBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testPushTemporaryVariableBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testPushTemporaryVariableBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'pushTemporaryVariableBytecode: t0 t0 yourself') selector.
 	scanner := InstructionStream on: method.
@@ -709,11 +570,8 @@ OCSourceCode2BytecodeTest>>testPushTemporaryVariableBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testReturnFalseBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testReturnFalseBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'returnFalseBytecode 3 + 4. ^ false') selector.
 	scanner := InstructionStream on: method.
@@ -725,11 +583,8 @@ OCSourceCode2BytecodeTest>>testReturnFalseBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testReturnNilBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testReturnNilBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'returnNilBytecode 3 + 4. ^ nil') selector.
 	scanner := InstructionStream on: method.
@@ -741,11 +596,8 @@ OCSourceCode2BytecodeTest>>testReturnNilBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testReturnReceiver [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testReturnReceiver [
 	| selector method scanner |
 	selector := (method := self compile2method: 'returnReceiver 3 + 4. ^ self') selector.
 	scanner := InstructionStream on: method.
@@ -755,11 +607,8 @@ OCSourceCode2BytecodeTest>>testReturnReceiver [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testReturnTopFromBlock [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testReturnTopFromBlock [
 	| selector method scanner |
 	
 	selector := (method := self compile2method: 'returnTopFromBlock |ia| ^[ia]') selector.
@@ -769,11 +618,8 @@ OCSourceCode2BytecodeTest>>testReturnTopFromBlock [
 		description: ('Failed ' , selector)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testReturnTopFromMethod [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testReturnTopFromMethod [
 	| selector method scanner |
 	selector := (method := self compile2method: 'returnTopFromMethod ^ 3 + 4') selector.
 	scanner := InstructionStream on: method.
@@ -783,11 +629,8 @@ OCSourceCode2BytecodeTest>>testReturnTopFromMethod [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testReturnTrueBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testReturnTrueBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'returnTrueBytecode 3 + 4. ^ true') selector.
 	scanner := InstructionStream on: method.
@@ -799,11 +642,8 @@ OCSourceCode2BytecodeTest>>testReturnTrueBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testStoreAndPopLiteralVariableBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testStoreAndPopLiteralVariableBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'storeAndPopLiteralVariableBytecode ClassVar := nil') selector.
 	scanner := InstructionStream on: method.
@@ -812,11 +652,8 @@ OCSourceCode2BytecodeTest>>testStoreAndPopLiteralVariableBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testStoreAndPopReceiverVariableBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testStoreAndPopReceiverVariableBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'storeAndPopReceiverVariableBytecode instVar := self') selector.
 	scanner := InstructionStream on: method.
@@ -826,11 +663,8 @@ OCSourceCode2BytecodeTest>>testStoreAndPopReceiverVariableBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testStoreAndPopTemporaryVariableBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testStoreAndPopTemporaryVariableBytecode [
 	| selector method scanner did |
 	selector := (method:= self compile2method: 'storeAndPopTemporaryVariableBytecode | t0 t1 | t1 := t0') selector.
 	scanner := InstructionStream on: method.
@@ -840,11 +674,8 @@ OCSourceCode2BytecodeTest>>testStoreAndPopTemporaryVariableBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testStoreIntoLiteralVariableBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testStoreIntoLiteralVariableBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'storeIntoLiteralVariableBytecode ^ (ClassVar := nil)') selector.
 	scanner := InstructionStream on: method.
@@ -853,11 +684,8 @@ OCSourceCode2BytecodeTest>>testStoreIntoLiteralVariableBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testStoreIntoReceiverVariableBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testStoreIntoReceiverVariableBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'storeIntoReceiverVariableBytecode ^ (instVar := self)') selector.
 	scanner := InstructionStream on: method.
@@ -867,11 +695,8 @@ OCSourceCode2BytecodeTest>>testStoreIntoReceiverVariableBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testStoreIntoTemporaryVariableBytecode [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testStoreIntoTemporaryVariableBytecode [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'storeIntoTemporaryVariableBytecode | t0 t1 | ^ (t1 := t0)') selector.
 	scanner := InstructionStream on: method.
@@ -881,11 +706,8 @@ OCSourceCode2BytecodeTest>>testStoreIntoTemporaryVariableBytecode [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testSuperSend [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testSuperSend [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodeSuperSend super yourself') selector.
 	scanner := InstructionStream on: method.
@@ -897,11 +719,8 @@ OCSourceCode2BytecodeTest>>testSuperSend [
 		description: 'Failed ' , selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCSourceCode2BytecodeTest>>testSuperSendWith [
+{ #category : #tests }
+OCSourceCode2BytecodeTest >> testSuperSendWith [
 	| selector method scanner did |
 	selector := (method := self compile2method: 'bytecodeSuperSendWith super new: 0') selector.
 	scanner := InstructionStream on: method.

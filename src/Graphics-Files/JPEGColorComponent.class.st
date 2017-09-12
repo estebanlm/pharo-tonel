@@ -35,92 +35,61 @@ Class {
 		'dcTableIndex',
 		'acTableIndex'
 	],
-	#category : #Graphics-Files,
-	#timestamp : '<historical>'
+	#category : #Graphics-Files
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>acTableIndex [
+{ #category : #accessing }
+JPEGColorComponent >> acTableIndex [
 
 	^acTableIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>acTableIndex: anInteger  [
+{ #category : #accessing }
+JPEGColorComponent >> acTableIndex: anInteger [ 
 	acTableIndex := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>dcTableIndex [
+{ #category : #accessing }
+JPEGColorComponent >> dcTableIndex [
 
 	^dcTableIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>dcTableIndex: anInteger  [
+{ #category : #accessing }
+JPEGColorComponent >> dcTableIndex: anInteger [ 
 	dcTableIndex := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>heightInBlocks [
+{ #category : #accessing }
+JPEGColorComponent >> heightInBlocks [
 
 	^heightInBlocks
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>heightInBlocks: anInteger  [
+{ #category : #accessing }
+JPEGColorComponent >> heightInBlocks: anInteger [ 
 	heightInBlocks := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>id [
+{ #category : #accessing }
+JPEGColorComponent >> id [
 
 	^id
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>id: anObject  [
+{ #category : #accessing }
+JPEGColorComponent >> id: anObject [ 
 	id := anObject
 ]
 
-{
-	#category : #'sample streaming',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>initializeSampleStreamBlocks: aCollection  [
+{ #category : #'sample streaming' }
+JPEGColorComponent >> initializeSampleStreamBlocks: aCollection [ 
 	mcuBlocks := aCollection.
 	self resetSampleStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>mcuWidth: mw mcuHeight: mh dctSize: ds  [
+{ #category : #accessing }
+JPEGColorComponent >> mcuWidth: mw mcuHeight: mh dctSize: ds [ 
 	mcuWidth := mw.
 	mcuHeight := mh.
 	dctSize := ds.
@@ -128,11 +97,8 @@ JPEGColorComponent>>mcuWidth: mw mcuHeight: mh dctSize: ds  [
 	vSampleFactor := mcuHeight // heightInBlocks
 ]
 
-{
-	#category : #'sample streaming',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>nextSample [
+{ #category : #'sample streaming' }
+JPEGColorComponent >> nextSample [
 	| dx dy blockIndex sampleIndex sample |
 	dx := currentX // hSampleFactor.
 	dy := currentY // vSampleFactor.
@@ -146,70 +112,46 @@ JPEGColorComponent>>nextSample [
 	^ sample
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>priorDCValue: aNumber  [
+{ #category : #accessing }
+JPEGColorComponent >> priorDCValue: aNumber [ 
 	priorDCValue := aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>qTableIndex [
+{ #category : #accessing }
+JPEGColorComponent >> qTableIndex [
 	^qTableIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>qTableIndex: anInteger  [
+{ #category : #accessing }
+JPEGColorComponent >> qTableIndex: anInteger [ 
 	qTableIndex := anInteger
 ]
 
-{
-	#category : #'sample streaming',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>resetSampleStream [
+{ #category : #'sample streaming' }
+JPEGColorComponent >> resetSampleStream [
 	currentX := 0.
 	currentY := 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>totalMcuBlocks [
+{ #category : #accessing }
+JPEGColorComponent >> totalMcuBlocks [
 
 	^ heightInBlocks * widthInBlocks
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>updateDCValue: aNumber  [
+{ #category : #accessing }
+JPEGColorComponent >> updateDCValue: aNumber [ 
 	priorDCValue := priorDCValue + aNumber.
 	^ priorDCValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>widthInBlocks [
+{ #category : #accessing }
+JPEGColorComponent >> widthInBlocks [
 
 	^widthInBlocks
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGColorComponent>>widthInBlocks: anInteger  [
+{ #category : #accessing }
+JPEGColorComponent >> widthInBlocks: anInteger [ 
 	widthInBlocks := anInteger
 ]

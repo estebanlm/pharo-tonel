@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMPagerMorphTest,
 	#superclass : #TestCase,
@@ -9,51 +6,35 @@ Class {
 		'pagerMorph',
 		'window'
 	],
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerMorphTest>>buttonsMorphs [
+{ #category : #accessing }
+GLMPagerMorphTest >> buttonsMorphs [
 
 	^ pagerMorph subbricks second subbricks second subbricks
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerMorphTest>>createSimplePaneMorph [
+{ #category : #private }
+GLMPagerMorphTest >> createSimplePaneMorph [
 
 	^ Morph new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerMorphTest>>openInWindow [
+{ #category : #private }
+GLMPagerMorphTest >> openInWindow [
 
 	window := pagerMorph asBrickedMorph openInWindow 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerMorphTest>>panesMorphs [
+{ #category : #accessing }
+GLMPagerMorphTest >> panesMorphs [
 
 	^ pagerMorph subbricks first subbricks first subbricks
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerMorphTest>>setUp [
+{ #category : #running }
+GLMPagerMorphTest >> setUp [
 
 	pagerModel := GLMPagerModel new.
 	pagerMorph := GLMPagerBrick new
@@ -61,20 +42,14 @@ GLMPagerMorphTest>>setUp [
 		yourself.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerMorphTest>>tearDown [
+{ #category : #running }
+GLMPagerMorphTest >> tearDown [
 
 	window ifNotNil: [ window delete ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerMorphTest>>testPushPanesAfterOpen [
+{ #category : #tests }
+GLMPagerMorphTest >> testPushPanesAfterOpen [
 
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
 	self openInWindow.
@@ -89,11 +64,8 @@ GLMPagerMorphTest>>testPushPanesAfterOpen [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerMorphTest>>testPushPanesBeforeOpen [
+{ #category : #tests }
+GLMPagerMorphTest >> testPushPanesBeforeOpen [
 
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.

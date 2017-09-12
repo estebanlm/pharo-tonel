@@ -1,21 +1,13 @@
-Extension {
-	#name : #Bag
-}
+Extension { #name : #Bag }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Bag>>gtInspectorItemsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Bag >> gtInspectorItemsIn: composite [
 	"Disable the Items presentation for a bag.
 	This avoid showing all duplicated items."
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Bag>>gtInspectorOccurrencesIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Bag >> gtInspectorOccurrencesIn: composite [
 	<gtInspectorPresentationOrder: 1>  
 	^ (composite fastTable)
 		title: 'Occurrences';

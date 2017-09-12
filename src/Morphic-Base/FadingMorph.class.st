@@ -21,63 +21,44 @@ Class {
 		'fadingFactor',
 		'resetable'
 	],
-	#category : #Morphic-Base-Basic,
-	#timestamp : 'HenrikNergaard 1/25/2016 00:17'
+	#category : #Morphic-Base-Basic
 }
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FadingMorph>>areasRemainingToFill: aRectangle  [
+{ #category : #drawing }
+FadingMorph >> areasRemainingToFill: aRectangle [ 
 	
 	"the whole rectangle is translucent"
 	
 	^Array with: aRectangle
 ]
 
-{
-	#category : #properties-setting,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FadingMorph>>beResetable [
+{ #category : #properties-setting }
+FadingMorph >> beResetable [
 
 	resetable := true
 ]
 
-{
-	#category : #properties-setting,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FadingMorph>>beUnResetable [
+{ #category : #properties-setting }
+FadingMorph >> beUnResetable [
 
 	resetable := false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FadingMorph>>defaultFadingFactor [
+{ #category : #initialization }
+FadingMorph >> defaultFadingFactor [
 	"show the morph for 2.5 seconds"
 	
 	^0.04 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FadingMorph>>fullDrawOn: aCanvas [
+{ #category : #drawing }
+FadingMorph >> fullDrawOn: aCanvas [
 
 	super fullDrawOn: (aCanvas asAlphaBlendingCanvas: alpha)
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FadingMorph>>handleMouseMove: anEvent [
+{ #category : #events-processing }
+FadingMorph >> handleMouseMove: anEvent [
 
 	(anEvent wasHandled or: [ resetable not ]) ifTrue:[ ^self ]. 
 	
@@ -87,11 +68,8 @@ FadingMorph>>handleMouseMove: anEvent [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FadingMorph>>initialize [
+{ #category : #initialization }
+FadingMorph >> initialize [
 
 	super initialize.
 	
@@ -104,22 +82,16 @@ FadingMorph>>initialize [
 	fadingFactor := self defaultFadingFactor.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FadingMorph>>initializeAppearance [
+{ #category : #initialization }
+FadingMorph >> initializeAppearance [
 
 	self 
 	color: Color gray;
 	borderStyle: (BorderStyle inset width: 3)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FadingMorph>>initializeLayout [
+{ #category : #initialization }
+FadingMorph >> initializeLayout [
 
 	self 
 	changeTableLayout;
@@ -131,29 +103,20 @@ FadingMorph>>initializeLayout [
 	cellInset: 0.
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FadingMorph>>rejectsEvent: anEvent [
+{ #category : #events-processing }
+FadingMorph >> rejectsEvent: anEvent [
 
 	^(anEvent isMouse and: [ anEvent isMouseDown ]) or: [ super rejectsEvent: anEvent ]
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FadingMorph>>resetAlpha [
+{ #category : #'stepping and presenter' }
+FadingMorph >> resetAlpha [
 
 	alpha := 1.0
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FadingMorph>>step [
+{ #category : #'stepping and presenter' }
+FadingMorph >> step [
 
 	alpha <= fadingFactor ifTrue: [ ^self delete ].
 
@@ -165,19 +128,13 @@ FadingMorph>>step [
 	
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FadingMorph>>stepTime [
+{ #category : #'stepping and presenter' }
+FadingMorph >> stepTime [
 
 	^100
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FadingMorph>>wantsSteps [
+{ #category : #'stepping and presenter' }
+FadingMorph >> wantsSteps [
 	^true
 ]

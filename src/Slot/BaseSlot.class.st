@@ -9,63 +9,41 @@ Class {
 	#instVars : [
 		'default'
 	],
-	#category : #Slot-Examples,
-	#timestamp : 'MarcusDenker 4/1/2015 10:57'
+	#category : #Slot-Examples
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BaseSlot>>= other [
+{ #category : #comparing }
+BaseSlot >> = other [
 	^ super = other and: [default = other default]
 ]
 
-{
-	#category : #initalize,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BaseSlot>>default [
+{ #category : #initalize }
+BaseSlot >> default [
 	^ default
 ]
 
-{
-	#category : #initalize,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BaseSlot>>default: anObject [
+{ #category : #initalize }
+BaseSlot >> default: anObject [
 	default := anObject
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BaseSlot>>hash [
+{ #category : #comparing }
+BaseSlot >> hash [
 	^super hash bitXor: default hash
 ]
 
-{
-	#category : #initalize,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BaseSlot>>initialize: anObject [
+{ #category : #initalize }
+BaseSlot >> initialize: anObject [
 	self write: default to: anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BaseSlot>>isVisible [
+{ #category : #testing }
+BaseSlot >> isVisible [
 	^ false
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BaseSlot>>wantsInitalization [
+{ #category : #meta-object-protocol }
+BaseSlot >> wantsInitalization [
 	"if a slot wants to hable initalization, return true here"
 	^true
 ]

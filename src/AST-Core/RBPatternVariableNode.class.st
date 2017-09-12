@@ -26,35 +26,25 @@ Class {
 		'isStatement',
 		'isAnything'
 	],
-	#category : #AST-Core-Pattern,
-	#timestamp : 'md 8/9/2005 14:59'
+	#category : #AST-Core-Pattern
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternVariableNode class>>identifierNamed: anIdentifierName at: aPosition [
+{ #category : #'instance creation' }
+RBPatternVariableNode class >> identifierNamed: anIdentifierName at: aPosition [
 	^anIdentifierName isPatternVariable 
 		ifTrue: [super identifierNamed: anIdentifierName at: aPosition]
 		ifFalse: [RBVariableNode identifierNamed: anIdentifierName at: aPosition]
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternVariableNode>>copyInContext: aDictionary [
+{ #category : #matching }
+RBPatternVariableNode >> copyInContext: aDictionary [
 	^ (self isList and: [ self isStatement ])
 		ifTrue: [ self copyList: (aDictionary at: self) inContext: aDictionary ]
 		ifFalse: [ (aDictionary at: self) copy ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternVariableNode>>initializePatternVariables [
+{ #category : #initialize-release }
+RBPatternVariableNode >> initializePatternVariables [
 	| myname |
 	myname := self name.
 	isAnything := isList := isLiteral := isStatement := recurseInto := false.
@@ -77,51 +67,33 @@ RBPatternVariableNode>>initializePatternVariables [
 										ifFalse: [^self]]]]]
 ]
 
-{
-	#category : #testing-matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternVariableNode>>isAnything [
+{ #category : #testing-matching }
+RBPatternVariableNode >> isAnything [
 	^isAnything
 ]
 
-{
-	#category : #testing-matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternVariableNode>>isList [
+{ #category : #testing-matching }
+RBPatternVariableNode >> isList [
 	^isList
 ]
 
-{
-	#category : #testing-matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternVariableNode>>isLiteralNode [
+{ #category : #testing-matching }
+RBPatternVariableNode >> isLiteralNode [
 	^isLiteral
 ]
 
-{
-	#category : #testing-matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternVariableNode>>isPatternNode [
+{ #category : #testing-matching }
+RBPatternVariableNode >> isPatternNode [
 	^true
 ]
 
-{
-	#category : #testing-matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternVariableNode>>isStatement [
+{ #category : #testing-matching }
+RBPatternVariableNode >> isStatement [
 	^isStatement
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternVariableNode>>match: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBPatternVariableNode >> match: aNode inContext: aDictionary [ 
 	self isAnything 
 		ifTrue: [^(aDictionary at: self ifAbsentPut: [aNode]) = aNode].
 	self isLiteralNode ifTrue: [^self matchLiteral: aNode inContext: aDictionary].
@@ -131,47 +103,32 @@ RBPatternVariableNode>>match: aNode inContext: aDictionary  [
 	^(aDictionary at: self ifAbsentPut: [aNode]) = aNode
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternVariableNode>>matchLiteral: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBPatternVariableNode >> matchLiteral: aNode inContext: aDictionary [ 
 	^aNode isLiteralNode
 		and: [(aDictionary at: self ifAbsentPut: [aNode]) = aNode]
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternVariableNode>>matchStatement: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBPatternVariableNode >> matchStatement: aNode inContext: aDictionary [ 
 	(aNode parent notNil and: [aNode parent isSequence]) ifFalse: [^false].
 	^(aDictionary at: self ifAbsentPut: [aNode]) = aNode
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternVariableNode>>matchingClass [
+{ #category : #private }
+RBPatternVariableNode >> matchingClass [
 	^RBVariableNode
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternVariableNode>>named: aName start: aPosition [
+{ #category : #initialize-release }
+RBPatternVariableNode >> named: aName start: aPosition [
 
 	super named: aName start: aPosition.
 	self initializePatternVariables
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternVariableNode>>parent: aBRProgramNode  [
+{ #category : #accessing }
+RBPatternVariableNode >> parent: aBRProgramNode [ 
 	"Fix the case where '``@node' should match a single node, not a sequence node."
 
 	super parent: aBRProgramNode.
@@ -184,10 +141,7 @@ RBPatternVariableNode>>parent: aBRProgramNode  [
 				ifFalse: [isList := false]]
 ]
 
-{
-	#category : #testing-matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternVariableNode>>recurseInto [
+{ #category : #testing-matching }
+RBPatternVariableNode >> recurseInto [
 	^recurseInto
 ]

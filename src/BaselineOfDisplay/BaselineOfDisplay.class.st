@@ -16,15 +16,11 @@ Class {
 	#instVars : [
 		'initializersEnabled'
 	],
-	#category : #BaselineOfDisplay,
-	#timestamp : 'PavelKrivanek 11/7/2016 12:06'
+	#category : #BaselineOfDisplay
 }
 
-{
-	#category : #baseline,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-BaselineOfDisplay>>baseline: spec [
+{ #category : #baseline }
+BaselineOfDisplay >> baseline: spec [
 	<baseline>
 
 	spec for: #common do: [
@@ -40,11 +36,8 @@ BaselineOfDisplay>>baseline: spec [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-BaselineOfDisplay>>installBitmap [
+{ #category : #actions }
+BaselineOfDisplay >> installBitmap [
 
 	"install new Bitmap class to special objects array"
 
@@ -55,11 +48,8 @@ BaselineOfDisplay>>installBitmap [
 	Smalltalk specialObjectsArray becomeForward: array.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-BaselineOfDisplay>>postload: loader package: packageSpec [
+{ #category : #actions }
+BaselineOfDisplay >> postload: loader package: packageSpec [
 
 	| display |
 	
@@ -83,11 +73,8 @@ BaselineOfDisplay>>postload: loader package: packageSpec [
 	
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-BaselineOfDisplay>>preload: loader package: packageSpec [
+{ #category : #actions }
+BaselineOfDisplay >> preload: loader package: packageSpec [
 
 	initializersEnabled := MCMethodDefinition initializersEnabled.
 	MCMethodDefinition initializersEnabled: false.

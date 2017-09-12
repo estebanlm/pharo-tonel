@@ -10,15 +10,11 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #System-Support,
-	#timestamp : 'MiguelCoba 7/25/2009 01:09'
+	#category : #System-Support
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author class>>authorSettingOn: aBuilder [
+{ #category : #settings }
+Author class >> authorSettingOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #authorFullName)
 		order: -100000;
@@ -34,21 +30,15 @@ Author class>>authorSettingOn: aBuilder [
 
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author class>>changeStamp  [
+{ #category : #utilities }
+Author class >> changeStamp [ 
 	"Answer a string to be pasted into source code to mark who changed it and when."
 	^ Author fullName , ' ' , Date today mmddyyyy, ' ',
 		((String streamContents: [:s | Time now print24: true on: s]) copyFrom: 1 to: 5)
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author class>>changeStampPerSe [
+{ #category : #utilities }
+Author class >> changeStampPerSe [
 	"Answer a string to be pasted into source code to mark who changed it and when."
 
 	^ (Author fullNamePerSe ifNil: ['.']) , ' ' , Date today mmddyyyy, ' ',
@@ -56,11 +46,8 @@ Author class>>changeStampPerSe [
 			copyFrom: 1 to: 5)
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author class>>fixStamp: changeStamp  [
+{ #category : #utilities }
+Author class >> fixStamp: changeStamp [ 
 	| parts |
 	parts := changeStamp findTokens: ' '.
 	(parts notEmpty and: [parts last first isLetter]) ifTrue:
@@ -71,75 +58,48 @@ Author class>>fixStamp: changeStamp  [
 	^ changeStamp
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author class>>fullName [
+{ #category : #convenience }
+Author class >> fullName [
 	^ Author uniqueInstance fullName
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author class>>fullName: aString  [
+{ #category : #convenience }
+Author class >> fullName: aString [ 
 	^ Author uniqueInstance checkAndSetFullNameWith: aString
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author class>>fullNamePerSe [
+{ #category : #convenience }
+Author class >> fullNamePerSe [
 	^ Author uniqueInstance fullNamePerSe 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author class>>new [
+{ #category : #'instance creation' }
+Author class >> new [
 	self error: 'Author is a singleton -- send uniqueInstance instead'
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author class>>requestFullName [
+{ #category : #convenience }
+Author class >> requestFullName [
 	^ Author uniqueInstance requestFullName
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author class>>reset [
+{ #category : #'instance creation' }
+Author class >> reset [
 	^ self uniqueInstance reset.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author class>>uniqueInstance [
+{ #category : #'instance creation' }
+Author class >> uniqueInstance [
 	^ uniqueInstance ifNil: [ uniqueInstance := super new ]
 ]
 
-{
-	#category : #testing-support,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author class>>useAuthor: aString during: aBlock [
+{ #category : #testing-support }
+Author class >> useAuthor: aString during: aBlock [
 	^ self uniqueInstance useAuthor: aString during: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author>>checkAndSetFullNameWith: aString  [
+{ #category : #accessing }
+Author >> checkAndSetFullNameWith: aString [ 
 	
 	fullName := 
 	aString select: [ :character |
@@ -152,11 +112,8 @@ Author>>checkAndSetFullNameWith: aString  [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author>>fullName [
+{ #category : #accessing }
+Author >> fullName [
 	"Answer the full name to be used to identify the current code author."
 
 	[fullName isEmptyOrNil] whileTrue: [
@@ -166,29 +123,20 @@ Author>>fullName [
 	^ fullName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author>>fullName: aString [
+{ #category : #accessing }
+Author >> fullName: aString [
 	fullName := aString.	
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author>>fullNamePerSe [
+{ #category : #accessing }
+Author >> fullNamePerSe [
 	"Answer the currently-prevailing author full name, such as it is, empty or not"
 	^ fullName
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author>>ifUnknownAuthorUse: aString during: aBlock [
+{ #category : #compatibility }
+Author >> ifUnknownAuthorUse: aString during: aBlock [
 	"If no author is set use the name aString while executing aBlock."
 	"for compatibility with 1.0"
 	
@@ -197,20 +145,14 @@ Author>>ifUnknownAuthorUse: aString during: aBlock [
 	^ aBlock ensure: [ self reset ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author>>initialize [
+{ #category : #initialization }
+Author >> initialize [
 	super initialize.
 	fullName := ''.
 ]
 
-{
-	#category : #ui-requests,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author>>requestFullName [
+{ #category : #ui-requests }
+Author >> requestFullName [
 	| initialAnswer |
 	
 	initialAnswer := fullName isEmptyOrNil
@@ -222,19 +164,13 @@ Author>>requestFullName [
 	] "nil means that the dialog was cancelled "
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author>>reset [
+{ #category : #compatibility }
+Author >> reset [
 	fullName := ''
 ]
 
-{
-	#category : #testing-support,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Author>>useAuthor: aString during: aBlock [
+{ #category : #testing-support }
+Author >> useAuthor: aString during: aBlock [
 	| previous |
 	previous := fullName.
 	fullName := aString.

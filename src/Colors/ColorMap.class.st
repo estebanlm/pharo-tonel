@@ -13,23 +13,16 @@ Class {
 		'masks',
 		'colors'
 	],
-	#category : #Colors,
-	#timestamp : 'LaurentLaffont 5/4/2011 21:28'
+	#category : #Colors
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap class>>colors: colorArray [
+{ #category : #'instance creation' }
+ColorMap class >> colors: colorArray [
 	^self new setShifts: nil masks: nil colors: colorArray
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap class>>mapBitsFrom: srcBitMask to: dstBitMask  [
+{ #category : #'instance creation' }
+ColorMap class >> mapBitsFrom: srcBitMask to: dstBitMask [ 
 	"Return an array consisting of the shift and the mask for
 	mapping component values out of srcBitMask and into dstBitMask.
 	While this computation is somewhat complicated it eases the batch
@@ -65,11 +58,8 @@ ColorMap class>>mapBitsFrom: srcBitMask to: dstBitMask  [
 		with: mask
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap class>>mappingFrom: srcBitMasks to: dstBitMasks  [
+{ #category : #'instance creation' }
+ColorMap class >> mappingFrom: srcBitMasks to: dstBitMasks [ 
 	"Return a color map mapping from the array of source bit masks
 	to the array of dest bit masks."
 	| shifts masks shiftAndMask |
@@ -93,53 +83,35 @@ ColorMap class>>mappingFrom: srcBitMasks to: dstBitMasks  [
 		masks: masks
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap class>>mappingFromARGB: dstBitMasks [
+{ #category : #'instance creation' }
+ColorMap class >> mappingFromARGB: dstBitMasks [
 	"Return a ColorMap mapping from canonical ARGB space into dstBitMasks"
 	^self mappingFrom: #(16rFF0000 16rFF00 16rFF 16rFF000000) to: dstBitMasks
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap class>>mappingToARGB: srcBitMasks [
+{ #category : #'instance creation' }
+ColorMap class >> mappingToARGB: srcBitMasks [
 	"Return a ColorMap mapping from srcBitMasks into canonical ARGB space"
 	^self mappingFrom: srcBitMasks to: #(16rFF0000 16rFF00 16rFF 16rFF000000)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap class>>masks: maskArray shifts: shiftArray [
+{ #category : #'instance creation' }
+ColorMap class >> masks: maskArray shifts: shiftArray [
 	^self shifts: shiftArray masks: maskArray colors: nil.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap class>>shifts: shiftArray masks: maskArray [
+{ #category : #'instance creation' }
+ColorMap class >> shifts: shiftArray masks: maskArray [
 	^self shifts: shiftArray masks: maskArray colors: nil.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap class>>shifts: shiftArray masks: maskArray colors: colorArray [
+{ #category : #'instance creation' }
+ColorMap class >> shifts: shiftArray masks: maskArray colors: colorArray [
 	^self new setShifts: shiftArray masks: maskArray colors: colorArray
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>= aColorMap [
+{ #category : #comparing }
+ColorMap >> = aColorMap [
 	"Return true if the receiver is equal to aColorMap"
 	self species == aColorMap species ifFalse:[^false].
 	self isIndexed == aColorMap isIndexed ifFalse:[^false].
@@ -148,140 +120,89 @@ ColorMap>>= aColorMap [
 			self masks = aColorMap masks]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>alphaMask [
+{ #category : #accessing }
+ColorMap >> alphaMask [
 	^masks at: 4
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>alphaMask: value [
+{ #category : #accessing }
+ColorMap >> alphaMask: value [
 	masks at: 4 put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>alphaShift [
+{ #category : #accessing }
+ColorMap >> alphaShift [
 	^shifts at: 4
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>alphaShift: value [
+{ #category : #accessing }
+ColorMap >> alphaShift: value [
 	shifts at: 4 put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>at: index [
+{ #category : #accessing }
+ColorMap >> at: index [
 	^colors at: index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>at: index put: value [
+{ #category : #accessing }
+ColorMap >> at: index put: value [
 	^colors at: index put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>blueMask [
+{ #category : #accessing }
+ColorMap >> blueMask [
 	^masks at: 3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>blueMask: value [
+{ #category : #accessing }
+ColorMap >> blueMask: value [
 	masks at: 3 put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>blueShift [
+{ #category : #accessing }
+ColorMap >> blueShift [
 	^shifts at: 3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>blueShift: value [
+{ #category : #accessing }
+ColorMap >> blueShift: value [
 	shifts at: 3 put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>colors [
+{ #category : #accessing }
+ColorMap >> colors [
 	^colors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>greenMask [
+{ #category : #accessing }
+ColorMap >> greenMask [
 	^masks at: 2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>greenMask: value [
+{ #category : #accessing }
+ColorMap >> greenMask: value [
 	masks at: 2 put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>greenShift [
+{ #category : #accessing }
+ColorMap >> greenShift [
 	^shifts at: 2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>greenShift: value [
+{ #category : #accessing }
+ColorMap >> greenShift: value [
 	shifts at: 2 put: value.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>hash [
+{ #category : #comparing }
+ColorMap >> hash [
 	"Hash is re-implemented because #= is re-implemented"
 	^colors hash bitXor: (shifts hash bitXor: masks hash)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>inverseMap [
+{ #category : #accessing }
+ColorMap >> inverseMap [
 	"Return the inverse map of the receiver"
 	| newMasks newShifts |
 	colors ifNotNil: [ ^ self error: 'Not yet implemented' ].
@@ -298,37 +219,25 @@ ColorMap>>inverseMap [
 		masks: newMasks contents
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>isColormap [
+{ #category : #testing }
+ColorMap >> isColormap [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>isFixed [
+{ #category : #testing }
+ColorMap >> isFixed [
 	"Return true if the receiver does not use a lookup mechanism for pixel mapping"
 	^self isIndexed not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>isIndexed [
+{ #category : #testing }
+ColorMap >> isIndexed [
 	"Return true if the receiver uses a lookup mechanism for pixel mapping"
 	^colors notNil
 ]
 
-{
-	#category : #'pixel mapping',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>mapPixel: pixelValue  [
+{ #category : #'pixel mapping' }
+ColorMap >> mapPixel: pixelValue [ 
 	"Perform a forward pixel mapping operation"
 	| pv |
 	(shifts == nil and: [ masks == nil ]) 
@@ -341,11 +250,8 @@ ColorMap>>mapPixel: pixelValue  [
 	^ pv
 ]
 
-{
-	#category : #'pixel mapping',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>mappingTo: aColorMap  [
+{ #category : #'pixel mapping' }
+ColorMap >> mappingTo: aColorMap [ 
 	"Compute a new color map through the receiver and aColorMap.
 	Both maps are assumed to be mappings into canonical ARGB space"
 	| fixedMap |
@@ -363,19 +269,13 @@ ColorMap>>mappingTo: aColorMap  [
 		colors: (colors collect: [ :pv | aColorMap pixelMap: pv ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>masks [
+{ #category : #accessing }
+ColorMap >> masks [
 	^masks
 ]
 
-{
-	#category : #'pixel mapping',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>pixelMap: pixelValue  [
+{ #category : #'pixel mapping' }
+ColorMap >> pixelMap: pixelValue [ 
 	"Perform a reverse pixel mapping operation"
 	| pv |
 	colors == nil 
@@ -388,61 +288,40 @@ ColorMap>>pixelMap: pixelValue  [
 	^ pv
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>redMask [
+{ #category : #accessing }
+ColorMap >> redMask [
 	^masks at: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>redMask: value [
+{ #category : #accessing }
+ColorMap >> redMask: value [
 	masks at: 1 put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>redShift [
+{ #category : #accessing }
+ColorMap >> redShift [
 	^shifts at: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>redShift: value [
+{ #category : #accessing }
+ColorMap >> redShift: value [
 	shifts at: 1 put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>rgbaBitMasks [
+{ #category : #accessing }
+ColorMap >> rgbaBitMasks [
 	"Return the rgba bit masks for the receiver"
 	^masks asArray with: shifts collect:[:m :s| m bitShift: s]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>setShifts: shiftArray masks: maskArray colors: colorArray  [
+{ #category : #private }
+ColorMap >> setShifts: shiftArray masks: maskArray colors: colorArray [ 
 	shiftArray ifNotNil: [ shifts := shiftArray asIntegerArray ].
 	maskArray ifNotNil: [ masks := maskArray asWordArray ].
 	colorArray ifNotNil: [ colors := colorArray asWordArray ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ColorMap>>shifts [
+{ #category : #accessing }
+ColorMap >> shifts [
 	^shifts
 ]

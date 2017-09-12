@@ -24,42 +24,29 @@ Class {
 		'className',
 		'superclassName'
 	],
-	#category : #CodeImport,
-	#timestamp : '<historical>'
+	#category : #CodeImport
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MissingClassError class>>className: aString [
+{ #category : #'instance creation' }
+MissingClassError class >> className: aString [
 
 	^ self new className: aString; yourself
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MissingClassError>>asResumable [
+{ #category : #actions }
+MissingClassError >> asResumable [
 	"When sent to the receiver, this one turns into a resumable exception allowing for example to define missing class on the fly."
 	resumable := true.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MissingClassError>>className: aString [
+{ #category : #accessing }
+MissingClassError >> className: aString [
 
 	className := aString
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MissingClassError>>defineClass [
+{ #category : #actions }
+MissingClassError >> defineClass [
 
 	Smalltalk compiler evaluate: 
 		self superclassName,  ' subclass: #', className, 
@@ -69,31 +56,22 @@ MissingClassError>>defineClass [
 	category: ''Stub-Classes'''
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MissingClassError>>isResumable [
+{ #category : #testing }
+MissingClassError >> isResumable [
 	"Determine whether an exception is resumable. By default not but can be resumable using accessors at exception raising time."
 
 	^ resumable ifNil: [ super isResumable ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MissingClassError>>superclassName [
+{ #category : #accessing }
+MissingClassError >> superclassName [
 
 	^ superclassName ifNil: [ superclassName := 'Object' ]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MissingClassError>>superclassName: aString [
+{ #category : #accessing }
+MissingClassError >> superclassName: aString [
 
 	superclassName := aString
 

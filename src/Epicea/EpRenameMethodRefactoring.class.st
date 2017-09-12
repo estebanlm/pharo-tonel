@@ -9,15 +9,11 @@ Class {
 		'newSelector',
 		'affectedClassName'
 	],
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 15:20'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRenameMethodRefactoring class>>renameMethod: oldSelector in: affectedClassName to: newSelector [
+{ #category : #'instance creation' }
+EpRenameMethodRefactoring class >> renameMethod: oldSelector in: affectedClassName [ to: newSelector
 	^ self basicNew
 		initializeFrom: oldSelector 
 		to: newSelector 
@@ -25,11 +21,8 @@ EpRenameMethodRefactoring class>>renameMethod: oldSelector in: affectedClassName
 		yourself
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRenameMethodRefactoring>>asRBRefactoring [
+{ #category : #converting }
+EpRenameMethodRefactoring >> asRBRefactoring [
 	^ RBRenameMethodRefactoring
 		renameMethod: oldSelector 
 		in: affectedClassName 
@@ -37,11 +30,8 @@ EpRenameMethodRefactoring>>asRBRefactoring [
 		permutation: #()
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRenameMethodRefactoring>>initializeFrom: anOldSelector to: aNewSelector in: aClassName [
+{ #category : #initialize-release }
+EpRenameMethodRefactoring >> initializeFrom: anOldSelector [ to: aNewSelector in: aClassName
 	self initialize.
 	
 	oldSelector := anOldSelector.
@@ -49,18 +39,12 @@ EpRenameMethodRefactoring>>initializeFrom: anOldSelector to: aNewSelector in: aC
 	affectedClassName := aClassName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRenameMethodRefactoring>>newSelector [
+{ #category : #accessing }
+EpRenameMethodRefactoring >> newSelector [
 	^ newSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRenameMethodRefactoring>>oldSelector [
+{ #category : #accessing }
+EpRenameMethodRefactoring >> oldSelector [
 	^ oldSelector
 ]

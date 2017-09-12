@@ -4,14 +4,10 @@ I am an abstract view model for editors displayed in the inspector
 Class {
 	#name : #EyeEditor,
 	#superclass : #EyeAbstractInspector,
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeEditor class>>label [
+{ #category : #accessing }
+EyeEditor class >> label [
 	^ 'Default Editor'
 ]

@@ -15,33 +15,23 @@ Class {
 	#pools : [
 		'AthensCairoDefs'
 	],
-	#category : #Athens-Cairo,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo
 }
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>add [
+{ #category : #modes }
+AthensCairoPaintMode >> add [
 	
 	^ self setOperator: CAIRO_OPERATOR_ADD
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>atop [
+{ #category : #modes }
+AthensCairoPaintMode >> atop [
 	
 	^ self setOperator: CAIRO_OPERATOR_ATOP
 ]
 
-{
-	#category : #capabilities,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>availableModes [
+{ #category : #capabilities }
+AthensCairoPaintMode >> availableModes [
 
 	^ #(
 		clear
@@ -76,19 +66,13 @@ AthensCairoPaintMode>>availableModes [
 	)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>canvas: aCanvas [
+{ #category : #initialize-release }
+AthensCairoPaintMode >> canvas: aCanvas [
 	canvas := aCanvas
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>clear [
+{ #category : #modes }
+AthensCairoPaintMode >> clear [
 	"Set 'clear' drawing mode.
 	
 	Drawing under this mode will clear the surface under the shape boundaries"
@@ -96,38 +80,26 @@ AthensCairoPaintMode>>clear [
 	^ self setOperator: CAIRO_OPERATOR_CLEAR
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>colorBurn [
+{ #category : #modes }
+AthensCairoPaintMode >> colorBurn [
 	
 	^ self setOperator: CAIRO_OPERATOR_COLOR_BURN
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>colorDodge [
+{ #category : #modes }
+AthensCairoPaintMode >> colorDodge [
 	
 	^ self setOperator: CAIRO_OPERATOR_COLOR_DODGE
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>darken [
+{ #category : #modes }
+AthensCairoPaintMode >> darken [
 	
 	^ self setOperator: CAIRO_OPERATOR_DARKEN
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>dest [
+{ #category : #modes }
+AthensCairoPaintMode >> dest [
 	"Set 'dest' drawing mode.
 	
 	Drawing under this mode will ignore the source, as if nothing drawn"
@@ -135,65 +107,44 @@ AthensCairoPaintMode>>dest [
 	^ self setOperator: CAIRO_OPERATOR_DEST
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>destAtop [
+{ #category : #modes }
+AthensCairoPaintMode >> destAtop [
 	
 	^ self setOperator: CAIRO_OPERATOR_DEST_ATOP
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>destIn [
+{ #category : #modes }
+AthensCairoPaintMode >> destIn [
 	
 	^ self setOperator: CAIRO_OPERATOR_DEST_IN
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>destOut [
+{ #category : #modes }
+AthensCairoPaintMode >> destOut [
 	
 	^ self setOperator: CAIRO_OPERATOR_DEST_OUT
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>destOver [
+{ #category : #modes }
+AthensCairoPaintMode >> destOver [
 	
 	^ self setOperator: CAIRO_OPERATOR_DEST_OVER
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>difference [
+{ #category : #modes }
+AthensCairoPaintMode >> difference [
 	
 	^ self setOperator: CAIRO_OPERATOR_DIFFERENCE
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>exclusion [
+{ #category : #modes }
+AthensCairoPaintMode >> exclusion [
 	
 	^ self setOperator: CAIRO_OPERATOR_EXCLUSION
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>getOperator [
+{ #category : #private }
+AthensCairoPaintMode >> getOperator [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
 	^ self nbCall: #(
@@ -201,92 +152,62 @@ AthensCairoPaintMode>>getOperator [
 
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>hardLight [
+{ #category : #modes }
+AthensCairoPaintMode >> hardLight [
 	
 	^ self setOperator: CAIRO_OPERATOR_HARD_LIGHT
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>hslColor [
+{ #category : #modes }
+AthensCairoPaintMode >> hslColor [
 	
 	^ self setOperator: CAIRO_OPERATOR_HSL_COLOR
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>hslHue [
+{ #category : #modes }
+AthensCairoPaintMode >> hslHue [
 	
 	^ self setOperator: CAIRO_OPERATOR_HSL_HUE
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>hslLuminosity [
+{ #category : #modes }
+AthensCairoPaintMode >> hslLuminosity [
 	
 	^ self setOperator: CAIRO_OPERATOR_HSL_LUMINOSITY
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>hslSaturation [
+{ #category : #modes }
+AthensCairoPaintMode >> hslSaturation [
 	
 	^ self setOperator: CAIRO_OPERATOR_HSL_SATURATION
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>in [
+{ #category : #modes }
+AthensCairoPaintMode >> in [
 	
 	^ self setOperator: CAIRO_OPERATOR_IN
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>lighten [
+{ #category : #modes }
+AthensCairoPaintMode >> lighten [
 	
 	^ self setOperator: CAIRO_OPERATOR_LIGHTEN
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>multiply [
+{ #category : #modes }
+AthensCairoPaintMode >> multiply [
 	
 	^ self setOperator: CAIRO_OPERATOR_MULTIPLY
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>out [
+{ #category : #modes }
+AthensCairoPaintMode >> out [
 	
 	^ self setOperator: CAIRO_OPERATOR_OUT
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>over [
+{ #category : #modes }
+AthensCairoPaintMode >> over [
 	"Set 'over' drawing mode. This is default paint mode.
 	
 	Drawing under this mode will blend source with destination color using source alpha component"
@@ -294,69 +215,48 @@ AthensCairoPaintMode>>over [
 	^ self setOperator: CAIRO_OPERATOR_OVER
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>overlay [
+{ #category : #modes }
+AthensCairoPaintMode >> overlay [
 	
 	^ self setOperator: CAIRO_OPERATOR_OVERLAY
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>restoreAfter: aBlock [
+{ #category : #convenience }
+AthensCairoPaintMode >> restoreAfter: aBlock [
 	| op |
 	op := self getOperator.
 	
 	aBlock ensure: [ self setOperator: op ]
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>saturate [
+{ #category : #modes }
+AthensCairoPaintMode >> saturate [
 	
 	^ self setOperator: CAIRO_OPERATOR_SATURATE
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>screen [
+{ #category : #modes }
+AthensCairoPaintMode >> screen [
 	
 	^ self setOperator: CAIRO_OPERATOR_SCREEN
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>setOperator: aCairoOperatorT [
+{ #category : #private }
+AthensCairoPaintMode >> setOperator: aCairoOperatorT [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
 	^ self nbCall: #(void cairo_set_operator (AthensCairoCanvas canvas, cairo_operator_t aCairoOperatorT) )
 
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>softLight [
+{ #category : #modes }
+AthensCairoPaintMode >> softLight [
 	
 	^ self setOperator: CAIRO_OPERATOR_SOFT_LIGHT
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>source [
+{ #category : #modes }
+AthensCairoPaintMode >> source [
 	"Set 'source' drawing mode.
 	
 	Drawing under this mode will replace the content with incoming source under the shape boundaries"
@@ -364,11 +264,8 @@ AthensCairoPaintMode>>source [
 	^ self setOperator: CAIRO_OPERATOR_SOURCE
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPaintMode>>xor [
+{ #category : #modes }
+AthensCairoPaintMode >> xor [
 	
 	^ self setOperator: CAIRO_OPERATOR_XOR
 ]

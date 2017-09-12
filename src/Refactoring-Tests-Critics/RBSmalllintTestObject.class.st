@@ -7,41 +7,28 @@ Class {
 	#instVars : [
 		'temporaryVariable'
 	],
-	#category : #Refactoring-Tests-Critics,
-	#timestamp : 'monty 10/11/2016 00:26'
+	#category : #Refactoring-Tests-Critics
 }
 
-{
-	#category : #'accessing - good',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>abstractUnaryAccessingMethodWithoutReturn [
+{ #category : #'accessing - good' }
+RBSmalllintTestObject >> abstractUnaryAccessingMethodWithoutReturn [
 	"shouldn't trigger the RBUnaryAccessingMethodWithoutReturnRule rule"
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>asOrderedCollectionNotNeeded [
+{ #category : #methods }
+RBSmalllintTestObject >> asOrderedCollectionNotNeeded [
 	self foo addAll: (1 to: 10) asOrderedCollection
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>assignmentInBlock [
+{ #category : #methods }
+RBSmalllintTestObject >> assignmentInBlock [
 	[^self printString] ensure: [self close]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>assignmentInIfTrue [
+{ #category : #methods }
+RBSmalllintTestObject >> assignmentInIfTrue [
 	| variable |
 	self isVariable 
 		ifTrue: [variable := self]
@@ -49,21 +36,15 @@ RBSmalllintTestObject>>assignmentInIfTrue [
 	^variable
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>assignmentWithoutEffect [
+{ #category : #methods }
+RBSmalllintTestObject >> assignmentWithoutEffect [
 	| a |
 	a := 1.
 	a := a
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>atIfAbsent [
+{ #category : #methods }
+RBSmalllintTestObject >> atIfAbsent [
 	^ Smalltalk at: #MyTest
 		ifAbsent: 
 			[| collection |
@@ -71,27 +52,18 @@ RBSmalllintTestObject>>atIfAbsent [
 			Smalltalk at: #MyTest put: collection]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>badMessage [
+{ #category : #methods }
+RBSmalllintTestObject >> badMessage [
 	self become: String new
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>booleanPrecedence [
+{ #category : #methods }
+RBSmalllintTestObject >> booleanPrecedence [
 	^true & 4 = 45
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>codeCruftLeftInMethods [
+{ #category : #methods }
+RBSmalllintTestObject >> codeCruftLeftInMethods [
 	| a b c |
 	a := b := c := 2.
 	self halt.
@@ -101,27 +73,18 @@ RBSmalllintTestObject>>codeCruftLeftInMethods [
 		
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>collectSelectNotUsed [
+{ #category : #methods }
+RBSmalllintTestObject >> collectSelectNotUsed [
 	(1 to: 10) select: [:each | each = 4]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>collectionMessagesToExternalObject [
+{ #category : #methods }
+RBSmalllintTestObject >> collectionMessagesToExternalObject [
 	self someObject collection remove: 10
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>collectionProtocol [
+{ #category : #methods }
+RBSmalllintTestObject >> collectionProtocol [
 	| newCollection |
 	newCollection := OrderedCollection new.
 	(1 to: 10) asOrderedCollection do: 
@@ -132,51 +95,33 @@ RBSmalllintTestObject>>collectionProtocol [
 	^newCollection
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>consistencyCheck [
+{ #category : #methods }
+RBSmalllintTestObject >> consistencyCheck [
 	^(1 to: 10) size > 0
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>contains [
+{ #category : #methods }
+RBSmalllintTestObject >> contains [
 	^((1 to: 10) detect: [:each | each > 2] ifNone: [nil]) isNil
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>debbuggingMessageSent [
+{ #category : #methods }
+RBSmalllintTestObject >> debbuggingMessageSent [
 	self rearmOneShot
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>detectContains [
+{ #category : #methods }
+RBSmalllintTestObject >> detectContains [
 	^(1 to: 10) do: [:each | each > 2 ifTrue: [^each]]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>emptyExceptionHandler [
+{ #category : #methods }
+RBSmalllintTestObject >> emptyExceptionHandler [
 	[ ] on: Error do: [ :err | ]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>endTrueFalse [
+{ #category : #methods }
+RBSmalllintTestObject >> endTrueFalse [
 	self isVariable 
 		ifTrue: 
 			[self printString.
@@ -186,30 +131,21 @@ RBSmalllintTestObject>>endTrueFalse [
 			^4]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>equalNotUsed [
+{ #category : #methods }
+RBSmalllintTestObject >> equalNotUsed [
 	| string |
 	string = '' yourself.
 	(1 to: 10) do: [:i | string := i printString].
 	^string
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>equalsTrue [
+{ #category : #methods }
+RBSmalllintTestObject >> equalsTrue [
 	^true == self
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>equivalentSuperclassMethods [
+{ #category : #methods }
+RBSmalllintTestObject >> equivalentSuperclassMethods [
 	"comments and formatting are ignored when comparing methods"
 	^ (
 		self
@@ -217,124 +153,82 @@ RBSmalllintTestObject>>equivalentSuperclassMethods [
 		).
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>extraBlock [
+{ #category : #methods }
+RBSmalllintTestObject >> extraBlock [
 	^[:arg | arg + 43] value: 45
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>fileBlocks [
+{ #category : #methods }
+RBSmalllintTestObject >> fileBlocks [
 	| file |
 	^
 	[file := 'asdf' asFileReference readStream.
 	file contents] ensure: [file close]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>flagged [
+{ #category : #methods }
+RBSmalllintTestObject >> flagged [
 	self flag: 'to do'.
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>floatEqualityComparison [
+{ #category : #methods }
+RBSmalllintTestObject >> floatEqualityComparison [
 	^ 1.0 = 1
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>fullBlocks [
+{ #category : #methods }
+RBSmalllintTestObject >> fullBlocks [
 	^[thisContext]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>guardingClause [
+{ #category : #methods }
+RBSmalllintTestObject >> guardingClause [
 	self isSymbol 
 		ifFalse: 
 			[self printString.
 			self isSymbol printString]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>haltClassMentioned [
+{ #category : #methods }
+RBSmalllintTestObject >> haltClassMentioned [
 	Halt now
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>ifTrueBlocks [
+{ #category : #methods }
+RBSmalllintTestObject >> ifTrueBlocks [
 	^ true ifFalse: self foo
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>ifTrueReturns [
+{ #category : #methods }
+RBSmalllintTestObject >> ifTrueReturns [
 	self isSymbol ifFalse: [^true].
 	^false
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>inlineTemporary [
+{ #category : #methods }
+RBSmalllintTestObject >> inlineTemporary [
 	| temp |
 	self isNil ifTrue: [temp := 4].
 	^temp
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>justSendsSuper [
+{ #category : #methods }
+RBSmalllintTestObject >> justSendsSuper [
 	super justSendsSuper
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>literalArrayCharacters [
+{ #category : #methods }
+RBSmalllintTestObject >> literalArrayCharacters [
 	^#($a $b $c) includes: $a
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>literalArrayContainsComma [
+{ #category : #methods }
+RBSmalllintTestObject >> literalArrayContainsComma [
 	^ #(#,)
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>longMethods [
+{ #category : #methods }
+RBSmalllintTestObject >> longMethods [
 	self printString.
 	self printString.
 	self printString.
@@ -355,11 +249,8 @@ RBSmalllintTestObject>>longMethods [
 	self isVariable ifTrue: [self printString]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>minMax [
+{ #category : #methods }
+RBSmalllintTestObject >> minMax [
 	"Bug in 3<5 ifTrue: [3]  ifFalse: [5]"
 
 ^3<5 ifTrue: [3]  ifFalse: [5]
@@ -369,33 +260,24 @@ RBSmalllintTestObject>>minMax [
 	^var"
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>missingYourself [
+{ #category : #methods }
+RBSmalllintTestObject >> missingYourself [
 	^(OrderedCollection new)
 		add: 1;
 		add: 2;
 		removeFirst
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>modifiesCollection [
+{ #category : #methods }
+RBSmalllintTestObject >> modifiesCollection [
 	| collection |
 	collection := (1 to: 10) asOrderedCollection.
 	collection do: [:each | each > 5 ifTrue: [collection remove: each]].
 	^collection
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>multiplePeriodsTerminatingAssignmentStatement [
+{ #category : #methods }
+RBSmalllintTestObject >> multiplePeriodsTerminatingAssignmentStatement [
 	| strings |
 
 	strings := OrderedCollection..
@@ -406,19 +288,13 @@ RBSmalllintTestObject>>multiplePeriodsTerminatingAssignmentStatement [
 	
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>multiplePeriodsTerminatingStatement [
+{ #category : #methods }
+RBSmalllintTestObject >> multiplePeriodsTerminatingStatement [
 	^ self..
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>noMoveDefinition [
+{ #category : #methods }
+RBSmalllintTestObject >> noMoveDefinition [
 	| temp |
 	^(self collect: 
 			[:each | 
@@ -427,11 +303,8 @@ RBSmalllintTestObject>>noMoveDefinition [
 		select: [:each | temp := each size + temp]
 ]
 
-{
-	#category : #'accessing - good',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>nonUnaryAccessingBranchingStatementMethodWithoutReturn: anObject [
+{ #category : #'accessing - good' }
+RBSmalllintTestObject >> nonUnaryAccessingBranchingStatementMethodWithoutReturn: anObject [
 	"shouldn't trigger the RBUnaryAccessingMethodWithoutReturnRule rule"
 
 	self value isString
@@ -439,48 +312,33 @@ RBSmalllintTestObject>>nonUnaryAccessingBranchingStatementMethodWithoutReturn: a
 		ifFalse: [ '' ]
 ]
 
-{
-	#category : #'accessing - good',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>nonUnaryAccessingMessageStatementMethodWithoutReturn: anObject [
+{ #category : #'accessing - good' }
+RBSmalllintTestObject >> nonUnaryAccessingMessageStatementMethodWithoutReturn: anObject [
 	"shouldn't trigger the RBUnaryAccessingMethodWithoutReturnRule rule"
 
 	self value
 ]
 
-{
-	#category : #'accessing - good',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>nonUnaryAccessingMethodWithoutReturn: anObject [
+{ #category : #'accessing - good' }
+RBSmalllintTestObject >> nonUnaryAccessingMethodWithoutReturn: anObject [
 	"shouldn't trigger the RBUnaryAccessingMethodWithoutReturnRule rule"
 
 	
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>onlyReadOrWrittenTemporary [
+{ #category : #methods }
+RBSmalllintTestObject >> onlyReadOrWrittenTemporary [
 	| a |
 	a := 1
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>precedence [
+{ #category : #methods }
+RBSmalllintTestObject >> precedence [
 	^self isArray ifFalse: [self block + 5 * 34] ifTrue: [self printString = 10]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>referencesConditionFor: aClass  [
+{ #category : #methods }
+RBSmalllintTestObject >> referencesConditionFor: aClass [ 
 	| environment association |
 	^(RBCondition withBlock: 
 			[association := Smalltalk associationAt: aClass name
@@ -493,172 +351,115 @@ RBSmalllintTestObject>>referencesConditionFor: aClass  [
 		yourself
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>refersToClass [
+{ #category : #methods }
+RBSmalllintTestObject >> refersToClass [
 	^ RBSmalllintTestObject
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>release [
+{ #category : #methods }
+RBSmalllintTestObject >> release [
 	self printString
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>returnInEnsure [
+{ #category : #methods }
+RBSmalllintTestObject >> returnInEnsure [
 	[self error: 'asdf'] ensure: [^4]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>returnsBooleanAndOther [
+{ #category : #methods }
+RBSmalllintTestObject >> returnsBooleanAndOther [
 	self isVariable ifTrue: [^false].
 	self printString
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>returnsIfTrue [
+{ #category : #methods }
+RBSmalllintTestObject >> returnsIfTrue [
 	^self isNil ifTrue: [4]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>searchingLiteral [
+{ #category : #methods }
+RBSmalllintTestObject >> searchingLiteral [
 	^self printString = #a or: [#() = self printString | ( #() == self printString)]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>sendsDifferentSuper [
+{ #category : #methods }
+RBSmalllintTestObject >> sendsDifferentSuper [
 	super printString
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>shouldntRaiseError [
+{ #category : #methods }
+RBSmalllintTestObject >> shouldntRaiseError [
 	self shouldnt: [ 0/1 ] raise: Error
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>shouldntRaiseException [
+{ #category : #methods }
+RBSmalllintTestObject >> shouldntRaiseException [
 	self shouldnt: [ 0/1 ] raise: Exception
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>sizeCheck [
+{ #category : #methods }
+RBSmalllintTestObject >> sizeCheck [
 	self isEmpty
 		ifFalse: [self do: 
 					[:each | 
 					]]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>stringConcatenation [
+{ #category : #methods }
+RBSmalllintTestObject >> stringConcatenation [
 	| string |
 	string := '' yourself.
 	(1 to: 10) do: [:i | string := string , i printString].
 	^string
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>tempVarOverridesInstVar [
+{ #category : #methods }
+RBSmalllintTestObject >> tempVarOverridesInstVar [
 	| temporaryVariable |
 	temporaryVariable := 4.
 	^temporaryVariable
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>temporaryVariableCapitalization [
+{ #category : #methods }
+RBSmalllintTestObject >> temporaryVariableCapitalization [
 	| Capital |
 	Capital := 'Bern'.
 	^ Capital
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>tempsReadBeforeWritten [
+{ #category : #methods }
+RBSmalllintTestObject >> tempsReadBeforeWritten [
 	| temp |
 	self isVariable ifTrue: [temp := 4].
 	^temp
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>testMethod1 [
+{ #category : #methods }
+RBSmalllintTestObject >> testMethod1 [
 	^self testMethod1 
 		, ([:each | each testMethod1] value: #(#(#testMethod1) 2 #testMethod1))
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>threeElementPoint [
+{ #category : #methods }
+RBSmalllintTestObject >> threeElementPoint [
 	^5 @ 5 + 6 @ 6
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>toDo [
+{ #category : #methods }
+RBSmalllintTestObject >> toDo [
 	1 to: self size do: [:i | (self at: i) printString]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>toDoCollect [
+{ #category : #methods }
+RBSmalllintTestObject >> toDoCollect [
 	| array |
 	array := Array new: 10.
 	1 to: 10 do: [:i | array at: i put: i * i].
 	^array
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>toDoWithIncrement [
+{ #category : #methods }
+RBSmalllintTestObject >> toDoWithIncrement [
 	| counter |
 	counter := 0.
 	1 to: 10
@@ -667,19 +468,13 @@ RBSmalllintTestObject>>toDoWithIncrement [
 	^counter
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>transcriptMentioned [
+{ #category : #methods }
+RBSmalllintTestObject >> transcriptMentioned [
 	Transcript show: 'message'
 ]
 
-{
-	#category : #'accessing - good',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>unaryAccessingBranchingStatementMethodWithReturn [
+{ #category : #'accessing - good' }
+RBSmalllintTestObject >> unaryAccessingBranchingStatementMethodWithReturn [
 	"shouldn't trigger the RBUnaryAccessingMethodWithoutReturnRule rule"
 
 	self value isString
@@ -687,11 +482,8 @@ RBSmalllintTestObject>>unaryAccessingBranchingStatementMethodWithReturn [
 		ifFalse: [ ^ '' ]
 ]
 
-{
-	#category : #'accessing - bad',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>unaryAccessingBranchingStatementMethodWithoutReturn [
+{ #category : #'accessing - bad' }
+RBSmalllintTestObject >> unaryAccessingBranchingStatementMethodWithoutReturn [
 	"should trigger the RBUnaryAccessingMethodWithoutReturnRule rule"
 
 	self value isString
@@ -699,51 +491,36 @@ RBSmalllintTestObject>>unaryAccessingBranchingStatementMethodWithoutReturn [
 		ifFalse: [ '' ]
 ]
 
-{
-	#category : #'accessing - good',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>unaryAccessingMessageStatementMethodWithReturn [
+{ #category : #'accessing - good' }
+RBSmalllintTestObject >> unaryAccessingMessageStatementMethodWithReturn [
 	"shouldn't trigger the RBUnaryAccessingMethodWithoutReturnRule rule"
 
 	^ self value
 ]
 
-{
-	#category : #'accessing - bad',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>unaryAccessingMessageStatementMethodWithoutReturn [
+{ #category : #'accessing - bad' }
+RBSmalllintTestObject >> unaryAccessingMessageStatementMethodWithoutReturn [
 	"should trigger the RBUnaryAccessingMethodWithoutReturnRule rule"
 
 	self value
 ]
 
-{
-	#category : #'accessing - good',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>unaryAccessingMethodWithReturn [
+{ #category : #'accessing - good' }
+RBSmalllintTestObject >> unaryAccessingMethodWithReturn [
 	"shouldn't trigger the RBUnaryAccessingMethodWithoutReturnRule rule"
 
 	^ self
 ]
 
-{
-	#category : #'accessing - bad',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>unaryAccessingMethodWithoutReturn [
+{ #category : #'accessing - bad' }
+RBSmalllintTestObject >> unaryAccessingMethodWithoutReturn [
 	"should trigger the RBUnaryAccessingMethodWithoutReturnRule rule"
 
 	
 ]
 
-{
-	#category : #non-accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>unaryNonAccessingBranchingStatementMethodWithoutReturn [
+{ #category : #non-accessing }
+RBSmalllintTestObject >> unaryNonAccessingBranchingStatementMethodWithoutReturn [
 	"shouldn't trigger the RBUnaryAccessingMethodWithoutReturnRule rule"
 
 	self value isString
@@ -751,90 +528,60 @@ RBSmalllintTestObject>>unaryNonAccessingBranchingStatementMethodWithoutReturn [
 		ifFalse: [ '' ]
 ]
 
-{
-	#category : #non-accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>unaryNonAccessingMessageStatementMethodWithoutReturn [
+{ #category : #non-accessing }
+RBSmalllintTestObject >> unaryNonAccessingMessageStatementMethodWithoutReturn [
 	"shouldn't trigger the RBUnaryAccessingMethodWithoutReturnRule rule"
 
 	self value
 ]
 
-{
-	#category : #non-accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>unaryNonAccessingMethodWithoutReturn [
+{ #category : #non-accessing }
+RBSmalllintTestObject >> unaryNonAccessingMethodWithoutReturn [
 	"shouldn't trigger the RBUnaryAccessingMethodWithoutReturnRule rule"
 
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>unclassifiedMethods [
+{ #category : #'as yet unclassified' }
+RBSmalllintTestObject >> unclassifiedMethods [
 	"intentionally unclassified method"
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>uncommonMessageSend [
+{ #category : #methods }
+RBSmalllintTestObject >> uncommonMessageSend [
 	true false
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>uncommonMessageSend2 [
+{ #category : #methods }
+RBSmalllintTestObject >> uncommonMessageSend2 [
 	|a|
 	a:=3
 	Object new.
 	^ a
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>unoptimizedAndOr [
+{ #category : #methods }
+RBSmalllintTestObject >> unoptimizedAndOr [
 	^ (true and: [ false ]) and: [ true ]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>usesAdd [
+{ #category : #methods }
+RBSmalllintTestObject >> usesAdd [
 	^(1 to: 10) asOrderedCollection addAll: (11 to: 20)
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>usesTrue [
+{ #category : #methods }
+RBSmalllintTestObject >> usesTrue [
 	^ True
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>variableAssignedLiteral [
+{ #category : #methods }
+RBSmalllintTestObject >> variableAssignedLiteral [
 	temporaryVariable := #() 
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>whileTrue [
+{ #category : #methods }
+RBSmalllintTestObject >> whileTrue [
 	| i |
 	i := 1.
 	[i < self size] whileTrue: 
@@ -842,11 +589,8 @@ RBSmalllintTestObject>>whileTrue [
 			i := i + 1]
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestObject>>yourselfNotUsed [
+{ #category : #methods }
+RBSmalllintTestObject >> yourselfNotUsed [
 	self
 		printString;
 		printString;

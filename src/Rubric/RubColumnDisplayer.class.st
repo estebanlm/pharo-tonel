@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RubColumnDisplayer,
 	#superclass : #RubScrolledTextExtraSurface,
@@ -11,23 +8,16 @@ Class {
 		'tabLineDashes',
 		'tabLineWidth'
 	],
-	#category : #Rubric-Editing-Widgets,
-	#timestamp : ''
+	#category : #Rubric-Editing-Widgets
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubColumnDisplayer class>>key [
+{ #category : #querying }
+RubColumnDisplayer class >> key [
 	^ #column
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubColumnDisplayer>>drawOn: aCanvas [
+{ #category : #drawing }
+RubColumnDisplayer >> drawOn: aCanvas [
 	| cwidth col dsh lw cw dc nb bnds gap |
 	super drawOn: aCanvas.
 	bnds := self bounds.
@@ -51,11 +41,8 @@ RubColumnDisplayer>>drawOn: aCanvas [
 			col := col + cw ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubColumnDisplayer>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #drawing }
+RubColumnDisplayer >> drawOnAthensCanvas: anAthensCanvas [
 	| cwidth col dsh lw cw dc nb bnds gap |
 	super drawOnAthensCanvas: anAthensCanvas.
 	bnds := self bounds.
@@ -80,87 +67,57 @@ RubColumnDisplayer>>drawOnAthensCanvas: anAthensCanvas [
 			col := col + cw ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubColumnDisplayer>>font [
+{ #category : #accessing }
+RubColumnDisplayer >> font [
 	| textStyle |
 	textStyle := self textStyle.
 	^ textStyle fontAt: textStyle defaultFontIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubColumnDisplayer>>tabLineColor [
+{ #category : #accessing }
+RubColumnDisplayer >> tabLineColor [
 	^ tabLineColor ifNil: [ tabLineColor := Color lightGray twiceLighter] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubColumnDisplayer>>tabLineColor: aColor [
+{ #category : #accessing }
+RubColumnDisplayer >> tabLineColor: aColor [
 	tabLineColor := aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubColumnDisplayer>>tabLineDashes [
+{ #category : #accessing }
+RubColumnDisplayer >> tabLineDashes [
 	^ tabLineDashes ifNil: [tabLineDashes := {self tabLineWidth. self tabLineWidth*3}].
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubColumnDisplayer>>tabLineDashes: anArray [
+{ #category : #accessing }
+RubColumnDisplayer >> tabLineDashes: anArray [
 	 tabLineDashes := anArray
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubColumnDisplayer>>tabLineDashesColors  [
+{ #category : #accessing }
+RubColumnDisplayer >> tabLineDashesColors [ 
 	^ tabLineDashesColors ifNil: [tabLineDashesColors := {(self tabLineColor). (Color transparent)}].
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubColumnDisplayer>>tabLineWidth [
+{ #category : #accessing }
+RubColumnDisplayer >> tabLineWidth [
 	^ tabLineWidth ifNil: [ tabLineWidth := 1 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubColumnDisplayer>>tabLineWidth: anInteger [
+{ #category : #accessing }
+RubColumnDisplayer >> tabLineWidth: anInteger [
 	tabLineWidth := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubColumnDisplayer>>tabWidth [
+{ #category : #accessing }
+RubColumnDisplayer >> tabWidth [
 	^ self paragraph tabWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubColumnDisplayer>>tabWidth: anInteger [
+{ #category : #accessing }
+RubColumnDisplayer >> tabWidth: anInteger [
 	self paragraph tabWidth: anInteger
 ]

@@ -37,35 +37,25 @@ I also added a dummy test to check specifically for the timing bug. It fails on 
 Class {
 	#name : #RenderBugsTest,
 	#superclass : #MorphicUIBugTest,
-	#category : #Morphic-Tests-Bugs,
-	#timestamp : 'wiz 5/15/2008 22:58'
+	#category : #Morphic-Tests-Bugs
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RenderBugsTest>>long [
+{ #category : #private }
+RenderBugsTest >> long [
 	"return time limit in milliseconds for tests"
 
 	^ 50
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RenderBugsTest>>shouldntTakeLong: aBlock [
+{ #category : #private }
+RenderBugsTest >> shouldntTakeLong: aBlock [
 	"Check for infinite recursion. Test should finish in a reasonable time."
 
 	^ self should: aBlock notTakeMoreThanMilliseconds: self long
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RenderBugsTest>>testForward [
+{ #category : #tests }
+RenderBugsTest >> testForward [
 	"If the bug exist there will be an infinte recursion."
 
 	"self new testForward"
@@ -78,11 +68,8 @@ RenderBugsTest>>testForward [
 	^ true
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RenderBugsTest>>testHeading [
+{ #category : #tests }
+RenderBugsTest >> testHeading [
 	"If the bug exist there will be an infinte recursion."
 
 	"self new testHeading"
@@ -98,11 +85,8 @@ RenderBugsTest>>testHeading [
 	^ true
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RenderBugsTest>>testNilExtensionOnDraw [
+{ #category : #tests }
+RenderBugsTest >> testNilExtensionOnDraw [
 
 	| morph |
 
@@ -115,11 +99,8 @@ RenderBugsTest>>testNilExtensionOnDraw [
 	self assert: morph hasExtension not.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RenderBugsTest>>testSetForward [
+{ #category : #tests }
+RenderBugsTest >> testSetForward [
 	"If the bug exist there will be an infinte reccursion."
 
 	"self new testSetForward"
@@ -135,11 +116,8 @@ RenderBugsTest>>testSetForward [
 	^ true
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RenderBugsTest>>testTestTime [
+{ #category : #tests }
+RenderBugsTest >> testTestTime [
 	"This is a control case. Should always pass. 
 If it does not something external to the tests are slowing things down 
 past the 1 millisecond mark."

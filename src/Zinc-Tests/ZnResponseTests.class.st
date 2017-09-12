@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnResponseTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnResponseTests>>testAbsoluteCreated [
+{ #category : #testing }
+ZnResponseTests >> testAbsoluteCreated [
 	| response uri |
 	uri := 'http://www.example.com:8888/something/else/foo.txt'.
 	response := ZnResponse created: uri asZnUrl.
@@ -23,11 +16,8 @@ ZnResponseTests>>testAbsoluteCreated [
 	self assert: (response entity contents includesSubstring: uri)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnResponseTests>>testAbsoluteRedirect [
+{ #category : #testing }
+ZnResponseTests >> testAbsoluteRedirect [
 	| response uri |
 	uri := 'http://foo.com:8080/something/else/foo.txt?key=123'.
 	response := ZnResponse redirect: uri asZnUrl.
@@ -40,11 +30,8 @@ ZnResponseTests>>testAbsoluteRedirect [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnResponseTests>>testCookie [
+{ #category : #testing }
+ZnResponseTests >> testCookie [
 	| response cookie1  responseString |
 	response := ZnResponse ok: (ZnStringEntity html: '<h1>hello world</h1>').
 	cookie1 := ZnCookie new.
@@ -64,11 +51,8 @@ ZnResponseTests>>testCookie [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnResponseTests>>testCookies [
+{ #category : #testing }
+ZnResponseTests >> testCookies [
 	| response cookie1 cookie2 responseString |
 	response := ZnResponse ok: (ZnStringEntity html: '<h1>hello world</h1>').
 	cookie1 := ZnCookie new.
@@ -95,11 +79,8 @@ ZnResponseTests>>testCookies [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnResponseTests>>testCreated [
+{ #category : #testing }
+ZnResponseTests >> testCreated [
 	| response uri |
 	uri := '/something/else/foo.txt'.
 	response := ZnResponse created: uri.
@@ -110,11 +91,8 @@ ZnResponseTests>>testCreated [
 	self assert: (response entity contents includesSubstring: uri)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnResponseTests>>testDefaultUTF8Encoding [
+{ #category : #testing }
+ZnResponseTests >> testDefaultUTF8Encoding [
 	| json entity response bytes result |
 	"Even if we do not specificy UTF-8 explicitly, it should be the default"
 	json := '{''bank'':''Région Genève Rhône''}'.
@@ -125,11 +103,8 @@ ZnResponseTests>>testDefaultUTF8Encoding [
 	self assert: result entity contents equals: json
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnResponseTests>>testIsError [
+{ #category : #testing }
+ZnResponseTests >> testIsError [
 	| response |
 	response := ZnResponse ok: (ZnStringEntity html: '<h1>hello world</h1>').
 	self assert: response isError not.
@@ -139,11 +114,8 @@ ZnResponseTests>>testIsError [
 	self assert: response isError not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnResponseTests>>testNotFound [
+{ #category : #testing }
+ZnResponseTests >> testNotFound [
 	| response |
 	response := ZnResponse notFound: 'http:///secret.txt'.
 	self assert: response code = 404.
@@ -152,11 +124,8 @@ ZnResponseTests>>testNotFound [
 	self assert: (response entity contents includesSubstring: 'secret.txt')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnResponseTests>>testRedirect [
+{ #category : #testing }
+ZnResponseTests >> testRedirect [
 	| response uri |
 	uri := '/something/else/foo.txt'.
 	response := ZnResponse redirect: uri.
@@ -175,11 +144,8 @@ ZnResponseTests>>testRedirect [
 	self assert: (response entity contents includesSubstring: uri)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnResponseTests>>testSlashdotGzipChunked [
+{ #category : #testing }
+ZnResponseTests >> testSlashdotGzipChunked [
 	| request stream response contents |
 	(request := ZnRequest get: 'http://slashdot.org')
 		setConnectionClose;
@@ -201,11 +167,8 @@ ZnResponseTests>>testSlashdotGzipChunked [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnResponseTests>>testWritingBinary [
+{ #category : #testing }
+ZnResponseTests >> testWritingBinary [
 	| response bytes string |
 	response := ZnResponse ok: (ZnEntity text: 'Okay').
 	bytes := ByteArray streamContents: [ :stream | response writeOn: stream ].
@@ -214,11 +177,8 @@ ZnResponseTests>>testWritingBinary [
 	self assert: (string includesSubstring: 'Okay')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnResponseTests>>testWritingCharacter [
+{ #category : #testing }
+ZnResponseTests >> testWritingCharacter [
 	| response string |
 	response := ZnResponse ok: (ZnEntity text: 'Okay').
 	string := String streamContents: [ :stream | response writeOn: stream ].

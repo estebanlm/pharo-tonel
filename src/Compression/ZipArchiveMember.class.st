@@ -35,55 +35,36 @@ Class {
 	#pools : [
 		'ZipFileConstants'
 	],
-	#category : #Compression-Archives,
-	#timestamp : '<historical>'
+	#category : #Compression-Archives
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember class>>newFromDirectory: aFileName [
+{ #category : #'instance creation' }
+ZipArchiveMember class >> newFromDirectory: aFileName [
 	^ZipDirectoryMember newNamed: aFileName
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember class>>newFromFile: aFileName [
+{ #category : #'instance creation' }
+ZipArchiveMember class >> newFromFile: aFileName [
 	^ZipNewFileMember newNamed: aFileName
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember class>>newFromString: aString named: aFileName [
+{ #category : #'instance creation' }
+ZipArchiveMember class >> newFromString: aString named: aFileName [
 	^ZipStringMember newFrom: aString named: aFileName
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember class>>newFromZipFile: stream named: fileName [
+{ #category : #'instance creation' }
+ZipArchiveMember class >> newFromZipFile: stream named: fileName [
 	^ZipFileMember newFrom: stream named: fileName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>asDirectory [
+{ #category : #private }
+ZipArchiveMember >> asDirectory [
 	^ZipDirectoryMember new copyFrom: self
 ]
 
-{
-	#category : #'accessing - spec fields',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>bitFlag [
+{ #category : #'accessing - spec fields' }
+ZipArchiveMember >> bitFlag [
 	"Per .ZIP File Format Specification Version: 6.3.2:
 		2 bytes:
 		- Bit 0: If set, indicates that the file is encrypted.
@@ -133,21 +114,15 @@ ZipArchiveMember>>bitFlag [
 	^ bitFlag.
 ]
 
-{
-	#category : #'accessing - spec fields',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>bitFlag: aNumber [
+{ #category : #'accessing - spec fields' }
+ZipArchiveMember >> bitFlag: aNumber [
 	"See comment for #bitFlag"
 	
 	bitFlag := aNumber.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>centralDirectoryHeaderSize [
+{ #category : #accessing }
+ZipArchiveMember >> centralDirectoryHeaderSize [
 
 	| systemFileName systemFileComment systemCdExtraField |
 	systemFileName := fileName asVmPathName.
@@ -157,20 +132,14 @@ ZipArchiveMember>>centralDirectoryHeaderSize [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>clearExtraFields [
+{ #category : #accessing }
+ZipArchiveMember >> clearExtraFields [
 	cdExtraField := ''.
 	localExtraField := ''.
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>compressDataTo: aStream [
+{ #category : #private-writing }
+ZipArchiveMember >> compressDataTo: aStream [
 	"Copy my deflated data to the given stream."
 	| encoder startPos endPos |
 
@@ -189,22 +158,16 @@ ZipArchiveMember>>compressDataTo: aStream [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>compressedSize [
+{ #category : #accessing }
+ZipArchiveMember >> compressedSize [
 	"Return the compressed size for this member.
 	This will not be set for members that were constructed from strings
 	or external files until after the member has been written."
 	^compressedSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>compressionMethod [
+{ #category : #accessing }
+ZipArchiveMember >> compressionMethod [
 	"Returns my compression method. This is the method that is
 	currently being used to compress my data.
 
@@ -214,11 +177,8 @@ ZipArchiveMember>>compressionMethod [
 	^compressionMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>contentStream [
+{ #category : #accessing }
+ZipArchiveMember >> contentStream [
 	"Answer my contents as a text stream.
 	Default is no conversion, since we don't know what the bytes mean."
 
@@ -226,11 +186,8 @@ ZipArchiveMember>>contentStream [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>contentStreamFromEncoding: encodingName [
+{ #category : #accessing }
+ZipArchiveMember >> contentStreamFromEncoding: encodingName [
 	"Answer my contents as a text stream.
 	Interpret the raw bytes with given encodingName"
 
@@ -243,11 +200,8 @@ ZipArchiveMember>>contentStreamFromEncoding: encodingName [
 
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>contents [
+{ #category : #reading }
+ZipArchiveMember >> contents [
 	"Answer my contents as a string."
 	| s |
 	s := RWBinaryOrTextStream on: (String new: self uncompressedSize).
@@ -256,11 +210,8 @@ ZipArchiveMember>>contents [
 	^s contents
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>contentsFrom: start to: finish [
+{ #category : #reading }
+ZipArchiveMember >> contentsFrom: start to: finish [
 	"Answer my contents as a string."
 	| s |
 	s := RWBinaryOrTextStream on: (String new: finish - start + 1).
@@ -269,22 +220,16 @@ ZipArchiveMember>>contentsFrom: start to: finish [
 	^s contents
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>copyDataTo: aStream [
+{ #category : #private-writing }
+ZipArchiveMember >> copyDataTo: aStream [
 
 	compressionMethod = CompressionStored ifTrue: [ ^self copyDataWithCRCTo: aStream ].
 
 	self copyRawDataTo: aStream.
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>copyDataWithCRCTo: aStream [
+{ #category : #private-writing }
+ZipArchiveMember >> copyDataWithCRCTo: aStream [
 	"Copy my data to aStream. Also set the CRC-32.
 	Only used when compressionMethod = desiredCompressionMethod = CompressionStored"
 
@@ -303,11 +248,8 @@ ZipArchiveMember>>copyDataWithCRCTo: aStream [
 
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>copyRawDataTo: aStream [
+{ #category : #private-writing }
+ZipArchiveMember >> copyRawDataTo: aStream [
 
 	[ readDataRemaining > 0 ] whileTrue: [ | data |
 		data := self readRawChunk: (4096 min: readDataRemaining).
@@ -317,11 +259,8 @@ ZipArchiveMember>>copyRawDataTo: aStream [
 
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>copyRawDataTo: aStream from: start to: finish [
+{ #category : #private-writing }
+ZipArchiveMember >> copyRawDataTo: aStream from: start to: finish [
 
 	readDataRemaining := readDataRemaining min: finish - start + 1.
 
@@ -335,37 +274,25 @@ ZipArchiveMember>>copyRawDataTo: aStream from: start to: finish [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>crc32 [
+{ #category : #accessing }
+ZipArchiveMember >> crc32 [
 	^crc32
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>crc32String [
+{ #category : #accessing }
+ZipArchiveMember >> crc32String [
 	| hexString |
 	hexString := crc32 storeStringHex.
 	^('00000000' copyFrom: 1 to: 11 - (hexString size)) , (hexString copyFrom: 4 to: hexString size)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>desiredCompressionLevel [
+{ #category : #accessing }
+ZipArchiveMember >> desiredCompressionLevel [
 	^desiredCompressionLevel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>desiredCompressionLevel: aNumber [
+{ #category : #accessing }
+ZipArchiveMember >> desiredCompressionLevel: aNumber [
 	"Set my desiredCompressionLevel
 	This is the method that will be used to write.
 	Returns prior desiredCompressionLevel.
@@ -386,22 +313,16 @@ ZipArchiveMember>>desiredCompressionLevel: aNumber [
 	^old
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>desiredCompressionMethod [
+{ #category : #accessing }
+ZipArchiveMember >> desiredCompressionMethod [
 	"Get my desiredCompressionMethod.
 	This is the method that will be used to write"
 
 	^desiredCompressionMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>desiredCompressionMethod: aNumber [
+{ #category : #accessing }
+ZipArchiveMember >> desiredCompressionMethod: aNumber [
 	"Set my desiredCompressionMethod
 	This is the method that will be used to write.
 	Answers prior desiredCompressionMethod.
@@ -423,28 +344,19 @@ ZipArchiveMember>>desiredCompressionMethod: aNumber [
 	^old.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>endRead [
+{ #category : #private }
+ZipArchiveMember >> endRead [
 	readDataRemaining := 0.
 ]
 
-{
-	#category : #extraction,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>extractInDirectory: dir [
+{ #category : #extraction }
+ZipArchiveMember >> extractInDirectory: dir [
 	self extractToFileNamed: self localFileName inDirectory: dir
 
 ]
 
-{
-	#category : #extraction,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>extractInDirectory: aDirectory overwrite: overwriteAll [
+{ #category : #extraction }
+ZipArchiveMember >> extractInDirectory: aDirectory overwrite: overwriteAll [
 	"Extract this entry into the given directory. Answer #okay, #failed, #abort, or #retryWithOverwrite."
 	| path fileDir file index localName |
 	path := fileName findTokens: '/'.
@@ -472,11 +384,8 @@ ZipArchiveMember>>extractInDirectory: aDirectory overwrite: overwriteAll [
 	^#okay
 ]
 
-{
-	#category : #extraction,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>extractTo: aStream [
+{ #category : #extraction }
+ZipArchiveMember >> extractTo: aStream [
 	| oldCompression |
 	self isEncrypted ifTrue: [ self error: 'encryption is unsupported' ].
 	aStream binary.
@@ -487,11 +396,8 @@ ZipArchiveMember>>extractTo: aStream [
 	self endRead.
 ]
 
-{
-	#category : #extraction,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>extractTo: aStream from: start to: finish [
+{ #category : #extraction }
+ZipArchiveMember >> extractTo: aStream from: start to: finish [
 	| oldCompression |
 	self isEncrypted ifTrue: [ self error: 'encryption is unsupported' ].
 	aStream binary.
@@ -502,21 +408,15 @@ ZipArchiveMember>>extractTo: aStream from: start to: finish [
 	self endRead.
 ]
 
-{
-	#category : #extraction,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>extractToFileNamed: aFileName [
+{ #category : #extraction }
+ZipArchiveMember >> extractToFileNamed: aFileName [
 	self 
 		extractToFileNamed: aFileName 
 		inDirectory: FileSystem workingDirectory.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>extractToFileNamed: aLocalFileName inDirectory: dir [
+{ #category : #accessing }
+ZipArchiveMember >> extractToFileNamed: aLocalFileName inDirectory: dir [
 	| file fullDir |
 	self isEncrypted
 		ifTrue: [ ^self error: 'encryption unsupported' ].
@@ -531,35 +431,23 @@ ZipArchiveMember>>extractToFileNamed: aLocalFileName inDirectory: dir [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>fileComment [
+{ #category : #accessing }
+ZipArchiveMember >> fileComment [
 	^fileComment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>fileComment: aString [
+{ #category : #accessing }
+ZipArchiveMember >> fileComment: aString [
 	fileComment := aString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>hasDataDescriptor [
+{ #category : #testing }
+ZipArchiveMember >> hasDataDescriptor [
 	^ (self bitFlag bitAnd: 8)	~= 0 "GPBF:=HAS:=DATA:=DESCRIPTOR:=MASK"
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>initialize [
+{ #category : #initialization }
+ZipArchiveMember >> initialize [
 	super initialize.
 	lastModFileDateTime := DateAndTime epoch.
 	fileAttributeFormat := FaUnix.
@@ -581,28 +469,19 @@ ZipArchiveMember>>initialize [
 	self unixFileAttributes: DefaultFilePermissions.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>isDirectory [
+{ #category : #testing }
+ZipArchiveMember >> isDirectory [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>isEncrypted [
+{ #category : #testing }
+ZipArchiveMember >> isEncrypted [
 	"Return true if this member is encrypted (this is unsupported)"
 	^ (self bitFlag bitAnd: 1) ~= 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>isTextFile [
+{ #category : #testing }
+ZipArchiveMember >> isTextFile [
 	"Returns true if I am a text file.
 	Note that this module does not currently do anything with this flag
 	upon extraction or storage.
@@ -612,11 +491,8 @@ ZipArchiveMember>>isTextFile [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>isTextFile: aBoolean [
+{ #category : #testing }
+ZipArchiveMember >> isTextFile: aBoolean [
 	"Set whether I am a text file.
 	Note that this module does not currently do anything with this flag
 	upon extraction or storage.
@@ -628,75 +504,51 @@ ZipArchiveMember>>isTextFile: aBoolean [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>lastModTime [
+{ #category : #accessing }
+ZipArchiveMember >> lastModTime [
 	"Return my last modification date"
 
 	^ lastModFileDateTime.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>localFileName [
+{ #category : #accessing }
+ZipArchiveMember >> localFileName [
 	"Answer my fileName in terms of the local directory naming convention"
 	^ fileName copyReplaceAll: '/' with: FileSystem disk delimiter asString.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>looksLikeDirectory [
+{ #category : #testing }
+ZipArchiveMember >> looksLikeDirectory [
 	^false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>mapPermissionsFromUnix: unixPerms [
+{ #category : #private }
+ZipArchiveMember >> mapPermissionsFromUnix: unixPerms [
 	"Take Unix permissions (e.g. 8r40755 for a directory) and put them in the high 16 bits. The low 16 bits are for DOS permissions"
 	
 	^ unixPerms bitShift: 16.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>mapPermissionsToUnix: zipPerms [
+{ #category : #private }
+ZipArchiveMember >> mapPermissionsToUnix: zipPerms [
 	"Extract Unix permissions (the high 16 bits) from zip permissions. The low 16 bits are for DOS permissions"
 	
 	^ zipPerms bitShift: -16.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>modifiedAt: aDateAndTime [
+{ #category : #accessing }
+ZipArchiveMember >> modifiedAt: aDateAndTime [
 
 	lastModFileDateTime := aDateAndTime.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>readRawChunk: n [
+{ #category : #private }
+ZipArchiveMember >> readRawChunk: n [
 	self subclassResponsibility
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>refreshLocalFileHeaderTo: aStream [
+{ #category : #private-writing }
+ZipArchiveMember >> refreshLocalFileHeaderTo: aStream [
 	"Re-writes my local header to the given stream.
 	To be called after writing the data stream.
 	Assumes that fileName and localExtraField sizes didn't change since last written."
@@ -723,11 +575,8 @@ ZipArchiveMember>>refreshLocalFileHeaderTo: aStream [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>rewindData [
+{ #category : #private }
+ZipArchiveMember >> rewindData [
 	readDataRemaining :=  (desiredCompressionMethod = CompressionDeflated
 		and: [ compressionMethod = CompressionDeflated ])
 			ifTrue: [ compressedSize ]
@@ -735,29 +584,20 @@ ZipArchiveMember>>rewindData [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>splitFileName [
+{ #category : #accessing }
+ZipArchiveMember >> splitFileName [
 	"Answer my name split on slash boundaries. A directory will have a trailing empty string."
 	^ fileName findTokens: '/'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>uncompressedSize [
+{ #category : #accessing }
+ZipArchiveMember >> uncompressedSize [
 	"Return the uncompressed size for this member."
 	^uncompressedSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>unixFileAttributes [
+{ #category : #accessing }
+ZipArchiveMember >> unixFileAttributes [
 	"See comment at end"
 
 	^self mapPermissionsToUnix: externalFileAttributes.
@@ -791,11 +631,8 @@ And of course, the other 12 bits are for the permissions and setuid/setgid/stick
 #define S_ISVTX 0001000 /* save swapped text even after use"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>unixFileAttributes: perms [
+{ #category : #accessing }
+ZipArchiveMember >> unixFileAttributes: perms [
 	"See #unixFileAttributes comment"
 	
 	| oldPerms newPerms |
@@ -807,11 +644,8 @@ ZipArchiveMember>>unixFileAttributes: perms [
 	^oldPerms.
 ]
 
-{
-	#category : #'accessing - spec fields',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>versionMadeBy [
+{ #category : #'accessing - spec fields' }
+ZipArchiveMember >> versionMadeBy [
 	"Per .ZIP File Format Specification Version: 6.3.2:
 		2 Bytes:
 		- The upper byte indicates the compatibility of the file attribute information.  If the external file attributes are compatible with MS-DOS and can be read by PKZIP for DOS version 2.04g then this value will be zero.
@@ -820,21 +654,15 @@ ZipArchiveMember>>versionMadeBy [
 	^ versionMadeBy.
 ]
 
-{
-	#category : #'accessing - spec fields',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>versionMadeBy: anInteger [
+{ #category : #'accessing - spec fields' }
+ZipArchiveMember >> versionMadeBy: anInteger [
 	"See comment for #versionMadeBy"
 	
 	versionMadeBy := anInteger.
 ]
 
-{
-	#category : #'accessing - spec fields',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>versionNeededToExtract [
+{ #category : #'accessing - spec fields' }
+ZipArchiveMember >> versionNeededToExtract [
 	"See .ZIP File Format Specification Version: 6.3.2.
 		For example, 2.0 means:
 		- File is a folder (directory)
@@ -844,21 +672,15 @@ ZipArchiveMember>>versionNeededToExtract [
 	^ versionNeededToExtract.
 ]
 
-{
-	#category : #'accessing - spec fields',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>versionNeededToExtract: anInteger [
+{ #category : #'accessing - spec fields' }
+ZipArchiveMember >> versionNeededToExtract: anInteger [
 	"See comment for #versionNeededToExtract"
 	
 	versionNeededToExtract := anInteger.
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>writeCentralDirectoryFileHeaderTo: aStream [
+{ #category : #private-writing }
+ZipArchiveMember >> writeCentralDirectoryFileHeaderTo: aStream [
 	"C2 v3 V4 v5 V2"
 
 	| systemFileName systemFileComment systemCdExtraField |
@@ -895,11 +717,8 @@ ZipArchiveMember>>writeCentralDirectoryFileHeaderTo: aStream [
 	aStream nextPutAll: systemFileComment asByteArray.
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>writeDataDescriptorTo: aStream [
+{ #category : #private-writing }
+ZipArchiveMember >> writeDataDescriptorTo: aStream [
 	"This writes a data descriptor to the given stream.
 	Assumes that crc32, writeOffset, and uncompressedSize are
 	set correctly (they should be after a write).
@@ -911,11 +730,8 @@ ZipArchiveMember>>writeDataDescriptorTo: aStream [
 	aStream nextLittleEndianNumber: 4 put: uncompressedSize.
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>writeDataTo: aStream [
+{ #category : #private-writing }
+ZipArchiveMember >> writeDataTo: aStream [
 	"Copy my (possibly inflated or deflated) data to the given stream.
 	This might do compression, decompression, or straight copying, depending
 	on the values of compressionMethod and desiredCompressionMethod"
@@ -933,11 +749,8 @@ ZipArchiveMember>>writeDataTo: aStream [
 	self copyDataTo: aStream.
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>writeDataTo: aStream from: start to: finish [
+{ #category : #private-writing }
+ZipArchiveMember >> writeDataTo: aStream from: start to: finish [
 	"Copy my (possibly inflated or deflated) data to the given stream.
 	But only the specified byte range.
 	This might do decompression, or straight copying, depending
@@ -956,11 +769,8 @@ ZipArchiveMember>>writeDataTo: aStream from: start to: finish [
 	self copyRawDataTo: aStream from: start to: finish.
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>writeLocalFileHeaderTo: aStream [
+{ #category : #private-writing }
+ZipArchiveMember >> writeLocalFileHeaderTo: aStream [
 	"Write my local header to a file handle.
 	Stores the offset to the start of the header in my
 	writeLocalHeaderRelativeOffset member."
@@ -986,11 +796,8 @@ ZipArchiveMember>>writeLocalFileHeaderTo: aStream [
 
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchiveMember>>writeTo: aStream [
+{ #category : #writing }
+ZipArchiveMember >> writeTo: aStream [
 	self rewindData.
 	writeLocalHeaderRelativeOffset := aStream position.
 	self writeLocalFileHeaderTo: aStream.

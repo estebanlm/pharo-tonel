@@ -37,42 +37,29 @@ Part of Zinc HTTP Components.
 Class {
 	#name : #ZnCharacterEncoder,
 	#superclass : #Object,
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : 'SvenVanCaekenberghe 1/15/2016 16:02'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder class>>ascii [
+{ #category : #convenience }
+ZnCharacterEncoder class >> ascii [
 	^ self newForEncoding: 'ASCII'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder class>>canonicalEncodingIdentifier: string [
+{ #category : #accessing }
+ZnCharacterEncoder class >> canonicalEncodingIdentifier: string [
 	^ (string select: [ :each | each isAlphaNumeric ]) asLowercase
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder class>>default [
+{ #category : #accessing }
+ZnCharacterEncoder class >> default [
 	"Return the default ZnCharacterEncoder to be used 
 	when none is otherwise specified."
 	
 	^ ZnDefaultCharacterEncoder value
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder class>>detectEncoding: bytes [
+{ #category : #'instance creation' }
+ZnCharacterEncoder class >> detectEncoding: bytes [
 	"Return one of my instances capable of decoding bytes.
 	This is done by successively trying known encodings in a specific order.
 	If no one is found, signal ZnCharacterEncodingError.
@@ -90,29 +77,20 @@ ZnCharacterEncoder class>>detectEncoding: bytes [
 	ZnCharacterEncodingError signal: 'No suitable encoder found'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder class>>handlesEncoding: string [
+{ #category : #accessing }
+ZnCharacterEncoder class >> handlesEncoding: string [
 	"Return true when my instances handle the encoding described by string"
 	
 	self subclassResponsibility 
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder class>>iso88591 [
+{ #category : #convenience }
+ZnCharacterEncoder class >> iso88591 [
 	^ self newForEncoding: 'iso-8859-1'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder class>>knownEncodingIdentifiers [
+{ #category : #accessing }
+ZnCharacterEncoder class >> knownEncodingIdentifiers [
 	"Return a collection of all known encoding identifiers in the system"
 	
 	self = ZnCharacterEncoder ifFalse: [ ^ #() ].
@@ -121,19 +99,13 @@ ZnCharacterEncoder class>>knownEncodingIdentifiers [
 			all nextPutAll: subClass knownEncodingIdentifiers ] ]
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder class>>latin1 [
+{ #category : #convenience }
+ZnCharacterEncoder class >> latin1 [
 	^ self newForEncoding: 'latin1'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder class>>newForEncoding: string [
+{ #category : #'instance creation' }
+ZnCharacterEncoder class >> newForEncoding: string [
 	"Return a new character encoder object for an encoding described by string.
 	Search for a subclass that handles it and delegate (subclassResponsibility)."
 	
@@ -144,53 +116,35 @@ ZnCharacterEncoder class>>newForEncoding: string [
 	^ concreteSubclass newForEncoding: string
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder class>>utf8 [
+{ #category : #convenience }
+ZnCharacterEncoder class >> utf8 [
 	^ self newForEncoding: 'utf-8'
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>= anObject [
+{ #category : #comparing }
+ZnCharacterEncoder >> = anObject [
 	^ self class == anObject class
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>asZnCharacterEncoder [
+{ #category : #converting }
+ZnCharacterEncoder >> asZnCharacterEncoder [
 	^ self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>backOnStream: stream [
+{ #category : #converting }
+ZnCharacterEncoder >> backOnStream: stream [
 	"Move back one character on stream, assuming stream understands #back"
 	
 	self subclassResponsibility 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>beLenient [
+{ #category : #initialize-release }
+ZnCharacterEncoder >> beLenient [
 	"Don't be strict, which is the default"
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>decodeAsCodePoints: bytes [
+{ #category : #convenience }
+ZnCharacterEncoder >> decodeAsCodePoints: bytes [
 	"Decode bytes and return the resulting code points"
 	
 	| byteStream |
@@ -200,11 +154,8 @@ ZnCharacterEncoder>>decodeAsCodePoints: bytes [
 			stream nextPut: (self nextCodePointFromStream: byteStream) ] ] 
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>decodeBytes: bytes [
+{ #category : #convenience }
+ZnCharacterEncoder >> decodeBytes: bytes [
 	"Decode bytes and return the resulting string"
 	
 	| byteStream |
@@ -214,11 +165,8 @@ ZnCharacterEncoder>>decodeBytes: bytes [
 			stream nextPut: (self nextFromStream: byteStream) ] ] 
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>encodeCodePoints: codePoints [
+{ #category : #convenience }
+ZnCharacterEncoder >> encodeCodePoints: codePoints [
 	"Encode codePoints and return the resulting byte array"
 	
 	^ ByteArray streamContents: [ :stream |
@@ -226,42 +174,30 @@ ZnCharacterEncoder>>encodeCodePoints: codePoints [
 			self nextPutCodePoint: each toStream: stream ] ]
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>encodeString: string [
+{ #category : #convenience }
+ZnCharacterEncoder >> encodeString: string [
 	"Encode string and return the resulting byte array"
 	
 	^ ByteArray streamContents: [ :stream |
 		self next: string size putAll: string startingAt: 1 toStream: stream ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>encodedByteCountFor: character [
+{ #category : #converting }
+ZnCharacterEncoder >> encodedByteCountFor: character [
 	"Return how many bytes are needed to encode character"
 	
 	^ self encodedByteCountForCodePoint: character codePoint
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>encodedByteCountForCodePoint: codePoint [
+{ #category : #converting }
+ZnCharacterEncoder >> encodedByteCountForCodePoint: codePoint [
 	"Return how many bytes are needed to encode integer code point"
 	
 	self subclassResponsibility 
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>encodedByteCountForCodePoints: codePoints [
+{ #category : #convenience }
+ZnCharacterEncoder >> encodedByteCountForCodePoints: codePoints [
 	"Return the exact number of bytes it would take to encode codePoints as a byte array"
 
 	^ codePoints 
@@ -270,11 +206,8 @@ ZnCharacterEncoder>>encodedByteCountForCodePoints: codePoints [
 			sum + (self encodedByteCountForCodePoint: each) ]
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>encodedByteCountForString: string [
+{ #category : #convenience }
+ZnCharacterEncoder >> encodedByteCountForString: string [
 	"Return the exact number of bytes it would take to encode string as a byte array"
 
 	^ string 
@@ -283,64 +216,43 @@ ZnCharacterEncoder>>encodedByteCountForString: string [
 			sum + (self encodedByteCountFor: each) ]
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>error: message [
+{ #category : #'error handling' }
+ZnCharacterEncoder >> error: message [
 	ZnCharacterEncodingError signal: message
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>errorOutsideRange [
+{ #category : #'error handling' }
+ZnCharacterEncoder >> errorOutsideRange [
 	self error: 'Character Unicode code point outside encoder range'
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>hash [
+{ #category : #comparing }
+ZnCharacterEncoder >> hash [
 	^ self class name hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>identifier [
+{ #category : #accessing }
+ZnCharacterEncoder >> identifier [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>next: count putAll: string startingAt: offset toStream: stream [
+{ #category : #convenience }
+ZnCharacterEncoder >> next: count putAll: string startingAt: offset toStream: stream [
 	"Write count characters from string starting at offset to stream."
 	
 	0 to: count - 1 do: [ :each | 
 		self nextPut: (string at: offset + each) toStream: stream ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>nextCodePointFromStream: stream [
+{ #category : #converting }
+ZnCharacterEncoder >> nextCodePointFromStream: stream [
 	"Read and return the next integer code point from stream"
 	
 	self subclassResponsibility 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>nextFromStream: stream [
+{ #category : #converting }
+ZnCharacterEncoder >> nextFromStream: stream [
 	"Read and return the next character from stream"
 	
 	| codePoint |
@@ -348,31 +260,22 @@ ZnCharacterEncoder>>nextFromStream: stream [
 	^ Character codePoint: codePoint
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>nextPut: character toStream: stream [
+{ #category : #converting }
+ZnCharacterEncoder >> nextPut: character toStream: stream [
 	"Write the encoding for character to stream"
 	
 	self nextPutCodePoint: character codePoint toStream: stream  
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>nextPutCodePoint: codePoint toStream: stream [
+{ #category : #converting }
+ZnCharacterEncoder >> nextPutCodePoint: codePoint toStream: stream [
 	"Write the encoding for Integer code point to stream"
 	
 	self subclassResponsibility 
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterEncoder>>readInto: string startingAt: offset count: requestedCount fromStream: stream [
+{ #category : #convenience }
+ZnCharacterEncoder >> readInto: string startingAt: offset count: requestedCount fromStream: stream [
 	"Read requestedCount characters into string starting at offset,
 	returning the number read, there could be less available when stream is atEnd"
 

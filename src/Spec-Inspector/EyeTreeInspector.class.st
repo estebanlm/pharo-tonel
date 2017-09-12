@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'tree'
 	],
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #spec,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector class>>inspectorSpec [
+{ #category : #spec }
+EyeTreeInspector class >> inspectorSpec [
 	<spec>
 	
 	^ SpecLayout composed
@@ -25,36 +21,24 @@ EyeTreeInspector class>>inspectorSpec [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector class>>label [
+{ #category : #accessing }
+EyeTreeInspector class >> label [
 	^ 'Tree Inspector'
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>childrenFor: anEyeElement [
+{ #category : #api }
+EyeTreeInspector >> childrenFor: anEyeElement [
 	^ self childrenForObject: anEyeElement value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>childrenForObject: anObject [
+{ #category : #api }
+EyeTreeInspector >> childrenForObject: anObject [
 	^ (EyeInspector inspector: anObject) elements 
 			select: [ :element | element shouldShowInTree ]
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>elementChanged [
+{ #category : #event-handling }
+EyeTreeInspector >> elementChanged [
 	self text doItReceiver: self selectedElement value.
 	self text widget
 		ifNotNil: [ :w | 
@@ -62,19 +46,13 @@ EyeTreeInspector>>elementChanged [
 				classOrMetaClass: self selectedElement value class ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>expandRoots [
+{ #category : #api }
+EyeTreeInspector >> expandRoots [
 	self tree expandRoots
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>iconFor: anEyeElement [
+{ #category : #api }
+EyeTreeInspector >> iconFor: anEyeElement [
 	anEyeElement withErrorsDo: [ :error |
 		^ self iconFor: anEyeElement error: error ].
 		
@@ -83,52 +61,37 @@ EyeTreeInspector>>iconFor: anEyeElement [
 			self iconFor: anEyeElement error: error ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>iconFor: anEyeElement error: error [
+{ #category : #api }
+EyeTreeInspector >> iconFor: anEyeElement error: error [
 	^ self iconNamed: #smallWarningIcon
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>initializeShortcuts [
+{ #category : #initialization }
+EyeTreeInspector >> initializeShortcuts [
 	"initialize the inspector' shortcuts with the dictionary defined in self shortCuts"
 	
 	self shortCuts keysAndValuesDo: [ :key :value |
 		self tree bindKeyCombination: key toAction: value ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>inspectionMenu: aMenu [
+{ #category : #menu }
+EyeTreeInspector >> inspectionMenu: aMenu [
 	self hasSelectedObject ifFalse: [ ^ aMenu ].
 	self inspectionSubMenu: aMenu.
 	self selectedElement inspectionMenu: aMenu.
 	^aMenu.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>labelFor: anEyeElement [
+{ #category : #api }
+EyeTreeInspector >> labelFor: anEyeElement [
 	"Take care of errors that might occur during label access"
 	^ [ anEyeElement longLabel ]
 		on: Error do: [ :error |
 			anEyeElement label, ': ', (self labelFor: anEyeElement error: error) ]
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>objectChanged [
+{ #category : #event-handling }
+EyeTreeInspector >> objectChanged [
 	self text doItReceiver: self object.
 	self text widget
 		ifNotNil: [ :w | w editingMode classOrMetaClass: self object class ].
@@ -137,63 +100,42 @@ EyeTreeInspector>>objectChanged [
 		expandRoots
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>ownerChanged [
+{ #category : #event-handling }
+EyeTreeInspector >> ownerChanged [
 	super ownerChanged.
 	self expandRoots.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>roots [
+{ #category : #accessing }
+EyeTreeInspector >> roots [
 	^ { RootEyeElement host: self object }
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>selectedElement [
+{ #category : #accessing }
+EyeTreeInspector >> selectedElement [
 	self tree hasSelectedItem
 		ifFalse: [ ^ nil ].
 	^ self tree selectedItem content
 ]
 
-{
-	#category : #'smartSuggestions - support',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>selectedMessage [
+{ #category : #'smartSuggestions - support' }
+EyeTreeInspector >> selectedMessage [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>selectedObject [
+{ #category : #accessing }
+EyeTreeInspector >> selectedObject [
 	^self selectedElement value
 ]
 
-{
-	#category : #private-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>takeKeyboardFocus [
+{ #category : #private-focus }
+EyeTreeInspector >> takeKeyboardFocus [
 	^ self tree takeKeyboardFocus
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeTreeInspector>>tree [
+{ #category : #accessing }
+EyeTreeInspector >> tree [
 	^ tree
 		ifNil: [ tree := self instantiate: TreeModel.
 			tree whenBuiltDo: [ self initializeShortcuts ].

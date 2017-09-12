@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ReVarSearchSourceAnchorTest,
 	#superclass : #TestCase,
-	#category : #Renraku-Test,
-	#timestamp : ''
+	#category : #Renraku-Test
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReVarSearchSourceAnchorTest>>testModifyFor [
+{ #category : #tests }
+ReVarSearchSourceAnchorTest >> testModifyFor [
 	| anchor |
 	anchor := ReVarSearchSourceAnchor new.
 	
@@ -33,11 +26,8 @@ ReVarSearchSourceAnchorTest>>testModifyFor [
 		equals: ' two '
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReVarSearchSourceAnchorTest>>testSearchString [
+{ #category : #tests }
+ReVarSearchSourceAnchorTest >> testSearchString [
 
 	| anchor |
 	
@@ -50,11 +40,8 @@ ReVarSearchSourceAnchorTest>>testSearchString [
 		equals: 'var'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReVarSearchSourceAnchorTest>>testSearchString2 [
+{ #category : #tests }
+ReVarSearchSourceAnchorTest >> testSearchString2 [
 
 	| anchor |
 	

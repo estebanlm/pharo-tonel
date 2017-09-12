@@ -8,6 +8,5 @@ Class {
 		'SDL2Constants',
 		'SDL2Types'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'RonieSalgado 5/27/2016 12:57'
+	#category : #OSWindow-SDL2-Bindings
 }

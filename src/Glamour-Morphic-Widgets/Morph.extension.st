@@ -1,29 +1,18 @@
-Extension {
-	#name : #Morph
-}
+Extension { #name : #Morph }
 
-{
-	#category : #'*glamour-morphic-widgets',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Morph>>asReadOnlyMorph [
+{ #category : #'*glamour-morphic-widgets' }
+Morph >> asReadOnlyMorph [
 	^ self
 ]
 
-{
-	#category : #'*glamour-morphic-widgets',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Morph>>glamourMinExtent [
+{ #category : #'*glamour-morphic-widgets' }
+Morph >> glamourMinExtent [
 
 	^ self minExtent
 ]
 
-{
-	#category : #'*glamour-morphic-widgets',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Morph>>glamourOptimalExtent [
+{ #category : #'*glamour-morphic-widgets' }
+Morph >> glamourOptimalExtent [
 
 	|tmpOldResizing tmpResult|
 	tmpOldResizing := self setOptimalResizingStrategyAndReturnOldOne. 
@@ -32,11 +21,8 @@ Morph>>glamourOptimalExtent [
 	^ tmpResult 
 ]
 
-{
-	#category : #'*glamour-morphic-widgets',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Morph>>returnToOldResizingStrategy: aCollection [
+{ #category : #'*glamour-morphic-widgets' }
+Morph >> returnToOldResizingStrategy: aCollection [
 
 	|tmpSubmorphResizing|
 	self submorphs with: aCollection third do: [:aMorph :resizingParameter |
@@ -46,20 +32,14 @@ Morph>>returnToOldResizingStrategy: aCollection [
 	self vResizing: aCollection second.
 ]
 
-{
-	#category : #'*glamour-morphic-widgets',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Morph>>setOptimalResizing [
+{ #category : #'*glamour-morphic-widgets' }
+Morph >> setOptimalResizing [
 	self hResizing: #shrinkWrap.
 	self vResizing: #shrinkWrap
 ]
 
-{
-	#category : #'*glamour-morphic-widgets',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Morph>>setOptimalResizingStrategyAndReturnOldOne [
+{ #category : #'*glamour-morphic-widgets' }
+Morph >> setOptimalResizingStrategyAndReturnOldOne [
 	| tmpHResizing tmpVResizing tmpSubmorphResizing |
 	tmpHResizing := self hResizing.
 	tmpVResizing := self vResizing.

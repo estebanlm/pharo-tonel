@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBProtectInstanceVariableTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBProtectInstanceVariableTest>>testProtectInstanceVariable [
+{ #category : #tests }
+RBProtectInstanceVariableTest >> testProtectInstanceVariable [
 	| refactoring class |
 	refactoring := RBProtectInstanceVariableRefactoring 
 		variable: 'rewrite' , 'Rule1'
@@ -27,11 +20,8 @@ RBProtectInstanceVariableTest>>testProtectInstanceVariable [
 	self deny: (class directlyDefinesMethod: ('rewrite' , 'Rule1:') asSymbol)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBProtectInstanceVariableTest>>testVariableNotDefined [
+{ #category : #'failure tests' }
+RBProtectInstanceVariableTest >> testVariableNotDefined [
 	| refactoring |
 	refactoring := RBProtectInstanceVariableRefactoring 
 		variable: 'rewrite'

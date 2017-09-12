@@ -34,24 +34,17 @@ Class {
 		'headerRow',
 		'exposedRows'
 	],
-	#category : #Morphic-Widgets-FastTable,
-	#timestamp : 'CyrilFerlicot 11/17/2015 14:48'
+	#category : #Morphic-Widgets-FastTable
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph class>>rowLeftMargin [
+{ #category : #accessing }
+FTTableContainerMorph class >> rowLeftMargin [
 	"I'm keeping a small margin beween the list and the begining of a row, to enhance visibility."
 	^ 1
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>addResizeSplitters [
+{ #category : #drawing }
+FTTableContainerMorph >> addResizeSplitters [
 	| columnWidths nextColumn delta |
 	columnWidths := self calculateColumnWidths.
 	nextColumn := self left.
@@ -67,11 +60,8 @@ FTTableContainerMorph>>addResizeSplitters [
 			yourself)	 ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>calculateColumnWidths [
+{ #category : #private }
+FTTableContainerMorph >> calculateColumnWidths [
 	"do three runs 
 	- first collect defined columnwidth that fit
 	- collect remaining undefined columnwidth 
@@ -97,11 +87,8 @@ FTTableContainerMorph>>calculateColumnWidths [
 			ifFalse: [ c ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>calculateExactVisibleRows [
+{ #category : #private }
+FTTableContainerMorph >> calculateExactVisibleRows [
 	"Answer the rows to show in list - with possible fraction"
 
 	| visibleRows |
@@ -109,31 +96,22 @@ FTTableContainerMorph>>calculateExactVisibleRows [
 	^ headerRow ifNotNil: [ visibleRows - 1 ] ifNil: [ visibleRows ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>calculateMaxVisibleRows [
+{ #category : #private }
+FTTableContainerMorph >> calculateMaxVisibleRows [
 	"Answer the maximal number of rows to shown in list"
 
 	^ self calculateExactVisibleRows ceiling
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>calculateMinVisibleRows [
+{ #category : #private }
+FTTableContainerMorph >> calculateMinVisibleRows [
 	"Answer the minimal fully visible number of rows to shown in list"
 
 	^ self calculateExactVisibleRows floor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>calculateStartIndexWhenShowing: visibleRows [
+{ #category : #private }
+FTTableContainerMorph >> calculateStartIndexWhenShowing: visibleRows [
 	"Answer the first row to show when showing visibleRows rows. 
 	 This works in case we are exceeding the available rows to show"
 
@@ -147,49 +125,34 @@ FTTableContainerMorph>>calculateStartIndexWhenShowing: visibleRows [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>calculateVisibleRows [
+{ #category : #private }
+FTTableContainerMorph >> calculateVisibleRows [
 	"Answer the rows to show in list. 
 	 Ensures we show the maximum amount possible"
 
 	^ self calculateMaxVisibleRows min: self owner numberOfRows
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>canRefreshValues [
+{ #category : #testing }
+FTTableContainerMorph >> canRefreshValues [
 	^ self needsRefreshExposedRows and: [ self owner isNotNil and: [ self owner hasDataSource ] ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>changed [
+{ #category : #updating }
+FTTableContainerMorph >> changed [
 	self owner ifNil: [ ^ self ].
 	self setNeedsRefreshExposedRows.
 	super changed
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>clipSubmorphs [
+{ #category : #drawing }
+FTTableContainerMorph >> clipSubmorphs [
 
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>createResizableHeaderWith: aMorph between: leftColumn and: rightColumn [
+{ #category : #private }
+FTTableContainerMorph >> createResizableHeaderWith: aMorph between: leftColumn and: rightColumn [
 	"Create a wrapper morph with a resizable morph et the left (so we bind two columns). 
 	 This morph will be completely transparent in all terms... it acts just as a container."
 	^ Morph new 
@@ -205,20 +168,14 @@ FTTableContainerMorph>>createResizableHeaderWith: aMorph between: leftColumn and
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>defaultColor [
+{ #category : #initialization }
+FTTableContainerMorph >> defaultColor [
 
 	^Color transparent 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>drawOn: canvas [
+{ #category : #drawing }
+FTTableContainerMorph >> drawOn: canvas [
 	| x y cellWidth cellHeight rowsToDisplay rowSubviews highligtedRowIndexes primarySelectionIndex |
 	
 	super drawOn: canvas.
@@ -269,38 +226,26 @@ FTTableContainerMorph>>drawOn: canvas [
 	needsRefreshExposedRows := false
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #drawing }
+FTTableContainerMorph >> drawOnAthensCanvas: anAthensCanvas [
 	self drawOnCanvasWrapperFor: anAthensCanvas
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>exposedRows [
+{ #category : #private }
+FTTableContainerMorph >> exposedRows [
 	"Answer a dictionary of rowIndex->row pairs"
 
 	^ exposedRows
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>initialize [
+{ #category : #initialization }
+FTTableContainerMorph >> initialize [ 
 	super initialize.
 	needsRefreshExposedRows := false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>isRowIndexExceding: rowIndex [
+{ #category : #testing }
+FTTableContainerMorph >> isRowIndexExceding: rowIndex [
 	| headerPresentModificator nextRowIndexByPosition heightWithSpacing |
 	
 	headerPresentModificator := headerRow ifNotNil: [ 1 ] ifNil: [ 0 ].
@@ -310,47 +255,32 @@ FTTableContainerMorph>>isRowIndexExceding: rowIndex [
 	^ (nextRowIndexByPosition * heightWithSpacing) > self height
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>isRowIndexFullyVisible: rowIndex [
+{ #category : #testing }
+FTTableContainerMorph >> isRowIndexFullyVisible: rowIndex [
 	"Answer if a row is *fully* visible. That means row is completely visible (there is 
 	 not hidden part)"
 	^ (self isRowIndexVisible: rowIndex) 
 		and: [ (self isRowIndexExceding: rowIndex) not ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>isRowIndexVisible: rowIndex [
+{ #category : #testing }
+FTTableContainerMorph >> isRowIndexVisible: rowIndex [
 	self exposedRows ifNil: [ ^ false ].
 	^ self exposedRows includesKey: rowIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>needsRefreshExposedRows [
+{ #category : #private }
+FTTableContainerMorph >> needsRefreshExposedRows [
 	^ needsRefreshExposedRows
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>outerBounds [
+{ #category : #geometry }
+FTTableContainerMorph >> outerBounds [ 
 	^ self bounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>rowAndColumnIndexContainingPoint: aPoint [
+{ #category : #accessing }
+FTTableContainerMorph >> rowAndColumnIndexContainingPoint: aPoint [
 	"answer a tuple containing { rowIndex. columnNumber } to be used for menus, etc. 
 	 (check senders for references)"
 
@@ -362,41 +292,29 @@ FTTableContainerMorph>>rowAndColumnIndexContainingPoint: aPoint [
 	^ {nil. nil}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>rowIndexContainingPoint: aPoint [
+{ #category : #accessing }
+FTTableContainerMorph >> rowIndexContainingPoint: aPoint [
 	self exposedRows keysAndValuesDo: [ :rowIndex :row | 
 		(row bounds containsPoint: aPoint)
 			ifTrue: [ ^ rowIndex ] ].
 	^ nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>setNeedsRefreshExposedRows [
+{ #category : #private }
+FTTableContainerMorph >> setNeedsRefreshExposedRows [
 	needsRefreshExposedRows := true
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>updateAllRows [
+{ #category : #updating }
+FTTableContainerMorph >> updateAllRows [
 	self owner isShowColumnHeaders 
 		ifTrue: [ self updateHeaderRow ].
 	self updateExposedRows.
 	
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>updateExposedRows [
+{ #category : #updating }
+FTTableContainerMorph >> updateExposedRows [
 	| visibleRows numberOfColumns columns columnWidths startIndex |
 	
 	self canRefreshValues ifFalse: [ ^ self ].
@@ -421,11 +339,8 @@ FTTableContainerMorph>>updateExposedRows [
 		exposedRows at: rowIndex put: row ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>updateHeaderRow [
+{ #category : #updating }
+FTTableContainerMorph >> updateHeaderRow [
 	"Recalculates the header row if they are defined. 
 	 Please, note that If one of the headers is nil, I assume all are nil and I return. 
 	 This is probably not the best approach, but like that I enforce people defines at least 
@@ -454,10 +369,7 @@ FTTableContainerMorph>>updateHeaderRow [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableContainerMorph>>visibleRowMorphAtIndex: index [
+{ #category : #accessing }
+FTTableContainerMorph >> visibleRowMorphAtIndex: index [
 	^ self exposedRows at: index
 ]

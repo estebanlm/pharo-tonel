@@ -4,55 +4,36 @@ A PDReverseDependentPackageNode is used to display a dependent package in a reve
 Class {
 	#name : #DAReverseDependentPackageNode,
 	#superclass : #DAAbstractPackageNode,
-	#category : #Tool-DependencyAnalyser-UI-Nodes,
-	#timestamp : 'BaptisteQuide 8/3/2014 13:37'
+	#category : #Tool-DependencyAnalyser-UI-Nodes
 }
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReverseDependentPackageNode>>childNodeClassFor: anItem [
+{ #category : #api }
+DAReverseDependentPackageNode >> childNodeClassFor: anItem [
 	^ anItem nodeClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReverseDependentPackageNode>>children [
+{ #category : #accessing }
+DAReverseDependentPackageNode >> children [
 	^ self dependenciesToParentNode dependencies
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReverseDependentPackageNode>>dependenciesToParentNode [
+{ #category : #private }
+DAReverseDependentPackageNode >> dependenciesToParentNode [
 	^ self content daPackage 
 		compositeDependencyTo: (self parentNode content daPackage)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReverseDependentPackageNode>>hasChildren [
+{ #category : #testing }
+DAReverseDependentPackageNode >> hasChildren [
 	^ self dependenciesToParentNode isNotNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReverseDependentPackageNode>>icon [
+{ #category : #accessing }
+DAReverseDependentPackageNode >> icon [
 	^ self iconNamed: #backIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReverseDependentPackageNode>>rPackage [
+{ #category : #accessing }
+DAReverseDependentPackageNode >> rPackage [
 	^ self content rPackageSet
 ]

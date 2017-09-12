@@ -11,43 +11,30 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #Renraku-Utility,
-	#timestamp : 'YuriyTymchuk 3/4/2016 16:52'
+	#category : #Renraku-Utility
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings class>>cleanUp [
+{ #category : #cleanup }
+ReSettings class >> cleanUp [
 	
 	
 	uniqueInstance := nil
 ]
 
-{
-	#category : #settings-accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings class>>inspectorPluggin [
+{ #category : #settings-accessing }
+ReSettings class >> inspectorPluggin [
 	
 	^ self uniqueInstance inspectorPluggin
 ]
 
-{
-	#category : #settings-accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings class>>inspectorPluggin: aBoolean  [
+{ #category : #settings-accessing }
+ReSettings class >> inspectorPluggin: aBoolean [ 
 	
 	self uniqueInstance inspectorPluggin: aBoolean
 ]
 
-{
-	#category : #settings-definition,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings class>>inspectorPlugginSettingsOn: aBuilder [
+{ #category : #settings-definition }
+ReSettings class >> inspectorPlugginSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #inspectorPluggin)
 		order: 5; 
@@ -57,11 +44,8 @@ ReSettings class>>inspectorPlugginSettingsOn: aBuilder [
 		parent: #renraku.
 ]
 
-{
-	#category : #settings-definition,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings class>>reGroupSettingsOn: aBuilder [
+{ #category : #settings-definition }
+ReSettings class >> reGroupSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #renraku)
 		order: 100;
@@ -70,11 +54,8 @@ ReSettings class>>reGroupSettingsOn: aBuilder [
 		parent: #qualityAssistant.
 ]
 
-{
-	#category : #settings-definition,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings class>>resetButtonSettingsOn: aBuilder [
+{ #category : #settings-definition }
+ReSettings class >> resetButtonSettingsOn: aBuilder [
 	<systemsettings>
 		
 	(aBuilder group: #'resetRules')
@@ -92,11 +73,8 @@ ReSettings class>>resetButtonSettingsOn: aBuilder [
 				yourself ].
 ]
 
-{
-	#category : #settings-accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings class>>showErrors [
+{ #category : #settings-accessing }
+ReSettings class >> showErrors [
 	self flag: 'switch to exception strategy completely'.
 	"Utilize the ReExceptionStrategy to either skip the exception,
 	pass it on, or create a list of exceptions as a reparete
@@ -105,19 +83,13 @@ ReSettings class>>showErrors [
 	^ ReExceptionStrategy current = RePassExceptionStrategy
 ]
 
-{
-	#category : #settings-accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings class>>showErrors: anObject [
+{ #category : #settings-accessing }
+ReSettings class >> showErrors: anObject [
 	self uniqueInstance showErrors: anObject
 ]
 
-{
-	#category : #settings-definition,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings class>>showErrorsSettingsOn: aBuilder [
+{ #category : #settings-definition }
+ReSettings class >> showErrorsSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #showErrors)
 		target: self;
@@ -127,38 +99,26 @@ ReSettings class>>showErrorsSettingsOn: aBuilder [
 		parent: #renraku.
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings class>>spotterExtMethods [
+{ #category : #properties }
+ReSettings class >> spotterExtMethods [
 	^ GTSpotter spotterExtendingMethods select: [ :m |
 		m compiledMethod package = #Renraku asPackage ]
 ]
 
-{
-	#category : #settings-accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings class>>spotterPlugin [
+{ #category : #settings-accessing }
+ReSettings class >> spotterPlugin [
 	
 	^ self uniqueInstance spotterPlugin
 ]
 
-{
-	#category : #settings-accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings class>>spotterPlugin: aBoolean [
+{ #category : #settings-accessing }
+ReSettings class >> spotterPlugin: aBoolean [
 	
 	^ self uniqueInstance spotterPlugin: aBoolean
 ]
 
-{
-	#category : #settings-definition,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings class>>spotterPluginSettingsOn: aBuilder [
+{ #category : #settings-definition }
+ReSettings class >> spotterPluginSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #spotterPlugin)
 		order: 5;
@@ -169,60 +129,42 @@ ReSettings class>>spotterPluginSettingsOn: aBuilder [
 		parent: #renraku.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings class>>uniqueInstance [
+{ #category : #accessing }
+ReSettings class >> uniqueInstance [
 	
 	^ uniqueInstance ifNil: [ uniqueInstance := self new ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings>>initialize [
+{ #category : #initialization }
+ReSettings >> initialize [
 	super initialize.
 	
 	inspectorPlugin := false.
 	spotterPlugin := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings>>inspectorPluggin [
+{ #category : #accessing }
+ReSettings >> inspectorPluggin [
 	
 
 	^ inspectorPlugin
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings>>inspectorPluggin: aBool  [
+{ #category : #accessing }
+ReSettings >> inspectorPluggin: aBool [ 
 	
 	inspectorPlugin := aBool
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings>>spotterPlugin [
+{ #category : #accessing }
+ReSettings >> spotterPlugin [
 	
 	^ spotterPlugin
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSettings>>spotterPlugin: aBool  [
+{ #category : #accessing }
+ReSettings >> spotterPlugin: aBool [ 
 	
 	spotterPlugin := aBool
 

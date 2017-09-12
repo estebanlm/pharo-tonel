@@ -1,12 +1,7 @@
-Extension {
-	#name : #MetacelloProjectReferenceSpec
-}
+Extension { #name : #MetacelloProjectReferenceSpec }
 
-{
-	#category : #'*Versionner-Commit',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MetacelloProjectReferenceSpec>>fixedUpdateForSpawnMethod: sourceSpec [
+{ #category : #'*Versionner-Commit' }
+MetacelloProjectReferenceSpec >> fixedUpdateForSpawnMethod: sourceSpec [
 	"This means that this spec was used in a baseline and will be used in a version .... drop all information that isn't useful"
 
 	| versionString |

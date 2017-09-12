@@ -14,26 +14,19 @@ Class {
 		'negated',
 		'elements'
 	],
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:14'
+	#category : #Regex-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharSet>>dispatchTo: aMatcher [
+{ #category : #accessing }
+RxsCharSet >> dispatchTo: aMatcher [
 	"Inform the matcher of the kind of the node, and it
 	will do whatever it has to."
 
 	^aMatcher syntaxCharSet: self
 ]
 
-{
-	#category : #privileged,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharSet>>enumerablePartPredicateIgnoringCase: aBoolean [
+{ #category : #privileged }
+RxsCharSet >> enumerablePartPredicateIgnoringCase: aBoolean [
 
 	| enumeration |
 	enumeration := self optimalSetIgnoringCase: aBoolean.
@@ -42,11 +35,8 @@ RxsCharSet>>enumerablePartPredicateIgnoringCase: aBoolean [
 		ifFalse: [[:char | enumeration includes: char]]
 ]
 
-{
-	#category : #privileged,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharSet>>enumerableSetIgnoringCase: aBoolean [
+{ #category : #privileged }
+RxsCharSet >> enumerableSetIgnoringCase: aBoolean [
 	"Answer a collection of characters that make up the portion of me
 	that can be enumerated."
 
@@ -59,49 +49,34 @@ RxsCharSet>>enumerableSetIgnoringCase: aBoolean [
 	^set
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharSet>>hasPredicates [
+{ #category : #accessing }
+RxsCharSet >> hasPredicates [
 
 	^elements contains: [:some | some isEnumerable not]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharSet>>initializeElements: aCollection negated: aBoolean [
+{ #category : #initialize-release }
+RxsCharSet >> initializeElements: aCollection negated: aBoolean [
 	"See class comment for instance variables description."
 
 	elements := aCollection.
 	negated := aBoolean
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharSet>>isEnumerable [
+{ #category : #testing }
+RxsCharSet >> isEnumerable [
 
 	^elements anySatisfy: [:some | some isEnumerable ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharSet>>isNegated [
+{ #category : #testing }
+RxsCharSet >> isNegated [
 
 	^negated
 ]
 
-{
-	#category : #privileged,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharSet>>optimalSetIgnoringCase: aBoolean [
+{ #category : #privileged }
+RxsCharSet >> optimalSetIgnoringCase: aBoolean [
 	"Assuming the client with search the `set' using #includes:,
 	answer a collection with the contents of `set', of the class
 	that will provide the fastest lookup. Strings are faster than
@@ -114,11 +89,8 @@ RxsCharSet>>optimalSetIgnoringCase: aBoolean [
 		ifFalse: [set]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharSet>>predicateIgnoringCase: aBoolean [
+{ #category : #accessing }
+RxsCharSet >> predicateIgnoringCase: aBoolean [
 
 	| predicate enumerable |
 	enumerable := self enumerablePartPredicateIgnoringCase: aBoolean.
@@ -131,11 +103,8 @@ RxsCharSet>>predicateIgnoringCase: aBoolean [
 				ifFalse: [[:char | (enumerable value: char) or: [predicate value: char]]]]
 ]
 
-{
-	#category : #privileged,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharSet>>predicatePartPredicate [
+{ #category : #privileged }
+RxsCharSet >> predicatePartPredicate [
 	"Answer a predicate that tests all of my elements that cannot be
 	enumerated."
 
@@ -155,11 +124,8 @@ RxsCharSet>>predicatePartPredicate [
 			[[:char | (predicates contains: [:some | some value: char]) not]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsCharSet>>predicates [
+{ #category : #accessing }
+RxsCharSet >> predicates [
 
 	^(elements reject: [:some | some isEnumerable])
 		collect: [:each | each predicate]

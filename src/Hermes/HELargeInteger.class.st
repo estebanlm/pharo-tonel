@@ -1,34 +1,21 @@
-"
-
-"
 Class {
 	#name : #HELargeInteger,
 	#superclass : #HEExportedLiteral,
-	#category : #Hermes-Model,
-	#timestamp : ''
+	#category : #Hermes-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HELargeInteger class>>tag [
+{ #category : #accessing }
+HELargeInteger class >> tag [
 	^ 14
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HELargeInteger>>asLiteralIn: env [
+{ #category : #converting }
+HELargeInteger >> asLiteralIn: env [
 	^ value
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HELargeInteger>>doReadFrom: aReader [
+{ #category : #writing }
+HELargeInteger >> doReadFrom: aReader [
 	| anArray isNegative |
 	isNegative := aReader readByte = 1.
 	anArray := aReader readByteArray.
@@ -41,11 +28,8 @@ HELargeInteger>>doReadFrom: aReader [
 
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HELargeInteger>>doWriteInto: aWriter [
+{ #category : #writing }
+HELargeInteger >> doWriteInto: aWriter [
 	| anArray |
 	aWriter writeByte: (value sign < 0 ifTrue: [ 1 ]	ifFalse: [ 0 ]).
 	anArray := ByteArray new: value size.

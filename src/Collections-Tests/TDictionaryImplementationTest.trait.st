@@ -3,17 +3,11 @@ A trait for test purposes
 "
 Trait {
 	#name : #TDictionaryImplementationTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Unordered,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:33'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #'test - implementation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryImplementationTest>>testAtNil [
+{ #category : #'test - implementation' }
+TDictionaryImplementationTest >> testAtNil [
 	"(self run: #testAtNil)"
 
 	"nil is a valid key in Pharo. In VW nil is not a valid key"
@@ -37,11 +31,8 @@ TDictionaryImplementationTest>>testAtNil [
 	self assert: (dict1 at: nil) = #none
 ]
 
-{
-	#category : #'test - implementation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryImplementationTest>>testFindElementOrNil [
+{ #category : #'test - implementation' }
+TDictionaryImplementationTest >> testFindElementOrNil [
 	"Set>>findElementOrNil: takes an associaiton (when called on a dictionary) an integer, the index of the first
 	position at is either equal to the assocation or which is nil"
 	| assoc indexForG |
@@ -52,11 +43,8 @@ TDictionaryImplementationTest>>testFindElementOrNil [
 	self assert: (self emptyDict findElementOrNil: assoc key) = ((self emptyDict array indexOf: nil) max: indexForG).
 ]
 
-{
-	#category : #'test - implementation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryImplementationTest>>testNew [
+{ #category : #'test - implementation' }
+TDictionaryImplementationTest >> testNew [
 	| d |
 	d := self classToBeTested new: 10.
 	self assert: d size = 0.
@@ -65,11 +53,8 @@ TDictionaryImplementationTest>>testNew [
 	self assert: d capacity = 14
 ]
 
-{
-	#category : #'test - implementation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryImplementationTest>>testPseudo [
+{ #category : #'test - implementation' }
+TDictionaryImplementationTest >> testPseudo [
 	"(self run: #testPseudo)"
 
 	"true and false are valid keys"
@@ -82,11 +67,8 @@ TDictionaryImplementationTest>>testPseudo [
 	self assert: (dict1 at: false) = #false
 ]
 
-{
-	#category : #'test - implementation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryImplementationTest>>testPseudoVariablesAreValidKeys [
+{ #category : #'test - implementation' }
+TDictionaryImplementationTest >> testPseudoVariablesAreValidKeys [
 	"(self run: #testPseudoVariablesAreValidKeys)"
 
 	"true and false are valid keys"
@@ -99,11 +81,8 @@ TDictionaryImplementationTest>>testPseudoVariablesAreValidKeys [
 	self assert: (dict1 at: false) = #false
 ]
 
-{
-	#category : #'test - implementation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryImplementationTest>>testScanFor [
+{ #category : #'test - implementation' }
+TDictionaryImplementationTest >> testScanFor [
 	"Set>>scanFor: return an integer "
 	| assoc indexForG |
 	assoc := #g -> 100.
@@ -114,11 +93,8 @@ TDictionaryImplementationTest>>testScanFor [
 
 ]
 
-{
-	#category : #'test - implementation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryImplementationTest>>testSpecies [
+{ #category : #'test - implementation' }
+TDictionaryImplementationTest >> testSpecies [
 	self assert: self nonEmptyDict species == self nonEmptyDict class.
 	self assert: self emptyDict species == self emptyDict class
 ]

@@ -7,48 +7,32 @@ Class {
 	#instVars : [
 		'classInstanceVariableNames'
 	],
-	#category : #Refactoring-Changes,
-	#timestamp : 'NicolaiHess 9/9/2016 20:35'
+	#category : #Refactoring-Changes
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMetaclassChange class>>definitionPatterns [
+{ #category : #private }
+RBAddMetaclassChange class >> definitionPatterns [
 	^ #('`className class instanceVariableNames: `#instanceVariableNames'
 		'`className class uses: `@traitComposition instanceVariableNames: `#instanceVariableNames')
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMetaclassChange>>asUndoOperation [
+{ #category : #converting }
+RBAddMetaclassChange >> asUndoOperation [
 	^ self class definition: self changeClass class definition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMetaclassChange>>classInstanceVariableNames [
+{ #category : #accessing }
+RBAddMetaclassChange >> classInstanceVariableNames [
 	^ classInstanceVariableNames
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMetaclassChange>>definitionClass [
+{ #category : #private }
+RBAddMetaclassChange >> definitionClass [
 	^ self changeClass
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMetaclassChange>>fillOutDefinition: aDictionary [
+{ #category : #initialization }
+RBAddMetaclassChange >> fillOutDefinition: aDictionary [
 	className := (aDictionary at: '`className') asSymbol.
 	classInstanceVariableNames := self namesIn: (aDictionary
 		at: '`#instanceVariableNames'

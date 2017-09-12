@@ -9,14 +9,10 @@ Abstract superClass for fontProviders
 Class {
 	#name : #FontProviderAbstract,
 	#superclass : #Object,
-	#category : #FontInfrastructure,
-	#timestamp : 'tween 3/14/2007 22:59'
+	#category : #FontInfrastructure
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FontProviderAbstract>>families [
+{ #category : #accessing }
+FontProviderAbstract >> families [
 	self subclassResponsibility
 ]

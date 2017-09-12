@@ -1,12 +1,7 @@
-Extension {
-	#name : #WordArray
-}
+Extension { #name : #WordArray }
 
-{
-	#category : #'*Collections-arithmetic',
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-WordArray>>* other [
+{ #category : #'*Collections-arithmetic' }
+WordArray >> * other [
 
 	| result |
 	other isNumber ifTrue: [
@@ -30,11 +25,8 @@ WordArray>>* other [
 
 ]
 
-{
-	#category : #'*Collections-arithmetic',
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-WordArray>>+ other [
+{ #category : #'*Collections-arithmetic' }
+WordArray >> + other [
 
 	| result |
 	other isNumber ifTrue: [
@@ -58,11 +50,8 @@ WordArray>>+ other [
 
 ]
 
-{
-	#category : #'*Collections-arithmetic',
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-WordArray>>- other [
+{ #category : #'*Collections-arithmetic' }
+WordArray >> - other [
 
 	| result |
 	other isNumber ifTrue: [
@@ -86,11 +75,8 @@ WordArray>>- other [
 
 ]
 
-{
-	#category : #'*Collections-arithmetic',
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-WordArray>>/ other [
+{ #category : #'*Collections-arithmetic' }
+WordArray >> / other [
 
 	| result |
 	other isNumber ifTrue: [

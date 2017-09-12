@@ -1,44 +1,28 @@
-"
-
-"
 Class {
 	#name : #GLMButtonModel,
 	#superclass : #GLMMorphicModel,
 	#instVars : [
 		'glamourAction'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonModel>>buttonLabel [
+{ #category : #actions }
+GLMButtonModel >> buttonLabel [
 	^ self glamourAction title
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonModel>>execute [
+{ #category : #actions }
+GLMButtonModel >> execute [
 	self glamourAction actOn: self glamourPresentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonModel>>glamourAction [
+{ #category : #accessing }
+GLMButtonModel >> glamourAction [
 	^ glamourAction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonModel>>glamourAction: anObject [
+{ #category : #accessing }
+GLMButtonModel >> glamourAction: anObject [
 	glamourAction := anObject
 ]

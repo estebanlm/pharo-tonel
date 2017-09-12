@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #GLMPresentationTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>expectedFailures  [
+{ #category : #testing }
+GLMPresentationTest >> expectedFailures [ 
 	^ #(testToSendMultipleValue)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testActions [
+{ #category : #tests }
+GLMPresentationTest >> testActions [
 	| listing |
 	listing := GLMPresentation new.
 	listing actions isEmpty.
@@ -28,11 +18,8 @@ GLMPresentationTest>>testActions [
 	listing actions size = 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testAllActions [
+{ #category : #tests }
+GLMPresentationTest >> testAllActions [
 	| listing |
 	listing := GLMPresentation new.
 	self assert: listing hasActions not.
@@ -43,11 +30,8 @@ GLMPresentationTest>>testAllActions [
 	self assert: listing hasActions
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testAllSelectionActionsWithNoSelection [
+{ #category : #tests }
+GLMPresentationTest >> testAllSelectionActionsWithNoSelection [
 	| listing |
 	listing := GLMPresentation new.
 	listing addSelectionAction: GLMAction new.
@@ -57,11 +41,8 @@ GLMPresentationTest>>testAllSelectionActionsWithNoSelection [
 	self assert: listing allSelectionActions size equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testAllSelectionActionsWithSelection [
+{ #category : #tests }
+GLMPresentationTest >> testAllSelectionActionsWithSelection [
 	| listing |
 	listing := GLMPresentation new.
 	listing addSelectionAction: GLMAction new.
@@ -72,11 +53,8 @@ GLMPresentationTest>>testAllSelectionActionsWithSelection [
 	self assert: listing allSelectionActions size equals: 5
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testAnnouncement [
+{ #category : #tests }
+GLMPresentationTest >> testAnnouncement [
 	| pane presentation announcement |
 	pane := GLMPane named: 'test'.
 	presentation := GLMPresentation new.
@@ -89,11 +67,8 @@ GLMPresentationTest>>testAnnouncement [
 	self assert: announcement value equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testContext [
+{ #category : #tests }
+GLMPresentationTest >> testContext [
 	| pane presentation |
 	pane := GLMPane named: 'test'.
 	presentation := GLMPresentation new.
@@ -104,11 +79,8 @@ GLMPresentationTest>>testContext [
 	self assert: presentation entity equals: 'foo'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testCopyAnnouncementsDoNotRaise [
+{ #category : #tests }
+GLMPresentationTest >> testCopyAnnouncementsDoNotRaise [
 	| presentation newPresentation |
 	presentation := GLMPresentation new.
 	presentation when: GLMContextChanged do: [ :ann | self fail ].
@@ -118,11 +90,8 @@ GLMPresentationTest>>testCopyAnnouncementsDoNotRaise [
 	self assert: newPresentation numberOfSubscriptions equals: 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testCopyNotTheSameRegistry [
+{ #category : #tests }
+GLMPresentationTest >> testCopyNotTheSameRegistry [
 
 	| presentation newPresentation |
 	presentation := GLMPresentation new.
@@ -130,11 +99,8 @@ GLMPresentationTest>>testCopyNotTheSameRegistry [
 	self assert: presentation glmSubscriptions ~~ newPresentation glmSubscriptions
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testCopyRootPrototype [
+{ #category : #tests }
+GLMPresentationTest >> testCopyRootPrototype [
 	| presentation newPresentation yetAnotherPresentation |
 	presentation := GLMPresentation new.
 	newPresentation := presentation copy.
@@ -145,11 +111,8 @@ GLMPresentationTest>>testCopyRootPrototype [
 	self assert: yetAnotherPresentation parentPrototype equals: newPresentation
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testCopyTheTransformation [
+{ #category : #tests }
+GLMPresentationTest >> testCopyTheTransformation [
 	| presentation newPresentation transformation |
 	presentation := GLMPresentation new.
 	presentation selectionTransformation: [:each | each + 1].
@@ -158,11 +121,8 @@ GLMPresentationTest>>testCopyTheTransformation [
 	self assert: (newPresentation selectionTransformation value: 1) equals: 2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testDefaultPane [
+{ #category : #tests }
+GLMPresentationTest >> testDefaultPane [
 	| presentation pane |
 	presentation := GLMPresentation new.
 	pane := presentation pane.
@@ -171,11 +131,8 @@ GLMPresentationTest>>testDefaultPane [
 	self assert: pane presentations first == presentation
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testDisplay [
+{ #category : #tests }
+GLMPresentationTest >> testDisplay [
 	| presentation |
 	presentation := GLMPresentation new.
 	presentation entity: #foo.
@@ -188,11 +145,8 @@ GLMPresentationTest>>testDisplay [
 	self assert: presentation displayValue equals: #foobar
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testEntityPortInitialization [
+{ #category : #tests }
+GLMPresentationTest >> testEntityPortInitialization [
 	| pane presentation |
 	pane := GLMPane named: 'test'.
 	presentation := GLMPresentation new
@@ -205,21 +159,15 @@ GLMPresentationTest>>testEntityPortInitialization [
 	self assert: presentation entity = 2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testEquality [
+{ #category : #tests }
+GLMPresentationTest >> testEquality [
 	| presentation |
 	presentation := GLMPresentation new.
 	self assert: (presentation = presentation copy) not
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testExplicitNotNilMultipleValues [
+{ #category : #tests }
+GLMPresentationTest >> testExplicitNotNilMultipleValues [
 	| presentation | 
 	presentation := GLMPresentation new. 
 	presentation useExplicitNotNil.
@@ -233,11 +181,8 @@ GLMPresentationTest>>testExplicitNotNilMultipleValues [
 	self assert: presentation matches.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testHasTitle [
+{ #category : #tests }
+GLMPresentationTest >> testHasTitle [
 	| presentation |
 	presentation := GLMPresentation new.
 	self assert: presentation hasTitle not.
@@ -245,11 +190,8 @@ GLMPresentationTest>>testHasTitle [
 	self assert: presentation hasTitle
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testHasTitleIcon [
+{ #category : #tests }
+GLMPresentationTest >> testHasTitleIcon [
 	| presentation |
 	presentation := GLMPresentation new.
 	self assert: presentation hasTitleIcon not.
@@ -257,11 +199,8 @@ GLMPresentationTest>>testHasTitleIcon [
 	self assert: presentation hasTitleIcon
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testImplicitNotNilMultipleValues [
+{ #category : #tests }
+GLMPresentationTest >> testImplicitNotNilMultipleValues [
 	| presentation | 
 	presentation := GLMPresentation new. 
 	presentation useImplicitNotNil.
@@ -275,11 +214,8 @@ GLMPresentationTest>>testImplicitNotNilMultipleValues [
 	self assert: presentation matches.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testMatching [
+{ #category : #tests }
+GLMPresentationTest >> testMatching [
 	| presentation |
 	presentation := GLMPresentation new.
 	self assert: presentation usesImplicitNotNil.
@@ -318,11 +254,8 @@ GLMPresentationTest>>testMatching [
 			self assert: err message arguments equals: (Array with: 1) ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testOnChangeOfPortAct [
+{ #category : #tests }
+GLMPresentationTest >> testOnChangeOfPortAct [
 	| pane presentation timesTriggered |
 	pane := GLMPane named: 'test'.
 	presentation := GLMPresentation new.
@@ -335,11 +268,8 @@ GLMPresentationTest>>testOnChangeOfPortAct [
 	self assert: timesTriggered equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testPresentationInitializationBlock [
+{ #category : #tests }
+GLMPresentationTest >> testPresentationInitializationBlock [
 	| pane presentation count|
 	count := 0.
 	pane := GLMPane named: 'test'.
@@ -357,11 +287,8 @@ GLMPresentationTest>>testPresentationInitializationBlock [
 	self assert: (presentation pane port: #test) value = 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testPresentationInitializationBlockIsCalled [
+{ #category : #tests }
+GLMPresentationTest >> testPresentationInitializationBlockIsCalled [
 	| pane presentation count |
 	count := 0.
 	pane := GLMPane named: 'test'.
@@ -377,11 +304,8 @@ GLMPresentationTest>>testPresentationInitializationBlockIsCalled [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testRawSelectionAvailableWhenNoSelectionActive [
+{ #category : #tests }
+GLMPresentationTest >> testRawSelectionAvailableWhenNoSelectionActive [
 "testSelectionNotAvailableWhenNoSelectionActive
 testSelectionAvailableWhenNoSelectionDisabled"
 	| presentation |
@@ -393,11 +317,8 @@ testSelectionAvailableWhenNoSelectionDisabled"
 	self assert: presentation rawSelection equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testSelectionActions [
+{ #category : #tests }
+GLMPresentationTest >> testSelectionActions [
 	| listing |
 	listing := GLMPresentation new.
 	listing selectionActions isEmpty.
@@ -405,11 +326,8 @@ GLMPresentationTest>>testSelectionActions [
 	self assert: listing selectionActions size equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testSelectionAvailableWhenNoSelectionDisabled [
+{ #category : #tests }
+GLMPresentationTest >> testSelectionAvailableWhenNoSelectionDisabled [
 	| presentation |
 	presentation := GLMPresentation new.
 
@@ -418,22 +336,16 @@ GLMPresentationTest>>testSelectionAvailableWhenNoSelectionDisabled [
 	self assert: presentation rawSelection equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testSetup [
+{ #category : #tests }
+GLMPresentationTest >> testSetup [
 	| presentation |
 	presentation := GLMPresentation new. 
 	self assert: presentation pane notNil. 
 	self assert: (presentation pane presentations includes: presentation)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testTitle [
+{ #category : #tests }
+GLMPresentationTest >> testTitle [
 	| presentation |
 	presentation := GLMPresentation new.
 	presentation entity: #foo.
@@ -448,11 +360,8 @@ GLMPresentationTest>>testTitle [
 	self assert: presentation titleValue equals: '43'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testToRawSelection [
+{ #category : #tests }
+GLMPresentationTest >> testToRawSelection [
 	| presentation |
 	presentation := GLMPresentation new.
 
@@ -466,11 +375,8 @@ GLMPresentationTest>>testToRawSelection [
 	self assert: presentation rawSelection equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testToSend [
+{ #category : #tests }
+GLMPresentationTest >> testToSend [
 	| presentation |
 	presentation := GLMPresentation new.
 	presentation selection: #foo.
@@ -482,11 +388,8 @@ GLMPresentationTest>>testToSend [
 	self assert: presentation selection equals: #foobar
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testToSendAs [
+{ #category : #tests }
+GLMPresentationTest >> testToSendAs [
 	| presentation |
 	presentation := GLMPresentation new.
 	presentation selection: #foo.
@@ -498,11 +401,8 @@ GLMPresentationTest>>testToSendAs [
 	self assert: presentation selection equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testToSendMultipleValue [
+{ #category : #tests }
+GLMPresentationTest >> testToSendMultipleValue [
 	| presentation |
 	presentation := GLMPresentation new.
 	presentation selection: (GLMMultiValue withAll: #(#foo #bar )).
@@ -510,11 +410,8 @@ GLMPresentationTest>>testToSendMultipleValue [
 	presentation selectionTransformation: [ :first :second | (first , second) asSymbol ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testUnregisterAnnouncements [
+{ #category : #tests }
+GLMPresentationTest >> testUnregisterAnnouncements [
 	| announcer presentation |
 	announcer := Announcer new.
 	presentation := GLMPresentation new.
@@ -525,11 +422,8 @@ GLMPresentationTest>>testUnregisterAnnouncements [
 	self assert: announcer numberOfSubscriptions equals: 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testUnregisterAnnouncementsWhenEntityChanges [
+{ #category : #tests }
+GLMPresentationTest >> testUnregisterAnnouncementsWhenEntityChanges [
 	| announcer1 presentation |
 	announcer1 := Announcer new.
 	presentation := GLMPresentation new.
@@ -545,11 +439,8 @@ GLMPresentationTest>>testUnregisterAnnouncementsWhenEntityChanges [
 	self assert: announcer1 numberOfSubscriptions equals: 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testUpdate [
+{ #category : #tests }
+GLMPresentationTest >> testUpdate [
 	| col pane presentation |
 	col := OrderedCollection with: 1 with: 2.
 	pane := GLMPane named: 'test'.
@@ -565,11 +456,8 @@ GLMPresentationTest>>testUpdate [
 	self assert: presentation selection isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testUpdateConditionallyTriggered [
+{ #category : #tests }
+GLMPresentationTest >> testUpdateConditionallyTriggered [
 	| pane presentation announcer timesTriggered |
 	pane := GLMPane named: 'test'.
 	(pane port: #entity) value: 40.
@@ -586,11 +474,8 @@ GLMPresentationTest>>testUpdateConditionallyTriggered [
 	self assert: timesTriggered equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testUpdateOnFromAllPortsUpdate [
+{ #category : #tests }
+GLMPresentationTest >> testUpdateOnFromAllPortsUpdate [
 	| pane presentation announcers col updated |
 	col := (1 to: 4) asOrderedCollection. 
 	pane := GLMPane named: 'test'. 
@@ -612,11 +497,8 @@ GLMPresentationTest>>testUpdateOnFromAllPortsUpdate [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testUpdateOnPortsUpdate [
+{ #category : #tests }
+GLMPresentationTest >> testUpdateOnPortsUpdate [
 	| col pane presentation announcer |
 	col := OrderedCollection with: 1 with: 2.
 	pane := GLMPane named: 'test'.
@@ -634,11 +516,8 @@ GLMPresentationTest>>testUpdateOnPortsUpdate [
 	self assert: presentation selection isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testUpdateOnTriggered [
+{ #category : #tests }
+GLMPresentationTest >> testUpdateOnTriggered [
 	| pane presentation announcer timesTriggered |
 	pane := GLMPane named: 'test'.
 	presentation := GLMPresentation new.
@@ -653,11 +532,8 @@ GLMPresentationTest>>testUpdateOnTriggered [
 	self assert: timesTriggered equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testValidate [
+{ #category : #tests }
+GLMPresentationTest >> testValidate [
 	| pane presentation | 
 	pane := GLMPane named: 'test'. 
 	presentation := GLMPresentation new.
@@ -669,33 +545,24 @@ GLMPresentationTest>>testValidate [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testWith [
+{ #category : #tests }
+GLMPresentationTest >> testWith [
 	| p presentationInWithBlock |
 	p := GLMPresentation new.
 	p with: [ :thePresentation | presentationInWithBlock := thePresentation ].
 	self assert: presentationInWithBlock == p
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testWithBlockPassesTheParentPresentation [
+{ #category : #tests }
+GLMPresentationTest >> testWithBlockPassesTheParentPresentation [
 	| p presentationInWithBlock |
 	p := GLMPresentation new.
 	p with: [ :thePresentation | presentationInWithBlock := thePresentation ].
 	self assert: presentationInWithBlock == p
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPresentationTest>>testWithReturnsTheOriginalPresentation [
+{ #category : #tests }
+GLMPresentationTest >> testWithReturnsTheOriginalPresentation [
 	| p result |
 	p := GLMPresentation new.
 	result := p with: [ :thePresentation | GLMPresentation new ].

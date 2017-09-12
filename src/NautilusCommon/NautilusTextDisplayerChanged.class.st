@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'displayerSymbol'
 	],
-	#category : #NautilusCommon-Announcements,
-	#timestamp : '<historical>'
+	#category : #NautilusCommon-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusTextDisplayerChanged class>>displayerSymbol: anObject [
+{ #category : #'instance creation' }
+NautilusTextDisplayerChanged class >> displayerSymbol: anObject [
 
 	^ self new
 		displayerSymbol: anObject;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusTextDisplayerChanged>>displayerSymbol [
+{ #category : #accessing }
+NautilusTextDisplayerChanged >> displayerSymbol [
 	^ displayerSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusTextDisplayerChanged>>displayerSymbol: anObject [
+{ #category : #accessing }
+NautilusTextDisplayerChanged >> displayerSymbol: anObject [
 	displayerSymbol := anObject
 ]

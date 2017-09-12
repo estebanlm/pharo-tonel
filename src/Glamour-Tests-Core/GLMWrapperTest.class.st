@@ -1,28 +1,18 @@
-"
-
-"
 Class {
 	#name : #GLMWrapperTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWrapperTest>>testDefaultPane [
+{ #category : #tests }
+GLMWrapperTest >> testDefaultPane [
 	| browser |
 	browser := GLMWrapper new.
 	self assert: browser panes size equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWrapperTest>>testPresentationsAreInstalled [
+{ #category : #tests }
+GLMWrapperTest >> testPresentationsAreInstalled [
 	| browser |
 	browser := GLMWrapper new.
 	browser show: [ :a | a text ].

@@ -9,23 +9,16 @@ Class {
 		'owner',
 		'project'
 	],
-	#category : #MonticelloRemoteRepositories,
-	#timestamp : '<historical>'
+	#category : #MonticelloRemoteRepositories
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository class>>baseURL [
+{ #category : #accessing }
+MCSmalltalkhubRepository class >> baseURL [
 	^ self smalltalkhubUrl, 'mc/'
 ]
 
-{
-	#category : #'creation template',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository class>>creationTemplate [
+{ #category : #'creation template' }
+MCSmalltalkhubRepository class >> creationTemplate [
 	^self creationTemplateOwner: ''
 		project: ''
 		user: ''
@@ -33,11 +26,8 @@ MCSmalltalkhubRepository class>>creationTemplate [
 
 ]
 
-{
-	#category : #'creation template',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository class>>creationTemplateOwner: owner project: project user: user password: password [
+{ #category : #'creation template' }
+MCSmalltalkhubRepository class >> creationTemplateOwner: owner project: project user: user password: password [
 	^ String streamContents: [ :s|
 		s 
 			nextPutAll: self name; cr;
@@ -47,35 +37,23 @@ MCSmalltalkhubRepository class>>creationTemplateOwner: owner project: project us
 			tab; nextPutAll: 'password: '; print: password ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository class>>description [
+{ #category : #accessing }
+MCSmalltalkhubRepository class >> description [
 	^ 'smalltalkhub.com'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository class>>hostName [
+{ #category : #accessing }
+MCSmalltalkhubRepository class >> hostName [
 	^ 'smalltalkhub.com'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository class>>isResponsibleFor: aUrl [
+{ #category : #testing }
+MCSmalltalkhubRepository class >> isResponsibleFor: aUrl [
 	^ aUrl includesSubstring: self hostName
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository class>>owner: owner project: project  [
+{ #category : #'instance creation' }
+MCSmalltalkhubRepository class >> owner: owner project: project [ 
 	^ self
 		owner: owner
 		project: project
@@ -83,11 +61,8 @@ MCSmalltalkhubRepository class>>owner: owner project: project  [
 		password: String empty
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository class>>owner: owner project: project user: user password: password [
+{ #category : #'instance creation' }
+MCSmalltalkhubRepository class >> owner: owner project: project user: user password: password [
 	^ self new
 		owner: owner;
 		project: project;
@@ -96,28 +71,19 @@ MCSmalltalkhubRepository class>>owner: owner project: project user: user passwor
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository class>>smalltalkhubUrl [
+{ #category : #accessing }
+MCSmalltalkhubRepository class >> smalltalkhubUrl [
 	^ 'http://', self hostName, '/'
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository>>asCreationTemplate [
+{ #category : #converting }
+MCSmalltalkhubRepository >> asCreationTemplate [
 	^self class 
 		creationTemplateOwner: self owner project: self project user: user password: password
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository>>includesFileNamed: aString [
+{ #category : #interface }
+MCSmalltalkhubRepository >> includesFileNamed: aString [
 	"avoid the slower default method and simply do a head request "
 	self httpClient
 		numberOfRetries: 0;
@@ -129,20 +95,14 @@ MCSmalltalkhubRepository>>includesFileNamed: aString [
 	^ true
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository>>includesVersionNamed: aString [
+{ #category : #interface }
+MCSmalltalkhubRepository >> includesVersionNamed: aString [
 	"directly do a filename check since squeaksource only stores mcz"
 	^ self includesFileNamed: aString, '.mcz'
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository>>loadAllFileNames [
+{ #category : #interface }
+MCSmalltalkhubRepository >> loadAllFileNames [
 	| client |
 	client := self httpClient.
 	client
@@ -154,19 +114,13 @@ MCSmalltalkhubRepository>>loadAllFileNames [
 	^ self parseFileNamesFromStream: client contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository>>location [
+{ #category : #accessing }
+MCSmalltalkhubRepository >> location [
 	^ 'http://smalltalkhub.com/mc/', self owner, '/', self project, '/main/' 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository>>location: aUrlString [
+{ #category : #accessing }
+MCSmalltalkhubRepository >> location: aUrlString [
 	| pathSegments |
 	(self class isResponsibleFor: aUrlString)
 		ifFalse: [ Error signal: 'Please provide a smalltalkhub url' ].
@@ -176,56 +130,38 @@ MCSmalltalkhubRepository>>location: aUrlString [
 	self project: pathSegments second.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository>>locationWithTrailingSlash [
+{ #category : #accessing }
+MCSmalltalkhubRepository >> locationWithTrailingSlash [
 	^ self location
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository>>owner [
+{ #category : #accessing }
+MCSmalltalkhubRepository >> owner [
 	
 	^ owner
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository>>owner: aString [
+{ #category : #accessing }
+MCSmalltalkhubRepository >> owner: aString [
 	
 	owner := aString
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository>>parseFileNamesFromStream: aNewLineDelimitedString [
+{ #category : #interface }
+MCSmalltalkhubRepository >> parseFileNamesFromStream: aNewLineDelimitedString [
 	^ aNewLineDelimitedString 
 		ifNil: [ ^ OrderedCollection new ]
 		ifNotNil: [ aNewLineDelimitedString substrings: String crlf ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository>>project [
+{ #category : #accessing }
+MCSmalltalkhubRepository >> project [
 	
 	^ project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSmalltalkhubRepository>>project: aString [
+{ #category : #accessing }
+MCSmalltalkhubRepository >> project: aString [
 	
 	project := aString
 ]

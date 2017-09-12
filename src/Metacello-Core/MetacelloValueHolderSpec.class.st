@@ -1,30 +1,20 @@
-"
-
-"
 Class {
 	#name : #MetacelloValueHolderSpec,
 	#superclass : #MetacelloSpec,
 	#instVars : [
 		'value'
 	],
-	#category : #Metacello-Core-Specs,
-	#timestamp : ''
+	#category : #Metacello-Core-Specs
 }
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValueHolderSpec>>configMethodOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloValueHolderSpec >> configMethodOn: aStream indent: indent [
 
 	aStream tab: indent; nextPutAll: 'spec value: ', self value printString
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValueHolderSpec>>mergeMap [
+{ #category : #merging }
+MetacelloValueHolderSpec >> mergeMap [
 
 	| map |
 	map := super mergeMap.
@@ -32,80 +22,53 @@ MetacelloValueHolderSpec>>mergeMap [
 	^map
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValueHolderSpec>>setAuthorInMetacelloVersion: aMetacelloVersionSpec [
+{ #category : #private }
+MetacelloValueHolderSpec >> setAuthorInMetacelloVersion: aMetacelloVersionSpec [
 
 	aMetacelloVersionSpec setAuthor: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValueHolderSpec>>setBlessingInMetacelloVersion: aMetacelloVersionSpec [
+{ #category : #private }
+MetacelloValueHolderSpec >> setBlessingInMetacelloVersion: aMetacelloVersionSpec [
 
 	aMetacelloVersionSpec setBlessing: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValueHolderSpec>>setDescriptionInMetacelloVersion: aMetacelloVersionSpec [
+{ #category : #private }
+MetacelloValueHolderSpec >> setDescriptionInMetacelloVersion: aMetacelloVersionSpec [
 
 	aMetacelloVersionSpec setDescription: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValueHolderSpec>>setPostLoadDoItInMetacelloSpec: aMetacelloSpec [
+{ #category : #private }
+MetacelloValueHolderSpec >> setPostLoadDoItInMetacelloSpec: aMetacelloSpec [
 
 	aMetacelloSpec setPostLoadDoIt: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValueHolderSpec>>setPreLoadDoItInMetacelloSpec: aMetacelloSpec [
+{ #category : #private }
+MetacelloValueHolderSpec >> setPreLoadDoItInMetacelloSpec: aMetacelloSpec [
 
 	aMetacelloSpec setPreLoadDoIt: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValueHolderSpec>>setTimestampInMetacelloVersion: aMetacelloVersionSpec [
+{ #category : #private }
+MetacelloValueHolderSpec >> setTimestampInMetacelloVersion: aMetacelloVersionSpec [
 
 	aMetacelloVersionSpec setTimestamp: self
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValueHolderSpec>>value [
+{ #category : #querying }
+MetacelloValueHolderSpec >> value [
 	^ value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValueHolderSpec>>value: anObject [
+{ #category : #accessing }
+MetacelloValueHolderSpec >> value: anObject [
 	value := anObject
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValueHolderSpec>>value: anObject constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloValueHolderSpec >> value: anObject constructor: aVersionConstructor [
     aVersionConstructor valueForValueHolder: anObject
 ]

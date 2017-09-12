@@ -10,69 +10,47 @@ Class {
 	#instVars : [
 		'matchSelector'
 	],
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:14'
+	#category : #Regex-Core
 }
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmSpecial>>beBeginningOfLine [
+{ #category : #initialize-release }
+RxmSpecial >> beBeginningOfLine [
 
 	matchSelector := #atBeginningOfLine
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmSpecial>>beBeginningOfWord [
+{ #category : #initialize-release }
+RxmSpecial >> beBeginningOfWord [
 
 	matchSelector := #atBeginningOfWord
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmSpecial>>beEndOfLine [
+{ #category : #initialize-release }
+RxmSpecial >> beEndOfLine [
 
 	matchSelector := #atEndOfLine
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmSpecial>>beEndOfWord [
+{ #category : #initialize-release }
+RxmSpecial >> beEndOfWord [
 
 	matchSelector := #atEndOfWord
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmSpecial>>beNotWordBoundary [
+{ #category : #initialize-release }
+RxmSpecial >> beNotWordBoundary [
 
 	matchSelector := #notAtWordBoundary
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmSpecial>>beWordBoundary [
+{ #category : #initialize-release }
+RxmSpecial >> beWordBoundary [
 
 	matchSelector := #atWordBoundary
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmSpecial>>matchAgainst: aMatcher [
+{ #category : #matching }
+RxmSpecial >> matchAgainst: aMatcher [
 	"Match without consuming any input, if the matcher is
 	in appropriate state."
 

@@ -10,6 +10,5 @@ Part of Zinc HTTP Components
 Class {
 	#name : #ZnInvalidUTF8,
 	#superclass : #ZnCharacterEncodingError,
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : '<historical>'
+	#category : #Zinc-Character-Encoding-Core
 }

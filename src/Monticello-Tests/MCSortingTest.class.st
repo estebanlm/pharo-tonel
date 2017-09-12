@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #MCSortingTest,
 	#superclass : #TestCase,
-	#category : #Monticello-Tests,
-	#timestamp : ''
+	#category : #Monticello-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSortingTest class>>isUnitTest [
+{ #category : #testing }
+MCSortingTest class >> isUnitTest [
 	^false
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSortingTest>>classNamed: aSymbol [
+{ #category : #building }
+MCSortingTest >> classNamed: aSymbol [
 	^ MCClassDefinition
 		name: aSymbol
 		superclassName: #Object
@@ -29,11 +19,8 @@ MCSortingTest>>classNamed: aSymbol [
 		comment: ''
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSortingTest>>methodNamed: aSymbol class: className meta: aBoolean [
+{ #category : #building }
+MCSortingTest >> methodNamed: aSymbol class: className meta: aBoolean [
 	^ MCMethodDefinition
 		className: className
 		classIsMeta: aBoolean
@@ -43,19 +30,13 @@ MCSortingTest>>methodNamed: aSymbol class: className meta: aBoolean [
 		source: ''
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSortingTest>>sortDefinitions: aCollection [
+{ #category : #actions }
+MCSortingTest >> sortDefinitions: aCollection [
 	^ aCollection asSortedCollection asArray
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSortingTest>>sortKeyFor: aDefinition [
+{ #category : #building }
+MCSortingTest >> sortKeyFor: aDefinition [
 	^ String streamContents:
 		[:s |
 		aDefinition description
@@ -63,11 +44,8 @@ MCSortingTest>>sortKeyFor: aDefinition [
 			separatedBy: [s nextPut: $.]]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSortingTest>>testConsistentSorting [
+{ #category : #tests }
+MCSortingTest >> testConsistentSorting [
 	| definitions shuffledAndSorted|
 	definitions :=
 		{self methodNamed: #a class: #A meta: false.
@@ -83,11 +61,8 @@ MCSortingTest>>testConsistentSorting [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSortingTest>>testSortOrder [
+{ #category : #tests }
+MCSortingTest >> testSortOrder [
 	| aA aAm aB bA bB A B cA bAm cAm |
 	aA := self methodNamed: #a class: #A meta: false.
 	bA := self methodNamed: #b class: #A meta: false.

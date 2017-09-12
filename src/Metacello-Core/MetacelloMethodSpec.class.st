@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloMethodSpec,
 	#superclass : #Object,
@@ -11,31 +8,21 @@ Class {
 		'versionString',
 		'methodSections'
 	],
-	#category : #Metacello-Core-Constructors,
-	#timestamp : ''
+	#category : #Metacello-Core-Constructors
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSpec>>category [
+{ #category : #accessing }
+MetacelloMethodSpec >> category [
 	^ category
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSpec>>category: anObject [
+{ #category : #accessing }
+MetacelloMethodSpec >> category: anObject [
 	category := anObject
 ]
 
-{
-	#category : #'method generation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSpec>>compileMethod [
+{ #category : #'method generation' }
+MetacelloMethodSpec >> compileMethod [
 
 	(project configuration class
 		compile: self methodSource
@@ -43,77 +30,50 @@ MetacelloMethodSpec>>compileMethod [
 		ifTrue: [ self error: 'Error compiling the method' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSpec>>methodSections [
+{ #category : #accessing }
+MetacelloMethodSpec >> methodSections [
 
 	methodSections == nil ifTrue: [ methodSections := OrderedCollection new ].
 	^ methodSections
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSpec>>methodSections: anObject [
+{ #category : #accessing }
+MetacelloMethodSpec >> methodSections: anObject [
 	methodSections := anObject
 ]
 
-{
-	#category : #'method generation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSpec>>methodSource [
+{ #category : #'method generation' }
+MetacelloMethodSpec >> methodSource [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSpec>>project [
+{ #category : #accessing }
+MetacelloMethodSpec >> project [
 	^ project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSpec>>project: anObject [
+{ #category : #accessing }
+MetacelloMethodSpec >> project: anObject [
 	project := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSpec>>selector [
+{ #category : #accessing }
+MetacelloMethodSpec >> selector [
 	^ selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSpec>>selector: anObject [
+{ #category : #accessing }
+MetacelloMethodSpec >> selector: anObject [
 	selector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSpec>>versionString [
+{ #category : #accessing }
+MetacelloMethodSpec >> versionString [
 	^ versionString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSpec>>versionString: aStringOrSymbol [
+{ #category : #accessing }
+MetacelloMethodSpec >> versionString: aStringOrSymbol [
 	versionString := aStringOrSymbol
 ]

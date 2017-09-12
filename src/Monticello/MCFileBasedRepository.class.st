@@ -9,41 +9,28 @@ Class {
 		'allFileNames',
 		'cacheFileNames'
 	],
-	#category : #Monticello-Repositories,
-	#timestamp : 'TorstenBergmann 2/5/2014 13:55'
+	#category : #Monticello-Repositories
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository class>>basicFromUrl: aZnUrl  [
+{ #category : #'instance creation' }
+MCFileBasedRepository class >> basicFromUrl: aZnUrl [ 
 	^ MCDirectoryRepository new directory: aZnUrl asFileReference
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository class>>cleanUp [
+{ #category : #cleanup }
+MCFileBasedRepository class >> cleanUp [
 	"Flush caches"
 
 	self flushAllCaches.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository class>>flushAllCaches [
+{ #category : #actions }
+MCFileBasedRepository class >> flushAllCaches [
 	self allSubInstancesDo: [:ea | ea flushCache]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository class>>monticelloSettingsOn: aBuilder   [
+{ #category : #settings }
+MCFileBasedRepository class >> monticelloSettingsOn: aBuilder [  
 	<systemsettings>  
 	(aBuilder group: #monticello)
 		label: 'Monticello';
@@ -64,19 +51,13 @@ MCFileBasedRepository class>>monticelloSettingsOn: aBuilder   [
 				].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository class>>urlSchemes [
+{ #category : #accessing }
+MCFileBasedRepository class >> urlSchemes [
 	^ #(file)
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>addVersionInformationExtractedFrom: readableFileName to: versions [
+{ #category : #adding }
+MCFileBasedRepository >> addVersionInformationExtractedFrom: readableFileName to: versions [
 	| name |
 	name := (readableFileName copyUpToLast: $.) copyUpTo: $(.
 	name last isDigit
@@ -89,47 +70,32 @@ MCFileBasedRepository>>addVersionInformationExtractedFrom: readableFileName to: 
 					readableFileName }]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>allFileNames [
+{ #category : #accessing }
+MCFileBasedRepository >> allFileNames [
 	cacheFileNames == true ifFalse: [ ^ self loadAllFileNames ].
 	^ allFileNames ifNil: [
 			allFileNames := self loadAllFileNames]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>allFileNamesForVersionNamed: aString [
+{ #category : #accessing }
+MCFileBasedRepository >> allFileNamesForVersionNamed: aString [
 	^ self filterFileNames: self readableFileNames forVersionNamed: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>allFileNamesOrCache [
+{ #category : #accessing }
+MCFileBasedRepository >> allFileNamesOrCache [
 	cacheFileNames == true ifFalse: [ ^ self allFileNames ].
 	^ allFileNames ifNil: [
 			allFileNames := self allFileNames]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>allVersionNames [
+{ #category : #accessing }
+MCFileBasedRepository >> allVersionNames [
 	^ self readableFileNames collect: [:ea | self versionNameFromFileName: ea]
 ]
 
-{
-	#category : #storing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>basicStoreVersion: aVersion [
+{ #category : #storing }
+MCFileBasedRepository >> basicStoreVersion: aVersion [
 	self
 		writeStreamForFileNamed: aVersion fileName
 		do: [:s | aVersion fileOutOn: s].
@@ -139,19 +105,13 @@ MCFileBasedRepository>>basicStoreVersion: aVersion [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>cache [
+{ #category : #accessing }
+MCFileBasedRepository >> cache [
 	^ cache ifNil: [cache := Dictionary new]
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>cacheAllFileNamesDuring: aBlock [
+{ #category : #caching }
+MCFileBasedRepository >> cacheAllFileNamesDuring: aBlock [
 	cacheFileNames == true ifTrue: [ ^ aBlock value ].
 	allFileNames := nil.
 	cacheFileNames := true.	
@@ -160,92 +120,62 @@ MCFileBasedRepository>>cacheAllFileNamesDuring: aBlock [
 		cacheFileNames := false]
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>cachedFileNames [
+{ #category : #caching }
+MCFileBasedRepository >> cachedFileNames [
 	^cache == nil
 		ifTrue: [#()]
 		ifFalse: [cache keys]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>canReadFileNamed: aString [
+{ #category : #testing }
+MCFileBasedRepository >> canReadFileNamed: aString [
 	| reader |
 	reader := MCVersionReader readerClassForFileNamed: aString.
 	^ reader notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>closestAncestorVersionFor: anAncestry ifNone: errorBlock [
+{ #category : #accessing }
+MCFileBasedRepository >> closestAncestorVersionFor: anAncestry ifNone: errorBlock [
 	^ self
 		cacheAllFileNamesDuring: [ 
 			anAncestry breadthFirstAncestorsDo: [ :ancestorInfo | (self notCachedVersionWithInfo: ancestorInfo) ifNotNil: [ :v | ^ v ] ].
 			^ errorBlock value ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>filterFileNames: aCollection forVersionNamed: aString [
+{ #category : #accessing }
+MCFileBasedRepository >> filterFileNames: aCollection forVersionNamed: aString [
 	^ aCollection select: [:ea | (self versionNameFromFileName: ea) = aString] 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>flushCache [
+{ #category : #private }
+MCFileBasedRepository >> flushCache [
 	cache := nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>includesFileNamed: aString [
+{ #category : #testing }
+MCFileBasedRepository >> includesFileNamed: aString [
 	"slow default implementation"
 	^ self allFileNames includes: aString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>includesVersionNamed: aString [
+{ #category : #testing }
+MCFileBasedRepository >> includesVersionNamed: aString [
 	^ self allVersionNames includes: aString
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>loadAllFileNames [
+{ #category : #interface }
+MCFileBasedRepository >> loadAllFileNames [
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>loadNotCachedVersionFromFileNamed: aString [
+{ #category : #private }
+MCFileBasedRepository >> loadNotCachedVersionFromFileNamed: aString [
 	
 	^ self versionReaderForFileNamed: aString do: [:r | r version]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>loadVersionFromFileNamed: aString [
+{ #category : #private }
+MCFileBasedRepository >> loadVersionFromFileNamed: aString [
 
 	(MCCacheRepository uniqueInstance includesFileNamed: aString)
 		ifTrue: [ ^ MCCacheRepository uniqueInstance loadVersionFromFileNamed: aString].
@@ -253,28 +183,19 @@ MCFileBasedRepository>>loadVersionFromFileNamed: aString [
 	^ self versionReaderForFileNamed: aString do: [:r | r version]
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>loadVersionInfoFromFileNamed: aString [
+{ #category : #loading }
+MCFileBasedRepository >> loadVersionInfoFromFileNamed: aString [
 	^ self versionReaderForFileNamed: aString do: [:r | r info]
 	
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>maxCacheSize [
+{ #category : #caching }
+MCFileBasedRepository >> maxCacheSize [
 	^ 512
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>notCachedVersionWithInfo: aVersionInfo  [
+{ #category : #loading }
+MCFileBasedRepository >> notCachedVersionWithInfo: aVersionInfo [ 
 	(self allFileNamesForVersionNamed: aVersionInfo name)
 		do: [ :fileName | 
 			| version |
@@ -284,11 +205,8 @@ MCFileBasedRepository>>notCachedVersionWithInfo: aVersionInfo  [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>possiblyNewerVersionsOfAnyOf: someVersions [
+{ #category : #accessing }
+MCFileBasedRepository >> possiblyNewerVersionsOfAnyOf: someVersions [
 	| pkgs |
 	pkgs := Dictionary new.
 
@@ -304,11 +222,8 @@ MCFileBasedRepository>>possiblyNewerVersionsOfAnyOf: someVersions [
 	] on: Error do: [:ex | ex return: #()]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>readableFileNames [
+{ #category : #accessing }
+MCFileBasedRepository >> readableFileNames [
 	| all cached new emptyFilenamelength |
 	"<hyphenated-package-name>.<dotted.branch.tag>-<initials>.<count>.mcz"
 	emptyFilenamelength := 'P-i.c.mcz' size.
@@ -327,48 +242,33 @@ MCFileBasedRepository>>readableFileNames [
 		select: [:ea | self canReadFileNamed: ea]
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>resizeCache: aDictionary [
+{ #category : #caching }
+MCFileBasedRepository >> resizeCache: aDictionary [
 	[aDictionary size <= self maxCacheSize] whileFalse:
 		[aDictionary removeKey: aDictionary keys atRandom]
 ]
 
-{
-	#category : #storing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>storeVersion: aVersion [
+{ #category : #storing }
+MCFileBasedRepository >> storeVersion: aVersion [
 
 	(self includesFileNamed: aVersion fileName) ifTrue: [ ^ self ].
 	^ super storeVersion: aVersion.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>updateCachedVersionFromFileName: aString with: aVersion [
+{ #category : #private }
+MCFileBasedRepository >> updateCachedVersionFromFileName: aString with: aVersion [
 	self resizeCache: cache.
 	(aVersion notNil and: [aVersion isCacheable]) ifTrue: [cache at: aString put: aVersion].
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>versionFrom: aVersionReferenceString [
+{ #category : #accessing }
+MCFileBasedRepository >> versionFrom: aVersionReferenceString [
 	^ self loadVersionFromFileNamed: aVersionReferenceString , '.mcz'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>versionFromFileNamed: aFileName [
+{ #category : #accessing }
+MCFileBasedRepository >> versionFromFileNamed: aFileName [
 	| version |
 	version := self cache
 			 at: aFileName 
@@ -377,11 +277,8 @@ MCFileBasedRepository>>versionFromFileNamed: aFileName [
 	^ version
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>versionFromRepositoryFromFileNamed: aFileName [
+{ #category : #accessing }
+MCFileBasedRepository >> versionFromRepositoryFromFileNamed: aFileName [
 	| version |
 	version := self cache
 			 at: aFileName 
@@ -390,30 +287,21 @@ MCFileBasedRepository>>versionFromRepositoryFromFileNamed: aFileName [
 	^ version
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>versionInfoFromFileNamed: aFileName [
+{ #category : #accessing }
+MCFileBasedRepository >> versionInfoFromFileNamed: aFileName [
 	self cache 
 		at: aFileName
 		ifPresent: [:version | ^ version info].
 	^ self loadVersionInfoFromFileNamed: aFileName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>versionNameFromFileName: aFileName [
+{ #category : #accessing }
+MCFileBasedRepository >> versionNameFromFileName: aFileName [
 	^ (aFileName copyUpToLast: $.) copyUpTo: $(
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>versionReaderForFileNamed: aString do: aBlock [
+{ #category : #actions }
+MCFileBasedRepository >> versionReaderForFileNamed: aString do: aBlock [
 	^ self
 		readStreamForFileNamed: aString
 		do: [:s |
@@ -422,11 +310,8 @@ MCFileBasedRepository>>versionReaderForFileNamed: aString do: aBlock [
 
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>versionWithInfo: aVersionInfo ifAbsent: errorBlock [
+{ #category : #interface }
+MCFileBasedRepository >> versionWithInfo: aVersionInfo ifAbsent: errorBlock [
 	"get a version for the given versionInfo. always query first the packageCache and only then try to load the version from the remote location"
 	^ MCCacheRepository uniqueInstance
 		versionWithInfo: aVersionInfo 
@@ -438,11 +323,8 @@ MCFileBasedRepository>>versionWithInfo: aVersionInfo ifAbsent: errorBlock [
 			^ errorBlock value].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>versionsWithPackageNames [
+{ #category : #accessing }
+MCFileBasedRepository >> versionsWithPackageNames [
 	| versions |
 	versions := OrderedCollection new.
 	self readableFileNames
@@ -451,10 +333,7 @@ MCFileBasedRepository>>versionsWithPackageNames [
 	^ versions
 ]
 
-{
-	#category : #storing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFileBasedRepository>>writeStreamForFileNamed: aString do: aBlock [
+{ #category : #storing }
+MCFileBasedRepository >> writeStreamForFileNamed: aString do: aBlock [
 	^ self writeStreamForFileNamed: aString replace: false do: aBlock
 ]

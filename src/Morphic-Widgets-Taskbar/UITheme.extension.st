@@ -1,12 +1,7 @@
-Extension {
-	#name : #UITheme
-}
+Extension { #name : #UITheme }
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newBasicTaskbarButtonIn: aTaskbar for: aMorph [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+UITheme >> newBasicTaskbarButtonIn: aTaskbar for: aMorph [
 	"Answer a taskbar button morph for the given window."
 
 	|lm lab button labSize|
@@ -42,11 +37,8 @@ UITheme>>newBasicTaskbarButtonIn: aTaskbar for: aMorph [
 	^button
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>openTaskListIn: world from: aKeyboardEvent [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+UITheme >> openTaskListIn: world from: aKeyboardEvent [
 
 	| tasklistMorph |
 	tasklistMorph := TaskListMorph from: aKeyboardEvent.

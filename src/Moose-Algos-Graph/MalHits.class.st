@@ -1,85 +1,57 @@
-"
-
-"
 Class {
 	#name : #MalHits,
 	#superclass : #MalGraphAlgorithm,
 	#instVars : [
 		'k'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHits>>computeAuthoritiesFor: aNode [
+{ #category : #running }
+MalHits >> computeAuthoritiesFor: aNode [
 
 	aNode auth: (aNode previousNodes inject: 0 into: [:s :n| s + n hub])
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHits>>computeHubsFor: aNode [
+{ #category : #running }
+MalHits >> computeHubsFor: aNode [
 
 	aNode hub: (aNode nextNodes inject: 0 into: [:s :n| s + n auth])
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHits>>initialize [
+{ #category : #initialize-release }
+MalHits >> initialize [
 
 	super initialize.
 	k := 20
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHits>>initializeNodes [
+{ #category : #running }
+MalHits >> initializeNodes [
 
 	self nodes do: [:n|
 		n auth: 1.0; hub: 1.0
 	]
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHits>>k [
+{ #category : #configuration }
+MalHits >> k [
 	^ k
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHits>>k: anObject [
+{ #category : #configuration }
+MalHits >> k: anObject [
 	k := anObject
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHits>>nodeClass [
+{ #category : #configuration }
+MalHits >> nodeClass [
 
 	^ MalHitsNode
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHits>>normalize: aCollectionOfNodes [
+{ #category : #running }
+MalHits >> normalize: aCollectionOfNodes [
 
 	| authNorm hubNorm |
 	authNorm := aCollectionOfNodes inject: 0 into: [:s :n| s + n auth].
@@ -91,11 +63,8 @@ MalHits>>normalize: aCollectionOfNodes [
 		n hub: (n hub / hubNorm)]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHits>>run [
+{ #category : #running }
+MalHits >> run [
 
 	|i|
 	i := 1.

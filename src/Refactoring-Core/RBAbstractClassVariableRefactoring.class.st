@@ -11,15 +11,11 @@ Class {
 	#instVars : [
 		'accessorsRefactoring'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 19:53'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClassVariableRefactoring>>abstractClassReferences [
+{ #category : #transforming }
+RBAbstractClassVariableRefactoring >> abstractClassReferences [
 	| replacer |
 	replacer := RBParseTreeRewriter 
 		variable: variableName
@@ -36,11 +32,8 @@ RBAbstractClassVariableRefactoring>>abstractClassReferences [
 		using: replacer
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClassVariableRefactoring>>abstractInstanceReferences [
+{ #category : #transforming }
+RBAbstractClassVariableRefactoring >> abstractInstanceReferences [
 	| replacer |
 	replacer := RBParseTreeRewriter 
 		variable: variableName
@@ -52,11 +45,8 @@ RBAbstractClassVariableRefactoring>>abstractInstanceReferences [
 		using: replacer
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClassVariableRefactoring>>accessorsRefactoring [
+{ #category : #private-accessing }
+RBAbstractClassVariableRefactoring >> accessorsRefactoring [
 	^accessorsRefactoring isNil 
 		ifTrue: 
 			[accessorsRefactoring := RBCreateAccessorsForVariableRefactoring 
@@ -67,19 +57,13 @@ RBAbstractClassVariableRefactoring>>accessorsRefactoring [
 		ifFalse: [accessorsRefactoring]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClassVariableRefactoring>>createAccessors [
+{ #category : #transforming }
+RBAbstractClassVariableRefactoring >> createAccessors [
 	self performComponentRefactoring: self accessorsRefactoring
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClassVariableRefactoring>>preconditions [
+{ #category : #preconditions }
+RBAbstractClassVariableRefactoring >> preconditions [
 	^(RBCondition isMetaclass: class) not 
 		& (RBCondition directlyDefinesClassVariable: variableName asSymbol in: class) 
 			& ((RBCondition withBlock: 
@@ -87,11 +71,8 @@ RBAbstractClassVariableRefactoring>>preconditions [
 					errorMacro: 'This refactoring does not work for Object, Behavior, ClassDescription, or Class')
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClassVariableRefactoring>>transform [
+{ #category : #transforming }
+RBAbstractClassVariableRefactoring >> transform [
 	self createAccessors.
 	self abstractInstanceReferences.
 	self abstractClassReferences

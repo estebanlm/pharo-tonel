@@ -11,23 +11,16 @@ Class {
 	#classInstVars : [
 		'default'
 	],
-	#category : #Monticello-Versioning,
-	#timestamp : '<historical>'
+	#category : #Monticello-Versioning
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup class>>default [
+{ #category : #accessing }
+MCRepositoryGroup class >> default [
 	^ default ifNil: [default := self new]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup class>>withRepositories: aCollection  [
+{ #category : #'instance creation' }
+MCRepositoryGroup class >> withRepositories: aCollection [ 
 	| group |
 	group  := self new.
 	aCollection do: [ :each | group addRepository: each ].
@@ -35,11 +28,8 @@ MCRepositoryGroup class>>withRepositories: aCollection  [
 		
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup>>addBasicRepository: aRepository [
+{ #category : #adding }
+MCRepositoryGroup >> addBasicRepository: aRepository [
 	((repositories includes: aRepository) 
 	or: [ aRepository == MCCacheRepository uniqueInstance ])
 		ifFalse: [
@@ -49,37 +39,25 @@ MCRepositoryGroup>>addBasicRepository: aRepository [
 	^ aRepository
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup>>addRepository: aRepository [
+{ #category : #adding }
+MCRepositoryGroup >> addRepository: aRepository [
 	aRepository addTo: self.
 	^ aRepository
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup>>addRepositoryGroup: aRepositoryGroup [
+{ #category : #adding }
+MCRepositoryGroup >> addRepositoryGroup: aRepositoryGroup [
 	aRepositoryGroup repositoriesDo: [ :each | 
 		each addTo: self ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup>>addTo: aRepository [
+{ #category : #adding }
+MCRepositoryGroup >> addTo: aRepository [
 	^ aRepository addRepositoryGroup: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup>>announceRepositoryAdded: aRepository [
+{ #category : #private }
+MCRepositoryGroup >> announceRepositoryAdded: aRepository [
 	SystemAnnouncer uniqueInstance
 		announce:
 			(MCRepositoryAdded new
@@ -87,11 +65,8 @@ MCRepositoryGroup>>announceRepositoryAdded: aRepository [
 				yourself)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup>>announceRepositoryRemoved: aRepository [
+{ #category : #private }
+MCRepositoryGroup >> announceRepositoryRemoved: aRepository [
 	SystemAnnouncer uniqueInstance
 		announce:
 			(MCRepositoryRemoved new
@@ -99,27 +74,18 @@ MCRepositoryGroup>>announceRepositoryRemoved: aRepository [
 				yourself)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup>>disableCache [
+{ #category : #accessing }
+MCRepositoryGroup >> disableCache [
 	useCache := false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup>>includes: aRepository [
+{ #category : #testing }
+MCRepositoryGroup >> includes: aRepository [
 	^ self repositories includes: aRepository
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup>>includesVersionNamed: aString [
+{ #category : #interface }
+MCRepositoryGroup >> includesVersionNamed: aString [
 	" check for existing version name in parallel over all repositories "
 	| results |
 
@@ -135,65 +101,44 @@ MCRepositoryGroup>>includesVersionNamed: aString [
 	^ results anySatisfy: [:result| result = true ]	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup>>initialize [
+{ #category : #initialization }
+MCRepositoryGroup >> initialize [
 	super initialize.
 	repositories := OrderedCollection new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup>>removeRepository: aRepository [
+{ #category : #accessing }
+MCRepositoryGroup >> removeRepository: aRepository [
 	repositories remove: aRepository ifAbsent: [ ^ self ].
 	self announceRepositoryRemoved: aRepository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup>>repositories [
+{ #category : #accessing }
+MCRepositoryGroup >> repositories [
 	^ (self useCache 
 		ifTrue: [Array with: MCCacheRepository uniqueInstance] 
 		ifFalse: [Array new]) , repositories select: #isValid
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup>>repositoriesDo: aBlock [
+{ #category : #enumerating }
+MCRepositoryGroup >> repositoriesDo: aBlock [
 	self repositories do: [:ea | [aBlock value: ea] on: Error do: []]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup>>useCache [
+{ #category : #accessing }
+MCRepositoryGroup >> useCache [
 	^ useCache ifNil: [
 		useCache := true
 	]
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup>>versionWithInfo: aVersionInfo [
+{ #category : #interface }
+MCRepositoryGroup >> versionWithInfo: aVersionInfo [
 	^self versionWithInfo: aVersionInfo ifNone: [ self error: 'Could not find version ', aVersionInfo name printString,'. Maybe you need to add a repository?' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryGroup>>versionWithInfo: aVersionInfo ifNone: aBlock [
+{ #category : #accessing }
+MCRepositoryGroup >> versionWithInfo: aVersionInfo ifNone: aBlock [
 	self repositoriesDo: [:ea | (ea versionWithInfo: aVersionInfo) ifNotNil: [:v | ^ v]].
 	^aBlock value
 ]

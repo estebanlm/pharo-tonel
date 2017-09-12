@@ -9,40 +9,27 @@ References held in the variable part are held weakly and might be nilled out by 
 Class {
 	#name : #WeakLayout,
 	#superclass : #PointerLayout,
-	#category : #Slot-Layout,
-	#timestamp : '<historical>'
+	#category : #Slot-Layout
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-WeakLayout class>>extending: superLayout scope: aScope host: aClass [
+{ #category : #'instance creation' }
+WeakLayout class >> extending: superLayout scope: aScope host: aClass [
 	^ (superLayout extendWeak: aScope)
 		host: aClass;
 		yourself
 ]
 
-{
-	#category : #format,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-WeakLayout>>instanceSpecification [
+{ #category : #format }
+WeakLayout >> instanceSpecification [
 	^ 4
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-WeakLayout>>isVariable [
+{ #category : #testing }
+WeakLayout >> isVariable [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-WeakLayout>>isWeak [
+{ #category : #testing }
+WeakLayout >> isWeak [
 	^ true
 ]

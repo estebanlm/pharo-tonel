@@ -12,25 +12,18 @@ Class {
 		'subscriptions',
 		'monitor'
 	],
-	#category : #Announcements-Core,
-	#timestamp : 'IgorStasenko 3/12/2011 18:43'
+	#category : #Announcements-Core
 }
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-SubscriptionRegistry>>add: subscription [
+{ #category : #add/remove }
+SubscriptionRegistry >> add: subscription [
 	^ self protected: [
 		subscriptions add: subscription  ]
 
 ]
 
-{
-	#category : #announcing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-SubscriptionRegistry>>deliver: anAnnouncement [
+{ #category : #announcing }
+SubscriptionRegistry >> deliver: anAnnouncement [
 	|  interestedSubscriptions |
 	"using a copy, so subscribers can unsubscribe from announcer "
 	
@@ -43,19 +36,13 @@ SubscriptionRegistry>>deliver: anAnnouncement [
 	self deliver: anAnnouncement to: interestedSubscriptions
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-SubscriptionRegistry>>deliver: anAnnouncement to: subs [
+{ #category : #private }
+SubscriptionRegistry >> deliver: anAnnouncement to: subs [
 	^ self deliver: anAnnouncement to: subs startingAt: 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-SubscriptionRegistry>>deliver: anAnnouncement to: subs startingAt: startIndex [
+{ #category : #private }
+SubscriptionRegistry >> deliver: anAnnouncement to: subs startingAt: startIndex [
 	
 	startIndex to: subs size do: [ :index| | subscription |
 		subscription := subs at: index.
@@ -65,48 +52,33 @@ SubscriptionRegistry>>deliver: anAnnouncement to: subs startingAt: startIndex [
 				self deliver: anAnnouncement to: subs startingAt: index + 1 ]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-SubscriptionRegistry>>initialize [
+{ #category : #initialization }
+SubscriptionRegistry >> initialize [
 	monitor := Semaphore forMutualExclusion.
 	self reset
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-SubscriptionRegistry>>numberOfSubscriptions [
+{ #category : #accessing }
+SubscriptionRegistry >> numberOfSubscriptions [
 	^ subscriptions size
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-SubscriptionRegistry>>protected: aBlock [
+{ #category : #private }
+SubscriptionRegistry >> protected: aBlock [
 	^ monitor critical: [ aBlock value ]
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-SubscriptionRegistry>>remove: subscription [
+{ #category : #add/remove }
+SubscriptionRegistry >> remove: subscription [
 	^ self protected: [
 		subscriptions remove: subscription ifAbsent: nil ]
 
 
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-SubscriptionRegistry>>removeSubscriber: subscriber [
+{ #category : #add/remove }
+SubscriptionRegistry >> removeSubscriber: subscriber [
 	
 	^ self protected: [
 		subscriptions removeAllSuchThat: [:subscription | subscription subscriber == subscriber ]]
@@ -114,11 +86,8 @@ SubscriptionRegistry>>removeSubscriber: subscriber [
 
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-SubscriptionRegistry>>replace: subscription with: newOne [
+{ #category : #add/remove }
+SubscriptionRegistry >> replace: subscription with: newOne [
 
 	" Note that it will signal an error if subscription is not there "
 	self protected: [
@@ -128,11 +97,8 @@ SubscriptionRegistry>>replace: subscription with: newOne [
 	^ newOne
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-SubscriptionRegistry>>reset [
+{ #category : #initialize-release }
+SubscriptionRegistry >> reset [
 	"subscriber -> subscriptions"
 	
 	subscriptions := IdentitySet new
@@ -142,30 +108,21 @@ SubscriptionRegistry>>reset [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-SubscriptionRegistry>>subscriptions [
+{ #category : #accessing }
+SubscriptionRegistry >> subscriptions [
 	^ subscriptions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-SubscriptionRegistry>>subscriptionsHandling: anAnnouncement [
+{ #category : #accessing }
+SubscriptionRegistry >> subscriptionsHandling: anAnnouncement [
 	^ Array streamContents: [ :s|
 			subscriptions do: [:each| 
 				(each handlesAnnouncement: anAnnouncement)
 					ifTrue: [ s nextPut: each ]]]
 ]
 
-{
-	#category : #iterating,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-SubscriptionRegistry>>subscriptionsOf: aSubscriber do: aBlock [
+{ #category : #iterating }
+SubscriptionRegistry >> subscriptionsOf: aSubscriber do: aBlock [
 	| copy |
 	
 	self protected: [ copy := subscriptions copy ].

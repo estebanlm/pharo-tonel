@@ -8,15 +8,11 @@ Class {
 	#classVars : [
 		'LastSaveOrder'
 	],
-	#category : #Balloon-Collections,
-	#timestamp : '<historical>'
+	#category : #Balloon-Collections
 }
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray class>>initialize [
+{ #category : #initialize-release }
+ShortIntegerArray class >> initialize [
 	LastSaveOrder := self new: 2.
 	LastSaveOrder at: 1 put: 42.
 	LastSaveOrder at: 2 put: 13.
@@ -25,19 +21,13 @@ ShortIntegerArray class>>initialize [
 		registerSystemClassNamed: self name
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray class>>new: n [
+{ #category : #'instance creation' }
+ShortIntegerArray class >> new: n [
 	^super new: n + 1 // 2
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray class>>startUp [
+{ #category : #'system startup' }
+ShortIntegerArray class >> startUp [
 	"Check if the word order has changed from the last save"
 	((LastSaveOrder at: 1) = 42 and:[(LastSaveOrder at: 2) = 13]) 
 		ifTrue:[^self]. "Okay"
@@ -46,19 +36,13 @@ ShortIntegerArray class>>startUp [
 	^self error:'This must never happen'
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray class>>swapShortObjects [
+{ #category : #initialize-release }
+ShortIntegerArray class >> swapShortObjects [
 	self allSubInstancesDo:[:inst| inst swapShortObjects]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray>>at: index [
+{ #category : #accessing }
+ShortIntegerArray >> at: index [
 	"Return the 16-bit integer value at the given index of the receiver."
 
 	<primitive: 143>
@@ -68,11 +52,8 @@ ShortIntegerArray>>at: index [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray>>at: index put: value [
+{ #category : #accessing }
+ShortIntegerArray >> at: index put: value [
 	"Store the given 16-bit integer at the given index in the receiver."
 
 	<primitive: 144>
@@ -85,19 +66,13 @@ ShortIntegerArray>>at: index put: value [
 	self errorNonIntegerIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray>>defaultElement [
+{ #category : #accessing }
+ShortIntegerArray >> defaultElement [
 	^0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray>>pvtAt: index [
+{ #category : #private }
+ShortIntegerArray >> pvtAt: index [
 	"Private -- for swapping only"
 	<primitive: 143>
 	index isInteger ifTrue: [self errorSubscriptBounds: index].
@@ -106,11 +81,8 @@ ShortIntegerArray>>pvtAt: index [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray>>pvtAt: index put: value [
+{ #category : #private }
+ShortIntegerArray >> pvtAt: index put: value [
 	"Private -- for swapping only"
 
 	<primitive: 144>
@@ -123,11 +95,8 @@ ShortIntegerArray>>pvtAt: index put: value [
 	self errorNonIntegerIndex
 ]
 
-{
-	#category : #'objects from disk',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray>>restoreEndianness [
+{ #category : #'objects from disk' }
+ShortIntegerArray >> restoreEndianness [
 	"This word object was just read in from a stream.  It was stored in Big Endian (Mac) format.  Swap each pair of bytes (16-bit word), if the current machine is Little Endian.
 	Why is this the right thing to do?  We are using memory as a byteStream.  High and low bytes are reversed in each 16-bit word, but the stream of words ascends through memory.  Different from a Bitmap."
 
@@ -135,19 +104,13 @@ ShortIntegerArray>>restoreEndianness [
 		ifTrue: [ self swapBytePairsHacky ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray>>size [
+{ #category : #accessing }
+ShortIntegerArray >> size [
 	^super size * 2
 ]
 
-{
-	#category : #'objects from disk',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray>>swapBytePairsHacky [
+{ #category : #'objects from disk' }
+ShortIntegerArray >> swapBytePairsHacky [
 
 	"The implementation is a hack, but fast for large ranges"
 			"XOR"
@@ -168,11 +131,8 @@ ShortIntegerArray>>swapBytePairsHacky [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray>>swapShortObjects [
+{ #category : #private }
+ShortIntegerArray >> swapShortObjects [
 	"Private -- swap all the short quantities in the receiver"
 	| tmp |
 	1 to: self basicSize do:[:i|
@@ -182,38 +142,26 @@ ShortIntegerArray>>swapShortObjects [
 	]
 ]
 
-{
-	#category : #'objects from disk',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray>>write: shortInteger bigEndianOn: aStream [
+{ #category : #'objects from disk' }
+ShortIntegerArray >> write: shortInteger bigEndianOn: aStream [
 	^ aStream nextNumber: 4 put: shortInteger
 ]
 
-{
-	#category : #'objects from disk',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray>>write: shortInteger littleEndianOn: aStream [
+{ #category : #'objects from disk' }
+ShortIntegerArray >> write: shortInteger littleEndianOn: aStream [
 
 	#(2 1 4 3) do: [:digitIndex| aStream nextPut: (shortInteger digitAt: digitIndex) ]
 ]
 
-{
-	#category : #'objects from disk',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray>>write: shortInteger on: aStream [
+{ #category : #'objects from disk' }
+ShortIntegerArray >> write: shortInteger on: aStream [
 	^ EndianDetector isLittleEndian
 		ifFalse: [ self write: shortInteger bigEndianOn: aStream ]
 		ifTrue: [ self write: shortInteger littleEndianOn: aStream ]
 ]
 
-{
-	#category : #'objects from disk',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ShortIntegerArray>>writeOn: aStream [
+{ #category : #'objects from disk' }
+ShortIntegerArray >> writeOn: aStream [
 	aStream nextInt32Put: self basicSize.
 	1 to: self basicSize do: [ :i | 
 		self write: (self basicAt: i) on: aStream ]

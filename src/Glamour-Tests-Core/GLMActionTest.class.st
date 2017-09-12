@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMActionTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionTest>>testCondition [
+{ #category : #tests }
+GLMActionTest >> testCondition [
 	self 
 		assert: (GLMAction new isAvailableOn: GLMPresentation new).
 	self 
@@ -25,11 +18,8 @@ GLMActionTest>>testCondition [
 			isAvailableOn: GLMPresentation new)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionTest>>testShortcutAsString [
+{ #category : #tests }
+GLMActionTest >> testShortcutAsString [
 	| action modifier |
 	
 	modifier := Smalltalk os menuShortcutModifierString.
@@ -42,11 +32,8 @@ GLMActionTest>>testShortcutAsString [
 	self assert: action shortcutAsString isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionTest>>testShortcutFromKeymap [
+{ #category : #tests }
+GLMActionTest >> testShortcutFromKeymap [
 	| action modifier |
 	
 	modifier := Smalltalk os defaultModifier.

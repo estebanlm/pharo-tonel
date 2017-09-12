@@ -1,12 +1,7 @@
-Extension {
-	#name : #AbsolutePath
-}
+Extension { #name : #AbsolutePath }
 
-{
-	#category : #'*zinc-resource-meta-filesystem',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AbsolutePath>>asZnUrl [
+{ #category : #'*zinc-resource-meta-filesystem' }
+AbsolutePath >> asZnUrl [
 	"Convert the receiver in a file:// ZnUrl"
 
 	| fileUrl |

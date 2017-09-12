@@ -14,31 +14,21 @@ Class {
 		'BarHeight',
 		'BarWidth'
 	],
-	#category : #Morphic-Base-ProgressBar,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-ProgressBar
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressBarMorph>>decrement [
+{ #category : #'as yet unclassified' }
+JobProgressBarMorph >> decrement [
 	^ progressBar decrement
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressBarMorph>>increment [
+{ #category : #'as yet unclassified' }
+JobProgressBarMorph >> increment [
 	^ progressBar increment
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressBarMorph>>initialize [
+{ #category : #initialization }
+JobProgressBarMorph >> initialize [
 	super initialize.
 	progressBar := ProgressBarMorph new.
 	progressBar hResizing: #spaceFill.
@@ -58,34 +48,22 @@ JobProgressBarMorph>>initialize [
 		addMorphBack: button
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressBarMorph>>progress [
+{ #category : #'as yet unclassified' }
+JobProgressBarMorph >> progress [
 	^ progressBar value / 100
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressBarMorph>>progress: aNormalizedNumber [
+{ #category : #'as yet unclassified' }
+JobProgressBarMorph >> progress: aNormalizedNumber [
 	^ progressBar value: aNormalizedNumber * 100
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressBarMorph>>value [
+{ #category : #evaluating }
+JobProgressBarMorph >> value [
 	^ progressBar value
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressBarMorph>>value: aNumber [
+{ #category : #'as yet unclassified' }
+JobProgressBarMorph >> value: aNumber [
 	^ progressBar value: aNumber
 ]

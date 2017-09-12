@@ -14,43 +14,30 @@ Class {
 		'packages',
 		'classToPackage'
 	],
-	#category : #Tool-DependencyAnalyser-Core,
-	#timestamp : 'BaptisteQuide 7/21/2014 14:35'
+	#category : #Tool-DependencyAnalyser-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph class>>new [
+{ #category : #'instance creation' }
+DAPackageRelationGraph class >> new [
 	^ self onPackages: OrderedCollection new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph class>>onPackages: aCollection [
+{ #category : #'instance creation' }
+DAPackageRelationGraph class >> onPackages: aCollection [
 	^ self basicNew
 		initializeWithPackages: aCollection;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph class>>onPackagesNamed: packageNames [
+{ #category : #'instance creation' }
+DAPackageRelationGraph class >> onPackagesNamed: packageNames [
 	^ self basicNew
 		initializeWithPackages: (packageNames collect: [ :each | DAPackage onPackageNamed: each ]);
 		yourself
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>addExtensionDependencies: aPDPackage	 [
+{ #category : #adding }
+DAPackageRelationGraph >> addExtensionDependencies: aPDPackage [	
 	aPDPackage rPackageSet extensionMethods
 		do: [ :method | | packageOfExtendedClass |
 			packageOfExtendedClass := self packageForBehavior: method actualClass.
@@ -64,11 +51,8 @@ DAPackageRelationGraph>>addExtensionDependencies: aPDPackage	 [
 			 ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>addInheritanceDependencies: aPackage [
+{ #category : #adding }
+DAPackageRelationGraph >> addInheritanceDependencies: aPackage [
 	| package |
 	self package: aPackage
 		classesDo: [ :class | 
@@ -82,11 +66,8 @@ DAPackageRelationGraph>>addInheritanceDependencies: aPackage [
 					self addPackage: package ] ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>addMessageSendDependencies: aPackage [
+{ #category : #adding }
+DAPackageRelationGraph >> addMessageSendDependencies: aPackage [
 	| analyser |
 	analyser := (DAMessageSendAnalyzer basicNew
 		initializeWith: aPackage;
@@ -102,41 +83,29 @@ DAPackageRelationGraph>>addMessageSendDependencies: aPackage [
 					yourself) ] ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>addPackage: aPDPackage [
+{ #category : #adding }
+DAPackageRelationGraph >> addPackage: aPDPackage [
 	aPDPackage beIncluded.
 	packages 
 		at: aPDPackage packageName
 		put: aPDPackage
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>addPackages: aCollection [
+{ #category : #adding }
+DAPackageRelationGraph >> addPackages: aCollection [
 	aCollection
 		do: [ :package | 
 			self addPackage: package ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>addReferenceDependencies: aPackage [
+{ #category : #adding }
+DAPackageRelationGraph >> addReferenceDependencies: aPackage [
 	(self methodsFor: aPackage) 
 		do: [ :method | self findReferencesIn: method for: aPackage ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>addTraitDependencies: aPackage [
+{ #category : #adding }
+DAPackageRelationGraph >> addTraitDependencies: aPackage [
 	| package |
 	self package: aPackage
 		classesDo: [ :class | 
@@ -151,11 +120,8 @@ DAPackageRelationGraph>>addTraitDependencies: aPackage [
 					self addPackage: package ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>allDependentPackagesFromSeenPackages [
+{ #category : #accessing }
+DAPackageRelationGraph >> allDependentPackagesFromSeenPackages [
 	| aSet |
 	aSet := Set new.
 	self seenPackages do: [ :seenPackage |
@@ -165,11 +131,8 @@ DAPackageRelationGraph>>allDependentPackagesFromSeenPackages [
 
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>allExtensionDependencies [
+{ #category : #computing }
+DAPackageRelationGraph >> allExtensionDependencies [
 	| aCollectionOfExtensionDependency |
 	aCollectionOfExtensionDependency := OrderedCollection new.
 	
@@ -181,11 +144,8 @@ DAPackageRelationGraph>>allExtensionDependencies [
 	^ aCollectionOfExtensionDependency
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>allReferenceDependencies [
+{ #category : #computing }
+DAPackageRelationGraph >> allReferenceDependencies [
 	| aCollectionOfReferenceDependency |
 	aCollectionOfReferenceDependency := OrderedCollection new.
 	
@@ -197,20 +157,14 @@ DAPackageRelationGraph>>allReferenceDependencies [
 	^ aCollectionOfReferenceDependency
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>allSeen [
+{ #category : #testing }
+DAPackageRelationGraph >> allSeen [
 	
 	^ self packages allSatisfy: [ :each | each isSeen ].
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>build [
+{ #category : #building }
+DAPackageRelationGraph >> build [
 	"build the dependency graph"
 	self 
 		computeStaticDependencies;
@@ -218,51 +172,33 @@ DAPackageRelationGraph>>build [
 		combineDependencies
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>classToPackage [
+{ #category : #accessing }
+DAPackageRelationGraph >> classToPackage [
 	^ classToPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>classToPackage: aClass [
+{ #category : #accessing }
+DAPackageRelationGraph >> classToPackage: aClass [
 	^ (classToPackage at: aClass) packageName
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>classesFor: aPackage [
+{ #category : #adding }
+DAPackageRelationGraph >> classesFor: aPackage [
 	^ aPackage rPackageSet classes
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>clearAllDependencies [
+{ #category : #actions }
+DAPackageRelationGraph >> clearAllDependencies [
 	packages do: [ :package | package clearDependencies ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>clearPackages [
+{ #category : #updating }
+DAPackageRelationGraph >> clearPackages [
 	packages := Dictionary new
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>combineDependencies [
+{ #category : #actions }
+DAPackageRelationGraph >> combineDependencies [
 	"Combine all dependencies with the same source and target into one composite
 	dependency."
 	self packages 
@@ -270,11 +206,8 @@ DAPackageRelationGraph>>combineDependencies [
 		displayingProgress: 'Combining Dependencies'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>combineDependencies: aPackage [
+{ #category : #private }
+DAPackageRelationGraph >> combineDependencies: aPackage [
 	| grouped composite |
 	grouped := aPackage dependencies
 		groupedBy: [ :each | each target ]
@@ -288,11 +221,8 @@ DAPackageRelationGraph>>combineDependencies: aPackage [
 		aPackage add: composite ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>computeStaticDependencies [
+{ #category : #adding }
+DAPackageRelationGraph >> computeStaticDependencies [
 	self packages
 		do: [ :each | 
 			each isSeen
@@ -301,11 +231,8 @@ DAPackageRelationGraph>>computeStaticDependencies [
 					each beSeen ] ] 
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>computeStaticDependencies: aPackage [
+{ #category : #adding }
+DAPackageRelationGraph >> computeStaticDependencies: aPackage [
 	
 	self addInheritanceDependencies: aPackage.
 	self addExtensionDependencies: aPackage.
@@ -314,29 +241,20 @@ DAPackageRelationGraph>>computeStaticDependencies: aPackage [
 	self addMessageSendDependencies: aPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>daPackageWith: packageName [
+{ #category : #accessing }
+DAPackageRelationGraph >> daPackageWith: packageName [
 	^ DAPackage on: (RPackageSet named: packageName)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>dependenciesFrom: aPackage [
+{ #category : #accessing }
+DAPackageRelationGraph >> dependenciesFrom: aPackage [
 	"Answer all seen packages."
 
 	^ (packages at: aPackage) dependencies
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>findReferencesIn: aMethod for: aPackage [
+{ #category : #adding }
+DAPackageRelationGraph >> findReferencesIn: aMethod for: aPackage [
 	| package compiledMethod |
 
 	compiledMethod := aMethod compiledMethod.
@@ -358,56 +276,38 @@ DAPackageRelationGraph>>findReferencesIn: aMethod for: aPackage [
 										yourself) ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>includedPackages [
+{ #category : #accessing }
+DAPackageRelationGraph >> includedPackages [
 	"Answer the currently analyzed set of packages."
 
 	^ self packages select: [ :each | each isIncluded ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>includesSeenPackage: aPackage	 [
+{ #category : #accessing }
+DAPackageRelationGraph >> includesSeenPackage: aPackage [	
 	^ self seenPackages includes: aPackage
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>initializeWithPackages: aCollection [
+{ #category : #initialization }
+DAPackageRelationGraph >> initializeWithPackages: aCollection [
 	self initialize.
 	packages := Dictionary new.
 	aCollection do: [ :each | self addPackage: each ].
 	classToPackage := IdentityDictionary new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>isReference: aLiteral [
+{ #category : #testing }
+DAPackageRelationGraph >> isReference: aLiteral [
 	^ aLiteral isVariableBinding and: [ aLiteral value isBehavior and: [ aLiteral key = aLiteral value name ] ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>methodsFor: aPackage [
+{ #category : #adding }
+DAPackageRelationGraph >> methodsFor: aPackage [
 	^ aPackage rPackageSet methods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>outgoing [
+{ #category : #accessing }
+DAPackageRelationGraph >> outgoing [
 	"Answer a collection of all dependencies that point out of the current package set."
 
 	^ self includedPackages
@@ -419,30 +319,21 @@ DAPackageRelationGraph>>outgoing [
 			outgoing ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>package: aPackage classesDo: aBlock  [
+{ #category : #enumerating }
+DAPackageRelationGraph >> package: aPackage classesDo: aBlock [ 
 	aPackage rPackageSet classes do: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>packageAt: aPackageName [
+{ #category : #accessing }
+DAPackageRelationGraph >> packageAt: aPackageName [
 	"answer a PDPackage"
 	(packages keys includes: aPackageName) ifTrue: [  
 	^ packages at: aPackageName ].
 	^ nil
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>packageForBehavior: aClass [
+{ #category : #queries }
+DAPackageRelationGraph >> packageForBehavior: aClass [
 	"return a PDPackage and put in classToPackage"
 
 	^ classToPackage
@@ -453,45 +344,30 @@ DAPackageRelationGraph>>packageForBehavior: aClass [
 				ifNone: [ self systemPackageContaining: aClass ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>packageNamed: aString ifAbsent: aBlock [
+{ #category : #accessing }
+DAPackageRelationGraph >> packageNamed: aString ifAbsent: aBlock [
 	^ packages at: aString ifAbsent: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>packages [
+{ #category : #accessing }
+DAPackageRelationGraph >> packages [
 
 	^ packages values
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>packagesName [
+{ #category : #accessing }
+DAPackageRelationGraph >> packagesName [
 
 	^ packages keys
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>pdPackageFrom: aClass [
+{ #category : #accessing }
+DAPackageRelationGraph >> pdPackageFrom: aClass [
 	^ packages detect: [ :package | package rPackageSet includesClass: aClass ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>predecessors: aPackage [
+{ #category : #accessing }
+DAPackageRelationGraph >> predecessors: aPackage [
 	"returns a Collection with the predecessors of the package"
 
 	| aCollection |
@@ -505,11 +381,8 @@ DAPackageRelationGraph>>predecessors: aPackage [
 	^ aCollection
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>refreshGraph [
+{ #category : #updating }
+DAPackageRelationGraph >> refreshGraph [
 	| olderPackages refreshPackage |
 	classToPackage := IdentityDictionary new.
 	olderPackages := self seenPackagesName.
@@ -521,11 +394,8 @@ DAPackageRelationGraph>>refreshGraph [
 	self build
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>refreshPackageDependencies: aPackage [
+{ #category : #updating }
+DAPackageRelationGraph >> refreshPackageDependencies: aPackage [
 	aPackage clearDependencies.
 	self computeStaticDependencies: aPackage.
 	self combineDependencies: aPackage.
@@ -534,11 +404,8 @@ DAPackageRelationGraph>>refreshPackageDependencies: aPackage [
 	
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>removeInternalDependencies [
+{ #category : #actions }
+DAPackageRelationGraph >> removeInternalDependencies [
 	"Remove all dependencies from a package to itself"
 	
 	self includedPackages
@@ -546,11 +413,8 @@ DAPackageRelationGraph>>removeInternalDependencies [
 		displayingProgress: 'Removing internal Dependencies'
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>removeOutgoingDependencies [
+{ #category : #actions }
+DAPackageRelationGraph >> removeOutgoingDependencies [
 	"Remove all dependencies to packages not included in this relation"
 	
 	self includedPackages
@@ -558,65 +422,44 @@ DAPackageRelationGraph>>removeOutgoingDependencies [
 		displayingProgress: 'Removing outgoing Dependencies'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>removeOutgoingDependencies: aPackage [
+{ #category : #private }
+DAPackageRelationGraph >> removeOutgoingDependencies: aPackage [
 	| removals |
 	removals := aPackage dependencies reject: [ :each | each target isIncluded ].
 	removals do: [ :each | aPackage remove: each ]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>removePackage: packageName [
+{ #category : #removing }
+DAPackageRelationGraph >> removePackage: packageName [
 	^ packages removeKey: packageName
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>seenPackages [
+{ #category : #actions }
+DAPackageRelationGraph >> seenPackages [
 	^ self packages 
 		select: [ :each | each isSeen ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>seenPackagesName [
+{ #category : #accessing }
+DAPackageRelationGraph >> seenPackagesName [
 	"Answer all seen packages name."
 
 	^ self seenPackages collect: [ :package | package packageName ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>seenPackagesWithFilter: aFilter [
+{ #category : #actions }
+DAPackageRelationGraph >> seenPackagesWithFilter: aFilter [
 	^ self packages 
 		select: [ :each | each isSeen and: [ aFilter match: each packageName ] ].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>seenPackagesWithoutExtension [
+{ #category : #actions }
+DAPackageRelationGraph >> seenPackagesWithoutExtension [
 	^ self packages select: [ :each | each isSeen ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>successors: aPackage [
+{ #category : #accessing }
+DAPackageRelationGraph >> successors: aPackage [
 	"answer a collection with the successors of aPackage in the graph"
 
 	| aCollection |
@@ -628,11 +471,8 @@ DAPackageRelationGraph>>successors: aPackage [
 	^ aCollection
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>systemPackageContaining: aClass [
+{ #category : #queries }
+DAPackageRelationGraph >> systemPackageContaining: aClass [
 	| info |
 	info := (RPackageOrganizer default packageOf: aClass) packageName.
 	^ info
@@ -640,11 +480,8 @@ DAPackageRelationGraph>>systemPackageContaining: aClass [
 		ifNotNil: [ DAPackage on: (RPackageSet named: info asString) ]
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraph>>usersOf: aPackage [
+{ #category : #computing }
+DAPackageRelationGraph >> usersOf: aPackage [
 	| users |
 	users := OrderedCollection new.
 	self seenPackages

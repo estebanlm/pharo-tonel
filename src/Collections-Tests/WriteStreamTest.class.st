@@ -4,71 +4,46 @@ A trait for test purposes
 Class {
 	#name : #WriteStreamTest,
 	#superclass : #ClassTestCase,
-	#category : #Collections-Tests-Streams,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:36'
+	#category : #Collections-Tests-Streams
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest class>>shouldInheritSelectors [
+{ #category : #testing }
+WriteStreamTest class >> shouldInheritSelectors [
 	^ true
 ]
 
-{
-	#category : #coverage,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>classToBeTested [
+{ #category : #coverage }
+WriteStreamTest >> classToBeTested [
 	^ self streamClass
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>newStream [
+{ #category : #'instance creation' }
+WriteStreamTest >> newStream [
 	^ self newStreamOn: String new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>newStreamOn: aCollection [
+{ #category : #'instance creation' }
+WriteStreamTest >> newStreamOn: aCollection [
 	^ self streamClass on: aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>streamClass [
+{ #category : #accessing }
+WriteStreamTest >> streamClass [
 	^ WriteStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>string [
+{ #category : #accessing }
+WriteStreamTest >> string [
 	^ 'testing'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>stringSize [
+{ #category : #accessing }
+WriteStreamTest >> stringSize [
 	^ self string size
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>testEnsureASpace [
+{ #category : #tests }
+WriteStreamTest >> testEnsureASpace [
 	"self debug: #testEnsureASpace"
 	| stream |
 	stream := self newStream.
@@ -85,11 +60,8 @@ WriteStreamTest>>testEnsureASpace [
 	self assert: stream contents = 'this is a test for WriteStreamTest'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>testEnsureASpace2 [
+{ #category : #tests }
+WriteStreamTest >> testEnsureASpace2 [
 	"self debug: #testEnsureASpace2"
 	| stream |
 	stream := self newStream.
@@ -98,11 +70,8 @@ WriteStreamTest>>testEnsureASpace2 [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>testEnsureEndsWith [
+{ #category : #tests }
+WriteStreamTest >> testEnsureEndsWith [
 	"self debug: #testEnsureEndsWith"
 	| stream |
 	stream := self newStream.
@@ -124,11 +93,8 @@ WriteStreamTest>>testEnsureEndsWith [
 	self assert: stream contents equals: ''.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>testEnsureNoSpace [
+{ #category : #tests }
+WriteStreamTest >> testEnsureNoSpace [
 	"self debug: #testEnsureASpace2"
 	| stream |
 	stream := self newStream.
@@ -149,11 +115,8 @@ WriteStreamTest>>testEnsureNoSpace [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>testIsEmpty [
+{ #category : #tests }
+WriteStreamTest >> testIsEmpty [
 	| stream |
 	stream := self newStream.
 	self assert: stream isEmpty.
@@ -163,20 +126,14 @@ WriteStreamTest>>testIsEmpty [
 	self deny: stream isEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>testNew [
+{ #category : #tests }
+WriteStreamTest >> testNew [
 
 	self should: [self streamClass new] raise: Error. 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>testNextPut [
+{ #category : #tests }
+WriteStreamTest >> testNextPut [
 	| stream |
 	stream := self newStream.
 	self string
@@ -187,11 +144,8 @@ WriteStreamTest>>testNextPut [
 				assert: stream contents = (self string first: i) ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>testNextPutAll [
+{ #category : #tests }
+WriteStreamTest >> testNextPutAll [
 	| stream |
 	stream := self newStream.
 	self
@@ -200,11 +154,8 @@ WriteStreamTest>>testNextPutAll [
 		assert: stream contents = self string
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>testOn [
+{ #category : #tests }
+WriteStreamTest >> testOn [
 	| collection stream |
 	collection := String new.
 	stream := self streamClass on: collection.
@@ -215,11 +166,8 @@ WriteStreamTest>>testOn [
 		assert: stream size isZero
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>testOnFromTo [
+{ #category : #tests }
+WriteStreamTest >> testOnFromTo [
 	| stream |
 	stream := self streamClass
 		on: self string , self string
@@ -232,11 +180,8 @@ WriteStreamTest>>testOnFromTo [
 		assert: stream size = (self stringSize * 2)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>testPosition [
+{ #category : #tests }
+WriteStreamTest >> testPosition [
 	| stream |
 	stream := self newStream.
 	stream nextPutAll: self string.
@@ -251,11 +196,8 @@ WriteStreamTest>>testPosition [
 	self should: [ stream position: self stringSize + 1 ] raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>testSetToEnd [
+{ #category : #tests }
+WriteStreamTest >> testSetToEnd [
 	| stream |
 	stream := self newStream.
 	self
@@ -271,11 +213,8 @@ WriteStreamTest>>testSetToEnd [
 			assert: stream contents = self string ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>testWith [
+{ #category : #tests }
+WriteStreamTest >> testWith [
 	"like on: except it starts writing at the end of its argument collection,
 	and the initial position is the collection size and the initial contents
 	is the collection"
@@ -288,11 +227,8 @@ WriteStreamTest>>testWith [
 		assert: stream size = self stringSize.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WriteStreamTest>>testWithFromTo [
+{ #category : #tests }
+WriteStreamTest >> testWithFromTo [
 	"like with: except it paritions its argument collection first using the
 	from:/to: indexes"
 	| stream |

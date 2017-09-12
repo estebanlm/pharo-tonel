@@ -4,24 +4,17 @@ An OmNullStoreTest is a test class for testing the behavior of OmNullStore
 Class {
 	#name : #OmStoreFactoryTest,
 	#superclass : #TestCase,
-	#category : #OmbuTests,
-	#timestamp : '<historical>'
+	#category : #OmbuTests
 }
 
-{
-	#category : #resources,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreFactoryTest>>aStoreName [
+{ #category : #resources }
+OmStoreFactoryTest >> aStoreName [
 
 	^ 'aTestGlobalName'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreFactoryTest>>testNullStore [
+{ #category : #tests }
+OmStoreFactoryTest >> testNullStore [
 
 	| factory store |
 	factory := OmStoreFactory new.
@@ -30,11 +23,8 @@ OmStoreFactoryTest>>testNullStore [
 	self assert: factory null == store description: 'Singleton'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreFactoryTest>>testStoreNamed [
+{ #category : #tests }
+OmStoreFactoryTest >> testStoreNamed [
 
 	| factory store storeAgain anEntry |
 	factory := OmStoreFactory new.

@@ -1,12 +1,7 @@
-Extension {
-	#name : #Rectangle
-}
+Extension { #name : #Rectangle }
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-Rectangle>>fuelAccept: aGeneralMapper [
+{ #category : #'*Fuel' }
+Rectangle >> fuelAccept: aGeneralMapper [
 	"Since we can have subclasses of Rectangle, like CharacterBlock that adds new instVars, we cannot use the visitRectangle: for it."
 	^ (self class == Rectangle) 
 		ifTrue: [ aGeneralMapper visitRectangle: self ]
@@ -15,11 +10,8 @@ Rectangle>>fuelAccept: aGeneralMapper [
 
 ]
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-Rectangle>>fuelSetOrigin: originPoint corner: cornerPoint [
+{ #category : #'*Fuel' }
+Rectangle >> fuelSetOrigin: originPoint corner: cornerPoint [
 	origin := originPoint.
 	corner := cornerPoint
 ]

@@ -11,32 +11,22 @@ resolveFunctionAddress: ""answers the solved function address (an ExternalAddres
 Class {
 	#name : #FFIFunctionResolutionStrategy,
 	#superclass : #Object,
-	#category : #UnifiedFFI,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionResolutionStrategy>>isApplicableFor: aRequestor [
+{ #category : #testing }
+FFIFunctionResolutionStrategy >> isApplicableFor: aRequestor [
 	"answers true if function should be resolved using this strategy"
 	self subclassResponsibility
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionResolutionStrategy>>resolve: anExternalFunction [
+{ #category : #resolving }
+FFIFunctionResolutionStrategy >> resolve: anExternalFunction [
 	anExternalFunction setHandle: (self resolveFunction: anExternalFunction)
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionResolutionStrategy>>resolveFunction: anExternalFunction [
+{ #category : #resolving }
+FFIFunctionResolutionStrategy >> resolveFunction: anExternalFunction [
 	"answers the solved function address (an ExternalAddress)"
 	self subclassResponsibility
 ]

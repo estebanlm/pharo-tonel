@@ -18,36 +18,26 @@ Part of Zinc HTTP Components.
 Class {
 	#name : #ZnEasy,
 	#superclass : #Object,
-	#category : #Zinc-HTTP-Client-Server,
-	#timestamp : 'SvenVanCaekenberghe 5/10/2016 09:54'
+	#category : #Zinc-HTTP-Client-Server
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEasy class>>client [
+{ #category : #private }
+ZnEasy class >> client [
 	^ ZnClient new
 		beOneShot;
 		yourself
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEasy class>>delete: urlObject [
+{ #category : #operations }
+ZnEasy class >> delete: urlObject [
 	^ self client
 		url: urlObject;
 		delete;
 		response
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEasy class>>delete: urlObject username: username password: password [
+{ #category : #operations }
+ZnEasy class >> delete: urlObject username: username password: password [
 	^ self client
 		url: urlObject;
 		setBasicAuthenticationUsername: username password: password;
@@ -56,11 +46,8 @@ ZnEasy class>>delete: urlObject username: username password: password [
 	
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEasy class>>get: urlObject [
+{ #category : #operations }
+ZnEasy class >> get: urlObject [
 	"self get: 'http://stfx.eu/small.html'."
 	
 	^ self client
@@ -70,11 +57,8 @@ ZnEasy class>>get: urlObject [
 	
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEasy class>>get: urlObject username: username password: password [
+{ #category : #operations }
+ZnEasy class >> get: urlObject username: username password: password [
 	^ self client
 		url: urlObject;
 		setBasicAuthenticationUsername: username password: password;
@@ -83,11 +67,8 @@ ZnEasy class>>get: urlObject username: username password: password [
 	
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEasy class>>getGif: urlObject [
+{ #category : #operations }
+ZnEasy class >> getGif: urlObject [
 	"self getGif: 'http://zn.stfx.eu/zn/Hot-Air-Balloon.gif'."
 	
 	^ self 
@@ -95,11 +76,8 @@ ZnEasy class>>getGif: urlObject [
 		fromUrl: urlObject	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEasy class>>getImageOfType: mimeType fromUrl: urlObject [
+{ #category : #private }
+ZnEasy class >> getImageOfType: mimeType fromUrl: urlObject [
 	| client |
 	(client := self client)
 		url: urlObject;
@@ -111,11 +89,8 @@ ZnEasy class>>getImageOfType: mimeType fromUrl: urlObject [
 	^ ImageReadWriter formFromStream: client entity readStream
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEasy class>>getJpeg: urlObject [
+{ #category : #operations }
+ZnEasy class >> getJpeg: urlObject [
 	"self getJpeg: 'http://stfx.eu/sun-fire-x2100.jpg'."
 	
 	^ self 
@@ -123,11 +98,8 @@ ZnEasy class>>getJpeg: urlObject [
 		fromUrl: urlObject
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEasy class>>getPng: urlObject [
+{ #category : #operations }
+ZnEasy class >> getPng: urlObject [
 	"self getPng: 'http://pharo.org/files/pharo.png'."
 	"(self getPng: 'http://chart.googleapis.com/chart?cht=tx&chl=',
 		'a^2+b^2=c^2' urlEncoded) asMorph openInHand."
@@ -137,22 +109,16 @@ ZnEasy class>>getPng: urlObject [
 		fromUrl: urlObject
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEasy class>>head: urlObject [
+{ #category : #operations }
+ZnEasy class >> head: urlObject [
 	^ self client
 		url: urlObject;
 		head;
 		response
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEasy class>>head: urlObject username: username password: password [
+{ #category : #operations }
+ZnEasy class >> head: urlObject username: username password: password [
 	^ self client
 		url: urlObject;
 		setBasicAuthenticationUsername: username password: password;
@@ -160,11 +126,8 @@ ZnEasy class>>head: urlObject username: username password: password [
 		response
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEasy class>>post: urlObject data: entity [
+{ #category : #operations }
+ZnEasy class >> post: urlObject data: entity [
 	^ self client
 		url: urlObject;
 		entity: entity;
@@ -172,11 +135,8 @@ ZnEasy class>>post: urlObject data: entity [
 		response
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEasy class>>post: urlObject data: entity username: username password: password [
+{ #category : #operations }
+ZnEasy class >> post: urlObject data: entity username: username password: password [
 	^ self client
 		url: urlObject;
 		setBasicAuthenticationUsername: username password: password;
@@ -185,11 +145,8 @@ ZnEasy class>>post: urlObject data: entity username: username password: password
 		response
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEasy class>>put: urlObject data: entity [
+{ #category : #operations }
+ZnEasy class >> put: urlObject data: entity [
 	^ self client
 		url: urlObject;
 		entity: entity;
@@ -197,11 +154,8 @@ ZnEasy class>>put: urlObject data: entity [
 		response	
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEasy class>>put: urlObject data: entity username: username password: password [
+{ #category : #operations }
+ZnEasy class >> put: urlObject data: entity username: username password: password [
 	^ self client
 		url: urlObject;
 		setBasicAuthenticationUsername: username password: password;

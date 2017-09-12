@@ -43,15 +43,11 @@ Class {
 	#instVars : [
 		'tools'
 	],
-	#category : #Tool-Base,
-	#timestamp : 'BernardoContreras 1/18/2012 21:44'
+	#category : #Tool-Base
 }
 
-{
-	#category : #misc,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>browseDirectToolReferences [
+{ #category : #misc }
+ToolRegistry >> browseDirectToolReferences [
 	"Smalltalk tools browseDirectToolReferences"
 	"Browse all direct references of all of my registered tools.
 	Useful for converting calls like:
@@ -73,21 +69,15 @@ ToolRegistry>>browseDirectToolReferences [
 		name: 'All direct references to tools to fix'
 ]
 
-{
-	#category : #misc,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>codeCompletionAround: aBlock textMorph: aTextMorph keyStroke: evt [
+{ #category : #misc }
+ToolRegistry >> codeCompletionAround: aBlock textMorph: aTextMorph keyStroke: evt [
 	^(self hasToolNamed: #codeCompletion)
 	ifTrue: [ self codeCompletion codeCompletionAround: aBlock textMorph: aTextMorph keyStroke: evt ]
 	ifFalse: [ aBlock value ]
 ]
 
-{
-	#category : #'handling DNU',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>doesNotUnderstand: aMessage [
+{ #category : #'handling DNU' }
+ToolRegistry >> doesNotUnderstand: aMessage [
 	"Return a tool identified by a message selector.
 	We need to handle special case, when no debugger registered.
 	"
@@ -107,19 +97,13 @@ ToolRegistry>>doesNotUnderstand: aMessage [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>hasToolNamed: aToolName [
+{ #category : #testing }
+ToolRegistry >> hasToolNamed: aToolName [
 	^ tools includesKey: aToolName 
 ]
 
-{
-	#category : #misc,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>informNoDebugger [
+{ #category : #misc }
+ToolRegistry >> informNoDebugger [
 	(self includes: #uiManager) 
 		ifTrue: [
 			self uiManager inform: 'Cannot open debugger' ]
@@ -129,11 +113,8 @@ ToolRegistry>>informNoDebugger [
 			Processor activeProcess terminate ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>initDefaultToolSet [
+{ #category : #initialize-release }
+ToolRegistry >> initDefaultToolSet [
 	
 	"Query the system for registering tools"
 	"we cannot afford to show warnings because not all tools e.g Debugger, Inspector are registered yet"
@@ -149,11 +130,8 @@ ToolRegistry>>initDefaultToolSet [
 	] on: Warning do: [:ex | ex resume ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>initialize [
+{ #category : #initialization }
+ToolRegistry >> initialize [
 
 	"symbols used as keys "
 	tools := IdentityDictionary new.  
@@ -161,31 +139,22 @@ ToolRegistry>>initialize [
 	self initDefaultToolSet
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>inspector [
+{ #category : #tools }
+ToolRegistry >> inspector [
 	"understand by Object, so we need to work around not getting a DNU"
 	^self doesNotUnderstand: (Message selector: #inspector)
 ]
 
-{
-	#category : #convenience-inspecting,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>inspectorClass [
+{ #category : #convenience-inspecting }
+ToolRegistry >> inspectorClass [
 
 	^ EyeInspector 
 	
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>menuItems [
+{ #category : #menu }
+ToolRegistry >> menuItems [
 	"Answer the menu items available for this tool set"
 
 	^#(
@@ -204,109 +173,73 @@ ToolRegistry>>menuItems [
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>openClassBrowser [
+{ #category : #menu }
+ToolRegistry >> openClassBrowser [
 	^ self browser open
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>openFileList [
+{ #category : #menu }
+ToolRegistry >> openFileList [
 	self fileList open
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>openMonticelloBrowser [
+{ #category : #menu }
+ToolRegistry >> openMonticelloBrowser [
 	self monticelloBrowser open
 	
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>openProcessBrowser [
+{ #category : #menu }
+ToolRegistry >> openProcessBrowser [
 	self using: #processBrowser do: [:tool |
 		tool open
 		]
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>openRecentChangesLog [
+{ #category : #menu }
+ToolRegistry >> openRecentChangesLog [
 	self changeList browseRecentLog
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>openTestRunner [
+{ #category : #menu }
+ToolRegistry >> openTestRunner [
 	self using: #testRunner do: [:tool | tool open ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>openTranscript [
+{ #category : #menu }
+ToolRegistry >> openTranscript [
 	^ self transcript open
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>openWorkspace [
+{ #category : #menu }
+ToolRegistry >> openWorkspace [
 	^ self workspace open
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>register: anObject as: aNameSelector [
+{ #category : #registration }
+ToolRegistry >> register: anObject as: aNameSelector [
 	"Register a tool class under given name"
 	tools at: aNameSelector put: anObject.
 	WorldState defaultWorldMenu
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>remove: aName [
+{ #category : #registration }
+ToolRegistry >> remove: aName [
 	"remove tool with given name"
 	tools removeKey: aName ifAbsent: []
 ]
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>transcript [
+{ #category : #tools }
+ToolRegistry >> transcript [
 	"No need to register transcript. But for uniformity,
 	implement this method, so transcript can be accessed via
 	Smalltalk tools transcript , as any other tool "
 	^ Transcript
 ]
 
-{
-	#category : #misc,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolRegistry>>using: aToolName do: aBlock [
+{ #category : #misc }
+ToolRegistry >> using: aToolName do: aBlock [
 	"Evaluate a block for tool found under corresponding name or silently ignore if its not found or nil"
 	| tool |
 	

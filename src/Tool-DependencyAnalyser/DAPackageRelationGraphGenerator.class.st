@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'relationGraph'
 	],
-	#category : #Tool-DependencyAnalyser-Core,
-	#timestamp : 'BaptisteQuide 7/28/2014 15:00'
+	#category : #Tool-DependencyAnalyser-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphGenerator class>>newWith: aRelationGraph named: aString [
+{ #category : #'instance creation' }
+DAPackageRelationGraphGenerator class >> newWith: aRelationGraph named: aString [
 
 	| generator |
 	generator := self new.
@@ -25,11 +21,8 @@ DAPackageRelationGraphGenerator class>>newWith: aRelationGraph named: aString [
 	^ generator
 ]
 
-{
-	#category : #'build items',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphGenerator>>buildEdges [
+{ #category : #'build items' }
+DAPackageRelationGraphGenerator >> buildEdges [
 	relationGraph packages
 		do: [ :package | 
 			package dependencies
@@ -40,26 +33,17 @@ DAPackageRelationGraphGenerator>>buildEdges [
 		displayingProgress: 'Building edges'
 ]
 
-{
-	#category : #'build items',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphGenerator>>buildNodes [
+{ #category : #'build items' }
+DAPackageRelationGraphGenerator >> buildNodes [
 	relationGraph seenPackages do: [ :package | graphviz add: package packageName ] displayingProgress: 'Building nodes'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphGenerator>>relationGraph [
+{ #category : #accessing }
+DAPackageRelationGraphGenerator >> relationGraph [
 	^ relationGraph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphGenerator>>relationGraph: anObject [
+{ #category : #accessing }
+DAPackageRelationGraphGenerator >> relationGraph: anObject [
 	relationGraph := anObject
 ]

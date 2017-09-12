@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMVector,
 	#superclass : #Object,
@@ -16,46 +13,33 @@ Class {
 		'South',
 		'West'
 	],
-	#category : #Glamour-Morphic-Brick-Utils-Geometry,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Utils-Geometry
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector class>>direction: aDirection [
+{ #category : #'instance creation' }
+GLMVector class >> direction: aDirection [
 	^ self new
 		direction: aDirection;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector class>>east: aLength [
+{ #category : #'instance creation' }
+GLMVector class >> east: aLength [
 	^ self new
 		east;
 		length: aLength;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector class>>horizontal: aNumber [
+{ #category : #'instance creation' }
+GLMVector class >> horizontal: aNumber [
 	^ aNumber >= 0
 		ifTrue: [ self east: aNumber ]
 		ifFalse: [ self west: aNumber abs ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector class>>initialize [
+{ #category : #initialization }
+GLMVector class >> initialize [
 	super initialize.
 	
 	North := GLMNorthDirection uniqueInstance.
@@ -64,123 +48,84 @@ GLMVector class>>initialize [
 	East := GLMEastDirection uniqueInstance 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector class>>north: aLength [
+{ #category : #'instance creation' }
+GLMVector class >> north: aLength [
 	^ self new
 		north;
 		length: aLength;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector class>>south: aLength [
+{ #category : #'instance creation' }
+GLMVector class >> south: aLength [
 	^ self new
 		south;
 		length: aLength;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector class>>vertical: aNumber [
+{ #category : #'instance creation' }
+GLMVector class >> vertical: aNumber [
 	^ aNumber >= 0
 		ifTrue: [ self south: aNumber ]
 		ifFalse: [ self north: aNumber abs ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector class>>west: aLength [
+{ #category : #'instance creation' }
+GLMVector class >> west: aLength [
 	^ self new
 		west;
 		length: aLength;
 		yourself
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>* aNumber [
+{ #category : #geometry }
+GLMVector >> * aNumber [
 	^ self direction * aNumber
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>+ aPoint [
+{ #category : #geometry }
+GLMVector >> + aPoint [
 	^ aPoint + self offset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>direction [
+{ #category : #accessing }
+GLMVector >> direction [
 	^ direction
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>direction: aDirection [
+{ #category : #initialization }
+GLMVector >> direction: aDirection [
 	direction := aDirection
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>east [
+{ #category : #initialization }
+GLMVector >> east [
 	direction := East
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>initialize [
+{ #category : #initialization }
+GLMVector >> initialize [
 	super initialize.
 	
 	next := self.
 	previous := self
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>left [
+{ #category : #geometry }
+GLMVector >> left [
 	"Return a vector representing left projection"
 	^ (GLMVector direction: self direction left)
 		length: self length
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>length [
+{ #category : #accessing }
+GLMVector >> length [
 	^ length value
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>length: aNumber [
+{ #category : #initialization }
+GLMVector >> length: aNumber [
 
 	self
 		assert: [ aNumber >= 0 ]
@@ -189,100 +134,67 @@ GLMVector>>length: aNumber [
 	length := aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>next [
+{ #category : #accessing }
+GLMVector >> next [
 	"Return a next vector"
 	<return: #GLMVector>
 
 	^ next
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>next: aVector [
+{ #category : #initialization }
+GLMVector >> next: aVector [
 	next := aVector
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>north [
+{ #category : #initialization }
+GLMVector >> north [
 	direction := North
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>offset [
+{ #category : #geometry }
+GLMVector >> offset [
 	<return: #Point>
 	^ self direction * self length
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>origin: aPoint breadth: aNumber [
+{ #category : #geometry }
+GLMVector >> origin: aPoint breadth: aNumber [
 	"Creates a rectangle to the left of a vector"
 	<return: #Rectangle>
 
 	^ self direction origin: aPoint length: length breadth: aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>previous [
+{ #category : #accessing }
+GLMVector >> previous [
 	^ previous
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>previous: aVector [
+{ #category : #initialization }
+GLMVector >> previous: aVector [
 	previous := aVector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>rightAngle: aVector [
+{ #category : #accessing }
+GLMVector >> rightAngle: aVector [
 	"Return true if angle between me and a given angle is right"
 	^ self direction rightAngle: aVector direction
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>similar: aLength [
+{ #category : #geometry }
+GLMVector >> similar: aLength [
 	^ (self class direction: self direction)
 		length: aLength;
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>south [
+{ #category : #initialization }
+GLMVector >> south [
 	direction := South
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVector>>west [
+{ #category : #initialization }
+GLMVector >> west [
 	direction := West
 ]

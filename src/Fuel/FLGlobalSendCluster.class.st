@@ -26,15 +26,11 @@ Class {
 	#instVars : [
 		'globalSends'
 	],
-	#category : #Fuel-Clusters,
-	#timestamp : 'MarianoMartinezPeck 10/23/2011 14:39'
+	#category : #Fuel-Clusters
 }
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLGlobalSendCluster>>add: anObject name: globalName selector: selector traceWith: anAnalysis [
+{ #category : #mapping }
+FLGlobalSendCluster >> add: anObject name: globalName selector: selector traceWith: anAnalysis [
 
 	self add: anObject traceWith: anAnalysis.
 	globalSends
@@ -42,20 +38,14 @@ FLGlobalSendCluster>>add: anObject name: globalName selector: selector traceWith
 		ifAbsentPut: [ Association key: globalName value: selector ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLGlobalSendCluster>>initializeAnalyzing [
+{ #category : #initialize-release }
+FLGlobalSendCluster >> initializeAnalyzing [
 	super initializeAnalyzing.
 	globalSends := IdentityDictionary new.
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLGlobalSendCluster>>materializeInstanceWith: aDecoder [
+{ #category : #serialize/materialize }
+FLGlobalSendCluster >> materializeInstanceWith: aDecoder [
 
 	| global selector |
 	global := (self materializeGlobalAssociationFrom: aDecoder) value.	
@@ -63,11 +53,8 @@ FLGlobalSendCluster>>materializeInstanceWith: aDecoder [
 	^ global perform: selector
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLGlobalSendCluster>>serializeInstance: anObject with: anEncoder [
+{ #category : #serialize/materialize }
+FLGlobalSendCluster >> serializeInstance: anObject with: anEncoder [
 	
 	| globalSend |
 	globalSend := globalSends at: anObject.

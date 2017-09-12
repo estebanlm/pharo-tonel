@@ -8,47 +8,31 @@ Class {
 		'tag',
 		'link'
 	],
-	#category : #Reflectivity-Tests,
-	#timestamp : 'MarcusDenker 3/1/2015 18:23'
+	#category : #Reflectivity-Tests
 }
 
-{
-	#category : #tagging,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>return3 [
+{ #category : #tagging }
+ReflectivityControlTest >> return3 [
 	^3
 ]
 
-{
-	#category : #tagging,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>tagExec [
+{ #category : #tagging }
+ReflectivityControlTest >> tagExec [
 	tag := #yes
 ]
 
-{
-	#category : #tagging,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>tagExec: aTag [
+{ #category : #tagging }
+ReflectivityControlTest >> tagExec: aTag [
 	tag := aTag.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>tearDown [
+{ #category : #running }
+ReflectivityControlTest >> tearDown [
 	link ifNotNil: [link uninstall].
 ]
 
-{
-	#category : #'tests - after',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testAfterArray [
+{ #category : #'tests - after' }
+ReflectivityControlTest >> testAfterArray [
 	| arrayNode |
 	arrayNode := (ReflectivityExamples >> #exampleArray) ast statements first value.
 	link := MetaLink new
@@ -64,11 +48,8 @@ ReflectivityControlTest>>testAfterArray [
 	self assert: (ReflectivityExamples >> #exampleArray) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - after',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testAfterAssignment [
+{ #category : #'tests - after' }
+ReflectivityControlTest >> testAfterAssignment [
 	| assignmentNode |
 	assignmentNode := (ReflectivityExamples >> #exampleAssignment) assignmentNodes first.
 	self assert: assignmentNode isAssignment.
@@ -85,11 +66,8 @@ ReflectivityControlTest>>testAfterAssignment [
 	self assert: (ReflectivityExamples >> #exampleAssignment) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - after',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testAfterBlock [
+{ #category : #'tests - after' }
+ReflectivityControlTest >> testAfterBlock [
 	| blockNode |
 	blockNode := (ReflectivityExamples >> #exampleBlock) ast statements first value receiver.
 	self assert: blockNode isBlock.
@@ -106,11 +84,8 @@ ReflectivityControlTest>>testAfterBlock [
 	self assert: (ReflectivityExamples >> #exampleBlock) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - after',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testAfterBlockSequence [
+{ #category : #'tests - after' }
+ReflectivityControlTest >> testAfterBlockSequence [
 	| sequence |
 	sequence := (ReflectivityExamples >> #exampleBlock) ast statements first value receiver body.
 	self assert: sequence isSequence.
@@ -127,11 +102,8 @@ ReflectivityControlTest>>testAfterBlockSequence [
 	self assert: (ReflectivityExamples >> #exampleBlock) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - after - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testAfterClassVariable [
+{ #category : #'tests - after - variables' }
+ReflectivityControlTest >> testAfterClassVariable [
 	| classVar |
 	classVar := ReflectivityExamples classVariableNamed: #ClassVar.
 	link := MetaLink new
@@ -148,11 +120,8 @@ ReflectivityControlTest>>testAfterClassVariable [
 	self deny: (ReflectivityExamples >> #exampleClassVarRead) isQuick.
 ]
 
-{
-	#category : #'tests - after',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testAfterLiteral [
+{ #category : #'tests - after' }
+ReflectivityControlTest >> testAfterLiteral [
 	| literalNode |
 	literalNode := (ReflectivityExamples >> #exampleLiteral) ast statements first value.
 	self assert: literalNode isLiteralNode.
@@ -170,11 +139,8 @@ ReflectivityControlTest>>testAfterLiteral [
 	self deny: (ReflectivityExamples >> #exampleLiteral) isQuick.
 ]
 
-{
-	#category : #'tests - after',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testAfterLiteralArray [
+{ #category : #'tests - after' }
+ReflectivityControlTest >> testAfterLiteralArray [
 	| literalArray |
 	literalArray := (ReflectivityExamples >> #exampleLiteralArray) ast statements first value.
 	self assert: literalArray isLiteralArray.
@@ -192,11 +158,8 @@ ReflectivityControlTest>>testAfterLiteralArray [
 	self deny: (ReflectivityExamples >> #exampleLiteralArray) isQuick.
 ]
 
-{
-	#category : #'tests - after',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testAfterMethod [
+{ #category : #'tests - after' }
+ReflectivityControlTest >> testAfterMethod [
 	| methodNode |
 	methodNode := (ReflectivityExamples >> #exampleMethod) ast.
 	link := MetaLink new
@@ -212,11 +175,8 @@ ReflectivityControlTest>>testAfterMethod [
 	self assert: (ReflectivityExamples >> #exampleMethod) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - after',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testAfterMethodPrimitive [
+{ #category : #'tests - after' }
+ReflectivityControlTest >> testAfterMethodPrimitive [
 	| methodNode |
 	ReflectivityExamples recompile: #examplePrimitiveMethod.
 	methodNode := (ReflectivityExamples >> #examplePrimitiveMethod) ast.
@@ -234,11 +194,8 @@ ReflectivityControlTest>>testAfterMethodPrimitive [
 	self assert: (ReflectivityExamples >> #examplePrimitiveMethod) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - after',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testAfterMethodWithTemps [
+{ #category : #'tests - after' }
+ReflectivityControlTest >> testAfterMethodWithTemps [
 	| methodNode |
 	ReflectivityExamples recompile: #exampleAssignment.
 	methodNode := (ReflectivityExamples >> #exampleAssignment) ast.
@@ -255,11 +212,8 @@ ReflectivityControlTest>>testAfterMethodWithTemps [
 	self assert: (ReflectivityExamples >> #exampleAssignment) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - after',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testAfterReturn [
+{ #category : #'tests - after' }
+ReflectivityControlTest >> testAfterReturn [
 	| returnNode |
 	returnNode := (ReflectivityExamples >> #exampleMethod) ast statements first.
 	self assert: returnNode isReturn.
@@ -271,11 +225,8 @@ ReflectivityControlTest>>testAfterReturn [
 	
 ]
 
-{
-	#category : #'tests - after',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testAfterSend [
+{ #category : #'tests - after' }
+ReflectivityControlTest >> testAfterSend [
 	| sendNode |
 	sendNode := (ReflectivityExamples >> #exampleMethod) sendNodes first.
 	self assert: sendNode isMessage.
@@ -293,11 +244,8 @@ ReflectivityControlTest>>testAfterSend [
 	self assert: (ReflectivityExamples >> #exampleMethod) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - after',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testAfterSendWeak [
+{ #category : #'tests - after' }
+ReflectivityControlTest >> testAfterSendWeak [
 	| sendNode |
 	sendNode := (ReflectivityExamples >> #exampleMethod) sendNodes first.
 	self assert: sendNode isMessage.
@@ -317,11 +265,8 @@ ReflectivityControlTest>>testAfterSendWeak [
 	self assert: (ReflectivityExamples >> #exampleMethod) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - after',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testAfterSequence [
+{ #category : #'tests - after' }
+ReflectivityControlTest >> testAfterSequence [
 	| sequence |
 	sequence := (ReflectivityExamples >> #exampleMethod) ast body.
 	self assert: sequence isSequence.
@@ -338,11 +283,8 @@ ReflectivityControlTest>>testAfterSequence [
 	self assert: (ReflectivityExamples >> #exampleMethod) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - after - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testAfterSlot [
+{ #category : #'tests - after - variables' }
+ReflectivityControlTest >> testAfterSlot [
 	| iVar instance |
 	iVar := ReflectivityExamples slotNamed: #ivar.
 	link := MetaLink new 
@@ -359,11 +301,8 @@ ReflectivityControlTest>>testAfterSlot [
 	self assert: (tag = #ivar).
 ]
 
-{
-	#category : #'tests - after',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testAfterVariableNode [
+{ #category : #'tests - after' }
+ReflectivityControlTest >> testAfterVariableNode [
 	| variableNode |
 	variableNode := (ReflectivityExamples >> #exampleGlobalRead) ast statements first value.
 	self assert: variableNode isVariable.
@@ -381,11 +320,8 @@ ReflectivityControlTest>>testAfterVariableNode [
 	self deny: (ReflectivityExamples >> #exampleGlobalRead) isQuick.
 ]
 
-{
-	#category : #'tests - before',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testBeforeAssignment [
+{ #category : #'tests - before' }
+ReflectivityControlTest >> testBeforeAssignment [
 	| assignmentNode |
 	assignmentNode := (ReflectivityExamples >> #exampleAssignment) assignmentNodes first.
 	link := MetaLink new
@@ -400,11 +336,8 @@ ReflectivityControlTest>>testBeforeAssignment [
 	self assert: (ReflectivityExamples >> #exampleAssignment) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - before',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testBeforeBlock [
+{ #category : #'tests - before' }
+ReflectivityControlTest >> testBeforeBlock [
 	| blockNode |
 	blockNode := (ReflectivityExamples >> #exampleBlock) ast statements first value receiver.
 	self assert: blockNode isBlock.
@@ -420,11 +353,8 @@ ReflectivityControlTest>>testBeforeBlock [
 	self assert: (ReflectivityExamples >> #exampleBlock) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - before',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testBeforeBlockSequence [
+{ #category : #'tests - before' }
+ReflectivityControlTest >> testBeforeBlockSequence [
 	| sequence |
 	sequence := (ReflectivityExamples >> #exampleBlock) ast statements first value receiver body.
 	self assert: sequence isSequence.
@@ -440,11 +370,8 @@ ReflectivityControlTest>>testBeforeBlockSequence [
 	self assert: (ReflectivityExamples >> #exampleBlock) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - before',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testBeforeBlockSequenceNoValue [
+{ #category : #'tests - before' }
+ReflectivityControlTest >> testBeforeBlockSequenceNoValue [
 	| sequence |
 	sequence := (ReflectivityExamples >> #exampleBlockNoValue) ast statements first value body.
 	self assert: sequence isSequence.
@@ -462,11 +389,8 @@ ReflectivityControlTest>>testBeforeBlockSequenceNoValue [
 	self assert: (ReflectivityExamples >> #exampleBlockNoValue) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - before',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testBeforeClassVariable [
+{ #category : #'tests - before' }
+ReflectivityControlTest >> testBeforeClassVariable [
 
 	| classVar |
 	classVar := ReflectivityExamples classVariableNamed: #ClassVar.
@@ -483,11 +407,8 @@ ReflectivityControlTest>>testBeforeClassVariable [
 	self deny: (ReflectivityExamples >> #exampleClassVarRead) isQuick.
 ]
 
-{
-	#category : #'tests - before',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testBeforeLiteral [
+{ #category : #'tests - before' }
+ReflectivityControlTest >> testBeforeLiteral [
 	| literalNode |
 	literalNode := (ReflectivityExamples >> #exampleLiteral) ast statements first value.
 	self assert: literalNode isLiteralNode.
@@ -504,11 +425,8 @@ ReflectivityControlTest>>testBeforeLiteral [
 	self deny: (ReflectivityExamples >> #exampleLiteral) isQuick.
 ]
 
-{
-	#category : #'tests - before',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testBeforeLiteralArray [
+{ #category : #'tests - before' }
+ReflectivityControlTest >> testBeforeLiteralArray [
 	| literalArray |
 	literalArray := (ReflectivityExamples >> #exampleLiteralArray) ast statements first value.
 	self assert: literalArray isLiteralArray.
@@ -525,11 +443,8 @@ ReflectivityControlTest>>testBeforeLiteralArray [
 	self deny: (ReflectivityExamples >> #exampleLiteralArray) isQuick.
 ]
 
-{
-	#category : #'tests - before',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testBeforeMethod [
+{ #category : #'tests - before' }
+ReflectivityControlTest >> testBeforeMethod [
 	| methodNode |
 	methodNode := (ReflectivityExamples >> #exampleMethod) ast.
 	link := MetaLink new
@@ -544,11 +459,8 @@ ReflectivityControlTest>>testBeforeMethod [
 	self assert: (ReflectivityExamples >> #exampleMethod) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - before',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testBeforeMethodPrimitive [
+{ #category : #'tests - before' }
+ReflectivityControlTest >> testBeforeMethodPrimitive [
 	| methodNode |
 	methodNode := (ReflectivityExamples >> #examplePrimitiveMethod) ast.
 	link := MetaLink new
@@ -568,11 +480,8 @@ ReflectivityControlTest>>testBeforeMethodPrimitive [
 	self assert: (ReflectivityExamples>>#examplePrimitiveMethod) isRealPrimitive.
 ]
 
-{
-	#category : #'tests - before',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testBeforeReturn [
+{ #category : #'tests - before' }
+ReflectivityControlTest >> testBeforeReturn [
 	| returnNode |
 	returnNode := (ReflectivityExamples >> #exampleLiteral) ast statements first.
 	self assert: returnNode isReturn.
@@ -589,11 +498,8 @@ ReflectivityControlTest>>testBeforeReturn [
 	self deny: (ReflectivityExamples >> #exampleLiteral) isQuick.
 ]
 
-{
-	#category : #'tests - before',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testBeforeSend [
+{ #category : #'tests - before' }
+ReflectivityControlTest >> testBeforeSend [
 	| sendNode |
 	sendNode := (ReflectivityExamples >> #exampleMethod) sendNodes first.
 	link := MetaLink new
@@ -609,11 +515,8 @@ ReflectivityControlTest>>testBeforeSend [
 	self assert: (ReflectivityExamples >> #exampleMethod) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - before',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testBeforeSequence [
+{ #category : #'tests - before' }
+ReflectivityControlTest >> testBeforeSequence [
 	| seqNode |
 	seqNode := (ReflectivityExamples >> #exampleAssignment) ast body.
 	self assert: seqNode isSequence.
@@ -630,11 +533,8 @@ ReflectivityControlTest>>testBeforeSequence [
 	self assert: (ReflectivityExamples >> #exampleAssignment) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - before',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testBeforeVariable [
+{ #category : #'tests - before' }
+ReflectivityControlTest >> testBeforeVariable [
 	| variableNode |
 	variableNode := (ReflectivityExamples >> #exampleGlobalRead) ast statements first value.
 	self assert: variableNode isVariable.
@@ -651,11 +551,8 @@ ReflectivityControlTest>>testBeforeVariable [
 	self deny: (ReflectivityExamples >> #exampleGlobalRead) isQuick.
 ]
 
-{
-	#category : #'tests - conditions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testConditionDisableEnableNoArguments [
+{ #category : #'tests - conditions' }
+ReflectivityControlTest >> testConditionDisableEnableNoArguments [
 "check that a link is not executed, if the condition is disabled (link>>#disable)."
 "and  that it is executed again if the condition is enabled again (link>>#enable"
 	| sendNode |
@@ -680,11 +577,8 @@ ReflectivityControlTest>>testConditionDisableEnableNoArguments [
 
 ]
 
-{
-	#category : #'tests - conditions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testConditionDisableEnableWithArguments [
+{ #category : #'tests - conditions' }
+ReflectivityControlTest >> testConditionDisableEnableWithArguments [
 "check that a link is not executed, if the condition is disabled (link>>#disable)."
 "and  that it is executed again if the condition is enabled again (link>>#enable"
 	| sendNode |
@@ -709,11 +603,8 @@ ReflectivityControlTest>>testConditionDisableEnableWithArguments [
 
 ]
 
-{
-	#category : #'tests - conditions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testConditionWithArgument [
+{ #category : #'tests - conditions' }
+ReflectivityControlTest >> testConditionWithArgument [
 	| sendNode |
 	sendNode := (ReflectivityExamples >> #exampleMethod) sendNodes first.
 	link := MetaLink new
@@ -732,11 +623,8 @@ ReflectivityControlTest>>testConditionWithArgument [
 	self assert: tag isNil.
 ]
 
-{
-	#category : #'tests - conditions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testConditionWithArgument2 [
+{ #category : #'tests - conditions' }
+ReflectivityControlTest >> testConditionWithArgument2 [
 	| sendNode |
 	sendNode := (ReflectivityExamples >> #exampleMethod) sendNodes first.
 	link := MetaLink new
@@ -755,11 +643,8 @@ ReflectivityControlTest>>testConditionWithArgument2 [
 	self assert: tag isNil.
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testFailingDoubleRWInstead [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testFailingDoubleRWInstead [
 
 	|readLink readMO writeLink writeMO readSites writeSites|
 
@@ -793,11 +678,8 @@ ReflectivityControlTest>>testFailingDoubleRWInstead [
 	writeLink uninstall.
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testFailingDoubleRWInsteadSimplified [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testFailingDoubleRWInsteadSimplified [
 
 	|readLink readMO readNode|
 
@@ -819,11 +701,8 @@ ReflectivityControlTest>>testFailingDoubleRWInsteadSimplified [
 
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadArray [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testInsteadArray [
 	| arrayNode |
 	arrayNode := (ReflectivityExamples >> #exampleArray) ast statements first value.
 	self assert: arrayNode isDynamicArray.
@@ -839,11 +718,8 @@ ReflectivityControlTest>>testInsteadArray [
 	self deny: (ReflectivityExamples >> #exampleArray) isQuick.
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadAssign [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testInsteadAssign [
 	| assignmentNode instance |
 	assignmentNode := (ReflectivityExamples >> #exampleAssignment) assignmentNodes first.
 	self assert: assignmentNode isAssignment.
@@ -859,11 +735,8 @@ ReflectivityControlTest>>testInsteadAssign [
 	self assert: instance exampleAssignment = 3.
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadBlock [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testInsteadBlock [
 	| blockNode |
 	blockNode := (ReflectivityExamples >> #exampleBlock) ast statements first value receiver.
 	self assert: blockNode isBlock.
@@ -879,11 +752,8 @@ ReflectivityControlTest>>testInsteadBlock [
 	self assert: (ReflectivityExamples >> #exampleBlock) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadBlockSequence [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testInsteadBlockSequence [
 	| sequence |
 	sequence := (ReflectivityExamples >> #exampleBlock) ast statements first value receiver body.
 	self assert: sequence isSequence.
@@ -900,11 +770,8 @@ ReflectivityControlTest>>testInsteadBlockSequence [
 	self assert: (ReflectivityExamples >> #exampleBlock) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - after - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadClassVariable [
+{ #category : #'tests - after - variables' }
+ReflectivityControlTest >> testInsteadClassVariable [
 	| classVar |
 	self skip.
 	classVar := ReflectivityExamples classVariableNamed: #ClassVar.
@@ -922,11 +789,8 @@ ReflectivityControlTest>>testInsteadClassVariable [
 	self deny: (ReflectivityExamples >> #exampleClassVarRead) isQuick.
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadLiteral [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testInsteadLiteral [
 	| literalNode |
 	literalNode := (ReflectivityExamples >> #exampleLiteral) ast statements first value.
 	self assert: literalNode isLiteralNode.
@@ -942,11 +806,8 @@ ReflectivityControlTest>>testInsteadLiteral [
 	self deny: (ReflectivityExamples >> #exampleLiteral) isQuick.
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadLiteralArray [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testInsteadLiteralArray [
 	| literalArray |
 	literalArray := (ReflectivityExamples >> #exampleLiteralArray) ast statements first value.
 	self assert: literalArray isLiteralArray.
@@ -962,11 +823,8 @@ ReflectivityControlTest>>testInsteadLiteralArray [
 	self deny: (ReflectivityExamples >> #exampleLiteralArray) isQuick.
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadMethod [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testInsteadMethod [
 	| node |
 	node := (ReflectivityExamples >> #exampleMethod) ast.
 	link := MetaLink new
@@ -982,11 +840,8 @@ ReflectivityControlTest>>testInsteadMethod [
 	self assert: (ReflectivityExamples >> #exampleMethod) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadPrimitiveMethod [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testInsteadPrimitiveMethod [
 	| node |
 	ReflectivityExamples recompile: #examplePrimitiveMethod.
 	node := (ReflectivityExamples >> #examplePrimitiveMethod) ast.
@@ -1003,11 +858,8 @@ ReflectivityControlTest>>testInsteadPrimitiveMethod [
 	self assert: (ReflectivityExamples >> #examplePrimitiveMethod) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadReturn [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testInsteadReturn [
 	| returnNode |
 	returnNode := (ReflectivityExamples >> #exampleMethod) ast statements first.
 	self assert: returnNode isReturn.
@@ -1019,11 +871,8 @@ ReflectivityControlTest>>testInsteadReturn [
 	
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadSend [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testInsteadSend [
 	| sendNode instance |
 	sendNode := (ReflectivityExamples >> #exampleMethod) sendNodes first.
 	link := MetaLink new
@@ -1038,11 +887,8 @@ ReflectivityControlTest>>testInsteadSend [
 	self assert: instance exampleMethod = 5.
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadSendMultipleSites [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testInsteadSendMultipleSites [
 	| sendNodes instance |
 	self skip.
 	sendNodes := (ReflectivityExamples >> #exampleMethodMultipleSites) sendNodes.
@@ -1058,11 +904,8 @@ ReflectivityControlTest>>testInsteadSendMultipleSites [
 	self assert: instance exampleMethodMultipleSites= 5.
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadSequence [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testInsteadSequence [
 	| seqNode |
 	seqNode := (ReflectivityExamples >> #exampleAssignment) ast body.
 	self assert: seqNode isSequence.
@@ -1080,11 +923,8 @@ ReflectivityControlTest>>testInsteadSequence [
 	self assert: (ReflectivityExamples >> #exampleAssignment) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadVariableReadGlobal [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testInsteadVariableReadGlobal [
 	| varNode instance |
 	varNode := (ReflectivityExamples >> #exampleGlobalRead) variableReadNodes first.
 	link := MetaLink new
@@ -1099,11 +939,8 @@ ReflectivityControlTest>>testInsteadVariableReadGlobal [
 	self assert: instance exampleGlobalRead value = GlobalForTesting.
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadVariableReadIvar [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testInsteadVariableReadIvar [
 	| varNode instance |
 	varNode := (ReflectivityExamples >> #exampleIvarRead) variableReadNodes first.
 	link := MetaLink new
@@ -1119,11 +956,8 @@ ReflectivityControlTest>>testInsteadVariableReadIvar [
 	self deny: (ReflectivityExamples >> #exampleIvarRead) isQuick.	"yes, we changed the method"
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadVariableReadTemp [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testInsteadVariableReadTemp [
 	| varNode instance |
 	varNode := (ReflectivityExamples >> #exampleAssignment) variableReadNodes first.
 	link := MetaLink new
@@ -1138,11 +972,8 @@ ReflectivityControlTest>>testInsteadVariableReadTemp [
 	self assert: instance exampleAssignment value = 3.
 ]
 
-{
-	#category : #'tests - instead',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testInsteadVariableWrite [
+{ #category : #'tests - instead' }
+ReflectivityControlTest >> testInsteadVariableWrite [
 	| varNode instance |
 	varNode := (ReflectivityExamples >> #exampleAssignment) variableWriteNodes first.
 	link := MetaLink new
@@ -1157,11 +988,8 @@ ReflectivityControlTest>>testInsteadVariableWrite [
 	self assert: instance exampleAssignment = 3.
 ]
 
-{
-	#category : #'tests - options',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testLinkOneShot [
+{ #category : #'tests - options' }
+ReflectivityControlTest >> testLinkOneShot [
 	| sendNode |
 	sendNode := (ReflectivityExamples>>#exampleMethod) sendNodes first.
 	link := MetaLink new 
@@ -1180,11 +1008,8 @@ ReflectivityControlTest>>testLinkOneShot [
 
 ]
 
-{
-	#category : #'tests - options',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testLinkOptionDisabledLink [
+{ #category : #'tests - options' }
+ReflectivityControlTest >> testLinkOptionDisabledLink [
 	| sendNode |
 	sendNode := (ReflectivityExamples>>#exampleMethod) sendNodes first.
 	link := MetaLink new 
@@ -1200,11 +1025,8 @@ ReflectivityControlTest>>testLinkOptionDisabledLink [
 	self assert: (ReflectivityExamples>>#exampleMethod) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - options',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testLinkoptionInlineCondition [
+{ #category : #'tests - options' }
+ReflectivityControlTest >> testLinkoptionInlineCondition [
 	| sendNode |
 	sendNode := (ReflectivityExamples>>#exampleMethod) sendNodes first.
 	link := MetaLink new 
@@ -1232,11 +1054,8 @@ ReflectivityControlTest>>testLinkoptionInlineCondition [
 	self assert: tag isNil.
 ]
 
-{
-	#category : #'tests - options',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testLinkoptionInlineMetaObject [
+{ #category : #'tests - options' }
+ReflectivityControlTest >> testLinkoptionInlineMetaObject [
 	| sendNode |
 	sendNode := (ReflectivityExamples>>#exampleMethod) sendNodes first.
 	link := MetaLink new 
@@ -1254,11 +1073,8 @@ ReflectivityControlTest>>testLinkoptionInlineMetaObject [
 	self assert: (ReflectivityExamples>>#exampleMethod) class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - before',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityControlTest>>testbeforeArray [
+{ #category : #'tests - before' }
+ReflectivityControlTest >> testbeforeArray [
 	| arrayNode |
 	arrayNode := (ReflectivityExamples >> #exampleArray) ast statements first value.
 	self assert: arrayNode isDynamicArray.

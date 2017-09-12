@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MBCommandTests,
 	#superclass : #MBAbstractTest,
@@ -9,24 +6,17 @@ Class {
 		'authorName',
 		'tearDownPackages'
 	],
-	#category : #Versionner-Tests-Core-Commands,
-	#timestamp : ''
+	#category : #Versionner-Tests-Core-Commands
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommandTests>>configurationName [
+{ #category : #private }
+MBCommandTests >> configurationName [
 
 	^#'ConfigurationOfMetacello_Command_Tests'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommandTests>>hasPackage: aString [
+{ #category : #running }
+MBCommandTests >> hasPackage: aString [
 	| package |
 	package := MCWorkingCopy allManagers
 		detect: [ :each | each packageName = aString ]
@@ -34,20 +24,14 @@ MBCommandTests>>hasPackage: aString [
 	^ package notNil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommandTests>>repositoryName [
+{ #category : #private }
+MBCommandTests >> repositoryName [
 
 	^#'Metacello_Dev_Cycle_Repository'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommandTests>>runCase [
+{ #category : #running }
+MBCommandTests >> runCase [
 	| original |
 	original := MetacelloPlatform current bypassGoferLoadUpdateCategories.
 	^ [ 	MetacelloPlatform current bypassGoferLoadUpdateCategories: true.
@@ -55,11 +39,8 @@ MBCommandTests>>runCase [
 			ensure: [ MetacelloPlatform current bypassGoferLoadUpdateCategories: original ] ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommandTests>>setUp [
+{ #category : #running }
+MBCommandTests >> setUp [
 
 	| repo |
 	super setUp.
@@ -78,11 +59,8 @@ MBCommandTests>>setUp [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommandTests>>tearDown [
+{ #category : #running }
+MBCommandTests >> tearDown [
 	gofer := Gofer new.
 	self tearDownPackages do: [:pkgName | (self hasPackage: pkgName) ifTrue: [ gofer package: pkgName ]].
 	gofer references notEmpty ifTrue: [ gofer unload ].
@@ -95,11 +73,8 @@ MBCommandTests>>tearDown [
 	MetacelloPlatform current authorName: authorName.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommandTests>>tearDownPackages [
+{ #category : #accessing }
+MBCommandTests >> tearDownPackages [
 
 	tearDownPackages ifNil: [ tearDownPackages := OrderedCollection new ].
 	^tearDownPackages

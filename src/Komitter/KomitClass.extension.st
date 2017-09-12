@@ -1,50 +1,33 @@
-Extension {
-	#name : #KomitClass
-}
+Extension { #name : #KomitClass }
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>addClassDefinition: aMCRemoval  [
+{ #category : #'*Komitter-UI' }
+KomitClass >> addClassDefinition: aMCRemoval [ 
 
 	self definition: aMCRemoval
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>addMethodDefinition: aMCAddition [
+{ #category : #'*Komitter-UI' }
+KomitClass >> addMethodDefinition: aMCAddition [
 
 	self addOperation: aMCAddition
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>addOrganizationDefinition: aMCModification  [
+{ #category : #'*Komitter-UI' }
+KomitClass >> addOrganizationDefinition: aMCModification [ 
 	
 	self addOperation: aMCModification
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>koDestinationText [
+{ #category : #'*Komitter-UI' }
+KomitClass >> koDestinationText [
 
 	^ self isDirty
 		ifTrue: [ self definition koDestinationText ]
 		ifFalse: [ '' ]
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>koSourceText [
+{ #category : #'*Komitter-UI' }
+KomitClass >> koSourceText [
 
 	^ self isDirty
 		ifFalse: [ 'No changes' ]

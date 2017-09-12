@@ -1,11 +1,6 @@
-Extension {
-	#name : #Object
-}
+Extension { #name : #Object }
 
-{
-	#category : #'*necompletion-extensions',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-Object>>isCodeCompletionAllowed [
+{ #category : #'*necompletion-extensions' }
+Object >> isCodeCompletionAllowed [
 	^false
 ]

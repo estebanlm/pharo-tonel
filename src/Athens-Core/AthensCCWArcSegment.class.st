@@ -6,22 +6,15 @@ of given angle, passing in counter-clockwise direction.
 Class {
 	#name : #AthensCCWArcSegment,
 	#superclass : #AthensArcSegment,
-	#category : #Athens-Core-Paths,
-	#timestamp : '<historical>'
+	#category : #Athens-Core-Paths
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCCWArcSegment>>accept: aVisitor [
+{ #category : #visitor }
+AthensCCWArcSegment >> accept: aVisitor [
 	^ aVisitor ccwArcSegment: self
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCCWArcSegment>>sendCommandTo: aBuilder [
+{ #category : #visitor }
+AthensCCWArcSegment >> sendCommandTo: aBuilder [
 	^ aBuilder ccwArcTo: endPoint angle: angle
 ]

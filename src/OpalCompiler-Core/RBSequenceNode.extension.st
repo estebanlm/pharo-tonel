@@ -1,12 +1,7 @@
-Extension {
-	#name : #RBSequenceNode
-}
+Extension { #name : #RBSequenceNode }
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBSequenceNode>>transformLastToReturn [
+{ #category : #'*opalcompiler-core' }
+RBSequenceNode >> transformLastToReturn [
 	| last |
 	statements ifEmpty: [ ^self].
 	last := statements last.

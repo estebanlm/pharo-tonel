@@ -6,38 +6,24 @@ I implement a null object pattern related to NOCModel in order to mark the end o
 Class {
 	#name : #NOCEmptyModel,
 	#superclass : #Object,
-	#category : #NECompletion-OCompletion,
-	#timestamp : '<historical>'
+	#category : #NECompletion-OCompletion
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCEmptyModel>>entries [
+{ #category : #accessing }
+NOCEmptyModel >> entries [
 	^ Array new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCEmptyModel>>entryCount  [
+{ #category : #accessing }
+NOCEmptyModel >> entryCount [ 
 	^ 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCEmptyModel>>narrowString: string [
-
+{ #category : #accessing }
+NOCEmptyModel >> narrowString: string [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCEmptyModel>>narrowWith: string  [
+{ #category : #accessing }
+NOCEmptyModel >> narrowWith: string [ 
 
 ]

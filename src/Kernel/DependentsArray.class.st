@@ -11,34 +11,24 @@ Class {
 	#name : #DependentsArray,
 	#superclass : #Collection,
 	#type : #weak,
-	#category : #Kernel-Models,
-	#timestamp : 'nice 11/11/2009 20:30'
+	#category : #Kernel-Models
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray class>>with: anObject [
+{ #category : #'instance creation' }
+DependentsArray class >> with: anObject [
 	^(self basicNew: 1) basicAt: 1 put: anObject; yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray class>>with: firstObject with: secondObject [
+{ #category : #'instance creation' }
+DependentsArray class >> with: firstObject [ with: secondObject 
 	^(self basicNew: 2)
 		basicAt: 1 put: firstObject;
 		basicAt: 2 put: secondObject;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray class>>with: firstObject with: secondObject with: thirdObject [
+{ #category : #'instance creation' }
+DependentsArray class >> with: firstObject [ with: secondObject with: thirdObject 
 	^(self basicNew: 3)
 		basicAt: 1 put: firstObject;
 		basicAt: 2 put: secondObject;
@@ -46,11 +36,8 @@ DependentsArray class>>with: firstObject with: secondObject with: thirdObject [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray class>>with: firstObject with: secondObject with: thirdObject with: fourthObject [
+{ #category : #'instance creation' }
+DependentsArray class >> with: firstObject [ with: secondObject with: thirdObject with: fourthObject 
 	^(self basicNew: 4)
 		basicAt: 1 put: firstObject;
 		basicAt: 2 put: secondObject;
@@ -59,11 +46,8 @@ DependentsArray class>>with: firstObject with: secondObject with: thirdObject wi
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray class>>with: firstObject with: secondObject with: thirdObject with: fourthObject with: fifthObject [
+{ #category : #'instance creation' }
+DependentsArray class >> with: firstObject [ with: secondObject with: thirdObject with: fourthObject with: fifthObject
 	^(self basicNew: 5)
 		basicAt: 1 put: firstObject;
 		basicAt: 2 put: secondObject;
@@ -73,11 +57,8 @@ DependentsArray class>>with: firstObject with: secondObject with: thirdObject wi
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray class>>with: firstObject with: secondObject with: thirdObject with: fourthObject with: fifthObject with: sixthObject [
+{ #category : #'instance creation' }
+DependentsArray class >> with: firstObject [ with: secondObject with: thirdObject with: fourthObject with: fifthObject with: sixthObject
 	^(self basicNew: 6)
 		basicAt: 1 put: firstObject;
 		basicAt: 2 put: secondObject;
@@ -88,11 +69,8 @@ DependentsArray class>>with: firstObject with: secondObject with: thirdObject wi
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray class>>withAll: aCollection [
+{ #category : #'instance creation' }
+DependentsArray class >> withAll: aCollection [
 	| newInstance |
 	newInstance := self basicNew: aCollection size.
 	1 to: aCollection size do: [:i |
@@ -100,11 +78,8 @@ DependentsArray class>>withAll: aCollection [
 	^newInstance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray>>at: anIndex [
+{ #category : #accessing }
+DependentsArray >> at: anIndex [
 	| basicSize counter dep |
 	anIndex > 0 ifTrue: [
 		basicSize := self basicSize.
@@ -116,11 +91,8 @@ DependentsArray>>at: anIndex [
 	self error: 'access with an index out of bounds'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray>>at: anIndex put: anObject [
+{ #category : #accessing }
+DependentsArray >> at: anIndex put: anObject [
 	| basicSize counter |
 	anIndex > 0 ifTrue: [
 		basicSize := self basicSize.
@@ -132,22 +104,16 @@ DependentsArray>>at: anIndex put: anObject [
 	self error: 'access with an index out of bounds'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray>>basicReplaceFrom: start to: stop with: replacement startingAt: repStart [
+{ #category : #private }
+DependentsArray >> basicReplaceFrom: start to: stop with: replacement startingAt: repStart [ 
 	"Primitive. This destructively replaces elements from start to stop in the receiver starting at index, repStart, in the collection, replacement. Answer the receiver. Range checks are performed in the primitive only. Optional. See Object documentation whatIsAPrimitive."
 	<primitive: 105>
 	start to: stop do: [:i |
 		self basicAt: i put: (replacement basicAt: repStart - start + i)]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray>>collect: aBlock [
+{ #category : #enumerating }
+DependentsArray >> collect: aBlock [ 
 	"Refer to the comment in Collection|select:."
 	| basicSize newSelf size dep selection |
 	basicSize := self basicSize.
@@ -160,11 +126,8 @@ DependentsArray>>collect: aBlock [
 	^selection
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray>>copyWith: newElement [
+{ #category : #copying }
+DependentsArray >> copyWith: newElement [ 
 	"Re-implemented to not copy any niled out dependents."
 	| copy i |
 	copy := self class new: self size + 1.
@@ -174,51 +137,36 @@ DependentsArray>>copyWith: newElement [
 	^copy
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray>>do: aBlock [
+{ #category : #enumerating }
+DependentsArray >> do: aBlock [
 	"Evaluate a Block on non nil elements of the receiver"
 	| dep |
 	1 to: self basicSize do:[:i|
 		(dep := self basicAt: i) ifNotNil:[aBlock value: dep]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray>>first [
+{ #category : #accessing }
+DependentsArray >> first [
 	self do: [:dep | ^dep].
 	self error: 'this collection is empty'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray>>last [
+{ #category : #accessing }
+DependentsArray >> last [
 	self reverseDo: [:dep | ^dep].
 	self error: 'this collection is empty'
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray>>reverseDo: aBlock [
+{ #category : #enumerating }
+DependentsArray >> reverseDo: aBlock [
 	"Refer to the comment in Collection|do:."
 	| dep |
 	self basicSize to: 1 by: -1 do: [:i |
 		(dep := self basicAt: i) ifNotNil: [aBlock value: dep]]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray>>select: aBlock [
+{ #category : #enumerating }
+DependentsArray >> select: aBlock [ 
 	"Refer to the comment in Collection|select:."
 	| basicSize newSelf size selection |
 	basicSize := self basicSize.
@@ -233,21 +181,15 @@ DependentsArray>>select: aBlock [
 	^selection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray>>size [
+{ #category : #accessing }
+DependentsArray >> size [
 	"count each non nil elements in self.
 	Note: count: will use do: which will already have filtered out nil elements"
 	
 	^self count: [:each | true]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DependentsArray>>writeStream [
+{ #category : #converting }
+DependentsArray >> writeStream [
 	^ WriteStream on: self
 ]

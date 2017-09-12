@@ -17,70 +17,48 @@ Class {
 		'helpText',
 		'borderWidth'
 	],
-	#category : #NautilusCommon,
-	#timestamp : '<historical>'
+	#category : #NautilusCommon
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder class>>forIcon: icon [
+{ #category : #'instance creation' }
+IconicButtonStateHolder class >> forIcon: icon [
 
 	^ self new
 		forIcon: icon;
 		yourself	
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder class>>forNautilus: icon [
+{ #category : #'instance creation' }
+IconicButtonStateHolder class >> forNautilus: icon [
 
 	^ self new
 		forIcon: icon;
 		yourself	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>actionSelector [
+{ #category : #accessing }
+IconicButtonStateHolder >> actionSelector [
 	^ actionSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>actionSelector: anObject [
+{ #category : #accessing }
+IconicButtonStateHolder >> actionSelector: anObject [
 	actionSelector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>arguments [
+{ #category : #accessing }
+IconicButtonStateHolder >> arguments [
 	"convert arguments back from a WeakArray"
 	^ Array withAll: arguments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>arguments: aCollection [
+{ #category : #accessing }
+IconicButtonStateHolder >> arguments: aCollection [
 	arguments := WeakArray withAll: aCollection
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>asIcon [
+{ #category : #protocol }
+IconicButtonStateHolder >> asIcon [
 
 	^ IconicButton new 
 		target: self target;
@@ -93,70 +71,46 @@ IconicButtonStateHolder>>asIcon [
 		borderWidth: self borderWidth
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>asIconTargetting: newTarget [
+{ #category : #protocol }
+IconicButtonStateHolder >> asIconTargetting: newTarget [
 
 	^self asIcon
 		target: newTarget;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>borderWidth [
+{ #category : #accessing }
+IconicButtonStateHolder >> borderWidth [
 	^ borderWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>borderWidth: anObject [
+{ #category : #accessing }
+IconicButtonStateHolder >> borderWidth: anObject [
 	borderWidth := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>color [
+{ #category : #accessing }
+IconicButtonStateHolder >> color [
 	^ color
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>color: anObject [
+{ #category : #accessing }
+IconicButtonStateHolder >> color: anObject [
 	color := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>extent [
+{ #category : #accessing }
+IconicButtonStateHolder >> extent [
 	^ extent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>extent: anObject [
+{ #category : #accessing }
+IconicButtonStateHolder >> extent: anObject [
 	extent := anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>forIcon: icon [
+{ #category : #protocol }
+IconicButtonStateHolder >> forIcon: icon [
 
 	self 
 		target: icon target;
@@ -169,50 +123,32 @@ IconicButtonStateHolder>>forIcon: icon [
 		borderWidth: icon borderWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>helpText [
+{ #category : #accessing }
+IconicButtonStateHolder >> helpText [
 	^ helpText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>helpText: anObject [
+{ #category : #accessing }
+IconicButtonStateHolder >> helpText: anObject [
 	helpText := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>labelGraphic [
+{ #category : #accessing }
+IconicButtonStateHolder >> labelGraphic [
 	^ labelGraphic
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>labelGraphic: anObject [
+{ #category : #accessing }
+IconicButtonStateHolder >> labelGraphic: anObject [
 	labelGraphic := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>target [
+{ #category : #accessing }
+IconicButtonStateHolder >> target [
 	^ target first
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IconicButtonStateHolder>>target: anObject [
+{ #category : #accessing }
+IconicButtonStateHolder >> target: anObject [
 	target := WeakArray with: anObject
 ]

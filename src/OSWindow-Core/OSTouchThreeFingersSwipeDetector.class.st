@@ -9,46 +9,30 @@ I send these event back to my handler:
 Class {
 	#name : #OSTouchThreeFingersSwipeDetector,
 	#superclass : #OSTouchSwipeDetector,
-	#category : #OSWindow-Core-Gestures,
-	#timestamp : 'MerwanOuddane 7/22/2015 16:19'
+	#category : #OSWindow-Core-Gestures
 }
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchThreeFingersSwipeDetector>>eventClassAbortGesture [
+{ #category : #abstract }
+OSTouchThreeFingersSwipeDetector >> eventClassAbortGesture [
 	^ OSTouchThreeFingersSwipeAbortEvent
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchThreeFingersSwipeDetector>>eventClassBeginGesture [
+{ #category : #abstract }
+OSTouchThreeFingersSwipeDetector >> eventClassBeginGesture [
 	^ OSTouchThreeFingersSwipeBeginEvent
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchThreeFingersSwipeDetector>>eventClassEndGesture [
+{ #category : #abstract }
+OSTouchThreeFingersSwipeDetector >> eventClassEndGesture [
 	^ OSTouchThreeFingersSwipeEndEvent 
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchThreeFingersSwipeDetector>>eventClassMoveGesture [
+{ #category : #abstract }
+OSTouchThreeFingersSwipeDetector >> eventClassMoveGesture [
 	^ OSTouchThreeFingersSwipeMoveEvent
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchThreeFingersSwipeDetector>>necessaryFingers [
+{ #category : #preconditions }
+OSTouchThreeFingersSwipeDetector >> necessaryFingers [
 	^ 3
 ]

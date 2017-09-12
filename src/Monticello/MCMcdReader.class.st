@@ -8,31 +8,21 @@ Class {
 		'baseInfo',
 		'patch'
 	],
-	#category : #Monticello-Storing,
-	#timestamp : 'TorstenBergmann 2/6/2014 08:08'
+	#category : #Monticello-Storing
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMcdReader class>>extension [
+{ #category : #accessing }
+MCMcdReader class >> extension [
 	^ 'mcd'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMcdReader>>baseInfo [
+{ #category : #accessing }
+MCMcdReader >> baseInfo [
 	^ baseInfo ifNil: [self loadBaseInfo]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMcdReader>>basicVersion [
+{ #category : #accessing }
+MCMcdReader >> basicVersion [
 	^ MCDiffyVersion
 		package: self package
 		info: self info
@@ -41,29 +31,20 @@ MCMcdReader>>basicVersion [
 		patch: self patch
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMcdReader>>buildPatchFrom: oldDefinitions to: newDefinitions [
+{ #category : #loading }
+MCMcdReader >> buildPatchFrom: oldDefinitions to: newDefinitions [
 	^ MCPatch
 		fromBase: (MCSnapshot fromDefinitions: oldDefinitions)
 		target: (MCSnapshot fromDefinitions: newDefinitions)
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMcdReader>>loadBaseInfo [
+{ #category : #loading }
+MCMcdReader >> loadBaseInfo [
 	^ baseInfo := self extractInfoFrom: (self parseMember: 'base')
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMcdReader>>loadPatch [
+{ #category : #loading }
+MCMcdReader >> loadPatch [
 	| old new |
 	(self zip memberNamed: 'patch.bin') ifNotNil:
 		[:m | [^ patch := (MCDataStream on: m contentStream) next ]
@@ -80,10 +61,7 @@ MCMcdReader>>loadPatch [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMcdReader>>patch [
+{ #category : #accessing }
+MCMcdReader >> patch [
 	^ patch ifNil: [self loadPatch]
 ]

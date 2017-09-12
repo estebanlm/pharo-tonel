@@ -7,15 +7,11 @@ Omit method that are redefined in subclasses.
 Class {
 	#name : #RBProtectInstanceVariableRefactoring,
 	#superclass : #RBVariableRefactoring,
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 21:17'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBProtectInstanceVariableRefactoring>>getterSetterMethods [
+{ #category : #private-accessing }
+RBProtectInstanceVariableRefactoring >> getterSetterMethods [
 	| matcher |
 	matcher := RBParseTreeSearcher new.
 	matcher
@@ -38,11 +34,8 @@ RBProtectInstanceVariableRefactoring>>getterSetterMethods [
 	^matcher answer
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBProtectInstanceVariableRefactoring>>inline: aSelector  [
+{ #category : #transforming }
+RBProtectInstanceVariableRefactoring >> inline: aSelector [ 
 	self onError: 
 			[self performComponentRefactoring: (RBInlineAllSendersRefactoring 
 						model: self model
@@ -51,19 +44,13 @@ RBProtectInstanceVariableRefactoring>>inline: aSelector  [
 		do: []
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBProtectInstanceVariableRefactoring>>preconditions [
+{ #category : #preconditions }
+RBProtectInstanceVariableRefactoring >> preconditions [
 	^RBCondition definesInstanceVariable: variableName in: class
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBProtectInstanceVariableRefactoring>>transform [
+{ #category : #transforming }
+RBProtectInstanceVariableRefactoring >> transform [
 	self setOption: #inlineExpression toUse: [:ref :string | true].
 	self getterSetterMethods do: [:each | self inline: each]
 ]

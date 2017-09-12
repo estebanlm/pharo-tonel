@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'equalitySet'
 	],
-	#category : #OpalCompiler-Core-Extras,
-	#timestamp : 'ajh 3/25/2003 00:31'
+	#category : #OpalCompiler-Core-Extras
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralList>>addLast: object [
+{ #category : #adding }
+OCLiteralList >> addLast: object [
 	"Only add if not already in list"
 
 	(equalitySet includes: object) ifTrue: [^ object].
@@ -25,22 +21,16 @@ OCLiteralList>>addLast: object [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralList>>indexOf: anElement startingAt: start ifAbsent: exceptionBlock [
+{ #category : #accessing }
+OCLiteralList >> indexOf: anElement startingAt: start ifAbsent: exceptionBlock [
 
 	start to: self size do:
 		[:index | ((self at: index) literalEqual: anElement) ifTrue: [^ index]].
 	^ exceptionBlock value
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralList>>setCollection: anArray [
+{ #category : #private }
+OCLiteralList >> setCollection: anArray [
 
 	super setCollection: anArray.
 	equalitySet := OCLiteralSet new: anArray size.

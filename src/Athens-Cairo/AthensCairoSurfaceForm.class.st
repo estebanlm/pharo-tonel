@@ -9,22 +9,15 @@ Class {
 	#instVars : [
 		'surface'
 	],
-	#category : #Athens-Cairo,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurfaceForm>>surface [
+{ #category : #accessing }
+AthensCairoSurfaceForm >> surface [
 	^ surface
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurfaceForm>>surface: anObject [
+{ #category : #accessing }
+AthensCairoSurfaceForm >> surface: anObject [
 	surface := anObject
 ]

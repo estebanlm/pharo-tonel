@@ -4,25 +4,18 @@ I am a Tree column made especially to be used by the Spec framework
 Class {
 	#name : #SpecTreeColumn,
 	#superclass : #MorphTreeColumn,
-	#category : #Spec-MorphicAdapters-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters-Support
 }
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeColumn>>bindKeyCombination: aKMCombination toAction: aBlock [
+{ #category : #compatibility }
+SpecTreeColumn >> bindKeyCombination: aKMCombination toAction: aBlock [
 
 	"Do nothing"
 	
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeColumn>>rowMorphFor: aNode  [
+{ #category : #'column drawing' }
+SpecTreeColumn >> rowMorphFor: aNode [ 
 	| node rowMorph |
 	
 	node := aNode nodeModel.
@@ -37,11 +30,8 @@ SpecTreeColumn>>rowMorphFor: aNode  [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeColumn>>setHeaderButtonLabel: aLabel font: aFont icon: anIconForm target: aReceiver actionSelector: aSelector [
+{ #category : #private }
+SpecTreeColumn >> setHeaderButtonLabel: aLabel font: aFont icon: anIconForm target: aReceiver actionSelector: aSelector [
 	(aLabel isNil
 		and: [ anIconForm isNil and: [ aReceiver isNil or: [ aSelector isNil ] ] ])
 		ifTrue: [ ^ self ].

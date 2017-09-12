@@ -9,39 +9,26 @@ Class {
 		'title',
 		'lesson'
 	],
-	#category : #ProfStef-Core,
-	#timestamp : 'LaurentLaffont 1/15/2010 10:25'
+	#category : #ProfStef-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-Lesson class>>title: aStringForTitle lesson: aStringForLesson [
+{ #category : #'instance creation' }
+Lesson class >> title: aStringForTitle lesson: aStringForLesson [
 	^ self new title: aStringForTitle; lesson: aStringForLesson; yourself.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-Lesson>>lesson [
+{ #category : #accessing }
+Lesson >> lesson [
 	^ lesson ifNil: [lesson := '']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-Lesson>>lesson: aString [
+{ #category : #accessing }
+Lesson >> lesson: aString [
 	lesson := aString
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-Lesson>>printOn: aStream [
+{ #category : #printing }
+Lesson >> printOn: aStream [
 	super printOn: aStream.  
 	aStream 
 		nextPutAll: '(';
@@ -49,18 +36,12 @@ Lesson>>printOn: aStream [
 		nextPutAll: ')'.    
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-Lesson>>title [
+{ #category : #accessing }
+Lesson >> title [
 	^ title ifNil: [title := '']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-Lesson>>title: aString [
+{ #category : #accessing }
+Lesson >> title: aString [
 	title := aString
 ]

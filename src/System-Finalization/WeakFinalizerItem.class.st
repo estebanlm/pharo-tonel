@@ -39,23 +39,16 @@ Class {
 		'next',
 		'executor'
 	],
-	#category : #System-Finalization,
-	#timestamp : 'Igor.Stasenko 9/22/2010 20:59'
+	#category : #System-Finalization
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizerItem class>>new [
+{ #category : #'as yet unclassified' }
+WeakFinalizerItem class >> new [
 	^ self basicNew: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizerItem>>add: newExecutor [
+{ #category : #accessing }
+WeakFinalizerItem >> add: newExecutor [
 
 	executor 
 		ifNil: [ executor := newExecutor ]
@@ -66,36 +59,24 @@ WeakFinalizerItem>>add: newExecutor [
 		]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizerItem>>clear [
+{ #category : #accessing }
+WeakFinalizerItem >> clear [
 	list := next := nil.
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizerItem>>copyWithList: aList [
+{ #category : #copying }
+WeakFinalizerItem >> copyWithList: aList [
 
 	^ self copy list: aList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizerItem>>executor [
+{ #category : #accessing }
+WeakFinalizerItem >> executor [
 	^ executor
 ]
 
-{
-	#category : #finalizing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizerItem>>finalizeValues [
+{ #category : #finalizing }
+WeakFinalizerItem >> finalizeValues [
 	" cleanup the receiver, so it could be reused "
 	| ex |
 	ex := executor.
@@ -104,64 +85,43 @@ WeakFinalizerItem>>finalizeValues [
 	ex finalize.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizerItem>>list [
+{ #category : #accessing }
+WeakFinalizerItem >> list [
 	^ list
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizerItem>>list: aList [
+{ #category : #accessing }
+WeakFinalizerItem >> list: aList [
 	list := aList
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizerItem>>list: weakFinalizationList object: anObject [
+{ #category : #initialize-release }
+WeakFinalizerItem >> list: weakFinalizationList object: anObject [
 	self assert: (weakFinalizationList class == WeakFinalizationList).
 	list := weakFinalizationList.
 	self at: 1 put: anObject.
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizerItem>>list: weakFinalizationList object: anObject executor: anExecutor [
+{ #category : #initialize-release }
+WeakFinalizerItem >> list: weakFinalizationList object: anObject executor: anExecutor [
 	self assert: (weakFinalizationList class == WeakFinalizationList).
 	list := weakFinalizationList.
 	self at: 1 put: anObject.
 	executor := anExecutor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizerItem>>next [
+{ #category : #accessing }
+WeakFinalizerItem >> next [
 	^ next
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizerItem>>object [
+{ #category : #accessing }
+WeakFinalizerItem >> object [
 	^ self at: 1
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizerItem>>postCopy [
+{ #category : #copying }
+WeakFinalizerItem >> postCopy [
 	executor hasMultipleExecutors ifTrue: [ executor := executor copy ].
 ]

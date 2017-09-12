@@ -11,24 +11,17 @@ Class {
 		'presentation',
 		'glmPres'
 	],
-	#category : #Glamour-SpecIntegration,
-	#timestamp : 'JurajKubelka 1/18/2017 16:34'
+	#category : #Glamour-SpecIntegration
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GlamourPresentationModel class>>defaultSpec [
+{ #category : #specs }
+GlamourPresentationModel class >> defaultSpec [
 	<spec: #default>
 	^ SpecLayout composed add: #presentation
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GlamourPresentationModel class>>exampleGLMExamples [
+{ #category : #example }
+GlamourPresentationModel class >> exampleGLMExamples [
 	<gtExample>
 	"open the Glamour Examples Browser"
 	|ui|
@@ -37,29 +30,20 @@ GlamourPresentationModel class>>exampleGLMExamples [
 	^ ui openWithSpec
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GlamourPresentationModel class>>exampleGLMPharoScript [
+{ #category : #example }
+GlamourPresentationModel class >> exampleGLMPharoScript [
 	<gtExample>
 	^ GlamourPresentationModel new openWithSpec.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GlamourPresentationModel>>glmPres [
+{ #category : #accessing }
+GlamourPresentationModel >> glmPres [
 	glmPres isNil ifTrue:[glmPres := GLMPharoScriptPresentation new].
 	^ glmPres 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GlamourPresentationModel>>initializeWidgets [
+{ #category : #initialization }
+GlamourPresentationModel >> initializeWidgets [
 	"Should actually do nothing at all.
 	This is because we cannot create the morph and later set the presentation.
 	So we will do all of this in the presentation: accessor.
@@ -67,11 +51,8 @@ GlamourPresentationModel>>initializeWidgets [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GlamourPresentationModel>>presentation [
+{ #category : #accessing }
+GlamourPresentationModel >> presentation [
 	presentation isNil ifTrue:[
 		| morph |
 		morph := GLMMorphicRenderer new render: self glmPres.
@@ -82,18 +63,12 @@ GlamourPresentationModel>>presentation [
 	^ presentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GlamourPresentationModel>>presentation: anObject [
+{ #category : #accessing }
+GlamourPresentationModel >> presentation: anObject [
 	presentation := anObject
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GlamourPresentationModel>>presentationClass: aGLMCompositePresentation startOn: anObject  [
+{ #category : #api }
+GlamourPresentationModel >> presentationClass: aGLMCompositePresentation startOn: anObject [ 
 	glmPres := aGLMCompositePresentation new startOn: anObject
 ]

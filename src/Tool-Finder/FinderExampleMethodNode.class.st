@@ -5,35 +5,25 @@ from an examples (by MethodFinder)
 Class {
 	#name : #FinderExampleMethodNode,
 	#superclass : #FinderMethodNode,
-	#category : #Tool-Finder,
-	#timestamp : '<historical>'
+	#category : #Tool-Finder
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderExampleMethodNode>>childNodeClassFromItem: anItem [
+{ #category : #private }
+FinderExampleMethodNode >> childNodeClassFromItem: anItem [
 	"I answer the class of my children nodes (if I have some)"
 
 	^ FinderExampleClassNode
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderExampleMethodNode>>receiver [
+{ #category : #private }
+FinderExampleMethodNode >> receiver [
 	| index rec |
 	index := self item findString: self selector.
 	rec := self item copyFrom: 1 to: index - 1.
 	^ Smalltalk compiler evaluate: rec
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderExampleMethodNode>>selector [
+{ #category : #private }
+FinderExampleMethodNode >> selector [
 	^ self model finder findSelector: self item
 ]

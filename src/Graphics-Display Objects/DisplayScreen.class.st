@@ -23,24 +23,17 @@ Class {
 		'LastScreenModeSelected',
 		'ScreenSave'
 	],
-	#category : #'Graphics-Display Objects',
-	#timestamp : '<historical>'
+	#category : #'Graphics-Display Objects'
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen class>>actualScreenDepth [
+{ #category : #accessing }
+DisplayScreen class >> actualScreenDepth [
 	<primitive: 'primitiveScreenDepth'>
 	^ Display depth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen class>>actualScreenSize [
+{ #category : #accessing }
+DisplayScreen class >> actualScreenSize [
 	<primitive: 106>
 
 	^ World osWindow 
@@ -49,32 +42,23 @@ DisplayScreen class>>actualScreenSize [
 
 ]
 
-{
-	#category : #'display box access',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen class>>boundingBox [
+{ #category : #'display box access' }
+DisplayScreen class >> boundingBox [
 	"Answer the bounding box for the form representing the current display 
 	screen."
 
 	^Display boundingBox
 ]
 
-{
-	#category : #'display box access',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen class>>checkForNewScreenSize [
+{ #category : #'display box access' }
+DisplayScreen class >> checkForNewScreenSize [
 	"Check whether the screen size has changed and if so take appropriate actions"
 
 	UIManager default checkForNewDisplaySize
 ]
 
-{
-	#category : #deferring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen class>>deferUpdates: aBoolean [
+{ #category : #deferring }
+DisplayScreen class >> deferUpdates: aBoolean [
 	| wasDeferred |
 	"Set the deferUpdates flag in the virtual machine. When this flag is true, BitBlt operations on the Display are not automatically propagated to the screen. If this underlying platform does not support deferred updates, this primitive will fail. Answer whether updates were deferred before if the primitive succeeds, nil if it fails."
 
@@ -83,11 +67,8 @@ DisplayScreen class>>deferUpdates: aBoolean [
 	^(self primitiveDeferUpdates: aBoolean) ifNotNil: [wasDeferred]
 ]
 
-{
-	#category : #'display box access',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen class>>depth: depthInteger width: widthInteger height: heightInteger fullscreen: aBoolean [
+{ #category : #'display box access' }
+DisplayScreen class >> depth: depthInteger width: widthInteger height: heightInteger fullscreen: aBoolean [
 	"Force Pharo's window (if there's one) into a new size and depth."
 	"DisplayScreen depth: 8 width: 1024 height: 768 fullscreen: false"
 
@@ -95,11 +76,8 @@ DisplayScreen class>>depth: depthInteger width: widthInteger height: heightInteg
 	self primitiveFailed 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen class>>displaySettingsOn: aBuilder  [
+{ #category : #settings }
+DisplayScreen class >> displaySettingsOn: aBuilder [ 
 	<systemsettings>
 	(aBuilder setting: #displayFullscreen)
 		label: 'Fullscreen mode';
@@ -112,38 +90,26 @@ DisplayScreen class>>displaySettingsOn: aBuilder  [
 
 ]
 
-{
-	#category : #'host window access',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen class>>hostWindowIndex [
+{ #category : #'host window access' }
+DisplayScreen class >> hostWindowIndex [
 	^ 1
 ]
 
-{
-	#category : #'host window access',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen class>>hostWindowSize: aPoint  [
+{ #category : #'host window access' }
+DisplayScreen class >> hostWindowSize: aPoint [ 
 	self primitiveWindowSize: self hostWindowIndex width: aPoint x heigth: aPoint y
 
 ]
 
-{
-	#category : #'host window access',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen class>>hostWindowTitle: aString  [
+{ #category : #'host window access' }
+DisplayScreen class >> hostWindowTitle: aString [ 
 	self 
 		primitiveWindowTitle: self hostWindowIndex 
 		string: (UTF8TextConverter default convertFromSystemString: aString)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen class>>initialize [
+{ #category : #initialize-release }
+DisplayScreen class >> initialize [
 	| display |
 	display := self new.
 	display
@@ -158,69 +124,48 @@ DisplayScreen class>>initialize [
 		atPriority: 10.
 ]
 
-{
-	#category : #deferring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen class>>primitiveDeferUpdates: aBoolean [
+{ #category : #deferring }
+DisplayScreen class >> primitiveDeferUpdates: aBoolean [
 	"Set the deferUpdates flag in the virtual machine. When this flag is true, BitBlt operations on the Display are not automatically propagated to the screen. If this underlying platform does not support deferred updates, this primitive will fail. Answer the receiver if the primitive succeeds, nil if it fails."
 
 	<primitive: 126>
 	^ nil  "answer nil if primitive fails"
 ]
 
-{
-	#category : #'host window access',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen class>>primitiveWindowSize: id width: width heigth: height  [
+{ #category : #'host window access' }
+DisplayScreen class >> primitiveWindowSize: id width: width heigth: height [ 
 	<primitive: 'primitiveHostWindowSizeSet' module: 'HostWindowPlugin'>
 	"ignore failure"
 ]
 
-{
-	#category : #'host window access',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen class>>primitiveWindowTitle: id string: titleString  [
+{ #category : #'host window access' }
+DisplayScreen class >> primitiveWindowTitle: id string: titleString [ 
 	<primitive: 'primitiveHostWindowTitle' module:'HostWindowPlugin'>
 	"ignore failure"
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen class>>shutDown  [
+{ #category : #'system startup' }
+DisplayScreen class >> shutDown [ 
 	"Minimize Display memory saved in image"
 	Display shutDown.
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen class>>startUp  "DisplayScreen startUp" [
+{ #category : #'system startup' }
+DisplayScreen class >> startUp [  "DisplayScreen startUp"
 	Display setExtent: self actualScreenSize depth: Display nativeDepth.
 	Display beDisplay
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>addExtraRegion: aRectangle for: regionDrawer [
+{ #category : #displaying }
+DisplayScreen >> addExtraRegion: aRectangle for: regionDrawer [
 	"Register the given rectangle as a region which is drawn by the specified region drawer. The region will be excluded from any updates when #forceDamageToScreen: is called. Note that the rectangle is only valid for a single update cycle; once #forceDamageToScreen: has been called, the region drawer and its region are being removed from the list"
 	extraRegions ifNil:[extraRegions := #()].
 	extraRegions := extraRegions copyWith: (Array with: regionDrawer with: aRectangle).
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>beDisplay [
+{ #category : #private }
+DisplayScreen >> beDisplay [
 	"Primitive. Tell the interpreter to use the receiver as the current display 
 	image. Fail if the form is too wide to fit on the physical display. 
 	Essential. See Object documentation whatIsAPrimitive."
@@ -229,21 +174,15 @@ DisplayScreen>>beDisplay [
 	self primitiveFailed
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>boundingBox [
+{ #category : #other }
+DisplayScreen >> boundingBox [
 	clippingBox == nil
 		ifTrue: [clippingBox := super boundingBox].
 	^ clippingBox
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>clippingTo: aRect do: aBlock  [
+{ #category : #other }
+DisplayScreen >> clippingTo: aRect do: aBlock [ 
 	"Display clippingTo: Rectangle fromUser do:"
 	| saveClip |
 	saveClip := clippingBox.
@@ -252,11 +191,8 @@ DisplayScreen>>clippingTo: aRect do: aBlock  [
 	clippingBox := saveClip
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>copyBits: rect from: sf at: destOrigin clippingBox: clipRect rule: cr fillColor: hf  [
+{ #category : #displaying }
+DisplayScreen >> copyBits: rect from: sf at: destOrigin clippingBox: clipRect rule: cr fillColor: hf [ 
 	(BitBlt
 		destForm: self
 		sourceForm: sf
@@ -268,11 +204,8 @@ DisplayScreen>>copyBits: rect from: sf at: destOrigin clippingBox: clipRect rule
 		clipRect: (clipRect intersect: clippingBox ifNone: [ ^ self ])) copyBits
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>copyBits: rect from: sf at: destOrigin clippingBox: clipRect rule: cr fillColor: hf map: map [
+{ #category : #displaying }
+DisplayScreen >> copyBits: rect from: sf at: destOrigin clippingBox: clipRect rule: cr fillColor: hf map: map [
 	((BitBlt
 		destForm: self
 		sourceForm: sf
@@ -284,30 +217,21 @@ DisplayScreen>>copyBits: rect from: sf at: destOrigin clippingBox: clipRect rule
 		clipRect: (clipRect intersect: clippingBox ifNone: [ ^ self ] )) colorMap: map) copyBits
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>copyFrom: aForm [
+{ #category : #private }
+DisplayScreen >> copyFrom: aForm [
 	"Take on all state of aForm, with complete sharing"
 
 	super copyFrom: aForm.
 	clippingBox := super boundingBox
 ]
 
-{
-	#category : #deferring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>deferUpdates: aBoolean [
+{ #category : #deferring }
+DisplayScreen >> deferUpdates: aBoolean [
 	^self class deferUpdates: aBoolean
 ]
 
-{
-	#category : #deferring,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>deferUpdatesIn: aRectangle while: aBlock [
+{ #category : #deferring }
+DisplayScreen >> deferUpdatesIn: aRectangle while: aBlock [
 	| result |
 	(self class deferUpdates: true) ifTrue: [^aBlock value].
 	result := aBlock value.
@@ -316,20 +240,14 @@ DisplayScreen>>deferUpdatesIn: aRectangle while: aBlock [
 	^result
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>displayChangeSignature [
+{ #category : #other }
+DisplayScreen >> displayChangeSignature [
 
 	^DisplayChangeSignature
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>findAnyDisplayDepth [
+{ #category : #private }
+DisplayScreen >> findAnyDisplayDepth [
 	"Return any display depth that is supported on this system."
 	^self findAnyDisplayDepthIfNone:[
 		"Ugh .... now this is a biggie - a system that does not support
@@ -341,11 +259,8 @@ DisplayScreen>>findAnyDisplayDepth [
 	].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>findAnyDisplayDepthIfNone: aBlock [
+{ #category : #private }
+DisplayScreen >> findAnyDisplayDepthIfNone: aBlock [
 	"Return any display depth that is supported on this system.
 	If there is none, evaluate aBlock.
 	First check higher values to avoid depth 1 to be always returned."
@@ -354,11 +269,8 @@ DisplayScreen>>findAnyDisplayDepthIfNone: aBlock [
 		ifNone: [ aBlock value ]
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>flash: aRectangle  [
+{ #category : #displaying }
+DisplayScreen >> flash: aRectangle [ 
 	"Flash the area of the screen defined by the given rectangle."
 
 	self reverse: aRectangle.
@@ -369,11 +281,8 @@ DisplayScreen>>flash: aRectangle  [
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>flash: aRectangle andWait: msecs [
+{ #category : #displaying }
+DisplayScreen >> flash: aRectangle andWait: msecs [
 	"Flash the area of the screen defined by the given rectangle."
 
 	self reverse: aRectangle.
@@ -385,11 +294,8 @@ DisplayScreen>>flash: aRectangle andWait: msecs [
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>flashAll: rectangleList andWait: msecs [
+{ #category : #displaying }
+DisplayScreen >> flashAll: rectangleList andWait: msecs [
 	"Flash the areas of the screen defined by the given rectangles."
 
 	rectangleList do: [:aRectangle | self reverse: aRectangle].
@@ -401,11 +307,8 @@ DisplayScreen>>flashAll: rectangleList andWait: msecs [
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>forceDamageToScreen: allDamage [
+{ #category : #displaying }
+DisplayScreen >> forceDamageToScreen: allDamage [
 	"Force all the damage rects to the screen."
 	| regions rectList |
 	rectList := allDamage.
@@ -428,31 +331,22 @@ DisplayScreen>>forceDamageToScreen: allDamage [
 	].
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>forceDisplayUpdate [
+{ #category : #other }
+DisplayScreen >> forceDisplayUpdate [
 	"On platforms that buffer screen updates, force the screen to be updated immediately. On other platforms, or if the primitive is not implemented, do nothing."
 
 	<primitive: 231>
 	"do nothing if primitive fails"
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>forceToScreen [
+{ #category : #other }
+DisplayScreen >> forceToScreen [
 	"Force the entire display area to the screen"
 	^self forceToScreen: self boundingBox
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>forceToScreen: aRectangle [
+{ #category : #other }
+DisplayScreen >> forceToScreen: aRectangle [
 	"Force the given rectangular section of the Display to be copied to the screen. The primitive call does nothing if the primitive is not implemented. Typically used when the deferUpdates flag in the virtual machine is on; see deferUpdates:."
 
 	self primShowRectLeft: aRectangle left
@@ -462,41 +356,29 @@ DisplayScreen>>forceToScreen: aRectangle [
 
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>fullBoundingBox [
+{ #category : #other }
+DisplayScreen >> fullBoundingBox [
 	^ super boundingBox
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>fullscreen [
+{ #category : #other }
+DisplayScreen >> fullscreen [
 	"Display fullscreen"
 
 	ScreenSave notNil ifTrue: [Display := ScreenSave].
 	clippingBox := super boundingBox
 ]
 
-{
-	#category : #'screen managing',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>fullscreen: aBoolean [
+{ #category : #'screen managing' }
+DisplayScreen >> fullscreen: aBoolean [
 
 	Display fullscreenMode: (LastScreenModeSelected := aBoolean).
 	DisplayScreen checkForNewScreenSize.
 	
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>fullscreenMode: aBoolean [
+{ #category : #other }
+DisplayScreen >> fullscreenMode: aBoolean [
 	"On platforms that support it, set fullscreen mode to the value of the argument. (Note: you'll need to restore the Display after calling this primitive."
 	"Display fullscreenMode: true. Display newDepth: Display depth"
 
@@ -505,62 +387,41 @@ DisplayScreen>>fullscreenMode: aBoolean [
 
 ]
 
-{
-	#category : #'screen managing',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>fullscreenOff [
+{ #category : #'screen managing' }
+DisplayScreen >> fullscreenOff [
 
 	self fullscreen: false
 ]
 
-{
-	#category : #'screen managing',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>fullscreenOn [
+{ #category : #'screen managing' }
+DisplayScreen >> fullscreenOn [
 
 	self fullscreen: true
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>height [
+{ #category : #other }
+DisplayScreen >> height [
 	^ self boundingBox height
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>isDisplayScreen [
+{ #category : #testing }
+DisplayScreen >> isDisplayScreen [
 	^true
 ]
 
-{
-	#category : #'screen managing',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>isFullscreen [
+{ #category : #'screen managing' }
+DisplayScreen >> isFullscreen [
 	^ self lastScreenModeSelected.
 ]
 
-{
-	#category : #'screen managing',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>lastScreenModeSelected [
+{ #category : #'screen managing' }
+DisplayScreen >> lastScreenModeSelected [
 	^ LastScreenModeSelected
 		ifNil: [LastScreenModeSelected := false]
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>newDepth: pixelSize  [
+{ #category : #other }
+DisplayScreen >> newDepth: pixelSize [ 
 	"
 	Display newDepth: 8.
 	Display newDepth: 1
@@ -571,20 +432,14 @@ DisplayScreen>>newDepth: pixelSize  [
 	self restore
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>newDepthNoRestore: pixelSize [
+{ #category : #private }
+DisplayScreen >> newDepthNoRestore: pixelSize [
 	
 	UIManager default newDisplayDepthNoRestore: pixelSize
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>primRetryShowRectLeft: l right: r top: t bottom: b [
+{ #category : #private }
+DisplayScreen >> primRetryShowRectLeft: l right: r top: t bottom: b [
 	"Copy the given rectangular section of the Display to to the screen. This primitive is not implemented on all platforms. Do nothing if it fails. "
 
 	<primitive: 127>
@@ -592,11 +447,8 @@ DisplayScreen>>primRetryShowRectLeft: l right: r top: t bottom: b [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>primShowRectLeft: l right: r top: t bottom: b [
+{ #category : #private }
+DisplayScreen >> primShowRectLeft: l right: r top: t bottom: b [
 	"Copy the given rectangular section of the Display to to the screen. This primitive is not implemented on all platforms. If this fails, retry integer coordinates."
 
 	<primitive: 127>
@@ -608,11 +460,8 @@ DisplayScreen>>primShowRectLeft: l right: r top: t bottom: b [
 
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>primitiveDeferUpdates: aBoolean [
+{ #category : #other }
+DisplayScreen >> primitiveDeferUpdates: aBoolean [
 	"Set the deferUpdates flag in the virtual machine. When this flag is true, BitBlt operations on the Display are not automatically propagated to the screen. If this underlying platform does not support deferred updates, this primitive will fail. Answer the receiver if the primitive succeeds, nil if it fails."
 
 	<primitive: 126>
@@ -620,11 +469,8 @@ DisplayScreen>>primitiveDeferUpdates: aBoolean [
 
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>replacedBy: aForm do: aBlock [
+{ #category : #other }
+DisplayScreen >> replacedBy: aForm do: aBlock [
 	"Permits normal display to draw on aForm instead of the display."
 
 	ScreenSave := self.
@@ -634,30 +480,21 @@ DisplayScreen>>replacedBy: aForm do: aBlock [
 	ScreenSave := nil.
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>restore [
+{ #category : #other }
+DisplayScreen >> restore [
 	
 	UIManager default restoreDisplay
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>restoreAfter: aBlock [
+{ #category : #other }
+DisplayScreen >> restoreAfter: aBlock [
 	"Evaluate the block, wait for a mouse click, and then restore the screen."
 
 	UIManager default restoreDisplayAfter: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>setExtent: aPoint depth: bitsPerPixel  "DisplayScreen startUp" [
+{ #category : #private }
+DisplayScreen >> setExtent: aPoint depth: bitsPerPixel [  "DisplayScreen startUp"
 	"This method is critical.  If the setExtent fails, there will be no
 	proper display on which to show the error condition..."
 	"ar 5/1/1999: ... and that is exactly why we check for the available display depths first."
@@ -679,57 +516,39 @@ DisplayScreen>>setExtent: aPoint depth: bitsPerPixel  "DisplayScreen startUp" [
 	clippingBox := super boundingBox
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>shutDown  [
+{ #category : #initialization }
+DisplayScreen >> shutDown [ 
 	"Minimize Display memory saved in image"
 	self setExtent: 240@120 depth: depth
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>supportedDisplayDepths [
+{ #category : #other }
+DisplayScreen >> supportedDisplayDepths [
 	"Return all pixel depths supported on the current host platform."
 	^#(1 2 4 8 16 32 -1 -2 -4 -8 -16 -32) select: [:d | self supportsDisplayDepth: d]
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>supportsDisplayDepth: pixelDepth [
+{ #category : #other }
+DisplayScreen >> supportsDisplayDepth: pixelDepth [
 	"Return true if this pixel depth is supported on the current host platform.
 	Primitive. Optional."
 	<primitive: 91>
 	^#(1 2 4 8 16 32) includes: pixelDepth
 ]
 
-{
-	#category : #'screen managing',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>toggleFullscreen [
+{ #category : #'screen managing' }
+DisplayScreen >> toggleFullscreen [
 	self fullscreen: self isFullscreen not
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>usableArea [
+{ #category : #other }
+DisplayScreen >> usableArea [
 	"Answer the usable area of the receiver."
 
 	^ self boundingBox deepCopy
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DisplayScreen>>width [
+{ #category : #other }
+DisplayScreen >> width [
 	^ self boundingBox width
 ]

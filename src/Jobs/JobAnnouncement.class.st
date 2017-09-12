@@ -9,65 +9,43 @@ Class {
 	#instVars : [
 		'job'
 	],
-	#category : #Jobs-Announcements,
-	#timestamp : 'MartinDias 6/24/2015 14:59'
+	#category : #Jobs-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-JobAnnouncement class>>on: aJob  [
+{ #category : #'instance creation' }
+JobAnnouncement class >> on: aJob [ 
 
 	^ self new job: aJob.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-JobAnnouncement>>job [
+{ #category : #accessing }
+JobAnnouncement >> job [
 	
 	^ job
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-JobAnnouncement>>job: anObject [
+{ #category : #accessing }
+JobAnnouncement >> job: anObject [
 	
 	job := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-JobAnnouncement>>max [
+{ #category : #accessing }
+JobAnnouncement >> max [
 	^ job max
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-JobAnnouncement>>min [
+{ #category : #accessing }
+JobAnnouncement >> min [
 	^ job min
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-JobAnnouncement>>progress [
+{ #category : #accessing }
+JobAnnouncement >> progress [
 	^ job progress
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-JobAnnouncement>>title [
+{ #category : #accessing }
+JobAnnouncement >> title [
 	^ job title
 ]

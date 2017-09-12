@@ -11,115 +11,75 @@ Class {
 		'inStack',
 		'cycleNodes'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : 'ChristopheDemarey 3/24/2015 12:33'
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjanNode>>cycleNodes [
+{ #category : #accessing }
+MalTarjanNode >> cycleNodes [
 	^ cycleNodes
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjanNode>>cycleNodes: anObject [
+{ #category : #setting }
+MalTarjanNode >> cycleNodes: anObject [
 	cycleNodes := anObject copy
 		remove: self ;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjanNode>>inStack [
+{ #category : #accessing }
+MalTarjanNode >> inStack [
 	^ inStack
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjanNode>>inStack: anObject [
+{ #category : #setting }
+MalTarjanNode >> inStack: anObject [
 	inStack := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjanNode>>initialize [
+{ #category : #initialization }
+MalTarjanNode >> initialize [
 	super initialize.
 	nextNodes := Set new.
 	index := -1.
 	inStack := false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjanNode>>isInCycle [
+{ #category : #testing }
+MalTarjanNode >> isInCycle [
 	^ self cycleNodes isEmpty not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjanNode>>isTarjanUndefined [
+{ #category : #testing }
+MalTarjanNode >> isTarjanUndefined [
 	^ index = -1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjanNode>>label [
+{ #category : #accessing }
+MalTarjanNode >> label [
 	^ 'T '
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjanNode>>popped [
+{ #category : #setting }
+MalTarjanNode >> popped [
 	self inStack: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjanNode>>tarjanIndex [
+{ #category : #accessing }
+MalTarjanNode >> tarjanIndex [
 	^ index
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjanNode>>tarjanIndex: anInteger [
+{ #category : #setting }
+MalTarjanNode >> tarjanIndex: anInteger [
 	index := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjanNode>>tarjanLowlink [
+{ #category : #accessing }
+MalTarjanNode >> tarjanLowlink [
 	^ lowlink
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjanNode>>tarjanLowlink: anInteger [
+{ #category : #setting }
+MalTarjanNode >> tarjanLowlink: anInteger [
 	lowlink := anInteger
 ]

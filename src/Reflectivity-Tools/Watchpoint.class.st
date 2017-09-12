@@ -18,65 +18,43 @@ Class {
 	#classVars : [
 		'Watchpoints'
 	],
-	#category : #Reflectivity-Tools-Watchpoints,
-	#timestamp : 'mcamp 11/20/2015 11:05'
+	#category : #Reflectivity-Tools-Watchpoints
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint class>>allWatchpoints [
+{ #category : #accessing }
+Watchpoint class >> allWatchpoints [
 	^ Watchpoints ifNil: [ Watchpoints := WeakKeyDictionary new ]
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint class>>deleteAllHistory [
+{ #category : #cleanup }
+Watchpoint class >> deleteAllHistory [
 
 	self allWatchpoints valuesDo: [ :aWatchpoint| aWatchpoint deleteHistory].
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint class>>deleteHistoryFrom: aNode [
+{ #category : #cleanup }
+Watchpoint class >> deleteHistoryFrom: aNode [
 
 	(self allWatchpoints at: aNode ifAbsent:[^self]) deleteHistory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint class>>from: aNode [
+{ #category : #accessing }
+Watchpoint class >> from: aNode [
 	^self allWatchpoints at: aNode.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint class>>from: aNode ifAbsent: aBlock [
+{ #category : #accessing }
+Watchpoint class >> from: aNode ifAbsent: aBlock [
 	^self allWatchpoints at: aNode ifAbsent: aBlock.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint class>>in: aRBProgramNode [
+{ #category : #'instance creation' }
+Watchpoint class >> in: aRBProgramNode [
 	^self in: aRBProgramNode named: ''.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint class>>in: aRBProgramNode named: aName [
+{ #category : #'instance creation' }
+Watchpoint class >> in: aRBProgramNode named: aName [
 	aRBProgramNode hasWatchpoint ifTrue: [ ^ aRBProgramNode watchpoint ].
 	^self new 
 		node: aRBProgramNode;
@@ -84,66 +62,45 @@ Watchpoint class>>in: aRBProgramNode named: aName [
 		install.
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint class>>removeAll [
+{ #category : #cleanup }
+Watchpoint class >> removeAll [
 	self allWatchpoints values do: [ :aWatchpoint| aWatchpoint uninstall].
 	Watchpoints := nil.
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint class>>removeFrom: aNode [
+{ #category : #cleanup }
+Watchpoint class >> removeFrom: aNode [
 
 	(self allWatchpoints at: aNode ifAbsent: [ ^self ]) uninstall
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint>>addValue: anObject [
+{ #category : #adding }
+Watchpoint >> addValue: anObject [
 	values add: 
 		(DateAndTime now -> anObject).
 	^anObject.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint>>compiledMethod  [
+{ #category : #accessing }
+Watchpoint >> compiledMethod [ 
 	^self node methodNode method
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint>>deleteHistory [
+{ #category : #cleanup }
+Watchpoint >> deleteHistory [
 	values := OrderedCollection new.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint>>initialize [
+{ #category : #initialization }
+Watchpoint >> initialize [
 	super initialize.
 	values := OrderedCollection new.
 	recording := true.
 ]
 
-{
-	#category : #install,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint>>install [
+{ #category : #install }
+Watchpoint >> install [
 
 	node hasWatchpoint ifTrue: [ self error: 'Node already has a watchpoint'].
 	
@@ -158,45 +115,30 @@ Watchpoint>>install [
 	self class allWatchpoints at: node put: self.
 ]
 
-{
-	#category : #recording,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint>>isRecording [
+{ #category : #recording }
+Watchpoint >> isRecording [
 	^recording
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint>>node [
+{ #category : #accessing }
+Watchpoint >> node [
 	^ node
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint>>node: anObject [
+{ #category : #accessing }
+Watchpoint >> node: anObject [
 	node := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint>>printLastValue [
+{ #category : #printing }
+Watchpoint >> printLastValue [
 	values ifNil: [ ^''].
 	values ifEmpty: [ ^'not run' ].
 	^values last value printStringLimitedTo: 5.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint>>printOn: aStream [
+{ #category : #printing }
+Watchpoint >> printOn: aStream [
 	aStream nextPutAll: 'WP'.
 	tagname isAllSeparators 
 		ifFalse: [ 
@@ -206,54 +148,36 @@ Watchpoint>>printOn: aStream [
 	aStream nextPutAll: (self printLastValue).
 ]
 
-{
-	#category : #recording,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint>>start [
+{ #category : #recording }
+Watchpoint >> start [
 	recording := true.
 	SystemAnnouncer uniqueInstance announce: (MetalinkChanged new link: link)
 ]
 
-{
-	#category : #recording,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint>>stop [
+{ #category : #recording }
+Watchpoint >> stop [
 	recording := false.
 	SystemAnnouncer uniqueInstance announce: (MetalinkChanged new link: link)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint>>tagname [
+{ #category : #accessing }
+Watchpoint >> tagname [
 	^ tagname
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint>>tagname: anObject [
+{ #category : #accessing }
+Watchpoint >> tagname: anObject [
 	tagname := anObject
 ]
 
-{
-	#category : #install,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint>>uninstall [
+{ #category : #install }
+Watchpoint >> uninstall [
 	node hasWatchpoint ifFalse: [ ^self ].
 	link uninstall.
 	self class allWatchpoints removeKey: node.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Watchpoint>>values [
+{ #category : #accessing }
+Watchpoint >> values [
 	^values.
 ]

@@ -41,25 +41,18 @@ e.g. “a := 1” we know the type of a) and add these annotations to al the var
 Class {
 	#name : #RuntimeTyperTests,
 	#superclass : #TestCase,
-	#category : #Reflectivity-Tools-Tests,
-	#timestamp : 'MarcusDenker 8/12/2016 15:30'
+	#category : #Reflectivity-Tools-Tests
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RuntimeTyperTests>>examplePlus: arg [
+{ #category : #example }
+RuntimeTyperTests >> examplePlus: arg [
 	| result |
 	result := arg + 1.
 	^result.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RuntimeTyperTests>>testPlus [
+{ #category : #tests }
+RuntimeTyperTests >> testPlus [
 	| link variable |
 	
 	link := MetaLink new

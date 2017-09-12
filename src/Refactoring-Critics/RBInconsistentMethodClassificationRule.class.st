@@ -6,33 +6,23 @@ This smell arises when a method protocol is not equivalent to the one defined in
 Class {
 	#name : #RBInconsistentMethodClassificationRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:00'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInconsistentMethodClassificationRule class>>checksMethod [
+{ #category : #testing }
+RBInconsistentMethodClassificationRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInconsistentMethodClassificationRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBInconsistentMethodClassificationRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'InconsistentMethodClassificationRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInconsistentMethodClassificationRule>>basicCheck: aMethod  [
+{ #category : #running }
+RBInconsistentMethodClassificationRule >> basicCheck: aMethod [ 
 	| ownerProtocol |
 	ownerProtocol := aMethod protocol.
 	ownerProtocol ifNil: [ ^ false ].
@@ -51,43 +41,28 @@ RBInconsistentMethodClassificationRule>>basicCheck: aMethod  [
 	^ false
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInconsistentMethodClassificationRule>>checkMethod: aMethod  [
+{ #category : #running }
+RBInconsistentMethodClassificationRule >> checkMethod: aMethod [ 
 	(self basicCheck: aMethod) ifTrue: [ 
 		result addMethod: aMethod  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInconsistentMethodClassificationRule>>group [
+{ #category : #accessing }
+RBInconsistentMethodClassificationRule >> group [
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInconsistentMethodClassificationRule>>name [
+{ #category : #accessing }
+RBInconsistentMethodClassificationRule >> name [
 	^ 'Inconsistent method classification'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInconsistentMethodClassificationRule>>rationale [
+{ #category : #accessing }
+RBInconsistentMethodClassificationRule >> rationale [
 	^ 'All methods should be put into a protocol (method category) that is equivalent to the one of the superclass, which is a Smalltalk style convention.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInconsistentMethodClassificationRule>>severity [
+{ #category : #accessing }
+RBInconsistentMethodClassificationRule >> severity [
 	^ #information
 ]

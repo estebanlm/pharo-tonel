@@ -8,15 +8,11 @@ Class {
 		'origin',
 		'corner'
 	],
-	#category : #Athens-Balloon,
-	#timestamp : '<historical>'
+	#category : #Athens-Balloon
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonLinearGradient>>athensFillPath: aPath on: anAthensCanvas [
+{ #category : #rendering }
+AthensBalloonLinearGradient >> athensFillPath: aPath on: anAthensCanvas [
 	| torigin tcorner |
 
 	"A gradient fill coordinates are first transformed by 
@@ -33,11 +29,8 @@ AthensBalloonLinearGradient>>athensFillPath: aPath on: anAthensCanvas [
 		fillBezierShape: aPath contoursForFilling
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonLinearGradient>>athensFillRectangle: aRect on: anAthensCanvas [
+{ #category : #rendering }
+AthensBalloonLinearGradient >> athensFillRectangle: aRect on: anAthensCanvas [
 	"This is a terminal method in rendering dispatch scheme
 	canvas->shape->paint. See AthensCanvas>>fillShape: "
 	
@@ -57,47 +50,32 @@ AthensBalloonLinearGradient>>athensFillRectangle: aRect on: anAthensCanvas [
 		fillRectangle: aRect
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonLinearGradient>>corner [
+{ #category : #accessing }
+AthensBalloonLinearGradient >> corner [
 
 	^ corner
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonLinearGradient>>corner: anObject [
+{ #category : #accessing }
+AthensBalloonLinearGradient >> corner: anObject [
 
 	corner := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonLinearGradient>>origin [
+{ #category : #accessing }
+AthensBalloonLinearGradient >> origin [
 
 	^ origin
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonLinearGradient>>origin: anObject [
+{ #category : #accessing }
+AthensBalloonLinearGradient >> origin: anObject [
 
 	origin := anObject
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonLinearGradient>>strokeRect: rect on: canvas stroke: strokePaint [
+{ #category : #rendering }
+AthensBalloonLinearGradient >> strokeRect: rect on: canvas [ stroke: strokePaint
 
 	| torigin tcorner |
 
@@ -115,11 +93,8 @@ AthensBalloonLinearGradient>>strokeRect: rect on: canvas stroke: strokePaint [
 		strokeRectangle: rect width: strokePaint width
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonLinearGradient>>strokeRect: rect on: canvas strokeWidth: strokeWidth [
+{ #category : #rendering }
+AthensBalloonLinearGradient >> strokeRect: rect on: canvas strokeWidth: strokeWidth [
 
 	| torigin tcorner |
 

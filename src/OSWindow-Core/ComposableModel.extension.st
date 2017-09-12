@@ -1,33 +1,22 @@
-Extension {
-	#name : #ComposableModel
-}
+Extension { #name : #ComposableModel }
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-ComposableModel>>openExternalWindowWithSpec [
+{ #category : #'*OSWindow-Core' }
+ComposableModel >> openExternalWindowWithSpec [
     "Build the widget using the default spec and display it into the world"
 
     ^ self openExternalWindowWithSpec: self defaultSpecSelector.
 
 ]
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-ComposableModel>>openExternalWindowWithSpec: aSpec [
+{ #category : #'*OSWindow-Core' }
+ComposableModel >> openExternalWindowWithSpec: aSpec [
     "Build the widget using the spec name provided as argument and display it into the world"
 
     ^ self openExternalWindowWithSpecLayout: (self retrieveSpec: aSpec)
 ]
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-ComposableModel>>openExternalWindowWithSpecLayout: aSpec [
+{ #category : #'*OSWindow-Core' }
+ComposableModel >> openExternalWindowWithSpecLayout: aSpec [
     "Build the widget using the spec name provided as argument and display it into the world"
 
     (window value notNil and: [ self needRebuild not ])

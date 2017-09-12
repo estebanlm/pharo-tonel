@@ -12,15 +12,11 @@ Class {
 	#classVars : [
 		'UsedByDefault'
 	],
-	#category : #Tool-Diff,
-	#timestamp : 'LaurentLaffont 2/23/2011 20:21'
+	#category : #Tool-Diff
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph class>>defaultDiffToolsSettingOn: aBuilder [
+{ #category : #settings }
+PSMCPatchMorph class >> defaultDiffToolsSettingOn: aBuilder [
 	<systemsettings>  
 	(aBuilder setting: #polymorphDiffToolsUsedByDefault)
 		label: 'Use Polymorph difference tools';
@@ -30,52 +26,37 @@ PSMCPatchMorph class>>defaultDiffToolsSettingOn: aBuilder [
 		selector: #usedByDefault
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph class>>forPatch: aPatch [
+{ #category : #'instance creation' }
+PSMCPatchMorph class >> forPatch: aPatch [
 	"Answer a new instance of the receiver
 	with the given patch as the model."
 	
 	^ self new model: aPatch operations
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph class>>taskbarIconName [
+{ #category : #icons }
+PSMCPatchMorph class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^#smallForwardIcon
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph class>>usedByDefault [
+{ #category : #settings }
+PSMCPatchMorph class >> usedByDefault [
 	"Answer whether the Polymorph diff tools should be used with Monticello."
 
 	^UsedByDefault ifNil: [UsedByDefault := true]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph class>>usedByDefault: aBoolean [
+{ #category : #settings }
+PSMCPatchMorph class >> usedByDefault: aBoolean [
 	"Specify whether the Polymorph diff tools should be used with Monticello."
 	
 	UsedByDefault := aBoolean
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>browseClass [
+{ #category : #actions }
+PSMCPatchMorph >> browseClass [
 	"Browse the class of the selected item."
 
 	^ Smalltalk tools browser
@@ -83,33 +64,24 @@ PSMCPatchMorph>>browseClass [
 		selector: self selectedMessageName
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>browseImplementors [
+{ #category : #actions }
+PSMCPatchMorph >> browseImplementors [
 	"Browse the method implementors."
 
 	self systemNavigation
 		browseAllImplementorsOf: (self selectedMessageName ifNil: [^self])
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>browseSenders [
+{ #category : #actions }
+PSMCPatchMorph >> browseSenders [
 	"Browse the method senders."
 
 	self systemNavigation
 		browseAllSendersOf: (self selectedMessageName ifNil: [^self])
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>browseVersions [
+{ #category : #actions }
+PSMCPatchMorph >> browseVersions [
 	"Browse the method versions."
 
 	Smalltalk tools versionBrowser 
@@ -118,11 +90,8 @@ PSMCPatchMorph>>browseVersions [
 			
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>buildUI [
+{ #category : #initialization }
+PSMCPatchMorph >> buildUI [
 	|descriptionHeight|
 	self
 		diffMorph: self newDiffMorph;
@@ -143,31 +112,22 @@ PSMCPatchMorph>>buildUI [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>changeTree [
+{ #category : #accessing }
+PSMCPatchMorph >> changeTree [
 	"Answer the value of changeTree"
 
 	^ changeTree
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>changeTree: anObject [
+{ #category : #accessing }
+PSMCPatchMorph >> changeTree: anObject [
 	"Set the value of changeTree"
 
 	changeTree := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>changeTreeKey: aCharacter [
+{ #category : #private }
+PSMCPatchMorph >> changeTreeKey: aCharacter [
 	"Handle change tree key strokes."
 
 	(aCharacter == $b and: [self selectionHasActualClass]) ifTrue: [
@@ -180,21 +140,15 @@ PSMCPatchMorph>>changeTreeKey: aCharacter [
 		^self browseSenders]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>changes [
+{ #category : #accessing }
+PSMCPatchMorph >> changes [
 	"Answer the changes tree roots."
 	
 	^ PSMCChangesGrouper group: self model
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>changesMenu: m [
+{ #category : #protocol }
+PSMCPatchMorph >> changesMenu: m [
 	"Answer the changes menu."
 
 	| menu |
@@ -270,72 +224,51 @@ PSMCPatchMorph>>changesMenu: m [
 	^ menu
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>compositeText [
+{ #category : #actions }
+PSMCPatchMorph >> compositeText [
 	"Answer the composite text based on the selection state
 	of the joins."
 
 	^self diffMorph compositeText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>defaultTitle [
+{ #category : #accessing }
+PSMCPatchMorph >> defaultTitle [
 	"Answer the default title label for the receiver."
 
 	^'Changes' translated
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>expandChangeTree [
+{ #category : #updating }
+PSMCPatchMorph >> expandChangeTree [
 	self flag: #TODO. "We should only expand the nodes wich have partial changes, if a class was added or removed there is no need to show the complete tree expanded"
 	self changeTree expandAll.
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>loadMethodSelection [
+{ #category : #menus }
+PSMCPatchMorph >> loadMethodSelection [
 	"Install the selected change"
 	
 	self selectedChange ifNil: [ ^self ].
 	self selectedChange definition load.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>model [
+{ #category : #initialization }
+PSMCPatchMorph >> model [
 
 	^ super model ifNil: [ #() ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>model: aCollection [
+{ #category : #initialization }
+PSMCPatchMorph >> model: aCollection [
 	"Set the model and update the window."
 
 	super model: aCollection.
 	self changed: #changes
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>newChangeTreeMorph [
+{ #category : #'instance creation' }
+PSMCPatchMorph >> newChangeTreeMorph [
 	"Answer a new morph for the tree of changes."
 
 	^(self
@@ -347,22 +280,16 @@ PSMCPatchMorph>>newChangeTreeMorph [
 		keystrokeActionSelector: #changeTreeKey:
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>removeSelection [
+{ #category : #private }
+PSMCPatchMorph >> removeSelection [
 	"unselect current selection"
 	self selectedChangeWrapper: nil.
 	self changed: #changes.
 	self updateSource
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>revertChange: aChange [
+{ #category : #private }
+PSMCPatchMorph >> revertChange: aChange [
 	"Revert the change"
 
 	| loader |
@@ -371,11 +298,8 @@ PSMCPatchMorph>>revertChange: aChange [
 	loader loadWithName: ChangeSet current name
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>revertSelectedChange [
+{ #category : #private }
+PSMCPatchMorph >> revertSelectedChange [
 	"Revert the selected change"
 	| change |
 	change := self selectedChange.
@@ -386,31 +310,22 @@ PSMCPatchMorph>>revertSelectedChange [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>selectedChange [
+{ #category : #accessing }
+PSMCPatchMorph >> selectedChange [
 	"Answer the selected change."
 
 	^(self selectedChangeWrapper ifNil: [^nil]) operation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>selectedChangeWrapper [
+{ #category : #accessing }
+PSMCPatchMorph >> selectedChangeWrapper [
 	"Answer the selected change."
 
 	^selectedChangeWrapper
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>selectedChangeWrapper: aWrapper [
+{ #category : #accessing }
+PSMCPatchMorph >> selectedChangeWrapper: aWrapper [
 	"Set the selected change."
 
 	selectedChangeWrapper := aWrapper.
@@ -420,11 +335,8 @@ PSMCPatchMorph>>selectedChangeWrapper: aWrapper [
 		changed: #compositeText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>selectedMessageName [
+{ #category : #accessing }
+PSMCPatchMorph >> selectedMessageName [
 	"Answer the method selector or nil if no method change
 	is selected.."
 
@@ -433,11 +345,8 @@ PSMCPatchMorph>>selectedMessageName [
 		
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>selectionHasActualClass [
+{ #category : #private }
+PSMCPatchMorph >> selectionHasActualClass [
 	"Answer whether the currently selected change has an actual
 	class in the image."
 
@@ -446,11 +355,8 @@ PSMCPatchMorph>>selectionHasActualClass [
 		ifNotNil: [:w | w actualClass notNil]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>selectionIsMethodChange [
+{ #category : #private }
+PSMCPatchMorph >> selectionIsMethodChange [
 	"Answer whether the currently selected change is for a method."
 
 	^self selectedChange notNil and: [ 
@@ -458,11 +364,8 @@ PSMCPatchMorph>>selectionIsMethodChange [
 			self selectedChange definition isLoadable ] ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>update: aspect [
+{ #category : #updating }
+PSMCPatchMorph >> update: aspect [
 	"A join has probably changed its selection state."
 
 	super update: aspect.
@@ -470,11 +373,8 @@ PSMCPatchMorph>>update: aspect [
 		ifTrue: [self changed: #compositeText]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCPatchMorph>>updateSource [
+{ #category : #private }
+PSMCPatchMorph >> updateSource [
 	"Update the source difference morph."
 
 	|sel|

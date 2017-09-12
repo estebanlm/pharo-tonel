@@ -11,56 +11,37 @@ Class {
 	#instVars : [
 		'default'
 	],
-	#category : #Slot-Examples,
-	#timestamp : 'MarcusDenker 2/25/2015 17:17'
+	#category : #Slot-Examples
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ExampleSlotWithDefaultValue>>= other [
+{ #category : #comparing }
+ExampleSlotWithDefaultValue >> = other [
 	^ super = other and: [default = other default]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ExampleSlotWithDefaultValue>>default [
+{ #category : #accessing }
+ExampleSlotWithDefaultValue >> default [
 	^ default
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ExampleSlotWithDefaultValue>>default: anObject [
+{ #category : #accessing }
+ExampleSlotWithDefaultValue >> default: anObject [
 	default := anObject
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ExampleSlotWithDefaultValue>>hash [
+{ #category : #comparing }
+ExampleSlotWithDefaultValue >> hash [
 	^super hash bitXor: default hash
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ExampleSlotWithDefaultValue>>initialize: anObject [
+{ #category : #initialization }
+ExampleSlotWithDefaultValue >> initialize: anObject [
 	self write: default to: anObject. 
 	
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ExampleSlotWithDefaultValue>>printOn: aStream [
+{ #category : #printing }
+ExampleSlotWithDefaultValue >> printOn: aStream [
 	aStream 
 		store: self name;
 		nextPutAll: ' => ';
@@ -69,10 +50,7 @@ ExampleSlotWithDefaultValue>>printOn: aStream [
 		store: default
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ExampleSlotWithDefaultValue>>wantsInitalization [
+{ #category : #meta-object-protocol }
+ExampleSlotWithDefaultValue >> wantsInitalization [
 	^ true
 ]

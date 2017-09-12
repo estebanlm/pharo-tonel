@@ -22,79 +22,54 @@ Class {
 		'position',
 		'repeat'
 	],
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'RonieSalgado 9/28/2016 22:54'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeyboardEvent>>character [
+{ #category : #accessing }
+OSKeyboardEvent >> character [
 	
 	^ character
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeyboardEvent>>character: anObject [
+{ #category : #accessing }
+OSKeyboardEvent >> character: anObject [
 	
 	character := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeyboardEvent>>characterCode [
+{ #category : #accessing }
+OSKeyboardEvent >> characterCode [
 	"answer the unicode value"
 	
 	^ character ifNil: [0] ifNotNil: [ character charCode ] 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeyboardEvent>>initialize [
+{ #category : #initialization }
+OSKeyboardEvent >> initialize [
 	super initialize.
 	modifiers := OSStateModifiers new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeyboardEvent>>modifiers [
+{ #category : #accessing }
+OSKeyboardEvent >> modifiers [
 	
 	^ modifiers
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeyboardEvent>>position [
+{ #category : #accessing }
+OSKeyboardEvent >> position [
 	
 	^ position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeyboardEvent>>position: anObject [
+{ #category : #accessing }
+OSKeyboardEvent >> position: anObject [
 	
 	position := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeyboardEvent>>printOn: stream [
+{ #category : #printing }
+OSKeyboardEvent >> printOn: stream [
 	super printOn: stream.
 	stream space; nextPutAll: 'scanCode: '; print: scanCode.
 	stream space; nextPutAll: 'symbol '; print: symbol.
@@ -103,54 +78,36 @@ OSKeyboardEvent>>printOn: stream [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeyboardEvent>>repeat [
+{ #category : #accessing }
+OSKeyboardEvent >> repeat [
 	^ repeat
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeyboardEvent>>repeat: anObject [
+{ #category : #accessing }
+OSKeyboardEvent >> repeat: anObject [
 	repeat := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeyboardEvent>>scanCode [
+{ #category : #accessing }
+OSKeyboardEvent >> scanCode [
 	
 	^ scanCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeyboardEvent>>scanCode: anObject [
+{ #category : #accessing }
+OSKeyboardEvent >> scanCode: anObject [
 	
 	scanCode := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeyboardEvent>>symbol [
+{ #category : #accessing }
+OSKeyboardEvent >> symbol [
 	
 	^ symbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeyboardEvent>>symbol: anObject [
+{ #category : #accessing }
+OSKeyboardEvent >> symbol: anObject [
 	
 	symbol := anObject
 ]

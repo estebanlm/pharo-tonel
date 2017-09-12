@@ -49,15 +49,11 @@ Class {
 	#name : #Array,
 	#superclass : #ArrayedCollection,
 	#type : #variable,
-	#category : #Collections-Sequenceable,
-	#timestamp : 'StephaneDucasse 10/30/2015 09:03'
+	#category : #Collections-Sequenceable
 }
 
-{
-	#category : #'brace support',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array class>>braceStream: nElements [
+{ #category : #'brace support' }
+Array class >> braceStream: nElements [
 	"This method is used in compilation of brace constructs.
 	It MUST NOT be deleted or altered."
 
@@ -65,11 +61,8 @@ Array class>>braceStream: nElements [
 
 ]
 
-{
-	#category : #'brace support',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array class>>braceWith: a [
+{ #category : #'brace support' }
+Array class >> braceWith: a [
 	"This method is used in compilation of brace constructs.
 	It MUST NOT be deleted or altered."
 
@@ -79,11 +72,8 @@ Array class>>braceWith: a [
 	^ array
 ]
 
-{
-	#category : #'brace support',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array class>>braceWith: a with: b  [
+{ #category : #'brace support' }
+Array class >> braceWith: a with: b [ 
 	"This method is used in compilation of brace constructs.
 	It MUST NOT be deleted or altered."
 
@@ -94,11 +84,8 @@ Array class>>braceWith: a with: b  [
 	^ array
 ]
 
-{
-	#category : #'brace support',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array class>>braceWith: a with: b with: c  [
+{ #category : #'brace support' }
+Array class >> braceWith: a with: b [ with: c 
 	"This method is used in compilation of brace constructs.
 	It MUST NOT be deleted or altered."
 
@@ -110,11 +97,8 @@ Array class>>braceWith: a with: b with: c  [
 	^ array
 ]
 
-{
-	#category : #'brace support',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array class>>braceWith: a with: b with: c with: d [
+{ #category : #'brace support' }
+Array class >> braceWith: a with: b [ with: c with: d
 	"This method is used in compilation of brace constructs.
 	It MUST NOT be deleted or altered."
 
@@ -127,31 +111,22 @@ Array class>>braceWith: a with: b with: c with: d [
 	^ array
 ]
 
-{
-	#category : #'brace support',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array class>>braceWithNone [
+{ #category : #'brace support' }
+Array class >> braceWithNone [
 	"This method is used in compilation of brace constructs.
 	It MUST NOT be deleted or altered."
 
 	^ self new: 0
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array class>>empty [
+{ #category : #'instance creation' }
+Array class >> empty [
 	"A canonicalized empty Array instance."
 	^ #()
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array class>>new: sizeRequested  [
+{ #category : #'instance creation' }
+Array class >> new: sizeRequested [ 
 	"Answer an instance of this class with the number of indexable
 	variables specified by the argument, sizeRequested.
 	
@@ -162,50 +137,35 @@ Array class>>new: sizeRequested  [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>asArray [
+{ #category : #converting }
+Array >> asArray [
 	"Answer with the receiver itself."
 
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>atWrap: index  [
+{ #category : #accessing }
+Array >> atWrap: index [ 
 	"Optimized to go through the primitive if possible"
 	<primitive: 60>
 	^ self at: index - 1 \\ self size + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>atWrap: index put: anObject [
+{ #category : #accessing }
+Array >> atWrap: index put: anObject [
 	"Optimized to go through the primitive if possible"
 	<primitive: 61>
 	^ self at: index - 1 \\ self size + 1 put: anObject
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>copyWithDependent: newElement [
+{ #category : #copying }
+Array >> copyWithDependent: newElement [
 	self size = 0 ifTrue:[^DependentsArray with: newElement].
 	^self copyWith: newElement
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>elementsExchangeIdentityWith: otherArray [
+{ #category : #converting }
+Array >> elementsExchangeIdentityWith: otherArray [
 	"This primitive performs a bulk mutation, causing all pointers to the elements of the
 	 receiver to be replaced by pointers to the corresponding elements of otherArray.
 	 At the same time, all pointers to the elements of otherArray are replaced by
@@ -233,11 +193,8 @@ Array>>elementsExchangeIdentityWith: otherArray [
 	self primitiveFailed
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>elementsForwardIdentityTo: otherArray [
+{ #category : #converting }
+Array >> elementsForwardIdentityTo: otherArray [
 	"This primitive performs a bulk mutation, causing all pointers to the elements of the
 	 receiver to be replaced by pointers to the corresponding elements of otherArray.
 	 The identityHashes remain with the pointers rather than with the objects so that
@@ -247,11 +204,8 @@ Array>>elementsForwardIdentityTo: otherArray [
 	self primitiveFailed
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>elementsForwardIdentityTo: otherArray copyHash: copyHash [
+{ #category : #converting }
+Array >> elementsForwardIdentityTo: otherArray copyHash: copyHash [
 	"This primitive performs a bulk mutation, causing all pointers to the elements of the
 	 receiver to be replaced by pointers to the corresponding elements of otherArray.
 	 If copyHash is true, the identityHashes remain with the pointers rather than with the
@@ -263,11 +217,8 @@ Array>>elementsForwardIdentityTo: otherArray copyHash: copyHash [
 	self primitiveFailed
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>hasLiteral: literal [
+{ #category : #private }
+Array >> hasLiteral: literal [
 	"Answer true if literal is identical to any literal in this array, even 
 	if imbedded in further array structure. This method is only intended 
 	for private use by CompiledMethod hasLiteralSymbol:"
@@ -280,11 +231,8 @@ Array>>hasLiteral: literal [
 	^false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>hasLiteralSuchThat: testBlock [
+{ #category : #private }
+Array >> hasLiteralSuchThat: testBlock [
 	"Answer true if testBlock returns true for any literal in this array, even if imbedded in 	further Arrays or CompiledMethods.  This method is only intended for private use by 	CompiledMethod 	hasLiteralSuchThat:"
 	| lit |
 	1 to: self size do: [:index |
@@ -293,35 +241,23 @@ Array>>hasLiteralSuchThat: testBlock [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>isArray [
+{ #category : #testing }
+Array >> isArray [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>isLiteral [
+{ #category : #testing }
+Array >> isLiteral [
 	^self class == Array and: [self allSatisfy: [:each | each isLiteral]]
 ]
 
-{
-	#category : #'self evaluating',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>isSelfEvaluating [
+{ #category : #'self evaluating' }
+Array >> isSelfEvaluating [
 	^ (self allSatisfy: [:each | each isSelfEvaluating]) and: [self class == Array]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>literalEqual: other [
+{ #category : #comparing }
+Array >> literalEqual: other [
 
 	self class == other class ifFalse: [^ false].
 	self size = other size ifFalse: [^ false].
@@ -330,62 +266,44 @@ Array>>literalEqual: other [
 	^ true
 ]
 
-{
-	#category : #'self evaluating',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>printAsLiteralFormOn: aStream [
+{ #category : #'self evaluating' }
+Array >> printAsLiteralFormOn: aStream [
 	aStream nextPut: $#.
 	self printElementsOn: aStream
 
 ]
 
-{
-	#category : #'self evaluating',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>printAsSelfEvaluatingFormOn: aStream [
+{ #category : #'self evaluating' }
+Array >> printAsSelfEvaluatingFormOn: aStream [
 
 	aStream nextPut: ${.
 	self do: [:el | el printOn: aStream] separatedBy: [ aStream nextPutAll: '. '].
 	aStream nextPut: $}
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>printOn: aStream [
+{ #category : #printing }
+Array >> printOn: aStream [
 	self shouldBePrintedAsLiteral ifTrue: [self printAsLiteralFormOn: aStream. ^ self].
 	self isSelfEvaluating ifTrue: [self printAsSelfEvaluatingFormOn: aStream. ^ self].
 
 	super printOn: aStream
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>replaceFrom: start to: stop with: replacement startingAt: repStart  [
+{ #category : #private }
+Array >> replaceFrom: start to: stop with: replacement startingAt: repStart [ 
 	"Primitive. This destructively replaces elements from start to stop in the receiver starting at index, repStart, in the collection, replacement. Answer the receiver. Range checks are performed in the primitive only. Optional. See Object documentation whatIsAPrimitive."
 	<primitive: 105>
 	super replaceFrom: start to: stop with: replacement startingAt: repStart
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>shouldBePrintedAsLiteral [
+{ #category : #testing }
+Array >> shouldBePrintedAsLiteral [
 
 	^self class == Array and: [ self allSatisfy: [ :each | each shouldBePrintedAsLiteral ] ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Array>>storeOn: aStream  [
+{ #category : #printing }
+Array >> storeOn: aStream [ 
 	"Use the literal form if possible."
 
 	self shouldBePrintedAsLiteral

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMCollapsableBrick,
 	#superclass : #GLMBrick,
@@ -8,15 +5,11 @@ Class {
 		'headerBrick',
 		'contentBrick'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-UI,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Widgets-UI
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCollapsableBrick class>>createCollapsable [
+{ #category : #'instance creation' }
+GLMCollapsableBrick class >> createCollapsable [
 
 	^ self new
 		with: [ :collapsable | 
@@ -54,29 +47,20 @@ GLMCollapsableBrick class>>createCollapsable [
 				yourself)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCollapsableBrick class>>createCollapsableArray: anInteger [
+{ #category : #'instance creation' }
+GLMCollapsableBrick class >> createCollapsableArray: anInteger [
 
 	^ (1 to: anInteger) collect: [ :index | self createCollapsable hSpaceFill  ]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCollapsableBrick class>>exampleOpen [
+{ #category : #examples }
+GLMCollapsableBrick class >> exampleOpen [
 	
 	self gtExample openInBrickWindowLabeled: 'Collapsable Example'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCollapsableBrick class>>gtExample [
+{ #category : #examples }
+GLMCollapsableBrick class >> gtExample [
 	<gtExample>
 	<label: 'Very simple one collapsable item'>
 	
@@ -85,11 +69,8 @@ GLMCollapsableBrick class>>gtExample [
 		vShrinkWrap
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCollapsableBrick>>collapse [
+{ #category : #actions }
+GLMCollapsableBrick >> collapse [
 
 	self contentBrick ifNil: [ ^ self ].
 
@@ -97,19 +78,13 @@ GLMCollapsableBrick>>collapse [
 		ifTrue: [ self removeBrick: self contentBrick ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCollapsableBrick>>contentBrick [
+{ #category : #accessing }
+GLMCollapsableBrick >> contentBrick [
 	^ contentBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCollapsableBrick>>contentBrick: aBrick [
+{ #category : #accessing }
+GLMCollapsableBrick >> contentBrick: aBrick [
 	contentBrick := aBrick.
 	
 	self contentBrick
@@ -117,11 +92,8 @@ GLMCollapsableBrick>>contentBrick: aBrick [
 		vShrinkWrap
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCollapsableBrick>>expand [
+{ #category : #actions }
+GLMCollapsableBrick >> expand [
 
 	self contentBrick ifNil: [ ^ self ].
 
@@ -129,19 +101,13 @@ GLMCollapsableBrick>>expand [
 		ifFalse: [ self addBrickBack: self contentBrick ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCollapsableBrick>>headerBrick [
+{ #category : #accessing }
+GLMCollapsableBrick >> headerBrick [
 	^ headerBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCollapsableBrick>>headerBrick: aBrick [
+{ #category : #accessing }
+GLMCollapsableBrick >> headerBrick: aBrick [
 	headerBrick := aBrick.
 	
 	self headerBrick hSpaceFill.
@@ -149,11 +115,8 @@ GLMCollapsableBrick>>headerBrick: aBrick [
 	self addBrickFirst: self headerBrick
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCollapsableBrick>>initialize [
+{ #category : #initialization }
+GLMCollapsableBrick >> initialize [
 	super initialize.
 	
 	self
@@ -161,20 +124,14 @@ GLMCollapsableBrick>>initialize [
 		vShrinkWrap
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCollapsableBrick>>isExpanded [
+{ #category : #testing }
+GLMCollapsableBrick >> isExpanded [
 
 	^ self hasSubbrick: self contentBrick
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCollapsableBrick>>toggle [
+{ #category : #actions }
+GLMCollapsableBrick >> toggle [
 
 	self isExpanded
 		ifTrue: [ self collapse ]

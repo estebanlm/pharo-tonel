@@ -10,88 +10,60 @@ Class {
 		'classTraitDefinitions',
 		'methodDefinitions'
 	],
-	#category : #MonticelloFileTree-Core,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:57'
+	#category : #MonticelloFileTree-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStSnapshotWriter>>classDefinitions [
+{ #category : #accessing }
+MCFileTreeStSnapshotWriter >> classDefinitions [
     classDefinitions ifNil: [ classDefinitions := Dictionary new ].
     ^ classDefinitions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStSnapshotWriter>>classTraitDefinitions [
+{ #category : #accessing }
+MCFileTreeStSnapshotWriter >> classTraitDefinitions [
     classTraitDefinitions ifNil: [ classTraitDefinitions := Dictionary new ].
     ^ classTraitDefinitions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStSnapshotWriter>>methodDefinitions [
+{ #category : #accessing }
+MCFileTreeStSnapshotWriter >> methodDefinitions [
     methodDefinitions ifNil: [ methodDefinitions := Dictionary new ].
     ^ methodDefinitions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStSnapshotWriter>>traitDefinitions [
+{ #category : #accessing }
+MCFileTreeStSnapshotWriter >> traitDefinitions [
     traitDefinitions ifNil: [ traitDefinitions := Dictionary new ].
     ^ traitDefinitions
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStSnapshotWriter>>visitClassDefinition: definition [
+{ #category : #visiting }
+MCFileTreeStSnapshotWriter >> visitClassDefinition: definition [
     orderedClassNames add: definition className.
     self classDefinitions at: definition className put: definition
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStSnapshotWriter>>visitClassTraitDefinition: definition [
+{ #category : #visiting }
+MCFileTreeStSnapshotWriter >> visitClassTraitDefinition: definition [
     orderedTraitNames add: definition className, ' classTrait'.
     self classTraitDefinitions at: definition className put: definition
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStSnapshotWriter>>visitMethodDefinition: definition [
+{ #category : #visiting }
+MCFileTreeStSnapshotWriter >> visitMethodDefinition: definition [
     (self methodDefinitions
         at: definition className
         ifAbsent: [ self methodDefinitions at: definition className put: OrderedCollection new ]) add: definition
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStSnapshotWriter>>visitTraitDefinition: definition [
+{ #category : #visiting }
+MCFileTreeStSnapshotWriter >> visitTraitDefinition: definition [
     orderedTraitNames add: definition className.
     self traitDefinitions at: definition className put: definition
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStSnapshotWriter>>writeClassDefinition: definition to: classPath [
+{ #category : #writing }
+MCFileTreeStSnapshotWriter >> writeClassDefinition: definition to: classPath [
     self
         writeInDirectoryName: classPath
         fileName: definition className
@@ -99,11 +71,8 @@ MCFileTreeStSnapshotWriter>>writeClassDefinition: definition to: classPath [
         visit: [ self writeClassDefinition: definition ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStSnapshotWriter>>writeClassTraitDefinition: definition to: traitPath [
+{ #category : #writing }
+MCFileTreeStSnapshotWriter >> writeClassTraitDefinition: definition to: traitPath [
     self
         writeInDirectoryName: traitPath
         fileName: definition className, '_classTrait'
@@ -111,11 +80,8 @@ MCFileTreeStSnapshotWriter>>writeClassTraitDefinition: definition to: traitPath 
         visit: [ self writeClassTraitDefinition: definition ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStSnapshotWriter>>writeDefinitions: aCollection [
+{ #category : #initialize-release }
+MCFileTreeStSnapshotWriter >> writeDefinitions: aCollection [
   | basePath extensionClasses extensionMethodDefinitions methodHolders |
   self writeBasicDefinitions: aCollection.
   basePath := 'snapshot' , self fileUtils pathNameDelimiter asString , 'classes'
@@ -157,11 +123,8 @@ MCFileTreeStSnapshotWriter>>writeDefinitions: aCollection [
 
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStSnapshotWriter>>writeMethodDefinition: methodDefinition to: methodPath [
+{ #category : #writing }
+MCFileTreeStSnapshotWriter >> writeMethodDefinition: methodDefinition to: methodPath [
     | filename |
     filename := self fileNameForSelector: methodDefinition selector.
     self
@@ -171,11 +134,8 @@ MCFileTreeStSnapshotWriter>>writeMethodDefinition: methodDefinition to: methodPa
         visit: [ self writeMethodDefinition: methodDefinition ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStSnapshotWriter>>writeMethodHolderDefinitions: aCollection extension: extension to: basePath do: aBlock [
+{ #category : #'as yet unclassified' }
+MCFileTreeStSnapshotWriter >> writeMethodHolderDefinitions: aCollection extension: extension to: basePath do: aBlock [
   aCollection
     keysAndValuesDo: [ :className :definition | 
       | classPath instanceMethodPath classMethodPath filenameMetaMap theMethodDefinitions |
@@ -209,11 +169,8 @@ MCFileTreeStSnapshotWriter>>writeMethodHolderDefinitions: aCollection extension:
 
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStSnapshotWriter>>writeTraitDefinition: definition to: traitPath [
+{ #category : #writing }
+MCFileTreeStSnapshotWriter >> writeTraitDefinition: definition to: traitPath [
     self
         writeInDirectoryName: traitPath
         fileName: definition className

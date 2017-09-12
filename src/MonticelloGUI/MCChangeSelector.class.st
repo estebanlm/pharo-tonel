@@ -7,57 +7,38 @@ Class {
 	#instVars : [
 		'kept'
 	],
-	#category : #MonticelloGUI,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:52'
+	#category : #MonticelloGUI
 }
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCChangeSelector>>buttonSpecs [
+{ #category : #'morphic ui' }
+MCChangeSelector >> buttonSpecs [
 	^ #((Select select 'Select these changes')
 		 (Cancel cancel 'Cancel the operation')
 		)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCChangeSelector>>cancel [
+{ #category : #actions }
+MCChangeSelector >> cancel [
 	self answer: nil
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCChangeSelector>>defaultLabel [
+{ #category : #'morphic ui' }
+MCChangeSelector >> defaultLabel [
 	^ 'Change Selector'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCChangeSelector>>kept [
+{ #category : #accessing }
+MCChangeSelector >> kept [
 	^ kept ifNil: [kept := Set new]
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCChangeSelector>>listSelectionAt: aNumber [
+{ #category : #multi-selection }
+MCChangeSelector >> listSelectionAt: aNumber [
 	^ self kept includes: (self items at: aNumber)
 ]
 
-{
-	#category : #multi-selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCChangeSelector>>listSelectionAt: aNumber put: aBoolean [
+{ #category : #multi-selection }
+MCChangeSelector >> listSelectionAt: aNumber put: aBoolean [
 	| item |
 	item := self items at: aNumber.
 	aBoolean
@@ -65,37 +46,25 @@ MCChangeSelector>>listSelectionAt: aNumber put: aBoolean [
 		ifFalse: [self kept remove: item ifAbsent: []]
 ]
 
-{
-	#category : #emulating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCChangeSelector>>select [
+{ #category : #emulating }
+MCChangeSelector >> select [
 	self answer: (MCPatch operations: kept)
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCChangeSelector>>selectAll [
+{ #category : #selection }
+MCChangeSelector >> selectAll [
 	kept addAll: self items.
 	self changed: #list
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCChangeSelector>>selectNone [
+{ #category : #selection }
+MCChangeSelector >> selectNone [
 	kept := Set new.
 	self changed: #list
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCChangeSelector>>widgetSpecs [
+{ #category : #'morphic ui' }
+MCChangeSelector >> widgetSpecs [
 	 ^#(
 		((buttonRow) (0 0 1 0) (0 0 0 30))
 		((multiListMorph:selection:listSelection:menu: list selection listSelectionAt: methodListMenu:) (0 0 1 0.4) (0 30 0 0))

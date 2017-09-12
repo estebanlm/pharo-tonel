@@ -11,23 +11,16 @@ I will configure the renderer and the data source  based on a GLMFastTreeTablePr
 Class {
 	#name : #GLMMorphicFastTreeWithColumnsRenderer,
 	#superclass : #GLMMorphicFastTreeRenderer,
-	#category : #Glamour-FastTable-Morphic-Renderer,
-	#timestamp : 'AndreiChis 2/6/2017 14:17'
+	#category : #Glamour-FastTable-Morphic-Renderer
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFastTreeWithColumnsRenderer>>createDataSourceFrom: aPresentation [
+{ #category : #initialization }
+GLMMorphicFastTreeWithColumnsRenderer >> createDataSourceFrom: aPresentation [
 	^ GLMFastTreeTableDataSource new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFastTreeWithColumnsRenderer>>specificTableMorphInitializiation [
+{ #category : #initialization }
+GLMMorphicFastTreeWithColumnsRenderer >> specificTableMorphInitializiation [
 	self specificTableMorphColumnsInitialization.
 	super specificTableMorphInitializiation.
 	

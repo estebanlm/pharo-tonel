@@ -5,38 +5,24 @@ For setting/retrieving clipboard text, use clipboardText/clipboardText: accessor
 Class {
 	#name : #OSWindowClipboard,
 	#superclass : #Clipboard,
-	#category : #OSWindow-Core,
-	#timestamp : 'IgorStasenko 7/30/2014 16:20'
+	#category : #OSWindow-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowClipboard>>chooseRecentClipping [
+{ #category : #accessing }
+OSWindowClipboard >> chooseRecentClipping [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowClipboard>>clipboardText [
+{ #category : #accessing }
+OSWindowClipboard >> clipboardText [
 	^ World osWindow clipboardText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowClipboard>>clipboardText: aString [
+{ #category : #accessing }
+OSWindowClipboard >> clipboardText: aString [
 	World osWindow clipboardText: aString asString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowClipboard>>noteRecentClipping: text [
-
+{ #category : #private }
+OSWindowClipboard >> noteRecentClipping: text [
 ]

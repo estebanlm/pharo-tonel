@@ -5,30 +5,20 @@ This is a custom help book providing the API documentation for the announcements
 Class {
 	#name : #AnnouncementsAPIDocumentation,
 	#superclass : #AnnouncementsHelp,
-	#category : #Announcements-Help,
-	#timestamp : 'Tbn 11/12/2010 11:17'
+	#category : #Announcements-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnouncementsAPIDocumentation class>>bookName [
+{ #category : #accessing }
+AnnouncementsAPIDocumentation class >> bookName [
 	^'API Documentation'
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnouncementsAPIDocumentation class>>builder [
+{ #category : #defaults }
+AnnouncementsAPIDocumentation class >> builder [
 	^PackageAPIHelpBuilder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnouncementsAPIDocumentation class>>helpPackages [
+{ #category : #accessing }
+AnnouncementsAPIDocumentation class >> helpPackages [
 	^#('Announcements-Core' 'Announcements-View' 'Announcements-Tests-Core')
 ]

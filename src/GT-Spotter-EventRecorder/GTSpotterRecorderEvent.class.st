@@ -9,75 +9,50 @@ Class {
 		'timestamp',
 		'info'
 	],
-	#category : #GT-Spotter-EventRecorder-Events,
-	#timestamp : 'AndreiChis 3/2/2015 15:30'
+	#category : #GT-Spotter-EventRecorder-Events
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent class>>fromAnnouncement: anAnnouncement [
+{ #category : #'instance creation' }
+GTSpotterRecorderEvent class >> fromAnnouncement: anAnnouncement [
 
 	^ self new fromAnnouncement: anAnnouncement
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent class>>gtExampleAnySubclass [
+{ #category : #'instance creation' }
+GTSpotterRecorderEvent class >> gtExampleAnySubclass [
 	<gtExample>
 	^ self subclasses anyOne new 
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>accept: aVisitor [
+{ #category : #visitor }
+GTSpotterRecorderEvent >> accept: aVisitor [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'accessing - announcement info',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>announcementTimestamp [
+{ #category : #'accessing - announcement info' }
+GTSpotterRecorderEvent >> announcementTimestamp [
 	^ self infoAt: #timestamp
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>associations [
+{ #category : #converting }
+GTSpotterRecorderEvent >> associations [
 	^ info 
 			ifNil: [ #() ]
 			ifNotNil: [ info associations ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>closeActionSymbol [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> closeActionSymbol [
 	^ #improper
 ]
 
-{
-	#category : #'accessing - announcement info',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>computerUUID [
+{ #category : #'accessing - announcement info' }
+GTSpotterRecorderEvent >> computerUUID [
 	^ self infoAt: #computerUUID
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>dateAndTime [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> dateAndTime [
 	| aTimestamp |
 	self infoAt: #dateAndTime ifPresent: [ :obj | ^ obj ] ifAbsent: [ "ignore" ].
 	aTimestamp := self timestamp.
@@ -94,45 +69,30 @@ GTSpotterRecorderEvent>>dateAndTime [
 	^ aTimestamp
 ]
 
-{
-	#category : #'accessing - announcement info',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>eventRecorderVersion [
+{ #category : #'accessing - announcement info' }
+GTSpotterRecorderEvent >> eventRecorderVersion [
 	^ self infoAt: #eventRecorderVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>eventTimestamp [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> eventTimestamp [
 	^ self timestamp
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>fromAnnouncement: anAnnouncement [
+{ #category : #initialization }
+GTSpotterRecorderEvent >> fromAnnouncement: anAnnouncement [
 
 	
 ]
 
-{
-	#category : #gt-inspector-extension,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>gtInspectorItems [
+{ #category : #gt-inspector-extension }
+GTSpotterRecorderEvent >> gtInspectorItems [
 	^ Array
 		 with: (#eventTimestamp -> self timestamp) withAll: self associations
 ]
 
-{
-	#category : #gt-inspector-extension,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>gtInspectorItemsIn: composite [
+{ #category : #gt-inspector-extension }
+GTSpotterRecorderEvent >> gtInspectorItemsIn: composite [
 	<gtInspectorPresentationOrder: -1>  
 	^ (composite table)
 		title: 'Info';
@@ -155,340 +115,223 @@ GTSpotterRecorderEvent>>gtInspectorItemsIn: composite [
 		showOnly: 50
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>hashForText: aString [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> hashForText: aString [
 	^ self settings obfuscateIfNecessary: aString
 ]
 
-{
-	#category : #'accessing - announcement info',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>imageHash [
+{ #category : #'accessing - announcement info' }
+GTSpotterRecorderEvent >> imageHash [
 	^ self infoAt: #imageHash
 ]
 
-{
-	#category : #'accessing - announcement info',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>imageVersion [
+{ #category : #'accessing - announcement info' }
+GTSpotterRecorderEvent >> imageVersion [
 	^ self infoAt: #imageVersion
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>info [
+{ #category : #private }
+GTSpotterRecorderEvent >> info [
 	"For the testing purpose only; we use it in #instancesForAllEvents.
 	We want to instantiate info only when it is really necessary."
 	^ info ifNil: [ info := Dictionary new ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>infoAt: key [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> infoAt: key [
 	^ self infoAt: key ifAbsent: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>infoAt: key ifAbsent: absentBlock [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> infoAt: key ifAbsent: absentBlock [
 	info ifNil: [ ^ absentBlock value].
 	^ info at: key ifAbsent: absentBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>infoAt: key ifAbsentPut: putBlock [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> infoAt: key ifAbsentPut: putBlock [
 	info ifNil: [ info := Dictionary new ].
 	^ info at: key ifAbsentPut: putBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>infoAt: key ifPresent: presentBlock ifAbsent: absentBlock [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> infoAt: key ifPresent: presentBlock ifAbsent: absentBlock [
 	info ifNil: [ ^ absentBlock value].
 	^ info at: key ifPresent: presentBlock ifAbsent: absentBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>infoAt: key put: value [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> infoAt: key put: value [
 	info ifNil: [ info := Dictionary new ].
 	^ info at: key put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>infoAt: key putHashForText: valueString  [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> infoAt: key putHashForText: valueString [ 
 	^ self 
 		infoAt: key 
 		put: (self hashForText: valueString)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>initialize [
+{ #category : #initialization }
+GTSpotterRecorderEvent >> initialize [
 	super initialize.
 	timestamp := DateAndTime now.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>initializeObfuscated [
+{ #category : #initialization }
+GTSpotterRecorderEvent >> initializeObfuscated [
 	self obfuscated: Privacy sendEntityNames not.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>isCategorySelection [
+{ #category : #testing }
+GTSpotterRecorderEvent >> isCategorySelection [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>isCloseSpotter [
+{ #category : #testing }
+GTSpotterRecorderEvent >> isCloseSpotter [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>isContextChanged [
+{ #category : #testing }
+GTSpotterRecorderEvent >> isContextChanged [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>isDive [
+{ #category : #testing }
+GTSpotterRecorderEvent >> isDive [
 	^ self isDiveIn or: [ self isDiveOut ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>isDiveIn [
+{ #category : #testing }
+GTSpotterRecorderEvent >> isDiveIn [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>isDiveOut [
+{ #category : #testing }
+GTSpotterRecorderEvent >> isDiveOut [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>isHidePreview [
+{ #category : #testing }
+GTSpotterRecorderEvent >> isHidePreview [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>isOpenOrCloseSpotter [
+{ #category : #testing }
+GTSpotterRecorderEvent >> isOpenOrCloseSpotter [
 	^ self isOpenSpotter or: [ self isCloseSpotter ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>isOpenSpotter [
+{ #category : #testing }
+GTSpotterRecorderEvent >> isOpenSpotter [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>isSearchFinished [
+{ #category : #testing }
+GTSpotterRecorderEvent >> isSearchFinished [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>isShowPreview [
+{ #category : #testing }
+GTSpotterRecorderEvent >> isShowPreview [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>isUserSelection [
+{ #category : #testing }
+GTSpotterRecorderEvent >> isUserSelection [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>isUserSelectionClass [
+{ #category : #testing }
+GTSpotterRecorderEvent >> isUserSelectionClass [
 	^ false
 ]
 
-{
-	#category : #'accessing - announcement info',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>latestUpdate [
+{ #category : #'accessing - announcement info' }
+GTSpotterRecorderEvent >> latestUpdate [
 	^ self infoAt: #latestUpdate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>obfuscated [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> obfuscated [
 	^ self infoAt: #obfuscated ifAbsent: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>obfuscated: aBoolean [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> obfuscated: aBoolean [
 	^ self infoAt: #obfuscated put: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>removeInfoKey: key [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> removeInfoKey: key [
 	^ self removeInfoKey: key ifAbsent: [ "ignore" ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>removeInfoKey: key ifAbsent: absentBlock [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> removeInfoKey: key ifAbsent: absentBlock [
 	info ifNil: [ ^ absentBlock value].
 	^ info removeKey: key ifAbsent: absentBlock
 ]
 
-{
-	#category : #'accessing - announcement info',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>sessionCreationTime [
+{ #category : #'accessing - announcement info' }
+GTSpotterRecorderEvent >> sessionCreationTime [
 	^ self infoAt: #sessionCreationTime
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>settings [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> settings [
 	^ GlobalIdentifier uniqueInstance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>stringHashesAt: aSymbol [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> stringHashesAt: aSymbol [
 	^ self 
 		infoAt: aSymbol
 		ifPresent: [ :array | array first ]
 		ifAbsent: [ #() ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>stringHashesFor: anArrayOrNil [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> stringHashesFor: anArrayOrNil [
 	^ anArrayOrNil 
 			ifNil: [ #() ]
 			ifNotNil: [ :array | array first ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>stringSizesAt: aSymbol [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> stringSizesAt: aSymbol [
 	^ self 
 		infoAt: aSymbol
 		ifPresent: [ :array | array second ]
 		ifAbsent: [ #() ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>stringSizesFor: anArrayOrNil [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> stringSizesFor: anArrayOrNil [
 	^ anArrayOrNil 
 			ifNil: [ #() ]
 			ifNotNil: [ :array | array second ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>stringSpecialsAt: aSymbol [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> stringSpecialsAt: aSymbol [
 	^ self 
 		infoAt: aSymbol
 		ifPresent: [ :array | array third ]
 		ifAbsent: [ #() ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>stringSpecialsFor: anArrayOrNil [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> stringSpecialsFor: anArrayOrNil [
 	^ anArrayOrNil 
 			ifNil: [ #() ]
 			ifNotNil: [ :array | array third ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>textInfoFrom: aString [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> textInfoFrom: aString [
 	| strings hashes sizes specials |
 	aString isNil ifTrue: [ ^ nil ].
 	aString size isZero ifTrue: [ ^ nil ].
@@ -499,10 +342,7 @@ GTSpotterRecorderEvent>>textInfoFrom: aString [
 	^ Array with: hashes with: sizes with: specials 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderEvent>>timestamp [
+{ #category : #accessing }
+GTSpotterRecorderEvent >> timestamp [
 	^ timestamp
 ]

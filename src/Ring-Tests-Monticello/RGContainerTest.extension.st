@@ -1,12 +1,7 @@
-Extension {
-	#name : #RGContainerTest
-}
+Extension { #name : #RGContainerTest }
 
-{
-	#category : #'*Ring-Tests-Monticello',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RGContainerTest>>testRetrievingPackages [
+{ #category : #'*Ring-Tests-Monticello' }
+RGContainerTest >> testRetrievingPackages [
 	| rgClass rgMethod |
 	
 	rgClass := OrderedCollection asRingDefinition.

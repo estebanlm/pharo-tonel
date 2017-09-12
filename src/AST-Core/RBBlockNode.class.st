@@ -26,34 +26,24 @@ Class {
 		'body',
 		'scope'
 	],
-	#category : #AST-Core-Nodes,
-	#timestamp : 'NicolaiHess 8/2/2016 13:37'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode class>>arguments: argNodes body: sequenceNode  [
+{ #category : #'instance creation' }
+RBBlockNode class >> arguments: argNodes body: sequenceNode [ 
 	^(self new)
 		arguments: argNodes;
 		body: sequenceNode;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode class>>body: sequenceNode  [
+{ #category : #'instance creation' }
+RBBlockNode class >> body: sequenceNode [ 
 	^self arguments: #() body: sequenceNode
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>= anObject  [
+{ #category : #comparing }
+RBBlockNode >> = anObject [ 
 	self == anObject ifTrue: [^true].
 	self class = anObject class ifFalse: [^false].
 	self body = anObject body ifFalse: [^false].
@@ -62,159 +52,105 @@ RBBlockNode>>= anObject  [
 	^true
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visiting }
+RBBlockNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^aProgramNodeVisitor visitBlockNode: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>allArgumentVariables [
+{ #category : #accessing }
+RBBlockNode >> allArgumentVariables [
 	^(self argumentNames asOrderedCollection)
 		addAll: super allArgumentVariables;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>allDefinedVariables [
+{ #category : #accessing }
+RBBlockNode >> allDefinedVariables [
 	^(self argumentNames asOrderedCollection)
 		addAll: super allDefinedVariables;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>argumentNames [
+{ #category : #accessing }
+RBBlockNode >> argumentNames [
 	^ self arguments collect: [:each | each name] as: Array 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>arguments [
+{ #category : #accessing }
+RBBlockNode >> arguments [
 	^arguments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>arguments: argCollection  [
+{ #category : #accessing }
+RBBlockNode >> arguments: argCollection [ 
 	arguments := argCollection.
 	arguments do: [:each | each parent: self]
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>bar [
+{ #category : #accessing-token }
+RBBlockNode >> bar [
 	^ bar
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>bar: anInteger [
+{ #category : #accessing-token }
+RBBlockNode >> bar: anInteger [
 	bar := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>blockVariables [
+{ #category : #accessing }
+RBBlockNode >> blockVariables [
 	| vars |
 	vars := super blockVariables asOrderedCollection.
 	vars addAll: self argumentNames.
 	^vars
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>body [
+{ #category : #accessing }
+RBBlockNode >> body [
 	^body
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>body: stmtsNode  [
+{ #category : #accessing }
+RBBlockNode >> body: stmtsNode [ 
 	body := stmtsNode.
 	body parent: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>children [
+{ #category : #accessing }
+RBBlockNode >> children [
 	^self arguments copyWith: self body
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>colons [
+{ #category : #accessing-token }
+RBBlockNode >> colons [
 	^ colons
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>colons: anArray  [
+{ #category : #accessing-token }
+RBBlockNode >> colons: anArray [ 
 	colons := anArray
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>copyInContext: aDictionary  [
+{ #category : #matching }
+RBBlockNode >> copyInContext: aDictionary [ 
 	^ self class new
 		arguments: (self copyList: self arguments inContext: aDictionary);
 		body: (self body copyInContext: aDictionary);
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>defines: aName  [
+{ #category : #testing }
+RBBlockNode >> defines: aName [ 
 	^arguments anySatisfy: [:each | each name = aName]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>directlyUses: aNode  [
+{ #category : #testing }
+RBBlockNode >> directlyUses: aNode [ 
 	^false
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>equalTo: anObject withMapping: aDictionary  [
+{ #category : #comparing }
+RBBlockNode >> equalTo: anObject withMapping: aDictionary [ 
 	self class = anObject class ifFalse: [^false].
 	self arguments size = anObject arguments size ifFalse: [^false].
 	self arguments
@@ -226,35 +162,23 @@ RBBlockNode>>equalTo: anObject withMapping: aDictionary  [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>hasArgumentNamed: aString	 [
+{ #category : #testing }
+RBBlockNode >> hasArgumentNamed: aString [	
 	^ self arguments anySatisfy: [ :argument| argument name = aString ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>hasTemporaryNamed: aString	 [
+{ #category : #testing }
+RBBlockNode >> hasTemporaryNamed: aString [	
 	^ self temporaries anySatisfy: [ :temp| temp name = aString ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>hash [
+{ #category : #comparing }
+RBBlockNode >> hash [
 	^ (self hashForCollection: self arguments) bitXor: self body hash
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>initialize [
+{ #category : #initialization }
+RBBlockNode >> initialize [
 
 	super initialize.
 
@@ -267,59 +191,38 @@ RBBlockNode>>initialize [
 	scope := nil.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>isBlock [
+{ #category : #testing }
+RBBlockNode >> isBlock [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>isFaulty [
+{ #category : #testing }
+RBBlockNode >> isFaulty [
 	^(self arguments anySatisfy:  #isFaulty ) or: [ self body isFaulty]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>isImmediateNode [
+{ #category : #testing }
+RBBlockNode >> isImmediateNode [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>isLast: aNode  [
+{ #category : #testing }
+RBBlockNode >> isLast: aNode [ 
 	^body isLast: aNode
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>left [
+{ #category : #accessing-token }
+RBBlockNode >> left [
 	^ left
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>left: anInteger [
+{ #category : #accessing-token }
+RBBlockNode >> left: anInteger [
 	left := anInteger
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>match: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBBlockNode >> match: aNode inContext: aDictionary [ 
 	aNode class = self class ifFalse: [^false].
 	^(self 
 		matchList: arguments
@@ -328,137 +231,89 @@ RBBlockNode>>match: aNode inContext: aDictionary  [
 			and: [body match: aNode body inContext: aDictionary]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>needsParenthesis [
+{ #category : #testing }
+RBBlockNode >> needsParenthesis [
 	^false
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>postCopy [
+{ #category : #copying }
+RBBlockNode >> postCopy [
 	super postCopy.
 	self arguments: (self arguments collect: [ :each | each copy ]).
 	self body: self body copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>precedence [
+{ #category : #accessing }
+RBBlockNode >> precedence [
 	^0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>references: aVariableName  [
+{ #category : #testing }
+RBBlockNode >> references: aVariableName [ 
 	^body references: aVariableName
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>replaceNode: aNode withNode: anotherNode  [
+{ #category : #replacing }
+RBBlockNode >> replaceNode: aNode withNode: anotherNode [ 
 	body == aNode ifTrue: [self body: anotherNode].
 	self arguments: (arguments 
 				collect: [:each | each == aNode ifTrue: [anotherNode] ifFalse: [each]])
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>right [
+{ #category : #accessing-token }
+RBBlockNode >> right [
 	^ right
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>right: anInteger [
+{ #category : #accessing-token }
+RBBlockNode >> right: anInteger [
 	right := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>scope [
+{ #category : #accessing }
+RBBlockNode >> scope [
 	^ scope
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>scope: aScopedNode [
+{ #category : #accessing }
+RBBlockNode >> scope: aScopedNode [
 	scope := aScopedNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>startWithoutParentheses [
+{ #category : #accessing }
+RBBlockNode >> startWithoutParentheses [
 	^ left
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>statementComments [
+{ #category : #accessing }
+RBBlockNode >> statementComments [
 	"this is used for formatting comments for this node as a statement, but I don't have a single statement comment, my comments are place within the block code"
 
 	^ ''
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>statements [
+{ #category : #accessing }
+RBBlockNode >> statements [
 	^ self body statements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>stopWithoutParentheses [
+{ #category : #accessing }
+RBBlockNode >> stopWithoutParentheses [
 	^ right
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>temporaries [
+{ #category : #accessing }
+RBBlockNode >> temporaries [
 	^ self body temporaries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>temporaryNames [
+{ #category : #accessing }
+RBBlockNode >> temporaryNames [
 	^ self body temporaryNames
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBBlockNode>>uses: aNode  [
+{ #category : #testing }
+RBBlockNode >> uses: aNode [ 
 	aNode = body ifFalse: [^false].
 	^parent isMessage 
 		ifTrue: 

@@ -4,15 +4,11 @@ SUnit tests for RPackage Monticello synchronization
 Class {
 	#name : #RPackageMonticelloSynchronisationTest,
 	#superclass : #RPackageMCSynchronisationTest,
-	#category : #RPackage-Tests,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:00'
+	#category : #RPackage-Tests
 }
 
-{
-	#category : #'tests - operations on MCPackages',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMonticelloSynchronisationTest>>testAddMCPackageCreatesAPackage [
+{ #category : #'tests - operations on MCPackages' }
+RPackageMonticelloSynchronisationTest >> testAddMCPackageCreatesAPackage [
 	"test that when we create a MCPackage, a corresponding package is created"
 	
 	MCWorkingCopy forPackage: (MCPackage new name: #Zork).
@@ -21,11 +17,8 @@ RPackageMonticelloSynchronisationTest>>testAddMCPackageCreatesAPackage [
 					  
 ]
 
-{
-	#category : #'tests - operations on MCPackages',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMonticelloSynchronisationTest>>testAddMCPackageForCategoryAlreadyExistingDoesNotCreateAPackage [
+{ #category : #'tests - operations on MCPackages' }
+RPackageMonticelloSynchronisationTest >> testAddMCPackageForCategoryAlreadyExistingDoesNotCreateAPackage [
 	"test that when we create a MCPackage and that a category of this name already exists, no package is created"
 	"self debug: #testAddMCPackageForCategoryAlreadyExistingDoesNotCreateAPackage"
 	"self run: #testAddMCPackageForCategoryAlreadyExistingDoesNotCreateAPackage"	
@@ -40,11 +33,8 @@ RPackageMonticelloSynchronisationTest>>testAddMCPackageForCategoryAlreadyExistin
 					  
 ]
 
-{
-	#category : #'tests - operations on MCPackages',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMonticelloSynchronisationTest>>testUnloadMCPackageRemovesRPackage [
+{ #category : #'tests - operations on MCPackages' }
+RPackageMonticelloSynchronisationTest >> testUnloadMCPackageRemovesRPackage [
 	"test that when we remove a MC Package, the corresponding RPackage is removed from the organizer"
 	|XPackage class|
 
@@ -55,11 +45,8 @@ RPackageMonticelloSynchronisationTest>>testUnloadMCPackageRemovesRPackage [
 	self deny: (self organizer includesPackageNamed: #XXXXX).
 ]
 
-{
-	#category : #'tests - operations on MCPackages',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMonticelloSynchronisationTest>>testUnregisterMCPackageKeepsRPackage [
+{ #category : #'tests - operations on MCPackages' }
+RPackageMonticelloSynchronisationTest >> testUnregisterMCPackageKeepsRPackage [
 	"test that when we remove a MC Package, the corresponding RPackage is removed from the organizer"
 	
 	|XPackage class|

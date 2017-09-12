@@ -5,47 +5,31 @@ Longs are special, see FFIULong comment for details.
 Class {
 	#name : #FFILong,
 	#superclass : #FFIULong,
-	#category : #UnifiedFFI-Types,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Types
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFILong class>>externalType  [
+{ #category : #accessing }
+FFILong class >> externalType [ 
 	^ FFIArchitecture forCurrentArchitecture externalLongType
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFILong>>basicHandle: aHandle at: index [
+{ #category : #private }
+FFILong >> basicHandle: aHandle at: index [
 	^ aHandle platformLongAt: index
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFILong>>basicHandle: aHandle at: index put: value  [
+{ #category : #private }
+FFILong >> basicHandle: aHandle at: index put: value [ 
 	^ aHandle platformLongAt: index put: value
 ]
 
-{
-	#category : #'private emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFILong>>emitSelector [
+{ #category : #'private emitting code' }
+FFILong >> emitSelector [
 	^ 'platformLongAt'
 ]
 
-{
-	#category : #'private emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFILong>>offsetPointerReadFieldAt: offsetVariableName [
+{ #category : #'private emitting code' }
+FFILong >> offsetPointerReadFieldAt: offsetVariableName [
 	^ '^ExternalData 
 		fromHandle: (handle {1}: {2})
 		type: FFIArchitecture forCurrentArchitecture externalLongType asPointerType'

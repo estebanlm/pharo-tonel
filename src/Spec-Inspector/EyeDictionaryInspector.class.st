@@ -4,25 +4,18 @@ Specialized version of inspector showing keys on left panel and values on descri
 Class {
 	#name : #EyeDictionaryInspector,
 	#superclass : #EyeCollectionInspector,
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeDictionaryInspector>>addVariableFields: elements [
+{ #category : #list }
+EyeDictionaryInspector >> addVariableFields: elements [
 
 	self sortedKeys do: [ :key |
 		elements add: (IndexedEyeElement host: self object index: key)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeDictionaryInspector>>sortedKeys [
+{ #category : #accessing }
+EyeDictionaryInspector >> sortedKeys [
 
 	^ [ [ self object keys sort ] 
 		on: Error 

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZipCrcTests,
 	#superclass : #TestCase,
-	#category : #Compression-Tests-Streams,
-	#timestamp : ''
+	#category : #Compression-Tests-Streams
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipCrcTests>>testInvalidGZipCrc [
+{ #category : #tests }
+ZipCrcTests >> testInvalidGZipCrc [
 	"See that a wrong CRC raises an appropriate error"
 	| reader writer bytes crcByte |
 	writer := GZipWriteStream on: String new.
@@ -34,11 +27,8 @@ ZipCrcTests>>testInvalidGZipCrc [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipCrcTests>>testInvalidZLibCrc [
+{ #category : #tests }
+ZipCrcTests >> testInvalidZLibCrc [
 	"See that a wrong CRC raises an appropriate error"
 	| reader writer bytes crcByte |
 	writer := ZLibWriteStream on: String new.
@@ -60,11 +50,8 @@ ZipCrcTests>>testInvalidZLibCrc [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipCrcTests>>testInvalidZipCrc [
+{ #category : #tests }
+ZipCrcTests >> testInvalidZipCrc [
 	"See that a wrong CRC raises an appropriate error"
 	| reader writer bytes |
 	writer := ZipWriteStream on: String new.
@@ -87,11 +74,8 @@ ZipCrcTests>>testInvalidZipCrc [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipCrcTests>>testMissingGZipCrc [
+{ #category : #tests }
+ZipCrcTests >> testMissingGZipCrc [
 	"See that the lack of a CRC raises an appropriate error"
 	| reader writer bytes |
 	writer := GZipWriteStream on: String new.
@@ -112,11 +96,8 @@ ZipCrcTests>>testMissingGZipCrc [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipCrcTests>>testMissingZLibCrc [
+{ #category : #tests }
+ZipCrcTests >> testMissingZLibCrc [
 	"See that the lack of a CRC raises an appropriate error"
 	| reader writer bytes |
 	writer := ZLibWriteStream on: String new.
@@ -137,11 +118,8 @@ ZipCrcTests>>testMissingZLibCrc [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipCrcTests>>testMissingZipCrc [
+{ #category : #tests }
+ZipCrcTests >> testMissingZipCrc [
 	"See that the lack of a CRC does not raise an error"
 
 	| reader writer bytes readBytes |
@@ -158,11 +136,8 @@ ZipCrcTests>>testMissingZipCrc [
 	reader next: 100
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipCrcTests>>testValidGZipCrc [
+{ #category : #tests }
+ZipCrcTests >> testValidGZipCrc [
 	| reader writer bytes |
 	writer := GZipWriteStream on: String new.
 	writer nextPutAll: 'Hello World'.
@@ -173,11 +148,8 @@ ZipCrcTests>>testValidGZipCrc [
 	self assert: reader upToEnd = 'Hello World'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipCrcTests>>testValidZLibCrc [
+{ #category : #tests }
+ZipCrcTests >> testValidZLibCrc [
 	| reader writer bytes |
 	writer := ZLibWriteStream on: String new.
 	writer nextPutAll: 'Hello World'.
@@ -192,11 +164,8 @@ ZipCrcTests>>testValidZLibCrc [
 	self assert: (reader next: 100) = 'Hello World'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipCrcTests>>testValidZipCrc [
+{ #category : #tests }
+ZipCrcTests >> testValidZipCrc [
 	"See that a correct CRC does not raise an error and that we can read what we wrote."
 
 	| reader writer bytes readBytes |

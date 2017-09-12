@@ -7,96 +7,65 @@ Class {
 	#instVars : [
 		'protocolOrganizer'
 	],
-	#category : #Kernel-Protocols,
-	#timestamp : '<historical>'
+	#category : #Kernel-Protocols
 }
 
-{
-	#category : #data,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AllProtocol class>>defaultName [
+{ #category : #data }
+AllProtocol class >> defaultName [
 
 	^ #'-- all --'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AllProtocol class>>protocolOrganizer: protocolOrganizer [
+{ #category : #'instance creation' }
+AllProtocol class >> protocolOrganizer: protocolOrganizer [
 
 	^ self new
 		protocolOrganizer: protocolOrganizer;
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AllProtocol>>canBeRemoved [
+{ #category : #testing }
+AllProtocol >> canBeRemoved [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AllProtocol>>canBeRenamed [
+{ #category : #testing }
+AllProtocol >> canBeRenamed [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AllProtocol>>isVirtualProtocol [
+{ #category : #testing }
+AllProtocol >> isVirtualProtocol [ 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AllProtocol>>methods [
+{ #category : #accessing }
+AllProtocol >> methods [
 
 	^ self protocolOrganizer allMethods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AllProtocol>>name [
+{ #category : #accessing }
+AllProtocol >> name [
 
 	^ (self methods isEmpty and: [ protocolOrganizer protocols isEmpty])
 		ifTrue: [ self class nullCategory ]
 		ifFalse: [ name ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AllProtocol>>name: aString [
+{ #category : #accessing }
+AllProtocol >> name: aString [ 
 	self error: 'You cannot change my name'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AllProtocol>>protocolOrganizer [
+{ #category : #accessing }
+AllProtocol >> protocolOrganizer [
 	
 	^ protocolOrganizer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AllProtocol>>protocolOrganizer: anObject [
+{ #category : #accessing }
+AllProtocol >> protocolOrganizer: anObject [
 	
 	protocolOrganizer := anObject.
 ]

@@ -8,40 +8,27 @@ Class {
 		'suggestion',
 		'suggestedLogComment'
 	],
-	#category : #Monticello-Versioning,
-	#timestamp : 'TorstenBergmann 2/6/2014 08:09'
+	#category : #Monticello-Versioning
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionNameAndMessageRequest>>suggestedLogComment [
+{ #category : #accessing }
+MCVersionNameAndMessageRequest >> suggestedLogComment [
 
 	^ suggestedLogComment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionNameAndMessageRequest>>suggestedLogComment: aLogMessage [
+{ #category : #accessing }
+MCVersionNameAndMessageRequest >> suggestedLogComment: aLogMessage [
 
 	suggestedLogComment := aLogMessage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionNameAndMessageRequest>>suggestedName [
+{ #category : #accessing }
+MCVersionNameAndMessageRequest >> suggestedName [
 	^ suggestion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionNameAndMessageRequest>>suggestedName: aString [
+{ #category : #accessing }
+MCVersionNameAndMessageRequest >> suggestedName: aString [
 	suggestion := aString
 ]

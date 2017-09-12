@@ -8,47 +8,31 @@ Class {
 		'address',
 		'port'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 13:58'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientConnectionClosedEvent>>address [
+{ #category : #accessing }
+ZnClientConnectionClosedEvent >> address [
 	^ address
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientConnectionClosedEvent>>address: anObject [
+{ #category : #accessing }
+ZnClientConnectionClosedEvent >> address: anObject [
 	address := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientConnectionClosedEvent>>port [
+{ #category : #accessing }
+ZnClientConnectionClosedEvent >> port [
 	^ port
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientConnectionClosedEvent>>port: anObject [
+{ #category : #accessing }
+ZnClientConnectionClosedEvent >> port: anObject [
 	port := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientConnectionClosedEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnClientConnectionClosedEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream << ' Connection Closed '.
 	address do: [ :each | stream print: each ] separatedBy: [ stream nextPut: $. ].

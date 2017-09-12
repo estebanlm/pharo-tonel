@@ -1,95 +1,63 @@
-Extension {
-	#name : #Object
-}
+Extension { #name : #Object }
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Object>>ffiCall: fnSpec [
+{ #category : #'*UnifiedFFI' }
+Object >> ffiCall: fnSpec [
 	^ (self ffiCalloutIn: thisContext sender)
 		convention: self ffiCallingConvention;
 		function: fnSpec module: self ffiLibraryName
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Object>>ffiCall: fnSpec module: aModuleName [
+{ #category : #'*UnifiedFFI' }
+Object >> ffiCall: fnSpec module: aModuleName [
 	^ (self ffiCalloutIn: thisContext sender)
 		convention: self ffiCallingConvention;
 		function: fnSpec module: aModuleName 
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Object>>ffiCall: fnSpec module: aModuleName options: callOptions [
+{ #category : #'*UnifiedFFI' }
+Object >> ffiCall: fnSpec module: aModuleName options: callOptions [
 	^ (self ffiCalloutIn: thisContext sender)
 		convention: self ffiCallingConvention;
 		options: callOptions;
 		function: fnSpec module: aModuleName 
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Object>>ffiCall: fnSpec options: callOptions [
+{ #category : #'*UnifiedFFI' }
+Object >> ffiCall: fnSpec options: callOptions [
 	^ (self ffiCalloutIn: thisContext sender)
 		convention: self ffiCallingConvention;
 		options: callOptions;
 		function: fnSpec module: self ffiLibraryName
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Object>>ffiCallingConvention [
+{ #category : #'*UnifiedFFI' }
+Object >> ffiCallingConvention [
 	^ OSPlatform current ffiCallingConvention
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Object>>ffiCallout [
+{ #category : #'*UnifiedFFI' }
+Object >> ffiCallout [
 	^ FFICalloutAPI calloutAPIClass inContext: thisContext sender
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Object>>ffiCalloutIn: aContext [
+{ #category : #'*UnifiedFFI' }
+Object >> ffiCalloutIn: aContext [
 	^ FFICalloutAPI calloutAPIClass inContext: aContext
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Object>>ffiLibraryName [
+{ #category : #'*UnifiedFFI' }
+Object >> ffiLibraryName [
 	self flag: 'HACK: avoid direct subclassResponsibility to not break RB test cases..'.
 	^ SubclassResponsibility signalFor: thisContext selector
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Object>>isExternalType [
+{ #category : #'*UnifiedFFI' }
+Object >> isExternalType [
 	^ false
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Object>>packToArity: arity [
+{ #category : #'*UnifiedFFI' }
+Object >> packToArity: arity [
 	"This will answer a pointer to this object. 
 	 It is like doing ==var ptr=&aVariable== in C (up to arity). 
 	
@@ -102,11 +70,8 @@ Object>>packToArity: arity [
 	^ rolledPointer
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Object>>pointer [
+{ #category : #'*UnifiedFFI' }
+Object >> pointer [
 	"Answers a pointer to me (see overrides for implementations)"
 	self error: 'You cannot get a pointer to me.'
 ]

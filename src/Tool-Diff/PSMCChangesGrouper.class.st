@@ -11,48 +11,35 @@ Class {
 		'currentOperation',
 		'classChanges'
 	],
-	#category : #Tool-Diff,
-	#timestamp : 'GuillermoPolito 8/21/2014 17:09'
+	#category : #Tool-Diff
 }
 
-{
-	#category : #'helper methods',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangesGrouper class>>group: aCollectionOfPatches [
+{ #category : #'helper methods' }
+PSMCChangesGrouper class >> group: aCollectionOfPatches [
 
 	^ self new
 		model: aCollectionOfPatches;
 		group
 ]
 
-{
-	#category : #grouping,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangesGrouper>>ensureClassChangeWrapperNamed: aClassName [
+{ #category : #grouping }
+PSMCChangesGrouper >> ensureClassChangeWrapperNamed: aClassName [
 	
 	(classes includes: aClassName)
 		ifFalse: [ classes add: aClassName.
 				classChanges add: (PSMCClassChangeWrapper with: aClassName model: model ) ]
 ]
 
-{
-	#category : #grouping,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangesGrouper>>group [
+{ #category : #grouping }
+PSMCChangesGrouper >> group [
 
 	model do: [:operation | self visit: operation ].
 	^ (nonClassChanges sorted: [:a :b | a item <= b item]),
 		(classChanges sorted: [:a :b | a item <= b item])
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangesGrouper>>initialize [
+{ #category : #initialization }
+PSMCChangesGrouper >> initialize [
 
 	super initialize.
 	classChanges := OrderedCollection new.
@@ -60,20 +47,14 @@ PSMCChangesGrouper>>initialize [
 	classes := Set new.
 ]
 
-{
-	#category : #grouping,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangesGrouper>>model: aCollection  [
+{ #category : #grouping }
+PSMCChangesGrouper >> model: aCollection [ 
 
 	model := aCollection.
 ]
 
-{
-	#category : #grouping,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangesGrouper>>visit: aMCOperation [
+{ #category : #grouping }
+PSMCChangesGrouper >> visit: aMCOperation [
 
 	| previous |
 	previous := currentOperation.
@@ -82,74 +63,50 @@ PSMCChangesGrouper>>visit: aMCOperation [
 	currentOperation := previous.
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangesGrouper>>visitClassDefinition: aMCClassDefinition  [
+{ #category : #visitor }
+PSMCChangesGrouper >> visitClassDefinition: aMCClassDefinition [ 
 	
 	self ensureClassChangeWrapperNamed: aMCClassDefinition fullClassName
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangesGrouper>>visitClassTraitDefinition: aMCClassTraitDefinition  [
+{ #category : #visitor }
+PSMCChangesGrouper >> visitClassTraitDefinition: aMCClassTraitDefinition [ 
 	
 	"Do nothing for class traits (similar to #visitMetaclassDefinition:)"
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangesGrouper>>visitDefaultDefinition: aDefinition [
+{ #category : #visitor }
+PSMCChangesGrouper >> visitDefaultDefinition: aDefinition [
 
 	nonClassChanges add: aDefinition
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangesGrouper>>visitMetaclassDefinition: aMCClassDefinition  [
+{ #category : #visitor }
+PSMCChangesGrouper >> visitMetaclassDefinition: aMCClassDefinition [ 
 	
 	"Do nothing for metaclasses"
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangesGrouper>>visitMethodDefinition: aMCMethodDefinition  [
+{ #category : #visitor }
+PSMCChangesGrouper >> visitMethodDefinition: aMCMethodDefinition [ 
 	
 	self ensureClassChangeWrapperNamed: aMCMethodDefinition fullClassName
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangesGrouper>>visitOrganizationDefinition: aMCOrganizationDefinition  [
+{ #category : #visitor }
+PSMCChangesGrouper >> visitOrganizationDefinition: aMCOrganizationDefinition [ 
 	
 	nonClassChanges add: (currentOperation patchWrapper model: model)
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangesGrouper>>visitScriptDefinition: aMCScriptDefinition [
+{ #category : #visitor }
+PSMCChangesGrouper >> visitScriptDefinition: aMCScriptDefinition [
 
 	"do nothing for script definitions"
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangesGrouper>>visitTraitDefinition: aMCTraitDefinition  [
+{ #category : #visitor }
+PSMCChangesGrouper >> visitTraitDefinition: aMCTraitDefinition [ 
 	
 	self ensureClassChangeWrapperNamed: aMCTraitDefinition fullClassName
 ]

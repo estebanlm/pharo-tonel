@@ -15,15 +15,11 @@ Class {
 		'topicToBuild',
 		'rootToBuildFrom'
 	],
-	#category : #HelpSystem-Core-Builders,
-	#timestamp : 'tbn 2/12/2010 14:54'
+	#category : #HelpSystem-Core-Builders
 }
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBuilder class>>buildHelpTopicFrom: aHelpTopicDescription [
+{ #category : #building }
+HelpBuilder class >> buildHelpTopicFrom: aHelpTopicDescription [
 	"Start building from the given help topic description"
 	
 	^(self new)
@@ -32,20 +28,14 @@ HelpBuilder class>>buildHelpTopicFrom: aHelpTopicDescription [
 		topicToBuild 
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBuilder>>build [
+{ #category : #building }
+HelpBuilder >> build [
 	self subclassResponsibility 
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBuilder>>initialize  [
+{ #category : #initialization }
+HelpBuilder >> initialize [ 
 	"Initializes the receiver"
 	
 	super initialize.
@@ -53,26 +43,17 @@ HelpBuilder>>initialize  [
 	 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBuilder>>rootToBuildFrom: anObject [
+{ #category : #accessing }
+HelpBuilder >> rootToBuildFrom: anObject [
 	rootToBuildFrom := anObject
 ]
 
-{
-	#category : #'private accessing',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBuilder>>topicClass [
+{ #category : #'private accessing' }
+HelpBuilder >> topicClass [
 	^HelpTopic
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBuilder>>topicToBuild [
+{ #category : #accessing }
+HelpBuilder >> topicToBuild [
 	^topicToBuild
 ]

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloDictionaryRepositoryTest,
 	#superclass : #GoferTest,
@@ -8,54 +5,38 @@ Class {
 		'tempRepositories',
 		'initialWorkingCopyList'
 	],
-	#category : #Metacello-TestsMC,
-	#timestamp : ''
+	#category : #Metacello-TestsMC
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloDictionaryRepositoryTest>>alternateRepository [
+{ #category : #running }
+MetacelloDictionaryRepositoryTest >> alternateRepository [
 	"MetacelloAlternateResource reset"
 
 	^ MetacelloAlternateResource current monticelloRepository
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloDictionaryRepositoryTest>>configurationRepository [
+{ #category : #running }
+MetacelloDictionaryRepositoryTest >> configurationRepository [
 	"MetacelloConfigurationResource reset"
 
 	^ MetacelloConfigurationResource current monticelloRepository
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloDictionaryRepositoryTest>>defaultTimeout [
+{ #category : #running }
+MetacelloDictionaryRepositoryTest >> defaultTimeout [
 	"I don't want no stkinkin' timeouts"
 	^60000
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloDictionaryRepositoryTest>>doSilently [
+{ #category : #running }
+MetacelloDictionaryRepositoryTest >> doSilently [
 
 	^true
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloDictionaryRepositoryTest>>hasPackage: aString [
+{ #category : #utilities }
+MetacelloDictionaryRepositoryTest >> hasPackage: aString [
 	| package |
 	package := MCWorkingCopy allManagers
 		detect: [ :each | each packageName = aString ]
@@ -63,29 +44,20 @@ MetacelloDictionaryRepositoryTest>>hasPackage: aString [
 	^ package notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloDictionaryRepositoryTest>>loadType [
+{ #category : #accessing }
+MetacelloDictionaryRepositoryTest >> loadType [
 
 	^#linear
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloDictionaryRepositoryTest>>monticelloRepository [
+{ #category : #accessing }
+MetacelloDictionaryRepositoryTest >> monticelloRepository [
 	"MetacelloMonticelloResource reset"
 	^ MetacelloMonticelloResource current monticelloRepository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloDictionaryRepositoryTest>>project [
+{ #category : #accessing }
+MetacelloDictionaryRepositoryTest >> project [
 
 	| constructor project |
 	"Construct Metacello project"
@@ -99,11 +71,8 @@ MetacelloDictionaryRepositoryTest>>project [
 	^project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloDictionaryRepositoryTest>>projectWith: projectAttributes [
+{ #category : #accessing }
+MetacelloDictionaryRepositoryTest >> projectWith: projectAttributes [
 
 	| project |
 	"Construct Metacello project"
@@ -119,11 +88,8 @@ MetacelloDictionaryRepositoryTest>>projectWith: projectAttributes [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloDictionaryRepositoryTest>>runCase [
+{ #category : #running }
+MetacelloDictionaryRepositoryTest >> runCase [
 	| original |
 	(self doSilently) ifFalse: [ ^super runCase ].
 	original := MetacelloPlatform current bypassGoferLoadUpdateCategories.
@@ -133,11 +99,8 @@ MetacelloDictionaryRepositoryTest>>runCase [
 		ensure: [ MetacelloPlatform current bypassGoferLoadUpdateCategories: original ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloDictionaryRepositoryTest>>setUp [
+{ #category : #running }
+MetacelloDictionaryRepositoryTest >> setUp [
   | repo |
   super setUp.
   MetacelloPlatform current clearPackageCache.
@@ -156,11 +119,8 @@ MetacelloDictionaryRepositoryTest>>setUp [
     collect: [ :each | each packageName ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloDictionaryRepositoryTest>>tearDown [
+{ #category : #running }
+MetacelloDictionaryRepositoryTest >> tearDown [
   | aGofer finalWorkingCopyList diff |
   super tearDown.
   aGofer := Gofer new.
@@ -186,11 +146,8 @@ MetacelloDictionaryRepositoryTest>>tearDown [
   self assert: diff isEmpty
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloDictionaryRepositoryTest>>tearDownPackages: aGoferInstance [
+{ #category : #running }
+MetacelloDictionaryRepositoryTest >> tearDownPackages: aGoferInstance [
 
 	(self hasPackage: 'GoferFoo')
 		ifTrue: [ aGoferInstance package: 'GoferFoo' ].
@@ -205,11 +162,8 @@ MetacelloDictionaryRepositoryTest>>tearDownPackages: aGoferInstance [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloDictionaryRepositoryTest>>tempRepositories [
+{ #category : #accessing }
+MetacelloDictionaryRepositoryTest >> tempRepositories [
 
 	tempRepositories ifNil: [ tempRepositories := OrderedCollection new ].
 	^tempRepositories

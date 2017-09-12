@@ -36,23 +36,16 @@ Class {
 		'context',
 		'topContext'
 	],
-	#category : #DebuggerModel,
-	#timestamp : '<historical>'
+	#category : #DebuggerModel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugContext class>>forContext: aContext  [
+{ #category : #'instance creation' }
+DebugContext class >> forContext: aContext [ 
 	^ self new forContext: aContext 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugContext>>blockNotFoundDialog: aMethod with: aText [
+{ #category : #private }
+DebugContext >> blockNotFoundDialog: aMethod with: aText [
 
 	| browser message result |
 	
@@ -79,11 +72,8 @@ DebugContext>>blockNotFoundDialog: aMethod with: aText [
 		hasUnacceptedEdits: true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugContext>>checkSelectorUnchanged: aSelector [
+{ #category : #private }
+DebugContext >> checkSelectorUnchanged: aSelector [
 	| unchanged |
 	unchanged := aSelector == self selectedMessageName
 		or: [ self selectedMessageName isDoIt and: [ aSelector numArgs = self selectedMessageName numArgs ] ].
@@ -92,11 +82,8 @@ DebugContext>>checkSelectorUnchanged: aSelector [
 	^ unchanged
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugContext>>confirmOnTraitOverwrite: aSelector inClass: aClass [
+{ #category : #private }
+DebugContext >> confirmOnTraitOverwrite: aSelector inClass: aClass [
 	"test if method originates from a trait and let the user choose which one should be change"
 
 	| target method |
@@ -112,19 +99,13 @@ DebugContext>>confirmOnTraitOverwrite: aSelector inClass: aClass [
 	^ target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugContext>>context [
+{ #category : #accessing }
+DebugContext >> context [
 	^ context
 ]
 
-{
-	#category : #'evaluating actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugContext>>evaluate: expression [
+{ #category : #'evaluating actions' }
+DebugContext >> evaluate: expression [
 	^ Smalltalk compiler
 		source: expression;
 		context: context;
@@ -132,20 +113,14 @@ DebugContext>>evaluate: expression [
 		evaluate
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugContext>>forContext: aContext  [
+{ #category : #initialization }
+DebugContext >> forContext: aContext [ 
 	context := aContext.
 	topContext := aContext.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugContext>>locateClosureHomeWithContent: aText [
+{ #category : #accessing }
+DebugContext >> locateClosureHomeWithContent: aText [
 	"In case the current context is a BlockContext locate the closureHome and ask the
 	user to validate the new context. If closureHome is not found or the user does not 
 	validate the new context, return nil. aText is the new content of the current context.
@@ -164,30 +139,21 @@ DebugContext>>locateClosureHomeWithContent: aText [
 	^ context
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugContext>>receiver [
+{ #category : #accessing }
+DebugContext >> receiver [
 	^ context receiver
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugContext>>receiverClass [
+{ #category : #accessing }
+DebugContext >> receiverClass [
 	"Answer the class of the receiver. 
 	It may differ from 'self selectedClass' "
 	
 	^ context receiver class
 ]
 
-{
-	#category : #'evaluating actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugContext>>recompileCurrentMethodTo: aText notifying: aNotifyer [
+{ #category : #'evaluating actions' }
+DebugContext >> recompileCurrentMethodTo: aText notifying: aNotifyer [
 	| classOrTraitOfMethod selector |
 	
 	selector := self selectedClass compiler parseSelector: aText.
@@ -205,50 +171,35 @@ DebugContext>>recompileCurrentMethodTo: aText notifying: aNotifyer [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugContext>>selectedClass [
+{ #category : #accessing }
+DebugContext >> selectedClass [
 	"Answer the class in which the current context's method was found."
 
 	^ context methodClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugContext>>selectedMessageCategoryName [
+{ #category : #accessing }
+DebugContext >> selectedMessageCategoryName [
 	"Answer the name of the message category of the message of the current context."
 
 	^ self selectedClass organization categoryOfElement: self selectedMessageName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugContext>>selectedMessageName [
+{ #category : #accessing }
+DebugContext >> selectedMessageName [
 	"Answer the message selector of the current context.
 	 If the method is unbound we can still usefully answer its old selector."
 
 	^ context methodSelector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugContext>>source [
+{ #category : #private }
+DebugContext >> source [
 	"Answer the source code of the currently selected context."
 	^ context sourceCode
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugContext>>topContext: aContext [
+{ #category : #initialization }
+DebugContext >> topContext: aContext [
 	topContext  := aContext 
 ]

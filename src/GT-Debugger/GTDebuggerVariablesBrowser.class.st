@@ -10,23 +10,16 @@ Class {
 		'debugger',
 		'cachedVariables'
 	],
-	#category : #GT-Debugger-UI,
-	#timestamp : 'AndreiChis 12/30/2015 11:06'
+	#category : #GT-Debugger-UI
 }
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerVariablesBrowser>>buildVariablesFromContext: aContext  [
+{ #category : #'private building' }
+GTDebuggerVariablesBrowser >> buildVariablesFromContext: aContext [ 
 	^ aContext gtDebuggerRetrieveVariableValuePairs
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerVariablesBrowser>>compose   [
+{ #category : #building }
+GTDebuggerVariablesBrowser >> compose [  
 	| tabulator |
 	tabulator := self tabulator.
 	tabulator row: #main.
@@ -58,11 +51,8 @@ GTDebuggerVariablesBrowser>>compose   [
 	tabulator transmit from: #main; toOutsidePort: #selection.
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerVariablesBrowser>>contextEvaluatorIn: aComposite [
+{ #category : #'private building' }
+GTDebuggerVariablesBrowser >> contextEvaluatorIn: aComposite [
 
 	aComposite pharoScript
 		doItReceiver: [ self debugger selectedContext receiver ];
@@ -81,27 +71,18 @@ GTDebuggerVariablesBrowser>>contextEvaluatorIn: aComposite [
 		installDefaultSelectionActions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerVariablesBrowser>>debugger [
+{ #category : #accessing }
+GTDebuggerVariablesBrowser >> debugger [
 	^ debugger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerVariablesBrowser>>debugger: anObject [
+{ #category : #accessing }
+GTDebuggerVariablesBrowser >> debugger: anObject [
 	debugger := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerVariablesBrowser>>restoreSettings [
+{ #category : #actions }
+GTDebuggerVariablesBrowser >> restoreSettings [
 	| currentPane presentationTitle lastActivePresentation |
 	
 	presentationTitle := self debugger cache at: #activePresentationTitle ifAbsent: [ ^ self ].
@@ -112,37 +93,25 @@ GTDebuggerVariablesBrowser>>restoreSettings [
 	currentPane lastActivePresentation: lastActivePresentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerVariablesBrowser>>selectedVariableForContext: aContext  [
+{ #category : #accessing }
+GTDebuggerVariablesBrowser >> selectedVariableForContext: aContext [ 
 	^ (self variablesFromContext: aContext) 
 		detect: [ :each | each key = self debugger selectedVariableName ] 
 		ifNone: [ cachedVariables detect: [ :each | each key = 'self' ] ifNone: [ nil ] ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerVariablesBrowser>>updateVariablesForContext [
+{ #category : #actions }
+GTDebuggerVariablesBrowser >> updateVariablesForContext [
 	cachedVariables := self 
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerVariablesBrowser>>variablesFromContext: aContext  [
+{ #category : #'private building' }
+GTDebuggerVariablesBrowser >> variablesFromContext: aContext [ 
 	^ cachedVariables ifNil: [ cachedVariables := self buildVariablesFromContext: aContext ]
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerVariablesBrowser>>variablesIn: composite [
+{ #category : #'private building' }
+GTDebuggerVariablesBrowser >> variablesIn: composite [
 	^ composite fastTable
 		useCache;
 		display: [ :aContext | self variablesFromContext: aContext. ];

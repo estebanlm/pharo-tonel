@@ -7,31 +7,21 @@ Class {
 	#type : #words,
 	#traits : 'TPointAccess',
 	#classTraits : 'TPointAccess classTrait',
-	#category : #Balloon-Collections,
-	#timestamp : '<historical>'
+	#category : #Balloon-Collections
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-PointArray class>>new: n [
+{ #category : #'instance creation' }
+PointArray class >> new: n [
 	^super new: n*2
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-PointArray>>asPointArray [
+{ #category : #converting }
+PointArray >> asPointArray [
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-PointArray>>size [
+{ #category : #accessing }
+PointArray >> size [
 	"Return the number of elements in the receiver"
 	^super size // 2
 ]

@@ -11,23 +11,16 @@ Class {
 		'password',
 		'readerCache'
 	],
-	#category : #MonticelloRemoteRepositories,
-	#timestamp : '<historical>'
+	#category : #MonticelloRemoteRepositories
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository class>>baseURL [
+{ #category : #accessing }
+MCHttpRepository class >> baseURL [
 	^ ''
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository class>>basicFromUrl: aZnUrl [
+{ #category : #'instance creation' }
+MCHttpRepository class >> basicFromUrl: aZnUrl [
 	^ aZnUrl hasUsername
 		ifFalse: [ self location: aZnUrl location ]
 		ifTrue: [ (self repositoryClassFor: aZnUrl location) new
@@ -37,31 +30,22 @@ MCHttpRepository class>>basicFromUrl: aZnUrl [
 				yourself  ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository class>>clearPasswords [
+{ #category : #initialization }
+MCHttpRepository class >> clearPasswords [
 	self allSubInstancesDo: [:ea | ea password: ''].
 
 ]
 
-{
-	#category : #'creation template',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository class>>creationTemplate [
+{ #category : #'creation template' }
+MCHttpRepository class >> creationTemplate [
 	^self creationTemplateLocation: self baseURL
 		user: ''
 		password: ''
 
 ]
 
-{
-	#category : #'creation template',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository class>>creationTemplateLocation: location user: user password: password [
+{ #category : #'creation template' }
+MCHttpRepository class >> creationTemplateLocation: location user: user password: password [
 	^
 self name, '
 	location: {1}
@@ -69,28 +53,19 @@ self name, '
 	password: {3}' format: {location printString. user printString. password printString}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository class>>description [
+{ #category : #accessing }
+MCHttpRepository class >> description [
 	^ 'HTTP'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository class>>isResponsibleFor: aURLString [
+{ #category : #testing }
+MCHttpRepository class >> isResponsibleFor: aURLString [
 	"Override in subclasses to enable custom instances for certain URLs"
 	^ true
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository class>>location: location [
+{ #category : #'instance creation' }
+MCHttpRepository class >> location: location [
 	^ MCServerRegistry uniqueInstance 
 		repositoryAt: location credentialsDo: [ :username :password |
 			(self repositoryClassFor: location) new
@@ -100,11 +75,8 @@ MCHttpRepository class>>location: location [
 				yourself ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository class>>location: aUrl user: user password: password [
+{ #category : #'instance creation' }
+MCHttpRepository class >> location: aUrl user: user password: password [
 
 	| result |
 	result := self location: aUrl.
@@ -115,81 +87,54 @@ MCHttpRepository class>>location: aUrl user: user password: password [
 	^ result.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository class>>pharoInboxRepository [
+{ #category : #'instance creation' }
+MCHttpRepository class >> pharoInboxRepository [
 	^ self location: 'http://smalltalkhub.com/mc/Pharo/Pharo60Inbox/main'.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository class>>pharoRepository [
+{ #category : #'instance creation' }
+MCHttpRepository class >> pharoRepository [
 	^ self location: 'http://smalltalkhub.com/mc/Pharo/Pharo60/main'.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository class>>project: aProjectIdentifier [
+{ #category : #'instance creation' }
+MCHttpRepository class >> project: aProjectIdentifier [
 	^ self location: self baseURL, aProjectIdentifier
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository class>>repositoryClassFor: location [
+{ #category : #'instance creation' }
+MCHttpRepository class >> repositoryClassFor: location [
 	MCHttpRepository subclassesDo: [ :subclass | 
 		(subclass isResponsibleFor: location)
 			ifTrue: [ ^ subclass ]].
 	^ MCHttpRepository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository class>>urlSchemes [
+{ #category : #accessing }
+MCHttpRepository class >> urlSchemes [
 	^ #(http https)
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>asCreationTemplate [
+{ #category : #converting }
+MCHttpRepository >> asCreationTemplate [
 	^self class creationTemplateLocation: self location user: user password: password
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>assertBinaryResponse: response  [
+{ #category : #private }
+MCHttpRepository >> assertBinaryResponse: response [ 
 
 	response contentType isBinary ifFalse: [ 
 		MCRepositoryError signal: 'Expected a binary response instead of ', response contentType printString ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>assertNonBinaryResponse: response  [
+{ #category : #private }
+MCHttpRepository >> assertNonBinaryResponse: response [ 
 	
 	response contentType isBinary ifTrue: [ MCRepositoryError signal: 'Did not expect a binary response but got ', response contentType printString ].
 ]
 
-{
-	#category : #i/o,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>cacheRawVersionNamed: aString stream: contents [
+{ #category : #i/o }
+MCHttpRepository >> cacheRawVersionNamed: aString stream: contents [
 	"directly forward the contents to the cache repository. 
 	this avoids and unnecessary serialization step"
 	MCCacheRepository uniqueInstance 
@@ -198,36 +143,24 @@ MCHttpRepository>>cacheRawVersionNamed: aString stream: contents [
 		do: [ :s| s nextPutAll: contents ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>credentials [
+{ #category : #accessing }
+MCHttpRepository >> credentials [
 	^ MCServerCredentials user: self user password: self password
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>credentials: mcServerCredentials [
+{ #category : #accessing }
+MCHttpRepository >> credentials: mcServerCredentials [
 	self user: mcServerCredentials username.
 	self password: mcServerCredentials password.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>description [
+{ #category : #accessing }
+MCHttpRepository >> description [
 	^ self location
 ]
 
-{
-	#category : #i/o,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>displayProgress: label during: workBlock [
+{ #category : #i/o }
+MCHttpRepository >> displayProgress: label during: workBlock [
 	| nextUpdateTime |
 	nextUpdateTime := 0.
 	^UIManager default displayProgress: label 
@@ -246,11 +179,8 @@ MCHttpRepository>>displayProgress: label during: workBlock [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>entityStreamContents: aBlock [
+{ #category : #private }
+MCHttpRepository >> entityStreamContents: aBlock [
 	"Generate output in a buffer because we need the length"
 	
 	| stream |
@@ -263,30 +193,21 @@ MCHttpRepository>>entityStreamContents: aBlock [
 		yourself
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>flushCache [
+{ #category : #actions }
+MCHttpRepository >> flushCache [
 	super flushCache.
 	readerCache := nil.
 ]
 
-{
-	#category : #i/o,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>handleUnsuccessfulResponse: aZnResponse [
+{ #category : #i/o }
+MCHttpRepository >> handleUnsuccessfulResponse: aZnResponse [
 	(#(403 401) includes: aZnResponse code)
 		ifTrue: [ MCPermissionDenied signalFor: self ].
 	Error signal: 'Could not save version.'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>httpClient [
+{ #category : #private }
+MCHttpRepository >> httpClient [
 	"Return a new, specifically configured instance of the HTTP client for internal use.
 	Note how we request GZIP compression and will signal progress."
 
@@ -299,11 +220,8 @@ MCHttpRepository>>httpClient [
 		yourself
 ]
 
-{
-	#category : #i/o,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>loadAllFileNames [
+{ #category : #i/o }
+MCHttpRepository >> loadAllFileNames [
 	| client |
 	self displayProgress: 'Loading all file names from ', self description during: [
 		client := self httpClient.
@@ -319,37 +237,25 @@ MCHttpRepository>>loadAllFileNames [
 	^ self parseFileNamesFromStream: client contents readStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>location [
+{ #category : #accessing }
+MCHttpRepository >> location [
 	^ location
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>location: aUrlString [
+{ #category : #accessing }
+MCHttpRepository >> location: aUrlString [
 	location := aUrlString
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>locationWithTrailingSlash [
+{ #category : #actions }
+MCHttpRepository >> locationWithTrailingSlash [
 	^ (self location endsWith: '/')
 		ifTrue: [self location]
 		ifFalse: [self location, '/']
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>parseFileNamesFromStream: aStream [
+{ #category : #actions }
+MCHttpRepository >> parseFileNamesFromStream: aStream [
 	| names fullName |
 	names := OrderedCollection new.
 	[aStream atEnd] whileFalse:
@@ -361,11 +267,8 @@ MCHttpRepository>>parseFileNamesFromStream: aStream [
 	^ names
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>password [
+{ #category : #actions }
+MCHttpRepository >> password [
 	self userAndPasswordFromSettingsDo: [:usr :pwd | ^pwd].
 
 	self user isEmpty ifTrue: [^password ifNil: ['']].
@@ -388,28 +291,19 @@ MCHttpRepository>>password [
 	^ password
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>password: passwordString [
+{ #category : #accessing }
+MCHttpRepository >> password: passwordString [
 	password := passwordString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>project [
+{ #category : #accessing }
+MCHttpRepository >> project [
 	"Return a project name"
 	^ (self location splitOn: $/) last
 ]
 
-{
-	#category : #i/o,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>readStreamForFileNamed: aString do: aBlock [
+{ #category : #i/o }
+MCHttpRepository >> readStreamForFileNamed: aString do: aBlock [
 	| client |
 	self displayProgress: 'Downloading ', aString during: [
 		client := self httpClient.
@@ -422,11 +316,8 @@ MCHttpRepository>>readStreamForFileNamed: aString do: aBlock [
 	^ aBlock value: client contents readStream
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>retryOnCredentialRequest: aBlock [
+{ #category : #actions }
+MCHttpRepository >> retryOnCredentialRequest: aBlock [
 	aBlock	on: MCPermissionDenied do: [ :error | |credentials| 
 		credentials := MCCredentialsRequest 
 							signalUrl: self location
@@ -438,46 +329,31 @@ MCHttpRepository>>retryOnCredentialRequest: aBlock [
 				^ self retryOnCredentialRequest: aBlock ]]
 ]
 
-{
-	#category : #storing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>storeVersion: aVersion [
+{ #category : #storing }
+MCHttpRepository >> storeVersion: aVersion [
 	self retryOnCredentialRequest: [ super storeVersion: aVersion ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>urlForFileNamed: aString [
+{ #category : #actions }
+MCHttpRepository >> urlForFileNamed: aString [
 	^ self locationWithTrailingSlash, aString urlEncoded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>user [
+{ #category : #accessing }
+MCHttpRepository >> user [
 	self userAndPasswordFromSettingsDo: [:usr :pwd | ^usr].
 	"not in settings"
 	user isEmptyOrNil ifFalse: [ ^user ].
 	^ ''
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>user: userString [
+{ #category : #accessing }
+MCHttpRepository >> user: userString [
 	user := userString
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>userAndPasswordFromSettingsDo: aBlock [
+{ #category : #actions }
+MCHttpRepository >> userAndPasswordFromSettingsDo: aBlock [
 	"The mcSettings file in ExternalSettings preferenceDirectory should contain entries for each account:
 	
 		account1: *myhost.mydomain* user:password
@@ -508,11 +384,8 @@ MCHttpRepository>>userAndPasswordFromSettingsDo: aBlock [
 	^nil
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>versionReaderForFileNamed: aString [
+{ #category : #actions }
+MCHttpRepository >> versionReaderForFileNamed: aString [
 	readerCache ifNil: [readerCache := Dictionary new].
 	^ readerCache at: aString ifAbsent:
 		[self resizeCache: readerCache.
@@ -522,19 +395,13 @@ MCHttpRepository>>versionReaderForFileNamed: aString [
 	
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>versionReaderForFileNamed: aString do: aBlock [
+{ #category : #actions }
+MCHttpRepository >> versionReaderForFileNamed: aString do: aBlock [
 	^ (self versionReaderForFileNamed: aString) ifNotNil: aBlock
 ]
 
-{
-	#category : #i/o,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCHttpRepository>>writeStreamForFileNamed: aString replace: ignoreBoolean do: aBlock [
+{ #category : #i/o }
+MCHttpRepository >> writeStreamForFileNamed: aString replace: ignoreBoolean do: aBlock [
 	| entity |
 	entity := self entityStreamContents: aBlock.
 	self displayProgress: 'Uploading ', aString during: [

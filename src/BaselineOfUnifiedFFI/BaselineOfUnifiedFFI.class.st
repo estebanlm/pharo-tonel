@@ -16,15 +16,11 @@ Class {
 	#instVars : [
 		'initializersEnabled'
 	],
-	#category : #BaselineOfUnifiedFFI,
-	#timestamp : 'PavelKrivanek 11/7/2016 12:03'
+	#category : #BaselineOfUnifiedFFI
 }
 
-{
-	#category : #baseline,
-	#timestamp : ' 8/31/2017 05:26:07'
-}
-BaselineOfUnifiedFFI>>baseline: spec [
+{ #category : #baseline }
+BaselineOfUnifiedFFI >> baseline: spec [
 	<baseline>
 	
 	spec for: #common do: [
@@ -47,22 +43,16 @@ BaselineOfUnifiedFFI>>baseline: spec [
 			group: 'legacy' with: #('UnifiedFFI-Legacy') ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:07'
-}
-BaselineOfUnifiedFFI>>postload: loader package: packageSpec [
+{ #category : #actions }
+BaselineOfUnifiedFFI >> postload: loader package: packageSpec [
 
 	MCMethodDefinition initializersEnabled: initializersEnabled.
 	
 	
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:07'
-}
-BaselineOfUnifiedFFI>>preload: loader package: packageSpec [
+{ #category : #actions }
+BaselineOfUnifiedFFI >> preload: loader package: packageSpec [
 
 	initializersEnabled := MCMethodDefinition initializersEnabled.
 	MCMethodDefinition initializersEnabled: true.

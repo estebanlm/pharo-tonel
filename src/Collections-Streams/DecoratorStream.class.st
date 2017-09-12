@@ -9,71 +9,49 @@ Class {
 	#instVars : [
 		'decoratedStream'
 	],
-	#category : #Collections-Streams,
-	#timestamp : 'GuillermoPolito 6/12/2015 12:17'
+	#category : #Collections-Streams
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-DecoratorStream class>>on: aStream [
+{ #category : #'instance creation' }
+DecoratorStream class >> on: aStream [
 
 	^ self basicNew
 		on: aStream;
 		yourself.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-DecoratorStream>>atEnd [
+{ #category : #testing }
+DecoratorStream >> atEnd [
 	^ decoratedStream atEnd
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-DecoratorStream>>next [
+{ #category : #accessing }
+DecoratorStream >> next [
 
 	^ decoratedStream next
 ]
 
-{
-	#category : #'initialize - release',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-DecoratorStream>>on: aStream [
+{ #category : #'initialize - release' }
+DecoratorStream >> on: aStream [
 
 	self initialize.
 	decoratedStream := aStream.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-DecoratorStream>>peek [
+{ #category : #accessing }
+DecoratorStream >> peek [
 
 	^ decoratedStream peek
 ]
 
-{
-	#category : #decorating,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-DecoratorStream>>position [
+{ #category : #decorating }
+DecoratorStream >> position [
 	
 	^ decoratedStream position
 ]
 
-{
-	#category : #storing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-DecoratorStream>>store: anObject [
+{ #category : #storing }
+DecoratorStream >> store: anObject [
 
 	anObject storeOn: self
 ]

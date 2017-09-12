@@ -10,55 +10,36 @@ OSPlatform current.
 Class {
 	#name : #UnixPlatform,
 	#superclass : #OSPlatform,
-	#category : #System-Platforms,
-	#timestamp : '<historical>'
+	#category : #System-Platforms
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UnixPlatform class>>isActivePlatform [
+{ #category : #testing }
+UnixPlatform class >> isActivePlatform [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UnixPlatform>>family [
+{ #category : #accessing }
+UnixPlatform >> family [
 	^#Unix
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UnixPlatform>>isUnix [
+{ #category : #testing }
+UnixPlatform >> isUnix [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UnixPlatform>>keyForValue: aKeyValue [
+{ #category : #accessing }
+UnixPlatform >> keyForValue: aKeyValue [
 	^Key valueForUnixPlatform: aKeyValue.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UnixPlatform>>lineEnding [
+{ #category : #accessing }
+UnixPlatform >> lineEnding [
 
 	^ String lf
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UnixPlatform>>menuShortcutString [
+{ #category : #accessing }
+UnixPlatform >> menuShortcutString [
 	^ 'ctrl'
 ]

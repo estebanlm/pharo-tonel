@@ -29,23 +29,16 @@ Class {
 		'selector',
 		'classIsMeta'
 	],
-	#category : #Shout-Examples,
-	#timestamp : 'AlainPlantec 9/20/2011 21:15'
+	#category : #Shout-Examples
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHMethodEditingMode>>classIsMeta [
+{ #category : #accessing }
+SHMethodEditingMode >> classIsMeta [
 	^ classIsMeta ifNil: [classIsMeta := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHMethodEditingMode>>classIsMeta: aBoolean [
+{ #category : #accessing }
+SHMethodEditingMode >> classIsMeta: aBoolean [
 	classIsMeta := aBoolean.
 	self selector: nil.
 	self changed: #selector.
@@ -54,19 +47,13 @@ SHMethodEditingMode>>classIsMeta: aBoolean [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHMethodEditingMode>>className [
+{ #category : #accessing }
+SHMethodEditingMode >> className [
 	^ className ifNotNil: [className asSymbol]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHMethodEditingMode>>className: aClassName [
+{ #category : #accessing }
+SHMethodEditingMode >> className: aClassName [
 	className := aClassName copyWithout: Character cr.
 	self selector: nil.
 	self changed: #selector.
@@ -75,11 +62,8 @@ SHMethodEditingMode>>className: aClassName [
 		ifNotNil: [	self changed: #haveClassName]
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHMethodEditingMode>>classSelector [
+{ #category : #view }
+SHMethodEditingMode >> classSelector [
 	| applicantsBlock entryCompletion |
 	applicantsBlock := [(Array
 				streamContents: [:strm | Symbol
@@ -105,47 +89,32 @@ SHMethodEditingMode>>classSelector [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHMethodEditingMode>>classToUse [
+{ #category : #accessing }
+SHMethodEditingMode >> classToUse [
 	^ self selectedClass
 		ifNotNil: [self classIsMeta 
 				ifTrue: [self selectedClass class]
 				ifFalse: [self selectedClass]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHMethodEditingMode>>code [
+{ #category : #accessing }
+SHMethodEditingMode >> code [
 	^ code ifNil: [code := '' asText]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHMethodEditingMode>>code: someText [
+{ #category : #accessing }
+SHMethodEditingMode >> code: someText [
 	code := someText.
 	self changed: #code
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHMethodEditingMode>>haveClassName [
+{ #category : #accessing }
+SHMethodEditingMode >> haveClassName [
 	^ self selectedClass notNil
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHMethodEditingMode>>metaSwitch [
+{ #category : #view }
+SHMethodEditingMode >> metaSwitch [
 	^ UIManager default
 		newCheckboxFor: self
 		getSelected: #classIsMeta
@@ -154,11 +123,8 @@ SHMethodEditingMode>>metaSwitch [
 		help: 'Class side is used if checked' 
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHMethodEditingMode>>methodSelector [
+{ #category : #view }
+SHMethodEditingMode >> methodSelector [
 	| entryCompletion applicantsBlock |
 	applicantsBlock := [self selectedClass 
 						ifNil: [#()] 
@@ -181,11 +147,8 @@ SHMethodEditingMode>>methodSelector [
 
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHMethodEditingMode>>open [
+{ #category : #view }
+SHMethodEditingMode >> open [
 	| window bar editor |
 	window := (StandardWindow labelled: 'Method editor with shout') model: self.
 	editor := window newTextEditorFor:  self getText:  #code setText: #code: getEnabled: nil. 
@@ -194,28 +157,19 @@ SHMethodEditingMode>>open [
 	^ window openInWorld
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHMethodEditingMode>>selectedClass [
+{ #category : #accessing }
+SHMethodEditingMode >> selectedClass [
 	self className ifNil: [ ^ nil ]. 
 	^ Smalltalk globals at: self className ifAbsent: []
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHMethodEditingMode>>selector [
+{ #category : #accessing }
+SHMethodEditingMode >> selector [
 	^ selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHMethodEditingMode>>selector: aSymbol [
+{ #category : #accessing }
+SHMethodEditingMode >> selector: aSymbol [
 	selector := aSymbol ifNotNil: [:sel |( sel copyWithout: Character cr) asSymbol].
 	self changed: #selector.
 	self classToUse 
@@ -223,11 +177,8 @@ SHMethodEditingMode>>selector: aSymbol [
 			ifTrue: [self code: (cls sourceCodeAt: selector)]]
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHMethodEditingMode>>shoutAboutToStyle: aTextView [
+{ #category : #shout }
+SHMethodEditingMode >> shoutAboutToStyle: aTextView [
 	aTextView classOrMetaClass: self classToUse.
 	^ true
 ]

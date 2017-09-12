@@ -17,15 +17,11 @@ Class {
 	#pools : [
 		'TextConstants'
 	],
-	#category : #Graphics-Fonts,
-	#timestamp : 'LaurentLaffont 3/31/2011 21:07'
+	#category : #Graphics-Fonts
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet class>>familyName: aName size: aSize [
+{ #category : #'as yet unclassified' }
+StrikeFontSet class >> familyName: aName size: aSize [
 	"Answer a font (or the default font if the name is unknown) in the specified size."
 
 	| collection |
@@ -43,22 +39,16 @@ StrikeFontSet class>>familyName: aName size: aSize [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet class>>familyName: aName size: aSize emphasized: emphasisCode [
+{ #category : #'as yet unclassified' }
+StrikeFontSet class >> familyName: aName size: aSize emphasized: emphasisCode [
 	"Create the font with this emphasis"
 
 	^ (self familyName: aName size: aSize) emphasized: emphasisCode
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet class>>findMaximumLessThan: f in: array [
+{ #category : #'as yet unclassified' }
+StrikeFontSet class >> findMaximumLessThan: f [ in: array
 
 	array size to: 1 by: -1 do: [:i |
 		f height >= (array at: i) height ifTrue: [^ array at: i].
@@ -67,11 +57,8 @@ StrikeFontSet class>>findMaximumLessThan: f in: array [
 
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet class>>installNewFontAtIndex: newIndex fromOld: oldIndex [
+{ #category : #filein/out }
+StrikeFontSet class >> installNewFontAtIndex: newIndex fromOld: oldIndex [
 
 	
 	self allInstances do: [:set | | newArray fontArray |
@@ -93,21 +80,15 @@ StrikeFontSet installNewFontAtIndex: UnicodeKorean leadingChar fromOld: UnicodeJ
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet class>>newFontArray: anArray [
+{ #category : #'as yet unclassified' }
+StrikeFontSet class >> newFontArray: anArray [
  
 	^super new initializeWithFontArray: anArray
 
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet class>>removeFontsForEncoding: leadingChar encodingName: encodingSymbol [
+{ #category : #filein/out }
+StrikeFontSet class >> removeFontsForEncoding: leadingChar encodingName: encodingSymbol [
 
 	| insts |
 	leadingChar = 0 ifTrue: [^ self error: 'you cannot delete the intrinsic fonts'].
@@ -130,11 +111,8 @@ StrikeFontSet class>>removeFontsForEncoding: leadingChar encodingName: encodingS
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>addNewFont: aFont at: encodingIndex [
+{ #category : #private }
+StrikeFontSet >> addNewFont: aFont at: encodingIndex [
 
 	| newArray |
 	encodingIndex > fontArray size ifTrue: [
@@ -150,49 +128,34 @@ StrikeFontSet>>addNewFont: aFont at: encodingIndex [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>ascent [
+{ #category : #accessing }
+StrikeFontSet >> ascent [
 
 	^ (fontArray  at: 1) ascent.
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>ascentKern [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> ascentKern [
 
 	^ (fontArray  at: 1) ascentKern.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>ascentOf: aCharacter [
+{ #category : #accessing }
+StrikeFontSet >> ascentOf: aCharacter [
 	^(self fontOf: aCharacter) ascent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>baseKern [
+{ #category : #accessing }
+StrikeFontSet >> baseKern [
 
 	^ (fontArray  at: 1) baseKern.
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>bonk: glyphForm with: bonkForm at: j [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> bonk: glyphForm with: bonkForm at: j [
 	"Bonking means to run through the glyphs clearing out black pixels
 	between characters to prevent them from straying into an adjacent
 	character as a result of, eg, bolding or italicizing"
@@ -213,11 +176,8 @@ StrikeFontSet>>bonk: glyphForm with: bonkForm at: j [
 
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>characterFormAt: character  [
+{ #category : #'character shapes' }
+StrikeFontSet >> characterFormAt: character [ 
 
 	| encoding ascii xTable leftX rightX |
 	encoding := character leadingChar + 1.
@@ -231,11 +191,8 @@ StrikeFontSet>>characterFormAt: character  [
 
 ]
 
-{
-	#category : #'character shapes',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>characterFormAt: character put: characterForm  [
+{ #category : #'character shapes' }
+StrikeFontSet >> characterFormAt: character put: characterForm [ 
 
 	| ascii leftX rightX widthDif newGlyphs encoding xTable glyphs |
 	encoding := character leadingChar + 1.
@@ -267,11 +224,8 @@ StrikeFontSet>>characterFormAt: character put: characterForm  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>characterToGlyphMap [
+{ #category : #accessing }
+StrikeFontSet >> characterToGlyphMap [
 	"used in 
 	primDisplayString: aString from: startIndex to: stopIndex
 			map: font characterToGlyphMap xTable: font xTable
@@ -284,11 +238,8 @@ StrikeFontSet>>characterToGlyphMap [
 	^ (fontArray at: 1) characterToGlyphMap
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>characters: anInterval in: sourceString displayAt: aPoint clippedBy: clippingRectangle rule: ruleInteger fillColor: aForm kernDelta: kernDelta on: aBitBlt [
+{ #category : #displaying }
+StrikeFontSet >> characters: anInterval in: sourceString displayAt: aPoint clippedBy: clippingRectangle rule: ruleInteger fillColor: aForm kernDelta: kernDelta on: aBitBlt [
 	"Simple, slow, primitive method for displaying a line of characters.
 	No wrap-around is provided."
 
@@ -314,11 +265,8 @@ StrikeFontSet>>characters: anInterval in: sourceString displayAt: aPoint clipped
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>copy [
+{ #category : #copying }
+StrikeFontSet >> copy [
 
 	| s a |
 	s := self class new.
@@ -334,47 +282,32 @@ StrikeFontSet>>copy [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>derivativeFonts [
+{ #category : #accessing }
+StrikeFontSet >> derivativeFonts [
 	^derivativeFonts copyWithout: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>descent [
+{ #category : #accessing }
+StrikeFontSet >> descent [
 
 	^ (fontArray  at: 1) descent.
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>descentKern [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> descentKern [
 
 	^ (fontArray at: 1) descentKern.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>descentOf: aCharacter [
+{ #category : #accessing }
+StrikeFontSet >> descentOf: aCharacter [
 	^(self fontOf: aCharacter) descent
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>displayLine: aString at: aPoint  [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> displayLine: aString at: aPoint [ 
 	"Display the characters in aString, starting at position aPoint."
 
 	self characters: (1 to: aString size)
@@ -388,11 +321,8 @@ StrikeFontSet>>displayLine: aString at: aPoint  [
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>displayMultiString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY [
+{ #category : #displaying }
+StrikeFontSet >> displayMultiString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY [
 
 	| destPoint leftX rightX glyphInfo g destY |
 	destPoint := aPoint.
@@ -415,21 +345,15 @@ StrikeFontSet>>displayMultiString: aString on: aBitBlt from: startIndex to: stop
 	^ destPoint.
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta  [
+{ #category : #displaying }
+StrikeFontSet >> displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta [ 
 
 	^ self displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: aPoint y + self ascent.
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY [
+{ #category : #displaying }
+StrikeFontSet >> displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY [
 	"Draw the given string from startIndex to stopIndex 
 	at aPoint on the (already prepared) BitBlt."
 	
@@ -451,11 +375,8 @@ StrikeFontSet>>displayString: aString on: aBitBlt from: startIndex to: stopIndex
 			kern: kernDelta
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta from: fromFont baselineY: baselineY [
+{ #category : #displaying }
+StrikeFontSet >> displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta from: fromFont baselineY: baselineY [
 
 	| destPoint leftX rightX glyphInfo g tag char destY rIndex| 
 	destPoint := aPoint.
@@ -487,11 +408,8 @@ StrikeFontSet>>displayString: aString on: aBitBlt from: startIndex to: stopIndex
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>emphasis [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> emphasis [
 	"Answer the integer code for synthetic bold, italic, underline, and 
 	strike-out."
 
@@ -499,11 +417,8 @@ StrikeFontSet>>emphasis [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>emphasis: code  [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> emphasis: code [ 
 	"Set the integer code for synthetic bold, itallic, underline, and strike-out, 
 	where bold=1, italic=2, underlined=4, and struck out=8."
 
@@ -511,11 +426,8 @@ StrikeFontSet>>emphasis: code  [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>emphasized: code  [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> emphasized: code [ 
 
 	"Answer a copy of the receiver with emphasis set to include code."
 	| derivative addedEmphasis base safeCode |
@@ -543,21 +455,15 @@ StrikeFontSet>>emphasized: code  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>familyName [
+{ #category : #accessing }
+StrikeFontSet >> familyName [
 
 	^ (fontArray at: 1) familyName.
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>familySizeFace [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> familySizeFace [
 
 	^ Array
 		with: (fontArray  at: 1) name
@@ -566,50 +472,35 @@ StrikeFontSet>>familySizeFace [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>fontArray [
+{ #category : #accessing }
+StrikeFontSet >> fontArray [
 
 	^ fontArray
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>fontArray: anArray [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> fontArray: anArray [
 
 	fontArray := anArray.
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>fontNameWithPointSize [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> fontNameWithPointSize [
 
 	^ (fontArray at: 1) fontNameWithPointSize.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>fontOf: aCharacter [
+{ #category : #accessing }
+StrikeFontSet >> fontOf: aCharacter [
 	"Answer the actual font to use for aCharacter"
 	^self fontOf: aCharacter ifAbsent:[fontArray at: 1]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>fontOf: aCharacter ifAbsent: aBlock [
+{ #category : #accessing }
+StrikeFontSet >> fontOf: aCharacter ifAbsent: aBlock [
 	"Answer the actual font to use for aCharacter"
 	| encoding font |
 	encoding := aCharacter leadingChar + 1.
@@ -620,11 +511,8 @@ StrikeFontSet>>fontOf: aCharacter ifAbsent: aBlock [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>glyphInfoOf: aCharacter into: glyphInfoArray [
+{ #category : #private }
+StrikeFontSet >> glyphInfoOf: aCharacter into: glyphInfoArray [
 	| index f code leftX |
 	index := aCharacter leadingChar + 1.
 	fontArray size < index
@@ -645,49 +533,34 @@ StrikeFontSet>>glyphInfoOf: aCharacter into: glyphInfoArray [
 	^ glyphInfoArray
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>glyphs [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> glyphs [
 
 	^ (fontArray  at: 1) glyphs
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>glyphsEncoding: anInteger [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> glyphsEncoding: anInteger [
 
 	^ (fontArray at: (anInteger+1)) glyphs.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>height [
+{ #category : #accessing }
+StrikeFontSet >> height [
 
 	^ (fontArray  at: 1) height.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>heightOf: aCharacter [
+{ #category : #accessing }
+StrikeFontSet >> heightOf: aCharacter [
 	^(self fontOf: aCharacter) height
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>initializeWithFontArray: anArray  [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> initializeWithFontArray: anArray [ 
 	"Initialize with given font array, the ascent of primary font is modified 
 	if another font has higher size"
 	| primaryFont maxHeight newFont |
@@ -710,21 +583,15 @@ StrikeFontSet>>initializeWithFontArray: anArray  [
 	self reset
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>installOn: aDisplayContext [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> installOn: aDisplayContext [
 
 	^ aDisplayContext installStrikeFont: self.
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>installOn: aDisplayContext foregroundColor: foregroundColor backgroundColor: backgroundColor  [
+{ #category : #displaying }
+StrikeFontSet >> installOn: aDisplayContext foregroundColor: foregroundColor backgroundColor: backgroundColor [ 
 
 	^ aDisplayContext
 		installStrikeFont: self
@@ -733,39 +600,27 @@ StrikeFontSet>>installOn: aDisplayContext foregroundColor: foregroundColor backg
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>isFontSet [
+{ #category : #testing }
+StrikeFontSet >> isFontSet [
 
 	^ true.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>isSynthetic [
+{ #category : #testing }
+StrikeFontSet >> isSynthetic [
 
 	^ fontArray first isSynthetic
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>latin1 [
+{ #category : #accessing }
+StrikeFontSet >> latin1 [
 	"Answer primary font"
 	^ fontArray at: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>lineGrid [
+{ #category : #accessing }
+StrikeFontSet >> lineGrid [
 
 	| f |
 	f := fontArray at: 1.
@@ -773,11 +628,8 @@ StrikeFontSet>>lineGrid [
 
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>makeBoldGlyphs [
+{ #category : #emphasis }
+StrikeFontSet >> makeBoldGlyphs [
 	"Make a bold set of glyphs with same widths by ORing 1 bit to the right
 		(requires at least 1 pixel of intercharacter space)"
 
@@ -796,11 +648,8 @@ StrikeFontSet>>makeBoldGlyphs [
 
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>makeItalicGlyphs [
+{ #category : #emphasis }
+StrikeFontSet >> makeItalicGlyphs [
 	"Make an italic set of glyphs with same widths by skewing left and right
 		(may require more intercharacter space)"
 
@@ -837,11 +686,8 @@ StrikeFontSet>>makeItalicGlyphs [
 
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>makeStruckOutGlyphs [
+{ #category : #emphasis }
+StrikeFontSet >> makeStruckOutGlyphs [
 	"Make a struck-out set of glyphs with same widths"
 
 	| g font |
@@ -856,11 +702,8 @@ StrikeFontSet>>makeStruckOutGlyphs [
 
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>makeUnderlinedGlyphs [
+{ #category : #emphasis }
+StrikeFontSet >> makeUnderlinedGlyphs [
 	"Make an underlined set of glyphs with same widths"
 
 	| g font |
@@ -875,11 +718,8 @@ StrikeFontSet>>makeUnderlinedGlyphs [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>maxAsciiFor: encoding [
+{ #category : #accessing }
+StrikeFontSet >> maxAsciiFor: encoding [
 
 	| f |
 	f := (fontArray at: encoding+1).
@@ -888,71 +728,50 @@ StrikeFontSet>>maxAsciiFor: encoding [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>maxEncoding [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> maxEncoding [
 
 	^ fontArray size.
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>maxWidth [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> maxWidth [
 
 	^ (fontArray at: 1) maxWidth.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>name [
+{ #category : #testing }
+StrikeFontSet >> name [
 
 	^ name
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>name: aString [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> name: aString [
 
 	name := aString
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>pointSize [
+{ #category : #accessing }
+StrikeFontSet >> pointSize [
 
 	^ (fontArray  at: 1) pointSize.
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>postCopy [
+{ #category : #copying }
+StrikeFontSet >> postCopy [
 	super postCopy.
 	self reset.
 	fontArray := fontArray copy
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>printOn: aStream [
+{ #category : #printing }
+StrikeFontSet >> printOn: aStream [
 
 	super printOn: aStream.
 	aStream nextPutAll: '(' , self name.
@@ -962,11 +781,8 @@ StrikeFontSet>>printOn: aStream [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>questionGlyphInfoInto: glyphInfoArray [
+{ #category : #private }
+StrikeFontSet >> questionGlyphInfoInto: glyphInfoArray [
 
 	| f ascii |
 	f := fontArray at: 1.
@@ -980,62 +796,44 @@ StrikeFontSet>>questionGlyphInfoInto: glyphInfoArray [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>reset [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> reset [
 	"Reset the cache of derivative emphasized fonts"
 
 	derivativeFonts := Array new: 32.
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>subscript [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> subscript [
 
 	^ (fontArray  at: 1) subscript
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>superscript [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> superscript [
 
 	^ (fontArray  at: 1) superscript
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>textStyle [
+{ #category : #accessing }
+StrikeFontSet >> textStyle [
 
 	^ TextStyle actualTextStyles detect: [:aStyle | (aStyle fontArray collect: [:s | s name]) includes: self name]
 		ifNone: [].
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>widthOf: aCharacter  [
+{ #category : #accessing }
+StrikeFontSet >> widthOf: aCharacter [ 
 	"Answer the width of the argument as a character in the receiver."
 	^(self fontOf: aCharacter) widthOf: aCharacter
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>widthOfString: aString [
+{ #category : #measuring }
+StrikeFontSet >> widthOfString: aString [
 
 	aString ifNil:[^0].
 	"Optimizing"
@@ -1048,22 +846,16 @@ StrikeFontSet>>widthOfString: aString [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>xTable [
+{ #category : #accessing }
+StrikeFontSet >> xTable [
 	"Answer an Array of the left x-coordinate of characters in glyphs."
 
 	^ (fontArray  at: 1) xTable.
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StrikeFontSet>>xTableEncoding: anInteger [
+{ #category : #'as yet unclassified' }
+StrikeFontSet >> xTableEncoding: anInteger [
 	"Answer an Array of the left x-coordinate of characters in glyphs."
 
 	^(fontArray at: anInteger + 1) xTable.

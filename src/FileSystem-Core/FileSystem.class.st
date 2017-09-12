@@ -20,94 +20,66 @@ Class {
 	#instVars : [
 		'store'
 	],
-	#category : #FileSystem-Core-Public,
-	#timestamp : 'ChristopheDemarey 3/3/2017 11:40'
+	#category : #FileSystem-Core-Public
 }
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem class>>startUp: aBoolean [
+{ #category : #initializing }
+FileSystem class >> startUp: aBoolean [
 	"This is only here to deal with migration from older versions of
 	FileSystem that wanted to receive startup notifcations."
 	
 	SessionManager default unregisterClassNamed: self name
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem class>>store: aStore [
+{ #category : #'instance creation' }
+FileSystem class >> store: aStore [
 	^ self basicNew
 		initializeWithStore: aStore;
 		yourself
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>* anObject [
+{ #category : #navigating }
+FileSystem >> * anObject [
 	"Return a relative reference."
 	
 	^ self referenceTo:( Path * anObject)
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>/ anObject [
+{ #category : #navigating }
+FileSystem >> / anObject [
 	"Return the absolute reference obtained by resolving anObject against the
 	root of this filesystem."
 	
 	^ self root / anObject
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>= other [
+{ #category : #comparing }
+FileSystem >> = other [
 	^ self species = other species and: [self store = other store]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>binaryReadStreamOn: aResolvable [
+{ #category : #public }
+FileSystem >> binaryReadStreamOn: aResolvable [
 	"Resolve the argument into an absolute path and open a file handle on the file
 	at that path. Ask the handle to give us a read stream for reading the file."
 
 	^ (self open: aResolvable writable: false) binaryReadStream.
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>checkName: aString fixErrors: fixErrors [
+{ #category : #public }
+FileSystem >> checkName: aString fixErrors: fixErrors [
 	^ store checkName: aString fixErrors: fixErrors
 ]
 
-{
-	#category : #public-enumerating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>childNamesAt: aResolvable [
+{ #category : #public-enumerating }
+FileSystem >> childNamesAt: aResolvable [
 	^ Array streamContents: [ :out | 
 		self childNamesAt: aResolvable do: [ :path|
 			out nextPut: path ]].
 ]
 
-{
-	#category : #public-enumerating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>childNamesAt: aResolvable do: aBlock [
+{ #category : #public-enumerating }
+FileSystem >> childNamesAt: aResolvable do: aBlock [
 	| path |
 	path := self resolve: aResolvable.
 	store
@@ -117,21 +89,15 @@ FileSystem>>childNamesAt: aResolvable do: aBlock [
 			aBlock value: (store basenameFromEntry: entry) ]
 ]
 
-{
-	#category : #public-enumerating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>childrenAt: aResolvable [
+{ #category : #public-enumerating }
+FileSystem >> childrenAt: aResolvable [
 	^ Array streamContents: [ :out | 
 		self childrenAt: aResolvable do: [ :path|
 			out nextPut: path ]].
 ]
 
-{
-	#category : #public-enumerating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>childrenAt: aResolvable do: aBlock [
+{ #category : #public-enumerating }
+FileSystem >> childrenAt: aResolvable do: aBlock [
 	| path |
 	path := self resolve: aResolvable.
 	store
@@ -141,19 +107,13 @@ FileSystem>>childrenAt: aResolvable do: aBlock [
 			aBlock value: path / (store basenameFromEntry: entry) ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>close [
+{ #category : #public }
+FileSystem >> close [
 	store close
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>copy: sourcePath ifAbsent: absentBlock to: destinationPath ifPresent: presentBlock [
+{ #category : #public }
+FileSystem >> copy: sourcePath ifAbsent: absentBlock to: destinationPath ifPresent: presentBlock [
 	"Copy the file referenced as sourcePath to the destination referred as destPath. Perform associate actions in case of problems."
 
 	store
@@ -164,11 +124,8 @@ FileSystem>>copy: sourcePath ifAbsent: absentBlock to: destinationPath ifPresent
 		fileSystem: self
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>copy: sourcePath to: destPath [
+{ #category : #public }
+FileSystem >> copy: sourcePath to: destPath [
 	"Copy the file referenced as sourcePath to the destination referred as destPath.  
 	If there is no file at sourcePath, raise FileDoesNotExist.
 	If destPath is a file, raise FileExists."
@@ -180,22 +137,16 @@ FileSystem>>copy: sourcePath to: destPath [
 		ifPresent: [ store signalFileExists: destPath ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>copy: aPath toReference: destinationReference [
+{ #category : #public }
+FileSystem >> copy: aPath toReference: destinationReference [
 
 	^self = destinationReference fileSystem
 		ifTrue: [ self copy: aPath to: destinationReference resolve path ]
 		ifFalse: [ self copy: aPath toRemote: destinationReference ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>copy: aPath toRemote: destRef [
+{ #category : #public }
+FileSystem >> copy: aPath toRemote: destRef [
 	| inputStream path |
 	path := self resolve: aPath.
 	[ inputStream := self readStreamOn: path.
@@ -204,11 +155,8 @@ FileSystem>>copy: aPath toRemote: destRef [
 		ensure: [ inputStream ifNotNil: [ inputStream close ] ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>copyAndDelete: sourcePath to: destination [
+{ #category : #public }
+FileSystem >> copyAndDelete: sourcePath to: destination [
 	"Copy the file referenced as sourcePath to the destination referred as destPath.  
 	If there is no file at sourcePath, raise FileDoesNotExist.
 	If destPath is a file, raise FileExists.
@@ -223,11 +171,8 @@ FileSystem>>copyAndDelete: sourcePath to: destination [
 	]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>copyFrom: inputStream to: destPath [
+{ #category : #private }
+FileSystem >> copyFrom: inputStream to: destPath [
 	| buffer out |
 	out := nil.
 	(self exists: destPath)
@@ -241,60 +186,42 @@ FileSystem>>copyFrom: inputStream to: destPath [
 			out nextPutAll: buffer ]] ensure: [ out ifNotNil: [ out close ]]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>createDirectory: aResolvable [
+{ #category : #public }
+FileSystem >> createDirectory: aResolvable [
 	"Resolve aResolvable into an absolute path, then as the store to create a directory there. 
 	The store is expected to raise an exception if it cannot do so."
 
 	^ store createDirectory: (self resolve: aResolvable)
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>creationTimeOf: aResolvable [
+{ #category : #public }
+FileSystem >> creationTimeOf: aResolvable [
 	"Returns the creation date of aResolvable"
 
 	^ store creationTimeOf: (self resolve: aResolvable)
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>delete: aResolvable [
+{ #category : #public }
+FileSystem >> delete: aResolvable [
 	store delete: (self resolve: aResolvable)
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>delimiter [
+{ #category : #public }
+FileSystem >> delimiter [
 	"Return path delimiter used by this filesystem."
 
 	^ store delimiter
 ]
 
-{
-	#category : #public-enumerating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>directoriesAt: aResolvable [
+{ #category : #public-enumerating }
+FileSystem >> directoriesAt: aResolvable [
 	^ Array streamContents: [ :out | 
 		self directoriesAt: aResolvable do: [ :path|
 			out nextPut: path ]].
 ]
 
-{
-	#category : #public-enumerating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>directoriesAt: aResolvable do: aBlock [
+{ #category : #public-enumerating }
+FileSystem >> directoriesAt: aResolvable do: aBlock [
 	| path |
 	path := self resolve: aResolvable.
 	store
@@ -304,21 +231,15 @@ FileSystem>>directoriesAt: aResolvable do: aBlock [
 			aBlock value: path / (store basenameFromEntry: entry) ]
 ]
 
-{
-	#category : #public-enumerating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>directoryNamesAt: aResolvable [
+{ #category : #public-enumerating }
+FileSystem >> directoryNamesAt: aResolvable [
 	^ Array streamContents: [ :out | 
 		self directoryNamesAt: aResolvable do: [ :name|
 			out nextPut: name ]].
 ]
 
-{
-	#category : #public-enumerating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>directoryNamesAt: aResolvable do: aBlock [
+{ #category : #public-enumerating }
+FileSystem >> directoryNamesAt: aResolvable do: aBlock [
 	| path |
 	path := self resolve: aResolvable.
 	store
@@ -328,44 +249,32 @@ FileSystem>>directoryNamesAt: aResolvable do: aBlock [
 			aBlock value: (store basenameFromEntry: entry) ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>ensureCreateDirectory: aResolvable [
+{ #category : #public }
+FileSystem >> ensureCreateDirectory: aResolvable [
 	"Resolve the argument to an absolute path, then ask the store to make
 	sure that all the directories contained in the argument path exist or are created."
 	
 	store ensureCreateDirectory: (self resolve: aResolvable)
 ]
 
-{
-	#category : #public-enumerating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>entriesAt: aResolvable [
+{ #category : #public-enumerating }
+FileSystem >> entriesAt: aResolvable [
 	^ Array
 		streamContents: [ :out | 
 			self entriesAt: aResolvable do: [ :entry | out nextPut: entry ]
 		]
 ]
 
-{
-	#category : #public-enumerating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>entriesAt: aResolvable do: aBlock [
+{ #category : #public-enumerating }
+FileSystem >> entriesAt: aResolvable do: aBlock [
 	^ self 
 		entriesAt: aResolvable 
 		ifAbsent: [ store signalDirectoryDoesNotExist: ( self resolve: aResolvable) ]
 		do: aBlock 
 ]
 
-{
-	#category : #public-enumerating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>entriesAt: aResolvable ifAbsent: absentBlock do: aBlock [
+{ #category : #public-enumerating }
+FileSystem >> entriesAt: aResolvable ifAbsent: absentBlock do: aBlock [
 	| path entry aFilesystem |
 	path := self resolve: aResolvable.
 	aFilesystem := self.
@@ -377,11 +286,8 @@ FileSystem>>entriesAt: aResolvable ifAbsent: absentBlock do: aBlock [
 			aBlock value: entry ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>entryAt: aResolvable [
+{ #category : #public }
+FileSystem >> entryAt: aResolvable [
 	| path |
 	path := self resolve: aResolvable.
 	^ store
@@ -390,40 +296,28 @@ FileSystem>>entryAt: aResolvable [
 		ifAbsent: [ store signalFileDoesNotExist: path ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>exists: aResolvable [
+{ #category : #public }
+FileSystem >> exists: aResolvable [
 	"Resolve the argument, and answer true if the there is
 	a file or directory at that path, false if there is not."
 	
 	^ store exists: (self resolve: aResolvable)
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>extensionDelimiter [
+{ #category : #public }
+FileSystem >> extensionDelimiter [
 	^ $.
 ]
 
-{
-	#category : #public-enumerating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>fileNamesAt: aResolvable [
+{ #category : #public-enumerating }
+FileSystem >> fileNamesAt: aResolvable [
 	^ Array streamContents: [ :out | 
 		self fileNamesAt: aResolvable do: [ :path|
 			out nextPut: path ]].
 ]
 
-{
-	#category : #public-enumerating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>fileNamesAt: aResolvable do: aBlock [
+{ #category : #public-enumerating }
+FileSystem >> fileNamesAt: aResolvable do: aBlock [
 	| path |
 	path := self resolve: aResolvable.
 	store
@@ -433,21 +327,15 @@ FileSystem>>fileNamesAt: aResolvable do: aBlock [
 			aBlock value: (store basenameFromEntry: entry) ]
 ]
 
-{
-	#category : #public-enumerating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>filesAt: aResolvable [
+{ #category : #public-enumerating }
+FileSystem >> filesAt: aResolvable [
 	^ Array streamContents: [ :out | 
 		self filesAt: aResolvable do: [ :path|
 			out nextPut: path ]].
 ]
 
-{
-	#category : #public-enumerating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>filesAt: aResolvable do: aBlock [
+{ #category : #public-enumerating }
+FileSystem >> filesAt: aResolvable do: aBlock [
 	| path |
 	path := self resolve: aResolvable.
 	store
@@ -457,19 +345,13 @@ FileSystem>>filesAt: aResolvable do: aBlock [
 			aBlock value: path / (store basenameFromEntry: entry) ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>forReferencePrintOn: aStream [
+{ #category : #printing }
+FileSystem >> forReferencePrintOn: aStream [
 	store forReferencePrintOn: aStream
 ]
 
-{
-	#category : #public-testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>hasChildren: aResolvable [
+{ #category : #public-testing }
+FileSystem >> hasChildren: aResolvable [
 	"Returns whether aResolvable has children."
 	store directoryAt: (self resolve: aResolvable)
 			ifAbsent: [ ^false ]
@@ -477,11 +359,8 @@ FileSystem>>hasChildren: aResolvable [
 	^false
 ]
 
-{
-	#category : #public-testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>hasDirectories: aResolvable [
+{ #category : #public-testing }
+FileSystem >> hasDirectories: aResolvable [
 	self
 		entriesAt: aResolvable
 		ifAbsent: [  ^ false ]
@@ -490,11 +369,8 @@ FileSystem>>hasDirectories: aResolvable [
 	^false
 ]
 
-{
-	#category : #public-testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>hasFiles: aResolvable [
+{ #category : #public-testing }
+FileSystem >> hasFiles: aResolvable [
 	self
 		entriesAt: aResolvable
 		ifAbsent: [  ^ false ]
@@ -502,119 +378,83 @@ FileSystem>>hasFiles: aResolvable [
 	^false
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>hash [
+{ #category : #comparing }
+FileSystem >> hash [
 	^ store hash
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>initializeWithStore: aStore [
+{ #category : #initialize-release }
+FileSystem >> initializeWithStore: aStore [
 	store := aStore
 ]
 
-{
-	#category : #public-testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>isCaseSensitive [
+{ #category : #public-testing }
+FileSystem >> isCaseSensitive [
 	^ self store isCaseSensitive
 ]
 
-{
-	#category : #public-testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>isDirectory: aResolvable [
+{ #category : #public-testing }
+FileSystem >> isDirectory: aResolvable [
 	"Resolve the argument, and answer true if the result refers
 	to a directory, false if it refers to a file or doesn't exist."
 
 	^ store isDirectory: (self resolve: aResolvable)
 ]
 
-{
-	#category : #public-testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>isFile: aResolvable [
+{ #category : #public-testing }
+FileSystem >> isFile: aResolvable [
 	"Resolve the argument, and answer true if the result refers
 	to a file, false if it refers to a directory or doesn't exist."
 
 	^ store isFile: (self resolve: aResolvable)
 ]
 
-{
-	#category : #public-testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>isReadable: aResolvable [
+{ #category : #public-testing }
+FileSystem >> isReadable: aResolvable [
 	"Resolve the argument, and answer true if the there is
 	a file or directory that can be read from."
 	
 	^ (self permissions: aResolvable) isReadable
 ]
 
-{
-	#category : #public-testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>isSymlink: aResolvable [
+{ #category : #public-testing }
+FileSystem >> isSymlink: aResolvable [
 	"Resolve the argument, and answer true if the result refers
 	to a directory, false if it refers to a file or doesn't exist."
 
 	^ store isSymlink: (self resolve: aResolvable)
 ]
 
-{
-	#category : #public-testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>isWritable: aResolvable [
+{ #category : #public-testing }
+FileSystem >> isWritable: aResolvable [
 	"Resolve the argument, and answer true if the there is
 	a file that can be written to or directory that can be changed."
 	
 	^  (self permissions: aResolvable) isWritable
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>mimeTypesAt: aResolvable [
+{ #category : #public }
+FileSystem >> mimeTypesAt: aResolvable [
 	"Return the possible mime types for the given path."
 	^ store mimeTypesAt: (self resolve: aResolvable)
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>modificationTime: aResolvable [
+{ #category : #public }
+FileSystem >> modificationTime: aResolvable [
 	"Returns the date of the last modification of aResolvable"
 
 	^ store modificationTimeOf: (self resolve: aResolvable)
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>modificationTimeOf: aResolvable [
+{ #category : #public }
+FileSystem >> modificationTimeOf: aResolvable [
 	"Returns the last date of modification of aResolvable"
 
 	^ store modificationTimeOf: (self resolve: aResolvable)
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>move: sourcePath to: destination [
+{ #category : #public }
+FileSystem >> move: sourcePath to: destination [
 	"Move the file /directory referenced as sourcePath to the destination referred as destPath.  
 	If there is no file at sourcePath, raise FileDoesNotExist.
 	If destPath is a file, raise FileExists.
@@ -638,21 +478,15 @@ FileSystem>>move: sourcePath to: destination [
 	^fullDestination
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>open [
+{ #category : #public }
+FileSystem >> open [
 	"Some kinds of filesystems need to open connections to external resources. Does nothing by default."
 	
 	store open
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>open: aResolvable writable: aBoolean  [
+{ #category : #public }
+FileSystem >> open: aResolvable writable: aBoolean [ 
 	"Resolve aResolvable into an absolute path, then ask the store to open the file at
 	that path using the specified access mode."
 	
@@ -664,21 +498,15 @@ FileSystem>>open: aResolvable writable: aBoolean  [
 		
 ]
 
-{
-	#category : #delegated,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>openFileStream: aResolvable writable: aBoolean [
+{ #category : #delegated }
+FileSystem >> openFileStream: aResolvable writable: aBoolean [
 	^ store 
 		openFileStream: (self resolve: aResolvable) 
 		writable: aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>openStreamDescription: aResolvable writable: aBoolean [
+{ #category : #private }
+FileSystem >> openStreamDescription: aResolvable writable: aBoolean [
 	"I am  a helper method to delegate basicOpen:writable: to the store.
 	 I am called from FileSystemHandle implementations."
 	
@@ -688,56 +516,38 @@ FileSystem>>openStreamDescription: aResolvable writable: aBoolean [
 	^ store basicOpen: path writable: aBoolean
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>pathFromObject: anObject  [
+{ #category : #converting }
+FileSystem >> pathFromObject: anObject [ 
 	^ anObject asPathWith: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>pathFromString: aString [
+{ #category : #converting }
+FileSystem >> pathFromString: aString [
 	^ store pathFromString: aString
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>permissions: aResolvable [
+{ #category : #public }
+FileSystem >> permissions: aResolvable [
 	"Resolve the argument and return the Permissions for this file or directory "
 
 	^ store permissions: (self resolve: aResolvable)
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>printPath: aPath on: aStream [
+{ #category : #printing }
+FileSystem >> printPath: aPath on: aStream [
 	store printPath: aPath on: aStream
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>readStreamOn: aResolvable [
+{ #category : #public }
+FileSystem >> readStreamOn: aResolvable [
 	"Resolve the argument into an absolute path and open a file handle on the file
 	at that path. Ask the handle to give us a read stream for reading the file."
 
 	^ (self open: aResolvable writable: false) readStream.
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>referenceTo: aResolvable  [
+{ #category : #public }
+FileSystem >> referenceTo: aResolvable [ 
 	"Answer a reference to the argument from the context of the receiver filesystem.  	
 		Example: Filesystem disk referenceTo: 'plonk.taz'"
 
@@ -746,11 +556,8 @@ FileSystem>>referenceTo: aResolvable  [
 		path: (self pathFromObject: aResolvable)
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>rename: sourcePath ifAbsent: aBlock to: destPath ifPresent: pBlock [
+{ #category : #public }
+FileSystem >> rename: sourcePath ifAbsent: aBlock to: destPath ifPresent: pBlock [
 	"Rename the file referenced as sourcePath to the destination referred as destPath. 
 	Perform associate actions in case of problems."
 	
@@ -766,11 +573,8 @@ FileSystem>>rename: sourcePath ifAbsent: aBlock to: destPath ifPresent: pBlock [
 	^ destination
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>rename: sourcePath to: destName [
+{ #category : #public }
+FileSystem >> rename: sourcePath to: destName [
 	"Rename the file referenced as sourcePath to destPath.  Raise exceptions 
 	FileExists or FileDoesNotExist  if the operation fails"
 	
@@ -781,19 +585,13 @@ FileSystem>>rename: sourcePath to: destName [
 		ifPresent: [store signalFileExists: destName]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>resolve: aResolvable [
+{ #category : #public }
+FileSystem >> resolve: aResolvable [
 	^ aResolvable asResolvedBy: self
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>resolvePath: aPath [
+{ #category : #navigating }
+FileSystem >> resolvePath: aPath [
 	"Return a path where the argument is resolved in the context of the
 	receiver. The behavior is similar to the one of a command line.
 		> cd /a/b/c
@@ -803,93 +601,63 @@ FileSystem>>resolvePath: aPath [
 	^ self workingDirectoryPath resolve: aPath
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>resolveReference: aReference [
+{ #category : #navigating }
+FileSystem >> resolveReference: aReference [
 	^ aReference fileSystem = self ifTrue:
 		[self workingDirectoryPath resolvePath: aReference path]
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>resolveString: aString [
+{ #category : #navigating }
+FileSystem >> resolveString: aString [
 	"Returns the root of the receiver filesystem, i.e. / on unix"
 	
 	^ self workingDirectoryPath resolvePath: (store pathFromString: aString)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>root [
+{ #category : #accessing }
+FileSystem >> root [
 	"Returns the root of the receiver filesystem, i.e. / on unix"
 	^ self referenceTo: Path root
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>separator [
+{ #category : #accessing }
+FileSystem >> separator [
 	"Return path separator used by this filesystem."
 
 	^ store separator
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>sizeOf: aResolvable [
+{ #category : #public }
+FileSystem >> sizeOf: aResolvable [
 	"Resolve the argument and return the size for this file or directory "
 
 	^ store sizeOf: (self resolve: aResolvable)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>store [
+{ #category : #accessing }
+FileSystem >> store [
 	^ store
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>stringFromPath: aPath [
+{ #category : #converting }
+FileSystem >> stringFromPath: aPath [
 	^ store stringFromPath: aPath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>workingDirectory [
+{ #category : #accessing }
+FileSystem >> workingDirectory [
 	"Returns a reference to the directory from where the image was launched"
 
 	^ self referenceTo: self workingDirectoryPath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>workingDirectoryPath [
+{ #category : #accessing }
+FileSystem >> workingDirectoryPath [
 	^ store defaultWorkingDirectory
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystem>>writeStreamOn: aResolvable [
+{ #category : #public }
+FileSystem >> writeStreamOn: aResolvable [
 	"Open a write stream on the file referred by the argument. It can be a string or a path"
 
 	^ (self open: aResolvable writable: true) writeStream.

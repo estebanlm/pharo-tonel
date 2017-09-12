@@ -14,15 +14,11 @@ Class {
 		'pattern',
 		'stringMorph'
 	],
-	#category : #FuzzyMatcher-Tests,
-	#timestamp : 'HenrikNergaard 6/25/2016 14:38'
+	#category : #FuzzyMatcher-Tests
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherExample class>>exampleAuthors [
+{ #category : #'as yet unclassified' }
+FuzzyMatcherExample class >> exampleAuthors [
 
 	| authors blk |
 	
@@ -45,11 +41,8 @@ FuzzyMatcherExample class>>exampleAuthors [
 		open
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherExample class>>exampleClasses [
+{ #category : #examples }
+FuzzyMatcherExample class >> exampleClasses [
 
 	^ self new 
 		pattern: 'mph';
@@ -57,11 +50,8 @@ FuzzyMatcherExample class>>exampleClasses [
 		open
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherExample class>>examplePackages [
+{ #category : #examples }
+FuzzyMatcherExample class >> examplePackages [
 
 	^ self new 
 		pattern: '-st';
@@ -69,11 +59,8 @@ FuzzyMatcherExample class>>examplePackages [
 		open
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherExample class>>exampleSelectors [
+{ #category : #examples }
+FuzzyMatcherExample class >> exampleSelectors [
 
 	^ self new 
 		pattern: '::::::::::';
@@ -81,20 +68,14 @@ FuzzyMatcherExample class>>exampleSelectors [
 		open 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherExample>>aquireFont [
+{ #category : #private }
+FuzzyMatcherExample >> aquireFont [
 
 	^ LogicalFont familyName: self fontName pointSize: 16
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherExample>>buildMorph [
+{ #category : #opening }
+FuzzyMatcherExample >> buildMorph [
 
 	| morph ft |
 	
@@ -123,11 +104,8 @@ FuzzyMatcherExample>>buildMorph [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherExample>>elements: aCollection [
+{ #category : #accessing }
+FuzzyMatcherExample >> elements: aCollection [
 
 	elements := aCollection collect: [ :each | each -> 0 ].
 	
@@ -139,20 +117,14 @@ FuzzyMatcherExample>>elements: aCollection [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherExample>>fontName [
+{ #category : #private }
+FuzzyMatcherExample >> fontName [
 
 	^ 'Source Sans Pro'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherExample>>initialize [
+{ #category : #initialization }
+FuzzyMatcherExample >> initialize [
 
 	super initialize.
 	
@@ -179,11 +151,8 @@ FuzzyMatcherExample>>initialize [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherExample>>match: aPattern for: aCollection [
+{ #category : #private }
+FuzzyMatcherExample >> match: aPattern for: aCollection [
 
 	| matcher matches |
 	
@@ -204,11 +173,8 @@ FuzzyMatcherExample>>match: aPattern for: aCollection [
 	^ matches
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherExample>>open [
+{ #category : #opening }
+FuzzyMatcherExample >> open [
 
 	| window area |
 	
@@ -222,20 +188,14 @@ FuzzyMatcherExample>>open [
 	^ window
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherExample>>pattern: aString [
+{ #category : #accessing }
+FuzzyMatcherExample >> pattern: aString [
 
 	textModel setText: aString.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherExample>>setElements: aCollection [
+{ #category : #private }
+FuzzyMatcherExample >> setElements: aCollection [
 
 	elements := aCollection collect: [ :each | each -> 0 ].
 	
@@ -244,20 +204,14 @@ FuzzyMatcherExample>>setElements: aCollection [
 	dataSource elements: matchedElements.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherExample>>update [
+{ #category : #'event handling' }
+FuzzyMatcherExample >> update [
 
 	self updatePattern: textModel getText asString
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherExample>>updatePattern: newPattern [
+{ #category : #'event handling' }
+FuzzyMatcherExample >> updatePattern: newPattern [
 
 	| searchPool t text |
 

@@ -21,47 +21,34 @@ Class {
 		'safeSet',
 		'decodePlusAsSpace'
 	],
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : 'SvenVanCaekenberghe 2/14/2014 14:06'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnPercentEncoder class>>rfc3986UnreservedCharacters [
+{ #category : #accessing }
+ZnPercentEncoder class >> rfc3986UnreservedCharacters [
 	"Return the unreserved characters according to RFC 3986 section 2.3.
 	This is the most narrow safe set to be used in a better safe than sorry approach."
 
 	^ 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.~'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnPercentEncoder>>characterEncoder [
+{ #category : #accessing }
+ZnPercentEncoder >> characterEncoder [
 	"Return the character encoder that I currently use.
 	If not set, I will default to using UTF-8."
 	
 	^ characterEncoder ifNil: [ characterEncoder := ZnDefaultCharacterEncoder value ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnPercentEncoder>>characterEncoder: object [
+{ #category : #initialize-release }
+ZnPercentEncoder >> characterEncoder: object [
 	"Set the character encoding to use to object."
 	
 	characterEncoder := object
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnPercentEncoder>>decode: string [
+{ #category : #converting }
+ZnPercentEncoder >> decode: string [
 	"Decode a percent encoded string and return the resulting byte array.
 	After percent decoding I will use my character encoder to convert byte values to characters."
 
@@ -72,11 +59,8 @@ ZnPercentEncoder>>decode: string [
 	^ self characterEncoder decodeBytes: bytes
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnPercentEncoder>>decode: stringStream to: byteStream [
+{ #category : #converting }
+ZnPercentEncoder >> decode: stringStream to: byteStream [
 	| char |
 	self decodePlusAsSpace.
 	[ stringStream atEnd ]
@@ -92,11 +76,8 @@ ZnPercentEncoder>>decode: stringStream to: byteStream [
 								ifFalse: [ self errorAsciiCharacterExpected ] ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnPercentEncoder>>decodePlusAsSpace [
+{ #category : #accessing }
+ZnPercentEncoder >> decodePlusAsSpace [
 	"Return if $+ on input should be decoded as Character space.
 	This is normally only done application/x-www-form-urlencoded data,
 	but is is on by default anyway."
@@ -104,11 +85,8 @@ ZnPercentEncoder>>decodePlusAsSpace [
 	^ decodePlusAsSpace ifNil: [ decodePlusAsSpace := true ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnPercentEncoder>>decodePlusAsSpace: boolean [
+{ #category : #initialize-release }
+ZnPercentEncoder >> decodePlusAsSpace: boolean [
 	"When boolean is true, $+ on input will be decoded as Character space.
 	Else $+ is treated as a normal character, filtered by the safe set.
 	This is normally only done application/x-www-form-urlencoded data,
@@ -117,11 +95,8 @@ ZnPercentEncoder>>decodePlusAsSpace: boolean [
 	decodePlusAsSpace := boolean
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnPercentEncoder>>encode: string [
+{ #category : #converting }
+ZnPercentEncoder >> encode: string [
 	"Encode string using percent encoding and return the resulting string.
 	I will use my character encoder to convert string to bytes and then
 	percent encode all byte values that are not in my safe set."
@@ -130,11 +105,8 @@ ZnPercentEncoder>>encode: string [
 		self encode: string readStream to: stream ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnPercentEncoder>>encode: readStream to: writeStream [
+{ #category : #converting }
+ZnPercentEncoder >> encode: readStream to: writeStream [
 	| bytes buffer byte |
 	buffer := (bytes := ByteArray new: 4) writeStream.
 	self safeSet; characterEncoder.
@@ -150,27 +122,18 @@ ZnPercentEncoder>>encode: readStream to: writeStream [
 						self writeHex: byte to: writeStream ] ] ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnPercentEncoder>>errorAsciiCharacterExpected [
+{ #category : #converting }
+ZnPercentEncoder >> errorAsciiCharacterExpected [
 	ZnCharacterEncodingError signal: 'ASCII character expected'
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnPercentEncoder>>errorHexDigitExpected [
+{ #category : #'error handling' }
+ZnPercentEncoder >> errorHexDigitExpected [
 	ZnCharacterEncodingError signal: 'hex digit expected'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnPercentEncoder>>readHexFrom: stream [
+{ #category : #private }
+ZnPercentEncoder >> readHexFrom: stream [
 	| first second |
 	(stream atEnd not and: [ (first := stream next digitValue) between: 0 and: 15 ])
 		ifFalse: [ self errorHexDigitExpected ].
@@ -179,31 +142,22 @@ ZnPercentEncoder>>readHexFrom: stream [
 	^ (first << 4) + second
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnPercentEncoder>>safeSet [
+{ #category : #accessing }
+ZnPercentEncoder >> safeSet [
 	"Return the safe set of characters that I will not encode, as a byte array.
 	If not set, I will default to the most commonly used safe set"
 	
 	^ safeSet ifNil: [ safeSet := self class rfc3986UnreservedCharacters asByteArray ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnPercentEncoder>>safeSet: string [
+{ #category : #initialize-release }
+ZnPercentEncoder >> safeSet: string [
 	"Set my safe set to be the characters in string, which I will convert to bytes"
 	
 	safeSet := string asByteArray 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnPercentEncoder>>writeHex: integer to: stream [
+{ #category : #private }
+ZnPercentEncoder >> writeHex: integer to: stream [
 	integer printOn: stream base: 16 length: 2 padded: true
 ]

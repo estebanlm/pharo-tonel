@@ -4,39 +4,26 @@ I store meta-data for a package assembly. I'm the common superclass of all packa
 Class {
 	#name : #AssemblyManifest,
 	#superclass : #Object,
-	#category : #Kernel,
-	#timestamp : 'ChristopheDemarey 2/13/2015 11:40'
+	#category : #Kernel
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AssemblyManifest class>>description [
+{ #category : #accessing }
+AssemblyManifest class >> description [
 	^ self name , ' description'
 ]
 
-{
-	#category : #'compatibility - package manifest',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AssemblyManifest class>>ignoredDependencies [
+{ #category : #'compatibility - package manifest' }
+AssemblyManifest class >> ignoredDependencies [
 	^ #()
 ]
 
-{
-	#category : #default,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AssemblyManifest class>>manifestClassComment [
+{ #category : #default }
+AssemblyManifest class >> manifestClassComment [
 	^ 'I store metadata for this package assembly.'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AssemblyManifest class>>newNamed: aString category: aCategoryName [
+{ #category : #'instance creation' }
+AssemblyManifest class >> newNamed: aString category: aCategoryName [
 	| assemblyClass |
 	assemblyClass := self subclass: aString asSymbol
 			instanceVariableNames: ''
@@ -47,26 +34,17 @@ AssemblyManifest class>>newNamed: aString category: aCategoryName [
 	^ assemblyClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AssemblyManifest class>>packageName [
+{ #category : #accessing }
+AssemblyManifest class >> packageName [
 	self shouldBeImplemented
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AssemblyManifest class>>parts [
+{ #category : #accessing }
+AssemblyManifest class >> parts [
 	^ #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AssemblyManifest class>>version [
+{ #category : #accessing }
+AssemblyManifest class >> version [
 	^ '0.1-dev'
 ]

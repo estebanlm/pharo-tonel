@@ -17,73 +17,48 @@ Class {
 	#classInstVars : [
 		'logger'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'AndreiChis 3/12/2015 00:01'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMLoggedObject class>>initialize  [
+{ #category : #'class initialization' }
+GLMLoggedObject class >> initialize [ 
 	logger := GLMLogger instance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMLoggedObject class>>logger [
+{ #category : #accessing }
+GLMLoggedObject class >> logger [
 	^ logger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMLoggedObject class>>logger: aLogger [
+{ #category : #accessing }
+GLMLoggedObject class >> logger: aLogger [
 	logger := aLogger
 ]
 
-{
-	#category : #announce,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMLoggedObject>>announce: anAnnouncement [
+{ #category : #announce }
+GLMLoggedObject >> announce: anAnnouncement [
 	self logger logAnnouncement: anAnnouncement from: self. 
 	super announce: anAnnouncement
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMLoggedObject>>initialize  [
+{ #category : #initialize-release }
+GLMLoggedObject >> initialize [ 
 	super initialize.
 	logger := GLMLogger instance 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMLoggedObject>>logger [
+{ #category : #accessing }
+GLMLoggedObject >> logger [
 	^ logger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMLoggedObject>>logger: anObject [
+{ #category : #accessing }
+GLMLoggedObject >> logger: anObject [
 	logger := anObject
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMLoggedObject>>postCopy  [
+{ #category : #copying }
+GLMLoggedObject >> postCopy [ 
 	super postCopy.
 	self resetAnnouncer
 ]

@@ -37,46 +37,33 @@ Class {
 	#pools : [
 		'ChronologyConstants'
 	],
-	#category : #Kernel-Chronology,
-	#timestamp : 'SvenVanCaekenberghe 1/10/2014 11:04'
+	#category : #Kernel-Chronology
 }
 
-{
-	#category : #'clock provider',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>clock [
+{ #category : #'clock provider' }
+DateAndTime class >> clock [ 
 	 "the provider of real time seconds/milliseconds."
 
 	^ ClockProvider 
 ]
 
-{
-	#category : #'system queries',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>clockPrecision [
+{ #category : #'system queries' }
+DateAndTime class >> clockPrecision [
 	"One nanosecond precision"
 
 	^ Duration seconds: 0 nanoSeconds: 1
 
 ]
 
-{
-	#category : #'instance creation queries',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>current [
+{ #category : #'instance creation queries' }
+DateAndTime class >> current [
 
 	^ self now
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>date: aDate time: aTime [
+{ #category : #'instance creation' }
+DateAndTime class >> date: aDate time: aTime [
 
 	^ self 
 		year: aDate year
@@ -89,11 +76,8 @@ DateAndTime class>>date: aDate time: aTime [
 		offset: self localOffset.
 ]
 
-{
-	#category : #'instance creation queries',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>dosEpoch [
+{ #category : #'instance creation queries' }
+DateAndTime class >> dosEpoch [
 	"Answer a DateAndTime representing the DOS epoch (1 January 1980, midnight UTC)"
 
 	^ self basicNew
@@ -101,31 +85,22 @@ DateAndTime class>>dosEpoch [
 		yourself.
 ]
 
-{
-	#category : #'instance creation queries',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>epoch [
+{ #category : #'instance creation queries' }
+DateAndTime class >> epoch [
   "Answer a DateAndTime representing the Squeak epoch: 1 January 1901"
 
   ^ (self julianDayNumber: SqueakEpoch) offset: 0.
   
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>fromDosTimestamp: anInteger [
+{ #category : #'instance creation' }
+DateAndTime class >> fromDosTimestamp: anInteger [
 
 	^ (DosTimestamp on: anInteger) asDateAndTime.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>fromMethodTimeStamp: aString [
+{ #category : #'instance creation' }
+DateAndTime class >> fromMethodTimeStamp: aString [
 	| stream |
 	stream := aString readStream.
 	stream
@@ -134,20 +109,14 @@ DateAndTime class>>fromMethodTimeStamp: aString [
 	^ self readSeparateDateAndTimeFrom: stream
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>fromSeconds: secondsSinceEpochUTC [
+{ #category : #'instance creation' }
+DateAndTime class >> fromSeconds: secondsSinceEpochUTC [
 	"Answer a DateAndTime since the Squeak epoch: 1 January 1901 for the seconds in UTC time"
 	^ self fromSeconds: secondsSinceEpochUTC offset: self localOffset
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>fromSeconds: utcSecondsSinceEpoch offset: aUTCOffset [
+{ #category : #'instance creation' }
+DateAndTime class >> fromSeconds: utcSecondsSinceEpoch offset: aUTCOffset [
 	"Answer a DateAndTime since the Squeak epoch: 1 January 1901 for the given timeZone"
 
 	| integerSeconds nanos |
@@ -158,27 +127,18 @@ DateAndTime class>>fromSeconds: utcSecondsSinceEpoch offset: aUTCOffset [
 	^ self basicNew ticks: {SqueakEpoch . integerSeconds . nanos} offset: aUTCOffset asDuration
 ]
 
-{
-	#category : #input,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>fromString: aString [
+{ #category : #input }
+DateAndTime class >> fromString: aString [ 
 	^ self readFrom: aString readStream
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>fromUnixTime: anInteger [
+{ #category : #'instance creation' }
+DateAndTime class >> fromUnixTime: anInteger [
 	^ self fromSeconds: anInteger + 2177452800 "unix epoch constant"
 ]
 
-{
-	#category : #input,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>fuzzyReadFrom: aStream [
+{ #category : #input }
+DateAndTime class >> fuzzyReadFrom: aStream [
 	| bc year month day hour minute second nanos offset buffer ch |
 
 
@@ -227,30 +187,21 @@ DateAndTime class>>fuzzyReadFrom: aStream [
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>initialize [
+{ #category : #initialize-release }
+DateAndTime class >> initialize [
 	ClockProvider := Time
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>julianDayNumber: aJulianDayNumber [
+{ #category : #'instance creation' }
+DateAndTime class >> julianDayNumber: aJulianDayNumber [
 
 	^ self basicNew
 		ticks: aJulianDayNumber days ticks offset: Duration new;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>julianDayNumber: aJulianDayNumber offset: aTimeZoneOffset [
+{ #category : #'instance creation' }
+DateAndTime class >> julianDayNumber: aJulianDayNumber offset: aTimeZoneOffset [
 	"Return a DateAndTime at midnight local time at the given julian day"
 	| ticks |
 	"create a ticks representation in UTC, take the given julian day in local time"
@@ -262,22 +213,16 @@ DateAndTime class>>julianDayNumber: aJulianDayNumber offset: aTimeZoneOffset [
 		yourself
 ]
 
-{
-	#category : #'system queries',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>localOffset [
+{ #category : #'system queries' }
+DateAndTime class >> localOffset [
 	"Answer the duration we are offset from UTC"
 
 	^ self localTimeZone offset
 
 ]
 
-{
-	#category : #'time zones',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>localTimeZone [
+{ #category : #'time zones' }
+DateAndTime class >> localTimeZone [
 	"Answer the local time zone"
 
 	^ LocalTimeZone ifNil: [ LocalTimeZone := TimeZone default ]
@@ -285,11 +230,8 @@ DateAndTime class>>localTimeZone [
 
 ]
 
-{
-	#category : #'time zones',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>localTimeZone: aTimeZone [
+{ #category : #'time zones' }
+DateAndTime class >> localTimeZone: aTimeZone [
 	"Set the local time zone"
 
 	"
@@ -303,50 +245,35 @@ DateAndTime class>>localTimeZone: aTimeZone [
 
 ]
 
-{
-	#category : #'instance creation queries',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>midnight [
+{ #category : #'instance creation queries' }
+DateAndTime class >> midnight [
 
 	^ self now midnight
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>millisecondClockValue [
+{ #category : #primitives }
+DateAndTime class >> millisecondClockValue [
 
 	^ self clock millisecondClockValue
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>new [
+{ #category : #'instance creation' }
+DateAndTime class >> new [
 	"Answer a DateAndTime representing the Squeak epoch: 1 January 1901"
 
 	^ self epoch offset: self localOffset 
 	
 ]
 
-{
-	#category : #'instance creation queries',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>noon [
+{ #category : #'instance creation queries' }
+DateAndTime class >> noon [
 
 	^ self now noon
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>now [
+{ #category : #'instance creation' }
+DateAndTime class >> now [ 
 	"Answer the current date and time expressed in local time.
 	[ 10000 timesRepeat: [ self now. ] ] timeToRun / 10000.0 . "
 
@@ -359,11 +286,8 @@ DateAndTime class>>now [
 		offset: self localOffset
 ]
 
-{
-	#category : #input,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>readFrom: aStream [
+{ #category : #input }
+DateAndTime class >> readFrom: aStream [
 	"Parse and return a new DateAndTime instance from stream, 
 	as a Date, an optional Time and an optional TimeZone offset.
 	The time defaults to midnight, the timezone to the local offset"
@@ -372,11 +296,8 @@ DateAndTime class>>readFrom: aStream [
 	^self readFrom: aStream defaultOffset: self localOffset.
 ]
 
-{
-	#category : #input,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>readFrom: aStream defaultOffset: defaultOffset [
+{ #category : #input }
+DateAndTime class >> readFrom: aStream defaultOffset: defaultOffset [
 	"Parse and return a new DateAndTime instance from stream, 
 	as a Date, an optional Time and an optional TimeZone offset.
 	The time defaults to midnight, the timezone to defaultOffset"
@@ -402,11 +323,8 @@ DateAndTime class>>readFrom: aStream defaultOffset: defaultOffset [
 		offset: offset
 ]
 
-{
-	#category : #input,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>readOptionalSeparatorFrom: stream [
+{ #category : #input }
+DateAndTime class >> readOptionalSeparatorFrom: stream [
 	"Read an optional separator (non decimal digit) from stream and return it.
 	Return nil if nothing was read"
 
@@ -420,11 +338,8 @@ DateAndTime class>>readOptionalSeparatorFrom: stream [
 		ifFalse: [ stream next ]
 ]
 
-{
-	#category : #input,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>readSeparateDateAndTimeFrom: stream [
+{ #category : #input }
+DateAndTime class >> readSeparateDateAndTimeFrom: stream [
 	"Read a separate Date and Time from stream to instanciate the receiver.
 	See also #printSeparateDateAndTimeOn:"
 	
@@ -438,11 +353,8 @@ DateAndTime class>>readSeparateDateAndTimeFrom: stream [
 		time: time
 ]
 
-{
-	#category : #input,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>readTimezoneOffsetFrom: stream [
+{ #category : #input }
+DateAndTime class >> readTimezoneOffsetFrom: stream [
 	"Read and return an optional timezone offset in the form of 
 	[+|-]hh[[separator]mm[[separator]ss]] or Z from stream as a duration.
 	If there is no offset, return the local offset."
@@ -450,11 +362,8 @@ DateAndTime class>>readTimezoneOffsetFrom: stream [
 	^self readTimezoneOffsetFrom: stream default: self localOffset
 ]
 
-{
-	#category : #input,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>readTimezoneOffsetFrom: stream default: defaultOffset [
+{ #category : #input }
+DateAndTime class >> readTimezoneOffsetFrom: stream default: defaultOffset [
 	"Read and return an optional timezone offset in the form of 
 	[+|-]hh[[separator]mm[[separator]ss]] or Z from stream as a duration.
 	If there is no offset, return the defaultOffset."
@@ -476,11 +385,8 @@ DateAndTime class>>readTimezoneOffsetFrom: stream default: defaultOffset [
 		ifFalse: [ defaultOffset ]
 ]
 
-{
-	#category : #input,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>readTwoDigitIntegerFrom: stream [
+{ #category : #input }
+DateAndTime class >> readTwoDigitIntegerFrom: stream [
 	"Parse and return a decimal number of 2 digits from stream.
 	Fail if that is not possible"
 
@@ -493,51 +399,36 @@ DateAndTime class>>readTwoDigitIntegerFrom: stream [
 	^ integer
 ]
 
-{
-	#category : #'instance creation queries',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>today [
+{ #category : #'instance creation queries' }
+DateAndTime class >> today [
 
 	^ self midnight
 
 ]
 
-{
-	#category : #'instance creation queries',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>tomorrow [
+{ #category : #'instance creation queries' }
+DateAndTime class >> tomorrow [
 
 	^ self today asDate next asDateAndTime
 ]
 
-{
-	#category : #'system queries',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>totalSeconds [
+{ #category : #'system queries' }
+DateAndTime class >> totalSeconds [
 	"Answer the total seconds ellapsed since the Squeak epoch: 1 January 1901"
 
 	^ self clock totalSeconds
 ]
 
-{
-	#category : #'instance creation queries',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>unixEpoch [
+{ #category : #'instance creation queries' }
+DateAndTime class >> unixEpoch [
 	"Answer a DateAndTime representing the Unix epoch (1 January 1970, midnight UTC)"
 	^ self basicNew
 		ticks: #(2440588 0 0) offset: Duration zero;
 		yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>year: year day: dayOfYear [
+{ #category : #'instance creation' }
+DateAndTime class >> year: year day: dayOfYear [
 	"Return a DateAndTime"
 
 	^ self
@@ -548,11 +439,8 @@ DateAndTime class>>year: year day: dayOfYear [
 		second: 0
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>year: year day: dayOfYear hour: hour minute: minute second: second [
+{ #category : #'instance creation' }
+DateAndTime class >> year: year day: dayOfYear hour: hour minute: minute second: second [
 
 	^ self
 		year: year
@@ -564,11 +452,8 @@ DateAndTime class>>year: year day: dayOfYear hour: hour minute: minute second: s
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>year: year day: dayOfYear hour: hour minute: minute second: second offset: offset [
+{ #category : #'instance creation' }
+DateAndTime class >> year: year day: dayOfYear hour: hour minute: minute second: second offset: offset [ 
 	"Return a DataAndTime"
 
 	| y d |
@@ -585,11 +470,8 @@ DateAndTime class>>year: year day: dayOfYear hour: hour minute: minute second: s
 	^ y + d
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>year: year month: month day: day [
+{ #category : #'instance creation' }
+DateAndTime class >> year: year month: month day: day [
 	"Return a DateAndTime, midnight local time"
 	^ self
 		year: year
@@ -599,11 +481,8 @@ DateAndTime class>>year: year month: month day: day [
 		minute: 0
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>year: year month: month day: day hour: hour minute: minute [
+{ #category : #'instance creation' }
+DateAndTime class >> year: year month: month day: day hour: hour minute: minute [
 	"Return a DateAndTime" 
 	
 	^ self
@@ -615,11 +494,8 @@ DateAndTime class>>year: year month: month day: day hour: hour minute: minute [
 		second: 0
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>year: year month: month day: day hour: hour minute: minute offset: anOffset [
+{ #category : #'instance creation' }
+DateAndTime class >> year: year month: month day: day hour: hour minute: minute offset: anOffset [
 	"Return a DateAndTime" 
 	
 	^ self
@@ -632,11 +508,8 @@ DateAndTime class>>year: year month: month day: day hour: hour minute: minute of
 		offset: anOffset
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>year: year month: month day: day hour: hour minute: minute second: second [
+{ #category : #'instance creation' }
+DateAndTime class >> year: year month: month day: day hour: hour minute: minute second: second [
 	"Return a DateAndTime"
 
 	^ self
@@ -650,11 +523,8 @@ DateAndTime class>>year: year month: month day: day hour: hour minute: minute se
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>year: year month: month day: day hour: hour minute: minute second: second nanoSecond: nanoCount offset: utcOffset [
+{ #category : #'instance creation' }
+DateAndTime class >> year: year month: month day: day hour: hour minute: minute second: second nanoSecond: nanoCount offset: utcOffset [
 	"Return a DateAndTime with the values in the given TimeZone (UTCOffset)"
 
 	| monthIndex daysInMonth p q r s julianDayNumber localSeconds utcSeconds|
@@ -689,11 +559,8 @@ DateAndTime class>>year: year month: month day: day hour: hour minute: minute se
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>year: year month: month day: day hour: hour minute: minute second: second offset: offset [
+{ #category : #'instance creation' }
+DateAndTime class >> year: year month: month day: day hour: hour minute: minute second: second offset: offset [
 
 	^ self
 		year: year
@@ -707,11 +574,8 @@ DateAndTime class>>year: year month: month day: day hour: hour minute: minute se
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>year: year month: month day: day offset: anOffset [
+{ #category : #'instance creation' }
+DateAndTime class >> year: year month: month day: day offset: anOffset [
 	"Return a DateAndTime, midnight in the timezone with the given offset"
 	^ self
 		year: year
@@ -722,21 +586,15 @@ DateAndTime class>>year: year month: month day: day offset: anOffset [
 		offset: anOffset 
 ]
 
-{
-	#category : #'instance creation queries',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime class>>yesterday [
+{ #category : #'instance creation queries' }
+DateAndTime class >> yesterday [
 
 	^ self today asDate previous asDateAndTime
 
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>+ operand [
+{ #category : #arithmetic }
+DateAndTime >> + operand [
 	"operand conforms to protocol Duration"
 
 	| durationTicks |
@@ -749,11 +607,8 @@ DateAndTime>>+ operand [
 		yourself
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>- operand [
+{ #category : #arithmetic }
+DateAndTime >> - operand [
 	"operand conforms to protocol DateAndTime or protocol Duration"
 
 	^ (operand respondsTo: #asDateAndTime)
@@ -767,11 +622,8 @@ DateAndTime>>- operand [
 		ifFalse: [ self + operand negated ]
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>< comparand [
+{ #category : #arithmetic }
+DateAndTime >> < comparand [
 	"comparand conforms to protocol DateAndTime,
 	or can be converted into something that conforms."
 
@@ -785,61 +637,43 @@ DateAndTime>>< comparand [
 		ifFalse: [ julianDayNumber < other julianDayNumberUTC ]
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>= other [
+{ #category : #arithmetic }
+DateAndTime >> = other [ 
 	self == other ifTrue: [ ^ true ].
 	(self species = other species) ifFalse: [ ^ false ].
 	^ self hasEqualTicks: other
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>asDate [
+{ #category : #converting }
+DateAndTime >> asDate [
 
 	^ Date starting: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>asDateAndTime [
+{ #category : #converting }
+DateAndTime >> asDateAndTime [
 
 	^ self
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>asDosTimestamp [
+{ #category : #converting }
+DateAndTime >> asDosTimestamp [
 
 	^ (DosTimestamp fromDateAndTime: self) value.
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>asDuration [
+{ #category : #converting }
+DateAndTime >> asDuration [
 	"Answer the duration since midnight."
 
 	^ Duration seconds: self secondsSinceMidnightLocalTime nanoSeconds: nanos
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>asFileNameCompatibleString [
+{ #category : #converting }
+DateAndTime >> asFileNameCompatibleString [
 	| stream |
 	stream := String new writeStream.
 	self printYMDOn: stream.
@@ -848,11 +682,8 @@ DateAndTime>>asFileNameCompatibleString [
 	^ stream contents
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>asLocal [
+{ #category : #converting }
+DateAndTime >> asLocal [
 	
 	^ (self offset = self class localOffset)
 		ifTrue: [self]
@@ -860,60 +691,42 @@ DateAndTime>>asLocal [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>asMonth [
+{ #category : #converting }
+DateAndTime >> asMonth [
 
 	^ Month starting: self
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>asNanoSeconds [
+{ #category : #converting }
+DateAndTime >> asNanoSeconds [
 	"Answer the number of nanoseconds since midnight"
 
 	^ self asDuration asNanoSeconds
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>asSeconds [
+{ #category : #converting }
+DateAndTime >> asSeconds [
  	"Return the number of seconds since the Squeak epoch"
  
  	^ (self - (self class epoch)) asSeconds
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>asTime [
+{ #category : #converting }
+DateAndTime >> asTime [
 
 	^ Time seconds: self secondsSinceMidnightLocalTime nanoSeconds: nanos
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>asTimeUTC [
+{ #category : #converting }
+DateAndTime >> asTimeUTC [
 
 	^ Time seconds: self secondsSinceMidnightUTC nanoSeconds: nanos
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>asUTC [
+{ #category : #converting }
+DateAndTime >> asUTC [
 
 	^ offset isZero
 		ifTrue: [ self ]
@@ -921,48 +734,33 @@ DateAndTime>>asUTC [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>asUnixTime [
+{ #category : #converting }
+DateAndTime >> asUnixTime [
 	"answer number of seconds since unix epoch (midnight Jan 1, 1970, UTC)"
 	^((self offset: Duration zero) - self class unixEpoch) asSeconds
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>asWeek [
+{ #category : #converting }
+DateAndTime >> asWeek [
 
 	^ Week starting: self 
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>asYear [
+{ #category : #converting }
+DateAndTime >> asYear [
 
 	^ Year starting: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>day [
+{ #category : #accessing }
+DateAndTime >> day [
  
  	^ self dayOfYear
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>dayMonthYearDo: aBlock [
+{ #category : #enumerating }
+DateAndTime >> dayMonthYearDo: aBlock [
 	"Return the value of executing block with the Gregorian Calender day, month and year as arguments,
 	as computed from my Julian Day Number, julianDayNumber.
 	See http://en.wikipedia.org/wiki/Julian_date#Gregorian_calendar_from_Julian_day_number
@@ -992,50 +790,35 @@ DateAndTime>>dayMonthYearDo: aBlock [
 		value: fullYear.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>dayOfMonth [
+{ #category : #accessing }
+DateAndTime >> dayOfMonth [
 	"Answer which day of the month is represented by the receiver."
 
 	^ self dayMonthYearDo: [ :d :m :y | d ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>dayOfWeek [
+{ #category : #accessing }
+DateAndTime >> dayOfWeek [
 	"Sunday=1, ... , Saturday=7"
 
 	^ (self julianDayNumber + 1 rem: 7) + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>dayOfWeekAbbreviation [
+{ #category : #accessing }
+DateAndTime >> dayOfWeekAbbreviation [
 
 	^ self dayOfWeekName copyFrom: 1 to: 3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>dayOfWeekName [
+{ #category : #accessing }
+DateAndTime >> dayOfWeekName [
 
 	^ Week nameOfDay: self dayOfWeek
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>dayOfYear [
+{ #category : #accessing }
+DateAndTime >> dayOfYear [
 	"This code was contributed by Dan Ingalls. It is equivalent to the terser
 		^ jdn - (Year year: self year) start julianDayNumber + 1 but much quicker."
 
@@ -1048,22 +831,16 @@ DateAndTime>>dayOfYear [
 				ifFalse: [ monthStart + d - 1 ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>daysInMonth [
+{ #category : #accessing }
+DateAndTime >> daysInMonth [
 	"Answer the number of days in the month represented by the receiver."
 
 
 	^ self asMonth daysInMonth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>daysInYear [
+{ #category : #accessing }
+DateAndTime >> daysInYear [
  
  	"Answer the number of days in the year represented by the receiver."
  
@@ -1071,40 +848,28 @@ DateAndTime>>daysInYear [
  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>daysLeftInYear [
+{ #category : #accessing }
+DateAndTime >> daysLeftInYear [
  	"Answer the number of days in the year after the date of the receiver."
  
  	^ self daysInYear - self dayOfYear
  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>duration [
+{ #category : #accessing }
+DateAndTime >> duration [
 
 	^ Duration zero
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>firstDayOfMonth [
+{ #category : #accessing }
+DateAndTime >> firstDayOfMonth [
  
  	^ self asMonth start day
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>hasEqualTicks: aDateAndTime [
+{ #category : #private }
+DateAndTime >> hasEqualTicks: aDateAndTime [
 	
 	^ (self julianDayNumberUTC = aDateAndTime julianDayNumberUTC)
 		and: [ (seconds = aDateAndTime secondsSinceMidnightUTC)
@@ -1113,116 +878,80 @@ DateAndTime>>hasEqualTicks: aDateAndTime [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>hash [
+{ #category : #private }
+DateAndTime >> hash [
 	^ (julianDayNumber hashMultiply bitXor: seconds) bitXor: nanos
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>hour [
+{ #category : #accessing }
+DateAndTime >> hour [
 
 	^ self hour24
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>hour12 [
+{ #category : #accessing }
+DateAndTime >> hour12 [
 	"Answer an <integer> between 1 and 12, inclusive, representing the hour 
 	of the day in the 12-hour clock of the local time of the receiver."
 	
 	^ self hour24 - 1 \\ 12 + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>hour24 [
+{ #category : #accessing }
+DateAndTime >> hour24 [
 	"Answer a number that represents the number of complete hours in the receiver's time part,
 	 after the number of complete days has been removed."
  
  	^ self localSeconds // SecondsInHour \\ 24
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>hours [
+{ #category : #accessing }
+DateAndTime >> hours [
  
  	^ self hour
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>isLeapYear [
+{ #category : #accessing }
+DateAndTime >> isLeapYear [
 
 	^ Year isLeapYear: self year.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>julianDayNumber [
+{ #category : #accessing }
+DateAndTime >> julianDayNumber [
 	
 	^ julianDayNumber + self julianDayOffset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>julianDayNumberUTC [
+{ #category : #accessing }
+DateAndTime >> julianDayNumberUTC [
 	
 	^ julianDayNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>julianDayOffset [
+{ #category : #accessing }
+DateAndTime >> julianDayOffset [
 	"Return the offset in julian days possibly introduced by the timezone offset"
 	
 	^ ((seconds + self offset asSeconds) / SecondsInDay) floor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>localSeconds [
+{ #category : #accessing }
+DateAndTime >> localSeconds [
 	" Return the seconds since the epoch in local time."
 	^ seconds + self offset asSeconds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>meridianAbbreviation [
+{ #category : #accessing }
+DateAndTime >> meridianAbbreviation [
 
 	^ self asTime meridianAbbreviation
 ]
 
-{
-	#category : #maintime,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>middleOf: aDuration [
+{ #category : #maintime }
+DateAndTime >> middleOf: aDuration [
 	"Return a Timespan where the receiver is the middle of the Duration"
 
 	| duration |
@@ -1231,11 +960,8 @@ DateAndTime>>middleOf: aDuration [
 		
 ]
 
-{
-	#category : #maintime,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>midnight [
+{ #category : #maintime }
+DateAndTime >> midnight [
 	"Answer a DateAndTime starting at midnight (towards the end of the day) local time"
 	self dayMonthYearDo: [ :day :month :year|
 		^self class 
@@ -1245,92 +971,65 @@ DateAndTime>>midnight [
 			offset: offset ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>minute [
+{ #category : #accessing }
+DateAndTime >> minute [
 	"Answer a number that represents the number of complete minutes in the receiver' time part, 
 	after the number of complete hours has been removed."
 	
  	^ self localSeconds // SecondsInMinute \\ 60
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>minutes [
+{ #category : #accessing }
+DateAndTime >> minutes [
  
  	^ self minute
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>month [
+{ #category : #accessing }
+DateAndTime >> month [
 
 	^ self dayMonthYearDo: [ :d :m :y | m ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>monthAbbreviation [
+{ #category : #accessing }
+DateAndTime >> monthAbbreviation [
 
 	^ self monthName copyFrom: 1 to: 3
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>monthIndex [
+{ #category : #accessing }
+DateAndTime >> monthIndex [
  
  
  	^ self month
  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>monthName [
+{ #category : #accessing }
+DateAndTime >> monthName [
 
 	^ Month nameOfMonth: self month
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>nanoSecond [
+{ #category : #accessing }
+DateAndTime >> nanoSecond [
 
 	^ nanos
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>noon [
+{ #category : #accessing }
+DateAndTime >> noon [
 	"Answer a DateAndTime starting at noon"
 
 	^ self dayMonthYearDo: 
 		[ :d :m :y | self class year: y month: m day: d hour: 12 minute: 0 second: 0 offset: offset]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>normalizeSecondsAndNanos [
+{ #category : #private }
+DateAndTime >> normalizeSecondsAndNanos [
 	(NanosInSecond <= nanos or: [ nanos < 0 ])
 		ifTrue: [
 			seconds := seconds + (nanos // NanosInSecond).
@@ -1342,21 +1041,15 @@ DateAndTime>>normalizeSecondsAndNanos [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>offset [
+{ #category : #accessing }
+DateAndTime >> offset [
 
 	^ offset
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>offset: anOffset [
+{ #category : #accessing }
+DateAndTime >> offset: anOffset [
 	"Answer a <DateAndTime> equivalent to the receiver but with its local time 
 	being offset from UTC by offset.
 	Unlike #translateTo: this will NOT change the absolute in UTC "
@@ -1367,21 +1060,15 @@ DateAndTime>>offset: anOffset [
 		
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>printHMSOn: aStream [
+{ #category : #printing }
+DateAndTime >> printHMSOn: aStream [
 	"Print just hh:mm:ss"
 
 	self printHMSOn: aStream separatedBy: $:
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>printHMSOn: aStream separatedBy: aSeparator [
+{ #category : #printing }
+DateAndTime >> printHMSOn: aStream separatedBy: aSeparator [
 	"Print just hh<aSep>mm<aSep>ss"
 
 	self hour
@@ -1403,21 +1090,15 @@ DateAndTime>>printHMSOn: aStream separatedBy: aSeparator [
 		padded: true
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>printHMSWithDashesOn: aStream [
+{ #category : #printing }
+DateAndTime >> printHMSWithDashesOn: aStream [
 	"Print just hh-mm-ss"
 
 	self printHMSOn: aStream separatedBy: $-
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>printMSOn: aStream [
+{ #category : #printing }
+DateAndTime >> printMSOn: aStream [
 	"Print just mm:ss"
 	
 	self minute printOn: aStream base: 10 length: 2 padded: true.
@@ -1425,11 +1106,8 @@ DateAndTime>>printMSOn: aStream [
 	self second printOn: aStream base: 10 length: 2 padded: true
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>printOn: aStream [
+{ #category : #printing }
+DateAndTime >> printOn: aStream [
 	"Print as per ISO 8601 sections 5.3.3 and 5.4.1.
 	Prints either:
 		'YYYY-MM-DDThh:mm:ss.s+ZZ:zz:z' (for positive years) or '-YYYY-MM-DDThh:mm:ss.s+ZZ:zz:z' (for negative years)"
@@ -1438,11 +1116,8 @@ DateAndTime>>printOn: aStream [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>printOn: aStream withLeadingSpace: printLeadingSpaceToo [
+{ #category : #printing }
+DateAndTime >> printOn: aStream withLeadingSpace: printLeadingSpaceToo [
 	"Print as per ISO 8601 sections 5.3.3 and 5.4.1.
 	If printLeadingSpaceToo is false, prints either:
 		'YYYY-MM-DDThh:mm:ss.s+ZZ:zz:z' (for positive years) or '-YYYY-MM-DDThh:mm:ss.s+ZZ:zz:z' (for negative years)
@@ -1468,11 +1143,8 @@ DateAndTime>>printOn: aStream withLeadingSpace: printLeadingSpaceToo [
 			aStream nextPut: $:; print: offset seconds abs truncated ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>printSeparateDateAndTimeOn: stream [
+{ #category : #printing }
+DateAndTime >> printSeparateDateAndTimeOn: stream [
 	"Print the receiver as separate Date and Time to stream.
 	See also #readSeparateDateAndTimeFrom:"
 
@@ -1482,11 +1154,8 @@ DateAndTime>>printSeparateDateAndTimeOn: stream [
 		print: self asTime
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>printYMDOn: aStream [
+{ #category : #printing }
+DateAndTime >> printYMDOn: aStream [
 	"Print just YYYY-MM-DD part.
 	If the year is negative, prints out '-YYYY-MM-DD'."
 
@@ -1494,11 +1163,8 @@ DateAndTime>>printYMDOn: aStream [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>printYMDOn: aStream withLeadingSpace: printLeadingSpaceToo [
+{ #category : #printing }
+DateAndTime >> printYMDOn: aStream withLeadingSpace: printLeadingSpaceToo [
 	"Print just the year, month, and day on aStream.
 
 	If printLeadingSpaceToo is true, then print as:
@@ -1518,11 +1184,8 @@ DateAndTime>>printYMDOn: aStream withLeadingSpace: printLeadingSpaceToo [
 	day printOn: aStream base: 10 length: 2 padded: true
 ]
 
-{
-	#category : #truncation,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>rounded [
+{ #category : #truncation }
+DateAndTime >> rounded [
 	"Answer a date and time to the nearest whole second"
 
 	^ self species basicNew
@@ -1535,48 +1198,33 @@ DateAndTime>>rounded [
 		offset: offset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>second [
+{ #category : #accessing }
+DateAndTime >> second [
 	"Answer a number that represents the number of complete seconds in the receiver's time part, 
 	after the number of complete minutes has been removed."
  
  	^ self localSeconds \\ 60
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>seconds [
+{ #category : #accessing }
+DateAndTime >> seconds [
  
  	^ self second
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>secondsSinceMidnightLocalTime [
+{ #category : #private }
+DateAndTime >> secondsSinceMidnightLocalTime [
 	^ self localSeconds \\ SecondsInDay
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>secondsSinceMidnightUTC [
+{ #category : #private }
+DateAndTime >> secondsSinceMidnightUTC [
 
 	^ seconds
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>setJdn: julDays seconds: secs nano: nanoSecs offset: anOffset [
+{ #category : #private }
+DateAndTime >> setJdn: julDays seconds: secs nano: nanoSecs offset: anOffset [
 	julianDayNumber := julDays.
 	seconds := secs.
 	nanos := nanoSecs.
@@ -1584,70 +1232,49 @@ DateAndTime>>setJdn: julDays seconds: secs nano: nanoSecs offset: anOffset [
 	self normalizeSecondsAndNanos
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>ticks [
+{ #category : #private }
+DateAndTime >> ticks [
 	"Private - answer an array with our instance variables. Assumed to be UTC "
 
 	^ Array with: julianDayNumber with: seconds with: nanos.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>ticks: ticks offset: utcOffset [
+{ #category : #private }
+DateAndTime >> ticks: ticks offset: utcOffset [
 	"ticks is {julianDayNumber. secondCount. nanoSeconds}"
 
 	self setJdn: (ticks at: 1) seconds: (ticks at: 2) nano: (ticks at: 3) offset: utcOffset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>timeZone [
+{ #category : #accessing }
+DateAndTime >> timeZone [
 	^ TimeZone offset: self offset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>timeZoneAbbreviation [
+{ #category : #accessing }
+DateAndTime >> timeZoneAbbreviation [
 
 	^ self timeZone abbreviation
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>timeZoneName [
+{ #category : #accessing }
+DateAndTime >> timeZoneName [
 
 	^ self timeZone name
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>to: anEnd [
+{ #category : #enumerating }
+DateAndTime >> to: anEnd [
 	"Answer a Timespan. anEnd conforms to protocol DateAndTime or protocol Timespan"
 
 	^ Timespan starting: self ending: (anEnd asDateAndTime).
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>to: anEnd by: aDuration [
+{ #category : #enumerating }
+DateAndTime >> to: anEnd by: aDuration [
 	"Answer a Timespan. anEnd conforms to protocol DateAndTime or protocol Timespan"
 
 	^ (Schedule starting: self ending: (anEnd asDateAndTime))
@@ -1656,22 +1283,16 @@ DateAndTime>>to: anEnd by: aDuration [
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>to: anEnd by: aDuration do: aBlock [
+{ #category : #enumerating }
+DateAndTime >> to: anEnd by: aDuration do: aBlock [
 	"Answer a Timespan. anEnd conforms to protocol DateAndTime or protocol Timespan"
 
 	^ (self to: anEnd by: aDuration) scheduleDo: aBlock
 
 ]
 
-{
-	#category : #offset,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>translateTo: anOffset [
+{ #category : #offset }
+DateAndTime >> translateTo: anOffset [
 	"Keep myself's representation and move it to another timezone offset.
 	Note that unlike #offset: this WILL change the absolute time in UTC
 	
@@ -1692,38 +1313,26 @@ DateAndTime>>translateTo: anOffset [
 			offset: anOffset asDuration ]
 ]
 
-{
-	#category : #offset,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>translateToUTC [
+{ #category : #offset }
+DateAndTime >> translateToUTC [
 	" Move this represenation to UTC"
 	^ self translateTo: 0 asDuration 
 ]
 
-{
-	#category : #truncation,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>truncated [
+{ #category : #truncation }
+DateAndTime >> truncated [
 	"Answer a date and time to the nearest preceding whole second"
 	
 	^ self species basicNew ticks: { julianDayNumber. seconds. 0 } offset: offset
 ]
 
-{
-	#category : #offset,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>withoutOffset [
+{ #category : #offset }
+DateAndTime >> withoutOffset [
 
 	^ self offset: 0 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateAndTime>>year [
+{ #category : #accessing }
+DateAndTime >> year [
 	^ self dayMonthYearDo: [:d :m :y | y ]
 ]

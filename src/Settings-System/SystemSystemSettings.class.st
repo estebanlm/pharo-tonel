@@ -8,15 +8,11 @@ Class {
 		'SoundEnabled',
 		'UseThemeSounds'
 	],
-	#category : #Settings-System,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:29'
+	#category : #Settings-System
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SystemSystemSettings class>>systemSettingOn: aBuilder [
+{ #category : #settings }
+SystemSystemSettings class >> systemSettingOn: aBuilder [
 	<systemsettings>
 	
 	(aBuilder group: #tools)

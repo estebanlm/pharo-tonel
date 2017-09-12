@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MCFileInTest,
 	#superclass : #MCTestCase,
@@ -9,23 +6,16 @@ Class {
 		'expected',
 		'diff'
 	],
-	#category : #Monticello-Tests,
-	#timestamp : ''
+	#category : #Monticello-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCFileInTest>>alterInitialState [
+{ #category : #testing }
+MCFileInTest >> alterInitialState [
 	self mockClassA touchCVar
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCFileInTest>>assertFileOutFrom: writerClass canBeFiledInWith: aBlock [
+{ #category : #testing }
+MCFileInTest >> assertFileOutFrom: writerClass canBeFiledInWith: aBlock [
 	(writerClass on: stream) writeSnapshot: self mockSnapshot.
 	self alterInitialState.
 	self assertSuccessfulLoadWith: aBlock.
@@ -34,21 +24,15 @@ MCFileInTest>>assertFileOutFrom: writerClass canBeFiledInWith: aBlock [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCFileInTest>>assertInitializersCalled [
+{ #category : #testing }
+MCFileInTest >> assertInitializersCalled [
 	| cvar |
 	cvar := self mockClassA cVar.
 	self assert: cvar = #initialized
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCFileInTest>>assertInitializersOrder [
+{ #category : #testing }
+MCFileInTest >> assertInitializersOrder [
 
 	| initializationOrder |
 	initializationOrder := self mockClassA initializationOrder.
@@ -56,22 +40,16 @@ MCFileInTest>>assertInitializersOrder [
 
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCFileInTest>>assertNoChange [
+{ #category : #asserting }
+MCFileInTest >> assertNoChange [
 	| actual |
 	actual := MCSnapshotResource takeSnapshot.
 	diff := actual patchRelativeToBase: expected.
 	self assert: diff isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCFileInTest>>assertSuccessfulLoadWith: aBlock [
+{ #category : #testing }
+MCFileInTest >> assertSuccessfulLoadWith: aBlock [
 	stream reset.
 	aBlock value.
 	self assertNoChange.
@@ -79,30 +57,21 @@ MCFileInTest>>assertSuccessfulLoadWith: aBlock [
 	self assertInitializersOrder
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCFileInTest>>setUp [
+{ #category : #running }
+MCFileInTest >> setUp [
 	expected := self mockSnapshot.
 	stream := RWBinaryOrTextStream on: String new.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCFileInTest>>tearDown [
+{ #category : #running }
+MCFileInTest >> tearDown [
 	(diff isNil or: [diff isEmpty not])
 		 ifTrue: [expected updatePackage: self mockPackage].
 	MCDataStream initialize
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCFileInTest>>testStWriter [
+{ #category : #testing }
+MCFileInTest >> testStWriter [
 	"self debug: #testStWriter"
 	self
 		assertFileOutFrom: MCStWriter

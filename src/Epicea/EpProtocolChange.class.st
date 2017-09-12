@@ -8,72 +8,50 @@ Class {
 		'behavior',
 		'protocol'
 	],
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 14:45'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpProtocolChange class>>behavior: aBehavior protocol: aProtocol  [
+{ #category : #'instance creation' }
+EpProtocolChange class >> behavior: aBehavior protocol: aProtocol [ 
 	^ self basicNew 
 		initializeWithBehavior: aBehavior
 		protocol: aProtocol;
 		yourself 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpProtocolChange>>behaviorAffected [
+{ #category : #accessing }
+EpProtocolChange >> behaviorAffected [
 	^ behavior
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpProtocolChange>>behaviorAffectedName [
+{ #category : #accessing }
+EpProtocolChange >> behaviorAffectedName [
 
 	^ behavior name
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpProtocolChange>>doesOverride: aCodeChange  [
+{ #category : #testing }
+EpProtocolChange >> doesOverride: aCodeChange [ 
 
 	^ aCodeChange isEpProtocolChange and: [
 		aCodeChange behaviorAffectedName = self behaviorAffectedName and: [ 
 		aCodeChange protocol = self protocol ] ]
 ]
 
-{
-	#category : #initialization-release,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpProtocolChange>>initializeWithBehavior: aBehavior protocol: aProtocol [
+{ #category : #initialization-release }
+EpProtocolChange >> initializeWithBehavior: aBehavior protocol: aProtocol [
 	self initialize.
 	behavior := aBehavior asEpiceaRingDefinition.
 	protocol := aProtocol asSymbol.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpProtocolChange>>isEpProtocolChange [
+{ #category : #testing }
+EpProtocolChange >> isEpProtocolChange [
 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpProtocolChange>>protocol [
+{ #category : #accessing }
+EpProtocolChange >> protocol [
 	^ protocol
 ]

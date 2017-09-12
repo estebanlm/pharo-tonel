@@ -13,31 +13,21 @@ Class {
 	#instVars : [
 		'announcer'
 	],
-	#category : #Announcements-Core,
-	#timestamp : 'IgorStasenko 3/12/2011 20:37'
+	#category : #Announcements-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakSubscriptionBuilder class>>on: announcer [
+{ #category : #'instance creation' }
+WeakSubscriptionBuilder class >> on: announcer [
 	^ self new announcer: announcer
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakSubscriptionBuilder>>announcer: anAnnouncer [
+{ #category : #initialize-release }
+WeakSubscriptionBuilder >> announcer: anAnnouncer [
 	announcer := anAnnouncer 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakSubscriptionBuilder>>subscribe: anAnnouncementClass do: aValuable  [
+{ #category : #private }
+WeakSubscriptionBuilder >> subscribe: anAnnouncementClass do: aValuable [ 
 	"Do not use this message on weak announcer because it does not work. The block will hold strongly the receiver and more.
 	 We need ephemerons for that'"
 	"aValuable isBlock ifTrue: [  
@@ -49,36 +39,24 @@ WeakSubscriptionBuilder>>subscribe: anAnnouncementClass do: aValuable  [
 				valuable: aValuable)
 ]
 
-{
-	#category : #'wrapped protocol',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakSubscriptionBuilder>>subscribe: anAnnouncementClass send: aSelector to: anObject [
+{ #category : #'wrapped protocol' }
+WeakSubscriptionBuilder >> subscribe: anAnnouncementClass send: aSelector [ to: anObject
 	^ self subscribe: anAnnouncementClass do: (WeakMessageSend receiver: anObject selector: aSelector)
 ]
 
-{
-	#category : #'wrapped protocol',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakSubscriptionBuilder>>weak [
+{ #category : #'wrapped protocol' }
+WeakSubscriptionBuilder >> weak [
 	"already weak"
 	^ self
 ]
 
-{
-	#category : #'wrapped protocol',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakSubscriptionBuilder>>when: anAnnouncementClass do: aValuable [
+{ #category : #'wrapped protocol' }
+WeakSubscriptionBuilder >> when: anAnnouncementClass do: aValuable [
 	"Do not use this message on announcer weak. We did not deprecated this method because it may break some behavior."
 	self error: 'Not supported'
 ]
 
-{
-	#category : #'wrapped protocol',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakSubscriptionBuilder>>when: anAnnouncementClass send: aSelector to: anObject [
+{ #category : #'wrapped protocol' }
+WeakSubscriptionBuilder >> when: anAnnouncementClass send: aSelector [ to: anObject
 	^ self subscribe: anAnnouncementClass send: aSelector to: anObject
 ]

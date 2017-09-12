@@ -1,33 +1,22 @@
-Extension {
-	#name : #Behavior
-}
+Extension { #name : #Behavior }
 
-{
-	#category : #'*System-Support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Behavior>>allCallsOn [
+{ #category : #'*System-Support' }
+Behavior >> allCallsOn [
 	"Answer a SortedCollection of all the methods that refer to me by name or as part of an association in a global dict."
 	self isAnonymous ifTrue: [ ^#() ].
 	^ (self allCallsOnIn: self systemNavigation)
 ]
 
-{
-	#category : #'*System-Support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Behavior>>allCallsOn: aSymbol [
+{ #category : #'*System-Support' }
+Behavior >> allCallsOn: aSymbol [
 	"Answer a SortedCollection of all the methods that call on aSymbol."
 
 	^ self  systemNavigation allCallsOn: aSymbol from: self .
 	
 ]
 
-{
-	#category : #'*System-Support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Behavior>>allCallsOnIn: aSystemNavigation [
+{ #category : #'*System-Support' }
+Behavior >> allCallsOnIn: aSystemNavigation [
 	"Answer a SortedCollection of all the methods that refer to me by name or as part of an association in a global dict."
 
 	^ (aSystemNavigation 
@@ -35,30 +24,21 @@ Behavior>>allCallsOnIn: aSystemNavigation [
 		(aSystemNavigation allCallsOn: self theNonMetaClass name)	
 ]
 
-{
-	#category : #'*System-Support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Behavior>>allUnsentMessages [
+{ #category : #'*System-Support' }
+Behavior >> allUnsentMessages [
 	"Answer an array of all the messages defined by the receiver that are not sent anywhere in the system."
 
 	^ SystemNavigation new allUnsentMessagesIn: self selectors
 ]
 
-{
-	#category : #'*System-Support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Behavior>>isUsed [
+{ #category : #'*System-Support' }
+Behavior >> isUsed [
 	self hasSubclasses ifTrue: [ ^ true ].
 	^SystemNavigation new isUsedClass: self
 ]
 
-{
-	#category : #'*System-Support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Behavior>>referencedClasses [
+{ #category : #'*System-Support' }
+Behavior >> referencedClasses [
 	"Return the set of classes that are directly referenced by my methods"
 
 	^ self methods flatCollectAsSet: #referencedClasses

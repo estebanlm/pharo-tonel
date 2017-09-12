@@ -1,12 +1,7 @@
-Extension {
-	#name : #AdditionalMethodState
-}
+Extension { #name : #AdditionalMethodState }
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-AdditionalMethodState>>metaLinkOptions [
+{ #category : #'*Reflectivity' }
+AdditionalMethodState >> metaLinkOptions [
 	^{
 	#selector -> #( + optionCompileOnLinkInstallation).
 	#isMethodProperties -> #( + optionCompileOnLinkInstallation).

@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #RubPlainSegmentMorph,
 	#superclass : #RubTextSegmentMorph,
-	#category : #Rubric-Editing-Core,
-	#timestamp : ''
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainSegmentMorph>>defaultBorderColor [
+{ #category : #initialization }
+RubPlainSegmentMorph >> defaultBorderColor [
 	^ Color yellow
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainSegmentMorph>>defaultColor [
+{ #category : #initialization }
+RubPlainSegmentMorph >> defaultColor [
 	^ Color yellow alpha: 0.5.
 
 ]

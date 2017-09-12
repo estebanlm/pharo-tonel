@@ -20,135 +20,89 @@ Class {
 		'binary',
 		'allowReadingUpToEnd'
 	],
-	#category : #Zinc-HTTP-Streaming,
-	#timestamp : 'SvenVanCaekenberghe 4/7/2012 16:37'
+	#category : #Zinc-HTTP-Streaming
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>allowReadingUpToEnd [
+{ #category : #accessing }
+ZnEntityReader >> allowReadingUpToEnd [
 	allowReadingUpToEnd := true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>allowsReadingUpToEnd [
+{ #category : #testing }
+ZnEntityReader >> allowsReadingUpToEnd [
 	^ allowReadingUpToEnd notNil and: [ allowReadingUpToEnd ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>binary [
+{ #category : #accessing }
+ZnEntityReader >> binary [
 	binary := true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>canReadContent [
+{ #category : #testing }
+ZnEntityReader >> canReadContent [
 	^ self hasContentLength or: [ self isChunked or: [ self allowsReadingUpToEnd ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>contentLength [
+{ #category : #accessing }
+ZnEntityReader >> contentLength [
 	^ (self headers includesKey: 'Content-Length')
 		ifTrue: [ self headers contentLength ]
 		ifFalse: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>contentType [
+{ #category : #accessing }
+ZnEntityReader >> contentType [
 	^ (self headers includesKey: 'Content-Type') 
 		ifTrue: [ self headers contentType ] 
 		ifFalse: [ ZnMimeType default ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>hasContentLength [
+{ #category : #testing }
+ZnEntityReader >> hasContentLength [
 	^ self headers hasContentLength and: [ self headers contentLength > 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>headers [
+{ #category : #accessing }
+ZnEntityReader >> headers [
 	^ headers
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>headers: znHeaders [
+{ #category : #accessing }
+ZnEntityReader >> headers: znHeaders [
 	headers := znHeaders
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>isBinary [
+{ #category : #testing }
+ZnEntityReader >> isBinary [
 	^ binary notNil and: [ binary ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>isChunked [
+{ #category : #testing }
+ZnEntityReader >> isChunked [
 	| transferEncoding |
 	transferEncoding := self headers at: 'Transfer-Encoding' ifAbsent: [ ^ false ].
 	^ transferEncoding = 'chunked' or: [ transferEncoding beginsWith: 'chunked' ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>isGzipped [
+{ #category : #testing }
+ZnEntityReader >> isGzipped [
 	| contentEncoding |
 	contentEncoding := self headers at: 'Content-Encoding' ifAbsent: [ ^ false ].
 	^ contentEncoding = 'gzip'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>isIdentityEncoded [
+{ #category : #testing }
+ZnEntityReader >> isIdentityEncoded [
 	^ self isGzipped not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>isStreaming [
+{ #category : #testing }
+ZnEntityReader >> isStreaming [
 	^ streaming notNil and: [ streaming ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>readEntity [
+{ #category : #public }
+ZnEntityReader >> readEntity [
 	| entity |
 	self canReadContent ifFalse: [ ^ nil ].
 	entity := self readEntityFromStream.
@@ -157,11 +111,8 @@ ZnEntityReader>>readEntity [
 		ifFalse: [ entity ]    
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>readEntityFromStream [
+{ #category : #private }
+ZnEntityReader >> readEntityFromStream [
 	| entity decodedEntityLength chunkedStream isChunked |
 	chunkedStream := (isChunked := self isChunked) ifTrue: [ stream := ZnChunkedReadStream on: stream ] ifFalse: [ nil ].
 	self isGzipped 
@@ -177,11 +128,8 @@ ZnEntityReader>>readEntityFromStream [
 	^ entity
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>readFrom: readStream usingType: contentType andLength: length [
+{ #category : #private }
+ZnEntityReader >> readFrom: readStream usingType: contentType andLength: length [
 	| entityClass selector |
 	entityClass := self isStreaming 
 		ifTrue: [ ZnStreamingEntity ]
@@ -195,26 +143,17 @@ ZnEntityReader>>readFrom: readStream usingType: contentType andLength: length [
 		with: length
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>stream [
+{ #category : #accessing }
+ZnEntityReader >> stream [
 	^ stream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>stream: readStream [
+{ #category : #accessing }
+ZnEntityReader >> stream: readStream [
 	stream := readStream 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityReader>>streaming [
+{ #category : #accessing }
+ZnEntityReader >> streaming [
 	streaming := true
 ]

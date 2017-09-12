@@ -5,15 +5,11 @@ ZnServerWriteErrorEvent signals an error during the writing of a response. These
 Class {
 	#name : #ZnServerWriteErrorEvent,
 	#superclass : #ZnServerErrorEvent,
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 15:13'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerWriteErrorEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnServerWriteErrorEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream << ' Server Write Error ';  print: exception
 ]

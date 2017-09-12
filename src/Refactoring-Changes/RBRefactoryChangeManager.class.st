@@ -16,57 +16,38 @@ Class {
 		'Instance',
 		'UndoSize'
 	],
-	#category : #Refactoring-Changes,
-	#timestamp : 'NicolaiHess 9/9/2016 20:46'
+	#category : #Refactoring-Changes
 }
 
-{
-	#category : #change-factory,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager class>>changeFactory [
+{ #category : #change-factory }
+RBRefactoryChangeManager class >> changeFactory [
 	^self instance changeFactory
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager class>>initialize [
+{ #category : #'class initialization' }
+RBRefactoryChangeManager class >> initialize [
 	self nuke.
 	UndoSize := 20
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager class>>instance [
+{ #category : #'instance creation' }
+RBRefactoryChangeManager class >> instance [
 	^ Instance ifNil: [ Instance := self basicNew initialize ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager class>>new [
+{ #category : #'instance creation' }
+RBRefactoryChangeManager class >> new [
 	^ self shouldNotImplement
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager class>>nuke [
+{ #category : #public }
+RBRefactoryChangeManager class >> nuke [
 	Instance notNil ifTrue: [ Instance release ].
 	Instance := nil
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager class>>settingsOn: aBuilder [
+{ #category : #settings }
+RBRefactoryChangeManager class >> settingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #refactoring)
 		label: 'Refactoring Engine';
@@ -79,63 +60,42 @@ RBRefactoryChangeManager class>>settingsOn: aBuilder [
 						parentName: #refactoring ]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager class>>undoSize [
+{ #category : #'class initialization' }
+RBRefactoryChangeManager class >> undoSize [
 	^ UndoSize
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager class>>undoSize: anInteger  [
+{ #category : #'class initialization' }
+RBRefactoryChangeManager class >> undoSize: anInteger [ 
 	UndoSize := anInteger max: 0
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager class>>unload [
+{ #category : #public }
+RBRefactoryChangeManager class >> unload [
 	self nuke
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager>>addUndo: aRefactoringChange [
+{ #category : #'public access' }
+RBRefactoryChangeManager >> addUndo: aRefactoringChange [
 	undo addLast: aRefactoringChange.
 	undo size > UndoSize
 		ifTrue: [ undo removeFirst ].
 	redo := OrderedCollection new
 ]
 
-{
-	#category : #change-factory,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager>>changeFactory [
+{ #category : #change-factory }
+RBRefactoryChangeManager >> changeFactory [
 	^ RBRefactoryChangeFactory new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager>>clearUndoRedoList [
+{ #category : #private }
+RBRefactoryChangeManager >> clearUndoRedoList [
 	undo := OrderedCollection new.
 	redo := OrderedCollection new
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager>>connectToChanges [
+{ #category : #initialize-release }
+RBRefactoryChangeManager >> connectToChanges [
 	SystemAnnouncer uniqueInstance weak
 		when: CategoryAdded,
 			CategoryRemoved,
@@ -154,73 +114,49 @@ RBRefactoryChangeManager>>connectToChanges [
 		to: self.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager>>disconnectFromChanges [
+{ #category : #initialize-release }
+RBRefactoryChangeManager >> disconnectFromChanges [
 	SystemAnnouncer uniqueInstance unsubscribe: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager>>hasRedoableOperations [
+{ #category : #testing }
+RBRefactoryChangeManager >> hasRedoableOperations [
 	^ redo isEmpty not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager>>hasUndoableOperations [
+{ #category : #testing }
+RBRefactoryChangeManager >> hasUndoableOperations [
 	^ undo isEmpty not
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager>>ignoreChangesWhile: aBlock [
+{ #category : #'public access' }
+RBRefactoryChangeManager >> ignoreChangesWhile: aBlock [
 	isPerformingRefactoring
 		ifTrue: [ ^ aBlock value ].
 	isPerformingRefactoring := true.
 	aBlock ensure: [ isPerformingRefactoring := false ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager>>initialize [
+{ #category : #initialization }
+RBRefactoryChangeManager >> initialize [
 	undo := OrderedCollection new.
 	redo := OrderedCollection new.
 	isPerformingRefactoring := false.
 	self connectToChanges
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager>>performChange: aRefactoringChange [
+{ #category : #'public access' }
+RBRefactoryChangeManager >> performChange: aRefactoringChange [
 	self ignoreChangesWhile: [ self addUndo: aRefactoringChange execute ]
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager>>redoChange [
+{ #category : #'public access' }
+RBRefactoryChangeManager >> redoChange [
 	^ redo last
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager>>redoOperation [
+{ #category : #'public access' }
+RBRefactoryChangeManager >> redoOperation [
 	redo isEmpty
 		ifTrue: [ ^ self ].
 	self ignoreChangesWhile: [ 
@@ -229,28 +165,19 @@ RBRefactoryChangeManager>>redoOperation [
 		undo add: change execute ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager>>release [
+{ #category : #initialize-release }
+RBRefactoryChangeManager >> release [
 	self disconnectFromChanges.
 	super release.	
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager>>undoChange [
+{ #category : #'public access' }
+RBRefactoryChangeManager >> undoChange [
 	^ undo last
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager>>undoOperation [
+{ #category : #'public access' }
+RBRefactoryChangeManager >> undoOperation [
 	undo isEmpty
 		ifTrue: [ ^ self ].
 	self ignoreChangesWhile: [ 
@@ -259,11 +186,8 @@ RBRefactoryChangeManager>>undoOperation [
 		redo add: change execute ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryChangeManager>>update: anEvent [
+{ #category : #updating }
+RBRefactoryChangeManager >> update: anEvent [
 	isPerformingRefactoring
 		ifFalse: [ self clearUndoRedoList ]
 ]

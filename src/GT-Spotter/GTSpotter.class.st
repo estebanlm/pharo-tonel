@@ -29,33 +29,23 @@ Class {
 		'isPreviewVisible',
 		'wasOpened'
 	],
-	#category : #GT-Spotter-Model,
-	#timestamp : 'AndreiChis 7/30/2015 17:33'
+	#category : #GT-Spotter-Model
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>cleanUp [
+{ #category : #cleanup }
+GTSpotter class >> cleanUp [
 	self resetHistory.
 	wasOpened := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>dontShowPreview [
+{ #category : #accessing }
+GTSpotter class >> dontShowPreview [
 
 	isPreviewVisible := false
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>exampleInWindow [
+{ #category : #example }
+GTSpotter class >> exampleInWindow [
 	
 	^ GTSpotterMorph new
 		extent: 400@500;
@@ -64,11 +54,8 @@ GTSpotter class>>exampleInWindow [
 		openInWindow
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>exampleMC [
+{ #category : #example }
+GTSpotter class >> exampleMC [
 	"self exampleMC"
 	
 	^ GTSpotterMorph new
@@ -78,22 +65,16 @@ GTSpotter class>>exampleMC [
 		openCenteredInWorld
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>exampleSpotterWithoutMorph [
+{ #category : #example }
+GTSpotter class >> exampleSpotterWithoutMorph [
 	<gtExample>
 	<label: 'A GTSpotter without UI'>
 	
 	^ self new
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>exampleWithPreview [
+{ #category : #example }
+GTSpotter class >> exampleWithPreview [
 	^ GTSpotterMorph new
 		extent: (World width / 2.5 @ (World height / 1.5)) asIntegerPoint;
 		spotterModel: self new;
@@ -101,11 +82,8 @@ GTSpotter class>>exampleWithPreview [
 		openCenteredInWorld
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>exampleWorldMenu [
+{ #category : #example }
+GTSpotter class >> exampleWorldMenu [
 	
 	^ GTSpotterMorph new
 		extent: 400@500;
@@ -114,19 +92,13 @@ GTSpotter class>>exampleWorldMenu [
 		openCenteredInWorld
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>extensionsPragma [
+{ #category : #accessing }
+GTSpotter class >> extensionsPragma [
 	^ #spotterOrder:
 ]
 
-{
-	#category : #inspecting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>gtInspectorExtensionsIn: composite [
+{ #category : #inspecting }
+GTSpotter class >> gtInspectorExtensionsIn: composite [
 	<gtInspectorPresentationOrder: 40>
 	composite list
 		title: 'Extensions';
@@ -136,37 +108,25 @@ GTSpotter class>>gtInspectorExtensionsIn: composite [
 		filterOn: [ :text :each | each gtDisplayString includesSubstring: text caseSensitive: false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>history [
+{ #category : #accessing }
+GTSpotter class >> history [
 	^ history ifNil: [ history := WeakOrderedCollection new ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>isPreviewVisible [
+{ #category : #testing }
+GTSpotter class >> isPreviewVisible [
 
 	^ isPreviewVisible ifNil: [ isPreviewVisible := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>markOpened [
+{ #category : #accessing }
+GTSpotter class >> markOpened [
 
 	wasOpened := true
 ]
 
-{
-	#category : #'world menu',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>menuCommandOn: aBuilder [
+{ #category : #'world menu' }
+GTSpotter class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #Spotter)
 		action: [ GTSpotterGlobalShortcut openGlobalSpotter ];
@@ -176,40 +136,28 @@ GTSpotter class>>menuCommandOn: aBuilder [
 		iconName: #smallFindIcon
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>on: anObject [
+{ #category : #'instance creation' }
+GTSpotter class >> on: anObject [
 	
 	^ self new foundationOrigin: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>resetHistory [
+{ #category : #accessing }
+GTSpotter class >> resetHistory [
 	"
 	self resetHistory
 	"
 	^ history := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>showPreview [
+{ #category : #accessing }
+GTSpotter class >> showPreview [
 
 	isPreviewVisible := true
 ]
 
-{
-	#category : #inspecting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>spotterExtendingMethods [
+{ #category : #inspecting }
+GTSpotter class >> spotterExtendingMethods [
 	^(SystemNavigation default allBehaviors
 		flatCollect: [ :each | 
 			(Pragma allNamed: self extensionsPragma in: each) 
@@ -217,30 +165,21 @@ GTSpotter class>>spotterExtendingMethods [
 		sorted
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>wasOpened [
+{ #category : #testing }
+GTSpotter class >> wasOpened [
 
 	^ wasOpened ifNil: [ false ]
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>addStep: aStepModel [
+{ #category : #'actions api' }
+GTSpotter >> addStep: aStepModel [
 
 	self steps add: aStepModel.
 	self notifyStepAdded: aStepModel
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>addStep: aSpotterStep during: aBlock [
+{ #category : #'actions api' }
+GTSpotter >> addStep: aSpotterStep during: aBlock [
 	"Adds aSpotterStep without announcements,
 	evaluates aBlock and removes previously added
 	step after evaluation.
@@ -256,146 +195,98 @@ GTSpotter>>addStep: aSpotterStep during: aBlock [
 		self steps remove: aSpotterStep ]
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>after: afterBlock do: doBlock ifTrue: conditionBlock [
+{ #category : #'actions api' }
+GTSpotter >> after: afterBlock do: doBlock ifTrue: conditionBlock [
 	|value|
 	value := conditionBlock brickValue: self.
 	afterBlock brickValue: self.
 	value ifTrue: [ doBlock brickValue: value ]
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>after: afterBlock do: doBlock with: withBlock [
+{ #category : #'actions api' }
+GTSpotter >> after: afterBlock do: doBlock with: withBlock [
 	|value|
 	value := withBlock brickValue: self.
 	afterBlock brickValue: self.
 	doBlock brickValue: value
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>announce: anAnnouncement [
+{ #category : #notifying }
+GTSpotter >> announce: anAnnouncement [
 	
 	self announcer announce: anAnnouncement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>announcer [
+{ #category : #accessing }
+GTSpotter >> announcer [
 
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{
-	#category : #accessing-convenience,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>beDebugging [
+{ #category : #accessing-convenience }
+GTSpotter >> beDebugging [
 	self exceptionHandler: GTSpotterDebuggingExceptionHandler new
 ]
 
-{
-	#category : #accessing-convenience,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>beDeployment [
+{ #category : #accessing-convenience }
+GTSpotter >> beDeployment [
 	self exceptionHandler: GTSpotterDeploymentExceptionHandler new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>currentStep [
+{ #category : #accessing }
+GTSpotter >> currentStep [
 	^ currentStep
 		ifNil: [ self hasSteps
 				ifTrue: [ currentStep := self steps last ]
 				ifFalse: [ self newStep origin: self foundationOrigin ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>currentStep: aStepModel [
+{ #category : #accessing }
+GTSpotter >> currentStep: aStepModel [
 	
 	currentStep := aStepModel.
 	self notifyCurrentStepChanged
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>defaultExceptionHandler [
+{ #category : #accessing-defaults }
+GTSpotter >> defaultExceptionHandler [
 	^ GTSpotterDeploymentExceptionHandler new
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>defaultPagerModel [
+{ #category : #accessing-defaults }
+GTSpotter >> defaultPagerModel [
 	^ GLMPagerModel new
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>defaultStep [
+{ #category : #accessing-defaults }
+GTSpotter >> defaultStep [
 	^ GTSpotterStep new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>exceptionHandler [
+{ #category : #accessing }
+GTSpotter >> exceptionHandler [
 	^ exceptionHandler ifNil: [ exceptionHandler := self defaultExceptionHandler ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>exceptionHandler: anObject [
+{ #category : #accessing }
+GTSpotter >> exceptionHandler: anObject [
 	exceptionHandler := anObject
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>exit [
+{ #category : #'actions api' }
+GTSpotter >> exit [
 
 	self exitDueTo: #unknown
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>exitDueTo: anEventType [
+{ #category : #'actions api' }
+GTSpotter >> exitDueTo: anEventType [
 
 	self notifySpotterExitFor: anEventType
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>filterByMethods: aCollection [
+{ #category : #filtering }
+GTSpotter >> filterByMethods: aCollection [
 	| filter |
 	
 	filter := GTSpotterMethodListProcessorFilter new.
@@ -405,47 +296,32 @@ GTSpotter>>filterByMethods: aCollection [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>foundationOrigin [
+{ #category : #accessing }
+GTSpotter >> foundationOrigin [
 	
 	^ foundationOrigin ifNil: [ foundationOrigin := self ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>foundationOrigin: anObject [
+{ #category : #accessing }
+GTSpotter >> foundationOrigin: anObject [
 	
 	foundationOrigin := anObject
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>getText [
+{ #category : #'model access' }
+GTSpotter >> getText [
 
 	^ self text
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>gtDisplayOn: stream [
+{ #category : #printing }
+GTSpotter >> gtDisplayOn: stream [
 
 	stream nextPutAll: 'Spotter'
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>gtDisplaySpotterMorphOn: aComposite [
+{ #category : #printing }
+GTSpotter >> gtDisplaySpotterMorphOn: aComposite [
 	<gtInspectorPresentationOrder: 50>
 	
 	aComposite morph 
@@ -460,11 +336,8 @@ GTSpotter>>gtDisplaySpotterMorphOn: aComposite [
 				yourself ]
 ]
 
-{
-	#category : #inspecting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>gtInspectorStepsIn: composite [
+{ #category : #inspecting }
+GTSpotter >> gtInspectorStepsIn: composite [
 	<gtInspectorPresentationOrder: 40>
 	composite list
 		title: 'Steps';
@@ -472,44 +345,29 @@ GTSpotter>>gtInspectorStepsIn: composite [
 		when: [ self steps notEmpty ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>handleExceptionsDuring: aBlock [
+{ #category : #'event handling' }
+GTSpotter >> handleExceptionsDuring: aBlock [
 	self exceptionHandler handleExceptionsDuring: aBlock
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>hasMultipleSteps [
+{ #category : #testing }
+GTSpotter >> hasMultipleSteps [
 
 	^ self steps size > 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>hasSelected [
+{ #category : #testing }
+GTSpotter >> hasSelected [
 	^ self hasSteps and: [ self currentStep hasSelected ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>hasSteps [
+{ #category : #testing }
+GTSpotter >> hasSteps [
 	^ 	self steps isNotEmpty
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>hidePreview [
+{ #category : #'actions api' }
+GTSpotter >> hidePreview [
 
 	self isPreviewVisible ifFalse: [ ^ self ].
 	isPreviewVisible := false.
@@ -518,11 +376,8 @@ GTSpotter>>hidePreview [
 	
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>historize: target [
+{ #category : #'actions api' }
+GTSpotter >> historize: target [
 
 	(target = self or: [ target isNil ])
 		ifFalse: [ 
@@ -530,192 +385,132 @@ GTSpotter>>historize: target [
 			self history addFirst: target ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>history [
+{ #category : #accessing }
+GTSpotter >> history [
 	^ history ifNil: [ self class history ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>history: aWeakCollection [
+{ #category : #accessing }
+GTSpotter >> history: aWeakCollection [
 	history := aWeakCollection
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>initialize [
+{ #category : #initialization }
+GTSpotter >> initialize [
 	super initialize.
 	
 	processorsFilter := GTSpotterSettingsProcessorFilter new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>isEmpty [
+{ #category : #testing }
+GTSpotter >> isEmpty [
 	self deprecated: 'Use hasSteps instead'.
 	^ self hasSteps not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>isPreviewVisible [
+{ #category : #testing }
+GTSpotter >> isPreviewVisible [
 
 	^ isPreviewVisible ifNil: [ isPreviewVisible := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>isShiftPressed [
+{ #category : #accessing }
+GTSpotter >> isShiftPressed [
 
 	^ isShiftPressed ifNil: [ isShiftPressed := false ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>menu [
+{ #category : #protocol }
+GTSpotter >> menu [
 
 	^ nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>newStep [
+{ #category : #'instance creation' }
+GTSpotter >> newStep [
 
 	^ self defaultStep
 		spotter: self
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>notifyActOn: anObject for: anEventType [
+{ #category : #notifying }
+GTSpotter >> notifyActOn: anObject for: anEventType [
 
 	self announce: (GTSpotterActOn new 
 		element: anObject;
 		eventType: anEventType)
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>notifyCandidateSelected: anObject for: anEventType [
+{ #category : #notifying }
+GTSpotter >> notifyCandidateSelected: anObject for: anEventType [
 
 	self announce: (GTSpotterSelectedCandidateChanged new 
 		select: anObject;
 		eventType: anEventType)
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>notifyCategorySelected: aProcessor [
+{ #category : #notifying }
+GTSpotter >> notifyCategorySelected: aProcessor [
 
 	self announce: (GTSpotterCategorySelected new category: aProcessor)
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>notifyContextChangedFrom: aPreviousContext to: aCurrentContext [
+{ #category : #notifying }
+GTSpotter >> notifyContextChangedFrom: aPreviousContext to: aCurrentContext [
 	self announce: (GTSpotterContextChanged new
 		previous: aPreviousContext;
 		current: aCurrentContext;
 		yourself)
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>notifyCurrentStepChanged [
+{ #category : #notifying }
+GTSpotter >> notifyCurrentStepChanged [
 
 	self announce: GTSpotterCurrentStepChanged new
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>notifyDiveIn: anObject for: anEventType [
+{ #category : #notifying }
+GTSpotter >> notifyDiveIn: anObject for: anEventType [
 
 	self announce: (GTSpotterDiveInElement new 
 		element: anObject;
 		eventType: anEventType )
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>notifyDiveInCategory: aProcessor for: anEventType [
+{ #category : #notifying }
+GTSpotter >> notifyDiveInCategory: aProcessor for: anEventType [
 
 	self announce: (GTSpotterDiveInCategory new 
 		category: aProcessor;
 		eventType: anEventType)
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>notifyDiveOut: anObject [
+{ #category : #notifying }
+GTSpotter >> notifyDiveOut: anObject [
 
 	self announce: (GTSpotterDiveOut new element: anObject)
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>notifyHideHints [
+{ #category : #notifying }
+GTSpotter >> notifyHideHints [
 
 	self announce: GTSpotterHideHints new
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>notifyHidePreview [
+{ #category : #notifying }
+GTSpotter >> notifyHidePreview [
 
 	self announce: GTSpotterHidePreview new
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>notifyRevealHints [
+{ #category : #notifying }
+GTSpotter >> notifyRevealHints [
 
 	self announce: GTSpotterRevealHints new
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>notifySearchFinishedFor: aString processors: aCollectionOfProcessors [
+{ #category : #notifying }
+GTSpotter >> notifySearchFinishedFor: aString processors: aCollectionOfProcessors [
 
 	self announce: (GTSpotterSearchFinished new 
 								query: aString;
@@ -723,60 +518,42 @@ GTSpotter>>notifySearchFinishedFor: aString processors: aCollectionOfProcessors 
 								yourself)
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>notifyShowPreview [
+{ #category : #notifying }
+GTSpotter >> notifyShowPreview [
 
 	self announce: GTSpotterShowPreview new
 
 	
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>notifySpotterExitFor: anEventType [
+{ #category : #notifying }
+GTSpotter >> notifySpotterExitFor: anEventType [
 
 	self announce: (GTSpotterExitAnnouncement new
 		eventType: anEventType)
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>notifyStepAdded: aStep [
+{ #category : #notifying }
+GTSpotter >> notifyStepAdded: aStep [
 
 	self announce: (GTSpotterStepAdded new stepModel: aStep)
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>notifyStepPopped [
+{ #category : #notifying }
+GTSpotter >> notifyStepPopped [
 
 	self announce: GTSpotterStepPopped new
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>onPagePopped [
+{ #category : #'event handling' }
+GTSpotter >> onPagePopped [
 	
 	self steps size > 0 ifTrue: [
 		self currentStep: self steps last ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>pagerModel [
+{ #category : #accessing }
+GTSpotter >> pagerModel [
 
 	^ pagerModel ifNil: [
 		pagerModel := self defaultPagerModel defaultNumberOfVisiblePages: 1.
@@ -784,11 +561,8 @@ GTSpotter>>pagerModel [
 		pagerModel ]
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>popStep [
+{ #category : #'actions api' }
+GTSpotter >> popStep [
 
 	"there always should be minimum one step left"
 	(self steps size > 1)
@@ -804,51 +578,36 @@ GTSpotter>>popStep [
 				callback: [ self pagerModel popPane: false ] ]
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>popUntil: aStep [
+{ #category : #'actions api' }
+GTSpotter >> popUntil: aStep [
 
 	[ self steps last = aStep ]
 		whileFalse: [ self popStep ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>processorsFilter [
+{ #category : #accessing }
+GTSpotter >> processorsFilter [
 
 	^ processorsFilter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>processorsFilter: aFilter [
+{ #category : #accessing }
+GTSpotter >> processorsFilter: aFilter [
    "Set the filter for determining whether or not processors get added to a step."
 
 	processorsFilter := aFilter
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>pushStep: stepModel [
+{ #category : #'actions api' }
+GTSpotter >> pushStep: stepModel [
 	
 	self addStep: stepModel.
 	"updating current step"
 	self currentStep: stepModel
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>requestNextCategoryStepWith: aProcessorLink for: anEventType [
+{ #category : #'event handling' }
+GTSpotter >> requestNextCategoryStepWith: aProcessorLink for: anEventType [
 	|collection|
 	
 	collection := aProcessorLink processor allFilteredCandidates
@@ -857,22 +616,16 @@ GTSpotter>>requestNextCategoryStepWith: aProcessorLink for: anEventType [
 	self requestNextStepWith: collection for: anEventType
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>requestNextStepWith: origin for: anEventType [
+{ #category : #'event handling' }
+GTSpotter >> requestNextStepWith: origin for: anEventType [
 
 	text := ''.
 	self pushStep: (self newStep origin: origin; event: anEventType; yourself).
 	self steps last process: nil
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>setText: aText from: aView [
+{ #category : #'model access' }
+GTSpotter >> setText: aText from: aView [
 	"I am the main entry point for triggering a new search in the current step."
 	
 	self steps isEmpty
@@ -887,11 +640,8 @@ GTSpotter>>setText: aText from: aView [
 	^ true
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>shiftPressed: aBoolean [
+{ #category : #'actions api' }
+GTSpotter >> shiftPressed: aBoolean [
 
 	self isShiftPressed = aBoolean ifTrue: [ ^ self ].
 	
@@ -907,11 +657,8 @@ GTSpotter>>shiftPressed: aBoolean [
 	
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>showPreview [
+{ #category : #'actions api' }
+GTSpotter >> showPreview [
 
 	self isPreviewVisible ifTrue: [ ^ self ].
 	isPreviewVisible := true.
@@ -920,38 +667,26 @@ GTSpotter>>showPreview [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>steps [
+{ #category : #accessing }
+GTSpotter >> steps [
 
 	^ steps ifNil: [ steps := OrderedCollection new ]
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>terminateProcessors [
+{ #category : #'actions api' }
+GTSpotter >> terminateProcessors [
 
 	self steps do: [ :each | each terminateProcessors ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>text [
+{ #category : #accessing }
+GTSpotter >> text [
 
 	^ text ifNil: [ text := '' asText ]
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>togglePreview [
+{ #category : #'actions api' }
+GTSpotter >> togglePreview [
 
 	self isPreviewVisible
 		ifTrue: [ self hidePreview ]

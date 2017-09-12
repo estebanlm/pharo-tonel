@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterStepBreadcrumbItem,
 	#superclass : #GLMInteractableBrick,
@@ -10,46 +7,33 @@ Class {
 		'stepModel',
 		'isTriangleVisible'
 	],
-	#category : #GT-Spotter-UI,
-	#timestamp : ''
+	#category : #GT-Spotter-UI
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>click: evt [
+{ #category : #actions }
+GTSpotterStepBreadcrumbItem >> click: evt [
 	super click: evt.
 	
 	self stepModel spotter popUntil: self stepModel.
 	^ true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>deselect [
+{ #category : #actions }
+GTSpotterStepBreadcrumbItem >> deselect [
 	
 	self invalidateWith: [
 		self labelBrick label customFont; beRegular ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>hideTriangle [
+{ #category : #actions }
+GTSpotterStepBreadcrumbItem >> hideTriangle [
 
 	isTriangleVisible := false.
 	self themer spotterThemer breadcrumbItemTriangleWidgetStyleFor: self triangleBrick
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>initialize [
+{ #category : #initialization }
+GTSpotterStepBreadcrumbItem >> initialize [
 	super initialize.
 	
 	self
@@ -60,29 +44,20 @@ GTSpotterStepBreadcrumbItem>>initialize [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>isTriangleVisible [
+{ #category : #testing }
+GTSpotterStepBreadcrumbItem >> isTriangleVisible [
 
 	^ isTriangleVisible ifNil: [ isTriangleVisible := true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>labelBrick [
+{ #category : #accessing }
+GTSpotterStepBreadcrumbItem >> labelBrick [
 
 	^ labelBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>labelBrick: aBrick [
+{ #category : #accessing }
+GTSpotterStepBreadcrumbItem >> labelBrick: aBrick [
 
 	labelBrick := aBrick.
 	
@@ -90,95 +65,65 @@ GTSpotterStepBreadcrumbItem>>labelBrick: aBrick [
 	self addBrickBack: self labelBrick
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>newLabelBrick [
+{ #category : #'instance creation' }
+GTSpotterStepBreadcrumbItem >> newLabelBrick [
 
 	^ GLMLabelBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>newTriangleBrick [
+{ #category : #'instance creation' }
+GTSpotterStepBreadcrumbItem >> newTriangleBrick [
 
 	^ GLMBrick new
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>onThemerChanged [
+{ #category : #brick-properties-events }
+GTSpotterStepBreadcrumbItem >> onThemerChanged [
 	super onThemerChanged.
 	
 	self themer spotterThemer breadcrumbItemLabelWidgetStyleFor: self labelBrick.
 	self themer spotterThemer breadcrumbItemTriangleWidgetStyleFor: self triangleBrick
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>select [
+{ #category : #actions }
+GTSpotterStepBreadcrumbItem >> select [
 	
 	self invalidateWith: [
 		self labelBrick label customFont; beBold ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>showTriangle [
+{ #category : #actions }
+GTSpotterStepBreadcrumbItem >> showTriangle [
 
 	isTriangleVisible := true.
 	self themer spotterThemer breadcrumbItemTriangleWidgetStyleFor: self triangleBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>stepModel [
+{ #category : #accessing }
+GTSpotterStepBreadcrumbItem >> stepModel [
 	^ stepModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>stepModel: anObject [
+{ #category : #accessing }
+GTSpotterStepBreadcrumbItem >> stepModel: anObject [
 	stepModel := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>text: aString [
+{ #category : #accessing }
+GTSpotterStepBreadcrumbItem >> text: aString [
 
 	self labelBrick text: aString.
 	self doLayoutForce
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>triangleBrick [
+{ #category : #accessing }
+GTSpotterStepBreadcrumbItem >> triangleBrick [
 
 	^ triangleBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepBreadcrumbItem>>triangleBrick: aBrick [
+{ #category : #accessing }
+GTSpotterStepBreadcrumbItem >> triangleBrick: aBrick [
 
 	triangleBrick := aBrick.
 	

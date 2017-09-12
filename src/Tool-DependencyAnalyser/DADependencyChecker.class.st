@@ -14,25 +14,18 @@ Class {
 	#instVars : [
 		'report'
 	],
-	#category : #Tool-DependencyAnalyser-Report,
-	#timestamp : 'ChristopheDemarey 9/1/2015 11:48'
+	#category : #Tool-DependencyAnalyser-Report
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependencyChecker>>buildPackageRelationGraphFor: aPackageName [
+{ #category : #private }
+DADependencyChecker >> buildPackageRelationGraphFor: aPackageName [
 	^ [ (DAPackageRelationGraph onPackagesNamed: { aPackageName }) build ]
 		on: PotentialOutDatedDependencyWarning 
 		do: [ :ex | report addWarning: ex. ex resume ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependencyChecker>>computeDependenciesOf: aPackageName [
+{ #category : #private }
+DADependencyChecker >> computeDependenciesOf: aPackageName [
 	| dependencies |
 	dependencies := (self daPackageFor: aPackageName) dependentPackages collect: #packageName.
 	^ ((dependencies
@@ -42,11 +35,8 @@ DADependencyChecker>>computeDependenciesOf: aPackageName [
 		sorted
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependencyChecker>>computeDependenciesOf: aPackageName visitedPackages: visited [
+{ #category : #private }
+DADependencyChecker >> computeDependenciesOf: aPackageName visitedPackages: visited [
 	| packageName |
 	packageName := aPackageName asSymbol.
 	report 
@@ -55,11 +45,8 @@ DADependencyChecker>>computeDependenciesOf: aPackageName visitedPackages: visite
 	visited add: packageName
 ]
 
-{
-	#category : #'computing - dependencies',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependencyChecker>>computeImageDependencies [
+{ #category : #'computing - dependencies' }
+DADependencyChecker >> computeImageDependencies [
 	| visited |
 	self newReport.
 	report 
@@ -72,74 +59,50 @@ DADependencyChecker>>computeImageDependencies [
 	^ report
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependencyChecker>>computeTransitiveDependenciesOf: aPackageName visitedPackages: visited [
+{ #category : #private }
+DADependencyChecker >> computeTransitiveDependenciesOf: aPackageName visitedPackages: visited [
 	(visited includes: aPackageName) ifTrue: [ ^ self ].
 	self computeDependenciesOf: aPackageName visitedPackages: visited.
 	(self dependenciesOf: aPackageName) 
 		do: [ :each | self computeTransitiveDependenciesOf: each visitedPackages: visited ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependencyChecker>>daPackageFor: aPackageName [
+{ #category : #private }
+DADependencyChecker >> daPackageFor: aPackageName [
 	^ (((self buildPackageRelationGraphFor: aPackageName) packages)
 			select: #isSeen) first
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependencyChecker>>dependenciesOf: aPackageName [
+{ #category : #accessing }
+DADependencyChecker >> dependenciesOf: aPackageName [
 	^ report 
 		dependenciesOf: aPackageName asSymbol
 		ifAbsentPut: [ self computeDependenciesOf: aPackageName ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependencyChecker>>ignoredDependenciesOf: aPackageName [
+{ #category : #private }
+DADependencyChecker >> ignoredDependenciesOf: aPackageName [
 	^ (RPackage organizer packageNamed: aPackageName) ignoredDependencies 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependencyChecker>>initialize [
+{ #category : #initialization }
+DADependencyChecker >> initialize [
 	super initialize.
 	self newReport
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependencyChecker>>manuallyResolvedDependenciesOf: aPackageName [
+{ #category : #private }
+DADependencyChecker >> manuallyResolvedDependenciesOf: aPackageName [
 	^ (RPackage organizer packageNamed: aPackageName) manuallyResolvedDependencies 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependencyChecker>>newReport [
+{ #category : #initialization }
+DADependencyChecker >> newReport [
 	^ report := DADependencyReport new
 ]
 
-{
-	#category : #'computing - dependencies',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependencyChecker>>shortestPathToPackageIntroducingDependency: dependencyPackageName startingFrom: aPackageName [
+{ #category : #'computing - dependencies' }
+DADependencyChecker >> shortestPathToPackageIntroducingDependency: dependencyPackageName startingFrom: aPackageName [
 	"This method allows to easily spots a package dependency we want to avoid in the System.
 	ex: DADependencyChecker new 
 			computeImageDependencies;
@@ -160,11 +123,8 @@ DADependencyChecker>>shortestPathToPackageIntroducingDependency: dependencyPacka
 	^ dijkstra backtrack
 ]
 
-{
-	#category : #'computing - dependencies',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependencyChecker>>transitiveDependenciesOf: aPackageName [
+{ #category : #'computing - dependencies' }
+DADependencyChecker >> transitiveDependenciesOf: aPackageName [
 	self newReport.
 	report 
 		analysisRunString: 'Transitive dependencies of ' , aPackageName;
@@ -173,11 +133,8 @@ DADependencyChecker>>transitiveDependenciesOf: aPackageName [
 	^ report
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependencyChecker>>unresolvedDependenciesOf: aPackageName  [
+{ #category : #accessing }
+DADependencyChecker >> unresolvedDependenciesOf: aPackageName [ 
 	^ [ (DAMessageSendAnalyzer on: aPackageName) missingMethodsWithPotentialMatchAfterManuallyResolvedDependenciesAddition
 		reject: #isEmpty ]
 		on: PotentialOutDatedDependencyWarning

@@ -1,73 +1,51 @@
-"
-
-"
 Class {
 	#name : #MorphicEventHandlerTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'morph'
 	],
-	#category : #Morphic-Tests-Event,
-	#timestamp : ''
+	#category : #Morphic-Tests-Event
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphicEventHandlerTest>>setUp [
+{ #category : #running }
+MorphicEventHandlerTest >> setUp [
 
 	morph := Morph new.
 	morph eventHandler: MorphicEventHandler new
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphicEventHandlerTest>>tearDown [
+{ #category : #running }
+MorphicEventHandlerTest >> tearDown [
 
 	morph := nil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphicEventHandlerTest>>testClickFromMorph [
+{ #category : #tests }
+MorphicEventHandlerTest >> testClickFromMorph [
 
 	morph eventHandler on: #click send: #value to: true.
 	
 	self assert: ((morph click: nil) == true)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphicEventHandlerTest>>testDoubleClickFromMorph [
+{ #category : #tests }
+MorphicEventHandlerTest >> testDoubleClickFromMorph [
 
 	morph eventHandler on: #doubleClick send: #value to: true.
 	
 	self assert: ((morph doubleClick: nil) == true)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphicEventHandlerTest>>testDoubleClickTimeoutFromMorph [
+{ #category : #tests }
+MorphicEventHandlerTest >> testDoubleClickTimeoutFromMorph [
 
 	morph eventHandler on: #doubleClickTimeout send: #value to: true.
 	
 	self assert: ((morph doubleClickTimeout: nil) == true)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphicEventHandlerTest>>testKeyStrokeFromMorph [
+{ #category : #tests }
+MorphicEventHandlerTest >> testKeyStrokeFromMorph [
 
 	| keyboardEvent |
 	keyboardEvent := KeyboardEvent new 
@@ -84,11 +62,8 @@ MorphicEventHandlerTest>>testKeyStrokeFromMorph [
 	self assert: ((morph handleKeystroke: keyboardEvent) == true)
 ]
 
-{
-	#category : #tests-events,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphicEventHandlerTest>>testMouseEnterDraggingFromMorph [
+{ #category : #tests-events }
+MorphicEventHandlerTest >> testMouseEnterDraggingFromMorph [
 
 	| event | 
 	event := MouseEvent basicNew setType: #mouseOver position: nil buttons: 2 hand: Morph new.
@@ -97,33 +72,24 @@ MorphicEventHandlerTest>>testMouseEnterDraggingFromMorph [
 	self assert: ((morph handleMouseEnter: event) == true)
 ]
 
-{
-	#category : #tests-events,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphicEventHandlerTest>>testMouseEnterFromMorph [
+{ #category : #tests-events }
+MorphicEventHandlerTest >> testMouseEnterFromMorph [
 
 	morph eventHandler on: #mouseEnter send: #value to: true.
 	
 	self assert: ((morph mouseEnter: nil) == true)
 ]
 
-{
-	#category : #tests-events,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphicEventHandlerTest>>testMouseLeaveFromMorph [
+{ #category : #tests-events }
+MorphicEventHandlerTest >> testMouseLeaveFromMorph [
 
 	morph eventHandler on: #mouseLeave send: #value to: true.
 	
 	self assert: ((morph mouseLeave: nil) == true)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphicEventHandlerTest>>testTwoEventHandlersAreAttached [
+{ #category : #tests }
+MorphicEventHandlerTest >> testTwoEventHandlersAreAttached [
 
 	| keyboardEvent first second |
 	keyboardEvent := KeyboardEvent new 

@@ -4,24 +4,17 @@ If a variable is only assigned a single literal value then that variable is eith
 Class {
 	#name : #GRVariableAssignedLiteralRule,
 	#superclass : #ReAbstractRule,
-	#category : #GeneralRules,
-	#timestamp : 'YuriyTymchuk 9/9/2016 09:54'
+	#category : #GeneralRules
 }
 
-{
-	#category : #testing-interest,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRVariableAssignedLiteralRule class>>checksClass [
+{ #category : #testing-interest }
+GRVariableAssignedLiteralRule class >> checksClass [
 
 	^ true
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRVariableAssignedLiteralRule>>check: aClass forCritiquesDo: aCriticBlock [
+{ #category : #running }
+GRVariableAssignedLiteralRule >> check: aClass forCritiquesDo: aCriticBlock [
 
 	aClass slots do: [ :slot | 
 		self
@@ -30,11 +23,8 @@ GRVariableAssignedLiteralRule>>check: aClass forCritiquesDo: aCriticBlock [
 			forCritiquesDo: aCriticBlock ]
 ]
 
-{
-	#category : #running-helpers,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRVariableAssignedLiteralRule>>check: aSlot of: aClass forCritiquesDo: aCriticBlock [
+{ #category : #running-helpers }
+GRVariableAssignedLiteralRule >> check: aSlot of: aClass forCritiquesDo: aCriticBlock [
 	| theMethod |
 
 	theMethod := nil.
@@ -55,11 +45,8 @@ GRVariableAssignedLiteralRule>>check: aSlot of: aClass forCritiquesDo: aCriticBl
 				about: aSlot name) ]
 ]
 
-{
-	#category : #running-helpers,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRVariableAssignedLiteralRule>>critiqueFor: aClass about: aVarName [
+{ #category : #running-helpers }
+GRVariableAssignedLiteralRule >> critiqueFor: aClass about: aVarName [
 	| crit |
 
 	crit := ReTrivialCritique
@@ -73,30 +60,21 @@ GRVariableAssignedLiteralRule>>critiqueFor: aClass about: aVarName [
 	^ crit
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRVariableAssignedLiteralRule>>group [
+{ #category : #accessing }
+GRVariableAssignedLiteralRule >> group [
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #running-helpers,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRVariableAssignedLiteralRule>>matchMethod: aCompiledMethod with: aVarName [
+{ #category : #running-helpers }
+GRVariableAssignedLiteralRule >> matchMethod: aCompiledMethod with: aVarName [
 
 	^ ((self matcherFor: aVarName) 
 		executeTree: aCompiledMethod ast
 		initialAnswer: nil) isNotNil 
 ]
 
-{
-	#category : #running-helpers,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRVariableAssignedLiteralRule>>matcherFor: aVarName [
+{ #category : #running-helpers }
+GRVariableAssignedLiteralRule >> matcherFor: aVarName [
 
 
 	^ RBParseTreeSearcher new 
@@ -106,10 +84,7 @@ GRVariableAssignedLiteralRule>>matcherFor: aVarName [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRVariableAssignedLiteralRule>>name [
+{ #category : #accessing }
+GRVariableAssignedLiteralRule >> name [
 	^ 'Variable is only assigned a single literal value'
 ]

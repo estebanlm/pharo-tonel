@@ -5,15 +5,11 @@ The Quartz surface is used to render cairo graphics targeting the Apple OS X Qua
 Class {
 	#name : #AthensQuartzSurface,
 	#superclass : #AthensCairoSurface,
-	#category : #Athens-Cairo-Quartz,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Quartz
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensQuartzSurface class>>finalizeResourceData: data [
+{ #category : #'as yet unclassified' }
+AthensQuartzSurface class >> finalizeResourceData: data [
 	| handle contextHandle |
 	handle := data first.
 	"	id := data second.  - id is not used "
@@ -23,11 +19,8 @@ AthensQuartzSurface class>>finalizeResourceData: data [
 	self destroySurfaceHandle: handle value
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensQuartzSurface class>>primImage: aFormat width: aWidth height: aHeight [
+{ #category : #'as yet unclassified' }
+AthensQuartzSurface class >> primImage: aFormat width: aWidth height: aHeight [
 "Creates a Quartz surface backed by a CGBitmap. The surface is created using the Device RGB (or Device Gray, for A8) color space. All Cairo operations, including those that require software rendering, will succeed on this surface. "
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
@@ -39,11 +32,8 @@ AthensQuartzSurface class>>primImage: aFormat width: aWidth height: aHeight [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensQuartzSurface class>>registerSurface: quartzSurface [
+{ #category : #'as yet unclassified' }
+AthensQuartzSurface class >> registerSurface: quartzSurface [
 	"we cannot use SurfacePlugin for quartz surfaces"
 	
 	^ nil 

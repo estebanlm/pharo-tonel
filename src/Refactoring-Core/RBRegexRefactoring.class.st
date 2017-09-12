@@ -13,15 +13,11 @@ Class {
 	#instVars : [
 		'matchers'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 19:36'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRegexRefactoring>>execute: aString [
+{ #category : #private }
+RBRegexRefactoring >> execute: aString [
 	"Perform all searches on aString and return the transformation."
 	
 	^ matchers 
@@ -29,11 +25,8 @@ RBRegexRefactoring>>execute: aString [
 		into: [ :string :assoc | self execute: string replace: assoc key with: assoc value ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRegexRefactoring>>execute: aString replace: aRegex with: aReadStream [
+{ #category : #private }
+RBRegexRefactoring >> execute: aString replace: aRegex with: aReadStream [
 	| stream |
 	^ aRegex copy: aString translatingMatchesUsing: [ :match |
 		stream := WriteStream on: (String new: 2 * aString size).
@@ -47,36 +40,24 @@ RBRegexRefactoring>>execute: aString replace: aRegex with: aReadStream [
 		stream contents ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRegexRefactoring>>initialize [
+{ #category : #initialization }
+RBRegexRefactoring >> initialize [
 	super initialize.
 	matchers := OrderedCollection new
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRegexRefactoring>>preconditions [
+{ #category : #preconditions }
+RBRegexRefactoring >> preconditions [
 	^ RBCondition empty
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRegexRefactoring>>replace: aFindString with: aReplaceString [
+{ #category : #searching }
+RBRegexRefactoring >> replace: aFindString with: aReplaceString [
 	self replace: aFindString with: aReplaceString ignoreCase: false
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRegexRefactoring>>replace: aFindString with: aReplaceString ignoreCase: aBoolean [
+{ #category : #searching }
+RBRegexRefactoring >> replace: aFindString with: aReplaceString ignoreCase: aBoolean [
 	"Replace all matches of aFindString (regular expression) with aReplaceString, where $0 references the whole match, and $1..$9 the matched groups."
 	
 	| regex stream |

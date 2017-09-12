@@ -22,381 +22,248 @@ Class {
 		'collectionWithoutNil',
 		'collectResult'
 	],
-	#category : #Collections-Tests-Sequenceable,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:28'
+	#category : #Collections-Tests-Sequenceable
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>accessCollection [
+{ #category : #requirements }
+IntervalTest >> accessCollection [
 	^ -2 to: 14 by: 4
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>anotherElementNotIn [
+{ #category : #requirements }
+IntervalTest >> anotherElementNotIn [
 	^ 42
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>collection [
+{ #category : #requirements }
+IntervalTest >> collection [
 	^ nonEmpty
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>collectionClass [
+{ #category : #requirements }
+IntervalTest >> collectionClass [
 
 	^ Interval
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>collectionInForIncluding [
+{ #category : #requirements }
+IntervalTest >> collectionInForIncluding [
 	^ nonEmpty copyWithout: (self nonEmpty last).
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>collectionMoreThan1NoDuplicates [
+{ #category : #requirements }
+IntervalTest >> collectionMoreThan1NoDuplicates [
 	" return a collection of size 5 without equal elements"
 	^ nonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>collectionNotIncluded [
+{ #category : #requirements }
+IntervalTest >> collectionNotIncluded [
 	^ (nonEmpty last + 1) to: (nonEmpty last +5)
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>collectionOfFloat [
+{ #category : #requirements }
+IntervalTest >> collectionOfFloat [
 	^collectionOfFloat 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>collectionWith1TimeSubcollection [
+{ #category : #requirements }
+IntervalTest >> collectionWith1TimeSubcollection [
 	^ collectionWithSubCollection 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>collectionWithCopyNonIdentical [
+{ #category : #requirements }
+IntervalTest >> collectionWithCopyNonIdentical [
 	" return a collection that include elements for which 'copy' return a different object (this is not the case of SmallInteger)"
 	^ collectionOfFloat
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>collectionWithElementsToRemove [
+{ #category : #requirements }
+IntervalTest >> collectionWithElementsToRemove [
 	
 	^ subCollectionInNonEmpty .
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>collectionWithSortableElements [
+{ #category : #requirements }
+IntervalTest >> collectionWithSortableElements [
 " return a collection elements that can be sorte ( understanding message ' < '  or ' > ')"
 	^ self nonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>collectionWithoutEqualElements [
+{ #category : #requirements }
+IntervalTest >> collectionWithoutEqualElements [
 	^ nonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>collectionWithoutNilElements [
+{ #category : #requirements }
+IntervalTest >> collectionWithoutNilElements [
 " return a collection that doesn't includes a nil element  and that doesn't includes equal elements'"
 	^ collectionWithoutNil 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>doWithoutNumber [
+{ #category : #requirements }
+IntervalTest >> doWithoutNumber [
 
 	^ 6
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>elementInCollectionOfFloat [
+{ #category : #requirements }
+IntervalTest >> elementInCollectionOfFloat [
 	^ collectionOfFloat anyOne
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>elementInForElementAccessing [
+{ #category : #requirements }
+IntervalTest >> elementInForElementAccessing [
 " return an element inculded in 'accessCollection '"
 	^ self accessCollection anyOne
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>elementInForIncludesTest [
+{ #category : #requirements }
+IntervalTest >> elementInForIncludesTest [
 
 	^ elementIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>elementInForIndexAccess [
+{ #category : #requirements }
+IntervalTest >> elementInForIndexAccess [
 	^ self accessCollection  anyOne
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>elementInForIndexAccessing [
+{ #category : #requirements }
+IntervalTest >> elementInForIndexAccessing [
 
 	^ elementIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>elementNotIn [
+{ #category : #requirements }
+IntervalTest >> elementNotIn [
 	^elementNotIn
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>elementNotInForElementAccessing [
+{ #category : #requirements }
+IntervalTest >> elementNotInForElementAccessing [
 " return an element not included in 'accessCollection' "
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>elementNotInForIndexAccessing [
+{ #category : #requirements }
+IntervalTest >> elementNotInForIndexAccessing [
 
 	^elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>elementNotInForOccurrences [
+{ #category : #requirements }
+IntervalTest >> elementNotInForOccurrences [
 	^ 9
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>elementToAdd [
+{ #category : #requirements }
+IntervalTest >> elementToAdd [
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>empty [
+{ #category : #requirements }
+IntervalTest >> empty [
 
 	^ empty
 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>expectedSizeAfterReject [
+{ #category : #requirements }
+IntervalTest >> expectedSizeAfterReject [
 	"Number of even elements in #collection"
 	^ 3
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>firstCollection [
+{ #category : #requirements }
+IntervalTest >> firstCollection [
 	^ nonEmpty.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>firstEven [
+{ #category : #requirements }
+IntervalTest >> firstEven [
 	"Returns the first even number of #collection"
 	^ -2
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>firstOdd [
+{ #category : #requirements }
+IntervalTest >> firstOdd [
 	"Returns the first odd number of #collection"
 	^ -5
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>indexInForCollectionWithoutDuplicates [
+{ #category : #requirements }
+IntervalTest >> indexInForCollectionWithoutDuplicates [
 	^ 2.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>indexInNonEmpty [
+{ #category : #requirements }
+IntervalTest >> indexInNonEmpty [
 	^2.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>integerCollection [
+{ #category : #requirements }
+IntervalTest >> integerCollection [
 	^ nonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>integerCollectionWithoutEqualElements [
+{ #category : #requirements }
+IntervalTest >> integerCollectionWithoutEqualElements [
 	^ 1 to: 23.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>moreThan3Elements [
+{ #category : #requirements }
+IntervalTest >> moreThan3Elements [
 	" return a collection including atLeast 3 elements"
 	^ nonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>moreThan4Elements [
+{ #category : #requirements }
+IntervalTest >> moreThan4Elements [
 
 " return a collection including at leat 4 elements"
 	^ nonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>nonEmpty [
+{ #category : #requirements }
+IntervalTest >> nonEmpty [
 
 	^ nonEmpty
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>nonEmpty1Element [
+{ #category : #requirements }
+IntervalTest >> nonEmpty1Element [
 
 	^ nonEmpty1Element  
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>nonEmptyMoreThan1Element [
+{ #category : #requirements }
+IntervalTest >> nonEmptyMoreThan1Element [
 	^nonEmpty .
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>oldSubCollection [
+{ #category : #requirements }
+IntervalTest >> oldSubCollection [
 	^ subCollection 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>replacementCollection [
+{ #category : #requirements }
+IntervalTest >> replacementCollection [
 	^ 5 to: 7.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>result [
+{ #category : #requirements }
+IntervalTest >> result [
 	^ {SmallInteger . SmallInteger . SmallInteger . SmallInteger . SmallInteger . SmallInteger}
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>secondCollection [
+{ #category : #requirements }
+IntervalTest >> secondCollection [
 	^anotherCollection 
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>setUp [
+{ #category : #setup }
+IntervalTest >> setUp [
 
 	empty := (1 to: 0).
 	one := (1 to:1).
@@ -414,47 +281,32 @@ IntervalTest>>setUp [
 	collectionWithSubCollection := 1 to: 10.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>sizeCollection [
+{ #category : #requirements }
+IntervalTest >> sizeCollection [
 	"Answers a collection whose #size is 4"
 	^ 1 to: 4.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>sortedInAscendingOrderCollection [
+{ #category : #requirements }
+IntervalTest >> sortedInAscendingOrderCollection [
 	"Return a collection sorted in ascending order"
 	^ anotherCollection
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>speciesClass [
+{ #category : #requirements }
+IntervalTest >> speciesClass [
 	
 	^ Array
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>subCollectionNotIn [
+{ #category : #requirements }
+IntervalTest >> subCollectionNotIn [
 
 	^subCollectionNotIn 
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>test0CopyTest [
+{ #category : #'tests - fixture' }
+IntervalTest >> test0CopyTest [
 	self empty.
 	self assert: self empty size = 0.
 	self nonEmpty.
@@ -466,11 +318,8 @@ IntervalTest>>test0CopyTest [
 	self collectionNotIncluded do: [ :each | self deny: (self nonEmpty includes: each) ]
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>test0IndexAccessingTest [
+{ #category : #'tests - fixture' }
+IntervalTest >> test0IndexAccessingTest [
 	self accessCollection.
 	self assert: self accessCollection size = 5.
 	self subCollectionNotIn.
@@ -483,21 +332,15 @@ IntervalTest>>test0IndexAccessingTest [
 	self collectionOfFloat do: [ :each | self deny: each class = SmallInteger ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testAdd [
+{ #category : #tests }
+IntervalTest >> testAdd [
 	self assert: (1 to: 10)
 			+ 5
 			= (6 to: 15)
 ]
 
-{
-	#category : #'tests - indexable access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testAllButFirstElements [
+{ #category : #'tests - indexable access' }
+IntervalTest >> testAllButFirstElements [
 	"self debug: #testAllButFirst"
 	| abf col |
 	col := self accessCollection.
@@ -508,11 +351,8 @@ IntervalTest>>testAllButFirstElements [
 	self assert: abf size + 2 = col size
 ]
 
-{
-	#category : #'tests - indexable access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testAllButLastElements [
+{ #category : #'tests - indexable access' }
+IntervalTest >> testAllButLastElements [
 	"self debug: #testAllButFirst"
 	| abf col |
 	col := self accessCollection.
@@ -523,11 +363,8 @@ IntervalTest>>testAllButLastElements [
 	self assert: abf size + 2 = col size
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testAsInterval [
+{ #category : #tests }
+IntervalTest >> testAsInterval [
 	"This is the same as newFrom:"
 	"self run: #testAsIntervaltestAsInterval"
 	self assert: (#(1 2 3) as: Interval) = (1 to: 3).
@@ -540,11 +377,8 @@ IntervalTest>>testAsInterval [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testAt [
+{ #category : #tests }
+IntervalTest >> testAt [
 	self assert: ((1 to: 10)
 			at: 1)
 			= 1.
@@ -559,11 +393,8 @@ IntervalTest>>testAt [
 			= 5
 ]
 
-{
-	#category : #'tests - indexable access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testAtWrap [
+{ #category : #'tests - indexable access' }
+IntervalTest >> testAtWrap [
 	"self debug: #testAt"
 	"
 	self assert: (self accessCollection at: 1) = 1.
@@ -577,22 +408,16 @@ IntervalTest>>testAtWrap [
 	self assert: (self accessCollection atWrap: 1 + self accessCollection size) = (self accessCollection at: 1)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testCollectThenSelectLocal [
+{ #category : #tests }
+IntervalTest >> testCollectThenSelectLocal [
 	| letters vowels |
 	letters := 'abcdefghijklmnopqrstuvwxyz'.
 	vowels := (1 to: 26) collect: [:index | letters at: index] thenSelect: [:char | char isVowel].
 	self assert: (vowels hasEqualElements: 'aeiou').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testDo [
+{ #category : #tests }
+IntervalTest >> testDo [
 	| s i |
 	s := OrderedCollection new.
 	i := (10 to: 20).
@@ -600,11 +425,8 @@ IntervalTest>>testDo [
 	self assert: (s hasEqualElements: i)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testEquals [
+{ #category : #tests }
+IntervalTest >> testEquals [
 
 	self assert: (3 to: 5) = #(3 4 5).
 	self deny: (3 to: 5) = #(3 5).
@@ -615,11 +437,8 @@ IntervalTest>>testEquals [
 	self deny: #() = (3 to: 5).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testEquals2 [
+{ #category : #tests }
+IntervalTest >> testEquals2 [
 
 	self assert: (3 to: 5) = #(3 4 5).
 	self deny: (3 to: 5) = #(3 5).
@@ -630,22 +449,16 @@ IntervalTest>>testEquals2 [
 	self deny: #() = (3 to: 5).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testEquals3 [
+{ #category : #tests }
+IntervalTest >> testEquals3 [
 
 	self assert: (3 to: 5 by: 2) first = (3 to: 6 by: 2) first.
 	self assert: (3 to: 5 by: 2) last = (3 to: 6 by: 2) last.
 	self assert: (3 to: 5 by: 2) = (3 to: 6 by: 2).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testEquals4 [
+{ #category : #tests }
+IntervalTest >> testEquals4 [
 
 	self assert: (3 to: 5 by: 2) = #(3 5).
 	self deny: (3 to: 5 by: 2) = #(3 4 5).
@@ -656,21 +469,15 @@ IntervalTest>>testEquals4 [
 	self deny: #() = (3 to: 5 by: 2).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testExtent [
+{ #category : #tests }
+IntervalTest >> testExtent [
 	self assert: (1 to: 10) extent = 9.
 	self assert: (1 to: 10 by: 2) extent = 9.
 	self assert: (1 to:-1) extent = -2
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testIdentityIncludes [
+{ #category : #'tests - includes' }
+IntervalTest >> testIdentityIncludes [
 	" test the comportement in presence of elements 'includes' but not 'identityIncludes' "
 
 	" can not be used by collections that can't include elements for wich copy doesn't return another instance "
@@ -682,31 +489,22 @@ IntervalTest>>testIdentityIncludes [
 	self deny: (collection identityIncludes: element)
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testIncludesElementIsNotThere [
+{ #category : #'tests - includes' }
+IntervalTest >> testIncludesElementIsNotThere [
 	"self debug: #testIncludesElementIsNotThere"
 	self deny: (self nonEmpty includes: self elementNotInForOccurrences).
 	self assert: (self nonEmpty includes: self nonEmpty anyOne).
 	self deny: (self empty includes: self elementNotInForOccurrences)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testInclusion [
+{ #category : #tests }
+IntervalTest >> testInclusion [
 	"Non regression test for another bug of fuzzy inclusion"
 	self deny: ((1.0 to: 3.0 by: 1.0 successor) includes: 3.0) description: 'The last element of this Interval is closed to 2'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testInclusionBug1603 [
+{ #category : #tests }
+IntervalTest >> testInclusionBug1603 [
 	"This test is by german morales.
 	It is about mantis bug 1603"
 	
@@ -715,11 +513,8 @@ IntervalTest>>testInclusionBug1603 [
  		  includes: 250000000000000). "same as above with 14 zeros appended"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testInclusionBug6455 [
+{ #category : #tests }
+IntervalTest >> testInclusionBug6455 [
 	"This test is about mantis bug http://bugs.squeak.org/view.php?id=6455
 	It should work as long as Fuzzy inclusion test feature for Interval of Float is maintained.
 	This is a case when tested element is near ones of actual value, but by default.
@@ -728,11 +523,8 @@ IntervalTest>>testInclusionBug6455 [
 	self assert: ((0 to: Float pi by: Float pi / 100) includes: Float pi * (3/100))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testIndexOfBug1602 [
+{ #category : #tests }
+IntervalTest >> testIndexOfBug1602 [
 	"This test is by german morales.
 	It is about mantis bug 1602"
 	
@@ -741,11 +533,8 @@ IntervalTest>>testIndexOfBug1602 [
  		  indexOf: 250000000000000) = 0. "same as above with 14 zeros appended"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testIndexOfBug6455 [
+{ #category : #tests }
+IntervalTest >> testIndexOfBug6455 [
 	"This test is about mantis bug http://bugs.squeak.org/view.php?id=6455
 	It should work as long as Fuzzy inclusion test feature for Interval of Float is maintained.
 	This is a case when tested element is near ones of actual value, but by default.
@@ -754,11 +543,8 @@ IntervalTest>>testIndexOfBug6455 [
 	self assert: ((0 to: Float pi by: Float pi / 100) indexOf: Float pi * (3/100)) = 4
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testInfiniteLoopBug6456 [
+{ #category : #tests }
+IntervalTest >> testInfiniteLoopBug6456 [
 	"This is a non regression test against mantis bug #6456.
 	Some Float interval size was not consistent with do: loop.
 	Some Float Interval used to do: infinite loops"
@@ -772,11 +558,8 @@ IntervalTest>>testInfiniteLoopBug6456 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testIntervalStoreOn [
+{ #category : #tests }
+IntervalTest >> testIntervalStoreOn [
 	"this is a test for http://bugs.squeak.org/view.php?id=4378"
 	
 	| interval1 interval2 |
@@ -785,11 +568,8 @@ IntervalTest>>testIntervalStoreOn [
 	self assert: interval1 size = interval2 size
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testInvalid [
+{ #category : #tests }
+IntervalTest >> testInvalid [
 	"empty, impossible ranges"
 	self assert: (1 to: 0) = #().
 	self assert: (1 to: -1) = #().
@@ -805,60 +585,42 @@ IntervalTest>>testInvalid [
 	self should: [1 to: 1 by: 0] raise: DomainError.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testIsEvaluating [
+{ #category : #tests }
+IntervalTest >> testIsEvaluating [
 	self assert: (1 to: 10) isSelfEvaluating.
 	self assert: (1 to: 10 by: 2) isSelfEvaluating
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testIsInterval [
+{ #category : #tests }
+IntervalTest >> testIsInterval [
 	self assert: (1 to: 10) isInterval.
 	self assert: (1 to: 10 by: 2) isInterval
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testLast [
+{ #category : #tests }
+IntervalTest >> testLast [
 
 self assert: (1 to:10) last = 10.
 self assert: (1 to:10 by:2) last = 9 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testMinus [
+{ #category : #tests }
+IntervalTest >> testMinus [
 	self assert: (1 to: 10)
 			- 5
 			= (-4 to: 5)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testNewFrom [
+{ #category : #tests }
+IntervalTest >> testNewFrom [
 
 	self assert: ( (Interval newFrom: (1 to: 1)) = (1 to: 1)).
 	self assert: ( (Interval newFrom: #(1)) = (1 to: 1)).
 	self assert: ( (Interval newFrom: #()) =  ( 1 to: 0)).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testNumericTypes [
+{ #category : #tests }
+IntervalTest >> testNumericTypes [
 
 	self assert: ((3 asNumber) to: 5) equals: #(3 4 5).
 	
@@ -871,11 +633,8 @@ IntervalTest>>testNumericTypes [
 	self assert: (1/2 to: 5/2 by: 1/2) equals: {1/2 . 1 . 3/2 . 2 . 5/2}.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testOtherNewFrom [
+{ #category : #tests }
+IntervalTest >> testOtherNewFrom [
 
 	self assert: (Interval newFrom: #(1 2 3 )) = (1 to: 3).
 	self assert: (Interval newFrom: #(33  5 -23 )) = (33 to: -23 by: -28).
@@ -890,11 +649,8 @@ IntervalTest>>testOtherNewFrom [
 	self assert: (#() as: Interval) = (1 to: 0).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testPermutationsDo [
+{ #category : #tests }
+IntervalTest >> testPermutationsDo [
 
 	| i oc |
 	i := (1.234 to: 4.234).
@@ -904,11 +660,8 @@ IntervalTest>>testPermutationsDo [
 	^ oc
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testRangeIncludes [
+{ #category : #tests }
+IntervalTest >> testRangeIncludes [
 	self
 		assert: ((1 to: 10)
 				rangeIncludes: 3).
@@ -929,11 +682,8 @@ IntervalTest>>testRangeIncludes [
 				rangeIncludes: 11)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testReverseDo [
+{ #category : #tests }
+IntervalTest >> testReverseDo [
 	| s i |
 	s := OrderedCollection new.
 	i := 10 to: 20.
@@ -943,11 +693,8 @@ IntervalTest>>testReverseDo [
 		assert: (s hasEqualElements: i)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testReverseUnevenDo [
+{ #category : #tests }
+IntervalTest >> testReverseUnevenDo [
 	| s i |
 	s := OrderedCollection new.
 	i := 10 to: 20 by: 3.
@@ -957,11 +704,8 @@ IntervalTest>>testReverseUnevenDo [
 		assert: (s hasEqualElements: i)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testShuffled [
+{ #category : #tests }
+IntervalTest >> testShuffled [
 
 	| i is |
 	i := (1 to: 20).
@@ -972,11 +716,8 @@ IntervalTest>>testShuffled [
 	self assert: (i includesAll: is).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>testUnevenDo [
+{ #category : #tests }
+IntervalTest >> testUnevenDo [
 	| s i |
 	s := OrderedCollection new.
 	i := 10 to: 20 by: 3.
@@ -986,11 +727,8 @@ IntervalTest>>testUnevenDo [
 		assert: (s hasEqualElements: i)
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IntervalTest>>unsortedCollection [
+{ #category : #requirements }
+IntervalTest >> unsortedCollection [
 " retur a collection that is not yat sorted"
 	^ (10 to: 1 by: -2)
 ]

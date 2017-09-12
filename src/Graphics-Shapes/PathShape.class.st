@@ -20,15 +20,11 @@ Class {
 		'bounds',
 		'vertices'
 	],
-	#category : #Graphics-Shapes,
-	#timestamp : 'LaurentLaffont 3/31/2011 21:05'
+	#category : #Graphics-Shapes
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PathShape class>>vertices: aCollection [
+{ #category : #'as yet unclassified' }
+PathShape class >> vertices: aCollection [
 	"Answer a new instance of the receiver with the
 	given vertices."
 
@@ -36,11 +32,8 @@ PathShape class>>vertices: aCollection [
 		vertices: aCollection
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PathShape>>addVertex: aPoint [
+{ #category : #adding }
+PathShape >> addVertex: aPoint [
 	"Add a vertex to the path."
 
 	self vertices add: aPoint.
@@ -48,41 +41,29 @@ PathShape>>addVertex: aPoint [
 		self bounds: (self bounds quickMergePoint: aPoint)] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PathShape>>basicBounds [
+{ #category : #accessing }
+PathShape >> basicBounds [
 	"Answer the bounds of the receiver without lazy calculation."
 
 	^bounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PathShape>>bounds [
+{ #category : #accessing }
+PathShape >> bounds [
 	"Answer the bounds of the receiver."
 
 	^bounds ifNil: [bounds := self calculatedBounds]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PathShape>>bounds: anObject [
+{ #category : #accessing }
+PathShape >> bounds: anObject [
 	"Set the value of bounds"
 
 	bounds := anObject
 ]
 
-{
-	#category : #compute,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PathShape>>calculatedBounds [
+{ #category : #compute }
+PathShape >> calculatedBounds [
 	"Answer the bounds of the receiver calculated from the
 	receiver's vertices."
 
@@ -95,11 +76,8 @@ PathShape>>calculatedBounds [
 	^tl corner: br + 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PathShape>>containsPoint: aPoint [
+{ #category : #testing }
+PathShape >> containsPoint: aPoint [
 	"Answer whether the receiver contains the given point."
 
 	(self basicContainsPoint: aPoint) ifFalse: [^false].
@@ -108,11 +86,8 @@ PathShape>>containsPoint: aPoint [
 	^false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PathShape>>initialize [
+{ #category : #initialization }
+PathShape >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -120,11 +95,8 @@ PathShape>>initialize [
 		vertices: OrderedCollection new
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PathShape>>segmentsDo: aBlock [
+{ #category : #enumerating }
+PathShape >> segmentsDo: aBlock [
 	"Evaluate the two-argument block with each vertex and its successor."
 
 	self vertices size < 2 ifTrue: [^self].
@@ -134,21 +106,15 @@ PathShape>>segmentsDo: aBlock [
 			value: (self vertices at: i + 1)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PathShape>>vertices [
+{ #category : #accessing }
+PathShape >> vertices [
 	"Answer the value of vertices"
 
 	^ vertices
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PathShape>>vertices: aCollection [
+{ #category : #accessing }
+PathShape >> vertices: aCollection [
 	"Set the value of vertices."
 
 	vertices := aCollection asOrderedCollection.

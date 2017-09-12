@@ -19,36 +19,26 @@ Class {
 		'afterNodes',
 		'ancestorNode'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 14:57'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitCascadeRefactoring class>>model: aNamespace split: anInterval from: aSelector in: aClass [
+{ #category : #instance-creation }
+RBSplitCascadeRefactoring class >> model: aNamespace split: anInterval from: aSelector in: aClass [
 	^ self new
 		model: aNamespace;
 		split: anInterval from: aSelector in: aClass;
 		yourself
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitCascadeRefactoring class>>split: anInterval from: aSelector in: aClass [
+{ #category : #instance-creation }
+RBSplitCascadeRefactoring class >> split: anInterval from: aSelector in: aClass [
 	^ self new 
 		split: anInterval from: aSelector in: aClass;
 		yourself
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitCascadeRefactoring>>extractReceiver [
+{ #category : #transforming }
+RBSplitCascadeRefactoring >> extractReceiver [
 	| name |
 	(cascadeNode receiver isLiteralNode or: [ cascadeNode receiver isVariable ])
 		ifTrue: [ ^ self ].
@@ -67,11 +57,8 @@ RBSplitCascadeRefactoring>>extractReceiver [
 		
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitCascadeRefactoring>>findAncestorNode [
+{ #category : #preconditions }
+RBSplitCascadeRefactoring >> findAncestorNode [
 	"The ancestor node is the node that is contained within the sequence. In most cases this is the cascade itself, but it also can be an assignment or a return node."
 
 	ancestorNode := cascadeNode.
@@ -83,11 +70,8 @@ RBSplitCascadeRefactoring>>findAncestorNode [
 		ifFalse: [ self refactoringFailure: 'To split this cascade, you must extract it to a temporary first' ]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitCascadeRefactoring>>findCascadeNode [
+{ #category : #preconditions }
+RBSplitCascadeRefactoring >> findCascadeNode [
 	"Find the cascade to be split."
 
 	cascadeNode := self parseTree bestNodeFor: selectedInterval.
@@ -97,11 +81,8 @@ RBSplitCascadeRefactoring>>findCascadeNode [
 		ifTrue: [ self refactoringFailure: 'The selection doesn''t appear to be within a cascade' ]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitCascadeRefactoring>>findMessageNodes [
+{ #category : #preconditions }
+RBSplitCascadeRefactoring >> findMessageNodes [
 	"Find the nodes that form the first part of the cascade and the second part of the cascade."
 
 	beforeNodes := cascadeNode messages
@@ -114,11 +95,8 @@ RBSplitCascadeRefactoring>>findMessageNodes [
 		ifFalse: [ self refactoringFailure: 'To set the split boundary place the cursor inbetween two cascaded messages' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitCascadeRefactoring>>parseTree [
+{ #category : #accessing }
+RBSplitCascadeRefactoring >> parseTree [
 	parseTree isNil ifTrue: [
 		parseTree := class parseTreeFor: selector.
 		parseTree isNil
@@ -126,31 +104,22 @@ RBSplitCascadeRefactoring>>parseTree [
 	^ parseTree
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitCascadeRefactoring>>preconditions [
+{ #category : #preconditions }
+RBSplitCascadeRefactoring >> preconditions [
 	^ (RBCondition definesSelector: selector in: class) & (RBCondition withBlock: [ 
 		self findCascadeNode; findAncestorNode; findMessageNodes. 
 		true ])
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitCascadeRefactoring>>split: anInterval from: aSelector in: aClass [
+{ #category : #initialization }
+RBSplitCascadeRefactoring >> split: anInterval from: aSelector in: aClass [
 	class := self classObjectFor: aClass.
 	selector := aSelector.
 	selectedInterval := anInterval
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitCascadeRefactoring>>splitCascade [
+{ #category : #transforming }
+RBSplitCascadeRefactoring >> splitCascade [
 	ancestorNode parent
 		addNode: (beforeNodes size > 1
 			ifTrue: [ RBCascadeNode messages: beforeNodes ]
@@ -162,11 +131,8 @@ RBSplitCascadeRefactoring>>splitCascade [
 	class compileTree: ancestorNode methodNode
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitCascadeRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBSplitCascadeRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream nextPutAll: ' split: '.
@@ -179,11 +145,8 @@ RBSplitCascadeRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitCascadeRefactoring>>transform [
+{ #category : #transforming }
+RBSplitCascadeRefactoring >> transform [
 	self extractReceiver.
 	self splitCascade
 ]

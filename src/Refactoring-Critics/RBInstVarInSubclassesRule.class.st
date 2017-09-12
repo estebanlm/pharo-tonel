@@ -6,33 +6,23 @@ This smell arises when instance variables are defined in all subclasses. Many ti
 Class {
 	#name : #RBInstVarInSubclassesRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 20:59'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInstVarInSubclassesRule class>>checksClass [
+{ #category : #testing }
+RBInstVarInSubclassesRule class >> checksClass [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInstVarInSubclassesRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBInstVarInSubclassesRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'InstVarInSubclassesRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInstVarInSubclassesRule>>basicCheck: aClass  [
+{ #category : #running }
+RBInstVarInSubclassesRule >> basicCheck: aClass [ 
 	| subs |
 	subs := aClass subclasses.
 	subs size > 1 ifTrue: 
@@ -48,11 +38,8 @@ RBInstVarInSubclassesRule>>basicCheck: aClass  [
 	^ false
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInstVarInSubclassesRule>>checkClass: aClass  [
+{ #category : #running }
+RBInstVarInSubclassesRule >> checkClass: aClass [ 
 	| subs |
 	subs := aClass subclasses.
 	subs size > 1 ifTrue: 
@@ -69,42 +56,27 @@ RBInstVarInSubclassesRule>>checkClass: aClass  [
 					instanceVariable: val ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInstVarInSubclassesRule>>group [
+{ #category : #accessing }
+RBInstVarInSubclassesRule >> group [
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInstVarInSubclassesRule>>name [
+{ #category : #accessing }
+RBInstVarInSubclassesRule >> name [
 	^ 'Same instance variable defined in ALL subclasses'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInstVarInSubclassesRule>>rationale [
+{ #category : #accessing }
+RBInstVarInSubclassesRule >> rationale [
 	^ 'All subclasses of this class define the same variable. Most likely this variable should be pulled up to the superclass.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInstVarInSubclassesRule>>resultClass [
+{ #category : #accessing }
+RBInstVarInSubclassesRule >> resultClass [
 	^ RBVariableEnvironment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBInstVarInSubclassesRule>>severity [
+{ #category : #accessing }
+RBInstVarInSubclassesRule >> severity [
 	^ #information
 ]

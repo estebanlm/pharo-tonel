@@ -11,131 +11,84 @@ Class {
 		'CVar',
 		'InitializationOrder'
 	],
-	#category : #MonticelloMocks,
-	#timestamp : 'cwp 8/10/2003 16:43'
+	#category : #MonticelloMocks
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCMockClassA class>>cVar [
+{ #category : #'as yet unclassified' }
+MCMockClassA class >> cVar [
 	^ CVar
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCMockClassA class>>initializationOrder [
+{ #category : #'as yet unclassified' }
+MCMockClassA class >> initializationOrder [
 
 	^ InitializationOrder
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCMockClassA class>>initialize [
+{ #category : #'as yet unclassified' }
+MCMockClassA class >> initialize [
 	CVar := #initialized.
 	InitializationOrder := 1.
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCMockClassA class>>one [
+{ #category : #'as yet unclassified' }
+MCMockClassA class >> one [
 
 	^ 1
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCMockClassA class>>touchCVar [
+{ #category : #'as yet unclassified' }
+MCMockClassA class >> touchCVar [
 	CVar := #touched
 ]
 
-{
-	#category : #numeric,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCMockClassA>>a [
+{ #category : #numeric }
+MCMockClassA >> a [
 	^ 'a2'
 ]
 
-{
-	#category : #numeric,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCMockClassA>>b [
+{ #category : #numeric }
+MCMockClassA >> b [
 	^ 'b1'
 ]
 
-{
-	#category : #numeric,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCMockClassA>>c [
+{ #category : #numeric }
+MCMockClassA >> c [
 	^ 'c1'
 ]
 
-{
-	#category : #numeric,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCMockClassA>>d [
+{ #category : #numeric }
+MCMockClassA >> d [
 	^ 'd'
 ]
 
-{
-	#category : #boolean,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCMockClassA>>falsehood [
+{ #category : #boolean }
+MCMockClassA >> falsehood [
 	^ false
 ]
 
-{
-	#category : #boolean,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCMockClassA>>moreTruth [
+{ #category : #boolean }
+MCMockClassA >> moreTruth [
 
 	^ true
 ]
 
-{
-	#category : #numeric,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCMockClassA>>one [
+{ #category : #numeric }
+MCMockClassA >> one [
 	^ 1
 ]
 
-{
-	#category : #'drag\'n\'drop',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCMockClassA>>q [
-
+{ #category : #'drag\'n\'drop' }
+MCMockClassA >> q [
 ]
 
-{
-	#category : #boolean,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCMockClassA>>truth [
+{ #category : #boolean }
+MCMockClassA >> truth [
 	^ true
 ]
 
-{
-	#category : #numeric,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCMockClassA>>two [
+{ #category : #numeric }
+MCMockClassA >> two [
 	^ 2
 ]

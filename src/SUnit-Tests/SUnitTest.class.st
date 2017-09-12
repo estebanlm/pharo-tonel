@@ -14,23 +14,16 @@ Class {
 		'hasSetup',
 		'hasRanOnce'
 	],
-	#category : #SUnit-Tests-Core,
-	#timestamp : '<historical>'
+	#category : #SUnit-Tests-Core
 }
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest class>>lastStoredRun [
+{ #category : #history }
+SUnitTest class >> lastStoredRun [
 	^ ((Dictionary new) add: (#passed->((Set new) add: #testWithExceptionDo; add: #testAssert; add: #testRanOnlyOnce; add: #testDialectLocalizedException; add: #testFail; add: #testDefects; add: #testIsNotRerunOnDebug; add: #testResult; add: #testRunning; add: #testError; add: #testException; add: #testShould; add: #testSuite; yourself)); add: (#timeStamp->'22 November 2008 10:11:35 pm'); add: (#failures->((Set new))); add: (#errors->((Set new))); yourself)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>assertForTestResult: aResult runCount: aRunCount passed: aPassedCount failed: aFailureCount errors: anErrorCount [
+{ #category : #private }
+SUnitTest >> assertForTestResult: aResult runCount: aRunCount passed: aPassedCount failed: aFailureCount errors: anErrorCount [
 
 	self
 		assert: aResult runCount = aRunCount;
@@ -39,11 +32,8 @@ SUnitTest>>assertForTestResult: aResult runCount: aRunCount passed: aPassedCount
 		assert: aResult errorCount = anErrorCount
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>assertForTestResult: aResult runCount: aRunCount passed: aPassedCount failed: aFailureCount errors: anErrorCount expectedFailures: anExpectedFailureCount [
+{ #category : #private }
+SUnitTest >> assertForTestResult: aResult runCount: aRunCount passed: aPassedCount failed: aFailureCount errors: anErrorCount expectedFailures: anExpectedFailureCount [
 
 	self
 		assert: aResult runCount = aRunCount;
@@ -53,11 +43,8 @@ SUnitTest>>assertForTestResult: aResult runCount: aRunCount passed: aPassedCount
 		assert: aResult expectedDefectCount = anExpectedFailureCount
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>assertTerminatedFailedChildProcessesFor: aTestCase [
+{ #category : #helpers }
+SUnitTest >> assertTerminatedFailedChildProcessesFor: aTestCase [
 
 	| failedProcesses |
 	failedProcesses := aTestCase failedChildProcesses.
@@ -65,99 +52,66 @@ SUnitTest>>assertTerminatedFailedChildProcessesFor: aTestCase [
 	self assert: (failedProcesses allSatisfy: #isTerminated) 
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>deprecatedMessage [
+{ #category : #helpers }
+SUnitTest >> deprecatedMessage [
 	self deprecated: 'Deprecated method used by #testIgnoreDeprecationWarnings' on: '' in: ''
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>error [
+{ #category : #private }
+SUnitTest >> error [
 	3 zork
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>errorShouldntRaise [
+{ #category : #testing }
+SUnitTest >> errorShouldntRaise [
 	self someMessageThatIsntUnderstood
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>expectedFailureFails [
+{ #category : #private }
+SUnitTest >> expectedFailureFails [
 	<expectedFailure>
 	self assert: false.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>expectedFailurePasses [
+{ #category : #private }
+SUnitTest >> expectedFailurePasses [
 	<expectedFailure>
 	self assert: true.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>expectedFailures [
+{ #category : #testing }
+SUnitTest >> expectedFailures [
 	^super expectedFailures "#() "
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>failedChildProcessTest [
+{ #category : #private }
+SUnitTest >> failedChildProcessTest [
 
 	[self error: 'error from child process'] forkNamed: 'failed child for ', testSelector
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>failedChildProcesses [
+{ #category : #helpers }
+SUnitTest >> failedChildProcesses [
 	^Process allInstances 
 		select: [: each | each name = ('failed child for ', testSelector)]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>failedTestWithFailedChildProcessTest [
+{ #category : #private }
+SUnitTest >> failedTestWithFailedChildProcessTest [
 
 	self failedChildProcessTest.
 	Processor yield.
 	self error: 'failed test with failed child process'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>hangedChildProcessTest [
+{ #category : #private }
+SUnitTest >> hangedChildProcessTest [
 
 	[10 seconds wait] forkNamed: #hangedChildProcessTest
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>hangedTestDueToFailedChildProcess [
+{ #category : #private }
+SUnitTest >> hangedTestDueToFailedChildProcess [
 	self timeLimit: 10 milliSeconds.
 	
 	self failedChildProcessTest.
@@ -168,45 +122,29 @@ SUnitTest>>hangedTestDueToFailedChildProcess [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>hasRun [
+{ #category : #accessing }
+SUnitTest >> hasRun [
 	^hasRun
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>hasSetup [
+{ #category : #accessing }
+SUnitTest >> hasSetup [
 	^hasSetup
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>longRunningTest [
+{ #category : #private }
+SUnitTest >> longRunningTest [
 
 	self timeLimit: 10 milliSeconds.
 	20 milliSeconds wait
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>noop [
-
+{ #category : #private }
+SUnitTest >> noop [
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>raiseDeprecationWarnings [
+{ #category : #testing }
+SUnitTest >> raiseDeprecationWarnings [
 	| oldRaiseWarning |
 	oldRaiseWarning := Deprecation raiseWarning.
 	[ Deprecation raiseWarning: true.
@@ -215,36 +153,24 @@ SUnitTest>>raiseDeprecationWarnings [
 		ensure: [ Deprecation raiseWarning: oldRaiseWarning ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>setRun [
+{ #category : #private }
+SUnitTest >> setRun [
 	hasRun := true
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>setUp [
+{ #category : #running }
+SUnitTest >> setUp [
 	hasSetup := true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testAssert [
+{ #category : #testing }
+SUnitTest >> testAssert [
 	self assert: true.
 	self deny: false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testChildProcessShouldNotBeStoredStronglyByTestEnvironment [
+{ #category : #testing }
+SUnitTest >> testChildProcessShouldNotBeStoredStronglyByTestEnvironment [
 
 	| process weak |
 	process := [   ] forkNamed: 'child test process'.
@@ -256,11 +182,8 @@ SUnitTest>>testChildProcessShouldNotBeStoredStronglyByTestEnvironment [
 	self assert: weak first equals: nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testDefects [
+{ #category : #testing }
+SUnitTest >> testDefects [
 	| result suite error failure |
 	suite := self classForTestSuite new.
 	suite addTest: (error := self class selector: #error).
@@ -275,11 +198,8 @@ SUnitTest>>testDefects [
 		errors: 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testDialectLocalizedException [
+{ #category : #testing }
+SUnitTest >> testDialectLocalizedException [
 
 	self
 		should: [self classForTestResult signalFailureWith: 'Foo']
@@ -289,11 +209,8 @@ SUnitTest>>testDialectLocalizedException [
 		raise: self defaultTestError.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testError [
+{ #category : #testing }
+SUnitTest >> testError [
 
 	| case result |
 
@@ -316,11 +233,8 @@ SUnitTest>>testError [
 		errors: 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testErrorShouldResetWatchDog [
+{ #category : #testing }
+SUnitTest >> testErrorShouldResetWatchDog [
 
 	| case result |
 	
@@ -338,22 +252,16 @@ SUnitTest>>testErrorShouldResetWatchDog [
 		errors: 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testException [
+{ #category : #testing }
+SUnitTest >> testException [
 
 	self
 		should: [self error: 'foo']
 		raise: self defaultTestError
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testExecutionEnvironmentShouldBeInstalled [
+{ #category : #testing }
+SUnitTest >> testExecutionEnvironmentShouldBeInstalled [
 
 	| env |
 	env := CurrentExecutionEnvironment value.
@@ -362,11 +270,8 @@ SUnitTest>>testExecutionEnvironmentShouldBeInstalled [
 	self assert: env testCase equals: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testExpectedFailure [
+{ #category : #testing }
+SUnitTest >> testExpectedFailure [
 
 	| case result |
 	case := self class selector: #expectedFailureFails.
@@ -381,20 +286,14 @@ SUnitTest>>testExpectedFailure [
 		expectedFailures: 1.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testExpectedFailureDetection [
+{ #category : #testing }
+SUnitTest >> testExpectedFailureDetection [
 	self assert: self expectedFailures size = 2.
 	self assert: (self expectedFailures includesAll: #(expectedFailureFails expectedFailurePasses))
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testExpectedFailurePass [
+{ #category : #testing }
+SUnitTest >> testExpectedFailurePass [
 
 	| case result |
 	case := self class selector: #expectedFailurePasses.
@@ -409,11 +308,8 @@ SUnitTest>>testExpectedFailurePass [
 		expectedFailures: 0.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testFail [
+{ #category : #testing }
+SUnitTest >> testFail [
 
 	| case result |
 
@@ -428,11 +324,8 @@ SUnitTest>>testFail [
 		errors: 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testFailedChildProcessTest [
+{ #category : #testing }
+SUnitTest >> testFailedChildProcessTest [
 
 	| case result |
 	DefaultExecutionEnvironment beActive.
@@ -448,11 +341,8 @@ SUnitTest>>testFailedChildProcessTest [
 	self assertTerminatedFailedChildProcessesFor: case
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testFailedChildProcessTestShouldNotEffectFollowingAnotherTest [
+{ #category : #testing }
+SUnitTest >> testFailedChildProcessTestShouldNotEffectFollowingAnotherTest [
 
 	| result case1 case2 |
 	DefaultExecutionEnvironment beActive.
@@ -471,11 +361,8 @@ SUnitTest>>testFailedChildProcessTestShouldNotEffectFollowingAnotherTest [
 	self assertTerminatedFailedChildProcessesFor: case1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testFailedTestWithFailedChildProcessTestShouldNotEffectFollowingAnotherTest [
+{ #category : #testing }
+SUnitTest >> testFailedTestWithFailedChildProcessTestShouldNotEffectFollowingAnotherTest [
 
 	| result case1 case2 |
 	DefaultExecutionEnvironment beActive.
@@ -494,11 +381,8 @@ SUnitTest>>testFailedTestWithFailedChildProcessTestShouldNotEffectFollowingAnoth
 	self assertTerminatedFailedChildProcessesFor: case1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testFileOutResult [
+{ #category : #testing }
+SUnitTest >> testFileOutResult [
 	| suite result fileout |
 	suite := self classForTestSuite new.
 	suite
@@ -519,11 +403,8 @@ SUnitTest>>#error
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testGreenTestThenLongRunningTest [
+{ #category : #testing }
+SUnitTest >> testGreenTestThenLongRunningTest [
 
 	| case result |
 	DefaultExecutionEnvironment beActive.
@@ -540,11 +421,8 @@ SUnitTest>>testGreenTestThenLongRunningTest [
 		errors: 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testHangedChildProcessTest [
+{ #category : #testing }
+SUnitTest >> testHangedChildProcessTest [
 
 	| case result hangedProcess |
 
@@ -563,11 +441,8 @@ SUnitTest>>testHangedChildProcessTest [
 	self assert: hangedProcess isTerminated
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testHangedTestDueToFailedChildProcess [
+{ #category : #testing }
+SUnitTest >> testHangedTestDueToFailedChildProcess [
 
 	| case result |
 	DefaultExecutionEnvironment beActive.
@@ -584,11 +459,8 @@ SUnitTest>>testHangedTestDueToFailedChildProcess [
 	self assertTerminatedFailedChildProcessesFor: case
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testIgnoreDeprecationWarnings [
+{ #category : #testing }
+SUnitTest >> testIgnoreDeprecationWarnings [
 	| oldRaiseWarning |
 	oldRaiseWarning := Deprecation raiseWarning.
 	[ Deprecation raiseWarning: false.
@@ -597,11 +469,8 @@ SUnitTest>>testIgnoreDeprecationWarnings [
 		ensure: [ Deprecation raiseWarning: oldRaiseWarning ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testIsNotRerunOnDebug [
+{ #category : #testing }
+SUnitTest >> testIsNotRerunOnDebug [
 
 	| case |
 
@@ -610,11 +479,8 @@ SUnitTest>>testIsNotRerunOnDebug [
 	case debug
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testLongRunningTest [
+{ #category : #testing }
+SUnitTest >> testLongRunningTest [
 
 	| case result |
 	DefaultExecutionEnvironment beActive.
@@ -629,11 +495,8 @@ SUnitTest>>testLongRunningTest [
 		errors: 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testLongRunningTestThenGreenTest [
+{ #category : #testing }
+SUnitTest >> testLongRunningTestThenGreenTest [
 
 	| case result |
 	DefaultExecutionEnvironment beActive.
@@ -650,11 +513,8 @@ SUnitTest>>testLongRunningTestThenGreenTest [
 		errors: 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testRaiseDeprecationWarnings [
+{ #category : #testing }
+SUnitTest >> testRaiseDeprecationWarnings [
 	| case result |
 	case := self class selector: #raiseDeprecationWarnings.
 	result := case run.
@@ -667,11 +527,8 @@ SUnitTest>>testRaiseDeprecationWarnings [
 		errors: 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testRan [
+{ #category : #testing }
+SUnitTest >> testRan [
 
 	| case |
 
@@ -687,21 +544,15 @@ SUnitTest>>testRan [
 	self assert: case hasRun isNil.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testRanOnlyOnce [
+{ #category : #testing }
+SUnitTest >> testRanOnlyOnce [
 
 	self assert: hasRanOnce ~= true.
 	hasRanOnce := true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testResult [
+{ #category : #testing }
+SUnitTest >> testResult [
 
 	| case result |
 
@@ -716,51 +567,36 @@ SUnitTest>>testResult [
 		errors: 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testRunning [
+{ #category : #testing }
+SUnitTest >> testRunning [
 
 	10 milliSeconds wait
 			
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testRunningLongTime [
+{ #category : #testing }
+SUnitTest >> testRunningLongTime [
 	self timeLimit: 3 seconds.
 	
 	2 seconds wait
 			
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testSelectorWithArg: anObject [
+{ #category : #testing }
+SUnitTest >> testSelectorWithArg: anObject [
 	"should not result in error"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testShould [
+{ #category : #testing }
+SUnitTest >> testShould [
 
 	self
 		should: [true];
 		shouldnt: [false]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testShouldIgnoreTimeLimitWhenTestProcessIsSuspended [
+{ #category : #testing }
+SUnitTest >> testShouldIgnoreTimeLimitWhenTestProcessIsSuspended [
 	"If you open debugger on test (by halt or error) and will not close it more then test time limit then following interaction with debugger will fail. 
 	As simple fix watch dog should check that test process is not suspended. It of course will open possibility to hang test execution when tested code will suspend active process by incident. But we could live with it and probably it could be addressed too in future"
 	| testProcess |
@@ -771,11 +607,8 @@ SUnitTest>>testShouldIgnoreTimeLimitWhenTestProcessIsSuspended [
 	self assert: true.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testSuite [
+{ #category : #testing }
+SUnitTest >> testSuite [
 	| suite result |
 	suite := self classForTestSuite new.
 	suite
@@ -791,11 +624,8 @@ SUnitTest>>testSuite [
 		errors: 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testWatchDogProcessShouldNotBeCatchedAsForkedProcess [
+{ #category : #testing }
+SUnitTest >> testWatchDogProcessShouldNotBeCatchedAsForkedProcess [
 
 	| env |
 	env := CurrentExecutionEnvironment value.
@@ -803,11 +633,8 @@ SUnitTest>>testWatchDogProcessShouldNotBeCatchedAsForkedProcess [
 	self assert: env forkedProcesses isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitTest>>testWithExceptionDo [
+{ #category : #testing }
+SUnitTest >> testWithExceptionDo [
 
 	self
 		should: [self error: 'foo']

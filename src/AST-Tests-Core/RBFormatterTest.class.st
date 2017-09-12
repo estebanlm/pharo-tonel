@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #RBFormatterTest,
 	#superclass : #TestCase,
-	#category : #AST-Tests-Core,
-	#timestamp : ''
+	#category : #AST-Tests-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBFormatterTest>>formatClass: aClass [
+{ #category : #private }
+RBFormatterTest >> formatClass: aClass [
 	aClass selectors
 		do: [ :each | self formatClass: aClass selector: each ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBFormatterTest>>formatClass: aClass selector: aSymbol [
+{ #category : #private }
+RBFormatterTest >> formatClass: aClass selector: aSymbol [
 	| source tree1 tree2 |
 	source := aClass sourceCodeAt: aSymbol.
 	tree1 := RBParser parseMethod: source.
@@ -32,19 +22,13 @@ RBFormatterTest>>formatClass: aClass selector: aSymbol [
 	self assert: tree1 = tree2
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBFormatterTest>>formatterClass [
+{ #category : #private }
+RBFormatterTest >> formatterClass [
   ^BISimpleFormatter
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBFormatterTest>>testCoreSystem [
+{ #category : #testing }
+RBFormatterTest >> testCoreSystem [
 	#(#Object #Behavior #Boolean #True #False #Integer #SmallInteger #Collection #String)
 		do: [ :each | 
 			| class |
@@ -54,11 +38,8 @@ RBFormatterTest>>testCoreSystem [
 				formatClass: class class ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBFormatterTest>>testFormatPragmaWithLastIsSymbolArgument [
+{ #category : #testing }
+RBFormatterTest >> testFormatPragmaWithLastIsSymbolArgument [
 	| inputSource tree outputSource |
 	"formatter should not create invalid code by removing whitespace between #= and >"
 	inputSource := 'foo  <selector: #= > ^ self'.
@@ -81,22 +62,16 @@ RBFormatterTest>>testFormatPragmaWithLastIsSymbolArgument [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBFormatterTest>>testLiteralDynamicArray [
+{ #category : #testing }
+RBFormatterTest >> testLiteralDynamicArray [
 	| source tree1 |
 	source := 'foo ^ { ''film'' . ''FILM''} '.
 	tree1 := RBParser parseMethod: source.
 	self assert: ((self formatterClass new format: tree1) occurrencesOf: $.) = 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBFormatterTest>>testPreserveLiteralArrayFormat [
+{ #category : #testing }
+RBFormatterTest >> testPreserveLiteralArrayFormat [
 	| inputSource literalArrayNode |
 	"symbols within a literal array can omit the # character, if it is used that way,
 	the formatter should not add a # character but just use the source form."
@@ -106,11 +81,8 @@ RBFormatterTest>>testPreserveLiteralArrayFormat [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBFormatterTest>>testPreserveLiteralNumberFormat [
+{ #category : #testing }
+RBFormatterTest >> testPreserveLiteralNumberFormat [
 	| inputSource numbersNode |
 	"Literal numbers can be written in different ways, integer, integer with
 	radix float, fractional constants. The formatter should not change the

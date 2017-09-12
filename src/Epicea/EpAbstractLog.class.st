@@ -7,99 +7,68 @@ Class {
 	#instVars : [
 		'announcer'
 	],
-	#category : #Epicea-Log,
-	#timestamp : 'MartinDias 3/13/2017 20:24'
+	#category : #Epicea-Log
 }
 
-{
-	#category : #'tag keys',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog class>>authorKey [
+{ #category : #'tag keys' }
+EpAbstractLog class >> authorKey [
 	^ #author
 ]
 
-{
-	#category : #'tag keys',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog class>>priorReferenceKey [
+{ #category : #'tag keys' }
+EpAbstractLog class >> priorReferenceKey [
 
 	^ #prior
 ]
 
-{
-	#category : #'tag keys',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog class>>timeKey [
+{ #category : #'tag keys' }
+EpAbstractLog class >> timeKey [
 	^ #time
 ]
 
-{
-	#category : #'tag keys',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog class>>triggererReferenceKey [
+{ #category : #'tag keys' }
+EpAbstractLog class >> triggererReferenceKey [
 
 	^ #trigger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>announceAdded: anEntry [
+{ #category : #private }
+EpAbstractLog >> announceAdded: anEntry [
 
 	self announcer announce: (EpEntryAdded for: anEntry)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>announcer [
+{ #category : #accessing }
+EpAbstractLog >> announcer [
 
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>authorAt: anEntry [
+{ #category : #accessing }
+EpAbstractLog >> authorAt: anEntry [
 
 	^ self 
 		authorAt: anEntry 
 		ifAbsent: [ self error ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>authorAt: anEntry ifAbsent: aBlock [
+{ #category : #accessing }
+EpAbstractLog >> authorAt: anEntry ifAbsent: aBlock [
 
 	^ anEntry tags 
 		at: self class authorKey
 		ifAbsent: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>commentAt: anEntry ifAbsent: aBlock  [
+{ #category : #accessing }
+EpAbstractLog >> commentAt: anEntry ifAbsent: aBlock [ 
 	"Answer the String comment corresponding to anEntry, or evaluate aBlock if absent."
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>commentAt: anEntry ifPresent: aBlock  [
+{ #category : #accessing }
+EpAbstractLog >> commentAt: anEntry ifPresent: aBlock [ 
 	"Answer the String comment corresponding to anEntry, and evaluate aBlock with it."
 
 	| comment |
@@ -107,97 +76,67 @@ EpAbstractLog>>commentAt: anEntry ifPresent: aBlock  [
 	^ aBlock value: comment.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>entries [
+{ #category : #accessing }
+EpAbstractLog >> entries [
 	"Answer the entries of this log."
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>entriesCount [
+{ #category : #accessing }
+EpAbstractLog >> entriesCount [
 	
 	^ self entries size
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>entriesDo: aBlockClosure [
+{ #category : #enumerating }
+EpAbstractLog >> entriesDo: aBlockClosure [
 	"Evaluate aBlockClosure on every entry"
 	
 	^ self entries do: aBlockClosure
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>entriesForAll: references [
+{ #category : #accessing }
+EpAbstractLog >> entriesForAll: references [
 
 	^ references collect: [ :each | self entryFor: each ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>entryFor: aReference [
+{ #category : #accessing }
+EpAbstractLog >> entryFor: aReference [
 	"Answer the entry corresponding to aReference"
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>entryFor: aReference ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
+{ #category : #accessing }
+EpAbstractLog >> entryFor: aReference ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
 	"Answer an entry, evaluating either the first block closure if present or the second if absent."
 	
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>entryReferences [
+{ #category : #accessing }
+EpAbstractLog >> entryReferences [
 	
 	^ self referencesToAll: self entries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>events [
+{ #category : #accessing }
+EpAbstractLog >> events [
 
 	^ self entries collect: #content
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>firstEntryIfAbsent: absentBlock [
+{ #category : #accessing }
+EpAbstractLog >> firstEntryIfAbsent: absentBlock [
 	"Answer the first entry of the log, or evaluate the absentBlock."
 
 	^ self entries ifEmpty: absentBlock ifNotEmpty: [:collection | collection first ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>from: aReference detect: aBlockReturningBoolean [
+{ #category : #enumerating }
+EpAbstractLog >> from: aReference detect: aBlockReturningBoolean [
 
 	^ self
 		from: aReference
@@ -205,11 +144,8 @@ EpAbstractLog>>from: aReference detect: aBlockReturningBoolean [
 		ifNotFound: [ :ref | KeyNotFound signalFor: aReference ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>from: aReference detect: aBlockReturningBoolean ifNotFound: notFoundBlock [
+{ #category : #enumerating }
+EpAbstractLog >> from: aReference detect: aBlockReturningBoolean ifNotFound: notFoundBlock [
 
 	self
 		priorEntriesFrom: aReference
@@ -219,22 +155,16 @@ EpAbstractLog>>from: aReference detect: aBlockReturningBoolean ifNotFound: notFo
 	^ notFoundBlock cull: aReference
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>fromHeadDetect: aBlockReturningBoolean [
+{ #category : #enumerating }
+EpAbstractLog >> fromHeadDetect: aBlockReturningBoolean [
 
 	^ self
 		from: self headReference
 		detect: aBlockReturningBoolean
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>fromHeadDetect: aBlockReturningBoolean ifNotFound: notFoundBlock [
+{ #category : #enumerating }
+EpAbstractLog >> fromHeadDetect: aBlockReturningBoolean ifNotFound: notFoundBlock [
 
 	^ self
 		from: self headReference
@@ -242,11 +172,8 @@ EpAbstractLog>>fromHeadDetect: aBlockReturningBoolean ifNotFound: notFoundBlock 
 		ifNotFound: notFoundBlock
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>hasAuthor: anEntry [
+{ #category : #testing }
+EpAbstractLog >> hasAuthor: anEntry [
 
 	self 
 		authorAt: anEntry 
@@ -255,11 +182,8 @@ EpAbstractLog>>hasAuthor: anEntry [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>hasTime: anEntry [
+{ #category : #testing }
+EpAbstractLog >> hasTime: anEntry [
 
 	self 
 		timeAt: anEntry 
@@ -268,49 +192,34 @@ EpAbstractLog>>hasTime: anEntry [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>head [
+{ #category : #accessing }
+EpAbstractLog >> head [
 
 	^ self entryFor: self headReference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>headReference [
+{ #category : #accessing }
+EpAbstractLog >> headReference [
 	"Answer a OmReference to the head of this log"
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>isEmpty [
+{ #category : #testing }
+EpAbstractLog >> isEmpty [
 
 	self entriesDo: [ :each | ^false ].
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>nullReference [
+{ #category : #accessing }
+EpAbstractLog >> nullReference [
 
 	^ OmNullReference uniqueInstance
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>printOn: aStream [
+{ #category : #printing }
+EpAbstractLog >> printOn: aStream [
 
 	super printOn: aStream.
 	
@@ -320,22 +229,16 @@ EpAbstractLog>>printOn: aStream [
 		nextPut: $).
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>priorEntriesFrom: aReference [
+{ #category : #enumerating }
+EpAbstractLog >> priorEntriesFrom: aReference [
 
 	^ Array streamContents: [  :stream |
 		self priorEntriesFrom: aReference do: [ :anEntry |
 			stream nextPut: anEntry ] ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>priorEntriesFrom: aReference do: aBlock [
+{ #category : #enumerating }
+EpAbstractLog >> priorEntriesFrom: aReference do: aBlock [
 
 	| nextReference |
 	nextReference := aReference.
@@ -349,11 +252,8 @@ EpAbstractLog>>priorEntriesFrom: aReference do: aBlock [
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>priorEntriesFrom: initialReference upTo: finalReference [
+{ #category : #enumerating }
+EpAbstractLog >> priorEntriesFrom: initialReference upTo: finalReference [
 
 	| result |
 	result := OrderedCollection new.
@@ -368,87 +268,60 @@ EpAbstractLog>>priorEntriesFrom: initialReference upTo: finalReference [
 	^ result
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>priorEntriesFromHead [
+{ #category : #enumerating }
+EpAbstractLog >> priorEntriesFromHead [
 
 	^ self priorEntriesFrom: self headReference
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>priorEntriesFromHeadDo: aBlock [
+{ #category : #enumerating }
+EpAbstractLog >> priorEntriesFromHeadDo: aBlock [
 
 	self priorEntriesFrom: self headReference do: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>priorReferenceAt: anEntry [
+{ #category : #accessing }
+EpAbstractLog >> priorReferenceAt: anEntry [
 
 	^ anEntry tagAt: self class priorReferenceKey
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>referenceTo: anEntry [
+{ #category : #accessing }
+EpAbstractLog >> referenceTo: anEntry [
 	"Answer a OmReference corresponding to anEntry."
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>referencesToAll: aCollectionOfEntries [
+{ #category : #accessing }
+EpAbstractLog >> referencesToAll: aCollectionOfEntries [
 
 	^ aCollectionOfEntries collect: [ :each | self referenceTo: each ]
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>refresh [
+{ #category : #refreshing }
+EpAbstractLog >> refresh [
 	"Do nothing by default"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>timeAt: anEntry [
+{ #category : #accessing }
+EpAbstractLog >> timeAt: anEntry [
 
 	^ self 
 		timeAt: anEntry 
 		ifAbsent: [ self error ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>timeAt: anEntry ifAbsent: aBlock [
+{ #category : #accessing }
+EpAbstractLog >> timeAt: anEntry ifAbsent: aBlock [
 
 	^ anEntry tags 
 		at: self class timeKey
 		ifAbsent: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpAbstractLog>>triggererReferenceOf: anEntry ifPresent: presentBlock ifAbsent: absentBlock [
+{ #category : #accessing }
+EpAbstractLog >> triggererReferenceOf: anEntry ifPresent: presentBlock ifAbsent: absentBlock [
 
 	^ anEntry tags 
 		at: self class triggererReferenceKey 

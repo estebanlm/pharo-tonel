@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ReBasicScenarioExceptionStrategyTest,
 	#superclass : #ReExceptionStrategyBaseTest,
-	#category : #Renraku-Test,
-	#timestamp : ''
+	#category : #Renraku-Test
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReBasicScenarioExceptionStrategyTest>>testIgnore [
+{ #category : #tests }
+ReBasicScenarioExceptionStrategyTest >> testIgnore [
 	| critiques |
 
 	ReExceptionStrategy current: ReIgnoreExceptionStrategy.
@@ -25,11 +18,8 @@ ReBasicScenarioExceptionStrategyTest>>testIgnore [
 	self assert: critiques isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReBasicScenarioExceptionStrategyTest>>testLog [
+{ #category : #tests }
+ReBasicScenarioExceptionStrategyTest >> testLog [
 	| critiques |
 
 	ReExceptionStrategy current: ReLogExceptionStrategy.
@@ -46,11 +36,8 @@ ReBasicScenarioExceptionStrategyTest>>testLog [
 			crit message includesSubstring: self errorMessage ] ])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReBasicScenarioExceptionStrategyTest>>testPass [
+{ #category : #tests }
+ReBasicScenarioExceptionStrategyTest >> testPass [
 
 	ReExceptionStrategy current: RePassExceptionStrategy.
 	
@@ -59,11 +46,8 @@ ReBasicScenarioExceptionStrategyTest>>testPass [
 		raise: MyTestError
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReBasicScenarioExceptionStrategyTest>>validationScenario [
+{ #category : #helpers }
+ReBasicScenarioExceptionStrategyTest >> validationScenario [
 	| critiques |
 	
 	critiques := Set new.

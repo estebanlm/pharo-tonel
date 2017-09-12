@@ -5,15 +5,11 @@ I also add the options to the displayed menus.
 Class {
 	#name : #SugsMenuBuilder,
 	#superclass : #Object,
-	#category : #SmartSuggestions-Menu,
-	#timestamp : '<historical>'
+	#category : #SmartSuggestions-Menu
 }
 
-{
-	#category : #builder,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsMenuBuilder class>>buildContextMenuOn: aBuilder [
+{ #category : #builder }
+SugsMenuBuilder class >> buildContextMenuOn: aBuilder [
 	| context suggs |
 
 	context := SugsAbstractContext contextFor: aBuilder model.
@@ -25,11 +21,8 @@ SugsMenuBuilder class>>buildContextMenuOn: aBuilder [
 						icon: aSugg icon ]	
 ]
 
-{
-	#category : #builder,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsMenuBuilder class>>buildSmartActionsShortcuts: aBuilder [
+{ #category : #builder }
+SugsMenuBuilder class >> buildSmartActionsShortcuts: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #smartSuggestions)
@@ -46,11 +39,8 @@ SugsMenuBuilder class>>buildSmartActionsShortcuts: aBuilder [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsMenuBuilder class>>findBestNodeFor: context [
+{ #category : #private }
+SugsMenuBuilder class >> findBestNodeFor: context [
 	| root node |
 	"since the ast is used to put links for break points reparsing it will lose all the 
 	meta information such as breakpoints, therefore when the code is unchanged do not reparse it."
@@ -68,11 +58,8 @@ SugsMenuBuilder class>>findBestNodeFor: context [
 	^ node
 ]
 
-{
-	#category : #suggestions,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsMenuBuilder class>>findSuggestionsFor: context	 [
+{ #category : #suggestions }
+SugsMenuBuilder class >> findSuggestionsFor: context [	
 	"Finds the best suggestions for the context passed as a parameter"
 	| node suggestions |
 
@@ -86,11 +73,8 @@ SugsMenuBuilder class>>findSuggestionsFor: context	 [
 	
 ]
 
-{
-	#category : #show,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsMenuBuilder class>>showMenuFor: model [
+{ #category : #show }
+SugsMenuBuilder class >> showMenuFor: model [
 	| suggs menu context |
 
 	context := SugsAbstractContext contextFor: model.

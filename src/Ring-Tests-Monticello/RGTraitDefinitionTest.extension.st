@@ -1,12 +1,7 @@
-Extension {
-	#name : #RGTraitDefinitionTest
-}
+Extension { #name : #RGTraitDefinitionTest }
 
-{
-	#category : #'*Ring-Tests-Monticello',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RGTraitDefinitionTest>>testAsFullTraitDefinition [
+{ #category : #'*Ring-Tests-Monticello' }
+RGTraitDefinitionTest >> testAsFullTraitDefinition [
 	"self debug: #testAsFullTraitDefinition"
 	
 	| rgClass |

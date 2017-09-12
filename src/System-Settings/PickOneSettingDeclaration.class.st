@@ -7,15 +7,11 @@ Instance Variables
 Class {
 	#name : #PickOneSettingDeclaration,
 	#superclass : #MultipleSettingDeclaration,
-	#category : #System-Settings-Core,
-	#timestamp : 'AlainPlantec 1/3/2011 10:53'
+	#category : #System-Settings-Core
 }
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PickOneSettingDeclaration>>chooseValue [
+{ #category : #'user interface' }
+PickOneSettingDeclaration >> chooseValue [
 	| chosen |
 	chosen := UIManager default
 				chooseFrom: self domainValuesLabels
@@ -25,48 +21,33 @@ PickOneSettingDeclaration>>chooseValue [
 		ifNotNil: [self realValue: chosen realValue]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PickOneSettingDeclaration>>content [
+{ #category : #'user interface' }
+PickOneSettingDeclaration >> content [
 	^ (self domainValues
 		detect: [:v | v realValue = self realValue]
 		ifNone: [^ 'nil']) name
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PickOneSettingDeclaration>>defaultValue [
+{ #category : #'user interface' }
+PickOneSettingDeclaration >> defaultValue [
 	^ self default value ifNil: [self domainValues first realValue]
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PickOneSettingDeclaration>>index [
+{ #category : #'user interface' }
+PickOneSettingDeclaration >> index [
 	self realValue ifNil: [self realValue: self default].
 	^ self domainValues indexOf: (self domainValues detect: [:dv | dv realValue = self realValue] ifNone: [^ 0])
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PickOneSettingDeclaration>>index: anInteger [
+{ #category : #'user interface' }
+PickOneSettingDeclaration >> index: anInteger [
 	self realValue: (self domainValues at: anInteger) realValue.
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PickOneSettingDeclaration>>inputWidget [
+{ #category : #'user interface' }
+PickOneSettingDeclaration >> inputWidget [
 	| widget row |
 	row := self theme newRowIn: World for: {
 				widget := (self theme 

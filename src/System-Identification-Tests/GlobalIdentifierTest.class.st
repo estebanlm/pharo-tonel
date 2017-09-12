@@ -8,65 +8,43 @@ Class {
 		'identifier',
 		'preferences'
 	],
-	#category : #System-Identification-Tests,
-	#timestamp : '<historical>'
+	#category : #System-Identification-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierTest class>>isAbstract [
+{ #category : #testing }
+GlobalIdentifierTest class >> isAbstract [
 	^ self = GlobalIdentifierTest 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierTest>>actualPreferencesFileName [
+{ #category : #accessing }
+GlobalIdentifierTest >> actualPreferencesFileName [
 	^ identifier persistenceStrategy fileName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierTest>>folderName [
+{ #category : #accessing }
+GlobalIdentifierTest >> folderName [
 	^ 'pharoPreferencesTestFolder'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierTest>>newChecker [
+{ #category : #'instance creation' }
+GlobalIdentifierTest >> newChecker [
 	^ GlobalIdentifierPersistenceMockChecker new
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierTest>>setUp [
+{ #category : #running }
+GlobalIdentifierTest >> setUp [
 	super setUp.
 	identifier := GlobalIdentifier basicNew initialize.
 	self setUpPersistenceStrategyAndChecker
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierTest>>setUpPersistenceStrategyAndChecker [
+{ #category : #running }
+GlobalIdentifierTest >> setUpPersistenceStrategyAndChecker [
 	self subclassResponsibility
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierTest>>tearDown [
+{ #category : #running }
+GlobalIdentifierTest >> tearDown [
 	super tearDown.
 	preferences ensureDelete.
 	(FileLocator workingDirectory / self folderName) 
@@ -74,11 +52,8 @@ GlobalIdentifierTest>>tearDown [
 		ensureDelete.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierTest>>testBackwardCompatibility [
+{ #category : #tests }
+GlobalIdentifierTest >> testBackwardCompatibility [
 	"Let's say that we have information stored using FUEL, but we use STON.
 	We do not have any STON stored value.
 	Let's check that we load the FUEL, then stores it as STON."
@@ -98,11 +73,8 @@ GlobalIdentifierTest>>testBackwardCompatibility [
 	self assert: identifier persistenceStrategy preferences exists.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierTest>>testBackwardCompatibility2 [
+{ #category : #tests }
+GlobalIdentifierTest >> testBackwardCompatibility2 [
 	"Let's say that we have information stored using both FUEL and STON, and we use STON.
 	We will ingnore FUEL file and load STON."
 	| fuelPersistence fuelPrefereces fuelDictionary  stonDictionary |
@@ -126,11 +98,8 @@ GlobalIdentifierTest>>testBackwardCompatibility2 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierTest>>testBackwardCompatibility3 [
+{ #category : #tests }
+GlobalIdentifierTest >> testBackwardCompatibility3 [
 	"Let's say that we have information stored using FUEL but we cannot read the file. 
 	We use STON. We do not have any STON stored value.
 	Let's check that we keep FUEL file untouched and creates STON file."
@@ -152,11 +121,8 @@ GlobalIdentifierTest>>testBackwardCompatibility3 [
 	self assert: identifier persistenceStrategy preferences exists.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierTest>>testBackwardCompatibility4 [
+{ #category : #tests }
+GlobalIdentifierTest >> testBackwardCompatibility4 [
 	"Let's say that we have information stored using FUEL but we cannot read the file. 
 	We use STON. The STON preference file is broken, we cannot read it.
 	Let's check that we keep FUEL file untouched and creates STON file."
@@ -186,11 +152,8 @@ GlobalIdentifierTest>>testBackwardCompatibility4 [
 	self assert: dictionary equals: identifier persistedInformation.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierTest>>testComputerUUID [
+{ #category : #tests }
+GlobalIdentifierTest >> testComputerUUID [
 	"The computer UUID is not stored immediately because the Pharo Integration Server
 	raised building errors when storing the computer UUID on the CI server."
 	self assert: identifier computerUUID notNil.
@@ -198,20 +161,14 @@ GlobalIdentifierTest>>testComputerUUID [
 	self testDefault.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierTest>>testDefault [
+{ #category : #tests }
+GlobalIdentifierTest >> testDefault [
 	self deny: preferences exists description: 'The preference file should not exists by default.'.
 	self deny: preferences parent exists description: 'The preference directory should not exists by default.'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierTest>>testDoNotStoreIfHomeDoesNotExists [
+{ #category : #tests }
+GlobalIdentifierTest >> testDoNotStoreIfHomeDoesNotExists [
 	"Ignore persistence if HOME directory does not exists.
 	In the case that the image is deployed on a server, HOME directory may not exists.
 	See issue https://pharo.fogbugz.com/f/cases/19944."
@@ -231,11 +188,8 @@ GlobalIdentifierTest>>testDoNotStoreIfHomeDoesNotExists [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierTest>>testEnsure [
+{ #category : #tests }
+GlobalIdentifierTest >> testEnsure [
 	"The computer UUID is not stored immediately because the Pharo Integration Server
 	raised building errors when storing the computer UUID on the CI server."
 	| stored |
@@ -247,11 +201,8 @@ GlobalIdentifierTest>>testEnsure [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierTest>>testPreferenceFilesNotCollideWithRealPreferences [
+{ #category : #tests }
+GlobalIdentifierTest >> testPreferenceFilesNotCollideWithRealPreferences [
 	"Ensure that setUp is done correctly and we do not override or change production preferences.
 	See https://pharo.fogbugz.com/f/cases/19501"
 	| strategy |

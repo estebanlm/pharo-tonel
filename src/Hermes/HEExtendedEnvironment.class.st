@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #HEExtendedEnvironment,
 	#superclass : #Object,
@@ -10,80 +7,52 @@ Class {
 		'newClass',
 		'newSelector'
 	],
-	#category : #Hermes-ClassInstaller,
-	#timestamp : ''
+	#category : #Hermes-ClassInstaller
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExtendedEnvironment>>classNamed: aClassName [
+{ #category : #accessing }
+HEExtendedEnvironment >> classNamed: aClassName [
 	^ newClass name = aClassName
 		ifTrue: [ newClass ]
 		ifFalse: [ inner classNamed: aClassName ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExtendedEnvironment>>inner [
+{ #category : #accessing }
+HEExtendedEnvironment >> inner [
 	^ inner
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExtendedEnvironment>>inner: anObject [
+{ #category : #accessing }
+HEExtendedEnvironment >> inner: anObject [
 	inner := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExtendedEnvironment>>newClass [
+{ #category : #accessing }
+HEExtendedEnvironment >> newClass [
 	^ newClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExtendedEnvironment>>newClass: anObject [
+{ #category : #accessing }
+HEExtendedEnvironment >> newClass: anObject [
 	newClass := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExtendedEnvironment>>newMethod [
+{ #category : #accessing }
+HEExtendedEnvironment >> newMethod [
 	^ newMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExtendedEnvironment>>newMethod: anObject [
+{ #category : #accessing }
+HEExtendedEnvironment >> newMethod: anObject [
 	newMethod := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExtendedEnvironment>>newSelector [
+{ #category : #accessing }
+HEExtendedEnvironment >> newSelector [
 	^ newSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExtendedEnvironment>>newSelector: anObject [
+{ #category : #accessing }
+HEExtendedEnvironment >> newSelector: anObject [
 	newSelector := anObject
 ]

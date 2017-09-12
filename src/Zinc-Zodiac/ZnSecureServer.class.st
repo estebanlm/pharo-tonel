@@ -16,39 +16,26 @@ Class {
 	#instVars : [
 		'certificate'
 	],
-	#category : #Zinc-Zodiac,
-	#timestamp : 'SvenVanCaekenberghe 12/13/2011 13:26'
+	#category : #Zinc-Zodiac
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnSecureServer>>certificate [
+{ #category : #accessing }
+ZnSecureServer >> certificate [
 	^ certificate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnSecureServer>>certificate: anObject [
+{ #category : #accessing }
+ZnSecureServer >> certificate: anObject [
 	certificate := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnSecureServer>>scheme [
+{ #category : #accessing }
+ZnSecureServer >> scheme [
 	^ #https
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnSecureServer>>socketStreamOn: socket [
+{ #category : #private }
+ZnSecureServer >> socketStreamOn: socket [
 	| stream |
 	stream := ZdcSecureSocketStream on: socket.
 	stream sslSession certificateName: self certificate.

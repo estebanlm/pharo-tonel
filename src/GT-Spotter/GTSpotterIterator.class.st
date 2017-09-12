@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterIterator,
 	#superclass : #Object,
@@ -8,73 +5,48 @@ Class {
 		'context',
 		'items'
 	],
-	#category : #GT-Spotter-Iterators,
-	#timestamp : ''
+	#category : #GT-Spotter-Iterators
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator class>>gtIterator [
+{ #category : #accessing }
+GTSpotterIterator class >> gtIterator [
 	^ self new
 ]
 
-{
-	#category : #'mimic various enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>allSatisfy: aBlock [
+{ #category : #'mimic various enumerating' }
+GTSpotterIterator >> allSatisfy: aBlock [
 	self do: [ :each | (aBlock value: each) ifFalse: [ ^ false ] ].
 	^ true
 ]
 
-{
-	#category : #'mimic various enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>anySatisfy: aBlock [
+{ #category : #'mimic various enumerating' }
+GTSpotterIterator >> anySatisfy: aBlock [
 	self do: [ :each | (aBlock value: each) ifTrue: [ ^ true ] ].
 	^ false
 ]
 
-{
-	#category : #'mimic collection',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>asArray [
+{ #category : #'mimic collection' }
+GTSpotterIterator >> asArray [
 	^ self items asArray
 ]
 
-{
-	#category : #'mimic collection',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>asOrderedCollection [
+{ #category : #'mimic collection' }
+GTSpotterIterator >> asOrderedCollection [
 	^ self items copy " we must not expose the internal representation ! "
 ]
 
-{
-	#category : #'mimic collection',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>asSet [
+{ #category : #'mimic collection' }
+GTSpotterIterator >> asSet [
 	^ self items asSet
 ]
 
-{
-	#category : #'mimic various enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>collect: aBlock [
+{ #category : #'mimic various enumerating' }
+GTSpotterIterator >> collect: aBlock [
 	^ self collect: aBlock as: self defaultItemsClass
 ]
 
-{
-	#category : #'mimic various enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>collect: aBlock as: aCollectionClass [
+{ #category : #'mimic various enumerating' }
+GTSpotterIterator >> collect: aBlock as: aCollectionClass [
 	| collection |
 	collection := self newAs: aCollectionClass.
 	self do: [ :each | 
@@ -82,78 +54,51 @@ GTSpotterIterator>>collect: aBlock as: aCollectionClass [
 	^ collection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>context [
+{ #category : #accessing }
+GTSpotterIterator >> context [
 	^ context
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>context: aContext [
+{ #category : #accessing }
+GTSpotterIterator >> context: aContext [
 	" we assume that if the context changes, so will the result of the iterator - so we reset the internal collection "
 	context := aContext.
 	self reset.
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>cull: aContext [
+{ #category : #public }
+GTSpotterIterator >> cull: aContext [
 	self context: aContext
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>defaultItems [
+{ #category : #accessing-defaults }
+GTSpotterIterator >> defaultItems [
 	^ self defaultItemsClass new 
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>defaultItemsClass [
+{ #category : #accessing-defaults }
+GTSpotterIterator >> defaultItemsClass [
 	^ OrderedCollection 
 ]
 
-{
-	#category : #'mimic various enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>detect: aBlock [
+{ #category : #'mimic various enumerating' }
+GTSpotterIterator >> detect: aBlock [
 	^ self detect: aBlock ifNone: [ NotFound signalFor: aBlock ]
 ]
 
-{
-	#category : #'mimic various enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>detect: aBlock ifFound: aBlock2 ifNone: aBlock3 [
+{ #category : #'mimic various enumerating' }
+GTSpotterIterator >> detect: aBlock ifFound: aBlock2 ifNone: aBlock3 [
 	self do: [ :each | aBlock value ifTrue: [ ^ aBlock2 value: each ] ].
 	^ aBlock3 value
 ]
 
-{
-	#category : #'mimic various enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>detect: aBlock ifNone: aBlock2 [
+{ #category : #'mimic various enumerating' }
+GTSpotterIterator >> detect: aBlock ifNone: aBlock2 [
 	^ self detect: aBlock ifFound: [ :each | each ] ifNone: aBlock2
 ]
 
-{
-	#category : #'mimic enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>do: aBlock [
+{ #category : #'mimic enumerating' }
+GTSpotterIterator >> do: aBlock [
 	" the iterator must keep an internal collection of items being iterated. This guarantees that the iteration is not done multiple times in case somebody sends multiple subsequent messages like #size, #items or #first:. This will slightly decrease performance while iterating "
 	items 
 		ifNotNil: [ 
@@ -165,112 +110,73 @@ GTSpotterIterator>>do: aBlock [
 				aBlock value: each ] ]
 ]
 
-{
-	#category : #'mimic collection',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>first: anInteger [
+{ #category : #'mimic collection' }
+GTSpotterIterator >> first: anInteger [
 	^ self items copyFrom: 1 to: (self size min: (anInteger max: 0))
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>gtIterator [
+{ #category : #public }
+GTSpotterIterator >> gtIterator [
 	^ self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>hasDynamicItems [
+{ #category : #testing }
+GTSpotterIterator >> hasDynamicItems [
 	^ true
 ]
 
-{
-	#category : #'mimic collection',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>isEmpty [
+{ #category : #'mimic collection' }
+GTSpotterIterator >> isEmpty [
 	^ self items isEmpty
 ]
 
-{
-	#category : #'mimic collection',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>isEmptyOrNil [
+{ #category : #'mimic collection' }
+GTSpotterIterator >> isEmptyOrNil [
 	^ self items isEmptyOrNil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>itemDo: aBlock [
+{ #category : #private }
+GTSpotterIterator >> itemDo: aBlock [
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>items [
+{ #category : #private }
+GTSpotterIterator >> items [
 	^ items ifNil: [ 
 		items := self defaultItems.
 		self itemDo: [ :each | 
 			items add: each ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>items: anObject [
+{ #category : #private }
+GTSpotterIterator >> items: anObject [
 	items := anObject
 ]
 
-{
-	#category : #'mimic collection',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>last: anInteger [
+{ #category : #'mimic collection' }
+GTSpotterIterator >> last: anInteger [
 	^ self items last: (self size min: (anInteger max: 0))
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>newAs: aCollectionClass [
+{ #category : #private }
+GTSpotterIterator >> newAs: aCollectionClass [
 	^ items 
 		ifNil: [ aCollectionClass new ] 
 		ifNotNil: [ aCollectionClass new: self size ]
 ]
 
-{
-	#category : #'mimic collection',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>notEmpty [
+{ #category : #'mimic collection' }
+GTSpotterIterator >> notEmpty [
 	^ self isEmpty not
 ]
 
-{
-	#category : #'mimic various enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>reject: aBlock [
+{ #category : #'mimic various enumerating' }
+GTSpotterIterator >> reject: aBlock [
 	^ self reject: aBlock as: self defaultItemsClass
 ]
 
-{
-	#category : #'mimic various enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>reject: aBlock as: aCollectionClass [
+{ #category : #'mimic various enumerating' }
+GTSpotterIterator >> reject: aBlock as: aCollectionClass [
 	| collection |
 	collection := self newAs: aCollectionClass.
 	self do: [ :each | 
@@ -279,11 +185,8 @@ GTSpotterIterator>>reject: aBlock as: aCollectionClass [
 	^ collection
 ]
 
-{
-	#category : #'mimic various enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>reject: aBlock thenCollect: aBlock2 as: aCollectionClass [
+{ #category : #'mimic various enumerating' }
+GTSpotterIterator >> reject: aBlock thenCollect: aBlock2 as: aCollectionClass [
 	| collection |
 	collection := self newAs: aCollectionClass.
 	self reject: aBlock thenDo: [ :each | 
@@ -291,37 +194,25 @@ GTSpotterIterator>>reject: aBlock thenCollect: aBlock2 as: aCollectionClass [
 	^ collection
 ]
 
-{
-	#category : #'mimic various enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>reject: aBlock thenDo: aBlock2 [
+{ #category : #'mimic various enumerating' }
+GTSpotterIterator >> reject: aBlock thenDo: aBlock2 [
 	self do: [ :each | 
 		(aBlock value: each) 
 			ifFalse: [ aBlock2 value: each ] ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>reset [
+{ #category : #public }
+GTSpotterIterator >> reset [
 	items := nil.
 ]
 
-{
-	#category : #'mimic various enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>select: aBlock [
+{ #category : #'mimic various enumerating' }
+GTSpotterIterator >> select: aBlock [
 	^ self select: aBlock as: self defaultItemsClass
 ]
 
-{
-	#category : #'mimic various enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>select: aBlock as: aCollectionClass [
+{ #category : #'mimic various enumerating' }
+GTSpotterIterator >> select: aBlock as: aCollectionClass [
 	| collection |
 	collection := self newAs: aCollectionClass.
 	self do: [ :each | 
@@ -330,19 +221,13 @@ GTSpotterIterator>>select: aBlock as: aCollectionClass [
 	^ collection
 ]
 
-{
-	#category : #'mimic various enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>select: aBlock thenCollect: aBlock2 [
+{ #category : #'mimic various enumerating' }
+GTSpotterIterator >> select: aBlock thenCollect: aBlock2 [
 	^ self select: aBlock thenCollect: aBlock2 as: self defaultItemsClass
 ]
 
-{
-	#category : #'mimic various enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>select: aBlock thenCollect: aBlock2 as: aCollectionClass [
+{ #category : #'mimic various enumerating' }
+GTSpotterIterator >> select: aBlock thenCollect: aBlock2 as: aCollectionClass [
 	| collection |
 	collection := self newAs: aCollectionClass.
 	self select: aBlock thenDo: [ :each | 
@@ -350,45 +235,30 @@ GTSpotterIterator>>select: aBlock thenCollect: aBlock2 as: aCollectionClass [
 	^ collection
 ]
 
-{
-	#category : #'mimic various enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>select: aBlock thenDo: aBlock2 [
+{ #category : #'mimic various enumerating' }
+GTSpotterIterator >> select: aBlock thenDo: aBlock2 [
 	self do: [ :each | 
 		(aBlock value: each) 
 			ifTrue: [ aBlock2 value: each ] ]
 ]
 
-{
-	#category : #'mimic collection',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>size [
+{ #category : #'mimic collection' }
+GTSpotterIterator >> size [
 	^ self items size
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>value [
+{ #category : #public }
+GTSpotterIterator >> value [
 	^ self items
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>value: aContext [
+{ #category : #public }
+GTSpotterIterator >> value: aContext [
 	self context: aContext
 ]
 
-{
-	#category : #'mimic enumerating',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterIterator>>withIndexDo: aBlock [
+{ #category : #'mimic enumerating' }
+GTSpotterIterator >> withIndexDo: aBlock [
 	| index |
 	index := 0.
 	self do: [ :each | aBlock cull: each cull: (index := index + 1) ]

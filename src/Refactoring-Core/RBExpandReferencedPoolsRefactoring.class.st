@@ -16,15 +16,11 @@ Class {
 		'parseTree',
 		'toClasses'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 11:46'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExpandReferencedPoolsRefactoring class>>forMethod: aParseTree fromClass: aClass toClasses: classCollection  [
+{ #category : #'instance creation' }
+RBExpandReferencedPoolsRefactoring class >> forMethod: aParseTree fromClass: aClass toClasses: classCollection [ 
 	^(self new)
 		forMethod: aParseTree
 			fromClass: aClass
@@ -32,11 +28,8 @@ RBExpandReferencedPoolsRefactoring class>>forMethod: aParseTree fromClass: aClas
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExpandReferencedPoolsRefactoring class>>model: aRBNamespace forMethod: aParseTree fromClass: aClass toClasses: classCollection  [
+{ #category : #'instance creation' }
+RBExpandReferencedPoolsRefactoring class >> model: aRBNamespace forMethod: aParseTree fromClass: aClass toClasses: classCollection [ 
 	^(self new)
 		model: aRBNamespace;
 		forMethod: aParseTree
@@ -45,11 +38,8 @@ RBExpandReferencedPoolsRefactoring class>>model: aRBNamespace forMethod: aParseT
 		yourself
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExpandReferencedPoolsRefactoring>>computePoolsToMove [
+{ #category : #transforming }
+RBExpandReferencedPoolsRefactoring >> computePoolsToMove [
 	| poolVariables searcher |
 	poolVariables := self poolVariableNamesFor: fromClass.
 	pools := Set new.
@@ -68,65 +58,44 @@ RBExpandReferencedPoolsRefactoring>>computePoolsToMove [
 	searcher executeTree: parseTree
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExpandReferencedPoolsRefactoring>>forMethod: aParseTree fromClass: aClass toClasses: classCollection  [
+{ #category : #initialize-release }
+RBExpandReferencedPoolsRefactoring >> forMethod: aParseTree fromClass: aClass toClasses: classCollection [ 
 	fromClass := self model classFor: aClass.
 	parseTree := aParseTree.
 	toClasses := classCollection collect: [:each | self model classFor: each]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExpandReferencedPoolsRefactoring>>hasPoolsToMove [
+{ #category : #testing }
+RBExpandReferencedPoolsRefactoring >> hasPoolsToMove [
 	^pools isEmpty not
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExpandReferencedPoolsRefactoring>>movePool: aSymbol toClass: aClass  [
+{ #category : #transforming }
+RBExpandReferencedPoolsRefactoring >> movePool: aSymbol toClass: aClass [ 
 	| nonMetaClass |
 	nonMetaClass := aClass theNonMetaClass.
 	(nonMetaClass definesPoolDictionary: aSymbol) ifFalse: [ nonMetaClass addPoolDictionary: aSymbol ]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExpandReferencedPoolsRefactoring>>movePoolVariables [
+{ #category : #transforming }
+RBExpandReferencedPoolsRefactoring >> movePoolVariables [
 	pools 
 		do: [:poolDict | toClasses do: [:each | self movePool: poolDict toClass: each]]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExpandReferencedPoolsRefactoring>>poolVariableNamesIn: poolName  [
+{ #category : #transforming }
+RBExpandReferencedPoolsRefactoring >> poolVariableNamesIn: poolName [ 
 	^(Smalltalk globals at: poolName ifAbsent: [Dictionary new]) classPool keys 
 		collect: [:name | name asString]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExpandReferencedPoolsRefactoring>>preconditions [
+{ #category : #preconditions }
+RBExpandReferencedPoolsRefactoring >> preconditions [
 	^RBCondition empty
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExpandReferencedPoolsRefactoring>>transform [
+{ #category : #transforming }
+RBExpandReferencedPoolsRefactoring >> transform [
 	self computePoolsToMove.
 	self hasPoolsToMove 
 		ifTrue: 
@@ -136,11 +105,8 @@ RBExpandReferencedPoolsRefactoring>>transform [
 	self movePoolVariables
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExpandReferencedPoolsRefactoring>>whichPoolDefines: varName  [
+{ #category : #transforming }
+RBExpandReferencedPoolsRefactoring >> whichPoolDefines: varName [ 
 	| currentClass |
 	currentClass := fromClass.
 	[currentClass isNil] whileFalse: 

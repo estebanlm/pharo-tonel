@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #OCASTCheckerTest,
 	#superclass : #TestCase,
-	#category : #OpalCompiler-Tests-AST,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-AST
 }
 
-{
-	#category : #tools,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>nameAnalysisNoClosureIn: class for: ast [
+{ #category : #tools }
+OCASTCheckerTest >> nameAnalysisNoClosureIn: class for: ast [
 	"Look up vars in classOrScope.  My tree will be annotated with bindings to Scopes and Variables."
 
 	OCASTSemanticAnalyzer new
@@ -20,11 +13,8 @@ OCASTCheckerTest>>nameAnalysisNoClosureIn: class for: ast [
 		visitNode: ast.
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testDoubleRemoteAnidatedBlocks [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testDoubleRemoteAnidatedBlocks [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#doubleRemoteAnidatedBlocks) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -47,11 +37,8 @@ OCASTCheckerTest>>testDoubleRemoteAnidatedBlocks [
 
 ]
 
-{
-	#category : #'testing - simple',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testExampleIfNotNilReturnNil [
+{ #category : #'testing - simple' }
+OCASTCheckerTest >> testExampleIfNotNilReturnNil [
 	| ast |
 	ast := (OCOpalExamples>>#exampleIfNotNilReturnNil) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -59,11 +46,8 @@ OCASTCheckerTest>>testExampleIfNotNilReturnNil [
 	self assert: ast scope tempVars size = 0.
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testExampleInlineBlockCollectionLR3 [
+{ #category : #'testing - blocks - optimized' }
+OCASTCheckerTest >> testExampleInlineBlockCollectionLR3 [
 	| ast |
 	ast := (OCOpalExamples>>#exampleInlineBlockCollectionLR3) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -71,11 +55,8 @@ OCASTCheckerTest>>testExampleInlineBlockCollectionLR3 [
 	self assert: ast scope tempVars size = 1. "index is a temp of the outer method due to optimized block"
 ]
 
-{
-	#category : #'testing - primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testExamplePrimitiveErrorCode [
+{ #category : #'testing - primitives' }
+OCASTCheckerTest >> testExamplePrimitiveErrorCode [
 	| method ast ir newMethod |
 	ast := (OCOpalExamples>>#examplePrimitiveErrorCode) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -85,11 +66,8 @@ OCASTCheckerTest>>testExamplePrimitiveErrorCode [
 	
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testExampleSelf [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testExampleSelf [
 	| ast assignment vars |
 	ast := (OCOpalExamples>>#exampleSelf) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -101,11 +79,8 @@ OCASTCheckerTest>>testExampleSelf [
 	self assert: assignment value binding isSelf.
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testExampleSuper [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testExampleSuper [
 	| ast assignment vars |
 	ast := (OCOpalExamples>>#exampleSuper) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -117,11 +92,8 @@ OCASTCheckerTest>>testExampleSuper [
 	self assert: assignment value binding isSuper.
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testExampleThisContext  [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testExampleThisContext [ 
 	| ast assignment vars |
 	ast := (OCOpalExamples>>#exampleThisContext) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -133,11 +105,8 @@ OCASTCheckerTest>>testExampleThisContext  [
 	self assert: assignment value binding isThisContext.
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testExampleToDoArgument [
+{ #category : #'testing - blocks - optimized' }
+OCASTCheckerTest >> testExampleToDoArgument [
 	| ast |
 	ast := (OCOpalExamples>>#exampleToDoArgument) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -145,11 +114,8 @@ OCASTCheckerTest>>testExampleToDoArgument [
 	self assert: ast scope tempVars size = 0.
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testInstanceVar [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testInstanceVar [
 	| ast assignment vars |
 	ast := (OCOpalExamples>>#exampleiVar) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -163,11 +129,8 @@ OCASTCheckerTest>>testInstanceVar [
 	self assert: assignment variable isInstance.
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testNoRemoteBlockArgument [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testNoRemoteBlockArgument [
 	| ast assignment vars |
 	ast := (OCOpalExamples>>#noRemoteBlockArgument) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -182,11 +145,8 @@ OCASTCheckerTest>>testNoRemoteBlockArgument [
 
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testNoRemoteBlockReturn [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testNoRemoteBlockReturn [
 	| ast assignment vars |
 	ast := (OCOpalExamples>>#noRemoteBlockReturn) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -198,11 +158,8 @@ OCASTCheckerTest>>testNoRemoteBlockReturn [
 
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testNoRemoteBlockTemp [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testNoRemoteBlockTemp [
 	| ast assignment vars |
 	ast := (OCOpalExamples>>#noRemoteBlockTemp) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -217,11 +174,8 @@ OCASTCheckerTest>>testNoRemoteBlockTemp [
 
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testNoRemoteMethodTemp [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testNoRemoteMethodTemp [
 	| ast assignment vars |
 	ast := (OCOpalExamples>>#noRemoteMethodTemp) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -236,11 +190,8 @@ OCASTCheckerTest>>testNoRemoteMethodTemp [
 
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testOptimizedBlockWrittenAfterClosedOverCase1 [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testOptimizedBlockWrittenAfterClosedOverCase1 [
 	| ast scopes |
 	ast := (OCOpalExamples>>#optimizedBlockWrittenAfterClosedOverCase1) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -258,11 +209,8 @@ OCASTCheckerTest>>testOptimizedBlockWrittenAfterClosedOverCase1 [
 
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testOptimizedBlockWrittenAfterClosedOverCase2 [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testOptimizedBlockWrittenAfterClosedOverCase2 [
 	| ast scopes |
 	ast := (OCOpalExamples>>#optimizedBlockWrittenAfterClosedOverCase2) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -280,11 +228,8 @@ OCASTCheckerTest>>testOptimizedBlockWrittenAfterClosedOverCase2 [
 
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testOptimizedBlocksAndSameNameTemps [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testOptimizedBlocksAndSameNameTemps [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#optimizedBlocksAndSameNameTemps) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -303,11 +248,8 @@ OCASTCheckerTest>>testOptimizedBlocksAndSameNameTemps [
 
 ]
 
-{
-	#category : #'testing - simple',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testReturn1 [
+{ #category : #'testing - simple' }
+OCASTCheckerTest >> testReturn1 [
 	| ast |
 	ast := (OCOpalExamples>>#exampleReturn1) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -315,11 +257,8 @@ OCASTCheckerTest>>testReturn1 [
 	self assert: ast scope tempVars isEmpty.
 ]
 
-{
-	#category : #'testing - simple',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testSemanticAnalysisOnNonMethodNode [
+{ #category : #'testing - simple' }
+OCASTCheckerTest >> testSemanticAnalysisOnNonMethodNode [
 	| ast |
 	{[ 1 + 2 ].
 	thisContext.
@@ -335,11 +274,8 @@ OCASTCheckerTest>>testSemanticAnalysisOnNonMethodNode [
 	ast doSemanticAnalysis
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testSingleRemoteDifferentBlocksSameArgumentName [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testSingleRemoteDifferentBlocksSameArgumentName [
 	| ast assignment vars |
 	ast := (OCOpalExamples>>#singleRemoteDifferentBlocksSameArgumentName) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -354,11 +290,8 @@ OCASTCheckerTest>>testSingleRemoteDifferentBlocksSameArgumentName [
 
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testSingleRemoteMethodArgument [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testSingleRemoteMethodArgument [
 	| ast assignment vars |
 	ast := (OCOpalExamples>>#singleRemoteMethodArgument) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -373,11 +306,8 @@ OCASTCheckerTest>>testSingleRemoteMethodArgument [
 
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testSingleRemoteTempVar [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testSingleRemoteTempVar [
 	| ast |
 	ast := (OCOpalExamples>>#singleRemoteTempVar) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -397,11 +327,8 @@ OCASTCheckerTest>>testSingleRemoteTempVar [
 
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testsingleRemoteTempVarWhileWithTempNotInlined [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testsingleRemoteTempVarWhileWithTempNotInlined [
 	| ast |
 	ast := (OCOpalExamples>>#exampleWhileWithTempNotInlined) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.
@@ -417,11 +344,8 @@ OCASTCheckerTest>>testsingleRemoteTempVarWhileWithTempNotInlined [
 
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTCheckerTest>>testsingleRemoteTempVarWrittenAfterClosedOver [
+{ #category : #'testing - variables' }
+OCASTCheckerTest >> testsingleRemoteTempVarWrittenAfterClosedOver [
 	| ast |
 	ast := (OCOpalExamples>>#singleRemoteTempVarWrittenAfterClosedOver) parseTree.
 	self nameAnalysisNoClosureIn: OCOpalExamples for: ast.

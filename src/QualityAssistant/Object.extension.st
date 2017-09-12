@@ -1,12 +1,7 @@
-Extension {
-	#name : #Object
-}
+Extension { #name : #Object }
 
-{
-	#category : #'*qualityAssistant',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-Object>>annotateRubricText: anAnnotatableTextModel [
+{ #category : #'*qualityAssistant' }
+Object >> annotateRubricText: anAnnotatableTextModel [
 	| conf |
 
 	conf := RubConfigurationChange new.
@@ -18,11 +13,8 @@ Object>>annotateRubricText: anAnnotatableTextModel [
 	anAnnotatableTextModel announce: conf
 ]
 
-{
-	#category : #'*qualityAssistant',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-Object>>qaTextSegmentsDo: aBlock [
+{ #category : #'*qualityAssistant' }
+Object >> qaTextSegmentsDo: aBlock [
 	
 	self externalProperties do: [ :eprop |
 		| segment interval |

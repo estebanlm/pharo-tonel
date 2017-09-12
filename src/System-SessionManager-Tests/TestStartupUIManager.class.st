@@ -9,22 +9,15 @@ Class {
 	#instVars : [
 		'sessionManager'
 	],
-	#category : #System-SessionManager-Tests,
-	#timestamp : 'ChristopheDemarey 10/13/2015 09:38'
+	#category : #System-SessionManager-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestStartupUIManager>>sessionManager [
+{ #category : #accessing }
+TestStartupUIManager >> sessionManager [
 	^ sessionManager
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestStartupUIManager>>sessionManager: aSessionManager [
+{ #category : #accessing }
+TestStartupUIManager >> sessionManager: aSessionManager [
 	sessionManager := aSessionManager
 ]

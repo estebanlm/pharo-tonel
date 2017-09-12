@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MCPackageManagerTest,
 	#superclass : #MCTestCase,
@@ -10,15 +7,11 @@ Class {
 		'mcPackage1',
 		'mcPackage2'
 	],
-	#category : #Monticello-Tests,
-	#timestamp : ''
+	#category : #Monticello-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCPackageManagerTest>>setUp [
+{ #category : #running }
+MCPackageManagerTest >> setUp [
 	super setUp.
 	package1 := (RPackage named: #A, UUID new asString36) register.
 	package2 := (RPackage named: package1 name, #'-SubPart') register.
@@ -30,11 +23,8 @@ MCPackageManagerTest>>setUp [
 		forPackage: mcPackage2
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCPackageManagerTest>>tearDown [
+{ #category : #running }
+MCPackageManagerTest >> tearDown [
 	super tearDown.
 	
 	package1 unregister.
@@ -44,11 +34,8 @@ MCPackageManagerTest>>tearDown [
 		removeKey: mcPackage2 ifAbsent: [ ] 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCPackageManagerTest>>testClassAdded [
+{ #category : #'as yet unclassified' }
+MCPackageManagerTest >> testClassAdded [
 
 	self assert: package1 mcWorkingCopy modified not.
 	self assert: package2 mcWorkingCopy modified not.
@@ -59,11 +46,8 @@ MCPackageManagerTest>>testClassAdded [
 	self assert: package2 mcWorkingCopy modified
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCPackageManagerTest>>testClassRemoved [
+{ #category : #'as yet unclassified' }
+MCPackageManagerTest >> testClassRemoved [
 	
 	| class |
 
@@ -81,11 +65,8 @@ MCPackageManagerTest>>testClassRemoved [
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCPackageManagerTest>>testManagersForCategoryDo [
+{ #category : #running }
+MCPackageManagerTest >> testManagersForCategoryDo [
 	"Consider the following package structure:
 		Renraku
 		Renraku-Help

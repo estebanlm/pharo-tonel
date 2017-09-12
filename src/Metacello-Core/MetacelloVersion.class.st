@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloVersion,
 	#superclass : #Magnitude,
@@ -10,115 +7,78 @@ Class {
 		'importedVersions',
 		'versionStatus'
 	],
-	#category : #Metacello-Core-Model,
-	#timestamp : ''
+	#category : #Metacello-Core-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion class>>fromSpec: aMetacelloVersionSpec [
+{ #category : #'instance creation' }
+MetacelloVersion class >> fromSpec: aMetacelloVersionSpec [
     ^ (self new versionNumber: aMetacelloVersionSpec versionNumber)
         spec: aMetacelloVersionSpec;
         yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion class>>fromString: aString [
+{ #category : #'instance creation' }
+MetacelloVersion class >> fromString: aString [
 
 	^self new versionNumber: aString asMetacelloVersionNumber
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>< aMetacelloVersion [
+{ #category : #comparing }
+MetacelloVersion >> < aMetacelloVersion [
 
 	aMetacelloVersion species = self species ifFalse: [ ^false ].
 	^self versionNumber < aMetacelloVersion versionNumber
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>= aMetacelloVersion [
+{ #category : #comparing }
+MetacelloVersion >> = aMetacelloVersion [
 
 	aMetacelloVersion species = self species ifFalse: [ ^false ].
 	^self versionNumber = aMetacelloVersion versionNumber
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>author [
+{ #category : #querying }
+MetacelloVersion >> author [
 
 	^self spec author value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>basicSpec [
+{ #category : #accessing }
+MetacelloVersion >> basicSpec [
     ^ self spec
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>blessing [
+{ #category : #querying }
+MetacelloVersion >> blessing [
     ^ self basicSpec blessing value
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>computeVersionStatus [
+{ #category : #private }
+MetacelloVersion >> computeVersionStatus [
     ^ #'noStatus'
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>description [
+{ #category : #querying }
+MetacelloVersion >> description [
     ^ self basicSpec description value
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>difference: aMetacelloVersion [
+{ #category : #querying }
+MetacelloVersion >> difference: aMetacelloVersion [
 	"Return a a dictionary of additions, removals and modifications"
 	
 	^self spec difference: aMetacelloVersion spec
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>expandToLoadableSpecNames: nameList [
+{ #category : #querying }
+MetacelloVersion >> expandToLoadableSpecNames: nameList [
 	"Just like #resolveToLoadableSpecs:, but returns list of spec names instead of specs"
 	
 	^self spec expandToLoadableSpecNames: nameList
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>groups [
+{ #category : #querying }
+MetacelloVersion >> groups [
 	"Answers the list of groups associated with this version"
 	
 	| groups |
@@ -127,133 +87,91 @@ MetacelloVersion>>groups [
 	^groups
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>hash [
+{ #category : #comparing }
+MetacelloVersion >> hash [
 
 	^self versionNumber hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>importedVersions [
+{ #category : #accessing }
+MetacelloVersion >> importedVersions [
 
 	importedVersions == nil ifTrue: [ importedVersions := #() ].
 	^importedVersions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>importedVersions: aCollection [
+{ #category : #accessing }
+MetacelloVersion >> importedVersions: aCollection [
 
 	importedVersions := aCollection
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>isAllLoadedToSpec [
+{ #category : #testing }
+MetacelloVersion >> isAllLoadedToSpec [
 	"all projects and packages are loaded and match specification"
 	
 	^self spec isAllLoadedToSpec
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>isLoadedMatchConstraints [
+{ #category : #testing }
+MetacelloVersion >> isLoadedMatchConstraints [
 	"all loaded projects and packages match constraints"
 	
 	^self spec isLoadedMatchConstraints
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>isLoadedToSpec [
+{ #category : #testing }
+MetacelloVersion >> isLoadedToSpec [
 	"all loaded projects and packages match specifications"
 	
 	^self spec isLoadedToSpec
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>isPossibleBaseline [
+{ #category : #testing }
+MetacelloVersion >> isPossibleBaseline [
 
 	^self spec isPossibleBaseline
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>isSomethingLoaded [
+{ #category : #testing }
+MetacelloVersion >> isSomethingLoaded [
 	"at least one project or package has been loaded"
 	
 	^self spec isSomethingLoaded
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>load [
+{ #category : #actions }
+MetacelloVersion >> load [
 
 	^self subclassResponsibility
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>load: required [
+{ #category : #actions }
+MetacelloVersion >> load: required [
 
 	^self subclassResponsibility
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>loader [
+{ #category : #querying }
+MetacelloVersion >> loader [
 
 	^self spec loader
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>name [
+{ #category : #testing }
+MetacelloVersion >> name [
 
 	^self versionString
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>packageNamed: aString [
+{ #category : #querying }
+MetacelloVersion >> packageNamed: aString [
 
 	^self packageNamed: aString ifAbsent: [ ^nil ].
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>packageNamed: aString ifAbsent: aBlock [
+{ #category : #querying }
+MetacelloVersion >> packageNamed: aString ifAbsent: aBlock [
 
 	| pkg |
 	(pkg := self spec packageNamed: aString ifAbsent: []) == nil
@@ -261,11 +179,8 @@ MetacelloVersion>>packageNamed: aString ifAbsent: aBlock [
 	^pkg referencedSpec
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>printOn: aStream [
+{ #category : #printing }
+MetacelloVersion >> printOn: aStream [
     | label vs |
     (#(structural broken) includes: self blessing) not
         ifTrue: [ 
@@ -282,27 +197,18 @@ MetacelloVersion>>printOn: aStream [
                 ifFalse: [ aStream nextPutAll: ' [' , label , ']' ] ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>project [
+{ #category : #querying }
+MetacelloVersion >> project [
     ^ self basicSpec project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>projectLabel [
+{ #category : #accessing }
+MetacelloVersion >> projectLabel [
     ^ self basicSpec projectLabel
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>projects [
+{ #category : #querying }
+MetacelloVersion >> projects [
 	"Answers the list of projects associated with this version"
 
 	| projects |
@@ -311,11 +217,8 @@ MetacelloVersion>>projects [
 	^projects
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>resolveToLoadableSpecs: nameList [
+{ #category : #querying }
+MetacelloVersion >> resolveToLoadableSpecs: nameList [
 	"Resolves names in namelist to the  list of packages and projects in the version that would be loaded. Projects are 
 	not traversed during the transitive closure. The scope is that of the version itself.
 	   If the spec is a package, answer a list including the package and the transitive closure on 
@@ -327,46 +230,31 @@ MetacelloVersion>>resolveToLoadableSpecs: nameList [
 	^self spec resolveToLoadableSpecs: nameList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>spec [
+{ #category : #accessing }
+MetacelloVersion >> spec [
 
 	^spec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>spec: aMetacellVersionSpec [
+{ #category : #accessing }
+MetacelloVersion >> spec: aMetacellVersionSpec [
 
 	spec := aMetacellVersionSpec
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>timestamp [
+{ #category : #querying }
+MetacelloVersion >> timestamp [
     ^ self basicSpec timestamp value
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>unload [
+{ #category : #actions }
+MetacelloVersion >> unload [
 
 	^self spec unload
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>versionKey [
+{ #category : #querying }
+MetacelloVersion >> versionKey [
     "version printString, without the versionStatus decorations, suitable for using as a unique key for the 
 	 receiver in a dictionary"
 
@@ -380,74 +268,50 @@ MetacelloVersion>>versionKey [
                         ifFalse: [ aStream nextPutAll: ' [' , label , ']' ] ] ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>versionNumber [
+{ #category : #querying }
+MetacelloVersion >> versionNumber [
 
 	^versionNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>versionNumber: aVersionNumber [
+{ #category : #accessing }
+MetacelloVersion >> versionNumber: aVersionNumber [
 
 	versionNumber := aVersionNumber
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>versionNumberFrom: aString [
+{ #category : #querying }
+MetacelloVersion >> versionNumberFrom: aString [
     ^ self versionNumber class fromString: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>versionSpec [
+{ #category : #accessing }
+MetacelloVersion >> versionSpec [
 
 	^self spec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>versionStatus [
+{ #category : #accessing }
+MetacelloVersion >> versionStatus [
 
 	versionStatus == nil ifTrue: [ versionStatus := self computeVersionStatus].
 	^versionStatus
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>versionStatus: aSymbol [
+{ #category : #accessing }
+MetacelloVersion >> versionStatus: aSymbol [
 
 	versionStatus := aSymbol
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>versionString [
+{ #category : #querying }
+MetacelloVersion >> versionString [
 
 	^self versionNumber versionString
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersion>>~> aMetacelloVersion [
+{ #category : #comparing }
+MetacelloVersion >> ~> aMetacelloVersion [
 
 	aMetacelloVersion species = self species ifFalse: [ ^false ].
 	^self versionNumber ~> aMetacelloVersion versionNumber

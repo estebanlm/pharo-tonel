@@ -466,32 +466,22 @@ Class {
 		'SDL_WINDOW_RESIZABLE',
 		'SDL_WINDOW_SHOWN'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'IgorStasenko 7/30/2014 18:24'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>SDL_BUTTON: button [
+{ #category : #'class initialization' }
+SDL2Constants class >> SDL_BUTTON: button [
 	^ (1 << ((button)-1))
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>definePixelFormat_type: type order: order layout: playout bits: bits bytes: bytes [
+{ #category : #'class initialization' }
+SDL2Constants class >> definePixelFormat_type: type order: order layout: playout bits: bits bytes: bytes [
 	^ ((1 << 28) | ((type) << 24) | ((order) << 20) | ((playout) << 16) |
      	    ((bits) << 8) | ((bytes) << 0))
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>initialize [
+{ #category : #'class initialization' }
+SDL2Constants class >> initialize [
 	"
 	self initialize
 	"
@@ -513,11 +503,8 @@ SDL2Constants class>>initialize [
 		initializeWM.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>initializeCommon [
+{ #category : #'class initialization' }
+SDL2Constants class >> initializeCommon [
 	SDL_INIT_TIMER := 16r00000001.
 	SDL_INIT_AUDIO := 16r00000010.
 	SDL_INIT_VIDEO := 16r00000020.
@@ -532,11 +519,8 @@ SDL2Constants class>>initializeCommon [
 	SDL_ENABLE := 1.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>initializeEvent [
+{ #category : #'class initialization' }
+SDL2Constants class >> initializeEvent [
     SDL_FIRSTEVENT := 0.
     SDL_QUIT           := 16r100.
 
@@ -609,11 +593,8 @@ SDL2Constants class>>initializeEvent [
 
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>initializeGameController [
+{ #category : #'class initialization' }
+SDL2Constants class >> initializeGameController [
 	SDL_CONTROLLER_AXIS_INVALID := -1.
 	SDL_CONTROLLER_AXIS_LEFTX := 0.
 	SDL_CONTROLLER_AXIS_LEFTY := 1.
@@ -643,11 +624,8 @@ SDL2Constants class>>initializeGameController [
 	
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>initializeKeyboard [
+{ #category : #'class initialization' }
+SDL2Constants class >> initializeKeyboard [
     KMOD_NONE := 16r0000.
     KMOD_LSHIFT := 16r0001.
     KMOD_RSHIFT := 16r0002.
@@ -668,11 +646,8 @@ SDL2Constants class>>initializeKeyboard [
 	KMOD_GUI    := (KMOD_LGUI | KMOD_RGUI).
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>initializeKeycodes [
+{ #category : #'class initialization' }
+SDL2Constants class >> initializeKeycodes [
 	SDLK_UNKNOWN	:= 16r0000.
 	SDLK_RETURN	:= 16r000D.
 	SDLK_ESCAPE	:= 16r001B.
@@ -745,11 +720,8 @@ SDL2Constants class>>initializeKeycodes [
 	SDLK_z	:= 16r007A.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>initializeKeycodes2 [
+{ #category : #'class initialization' }
+SDL2Constants class >> initializeKeycodes2 [
 	SDLK_CAPSLOCK	:= 16r40000039.
 	SDLK_F1	:= 16r4000003A.
 	SDLK_F2	:= 16r4000003B.
@@ -826,11 +798,8 @@ SDL2Constants class>>initializeKeycodes2 [
 	SDLK_KP_EQUALSAS400	:= 16r40000086.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>initializeKeycodes3 [
+{ #category : #'class initialization' }
+SDL2Constants class >> initializeKeycodes3 [
 	SDLK_ALTERASE	:= 16r40000099.
 	SDLK_SYSREQ	:= 16r4000009A.
 	SDLK_CANCEL	:= 16r4000009B.
@@ -925,11 +894,8 @@ SDL2Constants class>>initializeKeycodes3 [
 	SDLK_SLEEP	:= 16r4000011A.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>initializeMouse [
+{ #category : #'class initialization' }
+SDL2Constants class >> initializeMouse [
 	SDL_BUTTON_LEFT 	:= 1.
 	SDL_BUTTON_MIDDLE	:=  2.
 	SDL_BUTTON_RIGHT	:= 3.
@@ -943,11 +909,8 @@ SDL2Constants class>>initializeMouse [
 
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>initializeOpenGL [
+{ #category : #'class initialization' }
+SDL2Constants class >> initializeOpenGL [
     SDL_GL_RED_SIZE	:= 0.
     SDL_GL_GREEN_SIZE	:= 1.
     SDL_GL_BLUE_SIZE	:= 2.
@@ -975,21 +938,15 @@ SDL2Constants class>>initializeOpenGL [
     SDL_GL_FRAMEBUFFER_SRGB_CAPABLE := 23.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>initializeOpenGLProfile [
+{ #category : #'class initialization' }
+SDL2Constants class >> initializeOpenGLProfile [
 	 SDL_GL_CONTEXT_PROFILE_CORE           := 1.
     SDL_GL_CONTEXT_PROFILE_COMPATIBILITY  := 2.
     SDL_GL_CONTEXT_PROFILE_ES             := 4.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>initializePixelFormat [
+{ #category : #'class initialization' }
+SDL2Constants class >> initializePixelFormat [
 	"
 	Pixel format related constants
 	"
@@ -1042,11 +999,8 @@ SDL2Constants class>>initializePixelFormat [
 	SDL_PIXELFORMAT_XRGB8888 := self definePixelFormat_type: SDL_PIXELTYPE_PACKED32 order: SDL_PACKEDORDER_XRGB layout: SDL_PACKEDLAYOUT_8888 bits: 24 bytes: 4.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>initializeRenderer [
+{ #category : #'class initialization' }
+SDL2Constants class >> initializeRenderer [
 	"
 	Renderer related constants.
 	"
@@ -1056,11 +1010,8 @@ SDL2Constants class>>initializeRenderer [
     	SDL_RENDERER_TARGETTEXTURE := 16r00000008.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>initializeTexture [
+{ #category : #'class initialization' }
+SDL2Constants class >> initializeTexture [
 	"
 	Texture related constants.
 	"
@@ -1070,11 +1021,8 @@ SDL2Constants class>>initializeTexture [
 
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>initializeWM [
+{ #category : #'class initialization' }
+SDL2Constants class >> initializeWM [
 	"
 	Window Manager related constants.
 	"
@@ -1091,11 +1039,8 @@ SDL2Constants class>>initializeWM [
 	SDL_SYSWM_ANDROID := 9.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Constants class>>initializeWindow [
+{ #category : #'class initialization' }
+SDL2Constants class >> initializeWindow [
 	"
 	Window related constants.
 	"

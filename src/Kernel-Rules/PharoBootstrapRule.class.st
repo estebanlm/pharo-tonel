@@ -7,34 +7,24 @@ Class {
 	#classVars : [
 		'DependencyChecker'
 	],
-	#category : #Kernel-Rules,
-	#timestamp : 'ChristopheDemarey 9/30/2016 15:31'
+	#category : #Kernel-Rules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PharoBootstrapRule class>>checksPackage [
+{ #category : #testing }
+PharoBootstrapRule class >> checksPackage [
 
 	^ true
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PharoBootstrapRule>>basicCheck: aPackage [
+{ #category : #running }
+PharoBootstrapRule >> basicCheck: aPackage [
 	(self bootstrapPackages includes: aPackage packageName)
 		ifFalse: [ ^ false "Do not check" ].
 	^ self newExternalDependencyExistFor: aPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PharoBootstrapRule>>bootstrapPackages [
+{ #category : #accessing }
+PharoBootstrapRule >> bootstrapPackages [
 	^ #(
 	#'AST-Core'
 	#'Announcements-Core'
@@ -95,56 +85,38 @@ PharoBootstrapRule>>bootstrapPackages [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PharoBootstrapRule>>collectionsPackages [
+{ #category : #accessing }
+PharoBootstrapRule >> collectionsPackages [
 	^ (CollectionsAssembly parts collect: #key)
 		reject: [ :each | each = #'Collections-Atomic' ]
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PharoBootstrapRule>>critiqueFor: aPackage [
+{ #category : #helpers }
+PharoBootstrapRule >> critiqueFor: aPackage [
 
 	^ ArchitecturalCritique
 		withAnchor: (self anchorFor: aPackage)
 		by: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PharoBootstrapRule>>dependencyChecker [
+{ #category : #private }
+PharoBootstrapRule >> dependencyChecker [
 	^ (DependencyChecker ifNil: [ DADependencyChecker ]) new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PharoBootstrapRule>>group [
+{ #category : #accessing }
+PharoBootstrapRule >> group [
 
 	^ 'Architectural'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PharoBootstrapRule>>name [
+{ #category : #accessing }
+PharoBootstrapRule >> name [
 	^ 'Illegal dependency of Bootstrap Layer'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PharoBootstrapRule>>newExternalDependencyExistFor: aPackage [
+{ #category : #'instance creation' }
+PharoBootstrapRule >> newExternalDependencyExistFor: aPackage [
 	"Check if there are new dependencies to a package outside this layer"
 	| dependencies newDependencies |
 	dependencies := self dependencyChecker dependenciesOf: aPackage packageName.

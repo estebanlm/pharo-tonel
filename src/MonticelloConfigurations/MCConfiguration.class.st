@@ -17,15 +17,11 @@ Class {
 		'DefaultLog',
 		'UpgradeIsMerge'
 	],
-	#category : #MonticelloConfigurations,
-	#timestamp : 'StephaneDucasse 11/29/2011 22:23'
+	#category : #MonticelloConfigurations
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration class>>changesIn: aPackage from: oldInfo to: newInfo on: aStream [
+{ #category : #utilities }
+MCConfiguration class >> changesIn: aPackage from: oldInfo to: newInfo on: aStream [
 	| printBlock newVersion |
 	(newInfo = oldInfo)
 		ifTrue: [^self].
@@ -55,29 +51,20 @@ MCConfiguration class>>changesIn: aPackage from: oldInfo to: newInfo on: aStream
 	aStream flush
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration class>>defaultLog [
+{ #category : #accessing }
+MCConfiguration class >> defaultLog [
 	"Answer the default configuration log"
 	^DefaultLog
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration class>>defaultLog: aStream [
+{ #category : #accessing }
+MCConfiguration class >> defaultLog: aStream [
 	"Set the default configuration log"
 	DefaultLog := aStream.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration class>>dependencyFromArray: anArray [
+{ #category : #converting }
+MCConfiguration class >> dependencyFromArray: anArray [
 	^MCVersionDependency
 		package: (MCPackage named: anArray first)
 		info: (
@@ -91,22 +78,16 @@ MCConfiguration class>>dependencyFromArray: anArray [
 			ancestors: nil)
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration class>>dependencyToArray: aDependency [
+{ #category : #converting }
+MCConfiguration class >> dependencyToArray: aDependency [
 	^ {
 		aDependency package name . 
 		aDependency versionInfo name . 
 		aDependency versionInfo id asString }
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration class>>fromArray: anArray [
+{ #category : #'instance creation' }
+MCConfiguration class >> fromArray: anArray [
 	| configuration |
 	configuration := self new.
 	anArray pairsDo: [:key :value |
@@ -118,11 +99,8 @@ MCConfiguration class>>fromArray: anArray [
 	^configuration
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration class>>repositoryFromArray: anArray [
+{ #category : #converting }
+MCConfiguration class >> repositoryFromArray: anArray [
 	^ MCRepositoryGroup default repositories
 		detect: [:repo | repo description = anArray first]
 		ifNone: [
@@ -132,35 +110,23 @@ MCConfiguration class>>repositoryFromArray: anArray [
 				password: '']
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration class>>repositoryToArray: aRepository [
+{ #category : #converting }
+MCConfiguration class >> repositoryToArray: aRepository [
 	^ {aRepository description}
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration class>>upgradeIsMerge [
+{ #category : #settings }
+MCConfiguration class >> upgradeIsMerge [
 	^ UpgradeIsMerge ifNil: [UpgradeIsMerge := false]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration class>>upgradeIsMerge: aBoolean [
+{ #category : #settings }
+MCConfiguration class >> upgradeIsMerge: aBoolean [
 	UpgradeIsMerge := aBoolean
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration class>>whatChangedFrom: oldConfig to: newConfig [
+{ #category : #utilities }
+MCConfiguration class >> whatChangedFrom: oldConfig to: newConfig [
 	"MCConfiguration
 		whatChangedFrom: ReleaseBuilderPloppDeveloper config20060201PloppBeta
 		to:  ReleaseBuilderPloppDeveloper config20060215premaster" 
@@ -169,11 +135,8 @@ MCConfiguration class>>whatChangedFrom: oldConfig to: newConfig [
 	Transcript flush.
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration class>>whatChangedFrom: oldConfig to: newConfig on: aStream [
+{ #category : #utilities }
+MCConfiguration class >> whatChangedFrom: oldConfig to: newConfig [ on: aStream
 	"MCConfiguration
 		whatChangedFrom:  ReleaseBuilderPloppDeveloper config20060201PloppBeta
 		to:  ReleaseBuilderPloppDeveloper config20060215premaster" 
@@ -194,35 +157,23 @@ MCConfiguration class>>whatChangedFrom: oldConfig to: newConfig on: aStream [
 
 ]
 
-{
-	#category : #faking,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>changes [
+{ #category : #faking }
+MCConfiguration >> changes [
 	^MCPatch operations: #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>dependencies [
+{ #category : #accessing }
+MCConfiguration >> dependencies [
 	^dependencies ifNil: [dependencies := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>dependencies: aCollection [
+{ #category : #accessing }
+MCConfiguration >> dependencies: aCollection [
 	dependencies := aCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>depsSatisfying: selectBlock versionDo: verBlock displayingProgress: progressString [
+{ #category : #private }
+MCConfiguration >> depsSatisfying: selectBlock versionDo: verBlock displayingProgress: progressString [
 	| repoMap count |
 	repoMap := Dictionary new.
 	self repositories do: [:repo |
@@ -258,11 +209,8 @@ MCConfiguration>>depsSatisfying: selectBlock versionDo: verBlock displayingProgr
 	^count
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>diffBaseFor: aDependency [
+{ #category : #private }
+MCConfiguration >> diffBaseFor: aDependency [
 	| wc |
 	aDependency package hasWorkingCopy ifFalse: [^nil].
 	wc := aDependency package workingCopy.
@@ -270,53 +218,35 @@ MCConfiguration>>diffBaseFor: aDependency [
 	^wc ancestors first name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>fileName [
+{ #category : #accessing }
+MCConfiguration >> fileName [
 	^ self name, '.', self writerClass extension
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>fileOutOn: aStream [
+{ #category : #actions }
+MCConfiguration >> fileOutOn: aStream [
 	self writerClass fileOut: self on: aStream
 ]
 
-{
-	#category : #faking,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>info [
+{ #category : #faking }
+MCConfiguration >> info [
 	^MCVersionInfo new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>initialize [
+{ #category : #initialization }
+MCConfiguration >> initialize [
 	super initialize.
 	log := DefaultLog.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>isCacheable [
+{ #category : #testing }
+MCConfiguration >> isCacheable [
 	^false
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>load [
+{ #category : #actions }
+MCConfiguration >> load [
 	"install all the versions in this configuration, even if this means to downgrade a package"
 
 	| versions |
@@ -329,11 +259,8 @@ MCConfiguration>>load [
 	^self loadVersions: versions
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>loadVersions: aCollection [
+{ #category : #private }
+MCConfiguration >> loadVersions: aCollection [
 
 	| loader |
 	aCollection isEmpty ifTrue: [^0].
@@ -343,27 +270,18 @@ MCConfiguration>>loadVersions: aCollection [
 	^ aCollection size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>log [
+{ #category : #accessing }
+MCConfiguration >> log [
 	^log ifNil: [Transcript]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>log: aStream [
+{ #category : #accessing }
+MCConfiguration >> log: aStream [
 	log := aStream.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>logError: aString [
+{ #category : #private }
+MCConfiguration >> logError: aString [
 	self log
 		cr; nextPutAll: 'ERROR: ';
 		nextPutAll: aString; cr;
@@ -371,11 +289,8 @@ MCConfiguration>>logError: aString [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>logUpdate: aPackage with: aVersion [
+{ #category : #private }
+MCConfiguration >> logUpdate: aPackage with: aVersion [
 	self log
 		cr; nextPutAll: '========== ', aVersion info name, ' =========='; cr;
 		cr; nextPutAll: aVersion info message asString; cr;
@@ -390,11 +305,8 @@ MCConfiguration>>logUpdate: aPackage with: aVersion [
 							nextPutAll: ver message; cr; flush]]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>logWarning: aString [
+{ #category : #private }
+MCConfiguration >> logWarning: aString [
 	self log
 		cr; nextPutAll: 'WARNING: ';
 		nextPutAll: aString; cr;
@@ -402,11 +314,8 @@ MCConfiguration>>logWarning: aString [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>merge [
+{ #category : #actions }
+MCConfiguration >> merge [
 	"merge in all the versions in this configuration"
 
 	| versions |
@@ -419,11 +328,8 @@ MCConfiguration>>merge [
 	^self mergeVersions: versions
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>mergeVersions: aCollection [
+{ #category : #private }
+MCConfiguration >> mergeVersions: aCollection [
 
 	| merger |
 	aCollection isEmpty ifTrue: [^0].
@@ -433,20 +339,14 @@ MCConfiguration>>mergeVersions: aCollection [
 	^ aCollection size
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>mergeVersionsSilently: aCollection [
+{ #category : #private }
+MCConfiguration >> mergeVersionsSilently: aCollection [
 
 	^self suppressMergeDialogWhile: [self mergeVersions: aCollection]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>mustMerge: aVersion [
+{ #category : #private }
+MCConfiguration >> mustMerge: aVersion [
 	"answer true if we have to do a full merge and false if we can simply load instead"
 	
 	| pkg wc current |
@@ -459,80 +359,53 @@ MCConfiguration>>mustMerge: aVersion [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>name [
+{ #category : #accessing }
+MCConfiguration >> name [
 	^name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>name: aString [
+{ #category : #accessing }
+MCConfiguration >> name: aString [
 	name := aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>nameForChangeset [
+{ #category : #private }
+MCConfiguration >> nameForChangeset [
 	^self name ifNil: [self class name]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>postCopy [
+{ #category : #copying }
+MCConfiguration >> postCopy [
 	dependencies := dependencies shallowCopy.
 	repositories := repositories shallowCopy.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>repositories [
+{ #category : #accessing }
+MCConfiguration >> repositories [
 	^repositories ifNil: [repositories := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>repositories: aCollection [
+{ #category : #accessing }
+MCConfiguration >> repositories: aCollection [
 	repositories := aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>summary [
+{ #category : #accessing }
+MCConfiguration >> summary [
 	^String streamContents: [:stream |
 		self dependencies
 			do: [:ea | stream nextPutAll: ea versionInfo name; cr ]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>suppressMergeDialogWhile: aBlock [
+{ #category : #private }
+MCConfiguration >> suppressMergeDialogWhile: aBlock [
 	^aBlock 
 		on: MCMergeResolutionRequest
 		do: [:request | request autoMerge ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>updateFromImage [
+{ #category : #updating }
+MCConfiguration >> updateFromImage [
 	self dependencies: (self dependencies collect: [:dep |
 		dep package hasWorkingCopy
 			ifTrue: [
@@ -542,11 +415,8 @@ MCConfiguration>>updateFromImage [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>updateFromRepositories [
+{ #category : #updating }
+MCConfiguration >> updateFromRepositories [
 	| oldInfos newNames sortedNames newDeps |
 	oldInfos := self dependencies collect: [:dep | dep versionInfo].
 	newNames := Dictionary new.
@@ -581,21 +451,15 @@ MCConfiguration>>updateFromRepositories [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>upgrade [
+{ #category : #actions }
+MCConfiguration >> upgrade [
 	^self class upgradeIsMerge
 		ifTrue: [self upgradeByMerging]
 		ifFalse: [self upgradeByLoading]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>upgradeByLoading [
+{ #category : #actions }
+MCConfiguration >> upgradeByLoading [
 	"this differs from #load only in that newer versions in the image are not downgraded"
 
 	| versions |
@@ -609,11 +473,8 @@ MCConfiguration>>upgradeByLoading [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>upgradeByMerging [
+{ #category : #actions }
+MCConfiguration >> upgradeByMerging [
 	| versions |
 	versions := OrderedCollection new.
 
@@ -627,11 +488,8 @@ MCConfiguration>>upgradeByMerging [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>versionNamed: verName for: aDependency from: repo [
+{ #category : #private }
+MCConfiguration >> versionNamed: verName for: aDependency from: repo [
 
 	| baseName fileName ver |
 	(repo filterFileNames: repo cachedFileNames forVersionNamed: verName) ifNotEmpty: [:cachedNames |
@@ -651,10 +509,7 @@ MCConfiguration>>versionNamed: verName for: aDependency from: repo [
 	^ver
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCConfiguration>>writerClass [
+{ #category : #accessing }
+MCConfiguration >> writerClass [
 	^ MCMcmWriter 
 ]

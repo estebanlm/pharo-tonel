@@ -5,15 +5,11 @@ from an examples (by MethodFinder)
 Class {
 	#name : #FinderExampleClassNode,
 	#superclass : #FinderClassNode,
-	#category : #Tool-Finder,
-	#timestamp : '<historical>'
+	#category : #Tool-Finder
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderExampleClassNode>>displayString [
+{ #category : #private }
+FinderExampleClassNode >> displayString [
 	(self parentNode receiver isKindOf: self item)
 		ifTrue: [ ^ '*' , super displayString ].
 	^ super displayString

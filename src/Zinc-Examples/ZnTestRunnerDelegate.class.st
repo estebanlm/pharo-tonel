@@ -16,15 +16,11 @@ Part of Zinc HTTP Components
 Class {
 	#name : #ZnTestRunnerDelegate,
 	#superclass : #Object,
-	#category : #Zinc-Examples,
-	#timestamp : '<historical>'
+	#category : #Zinc-Examples
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnTestRunnerDelegate class>>startInServerOn: port [
+{ #category : #public }
+ZnTestRunnerDelegate class >> startInServerOn: port [
 	"Start a new server bound to port on the local network running a test runner web service"
 
 	"self startInServerOn: 1701"
@@ -36,11 +32,8 @@ ZnTestRunnerDelegate class>>startInServerOn: port [
 			yourself
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnTestRunnerDelegate>>handleGetRequest: request [
+{ #category : #'request handling' }
+ZnTestRunnerDelegate >> handleGetRequest: request [
 	| testCaseClass selector result |
 	testCaseClass := Smalltalk globals
 		at: request uri pathSegments second asSymbol
@@ -60,11 +53,8 @@ ZnTestRunnerDelegate>>handleGetRequest: request [
 		ifFalse: [ ZnResponse serverError: result printString ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnTestRunnerDelegate>>handleRequest: request [
+{ #category : #public }
+ZnTestRunnerDelegate >> handleRequest: request [
 	(request method = #GET 
 		and: [ 
 			request uri firstPathSegment = #sunit 
@@ -75,11 +65,8 @@ ZnTestRunnerDelegate>>handleRequest: request [
 	^ ZnResponse notFound: request uri
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnTestRunnerDelegate>>notFoundResponse: message [
+{ #category : #'request handling' }
+ZnTestRunnerDelegate >> notFoundResponse: message [
 	^ ZnResponse new
 		statusLine: ZnStatusLine notFound;
 		headers: ZnHeaders defaultResponseHeaders;
@@ -87,11 +74,8 @@ ZnTestRunnerDelegate>>notFoundResponse: message [
 		yourself.
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnTestRunnerDelegate>>value: request [
+{ #category : #public }
+ZnTestRunnerDelegate >> value: request [
 	"I implement the generic #value: message as equivalent to #handleRequest:"
 	
 	^ self handleRequest: request

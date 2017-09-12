@@ -24,35 +24,25 @@ Class {
 		'scrollpane',
 		'shouldLayoutMorphs'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-Scrollpane,
-	#timestamp : 'AliakseiSyrel 2/18/2015 14:01'
+	#category : #Glamour-Morphic-Brick-Widgets-Scrollpane
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollPaneBandBrick>>asyncTask [
+{ #category : #accessing }
+GLMScrollPaneBandBrick >> asyncTask [
 
 	^ asyncTask ifNil: [ asyncTask := GLMAsyncTask new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollPaneBandBrick>>layoutMorphs: aBoolean [
+{ #category : #accessing }
+GLMScrollPaneBandBrick >> layoutMorphs: aBoolean [
 	"if you know, that morphs are used in scrollpane set me to true.
 	each time layout changes I relayout all morphs after some delay
 	implemented using async task, such that it can be canceled"
 	shouldLayoutMorphs := aBoolean 
 ]
 
-{
-	#category : #brick-layout-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollPaneBandBrick>>onChildrenLayouted [
+{ #category : #brick-layout-events }
+GLMScrollPaneBandBrick >> onChildrenLayouted [
 	super onChildrenLayouted.
 	
 	self scrollpane ifNotNil: [ :s | s updateScrollbar ].
@@ -64,27 +54,18 @@ GLMScrollPaneBandBrick>>onChildrenLayouted [
 		priority: Processor userBackgroundPriority + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollPaneBandBrick>>scrollpane [
+{ #category : #accessing }
+GLMScrollPaneBandBrick >> scrollpane [
 	^ scrollpane
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollPaneBandBrick>>scrollpane: anObject [
+{ #category : #accessing }
+GLMScrollPaneBandBrick >> scrollpane: anObject [
 	scrollpane := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollPaneBandBrick>>shouldLayoutMorphs [
+{ #category : #accessing }
+GLMScrollPaneBandBrick >> shouldLayoutMorphs [
 
 	^ shouldLayoutMorphs ifNil: [ shouldLayoutMorphs := false ]
 ]

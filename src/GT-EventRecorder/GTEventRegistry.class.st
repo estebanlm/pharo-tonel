@@ -21,48 +21,32 @@ Class {
 	#instVars : [
 		'weakHolder'
 	],
-	#category : #GT-EventRecorder-Support,
-	#timestamp : 'JurajKubelka 11/16/2015 19:59'
+	#category : #GT-EventRecorder-Support
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRegistry>>initialize [
+{ #category : #initialization }
+GTEventRegistry >> initialize [
 	super initialize.
 	weakHolder := WeakArray new: 1.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRegistry>>isLiberated [
+{ #category : #testing }
+GTEventRegistry >> isLiberated [
 	^ (weakHolder at: 1) isNil
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRegistry>>liberate [
+{ #category : #actions }
+GTEventRegistry >> liberate [
 	self object: nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRegistry>>object: anObject  [
+{ #category : #accessing }
+GTEventRegistry >> object: anObject [ 
 	weakHolder at: 1 put: anObject.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRegistry>>printOn: aStream [
+{ #category : #printing }
+GTEventRegistry >> printOn: aStream [
 	super printOn: aStream.
 	aStream
 		nextPut: $(;

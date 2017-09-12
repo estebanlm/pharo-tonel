@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RBTransformationRuleTest,
 	#superclass : #RBFooLintRuleTest,
@@ -12,15 +9,11 @@ Class {
 	#classVars : [
 		'RecursiveSelfRule'
 	],
-	#category : #Refactoring-Tests-Core-Data,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core-Data
 }
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest class>>assignmentInIfTrue [
+{ #category : #transformations }
+RBTransformationRuleTest class >> assignmentInIfTrue [
 	^self rewrite: #(
 			#('``@Boolean ifTrue: [`variable := ``@true] ifFalse: [`variable := ``@false]'
 			"->"
@@ -32,11 +25,8 @@ RBTransformationRuleTest class>>assignmentInIfTrue [
 		name: 'Move variable assignment outside of single statement ifTrue:ifFalse: blocks'
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest class>>atIfAbsent [
+{ #category : #transformations }
+RBTransformationRuleTest class >> atIfAbsent [
 	^self rewrite: #(
 			#('``@dictionary at: ``@key 
 					ifAbsent: [| `@temps | 
@@ -63,11 +53,8 @@ RBTransformationRuleTest class>>atIfAbsent [
 		name: 'at:ifAbsent: -> at:ifAbsentPut:'
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest class>>betweenAnd [
+{ #category : #transformations }
+RBTransformationRuleTest class >> betweenAnd [
 	^self rewrite: #(
 			#('``@a >= ``@b and: [``@a <= ``@c]' "->" '``@a between: ``@b and: ``@c')
 			#('``@a >= ``@b & (``@a <= ``@c)' "->" '``@a between: ``@b and: ``@c')
@@ -89,19 +76,13 @@ RBTransformationRuleTest class>>betweenAnd [
 		name: '"a >= b and: [a <= c]" -> "a between: b and: c"'
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest class>>cleanUp [
+{ #category : #cleanup }
+RBTransformationRuleTest class >> cleanUp [
 	self nuke
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest class>>detectIfNone [
+{ #category : #transformations }
+RBTransformationRuleTest class >> detectIfNone [
 	^self rewrite: #(
 			#('(``@collection detect: [:`each | | `@temps | ``@.Statements] ifNone: [nil]) isNil'
 				"->"	'(``@collection contains: [:`each | | `@temps | ``@.Statements]) not')
@@ -119,11 +100,8 @@ RBTransformationRuleTest class>>detectIfNone [
 		name: 'detect:ifNone: -> contains:'
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest class>>equalNil [
+{ #category : #transformations }
+RBTransformationRuleTest class >> equalNil [
 	^self
 		rewrite: #(
 			#('``@object = nil'	"->"	'``@object isNil') 
@@ -134,11 +112,8 @@ RBTransformationRuleTest class>>equalNil [
 		name: '= nil -> isNil AND ~= nil -> notNil'
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest class>>guardClause [
+{ #category : #transformations }
+RBTransformationRuleTest class >> guardClause [
 	^self
 		rewrite: #(
 			#('`@methodName: `@args 
@@ -169,22 +144,16 @@ RBTransformationRuleTest class>>guardClause [
 		name: 'Eliminate guarding clauses'
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest class>>initializeAfterLoad1 [
+{ #category : #'class initialization' }
+RBTransformationRuleTest class >> initializeAfterLoad1 [
 	RecursiveSelfRule := RBParseTreeSearcher new.
 	RecursiveSelfRule
 		addMethodSearches: #('`@methodName: `@args | `@temps | self `@methodName: `@args' '`@methodName: `@args | `@temps | ^self `@methodName: `@args')
 				-> [:aNode :answer | true]
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest class>>minMax [
+{ #category : #transformations }
+RBTransformationRuleTest class >> minMax [
 	^self rewrite: #(
 			#('``@a < ``@b ifTrue: [``@a] ifFalse: [``@b]'	"->"	'``@a min: ``@b')
 			#('``@a <= ``@b ifTrue: [``@a] ifFalse: [``@b]'	"->"	'``@a min: ``@b')
@@ -214,11 +183,8 @@ RBTransformationRuleTest class>>minMax [
 		name: 'Rewrite ifTrue:ifFalse: using min:/max:'
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest class>>notElimination [
+{ #category : #transformations }
+RBTransformationRuleTest class >> notElimination [
 	^self
 		rewrite: #(
 			#('``@object not not'	"->"	'``@object') 
@@ -248,19 +214,13 @@ RBTransformationRuleTest class>>notElimination [
 		name: 'Eliminate unnecessary not''s'
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest class>>nuke [
+{ #category : #'class initialization' }
+RBTransformationRuleTest class >> nuke [
 	RecursiveSelfRule := nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest class>>rewrite: stringArrays methods: aBoolean name: aName  [
+{ #category : #'instance creation' }
+RBTransformationRuleTest class >> rewrite: stringArrays methods: aBoolean name: aName [ 
 	| rewriteRule |
 	rewriteRule := RBParseTreeRewriter new.
 	stringArrays do: 
@@ -273,11 +233,8 @@ RBTransformationRuleTest class>>rewrite: stringArrays methods: aBoolean name: aN
 		yourself
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest class>>showWhileBlocks [
+{ #category : #transformations }
+RBTransformationRuleTest class >> showWhileBlocks [
 	^self
 		rewrite: #(
 			#('``@cursor showWhile: [| `@temps | ``@.Statements. `var := ``@object]'
@@ -288,22 +245,16 @@ RBTransformationRuleTest class>>showWhileBlocks [
 		name: 'Move assignment out of showWhile: blocks'
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest class>>superSends [
+{ #category : #transformations }
+RBTransformationRuleTest class >> superSends [
 	^(self new)
 		name: 'Rewrite super messages to self messages when both refer to same method';
 		superSends;
 		yourself
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest class>>unwindBlocks [
+{ #category : #transformations }
+RBTransformationRuleTest class >> unwindBlocks [
 	^self
 		rewrite: #(
 			#('[| `@temps | ``@.Statements. `var := ``@object] ensure: ``@block'
@@ -318,11 +269,8 @@ RBTransformationRuleTest class>>unwindBlocks [
 		name: 'Move assignment out of unwind blocks'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest>>checkMethod: aSmalllintContext  [
+{ #category : #accessing }
+RBTransformationRuleTest >> checkMethod: aSmalllintContext [ 
 	class := aSmalllintContext selectedClass.
 	(rewriteRule executeTree: aSmalllintContext parseTree) ifTrue: 
 			[(RecursiveSelfRule executeTree: rewriteRule tree initialAnswer: false)
@@ -332,52 +280,34 @@ RBTransformationRuleTest>>checkMethod: aSmalllintContext  [
 						classified: aSmalllintContext protocols]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest>>hasConflicts [
+{ #category : #testing }
+RBTransformationRuleTest >> hasConflicts [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest>>isEmpty [
+{ #category : #testing }
+RBTransformationRuleTest >> isEmpty [
 	^builder changes isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest>>problemCount [
+{ #category : #accessing }
+RBTransformationRuleTest >> problemCount [
 	^builder problemCount
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest>>resetResult [
+{ #category : #accessing }
+RBTransformationRuleTest >> resetResult [
 	builder := RBRefactoryChangeManager changeFactory compositeRefactoryChange
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest>>rewriteUsing: searchReplacer  [
+{ #category : #initialize-release }
+RBTransformationRuleTest >> rewriteUsing: searchReplacer [ 
 	rewriteRule := searchReplacer.
 	self resetResult
 ]
 
-{
-	#category : #rules,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest>>superSends [
+{ #category : #rules }
+RBTransformationRuleTest >> superSends [
 	| rule |
 	rule := RBParseTreeRewriter new.
 	rule addSearch: 'super `@message: ``@args'
@@ -390,11 +320,8 @@ RBTransformationRuleTest>>superSends [
 	self rewriteUsing: rule
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTransformationRuleTest>>viewResults [
+{ #category : #private }
+RBTransformationRuleTest >> viewResults [
 	"I reset the result so that we don't fill up memory with methods to compile in the builder."
 
 	builder inspect.

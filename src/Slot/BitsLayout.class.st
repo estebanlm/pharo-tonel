@@ -4,25 +4,18 @@ I am a specialized layout which does not hold slots but only raw data (bytes or 
 Class {
 	#name : #BitsLayout,
 	#superclass : #ObjectLayout,
-	#category : #Slot-Layout,
-	#timestamp : '<historical>'
+	#category : #Slot-Layout
 }
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BitsLayout>>extend [
+{ #category : #extending }
+BitsLayout >> extend [
 	"Answer a default extension of me."
 
 	^ self species new 
 ]
 
-{
-	#category : #reshaping,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BitsLayout>>extendAgain: aLayout with: aScope  [
+{ #category : #reshaping }
+BitsLayout >> extendAgain: aLayout with: aScope [ 
 	"Answer my default layout since any subclass of me only can have my layout type."
 
 	^ self extend
@@ -30,62 +23,40 @@ BitsLayout>>extendAgain: aLayout with: aScope  [
 		yourself
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BitsLayout>>extendWeak: aLayoutClassScope  [
+{ #category : #extending }
+BitsLayout >> extendWeak: aLayoutClassScope [ 
 	IncompatibleLayoutConflict new
 		layout: self;
 		subType: #weak;
 		signal
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BitsLayout>>initializeInstance: anInstance [
-
+{ #category : #initialize-release }
+BitsLayout >> initializeInstance: anInstance [
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BitsLayout>>isBits [
+{ #category : #testing }
+BitsLayout >> isBits [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BitsLayout>>isBytes [
+{ #category : #testing }
+BitsLayout >> isBytes [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BitsLayout>>isVariable [
+{ #category : #testing }
+BitsLayout >> isVariable [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BitsLayout>>isWords [
+{ #category : #testing }
+BitsLayout >> isWords [
 	^ self isBytes not
 ]
 
-{
-	#category : #reshaping,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BitsLayout>>reshapeFrom: oldScope to: newParentLayout [
+{ #category : #reshaping }
+BitsLayout >> reshapeFrom: oldScope to: newParentLayout [
 	"Answer the reshaped version of me for a new parent layout.
 
 	If the new parent layout has not fields, then the new version 

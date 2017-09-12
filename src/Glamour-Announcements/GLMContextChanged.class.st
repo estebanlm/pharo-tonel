@@ -10,15 +10,11 @@ Class {
 		'value',
 		'oldValue'
 	],
-	#category : #Glamour-Announcements,
-	#timestamp : 'tg 2/20/2010 14:55'
+	#category : #Glamour-Announcements
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMContextChanged>>announcesNewSelection  [
+{ #category : #testing }
+GLMContextChanged >> announcesNewSelection [ 
 	"ContextChanged announces a new selection if 
 	the updated port is #selection and the new value is different from the current selection. 
 	This method is useful when updating the selection in UI widgets, because 
@@ -28,47 +24,32 @@ GLMContextChanged>>announcesNewSelection  [
 		and: [self presentation selection ~~ self value]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMContextChanged>>oldValue  [
+{ #category : #accessing }
+GLMContextChanged >> oldValue [ 
 	 
 	^oldValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMContextChanged>>oldValue: anObject  [
+{ #category : #accessing }
+GLMContextChanged >> oldValue: anObject [ 
 	 
 	oldValue := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMContextChanged>>presentation  [
+{ #category : #accessing }
+GLMContextChanged >> presentation [ 
 	 
 	^presentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMContextChanged>>presentation: aPresentation  [
+{ #category : #accessing }
+GLMContextChanged >> presentation: aPresentation [ 
 	 
 	presentation := aPresentation
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMContextChanged>>printOn: aStream [
+{ #category : #printing }
+GLMContextChanged >> printOn: aStream [
 	super printOn: aStream.
 	aStream 
 		nextPutAll: ' (presentation = ';
@@ -82,38 +63,26 @@ GLMContextChanged>>printOn: aStream [
 		nextPutAll: ')'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMContextChanged>>property  [
+{ #category : #accessing }
+GLMContextChanged >> property [ 
 	 
 	^property
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMContextChanged>>property: aSymbol  [
+{ #category : #accessing }
+GLMContextChanged >> property: aSymbol [ 
 	 
 	property := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMContextChanged>>value  [
+{ #category : #accessing }
+GLMContextChanged >> value [ 
 	 
 	^value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMContextChanged>>value: anObject  [
+{ #category : #accessing }
+GLMContextChanged >> value: anObject [ 
 	 
 	value := anObject
 ]

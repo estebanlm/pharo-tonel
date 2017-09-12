@@ -26,15 +26,11 @@ Class {
 	#classInstVars : [
 		'enabled'
 	],
-	#category : #Slot-ClassBuilder,
-	#timestamp : 'BenComan 2/18/2014 01:44'
+	#category : #Slot-ClassBuilder
 }
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-DangerousClassNotifier class>>check: classSymbol [
+{ #category : #validation }
+DangerousClassNotifier class >> check: classSymbol [
 
 	self enabled ifFalse: [ ^false ].
 	
@@ -44,21 +40,15 @@ DangerousClassNotifier class>>check: classSymbol [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-DangerousClassNotifier class>>disable [
+{ #category : #accessing }
+DangerousClassNotifier class >> disable [
 	enabled := false.
 	
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-DangerousClassNotifier class>>disableDuring: aBlock [
+{ #category : #accessing }
+DangerousClassNotifier class >> disableDuring: aBlock [
 	"execute a block with me disabled. Works even nested and restores the old state"
 	| oldState |
 	oldState := enabled.
@@ -67,38 +57,26 @@ DangerousClassNotifier class>>disableDuring: aBlock [
 	enabled := oldState.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-DangerousClassNotifier class>>enable [
+{ #category : #accessing }
+DangerousClassNotifier class >> enable [
 	enabled := true.
 	
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-DangerousClassNotifier class>>enabled [
+{ #category : #accessing }
+DangerousClassNotifier class >> enabled [
 	^enabled ifNil: [  enabled := false ]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-DangerousClassNotifier class>>initialize [
+{ #category : #accessing }
+DangerousClassNotifier class >> initialize [
 	enabled := true.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-DangerousClassNotifier class>>shouldNotBeRedefined: classSymbol [
+{ #category : #accessing }
+DangerousClassNotifier class >> shouldNotBeRedefined: classSymbol [
 	(self tooDangerousClasses includes: classSymbol) ifTrue: [ ^true ].
 	^Smalltalk globals
 		at: classSymbol 
@@ -107,11 +85,8 @@ DangerousClassNotifier class>>shouldNotBeRedefined: classSymbol [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-DangerousClassNotifier class>>tooDangerousClasses [
+{ #category : #accessing }
+DangerousClassNotifier class >> tooDangerousClasses [
 	"Return a list of class names which will not be modified in the public interface"
 	^#(
 		"Object will break immediately"

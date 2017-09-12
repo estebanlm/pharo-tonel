@@ -10,51 +10,35 @@ can be more efficiently expressed as
 Class {
 	#name : #RBUnoptimizedToDoRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 22:54'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnoptimizedToDoRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBUnoptimizedToDoRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'UnoptimizedToDoRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnoptimizedToDoRule>>group [
+{ #category : #accessing }
+RBUnoptimizedToDoRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnoptimizedToDoRule>>initialize [
+{ #category : #initialization }
+RBUnoptimizedToDoRule >> initialize [
 	super initialize.
 	self matcher 
 		matches: '(`@a to: `@b) do: `@c'
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnoptimizedToDoRule>>name [
+{ #category : #accessing }
+RBUnoptimizedToDoRule >> name [
 	^ 'Uses (to:)do: instead of to:do:'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnoptimizedToDoRule>>rationale [
+{ #category : #accessing }
+RBUnoptimizedToDoRule >> rationale [
 	^ 'Checks for inefficient uses of to:do: that create an unnecessary Interval instance.'
 ]

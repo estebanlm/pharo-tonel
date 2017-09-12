@@ -1,12 +1,7 @@
-Extension {
-	#name : #ToggleMenuItemMorph
-}
+Extension { #name : #ToggleMenuItemMorph }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-ToggleMenuItemMorph>>drawKeyTextOnAthenCanvas: aCanvas  [
+{ #category : #'*Athens-Morphic' }
+ToggleMenuItemMorph >> drawKeyTextOnAthenCanvas: aCanvas [ 
 	"Draw the key text on the canvas."
 	
 	self keyText ifNil: [^self].
@@ -16,21 +11,15 @@ ToggleMenuItemMorph>>drawKeyTextOnAthenCanvas: aCanvas  [
 		drawOnAthensCanvas: aCanvas
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-ToggleMenuItemMorph>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+ToggleMenuItemMorph >> drawOnAthensCanvas: anAthensCanvas [
 	
 	super drawOnAthensCanvas: anAthensCanvas.
 	self drawKeyTextOnAthenCanvas: anAthensCanvas
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-ToggleMenuItemMorph>>drawText: aStringOrText onAthensCanvas: aCanvas in: aRectangle color: stringColor [
+{ #category : #'*Athens-Morphic' }
+ToggleMenuItemMorph >> drawText: aStringOrText onAthensCanvas: aCanvas in: aRectangle color: stringColor [
 	| wrapper |
 	"Draw the text on the canvas within the given bounds."
 	wrapper := aCanvas asCanvasWrapper.

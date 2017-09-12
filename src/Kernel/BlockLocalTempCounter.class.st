@@ -10,44 +10,31 @@ Class {
 		'blockEnd',
 		'joinOffsets'
 	],
-	#category : #Kernel-Methods,
-	#timestamp : '<historical>'
+	#category : #Kernel-Methods
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter class>>tempCountForBlockAt: pc in: method [
+{ #category : #'instance creation' }
+BlockLocalTempCounter class >> tempCountForBlockAt: pc in: method [
 	^self new tempCountForBlockAt: pc in: method
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>blockReturnConstant: cst [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> blockReturnConstant: cst [
 	"Return Top Of Stack bytecode."
 	scanner pc < blockEnd ifTrue:
 		[self doJoin]
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>blockReturnTop [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> blockReturnTop [
 	"Return Top Of Stack bytecode."
 	stackPointer := stackPointer - 1.
 	scanner pc < blockEnd ifTrue:
 		[self doJoin]
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>directedSuperSend: selector numArgs: numArgs [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> directedSuperSend: selector numArgs: numArgs [
 	"Send Message Above Specific Class With Selector, selector, bytecode.
 	 Start the lookup above the class that is the value of the association on
 	 top of stack. The arguments  of the message are found in the top numArgs
@@ -56,133 +43,91 @@ BlockLocalTempCounter>>directedSuperSend: selector numArgs: numArgs [
 	stackPointer := stackPointer - (numArgs + 1)
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>doDup [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> doDup [
 	"Duplicate Top Of Stack bytecode."
 	stackPointer := stackPointer + 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>doJoin [
+{ #category : #private }
+BlockLocalTempCounter >> doJoin [
 	scanner pc < blockEnd ifTrue:
 		[stackPointer := joinOffsets at: scanner pc]
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>doPop [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> doPop [
 	"Remove Top Of Stack bytecode."
 	stackPointer := stackPointer - 1
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>jump: offset [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> jump: offset [
 	"Unconditional Jump bytecode."
 	offset > 0 ifTrue:
 		[joinOffsets at: scanner pc + offset put: stackPointer.
 		 self doJoin]
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>jump: offset if: condition [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> jump: offset if: condition [ 
 	"Conditional Jump bytecode."
 	stackPointer := stackPointer - 1.
 	offset > 0 ifTrue:
 		[joinOffsets at: scanner pc + offset put: stackPointer]
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>methodReturnConstant: value [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> methodReturnConstant: value [ 
 	"Return Constant bytecode."
 	self doJoin
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>methodReturnReceiver [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> methodReturnReceiver [
 	"Return Self bytecode."
 	self doJoin
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>methodReturnTop [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> methodReturnTop [
 	"Return Top Of Stack bytecode."
 	stackPointer := stackPointer - 1.
 	self doJoin
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>popIntoLiteralVariable: anAssociation [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> popIntoLiteralVariable: anAssociation [ 
 	"Remove Top Of Stack And Store Into Literal Variable bytecode."
 	stackPointer := stackPointer - 1
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>popIntoReceiverVariable: offset [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> popIntoReceiverVariable: offset [ 
 	"Remove Top Of Stack And Store Into Instance Variable bytecode."
 	stackPointer := stackPointer - 1
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>popIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> popIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
 	"Remove Top Of Stack And Store Into Offset of Temp Vector bytecode."
 	stackPointer := stackPointer - 1
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>popIntoTemporaryVariable: offset [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> popIntoTemporaryVariable: offset [ 
 	"Remove Top Of Stack And Store Into Temporary Variable bytecode."
 	stackPointer := stackPointer - 1
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>pushActiveContext [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> pushActiveContext [
 	"Push Active Context On Top Of Its Own Stack bytecode."
 	stackPointer := stackPointer + 1
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>pushClosureCopyNumCopiedValues: numCopied numArgs: numArgs blockSize: blockSize [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> pushClosureCopyNumCopiedValues: numCopied numArgs: numArgs blockSize: blockSize [
 	"Push Closure bytecode.  Either compute the end of the block if this is
 	 the block we're analysing, or skip it, adjusting the stack as appropriate."
 	blockEnd
@@ -192,85 +137,58 @@ BlockLocalTempCounter>>pushClosureCopyNumCopiedValues: numCopied numArgs: numArg
 			 scanner pc: scanner pc + blockSize]
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>pushConsArrayWithElements: numElements [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> pushConsArrayWithElements: numElements [
 	"Push Cons Array of size numElements popping numElements items from the stack into the array bytecode."
 	stackPointer := stackPointer - numElements + 1
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>pushConstant: value [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> pushConstant: value [
 	"Push Constant, value, on Top Of Stack bytecode."
 	stackPointer := stackPointer + 1
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>pushLiteralVariable: anAssociation [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> pushLiteralVariable: anAssociation [
 	"Push Contents Of anAssociation On Top Of Stack bytecode."
 	stackPointer := stackPointer + 1
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>pushNewArrayOfSize: numElements [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> pushNewArrayOfSize: numElements [ 
 	"Push New Array of size numElements bytecode."
 	stackPointer := stackPointer + 1
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>pushReceiver [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> pushReceiver [
 	"Push Active Context's Receiver on Top Of Stack bytecode."
 	stackPointer := stackPointer + 1
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>pushReceiverVariable: offset [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> pushReceiverVariable: offset [
 	"Push Contents Of the Receiver's Instance Variable Whose Index 
 	is the argument, offset, On Top Of Stack bytecode."
 	stackPointer := stackPointer + 1
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>pushRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> pushRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
 	"Push Contents at Offset in Temp Vector bytecode."
 	stackPointer := stackPointer + 1
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>pushTemporaryVariable: offset [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> pushTemporaryVariable: offset [
 	"Push Contents Of Temporary Variable Whose Index Is the 
 	argument, offset, On Top Of Stack bytecode."
 	stackPointer := stackPointer + 1
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>send: selector super: supered numArgs: numberArguments [
+{ #category : #'instruction decoding' }
+BlockLocalTempCounter >> send: selector super: supered numArgs: numberArguments [
 	"Send Message With Selector, selector, bytecode. The argument, 
 	supered, indicates whether the receiver of the message is specified with 
 	'super' in the source method. The arguments of the message are found in 
@@ -280,11 +198,8 @@ BlockLocalTempCounter>>send: selector super: supered numArgs: numberArguments [
 	stackPointer := stackPointer - numberArguments
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockLocalTempCounter>>tempCountForBlockAt: pc in: method [
+{ #category : #initialize-release }
+BlockLocalTempCounter >> tempCountForBlockAt: pc in: method [
 	"Compute the number of local temporaries in a block.
 	 If the block begins with a sequence of push: nil bytecodes then some of
 	 These could be initializing local temps.  We can only reliably disambuguate

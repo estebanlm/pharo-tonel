@@ -7,24 +7,17 @@ Class {
 	#instVars : [
 		'members'
 	],
-	#category : #Compression-Archives,
-	#timestamp : '<historical>'
+	#category : #Compression-Archives
 }
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>addDirectory: aFileName [
+{ #category : #'archive operations' }
+Archive >> addDirectory: aFileName [
 	^self addDirectory: aFileName as: aFileName
 
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>addDirectory: aFileName as: anotherFileName [
+{ #category : #'archive operations' }
+Archive >> addDirectory: aFileName as: anotherFileName [
 	| newMember |
 	newMember := self memberClass newFromDirectory: aFileName.
 	self addMember: newMember.
@@ -32,19 +25,13 @@ Archive>>addDirectory: aFileName as: anotherFileName [
 	^newMember
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>addFile: aFileName [
+{ #category : #'archive operations' }
+Archive >> addFile: aFileName [
 	^self addFile: aFileName as: aFileName
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>addFile: aFileName as: anotherFileName [
+{ #category : #'archive operations' }
+Archive >> addFile: aFileName as: anotherFileName [
 	| newMember |
 	newMember := self memberClass newFromFile: aFileName.
 	newMember localFileName: anotherFileName.
@@ -52,19 +39,13 @@ Archive>>addFile: aFileName as: anotherFileName [
 	^newMember
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>addMember: aMember [
+{ #category : #'archive operations' }
+Archive >> addMember: aMember [
 	^members addLast: aMember
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>addString: aString as: aFileName [
+{ #category : #'archive operations' }
+Archive >> addString: aString as: aFileName [
 	| newMember |
 	newMember := self memberClass newFromString: aString named: aFileName.
 	self addMember: newMember.
@@ -72,11 +53,8 @@ Archive>>addString: aString as: aFileName [
 	^newMember
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>addTree: aFileNameOrDirectory match: aBlock  [
+{ #category : #'archive operations' }
+Archive >> addTree: aFileNameOrDirectory match: aBlock [ 
 	| nameSize |
 	nameSize := aFileNameOrDirectory isString
 				ifTrue: [aFileNameOrDirectory size]
@@ -87,22 +65,16 @@ Archive>>addTree: aFileNameOrDirectory match: aBlock  [
 		match: aBlock
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>addTree: aFileNameOrDirectory removingFirstCharacters: n  [
+{ #category : #'archive operations' }
+Archive >> addTree: aFileNameOrDirectory removingFirstCharacters: n [ 
 	^ self
 		addTree: aFileNameOrDirectory
 		removingFirstCharacters: n
 		match: [:e | true]
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>addTree: aFileNameOrDirectory removingFirstCharacters: n match: aBlock [
+{ #category : #'archive operations' }
+Archive >> addTree: aFileNameOrDirectory removingFirstCharacters: n match: aBlock [
 	| dir relativePath matches |
 	dir := aFileNameOrDirectory asFileReference.
 	relativePath := (dir fullName allButFirst: n) asFileReference.
@@ -119,32 +91,23 @@ Archive>>addTree: aFileNameOrDirectory removingFirstCharacters: n match: aBlock 
 
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>canWriteToFileNamed: aFileName [
+{ #category : #'archive operations' }
+Archive >> canWriteToFileNamed: aFileName [
 	"Catch attempts to overwrite existing zip file"
 	^(members anySatisfy: [ :ea | ea usesFileNamed: aFileName ]) not.
 
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>contentsOf: aMemberOrName [
+{ #category : #'archive operations' }
+Archive >> contentsOf: aMemberOrName [
 	| member |
 	member := self member: aMemberOrName.
 	member ifNil: [ ^nil ].
 	^member contents
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>extractMember: aMemberOrName [
+{ #category : #'archive operations' }
+Archive >> extractMember: aMemberOrName [
 	| member |
 	member := self member: aMemberOrName.
 	member ifNil: [ ^nil ].
@@ -153,133 +116,91 @@ Archive>>extractMember: aMemberOrName [
 		inDirectory: FileSystem workingDirectory.
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>extractMember: aMemberOrName toFileNamed: aFileName [
+{ #category : #'archive operations' }
+Archive >> extractMember: aMemberOrName toFileNamed: aFileName [
 	| member |
 	member := self member: aMemberOrName.
 	member ifNil: [ ^nil ].
 	member extractToFileNamed: aFileName
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>extractMemberWithoutPath: aMemberOrName [
+{ #category : #'archive operations' }
+Archive >> extractMemberWithoutPath: aMemberOrName [
 	self 
 		extractMemberWithoutPath: aMemberOrName
 		inDirectory: FileSystem workingDirectory.
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>extractMemberWithoutPath: aMemberOrName inDirectory: dir [
+{ #category : #'archive operations' }
+Archive >> extractMemberWithoutPath: aMemberOrName inDirectory: dir [
 	| member |
 	member := self member: aMemberOrName.
 	member ifNil: [ ^nil ].
 	member extractToFileNamed: (member asFileReference basename) inDirectory: dir
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>initialize [
+{ #category : #initialization }
+Archive >> initialize [
 	super initialize.
 	members := OrderedCollection new.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>member: aMemberOrName [
+{ #category : #private }
+Archive >> member: aMemberOrName [
 	^(members includes: aMemberOrName)
 		ifTrue: [ aMemberOrName ]
 		ifFalse: [ self memberNamed: aMemberOrName ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>memberClass [
+{ #category : #private }
+Archive >> memberClass [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>memberNamed: aString [
+{ #category : #'archive operations' }
+Archive >> memberNamed: aString [
 	"Return the first member whose zip name or local file name matches aString, or nil"
 	^members detect: [ :ea | ea fileName = aString or: [ ea localFileName = aString ]] ifNone: [ ]
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>memberNames [
+{ #category : #'archive operations' }
+Archive >> memberNames [
 	^members collect: [ :ea | ea fileName ]
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>members [
+{ #category : #'archive operations' }
+Archive >> members [
 	^members
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>membersMatching: aString [
+{ #category : #'archive operations' }
+Archive >> membersMatching: aString [
 	^members select: [ :ea | (aString match: ea fileName) or: [ aString match: ea localFileName ] ]
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>numberOfMembers [
+{ #category : #'archive operations' }
+Archive >> numberOfMembers [
 	^members size
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>removeMember: aMemberOrName [
+{ #category : #'archive operations' }
+Archive >> removeMember: aMemberOrName [
 	| member |
 	member := self member: aMemberOrName.
 	member ifNotNil: [ members remove: member ].
 	^member
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>replaceMember: aMemberOrName with: newMember [
+{ #category : #'archive operations' }
+Archive >> replaceMember: aMemberOrName with: newMember [
 	| member |
 	member := self member: aMemberOrName.
 	member ifNotNil: [ members replaceAll: member with: newMember ].
 	^member
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>setContentsOf: aMemberOrName to: aString [
+{ #category : #'archive operations' }
+Archive >> setContentsOf: aMemberOrName to: aString [
 	| newMember oldMember |
 	oldMember := self member: aMemberOrName.
 	newMember := (self memberClass newFromString: aString named: oldMember fileName)
@@ -287,19 +208,13 @@ Archive>>setContentsOf: aMemberOrName to: aString [
 	self replaceMember: oldMember with: newMember.
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>writeTo: aStream [
+{ #category : #'archive operations' }
+Archive >> writeTo: aStream [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Archive>>writeToFileNamed: aFileName [
+{ #category : #'archive operations' }
+Archive >> writeToFileNamed: aFileName [
 
 	"Catch attempts to overwrite existing zip file"
 	(self canWriteToFileNamed: aFileName)

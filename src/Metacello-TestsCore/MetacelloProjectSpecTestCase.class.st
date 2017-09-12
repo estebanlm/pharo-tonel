@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloProjectSpecTestCase,
 	#superclass : #MetacelloSpecTestCase,
-	#category : #Metacello-TestsCore-Specs,
-	#timestamp : ''
+	#category : #Metacello-TestsCore-Specs
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloProjectSpecTestCase>>testProjectMergeSpec [
+{ #category : #tests }
+MetacelloProjectSpecTestCase >> testProjectMergeSpec [
     | projectA projectB project |
     projectA := self projectSpec
         name: 'Project';
@@ -41,11 +34,8 @@ MetacelloProjectSpecTestCase>>testProjectMergeSpec [
     self assert: project postLoadDoIt value == #'postLoadDoItB'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloProjectSpecTestCase>>testProjectSpec [
+{ #category : #tests }
+MetacelloProjectSpecTestCase >> testProjectSpec [
     | project |
     project := self projectSpec.
     project

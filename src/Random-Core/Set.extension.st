@@ -1,12 +1,7 @@
-Extension {
-	#name : #Set
-}
+Extension { #name : #Set }
 
-{
-	#category : #'*Random-Core',
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Set>>atRandom: aGenerator [
+{ #category : #'*Random-Core' }
+Set >> atRandom: aGenerator [
 	"Answer a random element of the receiver. Uses aGenerator which
     should be kept by the user in a variable and used every time. Use
     this instead of #atRandom for better uniformity of random numbers because 

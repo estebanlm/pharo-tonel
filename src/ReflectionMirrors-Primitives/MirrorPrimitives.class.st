@@ -9,36 +9,26 @@ For details see  Object documentation whatIsAPrimitive.
 Class {
 	#name : #MirrorPrimitives,
 	#superclass : #Object,
-	#category : #ReflectionMirrors-Primitives,
-	#timestamp : 'DenisKudryashov 7/27/2016 11:54'
+	#category : #ReflectionMirrors-Primitives
 }
 
-{
-	#category : #'class relationship',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>classOf: anObject [
+{ #category : #'class relationship' }
+MirrorPrimitives class >> classOf: anObject [
 	"Primitive. Answer the object which is the receiver's class"
 
 	<primitive: 111>
 	self primitiveFailed
 ]
 
-{
-	#category : #errors,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>errorNotIndexableFor: anObject [
+{ #category : #errors }
+MirrorPrimitives class >> errorNotIndexableFor: anObject [
 	"Create an error notification that the receiver is not indexable."
 
 	self error: ('Instances of {1} are not indexable' translated format: {(self classOf: anObject) name})
 ]
 
-{
-	#category : #'fields accessing',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>fieldOf: anObject at: anIndex [
+{ #category : #'fields accessing' }
+MirrorPrimitives class >> fieldOf: anObject at: anIndex [
 	"Answer field at anIndex in order: indexable fields -> fixed fields"
 
 	| fixedSize indexableSize |
@@ -55,11 +45,8 @@ MirrorPrimitives class>>fieldOf: anObject at: anIndex [
 		ifFalse: [ self indexableFieldOf: anObject at: anIndex ]
 ]
 
-{
-	#category : #'fields accessing',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>fieldOf: anObject at: anIndex put: newObject [
+{ #category : #'fields accessing' }
+MirrorPrimitives class >> fieldOf: anObject at: anIndex put: newObject [
 	"Setting newObject into field at anIndex in order: indexable fields -> fixed fields"
 
 	| fixedSize indexableSize |
@@ -76,11 +63,8 @@ MirrorPrimitives class>>fieldOf: anObject at: anIndex put: newObject [
 		ifFalse: [ self indexableFieldOf: anObject at: anIndex put: newObject]
 ]
 
-{
-	#category : #'fields accessing',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>fixedFieldOf: anObject at: anIndex [
+{ #category : #'fields accessing' }
+MirrorPrimitives class >> fixedFieldOf: anObject at: anIndex [
 	"Primitive. Answer a fixed variable in an object. The numbering of the 
 	 variables corresponds to the named instance variables. Fail if the index 
 	 is not an Integer or is not the index of a fixed variable"
@@ -90,11 +74,8 @@ MirrorPrimitives class>>fixedFieldOf: anObject at: anIndex [
 	^self primitiveFailed
 ]
 
-{
-	#category : #'fields accessing',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>fixedFieldOf: anObject at: anIndex put: aValue  [
+{ #category : #'fields accessing' }
+MirrorPrimitives class >> fixedFieldOf: anObject at: anIndex put: aValue [ 
 	"Primitive. Store a value into a fixed variable in the argument anObject.
 	 The numbering of the variables corresponds to the named instance
 	 variables.  Fail if the index is not an Integer or is not the index of a
@@ -105,21 +86,15 @@ MirrorPrimitives class>>fixedFieldOf: anObject at: anIndex put: aValue  [
 	^self primitiveFail 
 ]
 
-{
-	#category : #'fields accessing',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>fixedSizeOf: anObject [
+{ #category : #'fields accessing' }
+MirrorPrimitives class >> fixedSizeOf: anObject [
 	"Answer the number of inst vars"
 
 	^(self classOf: anObject) instSize
 ]
 
-{
-	#category : #hashes,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>identityHashOf: anObject [
+{ #category : #hashes }
+MirrorPrimitives class >> identityHashOf: anObject [
 	"Answer a SmallInteger whose value is related to the receiver's identity.
 	This method must not be overridden, except by SmallInteger.
 	Primitive. Fails if the receiver is a SmallInteger"
@@ -128,11 +103,8 @@ MirrorPrimitives class>>identityHashOf: anObject [
 	self primitiveFailed
 ]
 
-{
-	#category : #'fields accessing',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>indexableFieldOf: anObject at: anIndex  [
+{ #category : #'fields accessing' }
+MirrorPrimitives class >> indexableFieldOf: anObject at: anIndex [ 
 	"Primitive. Assumes receiver is indexable. Answer the value of an 
 	indexable element in the receiver. Fail if the argument index is not an 
 	Integer or is out of bounds. Essential. See Object documentation 
@@ -148,11 +120,8 @@ MirrorPrimitives class>>indexableFieldOf: anObject at: anIndex  [
 	self errorNonIntegerIndex
 ]
 
-{
-	#category : #'fields accessing',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>indexableFieldOf: anObject at: anIndex put: newObject [
+{ #category : #'fields accessing' }
+MirrorPrimitives class >> indexableFieldOf: anObject at: anIndex put: newObject [
 	"Primitive. Assumes receiver is indexable. Store the argument value in 
 	the indexable element of the receiver indicated by index. Fail if the 
 	index is not an Integer or is out of bounds. Or fail if the value is not of 
@@ -170,11 +139,8 @@ MirrorPrimitives class>>indexableFieldOf: anObject at: anIndex put: newObject [
 	self errorNonIntegerIndex
 ]
 
-{
-	#category : #'fields accessing',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>indexableSizeOf: anObject [
+{ #category : #'fields accessing' }
+MirrorPrimitives class >> indexableSizeOf: anObject [
 	"Answer the number of indexable variables in the argument anObject without sending
 	 it a message. This mimics the action of the VM when it fetches an object's variable size"
 
@@ -183,39 +149,27 @@ MirrorPrimitives class>>indexableSizeOf: anObject [
 	^0
 ]
 
-{
-	#category : #'write barrier',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>isObjectReadOnly: anObject [
+{ #category : #'write barrier' }
+MirrorPrimitives class >> isObjectReadOnly: anObject [
 	<primitive: 163 error: ec>
 	^ self primitiveFail
 ]
 
-{
-	#category : #'write barrier',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>makeObject: anObject readOnly: aBoolean [
+{ #category : #'write barrier' }
+MirrorPrimitives class >> makeObject: anObject readOnly: aBoolean [
 	<primitive: 164 error: ec>
 	^ self primitiveFail
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>print: anObject [
+{ #category : #printing }
+MirrorPrimitives class >> print: anObject [
 	
 	^String streamContents: [ :s |	self print: anObject on: s] limitedTo: 32.
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>print: anObject on: aStream [
+{ #category : #printing }
+MirrorPrimitives class >> print: anObject on: aStream [
 	| title |
 	title := (self classOf: anObject) name.
 	aStream 
@@ -223,43 +177,31 @@ MirrorPrimitives class>>print: anObject on: aStream [
 	aStream nextPutAll: title
 ]
 
-{
-	#category : #'class relationship',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>setClass: classObject to: anObject [
+{ #category : #'class relationship' }
+MirrorPrimitives class >> setClass: classObject to: anObject [
 	"Change the class of anObject to classObject"
 	
 	<primitive: 160 error: ec>
 	self primitiveFailed
 ]
 
-{
-	#category : #'fields accessing',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>sizeOf: anObject [
+{ #category : #'fields accessing' }
+MirrorPrimitives class >> sizeOf: anObject [
 	"Answer the number of inst vars + number of indexible fields"
 
 	^(self fixedSizeOf: anObject) + (self indexableSizeOf: anObject)
 ]
 
-{
-	#category : #'message performing',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>withReceiver: receiver andArguments: argArray execute: compiledMethod [
+{ #category : #'message performing' }
+MirrorPrimitives class >> withReceiver: receiver andArguments: argArray execute: compiledMethod [
 	"Execute compiledMethod against the receiver and the arguments in argArray"
 
 	<primitive: 188>
 	^self primitiveFailed
 ]
 
-{
-	#category : #'message performing',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>withReceiver: anObject perform: selector withArguments: argArray [
+{ #category : #'message performing' }
+MirrorPrimitives class >> withReceiver: anObject perform: selector withArguments: argArray [
 	"Send the selector, aSymbol, to the receiver with arguments in argArray.
 	Fail if the number of arguments expected by the selector 
 	does not match the size of argArray.
@@ -269,11 +211,8 @@ MirrorPrimitives class>>withReceiver: anObject perform: selector withArguments: 
 	self primitiveFailed
 ]
 
-{
-	#category : #'message performing',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>withReceiver: receiver perform: selector withArguments: argArray inSuperclass: lookupClass [
+{ #category : #'message performing' }
+MirrorPrimitives class >> withReceiver: receiver perform: selector withArguments: argArray inSuperclass: lookupClass [
 	"NOTE:  This is just like perform:withArguments:, except that
 	the message lookup process begins, not with the receivers's class,
 	but with the supplied superclass instead.  It will fail if lookupClass
@@ -288,11 +227,8 @@ MirrorPrimitives class>>withReceiver: receiver perform: selector withArguments: 
 	self primitiveFailed
 ]
 
-{
-	#category : #'message performing',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives class>>withReceiver: receiver tryPrimitive: number withArguments: args [
+{ #category : #'message performing' }
+MirrorPrimitives class >> withReceiver: receiver tryPrimitive: number withArguments: args [
 	"This method is a template that the Smalltalk simulator uses to 
 	execute primitives"
 
@@ -300,10 +236,6 @@ MirrorPrimitives class>>withReceiver: receiver tryPrimitive: number withArgument
 	^self primitiveFailed
 ]
 
-{
-	#category : #help,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MirrorPrimitives>>seeClassSide [
-
+{ #category : #help }
+MirrorPrimitives >> seeClassSide [
 ]

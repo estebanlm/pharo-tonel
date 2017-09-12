@@ -31,15 +31,11 @@ Class {
 		'SpecialPrimitiveSimulators',
 		'TryNamedPrimitiveTemplateMethod'
 	],
-	#category : #Kernel-Methods,
-	#timestamp : '<historical>'
+	#category : #Kernel-Methods
 }
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>allInstances [
+{ #category : #enumerating }
+Context class >> allInstances [
 	"Answer all instances of the receiver."
 	<primitive: 177>
 	"The primitive can fail because memory is low.  If so, fall back on the old
@@ -58,11 +54,8 @@ Context class>>allInstances [
 	^insts contents
 ]
 
-{
-	#category : #hacks,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>allInstancesDo: aBlock [
+{ #category : #hacks }
+Context class >> allInstancesDo: aBlock [
 	"Evaluate aBlock with each of the current instances of the receiver."
 	| instances inst next |
 	instances := self allInstancesOrNil.
@@ -80,29 +73,20 @@ Context class>>allInstancesDo: aBlock [
 		 inst := next]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>basicNew: size [
+{ #category : #'instance creation' }
+Context class >> basicNew: size [
 	self error: 'Contexts must only be created with newForMethod:'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>carefullyPrint: anObject on: aStream [
+{ #category : #private }
+Context class >> carefullyPrint: anObject on: aStream [
 	aStream nextPutAll: ([anObject printString]
 		on: Error
 		do: ['unprintable ' , anObject class name])
 ]
 
-{
-	#category : #'special context creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>contextEnsure: block [
+{ #category : #'special context creation' }
+Context class >> contextEnsure: block [
 	"Create an #ensure: context that is ready to return from executing its receiver"
 
 	| ctxt chain |
@@ -112,11 +96,8 @@ Context class>>contextEnsure: block [
 	^ chain
 ]
 
-{
-	#category : #'special context creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>contextOn: exceptionClass do: block [
+{ #category : #'special context creation' }
+Context class >> contextOn: exceptionClass do: block [
 	"Create an #on:do: context that is ready to return from executing its receiver"
 
 	| ctxt chain |
@@ -126,11 +107,8 @@ Context class>>contextOn: exceptionClass do: block [
 	^ chain
 ]
 
-{
-	#category : #simulation,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>initialize [
+{ #category : #simulation }
+Context class >> initialize [
 
 	"A unique object to be returned when a primitive fails during simulation"
 	PrimitiveFailToken := Object new.
@@ -139,11 +117,8 @@ Context class>>initialize [
 	QuickStep := nil.
 ]
 
-{
-	#category : #simulation,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>initializePrimitiveSimulators [
+{ #category : #simulation }
+Context class >> initializePrimitiveSimulators [
 	"extra primitive simulators can be registered by implementing
 	#registerPrimitiveSimulators method in class side of your class."
 	<ignoreUnimplementedCalls: #(#registerPrimitiveSimulators)>
@@ -157,11 +132,8 @@ Context class>>initializePrimitiveSimulators [
 		].
 ]
 
-{
-	#category : #simulation,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>initializeTryNamedPrimitiveTemplateMethod [
+{ #category : #simulation }
+Context class >> initializeTryNamedPrimitiveTemplateMethod [
 	| source method |
 	source := 'tryNamedPrimitive
 	"This method is a template that the Smalltalk simulator uses to 
@@ -179,37 +151,25 @@ Context class>>initializeTryNamedPrimitiveTemplateMethod [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>isContextClass [
+{ #category : #testing }
+Context class >> isContextClass [
 	^true
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>new [
+{ #category : #'instance creation' }
+Context class >> new [
 
 	self error: 'Contexts must only be created with newForMethod:'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>new: size [
+{ #category : #'instance creation' }
+Context class >> new: size [
 
 	self error: 'Contexts must only be created with newForMethod:'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>newForMethod: aMethod [
+{ #category : #'instance creation' }
+Context class >> newForMethod: aMethod [
 	"This is the only method for creating new contexts, other than primitive cloning.
 	Any other attempts, such as inherited methods like shallowCopy, should be
 	avoided or must at least be rewritten to determine the proper size from the
@@ -220,30 +180,21 @@ Context class>>newForMethod: aMethod [
 	^ super basicNew: aMethod frameSize
 ]
 
-{
-	#category : #simulation,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>primitiveFailToken [
+{ #category : #simulation }
+Context class >> primitiveFailToken [
 
 	^ self primitiveFailTokenFor: nil
 ]
 
-{
-	#category : #simulation,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>primitiveFailTokenFor: errorCode [
+{ #category : #simulation }
+Context class >> primitiveFailTokenFor: errorCode [
 
 	^ { PrimitiveFailToken. errorCode }
 
 ]
 
-{
-	#category : #simulation,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>runSimulated: aBlock [
+{ #category : #simulation }
+Context class >> runSimulated: aBlock [
 	"Simulate the execution of the argument, current. Answer the result it 
 	returns."
 
@@ -254,46 +205,31 @@ Context class>>runSimulated: aBlock [
 	"Context runSimulated: [Pen new defaultNib: 5; go: 100]"
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>sender: s receiver: r method: m arguments: args [
+{ #category : #'instance creation' }
+Context class >> sender: s receiver: r method: m arguments: args [ 
 	"Answer an instance of me with attributes set to the arguments."
 
 	^(self newForMethod: m) setSender: s receiver: r method: m arguments: args
 ]
 
-{
-	#category : #'registering simulated primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>simulatePrimitive: primName module: moduleName with: simulator [
+{ #category : #'registering simulated primitives' }
+Context class >> simulatePrimitive: primName module: moduleName with: simulator [
 	^ self specialPrimitiveSimulators at: {primName. moduleName} put: simulator
 ]
 
-{
-	#category : #'registering simulated primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>simulatePrimitiveNumber: num with: simulator [
+{ #category : #'registering simulated primitives' }
+Context class >> simulatePrimitiveNumber: num with: simulator [
 	^ self specialPrimitiveSimulators at: num put: simulator
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>specialPrimitiveSimulators [
+{ #category : #accessing }
+Context class >> specialPrimitiveSimulators [
 	SpecialPrimitiveSimulators ifNil: [ self initializePrimitiveSimulators ].
 	^ SpecialPrimitiveSimulators
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>tallyInstructions: aBlock [
+{ #category : #examples }
+Context class >> tallyInstructions: aBlock [
 	"This method uses the simulator to count the number of occurrences of
 	each of the Smalltalk instructions executed during evaluation of aBlock.
 	Results appear in order of the byteCode set."
@@ -308,11 +244,8 @@ Context class>>tallyInstructions: aBlock [
 	"Context tallyInstructions: [3.14159 printString]"
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>tallyMethods: aBlock [
+{ #category : #examples }
+Context class >> tallyMethods: aBlock [
 	"This method uses the simulator to count the number of calls on each method
 	invoked in evaluating aBlock. Results are given in order of decreasing counts."
 	| prev tallies |
@@ -331,11 +264,8 @@ Context class>>tallyMethods: aBlock [
 	"Contex tallyMethods: [3.14159 printString]"
 ]
 
-{
-	#category : #'special context creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>theReturnMethod [
+{ #category : #'special context creation' }
+Context class >> theReturnMethod [
 
 	| meth |
 	meth := self lookupSelector: #return:.
@@ -343,30 +273,21 @@ Context class>>theReturnMethod [
 	^ meth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context class>>tryNamedPrimitiveTemplateMethod [
+{ #category : #accessing }
+Context class >> tryNamedPrimitiveTemplateMethod [
 	^ TryNamedPrimitiveTemplateMethod
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>aboutToReturn: result through: firstUnwindContext [
+{ #category : #private }
+Context >> aboutToReturn: result through: firstUnwindContext [ 
 	"Called from VM when an unwindBlock is found between self and its home.
 	 Return to home's sender, executing unwind blocks on the way."
 
 	self methodReturnContext return: result through: firstUnwindContext
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>activateMethod: newMethod withArgs: args receiver: rcvr class: class [
+{ #category : #controlling }
+Context >> activateMethod: newMethod withArgs: args receiver: rcvr class: class [ 
 	"Answer a Context initialized with the arguments."
 
 	^Context 
@@ -376,11 +297,8 @@ Context>>activateMethod: newMethod withArgs: args receiver: rcvr class: class [
 		arguments: args
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>activateReturn: aContext value: value [
+{ #category : #private }
+Context >> activateReturn: aContext value: value [
 	"Activate 'aContext return: value' in place of self, so execution will return to aContext's sender"
 
 	^ self
@@ -390,11 +308,8 @@ Context>>activateReturn: aContext value: value [
 		class: aContext class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>activeHome [
+{ #category : #accessing }
+Context >> activeHome [
 	"If executing closure, search senders for the activation of the original
 	 (outermost) method that (indirectly) created my closure (the closureHome).
 	 If the closureHome is not found on the sender chain answer nil."
@@ -406,11 +321,8 @@ Context>>activeHome [
 	^self sender findContextSuchThat: [:ctxt | ctxt = methodReturnContext]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>activeOuterContext [
+{ #category : #accessing }
+Context >> activeOuterContext [
 	"If executing closure, search senders for the activation in which the receiver's
 	 closure was created (the receiver's outerContext).  If the outerContext is not
 	 found on the sender chain answer nil."
@@ -422,11 +334,8 @@ Context>>activeOuterContext [
 	^self sender findContextSuchThat: [:ctxt | ctxt = outerContext]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>arguments [
+{ #category : #accessing }
+Context >> arguments [
 	"returns the arguments of a message invocation"
 	
 	| arguments numargs |
@@ -436,20 +345,14 @@ Context>>arguments [
 	^ arguments
 ]
 
-{
-	#category : #'closure support',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>asContext [
+{ #category : #'closure support' }
+Context >> asContext [
 
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>at: index [
+{ #category : #accessing }
+Context >> at: index [
 	"Primitive. Assumes receiver is indexable. Answer the value of an
 	 indexable element in the receiver. Fail if the argument index is not an
 	 Integer or is out of bounds. Essential. See Object documentation
@@ -464,11 +367,8 @@ Context>>at: index [
 		ifFalse: [self errorNonIntegerIndex]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>at: index put: value [
+{ #category : #accessing }
+Context >> at: index put: value [
 	"Primitive. Assumes receiver is indexable. Answer the value of an
 	 indexable element in the receiver. Fail if the argument index is not
 	 an Integer or is out of bounds. Essential. See Object documentation
@@ -483,11 +383,8 @@ Context>>at: index put: value [
 		ifFalse: [self errorNonIntegerIndex]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>basicAt: index [
+{ #category : #accessing }
+Context >> basicAt: index [
 	"Primitive. Assumes receiver is indexable. Answer the value of an
 	 indexable element in the receiver. Fail if the argument index is not an
 	 Integer or is out of bounds. Essential. See Object documentation
@@ -502,11 +399,8 @@ Context>>basicAt: index [
 		ifFalse: [self errorNonIntegerIndex]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>basicAt: index put: value [
+{ #category : #accessing }
+Context >> basicAt: index put: value [
 	"Primitive. Assumes receiver is indexable. Answer the value of an
 	 indexable element in the receiver. Fail if the argument index is not
 	 an Integer or is out of bounds. Essential. See Object documentation
@@ -521,11 +415,8 @@ Context>>basicAt: index put: value [
 		ifFalse: [self errorNonIntegerIndex]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>basicSize [
+{ #category : #accessing }
+Context >> basicSize [
 	"Primitive. Answer the number of indexable variables in the receiver. 
 	This value is the same as the largest legal subscript. Essential. Do not 
 	override in any subclass. See Object documentation whatIsAPrimitive.  Override the default primitive to give latitude to
@@ -536,11 +427,8 @@ Context>>basicSize [
 	^self primitiveFail
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>blockReturnConstant: value [
+{ #category : #'instruction decoding' }
+Context >> blockReturnConstant: value [ 
 	"Simulate the interpreter's action when a ReturnConstantToCaller
 	bytecode is 
 	encountered in the receiver. This should only happen in a closure
@@ -550,43 +438,31 @@ Context>>blockReturnConstant: value [
 
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>blockReturnTop [
+{ #category : #'instruction decoding' }
+Context >> blockReturnTop [
 	"Simulate the interpreter's action when a ReturnTopOfStackToCaller bytecode is 
 	 encountered in the receiver.  This should only happen in a closure activation."
 	[closureOrNil isClosure] assert.
 	^self return: self pop from: self
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>bottomContext [
+{ #category : #query }
+Context >> bottomContext [
 	"Return the last context (the first context invoked) in my sender chain"
 
 	^ self findContextSuchThat: [ :context | context sender isNil]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>callChainAnySatisfy: aBlock [
+{ #category : #testing }
+Context >> callChainAnySatisfy: aBlock [
 
 	(aBlock value: self) ifTrue: [ ^ true ].
 	self sender ifNil: [ ^ false ].
 	^ self sender callChainAnySatisfy: aBlock.
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>callPrimitive: primNumber [
+{ #category : #'instruction decoding' }
+Context >> callPrimitive: primNumber [
 	| res |
 	res := receiver tryPrimitive: primNumber withArgs: self arguments.
 	primNumber >= (1 << 15) ifTrue: [ "inlined primitive, cannot fail" ^ self push: res ].  
@@ -596,11 +472,8 @@ Context>>callPrimitive: primNumber [
 	self methodReturnTop
 ]
 
-{
-	#category : #private-exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>canHandleSignal: exception [
+{ #category : #private-exceptions }
+Context >> canHandleSignal: exception [
 	"Sent to handler (on:do:) contexts only.  If my exception class (first arg) handles exception then return true, otherwise forward this message to the next handler context.  If none left, return false (see nil>>canHandleSignal:)"
 
 	^ (self exceptionClass handles: exception)
@@ -608,11 +481,8 @@ Context>>canHandleSignal: exception [
 
 ]
 
-{
-	#category : #private-exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>cannotReturn: result [
+{ #category : #private-exceptions }
+Context >> cannotReturn: result [
 	closureOrNil ifNotNil: [ 
 		^BlockCannotReturn result: result from: self home].
 	Processor activeProcess 
@@ -621,39 +491,27 @@ Context>>cannotReturn: result [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>cannotReturn: result to: aContext [
+{ #category : #private }
+Context >> cannotReturn: result to: aContext [
 	"The receiver tried to return result to homeContext that no longer exists."
 
 	^ ContextCannotReturn result: result to: aContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>client [
+{ #category : #accessing }
+Context >> client [
 	"Answer the client, that is, the object that sent the message that created this context."
 
 	^sender receiver
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>closure [
+{ #category : #accessing }
+Context >> closure [
 	^closureOrNil
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>closureCopy: numArgs copiedValues: anArray [
+{ #category : #controlling }
+Context >> closureCopy: numArgs copiedValues: anArray [
 	"Distinguish a block of code from its enclosing method by 
 	creating a BlockClosure for that block. The compiler inserts into all 
 	methods that contain blocks the bytecodes to send the message 
@@ -670,11 +528,8 @@ Context>>closureCopy: numArgs copiedValues: anArray [
 		copiedValues: anArray
 ]
 
-{
-	#category : #'system simulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>completeCallee: aContext [
+{ #category : #'system simulation' }
+Context >> completeCallee: aContext [
 	"Simulate the execution of bytecodes until a return to the receiver."
 	| context current nextContext |
 	context := aContext.
@@ -687,49 +542,34 @@ Context>>completeCallee: aContext [
 	^ self stepToSendOrReturn
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>contextClass [
+{ #category : #accessing }
+Context >> contextClass [
 "The context class of a message send should be the one of the method to be evaluated, because if that method has some super sends, the method lookup won't work as expected'"
 
 	^self method methodClass
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>contextStack [
+{ #category : #'debugger access' }
+Context >> contextStack [ 
 	"Answer an Array of the contexts on the receiver's sender chain."
 
 	^self stackOfSize: 100000
 ]
 
-{
-	#category : #'closure support',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>contextTag [
+{ #category : #'closure support' }
+Context >> contextTag [
 	"Context tags may be used for referring to contexts instead of contexts themselves as they can be copied and will continue to work in other processes (continuations). By default, we use the context itself to as its tag."
 	^self
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>copyStack [
+{ #category : #query }
+Context >> copyStack [
 
 	^ self copyTo: nil
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>copyTo: aContext [
+{ #category : #query }
+Context >> copyTo: aContext [
 	"Copy self and my sender chain down to, but not including, aContext.  End of copied chain will have nil sender."
 
 	| copy |
@@ -740,11 +580,8 @@ Context>>copyTo: aContext [
 	^ copy
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>cut: aContext [
+{ #category : #private }
+Context >> cut: aContext [
 	"Cut aContext and its senders from my sender chain"
 
 	| context callee |
@@ -759,11 +596,8 @@ Context>>cut: aContext [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>debugStack: stackSize on: aStream [
+{ #category : #printing }
+Context >> debugStack: stackSize on: aStream [
 	"print a condensed version of the stack up to stackSize on aStream"
 
 	(self stackOfSize: stackSize)
@@ -772,20 +606,14 @@ Context>>debugStack: stackSize on: aStream [
 			aStream cr ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>debugStackOn: aStream [
+{ #category : #printing }
+Context >> debugStackOn: aStream [
 	"print the top ten contexts on my sender chain."
 	^ self debugStack: 100 on: aStream
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>depthBelow: aContext [
+{ #category : #'debugger access' }
+Context >> depthBelow: aContext [
 	"Answer how many calls there are between this and aContext."
 
 	| context depth |
@@ -798,41 +626,28 @@ Context>>depthBelow: aContext [
 	^ depth
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>doDup [
+{ #category : #'instruction decoding' }
+Context >> doDup [
 	"Simulate the action of a 'duplicate top of stack' bytecode."
 
 	self push: self top
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>doNop [
+{ #category : #'instruction decoding' }
+Context >> doNop [
 
 	"do nothing"
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>doPop [
+{ #category : #'instruction decoding' }
+Context >> doPop [
 	"Simulate the action of a 'remove top of stack' bytecode."
 
 	self pop
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>"protocol: private"
-doPrimitive: primitiveIndex method: meth receiver: aReceiver args: arguments [
+{ #category : #private }
+Context >> doPrimitive: primitiveIndex method: meth receiver: aReceiver args: arguments [ 
 	"Simulate a primitive method whose index is primitiveIndex.  The simulated receiver and
 	 arguments are given as arguments to this message. If successful, push result and return
 	 resuming context, else ^ {errCode, PrimitiveFailToken}. Any primitive which provokes
@@ -930,21 +745,15 @@ doPrimitive: primitiveIndex method: meth receiver: aReceiver args: arguments [
 		ifFalse: [self push: value]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>endPC [
+{ #category : #private }
+Context >> endPC [
 	^closureOrNil
 		ifNil:	[self method endPC]
 		ifNotNil: [closureOrNil endPC]
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>errorReportOn: stream [
+{ #category : #'debugger access' }
+Context >> errorReportOn: stream [
 	"Write a detailed error report on the stack (above me) on a  
 	stream.  For both the error file, and emailing a bug report.   
 	Suppress any errors while getting printStrings.  Limit the length."
@@ -992,11 +801,8 @@ Context>>errorReportOn: stream [
 		aContext := aContext sender ].
 ]
 
-{
-	#category : #private-exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>evaluateSignal: exception [
+{ #category : #private-exceptions }
+Context >> evaluateSignal: exception [
 	"The following primitive is just a marker used to find the evaluation context. 
 	See MethodContext>>#isHandlerOrSignalingContext. "
 
@@ -1008,41 +814,29 @@ Context>>evaluateSignal: exception [
 	self return: value
 ]
 
-{
-	#category : #'special context access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>exception [
+{ #category : #'special context access' }
+Context >> exception [
 	"signaling context (Context>>evaluateSignal:) only. Access the exception argument."
 	^self tempAt: 1
 
 ]
 
-{
-	#category : #'special context access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>exceptionClass [
+{ #category : #'special context access' }
+Context >> exceptionClass [
 	"handlercontext only. access temporaries from BlockClosure>>#on:do:"
 	^self tempAt: 1
 
 ]
 
-{
-	#category : #'special context access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>exceptionHandlerBlock [
+{ #category : #'special context access' }
+Context >> exceptionHandlerBlock [
 	"handlercontext only. access temporaries from BlockClosure>>#on:do:"
 	^self tempAt: 2
 
 ]
 
-{
-	#category : #'system simulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>failPrimitiveWith: maybePrimFailToken [
+{ #category : #'system simulation' }
+Context >> failPrimitiveWith: maybePrimFailToken [
 	"The receiver is a freshly-created context on a primitive method.  Skip the callPrimitive:
 	 bytecode and store the primitive fail code if there is one and the method consumes it."
 	self skipCallPrimitive.
@@ -1051,11 +845,8 @@ Context>>failPrimitiveWith: maybePrimFailToken [
 		[self at: stackp put: maybePrimFailToken last]
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>findContextSuchThat: testBlock [
+{ #category : #query }
+Context >> findContextSuchThat: testBlock [
 	"Search self and my sender chain for first one that satisfies testBlock.  Return nil if none satisfy"
 
 	| context |
@@ -1067,11 +858,8 @@ Context>>findContextSuchThat: testBlock [
 	^ nil
 ]
 
-{
-	#category : #private-exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>findNextHandlerContext [
+{ #category : #private-exceptions }
+Context >> findNextHandlerContext [
 	"Return the next handler marked context, returning nil if there is none.  Search starts with self and proceeds up to nil."
 
 	| context |
@@ -1086,11 +874,8 @@ Context>>findNextHandlerContext [
 	^ context exception privHandlerContext nextHandlerContext
 ]
 
-{
-	#category : #private-exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>findNextHandlerOrSignalingContext [
+{ #category : #private-exceptions }
+Context >> findNextHandlerOrSignalingContext [
 	"Return the next handler/signaling marked context, answering nil if there is none. 
 	Search starts with self and proceeds up to nil."
 
@@ -1104,11 +889,8 @@ Context>>findNextHandlerOrSignalingContext [
 	^ nil
 ]
 
-{
-	#category : #private-exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>findNextUnwindContextUpTo: aContext [
+{ #category : #private-exceptions }
+Context >> findNextUnwindContextUpTo: aContext [
 	"Return the next unwind marked above the receiver, returning nil if there is none.  Search proceeds up to but not including aContext."
 
 	| context |
@@ -1123,11 +905,8 @@ Context>>findNextUnwindContextUpTo: aContext [
 	^nil
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>findSecondToOldestSimilarSender [
+{ #category : #query }
+Context >> findSecondToOldestSimilarSender [
 	"Search the stack for the second-to-oldest occurance of self's method.  Very useful for an infinite recursion.  Gets back to the second call so you can see one complete recursion cycle, and how it was called at the beginning."
 
 	| secondContext context lastContext |
@@ -1143,22 +922,16 @@ Context>>findSecondToOldestSimilarSender [
 
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>findSimilarSender [
+{ #category : #query }
+Context >> findSimilarSender [
 	"Return the closest sender with the same method, return nil if none found"
 
 	^ self sender findContextSuchThat: [ :context | 
 		context method == method ]
 ]
 
-{
-	#category : #private-exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>handleSignal: exception [
+{ #category : #private-exceptions }
+Context >> handleSignal: exception [
 	"Sent to handler (on:do:) contexts only.  If my exception class (first arg) handles exception then execute my handle block (second arg), otherwise forward this message to the next handler context.  If none left, execute exception's defaultAction (see nil>>handleSignal:)."
 
 	(self exceptionClass handles: exception)
@@ -1166,39 +939,27 @@ Context>>handleSignal: exception [
 	self evaluateSignal: exception
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>hasContext: aContext [
+{ #category : #query }
+Context >> hasContext: aContext [ 
 	"Answer whether aContext is me or one of my senders"
 
 	^ (self findContextSuchThat: [ :context | context == aContext ]) notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>hasInstVarRef [
+{ #category : #accessing }
+Context >> hasInstVarRef [
 	"Answer whether the receiver references an instance variable."
 
 	^self method hasInstVarRef.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>hasMethodReturn [
+{ #category : #accessing }
+Context >> hasMethodReturn [
 	^closureOrNil hasMethodReturn
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>hasSender: context [
+{ #category : #controlling }
+Context >> hasSender: context [ 
 	"Answer whether the receiver is strictly above context on the stack."
 
 	| senderContext |
@@ -1213,11 +974,8 @@ Context>>hasSender: context [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>home [
+{ #category : #accessing }
+Context >> home [ 
 	"Answer the context in which the receiver was defined."
 
 	closureOrNil == nil ifTrue:
@@ -1225,11 +983,8 @@ Context>>home [
 	^closureOrNil outerContext home
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>insertSender: aContext [
+{ #category : #private }
+Context >> insertSender: aContext [
 	"Insert aContext and its sender chain between me and my sender.  Return new callee of my original sender."
 
 	| context |
@@ -1239,11 +994,8 @@ Context>>insertSender: aContext [
 	^ context
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>instVarAt: index put: value [
+{ #category : #private }
+Context >> instVarAt: index put: value [
 	index = 3 
 		ifTrue: [
 			self stackp: value. 
@@ -1251,11 +1003,8 @@ Context>>instVarAt: index put: value [
 	^ super instVarAt: index put: value
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>isBlockContext [
+{ #category : #testing }
+Context >> isBlockContext [
 	"Is this executing a block versus a method?  In the new closure
 	 implemetation this is true if closureOrNil is not nil, in which case
 	 it should be holding a BlockClosure."
@@ -1263,95 +1012,65 @@ Context>>isBlockContext [
 	^closureOrNil isClosure
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>isBottomContext [
+{ #category : #query }
+Context >> isBottomContext [
 	"Answer if this is the last context (the first context invoked) in my sender chain"
 
 	^sender isNil
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>isContext [
+{ #category : #query }
+Context >> isContext [
 	^true
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>isDead [
+{ #category : #query }
+Context >> isDead [
 	"Has self finished"
 
 	^ pc isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>isExecutingBlock [
+{ #category : #testing }
+Context >> isExecutingBlock [
 	"for compatibility"
 	^self isBlockContext 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>isFailToken: anObject [
+{ #category : #private }
+Context >> isFailToken: anObject [
 	^ (self objectClass: anObject) == Array 
 			and: [ anObject size = 2 and: [(anObject at: 1) == PrimitiveFailToken]]
 ]
 
-{
-	#category : #private-exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>isHandlerContext [
+{ #category : #private-exceptions }
+Context >> isHandlerContext [
 	"is this context for #on:do:?"
 	^self isHandlerOrSignalingContext and: [ self selector == #on:do: ]
 ]
 
-{
-	#category : #private-exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>isHandlerOrSignalingContext [
+{ #category : #private-exceptions }
+Context >> isHandlerOrSignalingContext [
 	"Both BlockClosure>>on:do: (handler) and Context>>evaluateSignal: (signaling) 
 	are marked with primitive 199."
 	^method primitive = 199
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>isPrimFailToken: anObject [
+{ #category : #private }
+Context >> isPrimFailToken: anObject [
 	^ (self objectClass: anObject) == Array
 		  and: [anObject size = 2
 		  and: [anObject first == PrimitiveFailToken]]
 ]
 
-{
-	#category : #private-exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>isUnwindContext [
+{ #category : #private-exceptions }
+Context >> isUnwindContext [
 	"is this context for  method that is marked?"
 	^method primitive = 198
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>jump [
+{ #category : #controlling }
+Context >> jump [
 	"Abandon thisContext and resume self instead (using the same current process).  You may want to save thisContext's sender before calling this so you can jump back to it.
 	Self MUST BE a top context (ie. a suspended context or a abandoned context that was jumped out of).  A top context already has its return value on its stack (see Interpreter>>primitiveSuspend and other suspending primitives).
 	thisContext's sender is converted to a top context (by pushing a nil return value on its stack) so it can be jump back to."
@@ -1368,22 +1087,16 @@ Context>>jump [
 	^ top
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>jump: distance [
+{ #category : #'instruction decoding' }
+Context >> jump: distance [ 
 	"Simulate the action of a 'unconditional jump' bytecode whose offset is 
 	the argument, distance."
 
 	pc := pc + distance
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>jump: distance if: condition [
+{ #category : #'instruction decoding' }
+Context >> jump: distance if: condition [ 
 	"Simulate the action of a 'conditional jump' bytecode whose offset is the 
 	argument, distance, and whose condition is the argument, condition."
 
@@ -1398,11 +1111,8 @@ Context>>jump: distance if: condition [
 	(bool eqv: condition) ifTrue: [self jump: distance]
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>longStack [
+{ #category : #'debugger access' }
+Context >> longStack [
 	"Answer a String showing the top 100 contexts on my sender chain."
 
 	^ String streamContents: [ :stream |
@@ -1410,49 +1120,34 @@ Context>>longStack [
 			stream print: item; cr ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>method [
+{ #category : #accessing }
+Context >> method [
 
 	^method
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>methodClass [
+{ #category : #'debugger access' }
+Context >> methodClass [ 
 	"Answer the class in which the receiver's method was found."
 	
 	^self method methodClass ifNil:[self receiver class].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>methodNode [
+{ #category : #accessing }
+Context >> methodNode [
 	^ self method methodNode.
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>methodReturnConstant: value [
+{ #category : #'instruction decoding' }
+Context >> methodReturnConstant: value [
 	"Simulate the action of a 'return constant' bytecode whose value is the
 	 argument, value. This corresponds to a source expression like '^0'."
 
 	^self return: value from: self methodReturnContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>methodReturnContext [
+{ #category : #accessing }
+Context >> methodReturnContext [
 	"Answer the context from which an ^-return should return from."
 
 	closureOrNil == nil ifTrue:
@@ -1460,81 +1155,57 @@ Context>>methodReturnContext [
 	^closureOrNil outerContext methodReturnContext
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>methodReturnReceiver [
+{ #category : #'instruction decoding' }
+Context >> methodReturnReceiver [
 	"Simulate the action of a 'return receiver' bytecode. This corresponds to
 	 the source expression '^self'."
 
 	^self return: self receiver from: self methodReturnContext
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>methodReturnTop [
+{ #category : #'instruction decoding' }
+Context >> methodReturnTop [
 	"Simulate the action of a 'return top of stack' bytecode. This corresponds
 	 to source expressions like '^something'."
 
 	^self return: self pop from: self methodReturnContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>methodSelector [
+{ #category : #accessing }
+Context >> methodSelector [
 	^ self method selector
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>namedTempAt: index [
+{ #category : #'debugger access' }
+Context >> namedTempAt: index [
 	"Answer the value of the temp at index in the receiver's sequence of tempNames."
 	^self debuggerMap namedTempAt: index in: self
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>namedTempAt: index put: aValue [
+{ #category : #'debugger access' }
+Context >> namedTempAt: index put: aValue [
 	"Set the value of the temp at index in the receiver's sequence of tempNames.
 	 (Note that if the value is a copied value it is also set out along the lexical chain,
 	  but alas not in along the lexical chain.)."
 	^self debuggerMap namedTempAt: index put: aValue in: self
 ]
 
-{
-	#category : #private-exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>nextHandlerContext [
+{ #category : #private-exceptions }
+Context >> nextHandlerContext [
 
 	^ self sender findNextHandlerContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>numArgs [
+{ #category : #accessing }
+Context >> numArgs [
 	"Answer the number of arguments for this activation."
 	^closureOrNil
 		ifNil: [method numArgs]
 		ifNotNil: [closureOrNil numArgs]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>numTemps [
+{ #category : #accessing }
+Context >> numTemps [
 	"Answer the number of temporaries for this activation; this includes
 	 the number of arguments, and for blocks, the number of copied values."
 	^closureOrNil
@@ -1542,11 +1213,8 @@ Context>>numTemps [
 		ifNotNil: [closureOrNil numTemps]
 ]
 
-{
-	#category : #'mirror primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>object: anObject basicAt: index [
+{ #category : #'mirror primitives' }
+Context >> object: anObject basicAt: index [ 
 	"Answer the value of an indexable element in the argument anObject without sending
 	 it a message. Fail if the argument index is not an Integer or is out of bounds, or if
 	 anObject is not indexable. This mimics the action of the VM when it indexes an object.
@@ -1560,11 +1228,8 @@ Context>>object: anObject basicAt: index [
 		ifFalse: [self errorNonIntegerIndex]
 ]
 
-{
-	#category : #'mirror primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>object: anObject basicAt: index put: value [
+{ #category : #'mirror primitives' }
+Context >> object: anObject basicAt: index put: value [ 
 	"Store the last argument 
 	 value in the indexable element of the argument anObject indicated by index without sending
 	 anObject a message. Fail if the argument index is not an Integer or is out of bounds, or if
@@ -1583,11 +1248,8 @@ Context>>object: anObject basicAt: index put: value [
 		ifFalse: [self errorNonIntegerIndex]
 ]
 
-{
-	#category : #'mirror primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>object: anObject eqeq: anOtherObject [
+{ #category : #'mirror primitives' }
+Context >> object: anObject eqeq: anOtherObject [ 
 	"Answer whether the first and second arguments are the same object (have the
 	 same object pointer) without sending a message to the first argument.  This
 	 mimics the action of the VM when it compares two object pointers.  Used to
@@ -1598,11 +1260,8 @@ Context>>object: anObject eqeq: anOtherObject [
 	self primitiveFailed
 ]
 
-{
-	#category : #'mirror primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>object: anObject instVarAt: anIndex [
+{ #category : #'mirror primitives' }
+Context >> object: anObject instVarAt: anIndex [
 	"Primitive. Answer a fixed variable in an object. The numbering of the 
 	 variables corresponds to the named instance variables. Fail if the index 
 	 is not an Integer or is not the index of a fixed variable. Essential for the
@@ -1613,11 +1272,8 @@ Context>>object: anObject instVarAt: anIndex [
 	^self object: anObject basicAt: anIndex - (self objectClass: anObject) instSize
 ]
 
-{
-	#category : #'mirror primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>object: anObject instVarAt: anIndex put: aValue [
+{ #category : #'mirror primitives' }
+Context >> object: anObject instVarAt: anIndex put: aValue [ 
 	"Primitive. Store a value into a fixed variable in the argument anObject.
 	 The numbering of the variables corresponds to the named instance
 	 variables.  Fail if the index is not an Integer or is not the index of a
@@ -1631,11 +1287,8 @@ Context>>object: anObject instVarAt: anIndex put: aValue [
 	^self object: anObject basicAt: anIndex - (self objectClass: anObject) instSize put: aValue
 ]
 
-{
-	#category : #'mirror primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>object: anObject perform: selector withArguments: argArray inClass: lookupClass [
+{ #category : #'mirror primitives' }
+Context >> object: anObject perform: selector withArguments: argArray inClass: lookupClass [
 	"Send the selector, aSymbol, to anObject with arguments in argArray.
 	 Fail if the number of arguments expected by the selector 
 	 does not match the size of argArray, or if lookupClass
@@ -1655,20 +1308,14 @@ Context>>object: anObject perform: selector withArguments: argArray inClass: loo
 	self primitiveFailed
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>objectClass: aReceiver [
+{ #category : #'as yet unclassified' }
+Context >> objectClass: aReceiver [
 	<primitive: 111>
 	self primitiveFailed
 ]
 
-{
-	#category : #'mirror primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>objectSize: anObject [
+{ #category : #'mirror primitives' }
+Context >> objectSize: anObject [
 	"Answer the number of indexable variables in the argument anObject without sending
 	 it a message. This mimics the action of the VM when it fetches an object's variable size.
 	 Used to simulate the execution machinery by, for example, the debugger.
@@ -1679,32 +1326,23 @@ Context>>objectSize: anObject [
 	^0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>outerContext [
+{ #category : #accessing }
+Context >> outerContext [
 	"Answer the context within which the receiver is nested."
 
 	^closureOrNil ifNotNil:
 		[closureOrNil outerContext]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>outerMostContext [
+{ #category : #accessing }
+Context >> outerMostContext [
 	^ self outerContext 
 		ifNil: [ self ]
 		ifNotNil: [ self outerContext ]
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>pop [
+{ #category : #controlling }
+Context >> pop [
 	"Answer the top of the receiver's stack and remove the top of the stack."
 	| value |
 	value := self at: stackp.
@@ -1712,56 +1350,40 @@ Context>>pop [
 	^ value
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>popIntoLiteralVariable: value [
+{ #category : #'instruction decoding' }
+Context >> popIntoLiteralVariable: value [ 
 	"Simulate the action of bytecode that removes the top of the stack and 
 	stores it into a literal variable of my method."
 
 	value value: self pop
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>"protocol: instruction decoding"
-popIntoReceiverVariable: offset [
+{ #category : #'instruction decoding' }
+Context >> popIntoReceiverVariable: offset [ 
 	"Simulate the action of bytecode that removes the top of the stack and 
 	stores it into an instance variable of my receiver."
 
 	self object: self receiver instVarAt: offset + 1 put: self pop
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>popIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
+{ #category : #'instruction decoding' }
+Context >> popIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
 	"Simulate the action of bytecode that removes the top of the stack and  stores
 	 it into an offset in one of my local variables being used as a remote temp vector."
 
 	(self at: tempVectorIndex + 1) at: remoteTempIndex + 1 put: self pop
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>popIntoTemporaryVariable: offset [
+{ #category : #'instruction decoding' }
+Context >> popIntoTemporaryVariable: offset [ 
 	"Simulate the action of bytecode that removes the top of the stack and 
 	stores it into one of my temporary variables."
 
 	self at: offset + 1 put: self pop
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>print: anObject on: aStream [
+{ #category : #'debugger access' }
+Context >> print: anObject on: aStream [
 	"Safely print anObject in the face of direct ProtoObject subclasses"
 	| title |
 	(anObject class canUnderstand: #printOn:)
@@ -1772,11 +1394,8 @@ Context>>print: anObject on: aStream [
 		nextPutAll: title
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>printDebugOn: aStream [
+{ #category : #printing }
+Context >> printDebugOn: aStream [	
 	"print a condensed for of the stack.
 		For methods simply print Class >> selector
 		For blocks only print the first line"
@@ -1797,11 +1416,8 @@ Context>>printDebugOn: aStream [
 		ifTrue: [ aStream nextPutAll: '...' ].
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>printDetails: stream [
+{ #category : #printing }
+Context >> printDetails: stream [
 	"Put my class>>selector and instance variables and arguments and temporaries on the stream.  Protect against errors during printing."
 
 	| errorMessage string |
@@ -1825,11 +1441,8 @@ Context>>printDetails: stream [
 	stream cr
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>printOn: aStream [
+{ #category : #printing }
+Context >> printOn: aStream [
 	self outerContext
 		ifNil:
 			[ | selector class mclass |
@@ -1856,11 +1469,8 @@ Context>>printOn: aStream [
 			outerContext printOn: aStream ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>privRefresh [
+{ #category : #initialize-release }
+Context >> privRefresh [
 	"Reinitialize the receiver so that it is in the state it was at its creation."
 	 closureOrNil
 		ifNotNil:
@@ -1875,11 +1485,8 @@ Context>>privRefresh [
 				[:i | self tempAt: i put: nil]]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>privRefreshWith: aCompiledMethod [
+{ #category : #initialize-release }
+Context >> privRefreshWith: aCompiledMethod [ 
 	"Reinitialize the receiver as though it had been for a different method. 
 	 Used by a Debugger when one of the methods to which it refers is 
 	 recompiled."
@@ -1892,53 +1499,38 @@ Context>>privRefreshWith: aCompiledMethod [
 	self privRefresh
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>privSender: aContext [
+{ #category : #private }
+Context >> privSender: aContext [ 
 
 	sender := aContext
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>push: value [
+{ #category : #controlling }
+Context >> push: value [ 
 	"Push value on the receiver's stack."
 
 	self stackp: stackp + 1.
 	self at: stackp put: value
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>pushActiveContext [
+{ #category : #'instruction decoding' }
+Context >> pushActiveContext [
 	"Simulate the action of bytecode that pushes the the active context on the 
 	top of its own stack."
 
 	self push: self
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>pushActiveProcess [
+{ #category : #'instruction decoding' }
+Context >> pushActiveProcess [
 	"Simulate the action of bytecode that pushes the the active Process on the 
 	top of its own stack."
 
 	self push: Processor activeProcess
 ]
 
-{
-	#category : #'system simulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>pushArgs: arguments from: senderContext [
+{ #category : #'system simulation' }
+Context >> pushArgs: arguments from: senderContext [
 	"Helps simulate action of the value primitive for closures.
 	 This is used by Context>>runSimulated:contextAtEachStep:"
 
@@ -1954,11 +1546,8 @@ Context>>pushArgs: arguments from: senderContext [
 	sender := senderContext
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>pushClosureCopyNumCopiedValues: numCopied numArgs: numArgs blockSize: blockSize [
+{ #category : #'instruction decoding' }
+Context >> pushClosureCopyNumCopiedValues: numCopied numArgs: numArgs blockSize: blockSize [
 	"Simulate the action of a 'closure copy' bytecode whose result is the
 	 new BlockClosure for the following code"
 	| copiedValues |
@@ -1976,19 +1565,13 @@ Context>>pushClosureCopyNumCopiedValues: numCopied numArgs: numArgs blockSize: b
 	self jump: blockSize
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>pushClosureTemps: numTemps [
+{ #category : #'instruction decoding' }
+Context >> pushClosureTemps: numTemps [
 	numTemps timesRepeat: [ self push: nil ]
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>pushConsArrayWithElements: numElements [
+{ #category : #'instruction decoding' }
+Context >> pushConsArrayWithElements: numElements [ 
 	| array |
 	array := Array new: numElements.
 	numElements to: 1 by: -1 do: [ :i |
@@ -1996,22 +1579,16 @@ Context>>pushConsArrayWithElements: numElements [
 	self push: array
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>pushConstant: value [
+{ #category : #'instruction decoding' }
+Context >> pushConstant: value [ 
 	"Simulate the action of bytecode that pushes the constant, value, on the 
 	top of the stack."
 
 	self push: value
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>pushFullClosure: compiledBlock numCopied: numCopied receiverOnStack: onStack ignoreOuterContext: ignore [
+{ #category : #'instruction decoding' }
+Context >> pushFullClosure: compiledBlock numCopied: numCopied receiverOnStack: onStack ignoreOuterContext: ignore [
 	| copiedValues cls |
 	copiedValues := (1 to: numCopied) collect: [ :i | self pop ].
 	self push: (cls := (FullBlockClosure new: numCopied) 
@@ -2024,42 +1601,29 @@ Context>>pushFullClosure: compiledBlock numCopied: numCopied receiverOnStack: on
 		 cls at: copiedValues size - i + 1 put: (copiedValues at: i) ]
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>pushLiteralVariable: value [
+{ #category : #'instruction decoding' }
+Context >> pushLiteralVariable: value [ 
 	"Simulate the action of bytecode that pushes the contents of the literal 
 	variable whose index is the argument, index, on the top of the stack."
 
 	self push: value value
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>pushNewArrayOfSize: arraySize [
+{ #category : #'instruction decoding' }
+Context >> pushNewArrayOfSize: arraySize [ 
 	self push: (Array new: arraySize)
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>pushReceiver [
+{ #category : #'instruction decoding' }
+Context >> pushReceiver [
 	"Simulate the action of bytecode that pushes the active context's receiver 
 	on the top of the stack."
 
 	self push: self receiver
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>"protocol: instruction decoding"
-pushReceiverVariable: offset [
+{ #category : #'instruction decoding' }
+Context >> pushReceiverVariable: offset [ 
 	"Simulate the action of bytecode that pushes the contents of the receiver's 
 	instance variable whose index is the argument, index, on the top of the 
 	stack."
@@ -2067,21 +1631,15 @@ pushReceiverVariable: offset [
 	self push: (self object: self receiver instVarAt: offset + 1)
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>pushRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
+{ #category : #'instruction decoding' }
+Context >> pushRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
 	"Simulate the action of bytecode that pushes the value at remoteTempIndex
 	 in one of my local variables being used as a remote temp vector."
 	self push: ((self at: tempVectorIndex + 1) at: remoteTempIndex + 1)
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>pushTemporaryVariable: offset [
+{ #category : #'instruction decoding' }
+Context >> pushTemporaryVariable: offset [ 
 	"Simulate the action of bytecode that pushes the contents of the 
 	temporary variable whose index is the argument, index, on the top of 
 	the stack."
@@ -2089,12 +1647,8 @@ Context>>pushTemporaryVariable: offset [
 	self push: (self at: offset + 1)
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>"protocol: controlling"
-quickSend: selector to: aReceiver with: arguments super: superFlag [
+{ #category : #controlling }
+Context >> quickSend: selector to: aReceiver with: arguments super: superFlag [
 	"Send the given selector with arguments in an environment which closely resembles the non-simulating environment, with an interjected unwind-protected block to catch nonlocal returns.
 	Attention: don't get lost!"
 	| lookupClass contextToReturnTo result |
@@ -2118,11 +1672,8 @@ quickSend: selector to: aReceiver with: arguments super: superFlag [
 	^contextToReturnTo
 ]
 
-{
-	#category : #'system simulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>quickStep [
+{ #category : #'system simulation' }
+Context >> quickStep [
 	"If the next instruction is a send, just perform it.
 	Otherwise, do a normal step."
 
@@ -2130,40 +1681,28 @@ Context>>quickStep [
 	^self step
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>receiver [
+{ #category : #accessing }
+Context >> receiver [ 
 
 	^receiver
 ]
 
-{
-	#category : #private-exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>receiver: anObject [
+{ #category : #private-exceptions }
+Context >> receiver: anObject [
 
 	receiver := anObject
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>release [
+{ #category : #'debugger access' }
+Context >> release [
 	"Remove information from the receiver and all of the contexts on its 
 	sender chain in order to break circularities."
 
 	self releaseTo: nil
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>releaseTo: caller [
+{ #category : #'debugger access' }
+Context >> releaseTo: caller [ 
 	"Remove information from the receiver and the contexts on its sender 
 	chain up to caller in order to break circularities."
 
@@ -2176,11 +1715,8 @@ Context>>releaseTo: caller [
 			contex := senderContext ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>removeSelf [
+{ #category : #accessing }
+Context >> removeSelf [
 	"Nil the receiver pointer and answer its former value."
 
 	| tempSelf |
@@ -2189,11 +1725,8 @@ Context>>removeSelf [
 	^tempSelf
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>respondsToUnknownBytecode [
+{ #category : #'instruction decoding' }
+Context >> respondsToUnknownBytecode [
 	"This method is triggerred by the VM when the interpreter tries to execute an unknown bytecode"
 	
 	| unknownBytecode |
@@ -2203,11 +1736,8 @@ Context>>respondsToUnknownBytecode [
 
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>restart [
+{ #category : #controlling }
+Context >> restart [
 	"Unwind thisContext to self and resume from beginning.  Execute unwind blocks when unwinding.  ASSUMES self is a sender of thisContext"
 
 	| context unwindBlock |
@@ -2228,43 +1758,31 @@ Context>>restart [
 
 ]
 
-{
-	#category : #private-exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>restartWithNewReceiver: obj [
+{ #category : #private-exceptions }
+Context >> restartWithNewReceiver: obj [
 
 	self
 		swapReceiver: obj;
 		restart
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>resume [
+{ #category : #controlling }
+Context >> resume [
 	"Roll back thisContext to self and resume.  Execute unwind blocks when rolling back.  ASSUMES self is a sender of thisContext"
 
 	self resume: nil
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>resume: value [
+{ #category : #controlling }
+Context >> resume: value [
 	"Unwind thisContext to self and resume with value as result of last send.  Execute unwind blocks when unwinding.  ASSUMES self is a sender of thisContext"
 	
 	self resume: value through: (thisContext findNextUnwindContextUpTo: self)
 	
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>resume: value through: firstUnwindContext [
+{ #category : #controlling }
+Context >> resume: value through: firstUnwindContext [
 	"Unwind thisContext to self and resume with value as result of last send.
 	 Execute any unwind blocks while unwinding.
 	 ASSUMES self is a sender of thisContext."
@@ -2285,32 +1803,23 @@ Context>>resume: value through: firstUnwindContext [
 
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>return [
+{ #category : #controlling }
+Context >> return [
 	"Unwind until my sender is on top"
 
 	self return: self receiver
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>return: value [
+{ #category : #controlling }
+Context >> return: value [
 	"Unwind thisContext to self and return value to self's sender.  Execute any unwind blocks while unwinding.  ASSUMES self is a sender of thisContext"
 
 	sender ifNil: [^self cannotReturn: value to: sender].
 	sender resume: value
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>return: value from: aSender [
+{ #category : #'instruction decoding' }
+Context >> return: value from: aSender [ 
 	"For simulation.  Roll back self to aSender and return value from it.  Execute any unwind blocks on the way.  ASSUMES aSender is a sender of self"
 
 	| newTop context |
@@ -2326,11 +1835,8 @@ Context>>return: value from: aSender [
 
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>return: value through: firstUnwindContext [
+{ #category : #controlling }
+Context >> return: value through: firstUnwindContext [
 	"Unwind thisContext to self and return value to self's sender.
 	 Execute any unwind blocks while unwinding.
 	 ASSUMES self is a sender of thisContext."
@@ -2339,11 +1845,8 @@ Context>>return: value through: firstUnwindContext [
 	sender resume: value through: firstUnwindContext
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>return: value to: aSender [
+{ #category : #controlling }
+Context >> return: value to: aSender [
 	"Simulate the return of value to aSender."
 
 	self releaseTo: aSender.
@@ -2351,11 +1854,8 @@ Context>>return: value to: aSender [
 	^ aSender push: value
 ]
 
-{
-	#category : #'system simulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>runSimulated: aBlock contextAtEachStep: block2 [
+{ #category : #'system simulation' }
+Context >> runSimulated: aBlock contextAtEachStep: block2 [
 	"Simulate the execution of the argument, aBlock, until it ends. aBlock 
 	MUST NOT contain an '^'. Evaluate block2 with the current context 
 	prior to each instruction executed. Answer the simulated value of aBlock."
@@ -2388,11 +1888,8 @@ Context>>runSimulated: aBlock contextAtEachStep: block2 [
 	
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>runUntilErrorOrReturnFrom: aSender [
+{ #category : #controlling }
+Context >> runUntilErrorOrReturnFrom: aSender [ 
 	"ASSUMES aSender is a sender of self.  Execute self's stack until aSender returns or an unhandled exception is raised.  Return a pair containing the new top context and a possibly nil exception.  The exception is not nil if it was raised before aSender returned and it was not handled.  The exception is returned rather than openning the debugger, giving the caller the choice of how to handle it."
 	"Self is run by jumping directly to it (the active process abandons thisContext and executes self).  However, before jumping to self we insert an ensure block under aSender that jumps back to thisContext when evaluated.  We also insert an exception handler under aSender that jumps back to thisContext when an unhandled exception is raised.  In either case, the inserted ensure and exception handler are removed once control jumps back to thisContext."
 
@@ -2430,11 +1927,8 @@ Context>>runUntilErrorOrReturnFrom: aSender [
 
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>secondFromBottom [
+{ #category : #query }
+Context >> secondFromBottom [
 	"Return the second from bottom of my sender chain"
 
 	self sender ifNil: [ ^ nil ].
@@ -2442,21 +1936,15 @@ Context>>secondFromBottom [
 		context sender sender isNil]
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>selector [
+{ #category : #'debugger access' }
+Context >> selector [
 	"Answer the selector of the method that created the receiver."
 
 	^self method selector ifNil: [self method defaultSelector].
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>send: selector super: superFlag numArgs: numArgs [
+{ #category : #'instruction decoding' }
+Context >> send: selector super: superFlag numArgs: numArgs [
 	"Simulate the action of bytecodes that send a message with selector, 
 	selector. The argument, superFlag, tells whether the receiver of the 
 	message was specified with 'super' in the source method. The arguments 
@@ -2482,11 +1970,8 @@ Context>>send: selector super: superFlag numArgs: numArgs [
 	^ self send: selector to: currentReceiver with: arguments super: superFlag
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>send: selector to: rcvr with: arguments lookupIn: lookupClass [
+{ #category : #controlling }
+Context >> send: selector to: rcvr with: arguments lookupIn: lookupClass [
 	"Simulate the action of sending a message with selector and arguments
 	 to rcvr. The argument, lookupClass, is the class in which to lookup the
 	 message.  This is the receiver's class for normal messages, but for super
@@ -2510,11 +1995,8 @@ Context>>send: selector to: rcvr with: arguments lookupIn: lookupClass [
 	^ctxt
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>send: selector to: aReceiver with: arguments super: superFlag [
+{ #category : #controlling }
+Context >> send: selector to: aReceiver with: arguments super: superFlag [ 
 	"Simulate the action of sending a message with selector, selector, and 
 	arguments, args, to receiver. The argument, superFlag, tells whether the 
 	receiver of the message was specified with 'super' in the source method."
@@ -2556,21 +2038,15 @@ Context>>send: selector to: aReceiver with: arguments super: superFlag [
 	^ context
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>sender [
+{ #category : #'debugger access' }
+Context >> sender [
 	"Answer the context that sent the message that created the receiver."
 
 	^sender
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>setNamedPrimitiveInformationFrom: fromMethod toMethod: toMethod [
+{ #category : #private }
+Context >> setNamedPrimitiveInformationFrom: fromMethod toMethod: toMethod [
 	"For named primitives, the first literal contains a special object that has information of the primitive. Example:
 (StandardFileStream >> #primOpen:writable:) literalAt: 1 ----->>>>   #(#FilePlugin #primitiveFileOpen 0 147).
 In this method we cope such information from one to another one."
@@ -2581,11 +2057,8 @@ In this method we cope such information from one to another one."
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>setSender: newSender receiver: newReceiver method: newMethod arguments: arguments [
+{ #category : #private }
+Context >> setSender: newSender receiver: newReceiver method: newMethod arguments: arguments [ 
 	"Create the receiver's initial state."
 
 	sender := newSender.
@@ -2598,11 +2071,8 @@ Context>>setSender: newSender receiver: newReceiver method: newMethod arguments:
 		self at: i put: (arguments at: i)]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>setSender: newSender receiver: newReceiver method: newMethod closure: newClosure startpc: startpc [
+{ #category : #private }
+Context >> setSender: newSender receiver: newReceiver method: newMethod closure: newClosure startpc: startpc [
 	"Create the receiver's initial state."
 
 	sender := newSender.
@@ -2613,31 +2083,22 @@ Context>>setSender: newSender receiver: newReceiver method: newMethod closure: n
 	stackp := 0
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>shortDebugStack [
+{ #category : #controlling }
+Context >> shortDebugStack [
 	"Answer a String showing the top ten contexts on my sender chain."
 
 	^ String streamContents: [ :stream | self debugStack: 10 on: stream ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>shortDebugStackOn: aStream [
+{ #category : #printing }
+Context >> shortDebugStackOn: aStream [
 	"print the top 30 contexts on my sender chain."
 
 	^ self debugStack: 30 on: aStream
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>shortStack [
+{ #category : #'debugger access' }
+Context >> shortStack [
 	"Answer a String showing the top ten contexts on my sender chain."
 
 	^ String streamContents: [ :stream |
@@ -2645,11 +2106,8 @@ Context>>shortStack [
 			stream print: item; cr]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>simulatePrimitive: primitiveIndex in: aMethod receiver: aReceiver arguments: arguments [
+{ #category : #private }
+Context >> simulatePrimitive: primitiveIndex in: aMethod receiver: aReceiver arguments: arguments [
 	| key simulator |
 	
 	key := primitiveIndex = 117 
@@ -2675,11 +2133,8 @@ Context>>simulatePrimitive: primitiveIndex in: aMethod receiver: aReceiver argum
 		context: self
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>singleRelease [
+{ #category : #'debugger access' }
+Context >> singleRelease [
 	"Remove information from the receiver in order to break circularities."
 
 	stackp ifNotNil: [
@@ -2690,11 +2145,8 @@ Context>>singleRelease [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>size [
+{ #category : #accessing }
+Context >> size [
 	"Primitive. Answer the number of indexable variables in the receiver. 
 	This value is the same as the largest legal subscript. Essential. See Object 
 	documentation whatIsAPrimitive.  Override the default primitive to give latitude to
@@ -2705,29 +2157,20 @@ Context>>size [
 	^self primitiveFail
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>sourceCode [
+{ #category : #'debugger access' }
+Context >> sourceCode [
 	^self method sourceCode.
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>stack [
+{ #category : #'debugger access' }
+Context >> stack [ 
 	"Answer an Array of the contexts on the receiver's sender chain."
 
 	^self stackOfSize: 9999
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>stackOfSize: limit [
+{ #category : #'debugger access' }
+Context >> stackOfSize: limit [ 
 	"Answer an OrderedCollection of the top 'limit' contexts
 	 on the receiver's sender chain."
 
@@ -2740,20 +2183,14 @@ Context>>stackOfSize: limit [
 	^ stack
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>stackPtr [
+{ #category : #private }
+Context >> stackPtr [  
 	"For use only by the SystemTracer and the Debugger, Inspectors etc"
 	^ stackp
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>stackp: newStackp [
+{ #category : #private }
+Context >> stackp: newStackp [
 	"Storing into the stack pointer is a potentially dangerous thing.
 	This primitive stores nil into any cells that become accessible as a result,
 	and it performs the entire operation atomically."
@@ -2772,32 +2209,23 @@ Context>>stackp: newStackp [
 "
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>startpc [
+{ #category : #private }
+Context >> startpc [
 	^closureOrNil
 		ifNil:	[self method initialPC]
 		ifNotNil: [closureOrNil startpc]
 ]
 
-{
-	#category : #'system simulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>step [
+{ #category : #'system simulation' }
+Context >> step [
 	"Simulate the execution of the receiver's next bytecode. Answer the 
 	context that would be the active context after this bytecode."
 
 	^self interpretNextInstructionFor: self
 ]
 
-{
-	#category : #'system simulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>stepToCallee [
+{ #category : #'system simulation' }
+Context >> stepToCallee [
 	"Step to callee or sender"
 
 	| context |
@@ -2806,11 +2234,8 @@ Context>>stepToCallee [
 	^ context
 ]
 
-{
-	#category : #'system simulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>stepToHome: aContext [
+{ #category : #'system simulation' }
+Context >> stepToHome: aContext [ 
 	"Resume self until the home of top context is aContext.  Top context may be a block context."
 
 	| home ctxt here error topContext context |
@@ -2845,11 +2270,8 @@ Context>>stepToHome: aContext [
 	^ {ctxt. nil}
 ]
 
-{
-	#category : #'system simulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>stepToSendOrReturn [
+{ #category : #'system simulation' }
+Context >> stepToSendOrReturn [
 	"Simulate the execution of bytecodes until either sending a message or 
 	returning a value to the receiver (that is, until switching contexts)."
 
@@ -2863,11 +2285,8 @@ Context>>stepToSendOrReturn [
 				^context ]]
 ]
 
-{
-	#category : #'system simulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>stepUntilSomethingOnStack [
+{ #category : #'system simulation' }
+Context >> stepUntilSomethingOnStack [
 	"Simulate the execution of bytecodes until either sending a message or 
 	returning a value to the receiver (that is, until switching contexts)."
 
@@ -2881,65 +2300,46 @@ Context>>stepUntilSomethingOnStack [
 				^context ]]
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>storeIntoLiteralVariable: value [
+{ #category : #'instruction decoding' }
+Context >> storeIntoLiteralVariable: value [ 
 	"Simulate the action of bytecode that stores the top of the stack into a 
 	literal variable of my method."
 
 	value value: self top
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>"protocol: instruction decoding"
-storeIntoReceiverVariable: offset [
+{ #category : #'instruction decoding' }
+Context >> storeIntoReceiverVariable: offset [ 
 	"Simulate the action of bytecode that stores the top of the stack into an 
 	instance variable of my receiver."
 
 	self object: self receiver instVarAt: offset + 1 put: self top
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>storeIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
+{ #category : #'instruction decoding' }
+Context >> storeIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
 	"Simulate the action of bytecode that stores the top of the stack at
 	 an offset in one of my local variables being used as a remote temp vector."
 
 	(self at: tempVectorIndex + 1) at: remoteTempIndex + 1 put: self top
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>storeIntoTemporaryVariable: offset [
+{ #category : #'instruction decoding' }
+Context >> storeIntoTemporaryVariable: offset [ 
 	"Simulate the action of bytecode that stores the top of the stack into one 
 	of my temporary variables."
 
 	self at: offset + 1 put: self top
 ]
 
-{
-	#category : #private-exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>swapReceiver: newReceiver [
+{ #category : #private-exceptions }
+Context >> swapReceiver: newReceiver [
 
 	receiver := newReceiver
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>swapSender: coroutine [
+{ #category : #'debugger access' }
+Context >> swapSender: coroutine [ 
 	"Replace the receiver's sender with coroutine and answer the receiver's 
 	previous sender. For use in coroutining."
 
@@ -2949,11 +2349,8 @@ Context>>swapSender: coroutine [
 	^oldSender
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>tempAt: index [
+{ #category : #accessing }
+Context >> tempAt: index [ 
 	"Answer the value of the temporary variable whose index is the 
 	 argument, index.  Primitive. Assumes receiver is indexable. Answer the
 	 value of an indexable element in the receiver. Fail if the argument index
@@ -2965,11 +2362,8 @@ Context>>tempAt: index [
 	^self at: index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>tempAt: index put: value [
+{ #category : #accessing }
+Context >> tempAt: index put: value [ 
 	"Store the argument, value, as the temporary variable whose index is the 
 	 argument, index.  Primitive. Assumes receiver is indexable. Answer the
 	 value of an indexable element in the receiver. Fail if the argument index
@@ -2981,11 +2375,8 @@ Context>>tempAt: index put: value [
 	^self at: index put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>tempNamed: aName [
+{ #category : #accessing }
+Context >> tempNamed: aName [
 	"Returns the value of the temporaries, aName."
 
 	"Implementation notes: temporary initialization in blocks simply uses pushNil to allocate and initialize each temp.  So if one inspects [|a|a:=2] and sends it self method symbolic you get:
@@ -3004,30 +2395,21 @@ Context>>tempNamed: aName [
 	^ self namedTempAt: index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>tempNamed: aName put: anObject [
+{ #category : #accessing }
+Context >> tempNamed: aName put: anObject [
 	^self namedTempAt: (self tempNames indexOf: aName) put: anObject
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>tempNames [
+{ #category : #'debugger access' }
+Context >> tempNames [
 	"Answer a SequenceableCollection of the names of the receiver's temporary 
 	 variables, which are strings."
 
 	^ self debuggerMap tempNamesForContext: self
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>tempsAndValues [
+{ #category : #'debugger access' }
+Context >> tempsAndValues [
 	"Return a string of the temporary variabls and their current values"
 	
 	^ String streamContents: [ :aStream |
@@ -3037,11 +2419,8 @@ Context>>tempsAndValues [
 			 aStream cr ]].
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>tempsAndValuesLimitedTo: sizeLimit indent: indent [
+{ #category : #'debugger access' }
+Context >> tempsAndValuesLimitedTo: sizeLimit indent: indent [
 	"Return a string of the temporary variabls and their current values"
 
 	^ String streamContents: [ :aStream |
@@ -3053,11 +2432,8 @@ Context>>tempsAndValuesLimitedTo: sizeLimit indent: indent [
 			aStream cr ]].
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>terminate [
+{ #category : #controlling }
+Context >> terminate [
 	"Make myself unresumable."
 
 	sender := nil.
@@ -3065,11 +2441,8 @@ Context>>terminate [
 
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>terminateTo: previousContext [
+{ #category : #controlling }
+Context >> terminateTo: previousContext [
 	"Terminate all the Contexts between me and previousContext, if previousContext is on my Context stack. Make previousContext my sender."
 
 	| currentContext sendingContext |
@@ -3083,21 +2456,15 @@ Context>>terminateTo: previousContext [
 	sender := previousContext
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>top [
+{ #category : #controlling }
+Context >> top [
 	"Answer the top of the receiver's stack."
 
 	^self at: stackp
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>tryNamedPrimitiveIn: aCompiledMethod for: aReceiver withArgs: arguments [
+{ #category : #private }
+Context >> tryNamedPrimitiveIn: aCompiledMethod for: aReceiver withArgs: arguments [
 	<primitive: 218 error: errorCode>
 	errorCode ifNotNil: [
 		"If errorCode is an integer other than -1 there was a problem with primitive 218,
@@ -3120,11 +2487,8 @@ Context>>tryNamedPrimitiveIn: aCompiledMethod for: aReceiver withArgs: arguments
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>tryPrimitiveFor: aMethod receiver: aReceiver args: arguments [
+{ #category : #private }
+Context >> tryPrimitiveFor: aMethod receiver: aReceiver args: arguments [ 
 	"If this method has a primitive index, then run the primitive and return its result.
 	Otherwise (and also if the primitive fails) return PrimitiveFailToken,
 	as an indication that the method should be activated and run as bytecodes."
@@ -3134,49 +2498,34 @@ Context>>tryPrimitiveFor: aMethod receiver: aReceiver args: arguments [
 	^ self doPrimitive: primIndex method: aMethod receiver: aReceiver args: arguments
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>unusedBytecode [
+{ #category : #'instruction decoding' }
+Context >> unusedBytecode [
 	^ self respondsToUnknownBytecode 
 ]
 
-{
-	#category : #'special context access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>unwindBlock [
+{ #category : #'special context access' }
+Context >> unwindBlock [
 	"unwindContext only. access temporaries from BlockClosure>>#ensure: and BlockClosure>>#ifCurtailed:"
 	^self tempAt: 1
 
 ]
 
-{
-	#category : #'special context access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>unwindComplete [
+{ #category : #'special context access' }
+Context >> unwindComplete [
 	"unwindContext only. access temporaries from BlockClosure>>#ensure: and BlockClosure>>#ifCurtailed:"
 	^self tempAt: 2
 
 ]
 
-{
-	#category : #'special context access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>unwindComplete: aBoolean [
+{ #category : #'special context access' }
+Context >> unwindComplete: aBoolean [
 	"unwindContext only. access temporaries from BlockClosure>>#ensure: and BlockClosure>>#ifCurtailed:"
 	self tempAt: 2 put: aBoolean
 
 ]
 
-{
-	#category : #private-exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>unwindTo: aContext [
+{ #category : #private-exceptions }
+Context >> unwindTo: aContext [
 
 	| context unwindBlock |
 	context := self.
@@ -3188,11 +2537,8 @@ Context>>unwindTo: aContext [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Context>>withoutPrimitiveTryNamedPrimitiveIn: aCompiledMethod for: aReceiver withArgs: arguments [
+{ #category : #private }
+Context >> withoutPrimitiveTryNamedPrimitiveIn: aCompiledMethod for: aReceiver withArgs: arguments [
 "When using the debugger we want to run a method step by step. What what happens when we do a step into a CompiledMethod which has a primitive? If such a method is executed form outside the Debugger (normal scenario) the VM knows that such CompiledMethod has a primitive declaration and hence executes it. If it fails then it continues executing all the bytecode of the method. Otherwise, it just returns. 
 
 Now, what is the problem with the Debugger? The problem is that if the primitive fail, we don't want that the VM directly executes all the remaining bytecodes of the method. Instead, we would like to go step by step witht he Debugger, just as happens with normal methods. 

@@ -1,30 +1,19 @@
-Extension {
-	#name : #UITheme
-}
+Extension { #name : #UITheme }
 
-{
-	#category : #'*GT-Debugger',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-UITheme>>sameClassContextStyleFor: aContext [
+{ #category : #'*GT-Debugger' }
+UITheme >> sameClassContextStyleFor: aContext [
 
 	^ {TextColor blue}
 ]
 
-{
-	#category : #'*GT-Debugger',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-UITheme>>samePackageContextStyleFor: aContext [
+{ #category : #'*GT-Debugger' }
+UITheme >> samePackageContextStyleFor: aContext [
 
 	^ {TextColor black}
 ]
 
-{
-	#category : #'*GT-Debugger',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-UITheme>>styleContext: aContext from: aDebugger. [
+{ #category : #'*GT-Debugger' }
+UITheme >> styleContext: aContext from: aDebugger. [
 
 	(aDebugger selectedContext == aContext) ifTrue: [ ^ {TextColor color: Smalltalk ui theme textColor}  ].
 
@@ -36,11 +25,8 @@ UITheme>>styleContext: aContext from: aDebugger. [
 	^ self unrelatedContextStyleFor: aContext
 ]
 
-{
-	#category : #'*GT-Debugger',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-UITheme>>unrelatedContextStyleFor: aContext [
+{ #category : #'*GT-Debugger' }
+UITheme >> unrelatedContextStyleFor: aContext [
 
 	^ {TextColor gray}
 ]

@@ -9,23 +9,16 @@ Class {
 	#instVars : [
 		'head'
 	],
-	#category : #Collections-Atomic,
-	#timestamp : 'Igor.Stasenko 10/16/2010 03:58'
+	#category : #Collections-Atomic
 }
 
-{
-	#category : #'stack-compliant protocol',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-LIFOQueue>>errorEmptyStack [
+{ #category : #'stack-compliant protocol' }
+LIFOQueue >> errorEmptyStack [
 	self error: 'this stack is empty'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-LIFOQueue>>fastPeek [
+{ #category : #accessing }
+LIFOQueue >> fastPeek [
 	"Answer a top-most value without removing it from queue.
 	Answer nil, if queue is empty or currently blocked by other process,
 	which reading from queue"
@@ -40,22 +33,16 @@ LIFOQueue>>fastPeek [
 	^ result
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-LIFOQueue>>initialize [
+{ #category : #initialization }
+LIFOQueue >> initialize [
 	| dummy |
 	dummy := self newItem.
 	dummy next: nil; object: dummy.
 	head := dummy.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-LIFOQueue>>next [
+{ #category : #accessing }
+LIFOQueue >> next [
 	| dummy tail |
 
 	dummy := self newItem.
@@ -82,11 +69,8 @@ LIFOQueue>>next [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-LIFOQueue>>nextIfNone: aBlock [
+{ #category : #accessing }
+LIFOQueue >> nextIfNone: aBlock [
 	| dummy tail |
 
 	dummy := self newItem.
@@ -109,19 +93,13 @@ LIFOQueue>>nextIfNone: aBlock [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-LIFOQueue>>nextOrNil [
+{ #category : #accessing }
+LIFOQueue >> nextOrNil [
 	^ self nextIfNone: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-LIFOQueue>>nextPut: anObject [
+{ #category : #accessing }
+LIFOQueue >> nextPut: anObject [
 	
 	| newItem oldHead |
 
@@ -138,11 +116,8 @@ LIFOQueue>>nextPut: anObject [
 	^ anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-LIFOQueue>>peek [
+{ #category : #accessing }
+LIFOQueue >> peek [
 	"answer a top-most value without removing it,  or nil, if queue is empty.
 	May block if there's another process reading from queue"
 	
@@ -156,19 +131,13 @@ LIFOQueue>>peek [
 	^ result
 ]
 
-{
-	#category : #'stack-compliant protocol',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-LIFOQueue>>pop [
+{ #category : #'stack-compliant protocol' }
+LIFOQueue >> pop [
 
 	^ self nextIfNone: [ self errorEmptyStack ]
 ]
 
-{
-	#category : #'stack-compliant protocol',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-LIFOQueue>>push: anObject [
+{ #category : #'stack-compliant protocol' }
+LIFOQueue >> push: anObject [
 	^ self nextPut: anObject
 ]

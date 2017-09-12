@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #GLMFinderTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFinderTest>>testEmptyPanes [
+{ #category : #tests }
+GLMFinderTest >> testEmptyPanes [
 	| browser | 
 	browser := GLMFinder new. 
 	self assert: browser panes isEmpty. 
 	self assert: browser transmissions isEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFinderTest>>testExplicitTransmission [
+{ #category : #tests }
+GLMFinderTest >> testExplicitTransmission [
 	| finder |
 	finder := GLMFinder new.
 	finder transmit fromOutsidePort: #entity; toOutsidePort: #selection.
@@ -31,11 +21,8 @@ GLMFinderTest>>testExplicitTransmission [
 	self assert: (finder pane port: #selection) value equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFinderTest>>testExplicitTransmissionComplex [
+{ #category : #tests }
+GLMFinderTest >> testExplicitTransmissionComplex [
 	"this tests a possible bug in the context copying that might prevent the explicit outside transmission"
 
 	| finder browser |
@@ -51,11 +38,8 @@ GLMFinderTest>>testExplicitTransmissionComplex [
 	self assert: (browser panes first port: #something) value equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFinderTest>>testFixedSize [
+{ #category : #tests }
+GLMFinderTest >> testFixedSize [
 	| browser | 
 	browser := GLMFinder new. 
 	self assert: browser hasFixedSizePanes.
@@ -63,11 +47,8 @@ GLMFinderTest>>testFixedSize [
 	self assert: browser hasFixedSizePanes not	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFinderTest>>testLastActivePresentation [
+{ #category : #tests }
+GLMFinderTest >> testLastActivePresentation [
 	| browser |
 	browser := GLMFinder new.
 	browser
@@ -85,11 +66,8 @@ GLMFinderTest>>testLastActivePresentation [
 	self assert: browser panes last lastActivePresentation title equals: 'c'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFinderTest>>testPaneAddedAnnouncement [
+{ #category : #tests }
+GLMFinderTest >> testPaneAddedAnnouncement [
 	| browser count |
 	count := 0.
 	browser := GLMFinder new.
@@ -100,11 +78,8 @@ GLMFinderTest>>testPaneAddedAnnouncement [
 	self assert: count equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFinderTest>>testPaneCreation [
+{ #category : #tests }
+GLMFinderTest >> testPaneCreation [
 	| browser |
 	browser := GLMFinder new.
 	browser addPresentation: (GLMPresentation new title: 'presentation1').
@@ -137,11 +112,8 @@ GLMFinderTest>>testPaneCreation [
 	self assert: (browser panes last port: #entity) value equals: #value5
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFinderTest>>testPaneName [
+{ #category : #tests }
+GLMFinderTest >> testPaneName [
 	| browser |
 	browser := GLMFinder new.
 	browser addPresentation: (GLMPresentation new title: 'presentation1').
@@ -151,11 +123,8 @@ GLMFinderTest>>testPaneName [
 	self assert: browser panes last name equals: '2'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFinderTest>>testPaneRemovedAnnouncement [
+{ #category : #tests }
+GLMFinderTest >> testPaneRemovedAnnouncement [
 	| browser count |
 	count := 0.
 	browser := GLMFinder new.
@@ -170,11 +139,8 @@ GLMFinderTest>>testPaneRemovedAnnouncement [
 	self assert: count equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFinderTest>>testPaneReplacedAnnouncement [
+{ #category : #tests }
+GLMFinderTest >> testPaneReplacedAnnouncement [
 	| browser count |
 	count := 0.
 	browser := GLMFinder new.
@@ -191,11 +157,8 @@ GLMFinderTest>>testPaneReplacedAnnouncement [
 	self assert: count equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFinderTest>>testPanesHaveDifferentRegistries [
+{ #category : #tests }
+GLMFinderTest >> testPanesHaveDifferentRegistries [
 	| browser |
 	browser := GLMFinder new.
 	browser addPresentation: (GLMPresentation new title: 'presentation1').
@@ -207,11 +170,8 @@ GLMFinderTest>>testPanesHaveDifferentRegistries [
 	self deny: (browser panes first instVarNamed: 'registry') == (browser panes second instVarNamed: 'registry')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFinderTest>>testPortPublishing [
+{ #category : #tests }
+GLMFinderTest >> testPortPublishing [
 	| browser |
 	browser := GLMFinder new.
 	(browser pane port: #entity) value: #value1.
@@ -236,11 +196,8 @@ GLMFinderTest>>testPortPublishing [
 	self assert: (browser pane port: #hover) value equals: #value4
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFinderTest>>testUnregisterAnnouncementsWhenRemovingPane [
+{ #category : #tests }
+GLMFinderTest >> testUnregisterAnnouncementsWhenRemovingPane [
 	| announcer browser presentation actualFirstPresentation actualLastPresentation |
 	announcer := GLMAnnouncer new.
 	browser := GLMFinder new.
@@ -276,11 +233,8 @@ GLMFinderTest>>testUnregisterAnnouncementsWhenRemovingPane [
 	self assert: announcer glmSubscriptions anyOne subscriber presentation == actualFirstPresentation
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFinderTest>>testValidSubscriptionsInComplexBrowser [
+{ #category : #tests }
+GLMFinderTest >> testValidSubscriptionsInComplexBrowser [
 	| browser navigator tabulator1 tabulator2 pane1 pane2 content1 content2 details1 details2|
 	
 	navigator := GLMTabulator new.

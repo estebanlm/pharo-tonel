@@ -9,46 +9,33 @@ Class {
 		'class',
 		'source'
 	],
-	#category : #Renraku-Critiques,
-	#timestamp : 'YuriyTymchuk 7/10/2016 15:36'
+	#category : #Renraku-Critiques
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReMissingMethodCritique class>>for: anEntity by: aRule class: aClass selector: aSymbol [
+{ #category : #'as yet unclassified' }
+ReMissingMethodCritique class >> for: anEntity by: aRule class: aClass selector: aSymbol [
 
 	^ self basicNew 
 		initializeRule: aRule target: anEntity class: aClass selector: aSymbol;
 		yourself 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReMissingMethodCritique>>beShouldBeImplemented [
+{ #category : #actions }
+ReMissingMethodCritique >> beShouldBeImplemented [
 	"set the sorce code of the method-to-be-created to shouldBeImplemented"
 
 	source := '^ self shouldBeImplemented' 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReMissingMethodCritique>>beSubclassResponsibility [
+{ #category : #actions }
+ReMissingMethodCritique >> beSubclassResponsibility [
 	"set the sorce code of the method-to-be-created to subclassResponsibility"
 
 	source := '^ self subclassResponsibility' 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReMissingMethodCritique>>change [
+{ #category : #accessing }
+ReMissingMethodCritique >> change [
 	"an 'add method' change that create the missing method"
 	
 	^ RBAddMethodChange 
@@ -56,20 +43,14 @@ ReMissingMethodCritique>>change [
 		in: class
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReMissingMethodCritique>>initialize [
+{ #category : #initialization }
+ReMissingMethodCritique >> initialize [
 	super initialize.
 	source := ''
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReMissingMethodCritique>>initializeRule: aRule target: anEntity class: aClass selector: aSymbol [
+{ #category : #initialization }
+ReMissingMethodCritique >> initializeRule: aRule target: anEntity class: aClass selector: aSymbol [
 
 	self initializeRule: aRule target: anEntity.
 	class := aClass.
@@ -80,11 +61,8 @@ ReMissingMethodCritique>>initializeRule: aRule target: anEntity class: aClass se
 		ifFalse: [ class name, '>>#', selector ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReMissingMethodCritique>>methodHeader [
+{ #category : #private }
+ReMissingMethodCritique >> methodHeader [
 
 	 ^ ($: split: selector) allButLast
 		ifEmpty: [ selector ]
@@ -95,28 +73,19 @@ ReMissingMethodCritique>>methodHeader [
 				header, keyword, ': arg', (index := index + 1) asString, ' ' ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReMissingMethodCritique>>providesChange [
+{ #category : #testing }
+ReMissingMethodCritique >> providesChange [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReMissingMethodCritique>>source [
+{ #category : #accessing }
+ReMissingMethodCritique >> source [
 	"source code of the method-to-be-created excluding selector and args"
 	^ source
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReMissingMethodCritique>>source: anObject [
+{ #category : #accessing }
+ReMissingMethodCritique >> source: anObject [
 	"set the source code of the method-to-be-created. This should not include the selector and args"
 
 	source := anObject

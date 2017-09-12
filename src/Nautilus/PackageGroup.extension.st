@@ -1,11 +1,6 @@
-Extension {
-	#name : #PackageGroup
-}
+Extension { #name : #PackageGroup }
 
-{
-	#category : #'*Nautilus',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageGroup>>restrict: anEnvironment [
+{ #category : #'*Nautilus' }
+PackageGroup >> restrict: anEnvironment [
 	^ anEnvironment forPackages: self packages
 ]

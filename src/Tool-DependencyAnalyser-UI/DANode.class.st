@@ -10,31 +10,21 @@ Class {
 		'packageTreeNautilusUI',
 		'cycle'
 	],
-	#category : #Tool-DependencyAnalyser-UI-Nodes,
-	#timestamp : 'BaptisteQuide 7/11/2014 11:43'
+	#category : #Tool-DependencyAnalyser-UI-Nodes
 }
 
-{
-	#category : #building-menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>addMenuEntriesOn: aMenuGroup [
+{ #category : #building-menu }
+DANode >> addMenuEntriesOn: aMenuGroup [
 	"overide this method to add contextual menu on nodes"
 ]
 
-{
-	#category : #browse-nautilus,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>browseClass: classToBrowse [
+{ #category : #browse-nautilus }
+DANode >> browseClass: classToBrowse [
 	Smalltalk tools browser openOnClass: classToBrowse
 ]
 
-{
-	#category : #browse-nautilus,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>browseClassInNautilus: aClass [
+{ #category : #browse-nautilus }
+DANode >> browseClassInNautilus: aClass [
 	| nautilus |
 	
 	nautilus := self rootNode packageTreeNautilus.
@@ -43,27 +33,18 @@ DANode>>browseClassInNautilus: aClass [
 	self rootNode packageTreeNautilusUI sourceTextModel announce: NautilusClassSelected.
 ]
 
-{
-	#category : #browse-nautilus,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>browseInNautilus [
+{ #category : #browse-nautilus }
+DANode >> browseInNautilus [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #browse-nautilus,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>browseInOtherNautilus [
+{ #category : #browse-nautilus }
+DANode >> browseInOtherNautilus [
 	"do nothing by default"
 ]
 
-{
-	#category : #browse-nautilus,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>browseMethodInNautilus: aMethod [
+{ #category : #browse-nautilus }
+DANode >> browseMethodInNautilus: aMethod [
 	| classToBrowse nautilus compiledMethod nautilusUI |
 	nautilus := self rootNode packageTreeNautilus.
 	nautilusUI := self rootNode packageTreeNautilusUI.
@@ -76,11 +57,8 @@ DANode>>browseMethodInNautilus: aMethod [
 	
 ]
 
-{
-	#category : #browse-nautilus,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>browsePackageInNautilus: aPackage [
+{ #category : #browse-nautilus }
+DANode >> browsePackageInNautilus: aPackage [
 	| classToBrowse classFromPackage classesToBrowse |
 	classFromPackage := aPackage classes.
 	classesToBrowse := classFromPackage reject: [ :class | classFromPackage includes: class superclass ].
@@ -89,118 +67,76 @@ DANode>>browsePackageInNautilus: aPackage [
 	classToBrowse ifNotNil: [ self browseClassInNautilus: classToBrowse ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>cycle: anObject [
+{ #category : #accessing }
+DANode >> cycle: anObject [
 	cycle := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>isClassToDependencyNode [
+{ #category : #testing }
+DANode >> isClassToDependencyNode [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>isCycle [
+{ #category : #testing }
+DANode >> isCycle [
 	^ cycle
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>isCycleNode [
+{ #category : #testing }
+DANode >> isCycleNode [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>isPackageNode [
+{ #category : #testing }
+DANode >> isPackageNode [
  	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>isReferenceNode [
+{ #category : #testing }
+DANode >> isReferenceNode [
 	^ false
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>label [
+{ #category : #displaying }
+DANode >> label [
 	^ self content displayString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>packageTreeNautilus [
+{ #category : #accessing }
+DANode >> packageTreeNautilus [
 	^ packageTreeNautilus
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>packageTreeNautilus: anObject [
+{ #category : #accessing }
+DANode >> packageTreeNautilus: anObject [
 	packageTreeNautilus := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>packageTreeNautilusUI [
+{ #category : #accessing }
+DANode >> packageTreeNautilusUI [
 	^ packageTreeNautilusUI
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>packageTreeNautilusUI: anObject [
+{ #category : #accessing }
+DANode >> packageTreeNautilusUI: anObject [
 	packageTreeNautilusUI := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>packageUnderAnalysis [
+{ #category : #accessing }
+DANode >> packageUnderAnalysis [
 	^ self rootNode daPackage rPackageSet packages first
 ]
 
-{
-	#category : #browse-nautilus,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>refreshNautilus: nautilus [
+{ #category : #browse-nautilus }
+DANode >> refreshNautilus: nautilus [
 
 	| nautilusUI |
 	nautilusUI := self rootNode packageTreeNautilusUI.
 	nautilusUI updatePackageGroupAndClassList.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>rootNode [
+{ #category : #private }
+DANode >> rootNode [
 	| rootNode currentNode |
 	currentNode := self.
 	rootNode := currentNode parentNode.
@@ -211,11 +147,8 @@ DANode>>rootNode [
 	^ currentNode.
 ]
 
-{
-	#category : #browse-nautilus,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>setSelectionOnMethod: aMethod class: aClass with: nautilus [
+{ #category : #browse-nautilus }
+DANode >> setSelectionOnMethod: aMethod class: aClass with: nautilus [
 	| protocol nautilusUI |
 	aMethod ifNotNil: [ protocol := aMethod protocol ].
 	nautilusUI := self rootNode packageTreeNautilusUI.
@@ -233,18 +166,12 @@ DANode>>setSelectionOnMethod: aMethod class: aClass with: nautilus [
 		giveFocusToMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>treeModelParent [
+{ #category : #accessing }
+DANode >> treeModelParent [
 	^ treeModelParent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DANode>>treeModelParent: anObject [
+{ #category : #accessing }
+DANode >> treeModelParent: anObject [
 	treeModelParent := anObject
 ]

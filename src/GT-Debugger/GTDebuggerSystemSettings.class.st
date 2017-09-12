@@ -4,15 +4,11 @@ I register settings only needed for GTDebugger.
 Class {
 	#name : #GTDebuggerSystemSettings,
 	#superclass : #Object,
-	#category : #GT-Debugger-Model,
-	#timestamp : 'AndreiChis 1/7/2016 10:10'
+	#category : #GT-Debugger-Model
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerSystemSettings class>>debugSettingsOn: aBuilder [
+{ #category : #settings }
+GTDebuggerSystemSettings class >> debugSettingsOn: aBuilder [
 	<systemsettings>
 	
 	(aBuilder setting: #enableStackColoring)

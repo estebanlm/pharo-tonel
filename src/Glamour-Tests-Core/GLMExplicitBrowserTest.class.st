@@ -1,28 +1,18 @@
-"
-
-"
 Class {
 	#name : #GLMExplicitBrowserTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExplicitBrowserTest>>testAddTransmissionReturn [
+{ #category : #tests }
+GLMExplicitBrowserTest >> testAddTransmissionReturn [
 	| transmission |
 	transmission := GLMTransmission new.
 	self assert: (GLMExplicitBrowser new addTransmission: transmission) == transmission
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExplicitBrowserTest>>testJumpstartTransmission [
+{ #category : #tests }
+GLMExplicitBrowserTest >> testJumpstartTransmission [
 	| browser presentation |
 	browser := GLMExplicitBrowser new.
 	presentation := GLMPresentation new.
@@ -43,11 +33,8 @@ GLMExplicitBrowserTest>>testJumpstartTransmission [
 	self assert: browser panes first presentations first rootPrototype equals: presentation
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExplicitBrowserTest>>testPresentationBoundPort [
+{ #category : #tests }
+GLMExplicitBrowserTest >> testPresentationBoundPort [
 	| browser outerPort1 outerPort2 transmission1 transmission2 |
 	browser := GLMExplicitBrowser new.
 	browser addNewPane.
@@ -114,11 +101,8 @@ GLMExplicitBrowserTest>>testPresentationBoundPort [
 				== browser transmissions last"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExplicitBrowserTest>>testSetup [
+{ #category : #tests }
+GLMExplicitBrowserTest >> testSetup [
 	| browser pane1 pane2 transmission |
 	browser := GLMExplicitBrowser new.
 	pane1 := browser addNewPane.
@@ -137,11 +121,8 @@ GLMExplicitBrowserTest>>testSetup [
 	self assert: browser transmissions first == transmission
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExplicitBrowserTest>>testSimpleTransmission [
+{ #category : #tests }
+GLMExplicitBrowserTest >> testSimpleTransmission [
 	| browser pane1 pane2 presentation1 presentation2 transmission announcement |
 	browser := GLMExplicitBrowser new.
 	presentation1 := GLMPresentation new.
@@ -166,11 +147,8 @@ GLMExplicitBrowserTest>>testSimpleTransmission [
 	self assert: announcement notNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExplicitBrowserTest>>testTransmissionBundle [
+{ #category : #tests }
+GLMExplicitBrowserTest >> testTransmissionBundle [
 	| browser pane1 pane2 pane3 presentation1 presentation2 transmission |
 	browser := GLMExplicitBrowser new.
 	presentation1 := GLMPresentation new.
@@ -206,11 +184,8 @@ GLMExplicitBrowserTest>>testTransmissionBundle [
 	self assert: pane3 presentations first rootPrototype equals: presentation2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExplicitBrowserTest>>testTriggeringConditions [
+{ #category : #tests }
+GLMExplicitBrowserTest >> testTriggeringConditions [
 	| browser pane1 pane2 transmission |
 	browser := GLMExplicitBrowser new.
 	browser pane: GLMTestPane new.

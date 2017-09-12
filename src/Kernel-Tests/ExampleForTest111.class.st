@@ -4,6 +4,5 @@ An example class at level 3 (indirectly below Object) used for testing class hie
 Class {
 	#name : #ExampleForTest111,
 	#superclass : #ExampleForTest11,
-	#category : #Kernel-Tests-Classes,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:35'
+	#category : #Kernel-Tests-Classes
 }

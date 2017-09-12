@@ -10,87 +10,59 @@ Class {
 		'owner',
 		'origin'
 	],
-	#category : #HiedraTests,
-	#timestamp : 'MartinDias 3/30/2016 23:18'
+	#category : #HiedraTests
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiTestNode class>>content: anObject [
+{ #category : #'instance creation' }
+HiTestNode class >> content: anObject [
 	^ self basicNew
 		initializeWithContent: anObject;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiTestNode class>>content: anObject parents: aCollection [
+{ #category : #'instance creation' }
+HiTestNode class >> content: anObject parents: aCollection [
 	^ (self content: anObject)
 		parents: aCollection;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiTestNode>>content [
+{ #category : #accessing }
+HiTestNode >> content [
 	^ content
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiTestNode>>initializeWithContent: anObject [
+{ #category : #initialization }
+HiTestNode >> initializeWithContent: anObject [
 	self initialize.
 	content := anObject.
 	parents := #().
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiTestNode>>origin [
+{ #category : #accessing }
+HiTestNode >> origin [
 	^ origin
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiTestNode>>origin: aHiNode  [
+{ #category : #accessing }
+HiTestNode >> origin: aHiNode [ 
 	origin := aHiNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiTestNode>>parents [
+{ #category : #accessing }
+HiTestNode >> parents [
 	
 	^ parents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiTestNode>>parents: anObject [
+{ #category : #accessing }
+HiTestNode >> parents: anObject [
 	
 	parents := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiTestNode>>printOn: aStream  [
+{ #category : #printing }
+HiTestNode >> printOn: aStream [ 
 
 	super printOn: aStream.	
 	

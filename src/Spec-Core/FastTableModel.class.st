@@ -11,35 +11,25 @@ Class {
 		'doubleClick',
 		'columns'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'StephanEggermont 2/1/2016 10:57'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel class>>adapterName [
+{ #category : #specs }
+FastTableModel class >> adapterName [
 
 	^ #FastTableAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel class>>defaultSpec [
+{ #category : #specs }
+FastTableModel class >> defaultSpec [
 	<spec: #default>
 	
 	^ #(FastTableAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel class>>example [
+{ #category : #example }
+FastTableModel class >> example [
 	| example |
 	example := self new.
 	example
@@ -49,11 +39,8 @@ FastTableModel class>>example [
 	^ example
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel class>>exampleMultipleSelection [
+{ #category : #example }
+FastTableModel class >> exampleMultipleSelection [
 	| example |
 	example := self new.
 	example
@@ -64,109 +51,76 @@ FastTableModel class>>exampleMultipleSelection [
 	^ example
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel>>columns [
+{ #category : #accessing }
+FastTableModel >> columns [
 	^ columns
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel>>doubleClick: event [
+{ #category : #api }
+FastTableModel >> doubleClick: event [
 
 	doubleClick value cull: event
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel>>doubleClickAction [
+{ #category : #api }
+FastTableModel >> doubleClickAction [
 	"<api: #inspect>"
 	"Return the block evaluated on double click"
 	
 	^ doubleClick value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel>>doubleClickAction: aBlock [
+{ #category : #api }
+FastTableModel >> doubleClickAction: aBlock [
 	"<api: #block getter:#doubleClickAction registration: #whenDoubleClickActionChanged:>"
 	"Set the block evaluated on double click."
 	
 	doubleClick value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel>>getIconFor: anItem [
+{ #category : #api }
+FastTableModel >> getIconFor: anItem [
 
 	^ iconHolder value cull: anItem cull: self
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel>>handlesDoubleClick [
+{ #category : #api }
+FastTableModel >> handlesDoubleClick [
 
 	^ handlesDoubleClick value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel>>handlesDoubleClick: aBoolean [
+{ #category : #api }
+FastTableModel >> handlesDoubleClick: aBoolean [
 	"<api: #block getter:#handlesDoubleClick registration: #whenHandlesDoubleClickChanged:>"
 	"Enable or disable double click on the list."
 	
 	handlesDoubleClick value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel>>icons [
+{ #category : #api }
+FastTableModel >> icons [
 	"<api: #inspect>"
 	"Return the block which takes an item as argument and returns the icon to display in the list"
 	
 	^ iconHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel>>icons: aBlock [
+{ #category : #api }
+FastTableModel >> icons: aBlock [
 	"<api: #block getter: #icon registration: #whenIconsChanged: >"
 	"Set a block which takes an item as argument and returns the icon to display in the list"
 	iconHolder value: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel>>initialize [
+{ #category : #initialization }
+FastTableModel >> initialize [
 	super initialize.
 	columns := {FTColumn new}
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel>>initializeValueHolders [
+{ #category : #initialization }
+FastTableModel >> initializeValueHolders [
 
 	super initializeValueHolders.
 
@@ -176,49 +130,34 @@ FastTableModel>>initializeValueHolders [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel>>numberOfColumns: aNumber [
+{ #category : #accessing }
+FastTableModel >> numberOfColumns: aNumber [
 	columns := ((1 to: aNumber) collect: [ :index | FTArrayIndexColumn index: index ] )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel>>numberOfColumns: aNumber withWidths: widths [
+{ #category : #accessing }
+FastTableModel >> numberOfColumns: aNumber withWidths: widths [
 	columns := ((1 to: aNumber) collect: [ :index | 
 		FTArrayIndexColumn index: index width: (widths at: index) ] )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel>>prepareForFilteredDataSourceWith: items [
+{ #category : #private }
+FastTableModel >> prepareForFilteredDataSourceWith: items [
 
 	listHolder := items asValueHolder.
 	listHolder whenChangedDo: [ self refreshListItems ].
 	listItemsCache := nil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel>>registerEvents [
+{ #category : #initialization }
+FastTableModel >> registerEvents [
 	super registerEvents.
 	handlesDoubleClick whenChangedDo: [ :bool | self changed: { #handlesDoubleClick . bool } ].
 
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FastTableModel>>whenIconsChanged: aBlock  [
+{ #category : #api-events }
+FastTableModel >> whenIconsChanged: aBlock [ 
 	
 	iconHolder whenChangedDo: aBlock 
 

@@ -11,25 +11,18 @@ Class {
 	#instVars : [
 		'version'
 	],
-	#category : #MonticelloGUI,
-	#timestamp : '<historical>'
+	#category : #MonticelloGUI
 }
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector class>>taskbarIconName [
+{ #category : #icons }
+MCVersionInspector class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^ #smallSaveIcon
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>adopt [
+{ #category : #actions }
+MCVersionInspector >> adopt [
 	(self confirm:
 'Modifying ancestry can be dangerous unless you know
 what you are doing.  Are you sure you want to adopt
@@ -37,20 +30,14 @@ what you are doing.  Are you sure you want to adopt
 		ifTrue: [self version adopt]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>browse [
+{ #category : #actions }
+MCVersionInspector >> browse [
 
 	^ self version browse
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>buttonSpecs [
+{ #category : #'morphic ui' }
+MCVersionInspector >> buttonSpecs [
        ^ #((Browse browse 'Browse this version' hasVersion)
                (History history 'Browse the history of this version' hasVersion)
                (Changes changes 'Browse the changes this version would make to the
@@ -64,11 +51,8 @@ hasVersion)
 hasVersion))
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>changes [
+{ #category : #actions }
+MCVersionInspector >> changes [
 	"Open a patch morph for the changes."
 	
 	self
@@ -77,19 +61,13 @@ MCVersionInspector>>changes [
 		to: self version info name
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>defaultLabel [
+{ #category : #'morphic ui' }
+MCVersionInspector >> defaultLabel [
 	^ 'Version: ', self version info name
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>diff [
+{ #category : #actions }
+MCVersionInspector >> diff [
 	| ancestorVersion |
 	self pickAncestor ifNotNil:
 		[:ancestor |
@@ -97,51 +75,33 @@ MCVersionInspector>>diff [
 		(self version asDiffAgainst: ancestorVersion) open]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>hasVersion [
+{ #category : #testing }
+MCVersionInspector >> hasVersion [
 	^version notNil
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>history [
+{ #category : #actions }
+MCVersionInspector >> history [
 	(MCVersionHistoryBrowser new ancestry: self versionInfo) show
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>initialExtent [
+{ #category : #'morphic ui' }
+MCVersionInspector >> initialExtent [
 	^ 400@200
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>load [
+{ #category : #actions }
+MCVersionInspector >> load [
 	Cursor wait showWhile: [self version load]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>merge [
+{ #category : #actions }
+MCVersionInspector >> merge [
 	self version merge
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>pickAncestor [
+{ #category : #'morphic ui' }
+MCVersionInspector >> pickAncestor [
 	| index versions |
 	versions := self version info breadthFirstAncestors.
 	index := UIManager default chooseFrom: (versions collect: [:ea | ea name])
@@ -149,30 +109,21 @@ MCVersionInspector>>pickAncestor [
 	^ index = 0 ifFalse: [versions at: index]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>pickRepository [
+{ #category : #'morphic ui' }
+MCVersionInspector >> pickRepository [
 	| index |
 	index := UIManager default chooseFrom: (self repositories collect: [:ea | ea description])
 				title: 'Repository:'.
 	^ index = 0 ifFalse: [self repositories at: index]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>repositories [
+{ #category : #'morphic ui' }
+MCVersionInspector >> repositories [
 	^ MCRepositoryGroup default repositories
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>save [
+{ #category : #actions }
+MCVersionInspector >> save [
 	
 	self pickRepository 
 		ifNotNil: [ :ea | 
@@ -180,53 +131,35 @@ MCVersionInspector>>save [
 			ea storeVersion: self version ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>summary [
+{ #category : #accessing }
+MCVersionInspector >> summary [
 	^self hasVersion
 		ifTrue: [ self versionSummary ]
 		ifFalse: [ String new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>version [
+{ #category : #accessing }
+MCVersionInspector >> version [
 	^ version
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>version: aVersion [
+{ #category : #accessing }
+MCVersionInspector >> version: aVersion [
 	version := aVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>versionInfo [
+{ #category : #accessing }
+MCVersionInspector >> versionInfo [
 	^ self version info
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>versionSummary [
+{ #category : #accessing }
+MCVersionInspector >> versionSummary [
 	^ self version summary
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionInspector>>widgetSpecs [
+{ #category : #'morphic ui' }
+MCVersionInspector >> widgetSpecs [
 	^ #(
 		((buttonRow) (0 0 1 0) (0 0 0 30))
 		((textMorph: summary) (0 0 1 1) (0 30 0 0))

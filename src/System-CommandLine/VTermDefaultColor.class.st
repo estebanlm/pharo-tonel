@@ -5,33 +5,23 @@ I can return the default color of the background and the default color of the fo
 Class {
 	#name : #VTermDefaultColor,
 	#superclass : #Object,
-	#category : #System-CommandLine,
-	#timestamp : 'ValentinRyckewaert 8/9/2016 11:25'
+	#category : #System-CommandLine
 }
 
-{
-	#category : #terminfo,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermDefaultColor>>asTerminfoCharacterBackground [
+{ #category : #terminfo }
+VTermDefaultColor >> asTerminfoCharacterBackground [
 	"I give a value to the background default color"
 	^ (40 "Background indicator" + 9 "default color") asString
 ]
 
-{
-	#category : #terminfo,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermDefaultColor>>asTerminfoCharacterFont [
+{ #category : #terminfo }
+VTermDefaultColor >> asTerminfoCharacterFont [
 	"I give a value to the font default color"
 	^ (30 "Font indicator" + 9 "default color") asString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermDefaultColor>>isVTermDefaultColor [
+{ #category : #testing }
+VTermDefaultColor >> isVTermDefaultColor [
 	"A default color is a default color in anycase"
 	
 	^ true

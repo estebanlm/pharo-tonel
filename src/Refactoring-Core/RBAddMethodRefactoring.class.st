@@ -18,25 +18,18 @@ Class {
 		'protocols',
 		'source'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 21:37'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddMethodRefactoring class>>addMethod: aString toClass: aClass inProtocols: protocolList  [
+{ #category : #'instance creation' }
+RBAddMethodRefactoring class >> addMethod: aString toClass: aClass inProtocols: protocolList [ 
 	^self new addMethod: aString
 		toClass: aClass
 		inProtocols: protocolList
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddMethodRefactoring class>>model: aRBSmalltalk addMethod: aString toClass: aClass inProtocols: protocolList  [
+{ #category : #'instance creation' }
+RBAddMethodRefactoring class >> model: aRBSmalltalk addMethod: aString toClass: aClass inProtocols: protocolList [ 
 	^(self new)
 		model: aRBSmalltalk;
 		addMethod: aString
@@ -45,21 +38,15 @@ RBAddMethodRefactoring class>>model: aRBSmalltalk addMethod: aString toClass: aC
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddMethodRefactoring>>addMethod: aString toClass: aClass inProtocols: protocolList  [
+{ #category : #initialize-release }
+RBAddMethodRefactoring >> addMethod: aString toClass: aClass inProtocols: protocolList [ 
 	class := self classObjectFor: aClass.
 	source := aString.
 	protocols := protocolList
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddMethodRefactoring>>preconditions [
+{ #category : #preconditions }
+RBAddMethodRefactoring >> preconditions [
 	| selector method |
 	method := RBParser parseMethod: source
 				onError: 
@@ -71,11 +58,8 @@ RBAddMethodRefactoring>>preconditions [
 	^(RBCondition canUnderstand: selector in: class) not
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddMethodRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBAddMethodRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream
@@ -88,10 +72,7 @@ RBAddMethodRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddMethodRefactoring>>transform [
+{ #category : #transforming }
+RBAddMethodRefactoring >> transform [
 	class compile: source classified: protocols
 ]

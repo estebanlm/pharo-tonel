@@ -13,15 +13,11 @@ Class {
 		'browsedEnvironment',
 		'renameAccessors'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 21:25'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring class>>model: aRBSmalltalk rename: aVarName to: aName in: aClass  [
+{ #category : #'instance creation' }
+RBRenameInstanceVariableRefactoring class >> model: aRBSmalltalk rename: aVarName to: aName in: aClass [ 
 	^(self new)
 		model: aRBSmalltalk;
 		rename: aVarName
@@ -30,11 +26,8 @@ RBRenameInstanceVariableRefactoring class>>model: aRBSmalltalk rename: aVarName 
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring class>>model: aRBSmalltalk rename: aVarName to: aName in: aClass renameAccessors: aBoolean [
+{ #category : #'instance creation' }
+RBRenameInstanceVariableRefactoring class >> model: aRBSmalltalk rename: aVarName to: aName in: aClass renameAccessors: aBoolean [
 	^(self new)
 		model: aRBSmalltalk;
 		rename: aVarName
@@ -44,22 +37,16 @@ RBRenameInstanceVariableRefactoring class>>model: aRBSmalltalk rename: aVarName 
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring class>>rename: aVarName to: aName in: aClass [
+{ #category : #'instance creation' }
+RBRenameInstanceVariableRefactoring class >> rename: aVarName to: aName in: aClass [
 	^self new
 		rename: aVarName
 		to: aName
 		in: aClass
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring class>>rename: aVarName to: aName in: aClass renameAccessors: aBoolean [
+{ #category : #'instance creation' }
+RBRenameInstanceVariableRefactoring class >> rename: aVarName to: aName in: aClass renameAccessors: aBoolean [
 	^self new
 		rename: aVarName
 		to: aName
@@ -67,11 +54,8 @@ RBRenameInstanceVariableRefactoring class>>rename: aVarName to: aName in: aClass
 		renameAccessors: aBoolean
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring>>addNewAccessors [
+{ #category : #transforming }
+RBRenameInstanceVariableRefactoring >> addNewAccessors [
 	| refactoring |
 	refactoring := RBCreateAccessorsForVariableRefactoring
 		model: self
@@ -83,64 +67,43 @@ RBRenameInstanceVariableRefactoring>>addNewAccessors [
 		createSetterAccessor
 ]
 
-{
-	#category : #refactoring,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring>>browsedEnvironment [
+{ #category : #refactoring }
+RBRenameInstanceVariableRefactoring >> browsedEnvironment [
 	^ browsedEnvironment ifNil: [ browsedEnvironment := RBBrowserEnvironment new ]
 ]
 
-{
-	#category : #refactoring,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring>>executeRefactoring: aRefactoring  [
+{ #category : #refactoring }
+RBRenameInstanceVariableRefactoring >> executeRefactoring: aRefactoring [ 
 	aRefactoring primitiveExecute.
 	RBParser parseExpression: aRefactoring storeString
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring>>initialize [
+{ #category : #initialize-release }
+RBRenameInstanceVariableRefactoring >> initialize [
 	super initialize.
 	renameAccessors := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring>>newName [
+{ #category : #accessing }
+RBRenameInstanceVariableRefactoring >> newName [
 	^ newName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring>>newName: anObject [
+{ #category : #accessing }
+RBRenameInstanceVariableRefactoring >> newName: anObject [
 	newName := anObject
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring>>preconditions [
+{ #category : #preconditions }
+RBRenameInstanceVariableRefactoring >> preconditions [
 	^(RBCondition isValidInstanceVariableName: newName for: class) 
 		& (RBCondition definesInstanceVariable: variableName in: class) 
 			& (RBCondition hierarchyOf: class definesVariable: newName) not 
 			& (RBCondition isGlobal: newName in: self model) not
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring>>removeOldAccessors [
+{ #category : #transforming }
+RBRenameInstanceVariableRefactoring >> removeOldAccessors [
 	| oldAccessors |
 	oldAccessors := (class allSelectors
 		select: [ :each | each = variableName asSymbol or: [ each = (variableName , ':') asSymbol ] ]
@@ -148,46 +111,31 @@ RBRenameInstanceVariableRefactoring>>removeOldAccessors [
 	oldAccessors do: [ :each | class removeMethod: each selector ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring>>rename: aVarName to: aName in: aClass [
+{ #category : #initialize-release }
+RBRenameInstanceVariableRefactoring >> rename: aVarName to: aName in: aClass [
 	self rename: aVarName to: aName in: aClass renameAccessors: false
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring>>rename: aVarName to: aName in: aClass renameAccessors: aBoolean [
+{ #category : #initialize-release }
+RBRenameInstanceVariableRefactoring >> rename: aVarName to: aName in: aClass renameAccessors: aBoolean [
 	self variable: aVarName class: aClass.
 	newName := aName.
 	renameAccessors := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring>>renameAccessors [
+{ #category : #accessing }
+RBRenameInstanceVariableRefactoring >> renameAccessors [
 	^ renameAccessors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring>>renameAccessors: anObject [
+{ #category : #accessing }
+RBRenameInstanceVariableRefactoring >> renameAccessors: anObject [
 	renameAccessors := anObject
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring>>renameAccessorsReferences [
+{ #category : #transforming }
+RBRenameInstanceVariableRefactoring >> renameAccessorsReferences [
 	| methods senders |
 	methods := (class allSelectors select: [ :each | ((class methodFor: each) = nil) not ] thenCollect: [ :each | each ])
 		asOrderedCollection.
@@ -202,11 +150,8 @@ RBRenameInstanceVariableRefactoring>>renameAccessorsReferences [
 				ifFalse: [ (model classNamed: class name) compile: each source classified: each protocols ] ]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring>>renameReferences [
+{ #category : #transforming }
+RBRenameInstanceVariableRefactoring >> renameReferences [
 	| replacer |
 	replacer := RBParseTreeRewriter 
 				rename: variableName
@@ -221,11 +166,8 @@ RBRenameInstanceVariableRefactoring>>renameReferences [
 		using: replacer
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBRenameInstanceVariableRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream
@@ -238,11 +180,8 @@ RBRenameInstanceVariableRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameInstanceVariableRefactoring>>transform [
+{ #category : #transforming }
+RBRenameInstanceVariableRefactoring >> transform [
 	renameAccessors ifTrue: [ 
 		self removeOldAccessors 
 	].

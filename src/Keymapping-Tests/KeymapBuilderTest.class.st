@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #KeymapBuilderTest,
 	#superclass : #AbstractKeymappingTest,
-	#category : #Keymapping-Tests,
-	#timestamp : ''
+	#category : #Keymapping-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KeymapBuilderTest>>testAddKeymapCreatesCategory [
+{ #category : #tests }
+KeymapBuilderTest >> testAddKeymapCreatesCategory [
 	self assert: KMRepository default categories isEmpty.
 	
 	KMRepository default
@@ -26,11 +19,8 @@ KeymapBuilderTest>>testAddKeymapCreatesCategory [
 	self assert: KMRepository default categories size = 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KeymapBuilderTest>>testAddKeymapCreatesShortcut [
+{ #category : #tests }
+KeymapBuilderTest >> testAddKeymapCreatesShortcut [
 	KMRepository default
 		initializeKeymap: #test
 		executingOn: $r ctrl, $r asKeyCombination, $r asKeyCombination
@@ -41,11 +31,8 @@ KeymapBuilderTest>>testAddKeymapCreatesShortcut [
 	self assert: (KMRepository default categoryForName: #Testing ) allEntries size = 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KeymapBuilderTest>>testAttachKeymapAndExecuteExecutes [
+{ #category : #tests }
+KeymapBuilderTest >> testAttachKeymapAndExecuteExecutes [
 	| executed morphToTest |
 	executed := false.
 	

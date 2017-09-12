@@ -8,34 +8,24 @@ Class {
 		'aBlockContext',
 		'contextOfaBlockContext'
 	],
-	#category : #Kernel-Tests-Methods,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:31'
+	#category : #Kernel-Tests-Methods
 }
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>blockWithNonLocalReturn: resultObject [
+{ #category : #helpers }
+BlockClosureTest >> blockWithNonLocalReturn: resultObject [
 		
 	^[ ^resultObject ] 
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>setUp [
+{ #category : #setup }
+BlockClosureTest >> setUp [
 	super setUp.
 	aBlockContext := [100@100 corner: 200@200].
 	contextOfaBlockContext := thisContext.
 ]
 
-{
-	#category : #'tests - evaluating',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testBenchFor [
+{ #category : #'tests - evaluating' }
+BlockClosureTest >> testBenchFor [
 	| benchmarkResult duration minimumIterations |
 	duration := 500 milliSeconds.
 	benchmarkResult := [ 100 factorial ] benchFor: duration.
@@ -47,11 +37,8 @@ BlockClosureTest>>testBenchFor [
 	self assert: benchmarkResult period < (duration / minimumIterations)  
 ]
 
-{
-	#category : #'tests - evaluating',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testCannotReturn [
+{ #category : #'tests - evaluating' }
+BlockClosureTest >> testCannotReturn [
 
 	| block p |
 	p := [block := self blockWithNonLocalReturn: #result] fork.
@@ -64,11 +51,8 @@ BlockClosureTest>>testCannotReturn [
 			self assert: err home equals: block home]
 ]
 
-{
-	#category : #'tests - evaluating',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testCull [
+{ #category : #'tests - evaluating' }
+BlockClosureTest >> testCull [
 	[  ] cull: 1.
 	[ :x |  ] cull: 1.
 	self should: [ [ :x :y |  ] cull: 1 ] raise: Error.
@@ -79,11 +63,8 @@ BlockClosureTest>>testCull [
 	self assert: ([ :x | x ] cull: 1) = 1
 ]
 
-{
-	#category : #'tests - evaluating',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testCullCull [
+{ #category : #'tests - evaluating' }
+BlockClosureTest >> testCullCull [
 	[  ] cull: 1 cull: 2.
 	[ :x |  ] cull: 1 cull: 2.
 	[ :x :y |  ] cull: 1 cull: 2.
@@ -95,11 +76,8 @@ BlockClosureTest>>testCullCull [
 	self assert: ([ :x :y | y ] cull: 1 cull: 2) = 2
 ]
 
-{
-	#category : #'tests - evaluating',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testCullCullCull [
+{ #category : #'tests - evaluating' }
+BlockClosureTest >> testCullCullCull [
 	[  ] cull: 1 cull: 2 cull: 3.
 	[ :x |  ] cull: 1 cull: 2 cull: 3.
 	[ :x :y |  ] cull: 1 cull: 2 cull: 3.
@@ -112,11 +90,8 @@ BlockClosureTest>>testCullCullCull [
 	self assert: ([ :x :y :z | z ] cull: 1 cull: 2 cull: 3) = 3
 ]
 
-{
-	#category : #'tests - evaluating',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testCullCullCullCull [
+{ #category : #'tests - evaluating' }
+BlockClosureTest >> testCullCullCullCull [
 	[  ]
 		cull: 1
 		cull: 2
@@ -187,11 +162,8 @@ BlockClosureTest>>testCullCullCullCull [
 				cull: 4) = 4
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testNew [
+{ #category : #tests }
+BlockClosureTest >> testNew [
 	self	should: [Context new: 5] raise: Error.
 	[Context new: 5]
 		ifError: [:error | error = 'Error: Contexts must only be created with newForMethod:'].
@@ -203,11 +175,8 @@ BlockClosureTest>>testNew [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testNoArguments [
+{ #category : #tests }
+BlockClosureTest >> testNoArguments [
 	[10
 		timesRepeat: [:arg | 1 + 2]]
 		ifError: [:err | self deny: err = 'This block requires 1 arguments.'].
@@ -216,11 +185,8 @@ BlockClosureTest>>testNoArguments [
 		ifError: [:err  | self deny: err = 'This block requires 2 arguments.'] 
 ]
 
-{
-	#category : #'tests - on-fork',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testOnFork [
+{ #category : #'tests - on-fork' }
+BlockClosureTest >> testOnFork [
 	"Test that if code runs without errors, there is no fork! "
 	
 	| result1 result2 |
@@ -234,11 +200,8 @@ BlockClosureTest>>testOnFork [
 	self assert: (result2 isNil ).
 ]
 
-{
-	#category : #'tests - on-fork',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testOnForkErrorExecutesBlock [
+{ #category : #'tests - on-fork' }
+BlockClosureTest >> testOnForkErrorExecutesBlock [
 	"Test that if code runs with error, there is fork"
 	
 	| result sema |
@@ -251,11 +214,8 @@ BlockClosureTest>>testOnForkErrorExecutesBlock [
 	self assert: result = 2.
 ]
 
-{
-	#category : #'tests - on-fork',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testOnForkErrorOnSeparateProcess [
+{ #category : #'tests - on-fork' }
+BlockClosureTest >> testOnForkErrorOnSeparateProcess [
 	"Test that if code runs with error, there is fork"
 	
 	| result forkedProc sema |
@@ -267,11 +227,8 @@ BlockClosureTest>>testOnForkErrorOnSeparateProcess [
 	self assert: (forkedProc ~~ Processor activeProcess).
 ]
 
-{
-	#category : #'tests - on-fork',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testOnForkErrorReturnsNil [
+{ #category : #'tests - on-fork' }
+BlockClosureTest >> testOnForkErrorReturnsNil [
 	"Test that if code runs with error, there is fork"
 	
 	| result sema |
@@ -284,11 +241,8 @@ BlockClosureTest>>testOnForkErrorReturnsNil [
 	self assert: result isNil.
 ]
 
-{
-	#category : #'tests - on-fork',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testOnForkErrorTakesLessThanOneSecond [
+{ #category : #'tests - on-fork' }
+BlockClosureTest >> testOnForkErrorTakesLessThanOneSecond [
 	"Test that if code runs with error, there is fork"
 	
 	| sema timeout |
@@ -306,11 +260,8 @@ BlockClosureTest>>testOnForkErrorTakesLessThanOneSecond [
 	self assert: timeout == false
 ]
 
-{
-	#category : #'tests - on-fork',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testOnForkSplit [
+{ #category : #'tests - on-fork' }
+BlockClosureTest >> testOnForkSplit [
 	"Test that when forking, the stack are split correctly (there is no any contexts referenced by both processes)"
 	
 	| sema timeout forkedContexts myContexts c |
@@ -336,11 +287,8 @@ BlockClosureTest>>testOnForkSplit [
 	self assert: (forkedContexts noneSatisfy: [:b | myContexts includes: b ]) description: 'forkedContexts are not within myContexts'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testOneArgument [
+{ #category : #tests }
+BlockClosureTest >> testOneArgument [
 	| c |
 	c := OrderedCollection new.
 	c add: 'hello'.
@@ -352,19 +300,13 @@ BlockClosureTest>>testOneArgument [
 		ifError: [:err | self deny: err = 'This block requires 2 arguments.'] 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testRunSimulated [
+{ #category : #tests }
+BlockClosureTest >> testRunSimulated [
 	self assert: (Context runSimulated: aBlockContext) class = Rectangle.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testSetUp [
+{ #category : #tests }
+BlockClosureTest >> testSetUp [
 	"Note: In addition to verifying that the setUp worked the way it was expected to, testSetUp is used to illustrate the meaning of the simple access methods, methods that are not normally otherwise 'tested'"
 
 	self assert: aBlockContext home = contextOfaBlockContext.
@@ -373,62 +315,44 @@ BlockClosureTest>>testSetUp [
 	self assert: (aBlockContext method isNil or: [aBlockContext method isKindOf: CompiledCode]).
 ]
 
-{
-	#category : #'tests - astmapping',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testSourceNodeOptimized [
+{ #category : #'tests - astmapping' }
+BlockClosureTest >> testSourceNodeOptimized [
 	| block | 
 	block := [ :ctx | [ ctx atEnd ] whileTrue:[1+2 ] ] .
 	self assert: block sourceNode printString = 'RBBlockNode([ :ctx | [ ctx atEnd ] whileTrue: [ 1 + 2 ] ])'.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testSupplyAnswerOfFillInTheBlank [
+{ #category : #testing }
+BlockClosureTest >> testSupplyAnswerOfFillInTheBlank [
 
 	self should: ['blue' = ([UIManager default request: 'Your favorite color?'] 
 		valueSupplyingAnswer: #('Your favorite color?' 'blue'))]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testSupplyAnswerOfFillInTheBlankUsingDefaultAnswer [
+{ #category : #testing }
+BlockClosureTest >> testSupplyAnswerOfFillInTheBlankUsingDefaultAnswer [
 
 	self should: ['red' = ([UIManager default  request: 'Your favorite color?' initialAnswer: 'red'] 
 		valueSupplyingAnswer: #('Your favorite color?' #default))]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testSupplyAnswerThroughNestedBlocks [
+{ #category : #tests }
+BlockClosureTest >> testSupplyAnswerThroughNestedBlocks [
 
 	self should: [true = ([[self confirm: 'You like Smalltalk?'] 
 		valueSupplyingAnswer: #('Blub' false)] valueSupplyingAnswer: #('Smalltalk' true))]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testSupplyAnswerUsingOnlySubstringOfQuestion [
+{ #category : #tests }
+BlockClosureTest >> testSupplyAnswerUsingOnlySubstringOfQuestion [
 
 	self should: [false = ([self confirm: 'You like Smalltalk?'] 
 		valueSupplyingAnswer: #('like' false))]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testSupplyAnswerUsingRegexMatchOfQuestion [
+{ #category : #tests }
+BlockClosureTest >> testSupplyAnswerUsingRegexMatchOfQuestion [
 
 	(String includesSelector: #matchesRegex:) ifFalse: [^ self].
 	
@@ -436,32 +360,23 @@ BlockClosureTest>>testSupplyAnswerUsingRegexMatchOfQuestion [
 		valueSupplyingAnswer: #('.*Smalltalk\?' true))]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testSupplyAnswerUsingTraditionalMatchOfQuestion [
+{ #category : #tests }
+BlockClosureTest >> testSupplyAnswerUsingTraditionalMatchOfQuestion [
 
 	self should: [true = ([self confirm: 'You like Smalltalk?'] 
 		valueSupplyingAnswer: #('*Smalltalk#' true))]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testSupplySameAnswerToAllQuestions [
+{ #category : #tests }
+BlockClosureTest >> testSupplySameAnswerToAllQuestions [
 
 	self should: [true = ([self confirm: 'You like Smalltalk?'] valueSupplyingAnswer: true)].
 	
 	self should: [#(true true) = ([{self confirm: 'One'. self confirm: 'Two'}] valueSupplyingAnswer: true)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testSupplySeveralAnswersToSeveralQuestions [
+{ #category : #tests }
+BlockClosureTest >> testSupplySeveralAnswersToSeveralQuestions [
 
 	self should: [#(false true) = ([{self confirm: 'One'. self confirm: 'Two'}] 
 		valueSupplyingAnswers: #( ('One' false) ('Two' true) ))].
@@ -470,30 +385,21 @@ BlockClosureTest>>testSupplySeveralAnswersToSeveralQuestions [
 		valueSupplyingAnswers: #( ('One' true) ('Two' false) ))]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testSupplySpecificAnswerToQuestion [
+{ #category : #tests }
+BlockClosureTest >> testSupplySpecificAnswerToQuestion [
 
 	self should: [false = ([self confirm: 'You like Smalltalk?'] 
 		valueSupplyingAnswer: #('You like Smalltalk?' false))]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testSuppressInform [
+{ #category : #tests }
+BlockClosureTest >> testSuppressInform [
 
 	self should: [[nil inform: 'Should not see this message or this test failed!'] valueSuppressingAllMessages isNil]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testSuppressInformUsingStringMatchOptions [
+{ #category : #tests }
+BlockClosureTest >> testSuppressInformUsingStringMatchOptions [
 
 	self should: [([nil inform: 'Should not see this message or this test failed!'] valueSuppressingMessages: #('Should not see this message or this test failed!')) isNil].
 	
@@ -503,11 +409,8 @@ BlockClosureTest>>testSuppressInformUsingStringMatchOptions [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testTallyInstructions [
+{ #category : #tests }
+BlockClosureTest >> testTallyInstructions [
 	"Depends on compiler settings... If everything is compiled to the V3PlusClosures bytecode set, then the result is 27.
 	 If everything is compiled to the SistaV1 bytecode set, then the result is 26. If execution is mixed between method
 	compiled with V3PlusClosures and SistaV1, result is then different and untested."
@@ -520,19 +423,13 @@ BlockClosureTest>>testTallyInstructions [
 	self assert: (Context tallyInstructions: aBlockContext ) size equals: expectedResult
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testTallyMethods [
+{ #category : #tests }
+BlockClosureTest >> testTallyMethods [
 	self assert: (Context tallyMethods: aBlockContext) size = 7.
 ]
 
-{
-	#category : #'tests - evaluating',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testValueWithArguments [
+{ #category : #'tests - evaluating' }
+BlockClosureTest >> testValueWithArguments [
 	self should: [ aBlockContext valueWithArguments: #(1) ] raise: Error.
 	aBlockContext valueWithArguments: #().
 	[ aBlockContext valueWithArguments: #(1) ]
@@ -541,11 +438,8 @@ BlockClosureTest>>testValueWithArguments [
 		ifError: [ :err | self assert: err = 'Error: This block accepts 1 argument, but was called with 2 arguments.' ]
 ]
 
-{
-	#category : #'tests - evaluating',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testValueWithExitBreak [
+{ #category : #'tests - evaluating' }
+BlockClosureTest >> testValueWithExitBreak [
 
 	| val |	
 
@@ -559,11 +453,8 @@ BlockClosureTest>>testValueWithExitBreak [
 	self assert: val = 4.
 ]
 
-{
-	#category : #'tests - evaluating',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testValueWithExitContinue [
+{ #category : #'tests - evaluating' }
+BlockClosureTest >> testValueWithExitContinue [
 
 	| val last |	
 	val := 0. 
@@ -580,11 +471,8 @@ BlockClosureTest>>testValueWithExitContinue [
 	self assert: last = 10.	
 ]
 
-{
-	#category : #'tests - evaluating',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testValueWithPossibleArgs [
+{ #category : #'tests - evaluating' }
+BlockClosureTest >> testValueWithPossibleArgs [
 	| block blockWithArg blockWith2Arg |
 	block := [ 1 ].
 	blockWithArg := [ :arg | arg ].
@@ -612,11 +500,8 @@ BlockClosureTest>>testValueWithPossibleArgs [
 	self assert: (blockWith2Arg valueWithPossibleArgs: #(1 2 3)) = #(1 2)
 ]
 
-{
-	#category : #'tests - evaluating',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosureTest>>testValueWithPossibleArgument [
+{ #category : #'tests - evaluating' }
+BlockClosureTest >> testValueWithPossibleArgument [
 	| block  blockWithArg blockWith2Arg |
 
 	block := [1].

@@ -3,35 +3,23 @@ A trait for test purposes
 "
 Trait {
 	#name : #TConvertAsSortedTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:33'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertAsSortedTest>>collectionWithSortableElements [
+{ #category : #requirements }
+TConvertAsSortedTest >> collectionWithSortableElements [
 " return a collection elements that can be sorte ( understanding message ' < '  or ' > ')"
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertAsSortedTest>>test0FixtureConverAsSortedTest [
+{ #category : #'tests - fixture' }
+TConvertAsSortedTest >> test0FixtureConverAsSortedTest [
 	self collectionWithSortableElements.
 	self deny: self collectionWithSortableElements isEmpty
 ]
 
-{
-	#category : #'tests - as sorted collection',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertAsSortedTest>>testAsSortedArray [
+{ #category : #'tests - as sorted collection' }
+TConvertAsSortedTest >> testAsSortedArray [
 	| result collection |
 	collection := self collectionWithSortableElements .
 	result := collection  asArray sort.
@@ -40,11 +28,8 @@ TConvertAsSortedTest>>testAsSortedArray [
 	self assert: result size = collection size
 ]
 
-{
-	#category : #'tests - as sorted collection',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertAsSortedTest>>testAsSortedCollection [
+{ #category : #'tests - as sorted collection' }
+TConvertAsSortedTest >> testAsSortedCollection [
 
 	| aCollection result |
 	aCollection := self collectionWithSortableElements .
@@ -58,11 +43,8 @@ TConvertAsSortedTest>>testAsSortedCollection [
 	self assert: result size = aCollection size.
 ]
 
-{
-	#category : #'tests - as sorted collection',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertAsSortedTest>>testAsSortedCollectionWithSortBlock [
+{ #category : #'tests - as sorted collection' }
+TConvertAsSortedTest >> testAsSortedCollectionWithSortBlock [
 	| result tmp |
 	result := self collectionWithSortableElements  asSortedCollection: [:a :b | a > b].
 	self assert: (result class includesBehavior: SortedCollection).

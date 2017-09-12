@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMSpotterRequest,
 	#superclass : #Notification,
@@ -9,79 +6,51 @@ Class {
 		'prompt',
 		'default'
 	],
-	#category : #Glamour-Morphic-Renderer-Spotter,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer-Spotter
 }
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSpotterRequest>>add: aRequest [
+{ #category : #initialize-release }
+GLMSpotterRequest >> add: aRequest [
 	requests add: aRequest 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSpotterRequest>>default [
+{ #category : #accessing }
+GLMSpotterRequest >> default [
 	^ default
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSpotterRequest>>default: anObject [
+{ #category : #accessing }
+GLMSpotterRequest >> default: anObject [
 	default := anObject
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSpotterRequest>>defaultAction [
+{ #category : #initialize-release }
+GLMSpotterRequest >> defaultAction [
 	^(GLMMorphicSpotter openOn: self) answer
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSpotterRequest>>handleWith: anObject [
+{ #category : #initialize-release }
+GLMSpotterRequest >> handleWith: anObject [
 	^ anObject handleCompletionRequest: self
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSpotterRequest>>initialize [
+{ #category : #initialize-release }
+GLMSpotterRequest >> initialize [
 	super initialize.
 	requests := OrderedCollection new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSpotterRequest>>prompt [
+{ #category : #accessing }
+GLMSpotterRequest >> prompt [
 	^ prompt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSpotterRequest>>prompt: anObject [
+{ #category : #accessing }
+GLMSpotterRequest >> prompt: anObject [
 	prompt := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSpotterRequest>>requests [
+{ #category : #accessing }
+GLMSpotterRequest >> requests [
 	^requests 
 ]

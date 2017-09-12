@@ -14,23 +14,16 @@ Class {
 		'currentHighlightedIndexes',
 		'pattern'
 	],
-	#category : #Morphic-Widgets-FastTable-Functions,
-	#timestamp : 'EstebanLorenzano 5/21/2015 19:46'
+	#category : #Morphic-Widgets-FastTable-Functions
 }
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSearchFunction>>ghostText [
+{ #category : #'widget API' }
+FTSearchFunction >> ghostText [
 	^ 'Search...'
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSearchFunction>>keyStroke: anEvent [
+{ #category : #'event handling' }
+FTSearchFunction >> keyStroke: anEvent [
 	(anEvent anyModifierKeyPressed
 		or: [ anEvent keyCharacter isAlphaNumeric not ])
 		ifTrue: [ ^ false ].
@@ -40,11 +33,8 @@ FTSearchFunction>>keyStroke: anEvent [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSearchFunction>>realSearch [
+{ #category : #accessing }
+FTSearchFunction >> realSearch [
 	| founds |
 	founds := self table dataSource searchText: pattern.
 	self table
@@ -53,28 +43,19 @@ FTSearchFunction>>realSearch [
 	^ founds notEmpty
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSearchFunction>>reset [
+{ #category : #initialization }
+FTSearchFunction >> reset [
 	"self search"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSearchFunction>>searchFor: aStringOrText [
+{ #category : #accessing }
+FTSearchFunction >> searchFor: aStringOrText [
 	pattern := aStringOrText asString trim.
 	^ self realSearch
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSearchFunction>>showSearchFieldFromKeystrokeEvent: anEvent [
+{ #category : #private }
+FTSearchFunction >> showSearchFieldFromKeystrokeEvent: anEvent [
 	| s ed founds |
 	s := anEvent keyCharacter asString asText.
 	founds := self searchFor: s.
@@ -107,10 +88,7 @@ FTSearchFunction>>showSearchFieldFromKeystrokeEvent: anEvent [
 	ed openEditorWithContents: s
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSearchFunction>>textUpdated: anAnnouncement [
+{ #category : #updating }
+FTSearchFunction >> textUpdated: anAnnouncement [
 	self searchFor: field getTextFromModel
 ]

@@ -9,41 +9,28 @@ Class {
 		'method',
 		'actionIcon'
 	],
-	#category : #Morphic-Widgets-FastTable-Examples,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-FastTable-Examples
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodModel class>>method: aMethod [
+{ #category : #'instance creation' }
+FTExampleMethodModel class >> method: aMethod [
 	^ self basicNew 
 		initializeMethod: aMethod;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodModel class>>new [
+{ #category : #'instance creation' }
+FTExampleMethodModel class >> new [
 	self error: 'Use #method:'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodModel>>actionOn: aBrowser [
+{ #category : #accessing }
+FTExampleMethodModel >> actionOn: aBrowser [
 	^ actionIcon ifNil: [ actionIcon := self createActionIconOn: aBrowser ]
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodModel>>createActionIconOn: aBrowser [
+{ #category : #factory }
+FTExampleMethodModel >> createActionIconOn: aBrowser [
 	| actions action |
 	actions := AbstractMethodIconAction allSubclasses 
 		collect: [ :class | class for: self method in: self ].
@@ -53,43 +40,28 @@ FTExampleMethodModel>>createActionIconOn: aBrowser [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodModel>>initializeMethod: aMethod [
+{ #category : #initialization }
+FTExampleMethodModel >> initializeMethod: aMethod [
 	self initialize.
 	method := aMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodModel>>method [
+{ #category : #accessing }
+FTExampleMethodModel >> method [
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodModel>>name [
+{ #category : #accessing }
+FTExampleMethodModel >> name [
 	^ self method selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodModel>>origin [
+{ #category : #accessing }
+FTExampleMethodModel >> origin [
 	^ self method origin
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodModel>>protocol [
+{ #category : #accessing }
+FTExampleMethodModel >> protocol [
 	^ self method protocol
 ]
